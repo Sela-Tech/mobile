@@ -1,10 +1,10 @@
-import React from "react";
-import { StyleSheet } from "react-native";
+import React from 'react';
+import { StyleSheet } from 'react-native';
 
-import AppIntroSlider from "../components/npm/AppIntroSlider";
-import IntroComp from "../components/Intro/Intro";
-import Home from "./Home";
-import { YELLOW } from "../utils/constants";
+import AppIntroSlider from '../components/npm/AppIntroSlider';
+import IntroComp from '../components/Intro/Intro';
+import Home from './Home';
+import { YELLOW } from '../utils/constants';
 
 const first = `Find,fund and track  development
                projects in the emerging world
@@ -21,35 +21,35 @@ const third = `Provide progress updates on
 
 const styles = StyleSheet.create({
   image: {
-    height: "70%",
-    width: "100%"
+    height: '70%',
+    width: '100%',
   },
   mainContent: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "space-around"
-  }
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
 });
 
 const slides = [
   {
-    key: "first",
-    image: require("../../assets/img/building.png")
+    key: 'first',
+    image: require('../../assets/img/building.png'),
   },
   {
-    key: "second",
-    image: require("../../assets/img/man.png"),
-    imageStyle: styles.image
+    key: 'second',
+    image: require('../../assets/img/man.png'),
+    imageStyle: styles.image,
   },
   {
-    key: "third",
-    image: require("../../assets/img/woman.png")
-  }
+    key: 'third',
+    image: require('../../assets/img/woman.png'),
+  },
 ];
 
 export default class Intro extends React.Component {
   state = {
-    showRealApp: false
+    showRealApp: false,
   };
 
   onDone = () => {
@@ -62,14 +62,14 @@ export default class Intro extends React.Component {
     <IntroComp
       image={props.image}
       shortText={
-        props.key === "first"
-          ? "Fund"
-          : props.key === "second"
-            ? "Execute"
-            : "Evaluate"
+        props.key === 'first'
+          ? 'Fund'
+          : props.key === 'second'
+          ? 'Execute'
+          : 'Evaluate'
       }
       longText={
-        props.key === "first" ? first : props.key === "second" ? second : third
+        props.key === 'first' ? first : props.key === 'second' ? second : third
       }
     />
   );
@@ -83,7 +83,7 @@ export default class Intro extends React.Component {
       <AppIntroSlider
         style={{ flex: 1 }}
         activeDotStyle={{
-          backgroundColor: YELLOW
+          backgroundColor: YELLOW,
         }}
         showSkipButton
         slides={slides}

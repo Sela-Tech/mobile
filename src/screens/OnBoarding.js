@@ -1,33 +1,32 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   StyleSheet,
   View,
   KeyboardAvoidingView,
   ScrollView,
-  Keyboard
-} from "react-native";
-import PropTypes from "prop-types";
-import StepIndicator from "../components/npm/StepIndicator";
-import DismissKeyboard from "../components/DismissKeyboard";
-import IntroHeader from "../components/IntroHeader";
-import OnBoardView from "../components/OnBoarding/OnBoardView";
+} from 'react-native';
+import PropTypes from 'prop-types';
+import StepIndicator from '../components/npm/StepIndicator';
+import DismissKeyboard from '../components/DismissKeyboard';
+import IntroHeader from '../components/IntroHeader';
+import OnBoardView from '../components/OnBoarding/OnBoardView';
 
-import ExtStyle from "../utils/styles";
-import { DEFAULT_COLOUR, YELLOW } from "../utils/constants";
+import ExtStyle from '../utils/styles';
+import { DEFAULT_COLOUR, YELLOW } from '../utils/constants';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: DEFAULT_COLOUR
+    backgroundColor: DEFAULT_COLOUR,
   },
   stepIndicator: {
-    marginVertical: "4%"
+    marginVertical: '4%',
   },
   page: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center"
-  }
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 const firstIndicatorStyles = {
@@ -36,17 +35,17 @@ const firstIndicatorStyles = {
   currentStepStrokeWidth: 5,
   stepIndicatorLabelFontSize: 15,
   currentStepIndicatorLabelFontSize: 15,
-  stepIndicatorLabelUnFinishedColor: "rgba(255,255,255,0.5)",
-  labelColor: "#666666",
+  stepIndicatorLabelUnFinishedColor: 'rgba(255,255,255,0.5)',
+  labelColor: '#666666',
   labelSize: 12,
-  currentStepLabelColor: YELLOW
+  currentStepLabelColor: YELLOW,
 };
 
 export default class OnBoarding extends Component {
   static propTypes = {
     navigation: PropTypes.shape({
-      navigate: PropTypes.func.isRequired
-    }).isRequired
+      navigate: PropTypes.func.isRequired,
+    }).isRequired,
   };
 
   constructor() {
@@ -54,26 +53,26 @@ export default class OnBoarding extends Component {
     this.state = {
       currentPage: 0,
       keyboard: false,
-      name: "",
-      emailOrPhone: "",
-      password: "",
-      role: "funder",
-      secure: true
+      name: '',
+      emailOrPhone: '',
+      password: '',
+      role: 'funder',
+      secure: true,
     };
   }
 
   componentWillMount() {
-    this.keyboardDidShowListener = Keyboard.addListener("keyboardDidShow", e =>
-      this.keyboardDidShow(e)
+    this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', e =>
+      this.keyboardDidShow(e),
     );
-    this.keyboardDidHideListener = Keyboard.addListener("keyboardDidHide", e =>
-      this.keyboardDidHide(e)
+    this.keyboardDidHideListener = Keyboard.addListener('keyboardDidHide', e =>
+      this.keyboardDidHide(e),
     );
   }
 
   componentWillReceiveProps(nextProps, nextState) {
     const { currentPage } = this.state;
-    if (nextState.currentPage != currentPage) {
+    if (nextState.currentPage !== currentPage) {
       if (this.viewPager) {
         this.viewPager.setPage(nextState.currentPage);
       }
@@ -93,12 +92,12 @@ export default class OnBoarding extends Component {
       currentPage:
         prevState.currentPage === 0
           ? prevState.currentPage + 1
-          : prevState.currentPage - 1
+          : prevState.currentPage - 1,
     }));
 
   changeRole = role =>
     this.setState({
-      role
+      role,
     });
 
   keyboardDidShow() {
@@ -110,7 +109,8 @@ export default class OnBoarding extends Component {
   }
 
   render() {
-    const { goBack, navigate } = this.props.navigation;
+    const { navigation } = this.props;
+    const { goBack, navigate } = navigation;
     const { currentPage, keyboard, secure } = this.state;
 
     return (
@@ -124,7 +124,7 @@ export default class OnBoarding extends Component {
             <View style={styles.container}>
               <View
                 style={{
-                  flex: 1
+                  flex: 1,
                 }}
               >
                 <IntroHeader
@@ -151,17 +151,17 @@ export default class OnBoarding extends Component {
                   showPassword={this.showPassword}
                 />
               ) : (
-                <OnBoardView
-                  second
-                  currentPage={currentPage}
-                  changePage={this.changePage}
-                  secure={secure}
-                  state={this.state}
-                  changeRole={this.changeRole}
-                  navigate={navigate}
-                  showPassword={this.showPassword}
-                />
-              )}
+                  <OnBoardView
+                    second
+                    currentPage={currentPage}
+                    changePage={this.changePage}
+                    secure={secure}
+                    state={this.state}
+                    changeRole={this.changeRole}
+                    navigate={navigate}
+                    showPassword={this.showPassword}
+                  />
+                )}
             </View>
           </KeyboardAvoidingView>
         </DismissKeyboard>

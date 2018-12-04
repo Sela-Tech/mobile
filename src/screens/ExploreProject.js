@@ -35,6 +35,7 @@ export default class ExploreProject extends Component {
       fontWeight: 'normal',
     },
   };
+
   render() {
     return (
       <ScrollView

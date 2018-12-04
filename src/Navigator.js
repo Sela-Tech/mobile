@@ -9,8 +9,12 @@ import OnBoarding from './screens/OnBoarding';
 import SubmitFeedback from './screens/SubmitFeedback';
 import CreateProject from './screens/CreateProject';
 import ExploreProject from './screens/ExploreProject';
+import ViewProject from './screens/ViewProject';
 
 export const RootNavigator = createStackNavigator({
+  ViewProject: {
+    screen: ViewProject,
+  },
   ExploreProject: {
     screen: ExploreProject,
   },

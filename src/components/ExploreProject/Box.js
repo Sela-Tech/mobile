@@ -7,7 +7,7 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Entypo } from '@expo/vector-icons';
+import { Entypo } from '@expo/vector-icons'; // eslint-disable-line
 import Text from '../Text';
 import { isAndroid } from '../../utils/helpers';
 import { YELLOW, WHITE } from '../../utils/constants';
@@ -66,12 +66,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags }) => (
         </View>
       </View>
     </View>
-    <View
-      style={[
-        styles.boxHeight,
-        { justifyContent: 'center' },
-      ]}
-    >
+    <View style={[styles.boxHeight, { justifyContent: 'center' }]}>
       <View style={[styles.row, { marginTop: 10 }]}>
         <View style={{ flexDirection: 'row' }}>
           <Text style={{ fontSize: 15, fontWeight: '400', color: '#696F74' }}>
@@ -79,9 +74,13 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags }) => (
           </Text>
           <Entypo name="dot-single" size={18} color="#696F74" />
         </View>
-        <View style={{ paddingLeft: isAndroid ? '1%' : 2, flexDirection: 'row' }}>
+        <View
+          style={{ paddingLeft: isAndroid ? '1%' : 2, flexDirection: 'row' }}
+        >
           <View>
-            <Text style={[styles.fontS, { fontWeight: '400', color: '#696F74' }]}>
+            <Text
+              style={[styles.fontS, { fontWeight: '400', color: '#696F74' }]}
+            >
               {secondText}
             </Text>
           </View>
@@ -90,9 +89,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags }) => (
           </View>
         </View>
         <View style={{ paddingLeft: isAndroid ? '1%' : 2 }}>
-          <Text style={{ fontWeight: '300', color: YELLOW }}>
-            {thirdText}
-          </Text>
+          <Text style={{ fontWeight: '300', color: YELLOW }}>{thirdText}</Text>
         </View>
       </View>
       <View style={{ marginTop: isAndroid ? '2%' : 3 }}>
@@ -137,7 +134,7 @@ Box.defaultProps = {};
 
 Box.propTypes = {
   fund: PropTypes.string,
-  cost: PropTypes.string, //.isRequired,
+  cost: PropTypes.string, // .isRequired,
   fn: PropTypes.func,
   title: PropTypes.string,
   third: PropTypes.number,

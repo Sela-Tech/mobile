@@ -16,12 +16,16 @@ export default class DefaultSlide extends React.PureComponent {
       paddingBottom: this.props.bottomSpacer,
       width: this.props.width,
       height: this.props.height,
-    }
+    };
     return (
       <View style={[styles.mainContent, style]}>
-        <Text style={[styles.title, this.props.titleStyle]}>{this.props.title}</Text>
+        <Text style={[styles.title, this.props.titleStyle]}>
+          {this.props.title}
+        </Text>
         <Image source={this.props.image} style={this.props.imageStyle} />
-        <Text style={[styles.text, this.props.textStyle]}>{this.props.text}</Text>
+        <Text style={[styles.text, this.props.textStyle]}>
+          {this.props.text}
+        </Text>
       </View>
     );
   }
@@ -44,5 +48,5 @@ const styles = StyleSheet.create({
     color: 'rgba(255, 255, 255, .7)',
     fontWeight: '300',
     paddingHorizontal: 16,
-  }
+  },
 });

@@ -9,13 +9,7 @@ import {
 import { Header } from 'native-base';
 import { Camera, Permissions, Constants } from 'expo';
 import { GiftedChat } from 'react-native-gifted-chat';
-import {
-  Ionicons,
-  MaterialIcons,
-  Foundation,
-  MaterialCommunityIcons,
-  Octicons,
-} from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons'; // eslint-disable-line
 import Text from '../components/Text';
 import { isAndroid } from '../utils/helpers';
 import { YELLOW } from '../utils/constants';
@@ -153,7 +147,6 @@ export default class SubmitFeedback extends Component {
     openCamera: false,
     videoStarted: false,
     flash: 'off',
-    zoom: 0,
     autoFocus: 'on',
     messages: [
       {
@@ -242,10 +235,8 @@ export default class SubmitFeedback extends Component {
     step += 1;
     if (this.camera) {
       try {
-        console.log('testing taking video');
         // this.setState({ videoStarted: false });
         const video = await this.camera.recordAsync();
-        console.log('video', video);
         const messages = [
           {
             _id: Math.round(Math.random() * 1000000).toString(), // .toString(),
@@ -302,7 +293,6 @@ export default class SubmitFeedback extends Component {
       await this.updateFeedback();
     } else {
       this.setState({ openCamera: false });
-      alert('ended');
     }
   };
 
@@ -346,7 +336,7 @@ export default class SubmitFeedback extends Component {
   renderTopBar = () => <View style={styles.topBar} />;
 
   renderBottomBar = () => {
-    const { videoStarted, video } = this.state;
+    const { videoStarted } = this.state;
     return (
       <View style={styles.bottomBar}>
         <View style={{ flex: 0.4 }}>
