@@ -4,6 +4,7 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import Text from '../components/Text';
 import { WHITE, YELLOW } from '../utils/constants';
+import { isAndroid } from '../utils/helpers';
 import Box from '../components/ExploreProject/Box';
 
 const { width } = Dimensions.get('window');
@@ -13,7 +14,6 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     backgroundColor: WHITE,
     alignItems: 'center',
-    // marginBottom: 20,
     paddingBottom: 20,
   },
   inputStyle: {
@@ -47,13 +47,12 @@ export default class ExploreProject extends Component {
           style={{
             justifyContent: 'flex-start',
             alignItems: 'center',
-            marginVertical: '5%',
+            marginVertical: isAndroid ? '5%' : 10,
             flex: 1,
           }}
         >
           <Text style={{ fontSize: 20, fontWeight: '300' }}>
-            {' '}
-            Search for Projects{' '}
+            Search for Projects
           </Text>
         </View>
         <View style={{ flex: 1 }}>
@@ -97,7 +96,7 @@ export default class ExploreProject extends Component {
           </View>
         </View>
         <View style={{ flex: 5, alignItems: 'center' }}>
-          <View style={{ marginVertical: '10%' }}>
+          <View style={{ marginVertical: isAndroid ? '6%' : 20 }}>
             <Text style={{ fontSize: 20, fontWeight: '500' }}>
               Featured Projects
             </Text>

@@ -9,18 +9,17 @@ import {
 import PropTypes from 'prop-types';
 import { Entypo } from '@expo/vector-icons';
 import Text from '../Text';
+import { isAndroid } from '../../utils/helpers';
 import { YELLOW, WHITE } from '../../utils/constants';
 
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    height: height / 3,
     width: width / 1.1,
     marginBottom: 10,
     borderRadius: 10,
     justifyContent: 'center',
-    alignItems: 'center',
   },
   mainContainer: {
     height: 10,
@@ -37,7 +36,7 @@ const styles = StyleSheet.create({
   },
   viewInImage: {
     backgroundColor: '#C13C1E',
-    width: width / 4,
+    width: width / 3.5,
     position: 'absolute',
     top: 20,
     left: 30,
@@ -59,7 +58,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags }) => (
         style={{ height: height / 6, width: width / 1.1, borderRadius: 10 }}
       />
       <View style={styles.viewInImage}>
-        <View>
+        <View style={{ paddingLeft: 5 }}>
           <Image source={require('../../../assets/money.png')} />
         </View>
         <View>
@@ -70,7 +69,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags }) => (
     <View
       style={[
         styles.boxHeight,
-        { paddingLeft: '5%', justifyContent: 'center' },
+        { justifyContent: 'center' },
       ]}
     >
       <View style={[styles.row, { marginTop: 10 }]}>
@@ -78,29 +77,35 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags }) => (
           <Text style={{ fontSize: 15, fontWeight: '400', color: '#696F74' }}>
             {firstText}
           </Text>
-          <Entypo name="dot-single" size={20} color="#696F74" />
+          <Entypo name="dot-single" size={18} color="#696F74" />
         </View>
-        <View style={{ paddingLeft: '2%', flexDirection: 'row' }}>
-          <Text style={[styles.fontS, { fontWeight: '400', color: '#696F74' }]}>
-            {secondText}
+        <View style={{ paddingLeft: isAndroid ? '1%' : 2, flexDirection: 'row' }}>
+          <View>
+            <Text style={[styles.fontS, { fontWeight: '400', color: '#696F74' }]}>
+              {secondText}
+            </Text>
+          </View>
+          <View>
+            <Entypo name="dot-single" size={18} color="#696F74" />
+          </View>
+        </View>
+        <View style={{ paddingLeft: isAndroid ? '1%' : 2 }}>
+          <Text style={{ fontWeight: '300', color: YELLOW }}>
+            {thirdText}
           </Text>
-          <Entypo name="dot-single" size={20} color="#696F74" />
-        </View>
-        <View style={{ paddingLeft: '2%' }}>
-          <Text style={{ fontWeight: '400', color: YELLOW }}> {thirdText}</Text>
         </View>
       </View>
-      <View style={{ marginTop: '2%' }}>
-        <Text style={{ fontSize: 20, fontWeight: '400', color: '#201D41' }}>
+      <View style={{ marginTop: isAndroid ? '2%' : 3 }}>
+        <Text style={{ fontSize: 18, fontWeight: '400', color: '#201D41' }}>
           {title}
         </Text>
       </View>
-      <View style={{ marginTop: '2%' }}>
+      <View style={{ marginTop: isAndroid ? '2%' : 3 }}>
         <Text style={{ fontSize: 20 }}>{cost}</Text>
       </View>
       <View
         style={{
-          marginTop: '2%',
+          marginTop: isAndroid ? '2%' : 3,
           flexDirection: 'row',
           flex: 1,
         }}
