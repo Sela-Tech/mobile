@@ -1,12 +1,12 @@
 import React from 'react';
 import Text from './Text';
 
-const B = props => (
+const B = ({ fn, size, children, color }) => (
   <Text
-    onPress={props.fn}
-    style={{ fontWeight: 'bold', fontSize: props.size, color: props.color }}
+    onPress={fn}
+    style={{ fontWeight: 'bold', fontSize: size, color }}
   >
-    {props.children}
+    {children}
   </Text>
 );
 export default B;

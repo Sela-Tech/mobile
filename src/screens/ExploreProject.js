@@ -92,7 +92,7 @@ export default class ExploreProject extends Component {
               medium
               textColor={WHITE}
               style={styles.inputStyle}
-              fn={() => console.log('perfecto')}
+              fn={() => this.props.navigation.navigate('ViewProject')}
             />
           </View>
         </View>

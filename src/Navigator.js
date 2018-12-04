@@ -1,4 +1,4 @@
-import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Loading from './components/Loading';
 import Login from './screens/Login';
 import Home from './screens/Home';
@@ -10,16 +10,25 @@ import SubmitFeedback from './screens/SubmitFeedback';
 import CreateProject from './screens/CreateProject';
 import ExploreProject from './screens/ExploreProject';
 import ViewProject from './screens/ViewProject';
+import ProjectBottomNavigator from './ProjectBottomNavigator';
+import SuccessScreen from './screens/SuccessScreen';
 
-export const RootNavigator = createStackNavigator({
-  ViewProject: {
-    screen: ViewProject,
+export const RootStackNavigator = createStackNavigator({
+
+  Project: {
+    screen: ProjectBottomNavigator,
   },
   ExploreProject: {
     screen: ExploreProject,
   },
-  Project: {
+  ViewProject: {
+    screen: ViewProject,
+  },
+  CreateProject: {
     screen: CreateProject,
+  },
+  Success: {
+    screen: SuccessScreen,
   },
   SubmitFeedback: {
     screen: SubmitFeedback,
@@ -70,3 +79,6 @@ export const RootNavigator = createStackNavigator({
     },
   },
 });
+
+
+export const RootNavigator = createAppContainer(RootStackNavigator);
