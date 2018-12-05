@@ -1,15 +1,8 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
 
-
-
 export default class Profile extends Component {
-
-    render() {
-        return (
-            <View>
-
-            </View>
-        )
-    }
+  render() {
+    return <View />;
+  }
 }

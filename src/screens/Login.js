@@ -100,7 +100,7 @@ export default class Login extends Component {
               <Input
                 text="Email Address or Phone Number"
                 textStyle={styles.whiteText}
-              // medium={true}
+                // medium={true}
               />
               <View style={{ marginTop: '5%' }}>
                 <Input

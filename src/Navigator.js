@@ -16,7 +16,6 @@ import SuccessScreen from './screens/SuccessScreen';
 import InboxScreen from './screens/Inbox';
 
 export const RootStackNavigator = createStackNavigator({
-
   Project: {
     screen: ProjectBottomNavigator,
   },
@@ -81,6 +80,5 @@ export const RootStackNavigator = createStackNavigator({
     },
   },
 });
-
 
 export const RootNavigator = createAppContainer(RootStackNavigator);

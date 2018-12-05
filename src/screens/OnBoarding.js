@@ -151,17 +151,17 @@ export default class OnBoarding extends Component {
                   showPassword={this.showPassword}
                 />
               ) : (
-                  <OnBoardView
-                    second
-                    currentPage={currentPage}
-                    changePage={this.changePage}
-                    secure={secure}
-                    state={this.state}
-                    changeRole={this.changeRole}
-                    navigate={navigate}
-                    showPassword={this.showPassword}
-                  />
-                )}
+                <OnBoardView
+                  second
+                  currentPage={currentPage}
+                  changePage={this.changePage}
+                  secure={secure}
+                  state={this.state}
+                  changeRole={this.changeRole}
+                  navigate={navigate}
+                  showPassword={this.showPassword}
+                />
+              )}
             </View>
           </KeyboardAvoidingView>
         </DismissKeyboard>

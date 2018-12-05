@@ -53,8 +53,7 @@ export default () => (
         <B fn={() => NavigationService.navigate('Login')}> Log in</B>
 {' '}
 if you
-        already have an
-{' '}
+        already have an{' '}
       </Text>
       <Text style={styles.buttomText}>
         account.You can also
