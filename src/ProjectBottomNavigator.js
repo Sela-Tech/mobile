@@ -27,7 +27,7 @@ export default createBottomTabNavigator(
                             style={{ tintColor: focused ? YELLOW : `gray` }} />
                     )
                 }
-                else if (routeName === 'Profile') {
+                else if (routeName === 'Inbox') {
                     return (<Image
                         resizeMode="contain"
                         source={require('../assets/inbox.png')}
