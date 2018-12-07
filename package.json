@@ -9,7 +9,6 @@
     "eject": "expo eject",
     "flow": "flow",
     "lint": "eslint",
-    "test": "jest",
     "eslint:fix": "eslint --fix . --ext .js  ",
     "lint:js": "npm run lint:eslint -- . "
   },

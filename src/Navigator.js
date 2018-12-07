@@ -19,15 +19,15 @@ export const RootStackNavigator = createStackNavigator({
   Project: {
     screen: ProjectBottomNavigator,
   },
-  ExploreProject: {
-    screen: ExploreProject,
-  },
-  ViewProject: {
-    screen: ViewProject,
-  },
-  CreateProject: {
-    screen: CreateProject,
-  },
+  // ExploreProject: {
+  //   screen: ExploreProject,
+  // },
+  // ViewProject: {
+  //   screen: ViewProject,
+  // },
+  // CreateProject: {
+  //   screen: CreateProject,
+  // },
   Success: {
     screen: SuccessScreen,
   },
