@@ -52,9 +52,7 @@ export default class ExploreProject extends Component {
             flex: 1,
           }}
         >
-          <Text style={{ fontSize: 20, fontWeight: '300' }}>
-            Search for Projects
-          </Text>
+          <Text style={{ fontSize: 20, fontWeight: '300' }}>Search for Projects</Text>
         </View>
         <View style={{ flex: 1 }}>
           <View style={{ paddingBottom: 15 }}>
@@ -98,9 +96,7 @@ export default class ExploreProject extends Component {
         </View>
         <View style={{ flex: 5, alignItems: 'center' }}>
           <View style={{ marginVertical: isAndroid ? '6%' : 20 }}>
-            <Text style={{ fontSize: 20, fontWeight: '500' }}>
-              Featured Projects
-            </Text>
+            <Text style={{ fontSize: 20, fontWeight: '500' }}>Featured Projects</Text>
           </View>
           <View style={{ flex: 1 }}>
             <View style={{ marginBottom: 10, marginTop: 10 }}>

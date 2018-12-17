@@ -33,8 +33,7 @@ export default createBottomTabNavigator(
             <Image
               resizeMode="contain"
               source={require('../assets/inbox.png')}
-              style={{ tintColor: focused ? YELLOW : null }
-              }
+              style={{ tintColor: focused ? YELLOW : null }}
             />
           );
         }

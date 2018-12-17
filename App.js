@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import SplashScreen from './src/screens/SplashScreen';
+// import SplashScreen from './src/screens/SplashScreen';
 import { RootNavigator } from './src/Navigator';
 import ErrorHandler from './src/components/ErrorHandler';
 import NavigationService from './src/services/NavigationService';
@@ -20,8 +20,6 @@ export default class App extends React.Component {
       // isReady: false,
     };
   }
-
-
 
   render() {
     return (

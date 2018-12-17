@@ -1,11 +1,5 @@
 import React, { Fragment } from 'react';
-import {
-  View,
-  TextInput,
-  Dimensions,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import { View, TextInput, Dimensions, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 
 const { height, width } = Dimensions.get('window');
@@ -52,17 +46,15 @@ const Input = ({
   sideImageStatus,
   sideImage,
   numb,
+  onChangeTheText,
+  value,
 }) => (
-  <View
-    style={[
-      styles.container,
-      { height: medium ? height / 11 : height / 11 },
-      style,
-    ]}
-  >
+  <View style={[styles.container, { height: medium ? height / 11 : height / 11 }, style]}>
     <TextInput
+      value={value}
       placeholder={text}
       placeholderTextColor={placeHolderColor || '#F5F5F8'}
+      onChangeText={onChangeTheText}
       onChange={onTheChange}
       secureTextEntry={secure}
       multiline={multiline}
@@ -77,10 +69,7 @@ const Input = ({
     <Fragment>
       {showPass ? (
         <View style={styles.viewInImage}>
-          <TouchableOpacity
-            style={styles.touchableButton}
-            onPress={showPassword}
-          >
+          <TouchableOpacity style={styles.touchableButton} onPress={showPassword}>
             <Image source={require('../../assets/img/eye.png')} />
           </TouchableOpacity>
         </View>
@@ -115,8 +104,8 @@ Input.propTypes = {
   showPass: PropTypes.bool,
   medium: PropTypes.bool,
   multiline: PropTypes.bool,
-  // style: PropTypes.object,
-  // textStyle: PropTypes.string,
+  style: PropTypes.oneOfType([PropTypes.string, PropTypes.object, PropTypes.array]),
+  textStyle: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   showPassword: PropTypes.func,
   onTheChange: PropTypes.func,
 };

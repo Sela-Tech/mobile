@@ -5,9 +5,14 @@
   ],
   "parser": "babel-eslint",
   "plugins": [
-    "eslint-plugin-prettier"
+    "prettier"
   ],
   "rules": {
+    "no-nested-ternary": 0,
+    "semi": [
+      1,
+      "always"
+    ],
     "prettier/prettier": [
       "error",
       {

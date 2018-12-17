@@ -61,16 +61,8 @@ export default class Intro extends React.Component {
   renderItem = props => (
     <IntroComp
       image={props.image}
-      shortText={
-        props.key === 'first'
-          ? 'Fund'
-          : props.key === 'second'
-          ? 'Execute'
-          : 'Evaluate'
-      }
-      longText={
-        props.key === 'first' ? first : props.key === 'second' ? second : third
-      }
+      shortText={props.key === 'first' ? 'Fund' : props.key === 'second' ? 'Execute' : 'Evaluate'}
+      longText={props.key === 'first' ? first : props.key === 'second' ? second : third}
     />
   );
 

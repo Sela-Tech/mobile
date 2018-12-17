@@ -27,19 +27,15 @@ const Intro = ({ image, shortText, longText }) => {
   return (
     <View style={styles.container}>
       <View>
-        <Image
-          source={image}
-          resizeMode="cover"
-          style={{ height: height / 1.6, width }}
-        />
+        <Image source={image} resizeMode="cover" style={{ height: height / 1.6, width }} />
       </View>
       <View style={styles.innerContainer}>
         <View style={{ marginTop: 25 }}>
-          <Text style={{ fontWeight: '400', fontSize: 25, color: '#222829' }}>
-            {' '}
-            {shortText}
+          <Text style={{ fontWeight: '400', fontSize: 25, color: '#222829' }}> 
 {' '}
-          </Text>
+{shortText}
+{' '}
+ </Text>
         </View>
         <View
           style={{

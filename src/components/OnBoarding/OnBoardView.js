@@ -53,28 +53,20 @@ const OnBoardView = ({
           }}
         >
           <Text style={{ color: WHITE, fontSize: 15 }}>
-            {second
-              ? 'Great! Now enter your personal'
-              : 'Begin by selecting your role as a'}
+            {second ? 'Great! Now enter your personal' : 'Begin by selecting your role as a'}
           </Text>
           <Text style={{ color: WHITE, fontSize: 15 }}>
             {second ? 'details to set up your account' : 'Sela citizen'}
           </Text>
         </View>
-        <View
-          style={{ marginTop: !second ? '4%' : !state.keyboard ? '15%' : '5%' }}
-        >
+        <View style={{ marginTop: !second ? '4%' : !state.keyboard ? '15%' : '5%' }}>
           {second ? (
             <Fragment>
               <View>
                 <Input text="Full Name" medium textStyle={styles.whiteText} />
               </View>
               <View style={{ marginTop: '4%' }}>
-                <Input
-                  text="Email Address or Phone Number"
-                  medium
-                  textStyle={styles.whiteText}
-                />
+                <Input text="Email Address or Phone Number" medium textStyle={styles.whiteText} />
               </View>
               <View style={{ marginTop: '4%' }}>
                 <Input

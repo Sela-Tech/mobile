@@ -53,12 +53,8 @@ export default class StepIndicator extends PureComponent {
     };
 
     this.progressAnim = new Animated.Value(0);
-    this.sizeAnim = new Animated.Value(
-      this.state.customStyles.stepIndicatorSize,
-    );
-    this.borderRadiusAnim = new Animated.Value(
-      this.state.customStyles.stepIndicatorSize / 2,
-    );
+    this.sizeAnim = new Animated.Value(this.state.customStyles.stepIndicatorSize);
+    this.borderRadiusAnim = new Animated.Value(this.state.customStyles.stepIndicatorSize / 2);
   }
 
   stepPressed(position) {
@@ -104,8 +100,7 @@ export default class StepIndicator extends PureComponent {
       progressBarBackgroundStyle = {
         backgroundColor: this.state.customStyles.separatorUnFinishedColor,
         position: 'absolute',
-        left:
-          (this.state.width - this.state.customStyles.separatorStrokeWidth) / 2,
+        left: (this.state.width - this.state.customStyles.separatorStrokeWidth) / 2,
         top: this.state.height / (2 * stepCount),
         bottom: this.state.height / (2 * stepCount),
         width: this.state.customStyles.separatorStrokeWidth,
@@ -114,9 +109,7 @@ export default class StepIndicator extends PureComponent {
       progressBarBackgroundStyle = {
         backgroundColor: this.state.customStyles.separatorUnFinishedColor,
         position: 'absolute',
-        top:
-          (this.state.height - this.state.customStyles.separatorStrokeWidth) /
-          2,
+        top: (this.state.height - this.state.customStyles.separatorStrokeWidth) / 2,
         left: this.state.width / (2 * stepCount),
         right: this.state.width / (2 * stepCount),
         // height: 50,
@@ -159,8 +152,7 @@ export default class StepIndicator extends PureComponent {
       progressBarStyle = {
         backgroundColor: this.state.customStyles.separatorFinishedColor,
         position: 'absolute',
-        left:
-          (this.state.width - this.state.customStyles.separatorStrokeWidth) / 2,
+        left: (this.state.width - this.state.customStyles.separatorStrokeWidth) / 2,
         top: this.state.height / (2 * stepCount),
         bottom: this.state.height / (2 * stepCount),
         // width: 300,
@@ -172,9 +164,7 @@ export default class StepIndicator extends PureComponent {
       progressBarStyle = {
         backgroundColor: this.state.customStyles.separatorFinishedColor,
         position: 'absolute',
-        top:
-          (this.state.height - this.state.customStyles.separatorStrokeWidth) /
-          2,
+        top: (this.state.height - this.state.customStyles.separatorStrokeWidth) / 2,
         left: this.state.width / (2 * stepCount),
         right: this.state.width / (2 * stepCount),
         height: this.state.customStyles.separatorStrokeWidth,
@@ -191,16 +181,11 @@ export default class StepIndicator extends PureComponent {
     const { labels, stepCount, direction } = this.props;
     for (let position = 0; position < stepCount; position++) {
       steps.push(
-        <TouchableWithoutFeedback
-          key={position}
-          onPress={() => this.stepPressed(position)}
-        >
+        <TouchableWithoutFeedback key={position} onPress={() => this.stepPressed(position)}>
           <View
             style={[
               styles.stepContainer,
-              direction === 'vertical'
-                ? { flexDirection: 'column' }
-                : { flexDirection: 'row' },
+              direction === 'vertical' ? { flexDirection: 'column' } : { flexDirection: 'row' },
             ]}
           >
             {this.renderStep(position)}
@@ -277,12 +262,7 @@ export default class StepIndicator extends PureComponent {
   };
 
   renderStep = position => {
-    const {
-      currentPosition,
-      stepCount,
-      direction,
-      renderStepIndicator,
-    } = this.props;
+    const { currentPosition, stepCount, direction, renderStepIndicator } = this.props;
     let stepStyle;
     let indicatorLabelStyle;
     const separatorStyle =
@@ -345,9 +325,7 @@ export default class StepIndicator extends PureComponent {
       default:
     }
 
-    return (
-      <Animated.View key="step-indicator" style={[styles.step, stepStyle]} />
-    );
+    return <Animated.View key="step-indicator" style={[styles.step, stepStyle]} />;
   };
 
   getStepStatus = stepPosition => {
@@ -366,12 +344,9 @@ export default class StepIndicator extends PureComponent {
     if (position > stepCount - 1) {
       position = stepCount - 1;
     }
-    const animateToPosition =
-      (this.state.progressBarSize / (stepCount - 1)) * position;
+    const animateToPosition = (this.state.progressBarSize / (stepCount - 1)) * position;
     this.sizeAnim.setValue(this.state.customStyles.stepIndicatorSize);
-    this.borderRadiusAnim.setValue(
-      this.state.customStyles.stepIndicatorSize / 2,
-    );
+    this.borderRadiusAnim.setValue(this.state.customStyles.stepIndicatorSize / 2);
     Animated.sequence([
       Animated.timing(this.progressAnim, {
         toValue: animateToPosition,

@@ -1,13 +1,8 @@
 import React, { Fragment, Component } from 'react';
-import {
-  View,
-  StyleSheet,
-  TouchableOpacity,
-  Image,
-  Dimensions,
-} from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Header } from 'native-base';
 import { GiftedChat } from 'react-native-gifted-chat';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Text from '../components/Text';
 import { isAndroid } from '../utils/helpers';
 import { YELLOW } from '../utils/constants';
@@ -17,8 +12,7 @@ const { width } = Dimensions.get('window');
 const initialText =
   'Upload evidence of completion non-completion of this task.This can be a photo or video.Ensure you are at the project site before proceeding';
 
-const response =
-  ' Select  1 to add more evidence continue or  2 for terminate ';
+const response = ' Select  1 to add more evidence continue or  2 for terminate ';
 
 const styles = StyleSheet.create({
   container: {
@@ -345,11 +339,11 @@ export default class SubmitFeedback extends Component {
           >
             <Fragment>
               <Text>{!videoStarted ? 'video' : 'picture'}</Text>
-              {/* <Ionicons
+              <Ionicons
                 name="ios-radio-button-on"
                 size={70}
                 color={!videoStarted ? 'white' : 'red'}
-              /> */}
+              />
             </Fragment>
           </TouchableOpacity>
         </View>
@@ -365,10 +359,7 @@ export default class SubmitFeedback extends Component {
           <View style={styles.topBottom}>
             <View style={styles.innerTopBottom}>
               <TouchableOpacity
-                style={[
-                  styles.innerTopButtonBottom,
-                  { backgroundColor: YELLOW },
-                ]}
+                style={[styles.innerTopButtonBottom, { backgroundColor: YELLOW }]}
                 onPress={() => this.sendReponse(1)}
               >
                 <Text>1</Text>
@@ -376,10 +367,7 @@ export default class SubmitFeedback extends Component {
             </View>
             <View style={styles.innerTopBottom}>
               <TouchableOpacity
-                style={[
-                  styles.innerTopButtonBottom,
-                  { backgroundColor: 'blue' },
-                ]}
+                style={[styles.innerTopButtonBottom, { backgroundColor: 'blue' }]}
                 onPress={() => this.sendReponse(2)}
               >
                 <Text>2</Text>
@@ -387,34 +375,27 @@ export default class SubmitFeedback extends Component {
             </View>
           </View>
         ) : (
-            <View style={styles.topBottom}>
-              <View style={styles.floatingButton}>
-                <TouchableOpacity
-                  onPress={() => this.snap()}
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Image source={require('../../assets/img/camera.png')} />
-                </TouchableOpacity>
-              </View>
+          <View style={styles.topBottom}>
+            <View style={styles.floatingButton}>
+              <TouchableOpacity
+                onPress={() => this.snap()}
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Image source={require('../../assets/img/camera.png')} />
+              </TouchableOpacity>
             </View>
-          )}
+          </View>
+        )}
       </Fragment>
     );
   };
 
   render() {
-    const {
-      messages,
-      openCamera,
-      type,
-      flash,
-      autoFocus,
-      hideHeader,
-    } = this.state;
+    const { messages, openCamera, type, flash, autoFocus, hideHeader } = this.state;
     return (
       <View style={styles.container}>
         <Fragment>
@@ -466,14 +447,14 @@ export default class SubmitFeedback extends Component {
               {this.renderBottomBar()}
             </Camera>
           ) : (
-              <Fragment>
-                <GiftedChat
-                  messages={messages}
-                  onSend={this.onSend}
-                  renderActions={this.renderLeftIcon}
-                />
-              </Fragment>
-            )}
+            <Fragment>
+              <GiftedChat
+                messages={messages}
+                onSend={this.onSend}
+                renderActions={this.renderLeftIcon}
+              />
+            </Fragment>
+          )}
         </Fragment>
       </View>
     );

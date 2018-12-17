@@ -17,24 +17,19 @@ const styles = StyleSheet.create({
     color: WHITE,
     fontSize: 15,
   },
+  innerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '10%',
+  },
 });
 
 export default () => (
   <View style={styles.container}>
     <Spinner occupy={false} />
-    <View
-      style={{
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: '10%',
-      }}
-    >
+    <View style={styles.innerContainer}>
       <Text style={styles.textStyle}> "Each of us can make a </Text>
-      <Text style={styles.textStyle}>
-        {' '}
-        difference; together we make change"
-{' '}
-      </Text>
+      <Text style={styles.textStyle}> difference; together we make change" </Text>
       <B color={YELLOW}> Barbara Milkuski </B>
     </View>
   </View>

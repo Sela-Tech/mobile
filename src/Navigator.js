@@ -28,51 +28,51 @@ export const RootStackNavigator = createStackNavigator({
   // CreateProject: {
   //   screen: CreateProject,
   // },
-  Success: {
-    screen: SuccessScreen,
-  },
-  SubmitFeedback: {
-    screen: SubmitFeedback,
-    // navigationOptions: {
-    //   header: null,
-    // },
-  },
-  Intro: {
-    screen: IntroScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  Home: {
-    screen: Home,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  Login: {
-    screen: Login,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  Loading: {
-    screen: Loading,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  OnBoarding: {
-    screen: OnBoarding,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  ForgotPassword: {
-    screen: ForgotPassword,
-    navigationOptions: {
-      header: null,
-    },
-  },
+  // Success: {
+  //   screen: SuccessScreen,
+  // },
+  // SubmitFeedback: {
+  //   screen: SubmitFeedback,
+  //   // navigationOptions: {
+  //   //   header: null,
+  //   // },
+  // },
+  // Intro: {
+  //   screen: IntroScreen,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
+  // Home: {
+  //   screen: Home,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
+  // Login: {
+  //   screen: Login,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
+  // Loading: {
+  //   screen: Loading,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
+  // OnBoarding: {
+  //   screen: OnBoarding,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
+  // ForgotPassword: {
+  //   screen: ForgotPassword,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
   ResetPassword: {
     screen: ResetPassword,
     navigationOptions: {

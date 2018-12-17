@@ -40,20 +40,17 @@ export default () => (
     <View style={{ alignItems: 'center', marginTop: '3%' }}>
       <Text style={styles.buttomText}>
         Select
-        <B fn={() => NavigationService.navigate('OnBoarding')}>
-          {' '}
-          Get Started
-        </B>
+        <B fn={() => NavigationService.navigate('OnBoarding')}> Get Started</B>
 {' '}
-        if this is your first
-{' '}
+if this is your
+        first{' '}
       </Text>
       <Text style={styles.buttomText}>
         time or
         <B fn={() => NavigationService.navigate('Login')}> Log in</B>
 {' '}
-if you
-        already have an{' '}
+if you already have an
+{' '}
       </Text>
       <Text style={styles.buttomText}>
         account.You can also
@@ -87,11 +84,7 @@ if you
     >
       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
         <View>
-          <Text style={{ color: '#FFFFFF', fontSize: 20 }}>
-            {' '}
-            Explore Projects
-{' '}
-          </Text>
+          <Text style={{ color: '#FFFFFF', fontSize: 20 }}> Explore Projects </Text>
         </View>
         <View style={{ paddingLeft: 5, justifyContent: 'center' }}>
           <Image

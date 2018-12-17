@@ -23,12 +23,7 @@ const styles = StyleSheet.create({
 export default () => (
   <View style={styles.container}>
     <View style={{ marginTop: '4%', marginLeft: '4%', flex: 1 }}>
-      <Button
-        text="New Message"
-        color={YELLOW}
-        textColor={WHITE}
-        style={styles.button}
-      />
+      <Button text="New Message" color={YELLOW} textColor={WHITE} style={styles.button} />
     </View>
     <View style={styles.subContainer}>
       <View>

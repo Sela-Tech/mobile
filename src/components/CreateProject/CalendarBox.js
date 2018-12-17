@@ -27,42 +27,28 @@ const style = StyleSheet.create({
   },
 });
 
-const CalendarBox = ({
-  showCalendar,
-  upText,
-  downText,
-  openCalender,
-  chooseDate,
-  val,
-}) => (
-    <Fragment>
-      {!showCalendar ? (
-        <TouchableOpacity
-          style={style.innerContainer}
-          onPress={() => openCalender(val)}
-        >
-          <View style={{ marginLeft: '1%', flex: 2 }}>
-            <View>
-              <Text style={[style.textColor, { color: '#B1BAD2' }]}>
-                {upText}
-              </Text>
-            </View>
-            <View style={{ marginTop: 5 }}>
-              <Text style={[style.textColor, { color: '#696F74' }]}>
-                {downText}
-              </Text>
-            </View>
+const CalendarBox = ({ showCalendar, upText, downText, openCalender, chooseDate, val }) => (
+  <Fragment>
+    {!showCalendar ? (
+      <TouchableOpacity style={style.innerContainer} onPress={() => openCalender(val)}>
+        <View style={{ marginLeft: '1%', flex: 2 }}>
+          <View>
+            <Text style={[style.textColor, { color: '#B1BAD2' }]}>{upText}</Text>
           </View>
+          <View style={{ marginTop: 5 }}>
+            <Text style={[style.textColor, { color: '#696F74' }]}>{downText}</Text>
+          </View>
+        </View>
 
-          <View style={style.bottomContainer}>
-            {/* <EvilIcons name="calendar" size={25} color="#696F74" /> */}
-          </View>
-        </TouchableOpacity>
-      ) : (
-          <Calendar onDayPress={day => chooseDate(day, val)} />
-        )}
-    </Fragment>
-  );
+        <View style={style.bottomContainer}>
+          {/* <EvilIcons name="calendar" size={25} color="#696F74" /> */}
+        </View>
+      </TouchableOpacity>
+    ) : (
+      <Calendar onDayPress={day => chooseDate(day, val)} />
+    )}
+  </Fragment>
+);
 
 CalendarBox.propTypes = {
   downText: PropTypes.string.isRequired,

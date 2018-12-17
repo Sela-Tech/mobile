@@ -1,11 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import CalendarBox from '../components/CreateProject/CalendarBox';
 import Input from '../components/Input';
@@ -59,7 +53,7 @@ export default class CreateProject extends Component {
   // };
 
   // upload image to the server
-  uploadImageAsync = async data => { };
+  uploadImageAsync = async data => {};
 
   handleImagePicked = async pickerResult => {
     let uploadResponse;
@@ -150,10 +144,7 @@ export default class CreateProject extends Component {
         </View>
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
-            <Text style={{ fontSize: 15 }}>
-              {' '}
-              Project Tags (Seperate wit commas){' '}
-            </Text>
+            <Text style={{ fontSize: 15 }}> Project Tags (Seperate wit commas) </Text>
           </View>
           <Input
             text="e.g education, sustainable cities"
@@ -163,10 +154,7 @@ export default class CreateProject extends Component {
         </View>
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
-            <Text style={{ fontSize: 15 }}>
-              {' '}
-              Budget or financial Goal(if fundraising){' '}
-            </Text>
+            <Text style={{ fontSize: 15 }}> Budget or financial Goal(if fundraising) </Text>
           </View>
           <Input
             text="Enter amount in USD"
@@ -180,11 +168,7 @@ export default class CreateProject extends Component {
           <View style={{ marginBottom: 10 }}>
             <Text style={{ fontSize: 15 }}> Set the location </Text>
           </View>
-          <Input
-            text="Search places"
-            style={styles.inputStyle}
-            placeHolderColor="#B1BAD2"
-          />
+          <Input text="Search places" style={styles.inputStyle} placeHolderColor="#B1BAD2" />
         </View>
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
@@ -192,11 +176,7 @@ export default class CreateProject extends Component {
               {` Add contractors and team members to the project `}
             </Text>
           </View>
-          <Input
-            text="Select"
-            style={styles.inputStyle}
-            placeHolderColor="#B1BAD2"
-          />
+          <Input text="Select" style={styles.inputStyle} placeHolderColor="#B1BAD2" />
         </View>
 
         <View>
@@ -227,9 +207,9 @@ export default class CreateProject extends Component {
                 style={
                   avatarURI !== ''
                     ? {
-                      width: width / 1.1,
-                      height: height / 9,
-                    }
+                        width: width / 1.1,
+                        height: height / 9,
+                      }
                     : null
                 }
                 source={icon}
@@ -258,10 +238,10 @@ export default class CreateProject extends Component {
             {showFirstCalendar === true || showSecondCalendar === true ? (
               <Fragment />
             ) : (
-                <View style={{ justifyContent: 'center' }}>
-                  <Image source={require('../../assets/minus.png')} />
-                </View>
-              )}
+              <View style={{ justifyContent: 'center' }}>
+                <Image source={require('../../assets/minus.png')} />
+              </View>
+            )}
           </Fragment>
           <CalendarBox
             upText="Start Date"

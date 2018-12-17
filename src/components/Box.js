@@ -16,16 +16,7 @@ const styles = {
   },
 };
 
-const Box = ({
-  color,
-  textColor,
-  fn,
-  upText,
-  downText,
-  textSize,
-  below,
-  checked,
-}) => (
+const Box = ({ color, textColor, fn, upText, downText, textSize, below, checked }) => (
   <View
     style={[
       styles.BoxStyle,
@@ -37,10 +28,7 @@ const Box = ({
       },
     ]}
   >
-    <TouchableOpacity
-      onPress={fn}
-      style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}
-    >
+    <TouchableOpacity onPress={fn} style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
       {/* <View>
           <CheckBox
             color="#FFFFFF"

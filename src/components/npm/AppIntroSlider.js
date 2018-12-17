@@ -14,10 +14,7 @@ import DefaultSlide from './DefaultSlide';
 const { width, height } = Dimensions.get('window');
 
 const isIphoneX =
-  Platform.OS === 'ios' &&
-  !Platform.isPad &&
-  !Platform.isTVOS &&
-  (height === 812 || width === 812);
+  Platform.OS === 'ios' && !Platform.isPad && !Platform.isTVOS && (height === 812 || width === 812);
 
 export default class AppIntroSlider extends React.Component {
   static defaultProps = {
@@ -49,39 +46,25 @@ export default class AppIntroSlider extends React.Component {
   _onNextPress = () => {
     this.goToSlide(this.state.activeIndex + 1);
     this.props.onSlideChange &&
-      this.props.onSlideChange(
-        this.state.activeIndex + 1,
-        this.state.activeIndex,
-      );
+      this.props.onSlideChange(this.state.activeIndex + 1, this.state.activeIndex);
   };
 
   _onPrevPress = () => {
     this.goToSlide(this.state.activeIndex - 1);
     this.props.onSlideChange &&
-      this.props.onSlideChange(
-        this.state.activeIndex - 1,
-        this.state.activeIndex,
-      );
+      this.props.onSlideChange(this.state.activeIndex - 1, this.state.activeIndex);
   };
 
   _renderItem = item => {
     const { width, height } = this.state;
     const bottomSpacer =
-      (this.props.bottomButton
-        ? (this.props.showSkipButton ? 44 : 0) + 44
-        : 0) +
+      (this.props.bottomButton ? (this.props.showSkipButton ? 44 : 0) + 44 : 0) +
       (isIphoneX ? 34 : 0) +
       64;
-    const topSpacer =
-      (isIphoneX ? 44 : 0) +
-      (Platform.OS === 'ios' ? 20 : StatusBar.currentHeight);
+    const topSpacer = (isIphoneX ? 44 : 0) + (Platform.OS === 'ios' ? 20 : StatusBar.currentHeight);
     const props = { ...item.item, bottomSpacer, topSpacer, width, height };
 
-    return this.props.renderItem ? (
-      this.props.renderItem(props)
-    ) : (
-      <DefaultSlide {...props} />
-    );
+    return this.props.renderItem ? this.props.renderItem(props) : <DefaultSlide {...props} />;
   };
 
   _renderButton = (name, onPress) => {
@@ -127,18 +110,12 @@ export default class AppIntroSlider extends React.Component {
 
   _renderOuterButton = (content, name, onPress) => {
     const style =
-      name === 'Skip' || name === 'Prev'
-        ? styles.leftButtonContainer
-        : styles.rightButtonContainer;
+      name === 'Skip' || name === 'Prev' ? styles.leftButtonContainer : styles.rightButtonContainer;
     return (
-      <View
-        style={this.props.bottomButton ? styles.bottomButtonContainer : style}
-      >
+      <View style={this.props.bottomButton ? styles.bottomButtonContainer : style}>
         <TouchableOpacity
           onPress={onPress}
-          style={
-            this.props.bottomButton ? styles.flexOne : this.props.buttonStyle
-          }
+          style={this.props.bottomButton ? styles.flexOne : this.props.buttonStyle}
         >
           {content}
         </TouchableOpacity>
@@ -150,22 +127,17 @@ export default class AppIntroSlider extends React.Component {
 
   _renderPrevButton = () => this._renderButton('Prev', this._onPrevPress);
 
-  _renderDoneButton = () =>
-    this._renderButton('Done', this.props.onDone && this.props.onDone);
+  _renderDoneButton = () => this._renderButton('Done', this.props.onDone && this.props.onDone);
 
-  _renderSkipButton = () =>
-    this._renderButton('Skip', this.props.onSkip && this.props.onSkip);
+  _renderSkipButton = () => this._renderButton('Skip', this.props.onSkip && this.props.onSkip);
 
   _renderPagination = () => {
     const isLastSlide = this.state.activeIndex === this.props.slides.length - 1;
     const isFirstSlide = this.state.activeIndex === 0;
 
     const skipBtn =
-      (!isFirstSlide && this._renderPrevButton()) ||
-      (!isLastSlide && this._renderSkipButton());
-    const btn = isLastSlide
-      ? this._renderDoneButton()
-      : this._renderNextButton();
+      (!isFirstSlide && this._renderPrevButton()) || (!isLastSlide && this._renderSkipButton());
+    const btn = isLastSlide ? this._renderDoneButton() : this._renderNextButton();
 
     return (
       <View style={styles.paginationContainer}>
@@ -177,9 +149,7 @@ export default class AppIntroSlider extends React.Component {
                 key={i}
                 style={[
                   styles.dot,
-                  i === this.state.activeIndex
-                    ? this.props.activeDotStyle
-                    : this.props.dotStyle,
+                  i === this.state.activeIndex ? this.props.activeDotStyle : this.props.dotStyle,
                 ]}
               />
             ))}

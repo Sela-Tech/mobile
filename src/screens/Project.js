@@ -45,15 +45,17 @@ export default class Project extends Component {
           <View style={styles.otherContainer}>
             <Text>
               {' '}
-              Seems like you havent<B>proposed</B> or<B>been</B>{' '}
-
+              Seems like you havent
+              <B>proposed</B>
+{' '}
+or
+<B>been</B>{' '}
             </Text>
             <Text>
               {' '}
               <B> added </B>
-              {' '}
-              to any projects yet.You can propose a
-              {' '}
+{' '}
+to any projects yet.You can propose a{' '}
             </Text>
             <Text> project using the plus sign or button below or </Text>
             <Text> wait to be added to one </Text>
@@ -80,7 +82,7 @@ export default class Project extends Component {
             <Image source={require('../../assets/plus.png')} />
           </TouchableOpacity>
         </View>
-      </View >
+      </View>
     );
   }
 }

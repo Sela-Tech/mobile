@@ -1,10 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View,
-  KeyboardAvoidingView,
-  ScrollView,
-} from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView, ScrollView, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
 import StepIndicator from '../components/npm/StepIndicator';
 import DismissKeyboard from '../components/DismissKeyboard';
@@ -84,15 +79,12 @@ export default class OnBoarding extends Component {
     this.keyboardDidHideListener.remove();
   }
 
-  showPassword = () =>
-    this.setState(prevState => ({ secure: !prevState.secure }));
+  showPassword = () => this.setState(prevState => ({ secure: !prevState.secure }));
 
   changePage = () =>
     this.setState(prevState => ({
       currentPage:
-        prevState.currentPage === 0
-          ? prevState.currentPage + 1
-          : prevState.currentPage - 1,
+        prevState.currentPage === 0 ? prevState.currentPage + 1 : prevState.currentPage - 1,
     }));
 
   changeRole = role =>

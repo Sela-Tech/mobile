@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ImageBackground } from 'react-native';
+import PropTypes from 'prop-types';
 
 export default class ErrorHandler extends Component {
   constructor(props) {
@@ -22,10 +23,18 @@ export default class ErrorHandler extends Component {
       return (
         <ImageBackground
           source={require('../../assets/splash.png')}
-          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
         />
       );
     }
     return children;
   }
 }
+
+ErrorHandler.propTypes = {
+  children: PropTypes.element.isRequired,
+};

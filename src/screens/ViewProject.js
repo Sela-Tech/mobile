@@ -42,17 +42,15 @@ export default class ViewProject extends Component {
         <View style={styles.textContainer}>
           <Text>
             {' '}
-            Showing all projects in<B> Lagos,Nigeria</B>
-            {' '}
-            with status
-            {' '}
+            Showing all projects in
+            <B> Lagos,Nigeria</B>
+{' '}
+with status
+{' '}
           </Text>
           <Text>
             {' '}
-            <B>Completed</B>, tagged
-            {' '}
-            <B>Sustainable Cities</B>
-            {' '}
+            <B>Completed</B>, tagged<B>Sustainable Cities</B>{' '}
           </Text>
         </View>
         <View style={styles.otherContainer}>
@@ -91,7 +89,7 @@ export default class ViewProject extends Component {
             />
           </View>
         </View>
-      </ScrollView >
+      </ScrollView>
     );
   }
 }

@@ -44,10 +44,7 @@ export default class ForgotPassword extends Component {
         <View style={styles.container}>
           <IntroHeader fn={() => goBack()} back />
           <View style={{ alignItems: 'center', marginTop: '10%' }}>
-            <Text style={[styles.boldText, ExtStyle.boldText]}>
-              {' '}
-              Forgot Password
-            </Text>
+            <Text style={[styles.boldText, ExtStyle.boldText]}> Forgot Password</Text>
           </View>
           <View style={{ alignItems: 'center', marginTop: '3%' }}>
             <Text style={styles.buttomText}>Enter email address or phone</Text>

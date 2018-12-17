@@ -4,21 +4,26 @@ import PropTypes from 'prop-types';
 
 const styles = {
   spinnerStyle: {
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
 };
 
-const Spinner = ({ size, color, occupy }) => (
-  <View style={(styles.spinnerStyle, occupy ? { flex: 1 } : null)}>
-    <ActivityIndicator size={size || 'large'} color={color || '#FFFFFF'} />
+const Spinner = ({ size, color }) => (
+  <View style={styles.spinnerStyle}>
+    <ActivityIndicator size={size || 'large'} color={color || 'lightblue'} />
   </View>
 );
+
+Spinner.defaultProps = {
+  size: 'large',
+  color: 'lightblue',
+};
 
 Spinner.propTypes = {
   size: PropTypes.string,
   color: PropTypes.string,
-  occupy: PropTypes.bool,
 };
 
 export default Spinner;

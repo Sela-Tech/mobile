@@ -1,11 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {
-  StyleSheet,
-  View,
-  KeyboardAvoidingView,
-  ScrollView,
-  Keyboard,
-} from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView, ScrollView, Keyboard } from 'react-native';
 import Text from '../components/Text';
 import DismissKeyboard from '../components/DismissKeyboard';
 import Input from '../components/Input';
@@ -78,10 +72,7 @@ export default class Login extends Component {
     return (
       <DismissKeyboard>
         <KeyboardAvoidingView style={ExtStyle.flex1} behavior="behaviour">
-          <ScrollView
-            contentContainerStyle={styles.container}
-            keyboardShouldPersistTaps="always"
-          >
+          <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="always">
             <Fragment>
               <IntroHeader fn={() => goBack()} back keyboard={keyboard} />
             </Fragment>
@@ -89,12 +80,8 @@ export default class Login extends Component {
               <Text style={styles.boldText}> Log In</Text>
             </View>
             <View style={{ alignItems: 'center', marginTop: '3%' }}>
-              <Text style={styles.buttomText}>
-                {` Welcome back ! Enter your details `}
-              </Text>
-              <Text style={styles.buttomText}>
-                {` below to log into your account `}
-              </Text>
+              <Text style={styles.buttomText}> Welcome back ! Enter your details </Text>
+              <Text style={styles.buttomText}> below to log into your account </Text>
             </View>
             <View style={{ marginTop: '15%' }}>
               <Input
@@ -138,9 +125,7 @@ export default class Login extends Component {
                 <View>
                   <Text style={styles.buttomText}>
                     {' Don/t have an account? '}
-                    <B fn={() => NavigationService.navigate('OnBoarding')}>
-                      {` Get Started`}
-                    </B>
+                    <B fn={() => NavigationService.navigate('OnBoarding')}> Get Started</B>
                   </Text>
                 </View>
               </View>

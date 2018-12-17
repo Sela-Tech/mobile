@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  TouchableOpacity,
-  View,
-  Dimensions,
-  StyleSheet,
-  Image,
-} from 'react-native';
+import { TouchableOpacity, View, Dimensions, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import { isAndroid } from '../../utils/helpers';
@@ -68,33 +62,23 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags }) => (
     <View style={[styles.boxHeight, { justifyContent: 'center' }]}>
       <View style={[styles.row, { marginTop: 10 }]}>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={{ fontSize: 15, fontWeight: '400', color: '#696F74' }}>
-            {firstText}
-          </Text>
+          <Text style={{ fontSize: 15, fontWeight: '400', color: '#696F74' }}>{firstText}</Text>
           {/* <Entypo name="dot-single" size={18} color="#696F74" /> */}
         </View>
-        <View
-          style={{ paddingLeft: isAndroid ? '1%' : 2, flexDirection: 'row' }}
-        >
+        <View style={{ paddingLeft: isAndroid ? '1%' : 2, flexDirection: 'row' }}>
           <View>
-            <Text
-              style={[styles.fontS, { fontWeight: '400', color: '#696F74' }]}
-            >
+            <Text style={[styles.fontS, { fontWeight: '400', color: '#696F74' }]}>
               {secondText}
             </Text>
           </View>
-          <View>
-            {/* <Entypo name="dot-single" size={18} color="#696F74" /> */}
-          </View>
+          <View>{/* <Entypo name="dot-single" size={18} color="#696F74" /> */}</View>
         </View>
         <View style={{ paddingLeft: isAndroid ? '1%' : 2 }}>
           <Text style={{ fontWeight: '300', color: YELLOW }}>{thirdText}</Text>
         </View>
       </View>
       <View style={{ marginTop: isAndroid ? '2%' : 3 }}>
-        <Text style={{ fontSize: 18, fontWeight: '400', color: '#201D41' }}>
-          {title}
-        </Text>
+        <Text style={{ fontSize: 18, fontWeight: '400', color: '#201D41' }}>{title}</Text>
       </View>
       <View style={{ marginTop: isAndroid ? '2%' : 3 }}>
         <Text style={{ fontSize: 20 }}>{cost}</Text>
