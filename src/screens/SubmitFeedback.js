@@ -7,9 +7,7 @@ import {
   Dimensions,
 } from 'react-native';
 import { Header } from 'native-base';
-import { Camera, Permissions, Constants } from 'expo';
 import { GiftedChat } from 'react-native-gifted-chat';
-import { Ionicons } from '@expo/vector-icons'; // eslint-disable-line
 import Text from '../components/Text';
 import { isAndroid } from '../utils/helpers';
 import { YELLOW } from '../utils/constants';
@@ -64,7 +62,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     flexDirection: 'row',
     justifyContent: 'space-around',
-    paddingTop: Constants.statusBarHeight / 2,
+    // paddingTop: Constants.statusBarHeight / 2,
   },
   toggleButton: {
     flex: 0.25,
@@ -167,8 +165,8 @@ export default class SubmitFeedback extends Component {
   };
 
   async componentWillMount() {
-    const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    this.setState({ permissionsGranted: status === 'granted' });
+    // const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    // this.setState({ permissionsGranted: status === 'granted' });
   }
 
   onSend = (messages = []) => {
@@ -347,11 +345,11 @@ export default class SubmitFeedback extends Component {
           >
             <Fragment>
               <Text>{!videoStarted ? 'video' : 'picture'}</Text>
-              <Ionicons
+              {/* <Ionicons
                 name="ios-radio-button-on"
                 size={70}
                 color={!videoStarted ? 'white' : 'red'}
-              />
+              /> */}
             </Fragment>
           </TouchableOpacity>
         </View>
@@ -389,21 +387,21 @@ export default class SubmitFeedback extends Component {
             </View>
           </View>
         ) : (
-          <View style={styles.topBottom}>
-            <View style={styles.floatingButton}>
-              <TouchableOpacity
-                onPress={() => this.snap()}
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Image source={require('../../assets/img/camera.png')} />
-              </TouchableOpacity>
+            <View style={styles.topBottom}>
+              <View style={styles.floatingButton}>
+                <TouchableOpacity
+                  onPress={() => this.snap()}
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image source={require('../../assets/img/camera.png')} />
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        )}
+          )}
       </Fragment>
     );
   };
@@ -468,14 +466,14 @@ export default class SubmitFeedback extends Component {
               {this.renderBottomBar()}
             </Camera>
           ) : (
-            <Fragment>
-              <GiftedChat
-                messages={messages}
-                onSend={this.onSend}
-                renderActions={this.renderLeftIcon}
-              />
-            </Fragment>
-          )}
+              <Fragment>
+                <GiftedChat
+                  messages={messages}
+                  onSend={this.onSend}
+                  renderActions={this.renderLeftIcon}
+                />
+              </Fragment>
+            )}
         </Fragment>
       </View>
     );

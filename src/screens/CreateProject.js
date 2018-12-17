@@ -6,7 +6,6 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import { ImagePicker, Permissions } from 'expo';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import CalendarBox from '../components/CreateProject/CalendarBox';
 import Input from '../components/Input';
@@ -43,24 +42,24 @@ export default class CreateProject extends Component {
     showSecondCalendar: false,
   };
 
-  pickImage = async () => {
-    const { status: cameraRollPerm } = await Permissions.askAsync(
-      Permissions.CAMERA_ROLL,
-    );
+  // pickImage = async () => {
+  //   const { status: cameraRollPerm } = await Permissions.askAsync(
+  //     Permissions.CAMERA_ROLL,
+  //   );
 
-    // only if user allows permission to camera roll
-    if (cameraRollPerm === 'granted') {
-      const pickerResult = await ImagePicker.launchImageLibraryAsync({
-        allowsEditing: true,
-        aspect: [4, 3],
-      });
+  //   // only if user allows permission to camera roll
+  //   if (cameraRollPerm === 'granted') {
+  //     const pickerResult = await ImagePicker.launchImageLibraryAsync({
+  //       allowsEditing: true,
+  //       aspect: [4, 3],
+  //     });
 
-      await this.handleImagePicked(pickerResult);
-    }
-  };
+  //     await this.handleImagePicked(pickerResult);
+  //   }
+  // };
 
   // upload image to the server
-  uploadImageAsync = async data => {};
+  uploadImageAsync = async data => { };
 
   handleImagePicked = async pickerResult => {
     let uploadResponse;
@@ -228,9 +227,9 @@ export default class CreateProject extends Component {
                 style={
                   avatarURI !== ''
                     ? {
-                        width: width / 1.1,
-                        height: height / 9,
-                      }
+                      width: width / 1.1,
+                      height: height / 9,
+                    }
                     : null
                 }
                 source={icon}
@@ -259,10 +258,10 @@ export default class CreateProject extends Component {
             {showFirstCalendar === true || showSecondCalendar === true ? (
               <Fragment />
             ) : (
-              <View style={{ justifyContent: 'center' }}>
-                <Image source={require('../../assets/minus.png')} />
-              </View>
-            )}
+                <View style={{ justifyContent: 'center' }}>
+                  <Image source={require('../../assets/minus.png')} />
+                </View>
+              )}
           </Fragment>
           <CalendarBox
             upText="Start Date"

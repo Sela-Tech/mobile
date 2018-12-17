@@ -1,6 +1,5 @@
 import React, { Fragment } from 'react';
 import { View, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
-import { EvilIcons } from '@expo/vector-icons'; // eslint-disable-line
 import PropTypes from 'prop-types';
 import { Calendar } from 'react-native-calendars';
 import Text from '../Text';
@@ -36,34 +35,34 @@ const CalendarBox = ({
   chooseDate,
   val,
 }) => (
-  <Fragment>
-    {!showCalendar ? (
-      <TouchableOpacity
-        style={style.innerContainer}
-        onPress={() => openCalender(val)}
-      >
-        <View style={{ marginLeft: '1%', flex: 2 }}>
-          <View>
-            <Text style={[style.textColor, { color: '#B1BAD2' }]}>
-              {upText}
-            </Text>
+    <Fragment>
+      {!showCalendar ? (
+        <TouchableOpacity
+          style={style.innerContainer}
+          onPress={() => openCalender(val)}
+        >
+          <View style={{ marginLeft: '1%', flex: 2 }}>
+            <View>
+              <Text style={[style.textColor, { color: '#B1BAD2' }]}>
+                {upText}
+              </Text>
+            </View>
+            <View style={{ marginTop: 5 }}>
+              <Text style={[style.textColor, { color: '#696F74' }]}>
+                {downText}
+              </Text>
+            </View>
           </View>
-          <View style={{ marginTop: 5 }}>
-            <Text style={[style.textColor, { color: '#696F74' }]}>
-              {downText}
-            </Text>
-          </View>
-        </View>
 
-        <View style={style.bottomContainer}>
-          <EvilIcons name="calendar" size={25} color="#696F74" />
-        </View>
-      </TouchableOpacity>
-    ) : (
-      <Calendar onDayPress={day => chooseDate(day, val)} />
-    )}
-  </Fragment>
-);
+          <View style={style.bottomContainer}>
+            {/* <EvilIcons name="calendar" size={25} color="#696F74" /> */}
+          </View>
+        </TouchableOpacity>
+      ) : (
+          <Calendar onDayPress={day => chooseDate(day, val)} />
+        )}
+    </Fragment>
+  );
 
 CalendarBox.propTypes = {
   downText: PropTypes.string.isRequired,

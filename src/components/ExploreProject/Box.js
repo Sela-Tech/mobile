@@ -7,7 +7,6 @@ import {
   Image,
 } from 'react-native';
 import PropTypes from 'prop-types';
-import { Entypo } from '@expo/vector-icons'; // eslint-disable-line
 import Text from '../Text';
 import { isAndroid } from '../../utils/helpers';
 import { YELLOW, WHITE } from '../../utils/constants';
@@ -72,7 +71,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags }) => (
           <Text style={{ fontSize: 15, fontWeight: '400', color: '#696F74' }}>
             {firstText}
           </Text>
-          <Entypo name="dot-single" size={18} color="#696F74" />
+          {/* <Entypo name="dot-single" size={18} color="#696F74" /> */}
         </View>
         <View
           style={{ paddingLeft: isAndroid ? '1%' : 2, flexDirection: 'row' }}
@@ -85,7 +84,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags }) => (
             </Text>
           </View>
           <View>
-            <Entypo name="dot-single" size={18} color="#696F74" />
+            {/* <Entypo name="dot-single" size={18} color="#696F74" /> */}
           </View>
         </View>
         <View style={{ paddingLeft: isAndroid ? '1%' : 2 }}>
