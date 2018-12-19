@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
-import { View, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { View, Dimensions, StyleSheet, Image } from 'react-native';
+import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
+import Description from './ExploreTabs/Description';
+import StakeHolders from './ExploreTabs/StakeHolders';
+import Transactions from './ExploreTabs/Transactions';
+import Updates from './ExploreTabs/Updates';
+
 import Input from '../components/Input';
 import Button from '../components/Button';
 import Text from '../components/Text';
@@ -7,20 +13,55 @@ import { WHITE, YELLOW } from '../utils/constants';
 import { isAndroid } from '../utils/helpers';
 import Box from '../components/ExploreProject/Box';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    backgroundColor: WHITE,
-    alignItems: 'center',
-    paddingBottom: 20,
-  },
-  inputStyle: {
-    borderColor: '#B1BAD2',
-    width: width / 1.1,
+    // flexGrow: 1,
+    // backgroundColor: WHITE,
+    // alignItems: 'center',
+    // paddingBottom: 20,
   },
 });
+
+export const ExploreTabs = createMaterialTopTabNavigator(
+  {
+    Description,
+    StakeHolders,
+    Transactions,
+    Updates,
+  },
+  {
+    tabBarOptions: {
+      activeTintColor: '#201D41',
+      inactiveTintColor: '#B1BAD2',
+      showIcon: false,
+      labelStyle: {
+        fontSize: 9,
+      },
+      style: {
+        backgroundColor: '#fff',
+        shadowColor: '#fff',
+        shadowOffset: {
+          width: 0,
+          height: 0,
+        },
+        shadowOpacity: 0,
+        shadowRadius: 0,
+        elevation: 0,
+        height: 47,
+        borderBottomWidth: 1,
+        borderBottomColor: '#E8E8E8'
+      },
+      indicatorStyle: {
+        height: 2,
+        backgroundColor: WHITE,
+      },
+    },
+  },
+);
+
+export const ExploreTopTabs = createAppContainer(ExploreTabs);
 
 export default class ExploreProject extends Component {
   static navigationOptions = {
@@ -38,93 +79,19 @@ export default class ExploreProject extends Component {
 
   render() {
     return (
-      <ScrollView
-        style={{
-          backgroundColor: WHITE,
-        }}
-        contentContainerStyle={styles.container}
-      >
+      <View style={{ flex: 1 }}>
+        <View>
+          <Image
+            source={require('../../assets/class.png')}
+          />
+        </View>
         <View
-          style={{
-            justifyContent: 'flex-start',
-            alignItems: 'center',
-            marginVertical: isAndroid ? '5%' : 10,
-            flex: 1,
-          }}
+          style={{ flex: 1, backgroundColor: 'red' }}
         >
-          <Text style={{ fontSize: 20, fontWeight: '300' }}>Search for Projects</Text>
+          <ExploreTopTabs />
         </View>
-        <View style={{ flex: 1 }}>
-          <View style={{ paddingBottom: 15 }}>
-            <Input
-              text="All Locations"
-              style={styles.inputStyle}
-              placeHolderColor="#696F74"
-              sideImage={require('../../assets/location.png')}
-              sideImageStatus
-            />
-          </View>
-          <View style={{ paddingBottom: 15 }}>
-            <Input
-              text="Project Status"
-              placeHolderColor="#696F74"
-              style={styles.inputStyle}
-              sideImage={require('../../assets/dropdown.png')}
-              sideImageStatus
-            />
-          </View>
-          <View style={{ marginBottom: 30 }}>
-            <Input
-              text="Project Tag"
-              placeHolderColor="#696F74"
-              style={styles.inputStyle}
-              sideImage={require('../../assets/dropdown.png')}
-              sideImageStatus
-            />
-          </View>
-          <View>
-            <Button
-              text="Find Projects"
-              textSize={20}
-              color={YELLOW}
-              medium
-              textColor={WHITE}
-              style={styles.inputStyle}
-              fn={() => this.props.navigation.navigate('ViewProject')}
-            />
-          </View>
-        </View>
-        <View style={{ flex: 5, alignItems: 'center' }}>
-          <View style={{ marginVertical: isAndroid ? '6%' : 20 }}>
-            <Text style={{ fontSize: 20, fontWeight: '500' }}>Featured Projects</Text>
-          </View>
-          <View style={{ flex: 1 }}>
-            <View style={{ marginBottom: 10, marginTop: 10 }}>
-              <Box
-                img={require('../../assets/img/man.png')}
-                firstText="K-Dere Portharcourt"
-                secondText="Sustainability Intl"
-                thirdText="OnGoing"
-                title="Affordable housing scheme - 200 Units"
-                cost="$50,000"
-                tags={['Resilient infrasture', 'Sustainable Cities']}
-              />
-            </View>
-
-            <View>
-              <Box
-                img={require('../../assets/img/woman.png')}
-                firstText="K-Dere Portharcourt"
-                secondText="Sustainability Intl"
-                thirdText="Proposed"
-                title="Affordable housing scheme - 200 Units"
-                cost="$25,000"
-                tags={['Resilient infrasture', 'Sustainable Cities']}
-              />
-            </View>
-          </View>
-        </View>
-      </ScrollView>
+      </View>
     );
   }
-}
+};
+
