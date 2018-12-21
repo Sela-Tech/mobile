@@ -23,20 +23,22 @@ const styles = StyleSheet.create({
         width: width / 2,
     },
     textColor: {
-        color: '#201D41'
+        color: '#201D41',
     },
 });
 
 export default () => (
-    <ScrollView style={styles.container}
+    <ScrollView
+        style={styles.container}
         contentContainerStyle={{ flexGrow: 1 }}
     >
         <View style={{ paddingTop: 10 }}>
             <View>
                 <B
-                    color={YELLOW}>
+                    color={YELLOW}
+                >
                     INITIATED BY
-               </B>
+                </B>
             </View>
             <View style={{ flex: 1 }}>
                 <UserProfile
@@ -50,9 +52,10 @@ export default () => (
         <View>
             <View>
                 <B
-                    color={YELLOW}>
+                    color={YELLOW}
+                >
                     CONTRACTOR
-               </B>
+                </B>
             </View>
             <View style={{ flex: 1 }}>
                 <UserProfile
@@ -71,9 +74,10 @@ export default () => (
         <View>
             <View>
                 <B
-                    color={YELLOW}>
+                    color={YELLOW}
+                >
                     EVALUATION AGENTS
-               </B>
+                </B>
             </View>
             <View style={{ flex: 1 }}>
                 <UserProfile
@@ -96,9 +100,10 @@ export default () => (
         <View>
             <View>
                 <B
-                    color={YELLOW}>
+                    color={YELLOW}
+                >
                     INVESTORS
-               </B>
+                </B>
             </View>
             <View style={{ flex: 1 }}>
                 <UserProfile
@@ -138,7 +143,6 @@ export default () => (
                     source={require('../../../assets/forward-arrow.png')}
                 />
             </View>
-
         </View>
 
         <View style={{ paddingTop: 10, alignItems: 'center' }}>

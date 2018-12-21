@@ -1,5 +1,13 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, ScrollView, Image, TouchableOpacity, FlatList } from 'react-native';
+import {
+    View,
+    StyleSheet,
+    Dimensions,
+    ScrollView,
+    Image,
+    TouchableOpacity,
+    FlatList,
+} from 'react-native';
 import Text from '../../components/Text';
 import Tag from '../../components/Tag';
 import B from '../../components/BoldText';
@@ -7,7 +15,6 @@ import Updates from '../../components/ExploreProject/Updates';
 import EvalSubmission from '../../components/ExploreProject/EvalSubmission';
 import Button from '../../components/Button';
 import { WHITE } from '../../utils/constants';
-
 
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -30,38 +37,34 @@ const styles = StyleSheet.create({
 
 const keyExtractor = item => item.id;
 
-const renderItem = item => (
-    <EvalSubmission
-        imgSource={item.item.source}
-        markedStatus={true}
-    />
-);
+const renderItem = item => <EvalSubmission imgSource={item.item.source} markedStatus={true} />;
 
 const images = [
     {
         source: require('../../../assets/oilspill.png'),
-        id: 1
+        id: 1,
     },
     {
         source: require('../../../assets/road.png'),
-        id: 2
+        id: 2,
     },
     {
         source: require('../../../assets/borehole.png'),
-        id: 3
+        id: 3,
     },
     {
         source: require('../../../assets/road.png'),
-        id: 4
+        id: 4,
     },
     {
         source: require('../../../assets/borehole.png'),
-        id: 5
+        id: 5,
     },
 ];
 
 export default () => (
-    <ScrollView style={styles.container}
+    <ScrollView
+        style={styles.container}
         contentContainerStyle={{ flexGrow: 1 }}
     >
         <Updates
@@ -84,7 +87,6 @@ export default () => (
                     source={require('../../../assets/forward-arrow.png')}
                 />
             </View>
-
         </View>
         <View style={{ paddingTop: 10, alignItems: 'center' }}>
             <Button

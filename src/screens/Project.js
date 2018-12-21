@@ -47,15 +47,16 @@ export default class Project extends Component {
               {' '}
               Seems like you havent
               <B>proposed</B>
-              {' '}
-              or
+{' '}
+or
 <B>been</B>{' '}
             </Text>
             <Text>
               {' '}
               <B> added </B>
-              {' '}
-              to any projects yet.You can propose a{' '}
+{' '}
+to any projects yet.You can propose a
+{' '}
             </Text>
             <Text> project using the plus sign or button below or </Text>
             <Text> wait to be added to one </Text>

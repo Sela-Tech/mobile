@@ -16,7 +16,6 @@ export default createBottomTabNavigator(
     Profile,
   },
   {
-
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;

@@ -72,7 +72,9 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags }) => (
               {secondText}
             </Text>
           </View>
-          <View><Entypo name="dot-single" size={18} color="#696F74" /></View>
+          <View>
+            <Entypo name="dot-single" size={18} color="#696F74" />
+          </View>
         </View>
         <View style={{ paddingLeft: isAndroid ? '1%' : 2 }}>
           <Text style={{ fontWeight: '300', color: YELLOW }}>{thirdText}</Text>

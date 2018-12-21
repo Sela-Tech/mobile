@@ -45,8 +45,7 @@ export default class ViewProject extends Component {
             Showing all projects in
             <B> Lagos,Nigeria</B>
 {' '}
-with status
-{' '}
+with status{' '}
           </Text>
           <Text>
             {' '}

@@ -8,8 +8,6 @@ import Transactions from './ExploreTabs/Transactions';
 import Updates from './ExploreTabs/Updates';
 import { WHITE } from '../utils/constants';
 
-
-
 export const ExploreTabs = createMaterialTopTabNavigator(
   {
     Description,
@@ -39,7 +37,7 @@ export const ExploreTabs = createMaterialTopTabNavigator(
         elevation: 0,
         height: 47,
         borderBottomWidth: 1,
-        borderBottomColor: '#E8E8E8'
+        borderBottomColor: '#E8E8E8',
       },
       indicatorStyle: {
         height: 2,
@@ -52,15 +50,11 @@ export const ExploreTabs = createMaterialTopTabNavigator(
 export const ExploreTopTabs = createAppContainer(ExploreTabs);
 
 export default class ExploreProject extends Component {
-
   render() {
     return (
       <View style={{ flex: 1 }}>
         <View>
-          <Image
-            style={{ height: 200 }}
-            source={require('../../assets/class.png')}
-          />
+          <Image style={{ height: 200 }} source={require('../../assets/class.png')} />
         </View>
         <View style={{ flex: 3 }}>
           <Header
@@ -74,13 +68,10 @@ export default class ExploreProject extends Component {
             tags={['Resilient infrasture', 'Sustainable Cities']}
           />
         </View>
-        <View
-          style={{ flex: 6 }}
-        >
+        <View style={{ flex: 6 }}>
           <ExploreTopTabs />
         </View>
       </View>
     );
   }
-};
-
+}
