@@ -1,29 +1,14 @@
 import React, { Component } from 'react';
-import { View, Dimensions, StyleSheet, Image } from 'react-native';
+import { View, Image } from 'react-native';
 import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import Header from '../components/ExploreTopTabs/Header';
 import Description from './ExploreTabs/Description';
 import StakeHolders from './ExploreTabs/StakeHolders';
 import Transactions from './ExploreTabs/Transactions';
 import Updates from './ExploreTabs/Updates';
+import { WHITE } from '../utils/constants';
 
-import Input from '../components/Input';
-import Button from '../components/Button';
-import Text from '../components/Text';
-import { WHITE, YELLOW } from '../utils/constants';
-import { isAndroid } from '../utils/helpers';
-import Box from '../components/ExploreProject/Box';
 
-const { width, height } = Dimensions.get('window');
-
-const styles = StyleSheet.create({
-  container: {
-    // flexGrow: 1,
-    // backgroundColor: WHITE,
-    // alignItems: 'center',
-    // paddingBottom: 20,
-  },
-});
 
 export const ExploreTabs = createMaterialTopTabNavigator(
   {
@@ -67,9 +52,6 @@ export const ExploreTabs = createMaterialTopTabNavigator(
 export const ExploreTopTabs = createAppContainer(ExploreTabs);
 
 export default class ExploreProject extends Component {
-
-  static navigationOptions = { header: null }
-
 
   render() {
     return (

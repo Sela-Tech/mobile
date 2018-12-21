@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     container: {
         height: height / 7,
         borderRadius: 5,
-        borderWidth: 2,
+        borderWidth: 1,
         borderColor: '#F5F5F8',
         width: width / 1.5,
         marginVertical: 12,

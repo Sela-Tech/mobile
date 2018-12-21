@@ -16,10 +16,7 @@ export default createBottomTabNavigator(
     Profile,
   },
   {
-    navigationOptions: {
-      title: 'Project',
-      tabBarVisible: false,
-    },
+
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
@@ -64,8 +61,5 @@ export default createBottomTabNavigator(
       activeTintColor: YELLOW,
       inactiveTintColor: 'gray',
     },
-    // navigationOptions: {
-    //   title: 'Project',
-    // },
   },
 );

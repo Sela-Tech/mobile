@@ -18,6 +18,9 @@ import InboxScreen from './screens/Inbox';
 export const RootStackNavigator = createStackNavigator({
   Project: {
     screen: ProjectBottomNavigator,
+    // navigationOptions: {
+    //   header: null,
+    // },
   },
   // ExploreProject: {
   //   screen: ExploreProject,

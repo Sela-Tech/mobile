@@ -6,7 +6,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginVertical: 10,
+        marginTop: 10,
         marginHorizontal: 12,
         justifyContent: 'space-between',
     },
@@ -98,7 +98,7 @@ const Header = ({
                 </View>
                 <View style={{ flex: 1 }} />
             </View>
-        </View >
+        </View>
     );
 
 Header.defaultProps = {};
