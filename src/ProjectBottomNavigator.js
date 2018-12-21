@@ -10,12 +10,16 @@ import { YELLOW } from './utils/constants';
 
 export default createBottomTabNavigator(
   {
-    // Project,
+    Project,
     Explore,
     Inbox,
     Profile,
   },
   {
+    navigationOptions: {
+      title: 'Project',
+      tabBarVisible: false,
+    },
     defaultNavigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused, horizontal, tintColor }) => {
         const { routeName } = navigation.state;
@@ -60,8 +64,8 @@ export default createBottomTabNavigator(
       activeTintColor: YELLOW,
       inactiveTintColor: 'gray',
     },
-    navigationOptions: {
-      title: 'Project',
-    },
+    // navigationOptions: {
+    //   title: 'Project',
+    // },
   },
 );

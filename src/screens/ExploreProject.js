@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, Dimensions, StyleSheet, Image } from 'react-native';
 import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
+import Header from '../components/ExploreTopTabs/Header';
 import Description from './ExploreTabs/Description';
 import StakeHolders from './ExploreTabs/StakeHolders';
 import Transactions from './ExploreTabs/Transactions';
@@ -33,11 +34,13 @@ export const ExploreTabs = createMaterialTopTabNavigator(
   },
   {
     tabBarOptions: {
+      tabBarVisible: false,
       activeTintColor: '#201D41',
       inactiveTintColor: '#B1BAD2',
       showIcon: false,
       labelStyle: {
         fontSize: 9,
+        fontWeight: '600',
       },
       style: {
         backgroundColor: '#fff',
@@ -64,29 +67,33 @@ export const ExploreTabs = createMaterialTopTabNavigator(
 export const ExploreTopTabs = createAppContainer(ExploreTabs);
 
 export default class ExploreProject extends Component {
-  static navigationOptions = {
-    title: 'EXPLORE',
-    headerTitleStyle: {
-      textAlign: 'center',
-      alignSelf: 'center',
-      flex: 1,
-    },
-    headerStyle: {
-      fontFamily: 'proximaNova',
-      fontWeight: 'normal',
-    },
-  };
+
+  static navigationOptions = { header: null }
+
 
   render() {
     return (
       <View style={{ flex: 1 }}>
         <View>
           <Image
+            style={{ height: 200 }}
             source={require('../../assets/class.png')}
           />
         </View>
+        <View style={{ flex: 3 }}>
+          <Header
+            projectLocationText="LAGOS, NIGERIA."
+            projectStatusText="COMPLETED"
+            projectNameText="MARKERS LTD"
+            projectTitleText="Construction of Classroom Blocks"
+            budgetAmount="$10,000.00"
+            numberOfStakeholders="$5,000.00"
+            raisedAmount="40"
+            tags={['Resilient infrasture', 'Sustainable Cities']}
+          />
+        </View>
         <View
-          style={{ flex: 1, backgroundColor: 'red' }}
+          style={{ flex: 6 }}
         >
           <ExploreTopTabs />
         </View>
