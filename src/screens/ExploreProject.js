@@ -14,8 +14,8 @@ export const ExploreTabs = createMaterialTopTabNavigator(
   {
     Description,
     StakeHolders,
-    Transactions,
     Updates,
+    Transactions,
   },
   {
     tabBarOptions: {

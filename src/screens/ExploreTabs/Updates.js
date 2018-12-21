@@ -1,40 +1,95 @@
 import React from 'react';
-import { View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
+import { View, StyleSheet, Dimensions, ScrollView, Image, TouchableOpacity, FlatList } from 'react-native';
 import Text from '../../components/Text';
+import Tag from '../../components/Tag';
+import B from '../../components/BoldText';
+import Updates from '../../components/ExploreProject/Updates';
+import EvalSubmission from '../../components/ExploreProject/EvalSubmission';
 import Button from '../../components/Button';
-import { WHITE, YELLOW } from '../../utils/constants';
+import { WHITE } from '../../utils/constants';
+
 
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginHorizontal: 12,
+        marginBottom: 15,
         backgroundColor: WHITE,
     },
     subContainer: {
-        flex: 5,
+        flex: 1,
         marginTop: height / 4,
         alignItems: 'center',
+        justifyContent: 'center',
     },
     button: {
         width: width / 2,
     },
 });
 
+const keyExtractor = item => item.id;
+
+const renderItem = item => (
+    <EvalSubmission
+        imgSource={item.item.source}
+        markedStatus={true}
+    />
+);
+
+const images = [
+    {
+        source: require('../../../assets/oilspill.png'),
+        id: 1
+    },
+    {
+        source: require('../../../assets/road.png'),
+        id: 2
+    },
+    {
+        source: require('../../../assets/borehole.png'),
+        id: 3
+    },
+    {
+        source: require('../../../assets/road.png'),
+        id: 4
+    },
+    {
+        source: require('../../../assets/borehole.png'),
+        id: 5
+    },
+];
+
 export default () => (
     <ScrollView style={styles.container}
         contentContainerStyle={{ flexGrow: 1 }}
     >
-        <View style={{ marginTop: '4%', marginLeft: '4%', flex: 1 }}>
-            <Button text="New Message" color={YELLOW} textColor={WHITE} style={styles.button} />
-        </View>
-        <View style={styles.subContainer}>
+        <Updates
+            statusText="In Progress"
+        />
+        <Updates
+            statusText="Completed"
+        />
+        <View style={{
+            flexDirection: 'row',
+            marginVertical: 10,
+        }}>
             <View>
-                <Image source={require('../../../assets/docs.png')} />
+                <Text style={{ color: '#201D41' }}>  View transactions</Text>
             </View>
-            <View style={{ alignItems: 'center', margin: 10 }}>
-                <Text> You have not received any </Text>
-                <Text> messages yet </Text>
+            <View
+                style={{ justifyContent: 'center', paddingLeft: 10 }}
+            >
+                <Image
+                    source={require('../../../assets/forward-arrow.png')}
+                />
             </View>
+
+        </View>
+        <View style={{ paddingTop: 10, alignItems: 'center' }}>
+            <Button
+                text="INVEST"
+            />
         </View>
     </ScrollView>
 );

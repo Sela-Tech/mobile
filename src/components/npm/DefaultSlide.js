@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, Dimensions, Platform } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 
 export default class DefaultSlide extends React.PureComponent {
   render() {
