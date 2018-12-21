@@ -12,10 +12,13 @@ import ExploreProject from './screens/ExploreProject';
 import ViewProject from './screens/ViewProject';
 import ProjectBottomNavigator from './ProjectBottomNavigator';
 import SuccessScreen from './screens/SuccessScreen';
-
+import Notifications from './screens/Notifications';
 import InboxScreen from './screens/Inbox';
 
 export const RootStackNavigator = createStackNavigator({
+  Notification: {
+    screen: Notifications,
+  },
   Project: {
     screen: ProjectBottomNavigator,
     // navigationOptions: {

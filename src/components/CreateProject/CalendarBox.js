@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { View, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
+import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import PropTypes from 'prop-types';
 import { Calendar } from 'react-native-calendars';
 import Text from '../Text';
@@ -41,12 +42,12 @@ const CalendarBox = ({ showCalendar, upText, downText, openCalender, chooseDate,
         </View>
 
         <View style={style.bottomContainer}>
-          {/* <EvilIcons name="calendar" size={25} color="#696F74" /> */}
+          <EvilIcons name="calendar" size={25} color="#696F74" />
         </View>
       </TouchableOpacity>
     ) : (
-      <Calendar onDayPress={day => chooseDate(day, val)} />
-    )}
+        <Calendar onDayPress={day => chooseDate(day, val)} />
+      )}
   </Fragment>
 );
 
