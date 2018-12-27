@@ -55,8 +55,7 @@ or
               {' '}
               <B> added </B>
 {' '}
-to any projects yet.You can propose a
-{' '}
+to any projects yet.You can propose a{' '}
             </Text>
             <Text> project using the plus sign or button below or </Text>
             <Text> wait to be added to one </Text>

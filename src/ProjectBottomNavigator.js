@@ -10,9 +10,9 @@ import { YELLOW } from './utils/constants';
 
 export default createBottomTabNavigator(
   {
-    Project,
-    Explore,
-    Inbox,
+    // Project,
+    // Explore,
+    // Inbox,
     Profile,
   },
   {

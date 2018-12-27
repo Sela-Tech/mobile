@@ -46,8 +46,8 @@ const CalendarBox = ({ showCalendar, upText, downText, openCalender, chooseDate,
         </View>
       </TouchableOpacity>
     ) : (
-        <Calendar onDayPress={day => chooseDate(day, val)} />
-      )}
+      <Calendar onDayPress={day => chooseDate(day, val)} />
+    )}
   </Fragment>
 );
 

@@ -99,9 +99,7 @@ export default () => (
         </View>
         <View>
             <View>
-                <B
-                    color={YELLOW}
-                >
+                <B color={YELLOW}>
                     INVESTORS
                 </B>
             </View>

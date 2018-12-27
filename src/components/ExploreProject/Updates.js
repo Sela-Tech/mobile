@@ -1,23 +1,9 @@
 import React from 'react';
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  ScrollView,
-  Image,
-  TouchableOpacity,
-  FlatList,
-} from 'react-native';
+import { View, StyleSheet, Dimensions, FlatList } from 'react-native';
 import Text from '../Text';
 import Tag from '../Tag';
 import B from '../BoldText';
-import UserProfile from '../UserProfile';
 import EvalSubmission from './EvalSubmission';
-import Button from '../Button';
-import { WHITE, YELLOW } from '../../utils/constants';
-
-const { width, height } = Dimensions.get('window');
-const styles = StyleSheet.create({});
 
 const keyExtractor = item => item.id;
 
