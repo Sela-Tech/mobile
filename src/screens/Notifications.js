@@ -1,22 +1,14 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Image, Dimensions } from 'react-native';
+import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import Text from '../components/Text';
-import Button from '../components/Button';
-import { WHITE, YELLOW } from '../utils/constants';
+import SingleNotificationText from '../components/Notifications/SingleNotificationText';
+import { WHITE } from '../utils/constants';
 
-const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginHorizontal: 10,
         backgroundColor: WHITE,
-    },
-    subContainer: {
-        flex: 5,
-        marginTop: height / 4,
-        alignItems: 'center',
-    },
-    button: {
-        width: width / 2,
     },
 });
 
@@ -26,10 +18,10 @@ export default class Notifications extends Component {
         title: 'Notifications',
     };
     state = {
-        empty: true,
+        empty: false,
     }
     render() {
-        const { empty } = this.state;
+        const { empty} = this.state;
         if (empty) {
             return (
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -40,12 +32,53 @@ export default class Notifications extends Component {
                         <Text style={{ color: '#201D41' }}> You have not received any  </Text>
                         <Text style={{ color: '#201D41' }} > notifications yet.</Text>
                     </View>
-                </View >
+                </View>
 
             )
         }
         return (
-            <View />
+            <ScrollView
+            style={styles.container}
+                contentContainerStyle={{ flex: 0 }}>
+
+                <SingleNotificationText
+                    text="A new project - 250 Housing Units in Owerri, 
+                    Nigeria - has been proposed by Aisha Hammed for 
+                    funding. View project"
+                    imageSRC={require('../../assets/man1.png')}
+                    time="1 day ago"
+                />
+
+                <SingleNotificationText
+                    text="A new project - 250 Housing Units in Owerri, 
+                    Nigeria - has been proposed by Aisha Hammed for 
+                    funding. View project"
+                    imageSRC={require('../../assets/woman1.png')}
+                    time="2 days ago"
+                />
+                <SingleNotificationText
+                    text="A new project - 250 Housing Units in Owerri, 
+                    Nigeria - has been proposed by Aisha Hammed for 
+                    funding. View project"
+                    imageSRC={require('../../assets/man2.png')}
+                    time="2 days ago"
+                />
+                <SingleNotificationText
+                    text="A new project - 250 Housing Units in Owerri, 
+                    Nigeria - has been proposed by Aisha Hammed for 
+                    funding. View project"
+                    imageSRC={require('../../assets/img/man.png')}
+                    time="2 days ago"
+                />
+                   <SingleNotificationText
+                    text="A new project - 250 Housing Units in Owerri, 
+                    Nigeria - has been proposed by Aisha Hammed for 
+                    funding. View project"
+                    imageSRC={require('../../assets/img/woman.png')}
+                    time="2 days ago"
+                />
+
+            </ScrollView>
         )
     }
 };
