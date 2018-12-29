@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, FlatList, ScrollView } from 'react-native';
 import B from '../components/BoldText';
+import Project from '../components/ExploreProject/Project';
 import UserId from '../components/Profile/UserId';
 import UserInfo from '../components/Profile/UserInfo';
-import Project from '../components/ExploreProject/Project';
 import Tag from '../components/Tag';
 
 const styles = StyleSheet.create({

@@ -4,13 +4,13 @@ import Text from '../../components/Text';
 import B from '../../components/BoldText';
 import UserProfile from '../../components/UserProfile';
 import Button from '../../components/Button';
-import { WHITE, YELLOW } from '../../utils/constants';
+import {  YELLOW } from '../../utils/constants';
 
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: WHITE,
+        backgroundColor: '#E5E5E5',
         marginHorizontal: 18,
         marginBottom: 15,
     },

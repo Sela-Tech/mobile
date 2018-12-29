@@ -23,23 +23,20 @@ const UserInfo = () => (
       <View style={{ alignItems: 'center' }}>
         <B size={20} color="#201D41">
           49
-{' '}
         </B>
         <Text> Repition score</Text>
       </View>
       <View style={{ alignItems: 'center', marginTop: 5 }}>
         <B size={20} color="#201D41">
           49
-{' '}
         </B>
-        <Text> Repition score</Text>
+        <Text> Projects</Text>
       </View>
       <View style={{ alignItems: 'center' }}>
         <B size={20} color="#201D41">
           49
-{' '}
         </B>
-        <Text> Repition score</Text>
+        <Text> Data upload</Text>
       </View>
     </View>
     <View style={styles.location}>

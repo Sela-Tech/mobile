@@ -6,13 +6,15 @@ import Inbox from './screens/Inbox';
 import Project from './screens/Project';
 import Profile from './screens/Profile';
 import Explore from './screens/ExploreProject';
+import ProfileSettings from './screens/ProfileSettings';
 import { YELLOW } from './utils/constants';
 
 export default createBottomTabNavigator(
   {
-    // Project,
-    // Explore,
-    // Inbox,
+    Project,
+    Explore,
+    Inbox,
+    // ProfileSettings,
     Profile,
   },
   {

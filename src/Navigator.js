@@ -15,13 +15,14 @@ import SuccessScreen from './screens/SuccessScreen';
 import Notifications from './screens/Notifications';
 import InboxScreen from './screens/Inbox';
 
+
 export const RootStackNavigator = createStackNavigator({
-  Project: {
-    screen: ProjectBottomNavigator,
-    // navigationOptions: {
-    //   header: null,
-    // },
-  },
+  // Project: {
+  //   screen: ProjectBottomNavigator,
+  //   // navigationOptions: {
+  //   //   header: null,
+  //   // },
+  // },
   Notification: {
     screen: Notifications,
   },
