@@ -41,16 +41,13 @@ export default () => (
       <Text style={styles.buttomText}>
         Select
         <B fn={() => NavigationService.navigate('OnBoarding')}> Get Started</B>
-{' '}
-if this is your
-        first{' '}
+        {` if this is your`}
+        {`    first`}
       </Text>
       <Text style={styles.buttomText}>
         time or
         <B fn={() => NavigationService.navigate('Login')}> Log in</B>
-{' '}
-if you already have an
-{' '}
+        {`if you already have an`}
       </Text>
       <Text style={styles.buttomText}>
         account.You can also

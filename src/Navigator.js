@@ -16,11 +16,6 @@ import InboxScreen from './screens/Inbox';
 import AuthLoadingScreen from './screens/AuthLoading';
 import FirstTimeUserLoadingScreen from './screens/FirstTimeUserLoading';
 
-
-
-
-
-
 export const RootStackNavigator = createStackNavigator({
   Project: {
     screen: ProjectBottomNavigator,
