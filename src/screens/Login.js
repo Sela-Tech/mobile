@@ -112,7 +112,13 @@ export default class Login extends Component {
                 </Text>
               </View>
               <View style={{ marginTop: '5%' }}>
-                <Button medium text="Log In" color={YELLOW} textColor={WHITE} />
+                <Button
+                 medium 
+                 text="Log In"
+                  color={YELLOW}
+                   textColor={WHITE}
+                   fn={() => NavigationService.navigate('Project')}
+                    />
               </View>
             </View>
             <View

@@ -1,6 +1,5 @@
-import { createStackNavigator, createAppContainer } from 'react-navigation';
-import Loading from './components/Loading';
-import Login from './screens/Login';
+import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
+import LoginScreen from './screens/Login';
 import Home from './screens/Home';
 import IntroScreen from './screens/Intro';
 import ForgotPassword from './screens/ForgotPassword';
@@ -14,15 +13,21 @@ import ProjectBottomNavigator from './ProjectBottomNavigator';
 import SuccessScreen from './screens/SuccessScreen';
 import Notifications from './screens/Notifications';
 import InboxScreen from './screens/Inbox';
+import AuthLoadingScreen from './screens/AuthLoading';
+import FirstTimeUserLoadingScreen from './screens/FirstTimeUserLoading';
+
+
+
+
 
 
 export const RootStackNavigator = createStackNavigator({
-  // Project: {
-  //   screen: ProjectBottomNavigator,
-  //   // navigationOptions: {
-  //   //   header: null,
-  //   // },
-  // },
+  Project: {
+    screen: ProjectBottomNavigator,
+    // navigationOptions: {
+    //   header: null,
+    // },
+  },
   Notification: {
     screen: Notifications,
   },
@@ -88,4 +93,59 @@ export const RootStackNavigator = createStackNavigator({
   },
 });
 
-export const RootNavigator = createAppContainer(RootStackNavigator);
+const AuthStack = createStackNavigator({
+  Login: {
+    screen: LoginScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  OnBoarding: {
+    screen: OnBoarding,
+    navigationOptions: {
+      header: null,
+    },
+  },
+});
+
+// const OnBoardingStack = createStackNavigator({
+//   OnBoarding: {
+//     screen: OnBoarding,
+//     navigationOptions: {
+//       header: null,
+//     },
+//   },
+// });
+
+const IntroStack = createStackNavigator({
+  Intro: {
+    screen: IntroScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+});
+
+export const HomeSwitchNavigator = createSwitchNavigator(
+  {
+    AuthLoading: AuthLoadingScreen,
+    AppHome: RootStackNavigator,
+    AuthHome: AuthStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  },
+);
+
+export const MainSwitchNavigator = createSwitchNavigator(
+  {
+    AuthLoading: FirstTimeUserLoadingScreen,
+    App: HomeSwitchNavigator,
+    Auth: IntroStack,
+  },
+  {
+    initialRouteName: 'AuthLoading',
+  },
+);
+
+export const RootNavigator = createAppContainer(MainSwitchNavigator);
