@@ -6,7 +6,6 @@ import ResetPassword from './screens/ResetPassword';
 import OnBoarding from './screens/OnBoarding';
 import SubmitFeedback from './screens/SubmitFeedback';
 import CreateProject from './screens/CreateProject';
-import ExploreProject from './screens/ExploreProject';
 import ViewProject from './screens/ViewProject';
 import ProjectBottomNavigator from './ProjectBottomNavigator';
 import SuccessScreen from './screens/SuccessScreen';
@@ -112,6 +111,6 @@ export const MainSwitchNavigator = createSwitchNavigator(
   },
 );
 
-export const RootNavigator = createAppContainer(RootStackNavigator);
+// export const RootNavigator = createAppContainer(RootStackNavigator);
 
-// export const RootNavigator = createAppContainer(MainSwitchNavigator);
+export const RootNavigator = createAppContainer(MainSwitchNavigator);
