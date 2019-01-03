@@ -5,6 +5,7 @@ import B from '../../components/BoldText';
 import UserProfile from '../../components/UserProfile';
 import Button from '../../components/Button';
 import { WHITE, YELLOW } from '../../utils/constants';
+import NavigationService from '../../services/NavigationService';
 
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -48,7 +49,10 @@ export default () => (
         />
       </View>
       <View style={{ marginTop: 10 }}>
-        <TouchableOpacity style={{ flexDirection: 'row', flex: 1 }}>
+        <TouchableOpacity
+          onPress={() => NavigationService.navigate('StakeHolders')}
+          style={{ flexDirection: 'row', flex: 1 }}
+        >
           <View>
             <Text style={{ color: '#201D41', fontSize: 15 }}> See all StakeHolder </Text>
           </View>
@@ -58,7 +62,8 @@ export default () => (
         </TouchableOpacity>
       </View>
       <View style={{ alignItems: 'center', flex: 1, marginTop: 20 }}>
-        <Button text="Submit Updates" />
+        <Button
+          text="Submit Updates" />
       </View>
     </View>
   </ScrollView>

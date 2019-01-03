@@ -10,7 +10,6 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#E5E5E5',
     marginHorizontal: 18,
     marginBottom: 15,
   },

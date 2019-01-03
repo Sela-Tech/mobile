@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import Header from '../components/Header';
 import Text from '../components/Text';
 import B from '../components/BoldText';
 import Button from '../components/Button';
@@ -8,9 +9,14 @@ import { isAndroid } from '../utils/helpers';
 
 const styles = StyleSheet.create({
   container: {
+    // height: 50,
     flex: 1,
+  },
+  subContainer: {
+    justifyContent: 'center',
+    flex: 8,
     alignItems: 'center',
-    marginTop: isAndroid ? '25%' : '15%',
+    // marginTop: isAndroid ? '25%' : '20%',
   },
   otherContainer: {
     alignItems: 'center',
@@ -31,42 +37,73 @@ const styles = StyleSheet.create({
 });
 
 export default class Project extends Component {
-  // static navigationOptions = {
-  //   title: 'Project',
-  // };
+
 
   render() {
     return (
       <View style={styles.container}>
+        <Header
+          headerName="PROJECTS"
+          sideIconStatus
+          sideIconImage ={require('../../assets/emptyBell.png')}
+         />
+        <View style ={styles.subContainer}>
         <View>
           <Image source={require('../../assets/Illustration.png')} />
         </View>
         <View style={styles.otherContainer}>
-          <View style={styles.otherContainer}>
+          {/* <View style={styles.otherContainer}>
             <Text>
               {' '}
               Seems like you havent
               <B>proposed</B>
-{' '}
-or
-<B>been</B>{' '}
+              {' '}
+              or
+              <B>been</B>{' '}
             </Text>
             <Text>
               {' '}
               <B> added </B>
-{' '}
-to any projects yet.You can propose a{' '}
+              {' '}
+              to any projects yet.You can propose a{' '}
             </Text>
             <Text> project using the plus sign or button below or </Text>
             <Text> wait to be added to one </Text>
+          </View> */}
+
+          <View style={styles.otherContainer}>
+            <Text>Seems like you havent
+              <B> created</B>
+              <B> funded  </B> or
+            </Text>
+            <Text>
+              {' '}
+              <B> added </B>
+              {' '}
+              saved any projects yet.You can propose a{' '}
+            </Text>
+            <Text> project using the plus sign or button below or </Text>
+            <Text> explore existing projects </Text>
           </View>
           <View>
+
             <Button
+              text="Explore Project"
+              color={WHITE}
+              textColor="#201D41"
+              style={{
+                borderRadius: 5,
+                borderWidth: 1,
+                borderColor: '#B1BAD2',
+              }}
+              fn={() => this.props.navigation.navigate('ProjectListing')}
+            />
+            {/* <Button
               text="Propose Project"
               color={YELLOW}
               textColor={WHITE}
               fn={() => this.props.navigation.navigate('CreateProject')}
-            />
+            /> */}
           </View>
         </View>
 
@@ -82,6 +119,7 @@ to any projects yet.You can propose a{' '}
             <Image source={require('../../assets/plus.png')} />
           </TouchableOpacity>
         </View>
+         </View>
       </View>
     );
   }

@@ -101,6 +101,7 @@ export default class ExploreProject extends Component {
           <View style={{ flex: 1 }}>
             <View style={{ marginBottom: 10, marginTop: 10 }}>
               <Box
+                fn={() => this.props.navigation.navigate('ExploreProject')}
                 img={require('../../assets/img/man.png')}
                 firstText="K-Dere Portharcourt"
                 secondText="Sustainability Intl"
@@ -113,6 +114,7 @@ export default class ExploreProject extends Component {
 
             <View>
               <Box
+                fn={() => this.props.navigation.navigate('ExploreProject')}
                 img={require('../../assets/img/woman.png')}
                 firstText="K-Dere Portharcourt"
                 secondText="Sustainability Intl"

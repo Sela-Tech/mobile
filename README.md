@@ -48,3 +48,4 @@ npm i
 ```
 npm start
 ```
+create an APK :```react-native run-android --variant=release```

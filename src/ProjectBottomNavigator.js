@@ -1,21 +1,52 @@
 import React from 'react';
 import { Image } from 'react-native';
 import PropTypes from 'prop-types';
-import { createBottomTabNavigator } from 'react-navigation';
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import Inbox from './screens/Inbox';
 import Project from './screens/Project';
-import Profile from './screens/Profile';
-import Explore from './screens/ExploreProject';
-import ProfileSettings from './screens/ProfileSettings';
+import ProfileScreen from './screens/Profile';
+import ExploreProjectScreen from './screens/ExploreProject';
+import ProfileSettingsScreen from './screens/ProfileSettings';
 import { YELLOW } from './utils/constants';
+import ProjectListingScreen from './screens/ProjectListing';
+
+
+const ProjectStack = createStackNavigator({
+  ProjectListing: {
+    screen: ProjectListingScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  ExploreProject: {
+    screen: ExploreProjectScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+});
+
+export const ProfileStack = createStackNavigator({
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  ProfileSettings: {
+    screen: ProfileSettingsScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+});
 
 export default createBottomTabNavigator(
   {
     Project,
-    Explore,
+    Explore: ProjectStack,
     Inbox,
-    // ProfileSettings,
-    Profile,
+    Profile: ProfileStack,
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({

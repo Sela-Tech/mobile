@@ -43,8 +43,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const Box = ({ img, cost, firstText, secondText, thirdText, title, tags }) => (
-  <TouchableOpacity style={styles.container}>
+const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) => (
+  <TouchableOpacity onPress={() => fn()} style={styles.container}>
     <View style={styles.boxHeight}>
       <Image
         resizeMode="cover"

@@ -15,7 +15,6 @@ const styles = StyleSheet.create({
     height: height / 10,
     width: height / 10,
     borderRadius: height / 20,
-    backgroundColor: '#369C05',
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -28,7 +27,7 @@ export default ({ navigation }) => (
   <View style={styles.container}>
     <View style={{ flex: 4, alignItems: 'center', marginTop: '25%' }}>
       <View style={styles.success}>
-        <Image source={require('../../assets/plus.png')} />
+        <Image source={require('../../assets/mark.png')} />
       </View>
       <View style={{ justifyContent: 'center', alignItems: 'center', margin: 20 }}>
         <Text style={styles.fSize}> Your proposed project has been </Text>

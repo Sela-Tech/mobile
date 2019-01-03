@@ -44,8 +44,8 @@ export default class ViewProject extends Component {
             {' '}
             Showing all projects in
             <B> Lagos,Nigeria</B>
-{' '}
-with status
+            {' '}
+            with status
 {' '}
           </Text>
           <Text>
@@ -63,6 +63,7 @@ with status
               title="Affordable housing scheme - 200 Units"
               cost="$50,000"
               tags={['Resilient infrasture', 'Sustainable Cities']}
+              fn={() => this.props.navigation.navigate('ExploreProject')}
             />
           </View>
 
@@ -75,6 +76,7 @@ with status
               title="Affordable housing scheme - 200 Units"
               cost="$25,000"
               tags={['Resilient infrasture', 'Sustainable Cities']}
+              fn={() => this.props.navigation.navigate('ExploreProject')}
             />
           </View>
           <View>
@@ -86,6 +88,7 @@ with status
               title="Affordable housing scheme - 200 Units"
               cost="$25,000"
               tags={['Resilient infrasture', 'Sustainable Cities']}
+              fn={() => this.props.navigation.navigate('ExploreProject')}
             />
           </View>
         </View>

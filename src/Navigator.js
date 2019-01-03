@@ -1,6 +1,5 @@
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
 import LoginScreen from './screens/Login';
-import Home from './screens/Home';
 import IntroScreen from './screens/Intro';
 import ForgotPassword from './screens/ForgotPassword';
 import ResetPassword from './screens/ResetPassword';
@@ -12,80 +11,38 @@ import ViewProject from './screens/ViewProject';
 import ProjectBottomNavigator from './ProjectBottomNavigator';
 import SuccessScreen from './screens/SuccessScreen';
 import Notifications from './screens/Notifications';
-import InboxScreen from './screens/Inbox';
 import AuthLoadingScreen from './screens/AuthLoading';
 import FirstTimeUserLoadingScreen from './screens/FirstTimeUserLoading';
 
 export const RootStackNavigator = createStackNavigator({
   Project: {
     screen: ProjectBottomNavigator,
-    // navigationOptions: {
-    //   header: null,
-    // },
+    navigationOptions: {
+      header: null,
+    },
   },
   Notification: {
     screen: Notifications,
   },
-  // ExploreProject: {
-  //   screen: ExploreProject,
-  // },
-  // ViewProject: {
-  //   screen: ViewProject,
-  // },
-  // CreateProject: {
-  //   screen: CreateProject,
-  // },
-  // Success: {
-  //   screen: SuccessScreen,
-  // },
+  ViewProject: {
+    screen: ViewProject,
+  },
+  CreateProject: {
+    screen: CreateProject,
+  },
+  Success: {
+    screen: SuccessScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
   // SubmitFeedback: {
   //   screen: SubmitFeedback,
   //   // navigationOptions: {
   //   //   header: null,
   //   // },
   // },
-  // Intro: {
-  //   screen: IntroScreen,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
-  // Home: {
-  //   screen: Home,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
-  // Login: {
-  //   screen: Login,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
-  // Loading: {
-  //   screen: Loading,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
-  // OnBoarding: {
-  //   screen: OnBoarding,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
-  // ForgotPassword: {
-  //   screen: ForgotPassword,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
-  ResetPassword: {
-    screen: ResetPassword,
-    navigationOptions: {
-      header: null,
-    },
-  },
+
 });
 
 const AuthStack = createStackNavigator({
@@ -97,6 +54,18 @@ const AuthStack = createStackNavigator({
   },
   OnBoarding: {
     screen: OnBoarding,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  ForgotPassword: {
+    screen: ForgotPassword,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  ResetPassword: {
+    screen: ResetPassword,
     navigationOptions: {
       header: null,
     },
@@ -143,4 +112,6 @@ export const MainSwitchNavigator = createSwitchNavigator(
   },
 );
 
-export const RootNavigator = createAppContainer(MainSwitchNavigator);
+export const RootNavigator = createAppContainer(RootStackNavigator);
+
+// export const RootNavigator = createAppContainer(MainSwitchNavigator);
