@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image, Dimensions } from 'react-native';
 import Text from '../components/Text';
+import Header from '../components/Header';
 import Button from '../components/Button';
 import { WHITE, YELLOW } from '../utils/constants';
 
@@ -12,7 +13,6 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     flex: 5,
-    marginTop: height / 4,
     alignItems: 'center',
   },
   button: {
@@ -22,16 +22,23 @@ const styles = StyleSheet.create({
 
 export default () => (
   <View style={styles.container}>
-    <View style={{ marginTop: '4%', marginLeft: '4%', flex: 1 }}>
-      <Button text="New Message" color={YELLOW} textColor={WHITE} style={styles.button} />
-    </View>
-    <View style={styles.subContainer}>
-      <View>
-        <Image source={require('../../assets/docs.png')} />
+    <Header headerName="INBOX" />
+    <View style={{ flex: 1 }}>
+      <View style={{ marginTop: '4%', marginLeft: '4%', flex: 1 }}>
+        <Button text="New Message" color={YELLOW} textColor={WHITE} style={styles.button} />
       </View>
-      <View style={{ alignItems: 'center', margin: 10 }}>
-        <Text> You have not received any </Text>
-        <Text> messages yet </Text>
+      <View style={styles.subContainer}>
+        <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+          <Image source={require('../../assets/docs.png')} />
+        </View>
+        <View style={{
+          flex: 1,
+          alignItems: 'center',
+          margin: 10
+        }}>
+          <Text> You have not received any </Text>
+          <Text> messages yet </Text>
+        </View>
       </View>
     </View>
   </View>

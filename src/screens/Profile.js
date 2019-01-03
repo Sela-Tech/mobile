@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, FlatList, ScrollView } from 'react-native';
 import B from '../components/BoldText';
+import Header from '../components/Header';
 import Project from '../components/ExploreProject/Project';
 import UserId from '../components/Profile/UserId';
 import UserInfo from '../components/Profile/UserInfo';
@@ -9,7 +10,9 @@ import Tag from '../components/Tag';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 15,
+  },
+  subContainer: {
+    marginTop: '5%',
   },
 });
 
@@ -53,28 +56,31 @@ export default class Profile extends Component {
   render() {
     return (
       <ScrollView contentContainerStyle={styles.container}>
-        <UserId />
-        <UserInfo />
-        <View style={{ marginVertical: 10 }}>
-          <View style={{ marginVertical: 15, marginLeft: 10 }}>
-            <B color="#201D41"> Other projects with Ade </B>
+        <Header headerName="PROFILE" />
+        <View style={styles.subContainer}>
+          <UserId />
+          <UserInfo />
+          <View style={{ marginVertical: 10 }}>
+            <View style={{ marginVertical: 15, marginLeft: 10 }}>
+              <B color="#201D41"> Other projects with Ade </B>
+            </View>
+            <FlatList
+              style={{ paddingTop: 10 }}
+              data={images}
+              keyExtractor={keyExtractor}
+              horizontal
+              renderItem={renderItem}
+            />
           </View>
-          <FlatList
-            style={{ paddingTop: 10 }}
-            data={images}
-            keyExtractor={keyExtractor}
-            horizontal
-            renderItem={renderItem}
-          />
-        </View>
-        <View>
-          <View style={{ marginVertical: 15, marginLeft: 10 }}>
-            <B color="#201D41"> Interests </B>
-          </View>
-          <View style={{ flexDirection: 'row' }}>
-            <Tag viewColor="#1ECD97" text="Education" />
+          <View>
+            <View style={{ marginVertical: 15, marginLeft: 10 }}>
+              <B color="#201D41"> Interests </B>
+            </View>
+            <View style={{ flexDirection: 'row' }}>
+              <Tag viewColor="#1ECD97" text="Education" />
 
-            <Tag viewColor="#1ECD97" text="Education" />
+              <Tag viewColor="#1ECD97" text="Education" />
+            </View>
           </View>
         </View>
       </ScrollView>
