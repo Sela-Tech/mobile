@@ -12,6 +12,7 @@ import SuccessScreen from './screens/SuccessScreen';
 import Notifications from './screens/Notifications';
 import AuthLoadingScreen from './screens/AuthLoading';
 import FirstTimeUserLoadingScreen from './screens/FirstTimeUserLoading';
+import SignUpSuccessScreen from './screens/SignUpSuccess';
 
 export const RootStackNavigator = createStackNavigator({
   Project: {
@@ -111,8 +112,14 @@ export const MainSwitchNavigator = createSwitchNavigator(
 );
 
 export const TestStackNavigator = createStackNavigator({
-  Login: {
-    screen: LoginScreen,
+  OnBoarding: {
+    screen: OnBoarding,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  SignUpSuccess: {
+    screen: SignUpSuccessScreen,
     navigationOptions: {
       header: null,
     },

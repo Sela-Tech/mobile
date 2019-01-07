@@ -94,7 +94,7 @@ class Login extends Component {
       });
     }
     const data = {
-      email: emailOrPhone,
+      'email': emailOrPhone,
       password,
     };
     this.setState({ submitErrorMessage: '', loading: true });
@@ -104,18 +104,18 @@ class Login extends Component {
       if (resp === true) {
         return NavigationService.navigate('Project');
       }
+      else {
+        if (resp === 'Sela does not have an account with those user credentials. Please try another email/phone number.')
+          this.setState({
+            submitErrorMessage: 'Wrong Username or Password',
+          });
+      }
 
-      if (
-        resp ===
-        'Sela does not have an account with those user credentials. Please try another email/phone number.'
-      )
-        this.setState({
-          submitErrorMessage: 'Wrong Username or Password',
-        });
-    } catch {
+    }
+    catch{
       this.setState({ loading: false });
     }
-  };
+  }
 
   render() {
     const {
@@ -154,24 +154,20 @@ class Login extends Component {
                 text="Email Address or Phone Number"
                 textStyle={styles.whiteText}
                 onChangeTheText={emailOrPhone => this.setState({ emailOrPhone })}
-                onTheChange={() =>
-                  this.setState({
-                    emailOrPhoneError: false,
-                    emailOrPhoneErrorMessage: '',
-                  })
-                }
+                onTheChange={() => this.setState({
+                  emailOrPhoneError: false,
+                  emailOrPhoneErrorMessage: '',
+                })}
                 error={emailOrPhoneError}
                 errorMessage={emailOrPhoneErrorMessage}
               />
               <View style={{ marginTop: '5%' }}>
                 <Input
                   onChangeTheText={password => this.setState({ password })}
-                  onTheChange={() =>
-                    this.setState({
-                      passwordError: false,
-                      passwordErrorMessage: '',
-                    })
-                  }
+                  onTheChange={() => this.setState({
+                    passwordError: false,
+                    passwordErrorMessage: '',
+                  })}
                   error={passwordError}
                   errorMessage={passwordErrorMessage}
                   text="Password"
@@ -204,8 +200,13 @@ class Login extends Component {
                   loading={loading}
                   fn={() => this.login()}
                 />
-                <View style={{ marginTop: 10 }}>
-                  <StandardText text={submitErrorMessage} />
+                <View style={{ marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
+                  <StandardText
+                    text={submitErrorMessage}
+                    style={{
+                      fontSize: 12,
+                    }}
+                  />
                 </View>
               </View>
             </View>
@@ -219,7 +220,7 @@ class Login extends Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <View>
                     <Text style={styles.buttomText}>
-                      {" Don't  have an account? "}
+                      {' Don\'t  have an account? '}
                       <B fn={() => NavigationService.navigate('OnBoarding')}> Get Started</B>
                     </Text>
                   </View>
@@ -245,3 +246,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Login);
+

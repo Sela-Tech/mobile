@@ -52,3 +52,4 @@ export const signUp = async data => {
     return err;
   }
 };
+
