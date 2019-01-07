@@ -10,6 +10,7 @@ import NavigationService from '../services/NavigationService';
 import { DEFAULT_COLOUR, YELLOW, WHITE } from '../utils/constants';
 import ExtStyle from '../utils/styles';
 
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -36,6 +37,7 @@ export default class Login extends Component {
     password: '',
     secure: true,
     keyboard: false,
+    loading: false,
   };
 
   componentWillMount() {
@@ -65,32 +67,53 @@ export default class Login extends Component {
     return this.setState({ keyboard: false });
   }
 
+  login = async () => {
+    console.log('here')
+    console.log('ththth', this.state);
+    this.setState({ loading: true });
+    try {
+      // conat resp =
+      return NavigationService.navigate('Project');
+      this.setState({ loading: false });
+    }
+    catch{
+      this.setState({ loading: false });
+    }
+  }
+
   render() {
-    const { secure, keyboard } = this.state;
+    const { secure, keyboard, loading } = this.state;
     const { navigation } = this.props;
     const { goBack } = navigation;
+    // behavior = "behaviour"
     return (
       <DismissKeyboard>
-        <KeyboardAvoidingView style={ExtStyle.flex1} behavior="behaviour">
+        <KeyboardAvoidingView style={ExtStyle.flex1} behavior="padding">
           <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="always">
-            <Fragment>
-              <IntroHeader fn={() => goBack()} back keyboard={keyboard} />
-            </Fragment>
-            <View style={{ alignItems: 'center', marginTop: '15%' }}>
-              <Text style={styles.boldText}> Log In</Text>
+            <View style={{ flex: 3 }}>
+              <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+                <IntroHeader fn={() => goBack()} back keyboard={keyboard} />
+              </View>
+              <View style={{ alignItems: 'center', justifyContent: 'flex-end', flex: 2 }}>
+                <View style={{ paddingTop: 30, justifyContent: 'flex-end', flex: 1 }}>
+                  <Text style={styles.boldText}> Log In</Text>
+                </View>
+                <View style={{ alignItems: 'center', flex: 2, marginTop: 10 }}>
+                  <Text style={styles.buttomText}> Welcome back ! Enter your details </Text>
+                  <Text style={styles.buttomText}> below to log into your account </Text>
+                </View>
+              </View>
             </View>
-            <View style={{ alignItems: 'center', marginTop: '3%' }}>
-              <Text style={styles.buttomText}> Welcome back ! Enter your details </Text>
-              <Text style={styles.buttomText}> below to log into your account </Text>
-            </View>
-            <View style={{ marginTop: '15%' }}>
+            <View style={{ flex: 3, }}>
               <Input
                 text="Email Address or Phone Number"
                 textStyle={styles.whiteText}
-                // medium={true}
+                onChangeTheText={emailOrPhone => this.setState({ emailOrPhone })}
+              // medium={true}
               />
               <View style={{ marginTop: '5%' }}>
                 <Input
+                  onChangeTheText={password => this.setState({ password })}
                   text="Password"
                   showPass
                   secure={secure}
@@ -117,22 +140,26 @@ export default class Login extends Component {
                   text="Log In"
                   color={YELLOW}
                   textColor={WHITE}
-                  fn={() => NavigationService.navigate('Project')}
+                  textSize={20}
+                  loading={loading}
+                  fn={() => this.login()}
                 />
               </View>
             </View>
-            <View
-              style={{
-                position: 'absolute',
-                bottom: 40,
-              }}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                <View>
-                  <Text style={styles.buttomText}>
-                    {' Don/t have an account? '}
-                    <B fn={() => NavigationService.navigate('OnBoarding')}> Get Started</B>
-                  </Text>
+            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+              <View
+                style={{
+                  position: 'absolute',
+                  bottom: keyboard ? -20 : 30,
+                }}
+              >
+                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                  <View>
+                    <Text style={styles.buttomText}>
+                      {' Don/t have an account? '}
+                      <B fn={() => NavigationService.navigate('OnBoarding')}> Get Started</B>
+                    </Text>
+                  </View>
                 </View>
               </View>
             </View>

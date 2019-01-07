@@ -111,6 +111,17 @@ export const MainSwitchNavigator = createSwitchNavigator(
   },
 );
 
-// export const RootNavigator = createAppContainer(RootStackNavigator);
 
-export const RootNavigator = createAppContainer(MainSwitchNavigator);
+export const TestStackNavigator = createStackNavigator({
+  Login: {
+    screen: LoginScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+});
+
+
+export const RootNavigator = createAppContainer(TestStackNavigator);
+
+// export const RootNavigator = createAppContainer(MainSwitchNavigator);

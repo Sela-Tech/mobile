@@ -29,3 +29,22 @@ axios.interceptors.response.use(
     return Promise.reject(error);
   },
 );
+
+
+export const login = async data => {
+  try {
+    const resp = await axios.post('/login', data);
+    return resp;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const signUp = async data => {
+  try {
+    const resp = await axios.post('/register', data);
+    return resp;
+  } catch (err) {
+    return err;
+  }
+};
