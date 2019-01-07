@@ -62,8 +62,7 @@ export default () => (
         </TouchableOpacity>
       </View>
       <View style={{ alignItems: 'center', flex: 1, marginTop: 20 }}>
-        <Button
-          text="Submit Updates" />
+        <Button text="Submit Updates" />
       </View>
     </View>
   </ScrollView>

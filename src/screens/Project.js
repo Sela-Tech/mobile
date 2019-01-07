@@ -37,8 +37,6 @@ const styles = StyleSheet.create({
 });
 
 export default class Project extends Component {
-
-
   render() {
     return (
       <View style={styles.container}>
@@ -72,21 +70,22 @@ export default class Project extends Component {
           </View> */}
 
             <View style={styles.otherContainer}>
-              <Text>Seems like you havent
-              <B> created</B>
-                <B> funded  </B> or
-            </Text>
+              <Text>
+                Seems like you havent
+                <B> created</B>
+                <B> funded </B> or
+              </Text>
               <Text>
                 {' '}
                 <B> added </B>
-                {' '}
-                saved any projects yet.You can propose a{' '}
+{' '}
+saved any projects yet.You can propose a
+{' '}
               </Text>
               <Text> project using the plus sign or button below or </Text>
               <Text> explore existing projects </Text>
             </View>
             <View>
-
               <Button
                 text="Explore Project"
                 color={WHITE}

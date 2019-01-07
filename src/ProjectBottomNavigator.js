@@ -10,7 +10,6 @@ import ProfileSettingsScreen from './screens/ProfileSettings';
 import { YELLOW } from './utils/constants';
 import ProjectListingScreen from './screens/ProjectListing';
 
-
 const ProjectStack = createStackNavigator({
   ProjectListing: {
     screen: ProjectListingScreen,

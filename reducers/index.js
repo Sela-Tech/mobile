@@ -5,13 +5,13 @@ import token from './token';
 import userInfo from './userInfo';
 
 const rootPersistConfig = {
-    key: 'root',
-    storage: AsyncStorage,
+  key: 'root',
+  storage: AsyncStorage,
 };
 
 const rootReducer = combineReducers({
-    token,
-    userInfo,
+  token,
+  userInfo,
 });
 
 // export default persistReducer(rootReducer);

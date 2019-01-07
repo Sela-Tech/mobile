@@ -31,11 +31,13 @@ export default () => (
         <View style={{ flex: 1, justifyContent: 'flex-end' }}>
           <Image source={require('../../assets/docs.png')} />
         </View>
-        <View style={{
-          flex: 1,
-          alignItems: 'center',
-          margin: 10
-        }}>
+        <View
+          style={{
+            flex: 1,
+            alignItems: 'center',
+            margin: 10,
+          }}
+        >
           <Text> You have not received any </Text>
           <Text> messages yet </Text>
         </View>

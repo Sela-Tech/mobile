@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import Text from './Text';
 import PropTypes from 'prop-types';
+import Text from './Text';
 
 const styles = StyleSheet.create({
     container: {
@@ -12,10 +12,10 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         color: 'red',
         fontSize: 20,
-    }
+    },
 });
 
-const StandardText = ({ text, onPress, style, children }) => (
+const StandardText = ({ text, onPress, style }) => (
     <View style={styles.container}>
         <Text onPress={onPress} style={[styles.text, style]}>
             {text}
@@ -24,12 +24,14 @@ const StandardText = ({ text, onPress, style, children }) => (
 );
 
 StandardText.defaultProps = {
+    text: '',
     onPress: null,
     style: {},
     children: '',
 };
 
 StandardText.propTypes = {
+    text: PropTypes.string,
     onPress: PropTypes.func,
     style: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
     children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),

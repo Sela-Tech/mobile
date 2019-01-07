@@ -21,10 +21,14 @@ const IntroHeader = ({ back, keyboard, fn }) => (
   <View style={[styles.container]}>
     <View style={{ flex: 1, justifyContent: 'center' }}>
       {back ? (
-        <View style={{ flex: 1, flexDirection: 'row', alignItems: "center" }}>
+        <View style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
           <View style={{ flex: 1, alignItems: 'center', marginLeft: 10 }}>
             <TouchableOpacity onPress={fn}>
-              <Image resizeMode="contain" style={{}} source={require('../../assets/img/back.png')} />
+              <Image
+                resizeMode="contain"
+                style={{}}
+                source={require('../../assets/img/back.png')}
+              />
             </TouchableOpacity>
           </View>
           <View style={{ flex: 2, backgroundColor: 'white' }} />
@@ -38,9 +42,6 @@ const IntroHeader = ({ back, keyboard, fn }) => (
   </View>
 );
 
-IntroHeader.defaultProps = {
-
-};
-
+IntroHeader.defaultProps = {};
 
 export default IntroHeader;

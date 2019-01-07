@@ -41,7 +41,6 @@ export const RootStackNavigator = createStackNavigator({
   //   //   header: null,
   //   // },
   // },
-
 });
 
 const AuthStack = createStackNavigator({
@@ -111,7 +110,6 @@ export const MainSwitchNavigator = createSwitchNavigator(
   },
 );
 
-
 export const TestStackNavigator = createStackNavigator({
   Login: {
     screen: LoginScreen,
@@ -120,7 +118,6 @@ export const TestStackNavigator = createStackNavigator({
     },
   },
 });
-
 
 export const RootNavigator = createAppContainer(TestStackNavigator);
 

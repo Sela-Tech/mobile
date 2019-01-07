@@ -1,5 +1,5 @@
 {
-  "name": "empty-project-template",
+  "name": "Sela",
   "private": true,
   "scripts": {
     "start": "react-native start",

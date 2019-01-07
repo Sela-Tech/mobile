@@ -9,8 +9,6 @@ const axios = Axios.create({
   },
 });
 
-
-
 // Add a request interceptor
 axios.interceptors.request.use(
   config => {
@@ -36,7 +34,6 @@ axios.interceptors.response.use(
     // return Promise.reject(error);
   },
 );
-
 
 export const login = async data => {
   try {
