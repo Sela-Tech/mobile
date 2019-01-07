@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native';
 import * as API from '../src/utils/api';
+import { saveUserInfo } from './userInfo';
 import * as types from './actionTypes';
 
 
@@ -27,13 +28,19 @@ export const removeToken = () => ({
     type: types.REMOVE_TOKEN,
 });
 
-export const setUserToken = data => dispatch =>
+export const login = data => dispatch =>
     API.login(data)
         .then(resp => {
             if (resp.status === 200) {
                 dispatch(tokenIsLoading(false));
-                dispatch(getToken(resp.data));
+                dispatch(saveUserInfo(resp.data));
+                return resp.data.success;
             }
+            else if (resp.status === 401) {
+                dispatch(tokenIsLoading(false));
+                return resp.data.message;
+            }
+            return false;
         })
         .catch(err => {
             dispatch(tokenIsLoading(false));

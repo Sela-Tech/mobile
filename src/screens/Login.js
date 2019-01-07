@@ -1,15 +1,17 @@
 import React, { Component, Fragment } from 'react';
 import { StyleSheet, View, KeyboardAvoidingView, ScrollView, Keyboard } from 'react-native';
+import { connect } from 'react-redux';
 import Text from '../components/Text';
 import DismissKeyboard from '../components/DismissKeyboard';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import B from '../components/BoldText';
+import StandardText from '../components/StandardText';
 import IntroHeader from '../components/IntroHeader';
 import NavigationService from '../services/NavigationService';
 import { DEFAULT_COLOUR, YELLOW, WHITE } from '../utils/constants';
+import { login } from '../../actions/token';
 import ExtStyle from '../utils/styles';
-
 
 const styles = StyleSheet.create({
   container: {
@@ -31,7 +33,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     emailOrPhone: '',
     password: '',
@@ -68,13 +70,47 @@ export default class Login extends Component {
   }
 
   login = async () => {
-    console.log('here')
-    console.log('ththth', this.state);
-    this.setState({ loading: true });
+    const { emailOrPhone, password } = this.state;
+
+    if (emailOrPhone === '' || password === '') {
+      return this.setState({
+        emailOrPhoneError: true,
+        emailOrPhoneErrorMessage: "Email field can't be blank",
+        passwordError: true,
+        passwordErrorMessage: "Password Field can't be blank",
+      });
+    }
+
+    if (emailOrPhone === '') {
+      return this.setState({
+        emailOrPhoneError: true,
+        emailOrPhoneErrorMessage: "Email field can't be blank",
+      });
+    }
+    if (password === '') {
+      return this.setState({
+        passwordError: true,
+        passwordErrorMessage: "Password Field can't be blank",
+      });
+    }
+    const data = {
+      'email': emailOrPhone,
+      password,
+    };
+    this.setState({ submitErrorMessage: '', loading: true });
     try {
-      // conat resp =
-      return NavigationService.navigate('Project');
+      const resp = await this.props.login(data);
       this.setState({ loading: false });
+      if (resp === true) {
+        return NavigationService.navigate('Project');
+      }
+      else {
+        if (resp === 'Sela does not have an account with those user credentials. Please try another email/phone number.')
+          this.setState({
+            submitErrorMessage: 'Wrong Username or Password',
+          });
+      }
+
     }
     catch{
       this.setState({ loading: false });
@@ -82,7 +118,16 @@ export default class Login extends Component {
   }
 
   render() {
-    const { secure, keyboard, loading } = this.state;
+    const {
+      secure,
+      keyboard,
+      loading,
+      passwordError,
+      passwordErrorMessage,
+      emailOrPhoneError,
+      emailOrPhoneErrorMessage,
+      submitErrorMessage,
+    } = this.state;
     const { navigation } = this.props;
     const { goBack } = navigation;
     // behavior = "behaviour"
@@ -104,16 +149,27 @@ export default class Login extends Component {
                 </View>
               </View>
             </View>
-            <View style={{ flex: 3, }}>
+            <View style={{ flex: 3, alignItems: 'center' }}>
               <Input
                 text="Email Address or Phone Number"
                 textStyle={styles.whiteText}
                 onChangeTheText={emailOrPhone => this.setState({ emailOrPhone })}
-              // medium={true}
+                onTheChange={() => this.setState({
+                  emailOrPhoneError: false,
+                  emailOrPhoneErrorMessage: '',
+                })}
+                error={emailOrPhoneError}
+                errorMessage={emailOrPhoneErrorMessage}
               />
               <View style={{ marginTop: '5%' }}>
                 <Input
                   onChangeTheText={password => this.setState({ password })}
+                  onTheChange={() => this.setState({
+                    passwordError: false,
+                    passwordErrorMessage: '',
+                  })}
+                  error={passwordError}
+                  errorMessage={passwordErrorMessage}
                   text="Password"
                   showPass
                   secure={secure}
@@ -134,7 +190,7 @@ export default class Login extends Component {
                   {` Forgot password?`}
                 </Text>
               </View>
-              <View style={{ marginTop: '5%' }}>
+              <View style={{ marginTop: '5%', alignItems: 'center' }}>
                 <Button
                   medium
                   text="Log In"
@@ -144,6 +200,9 @@ export default class Login extends Component {
                   loading={loading}
                   fn={() => this.login()}
                 />
+                <View style={{ marginTop: 10 }}>
+                  <StandardText text={submitErrorMessage} />
+                </View>
               </View>
             </View>
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -156,7 +215,7 @@ export default class Login extends Component {
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
                   <View>
                     <Text style={styles.buttomText}>
-                      {' Don/t have an account? '}
+                      {' Don\'t  have an account? '}
                       <B fn={() => NavigationService.navigate('OnBoarding')}> Get Started</B>
                     </Text>
                   </View>
@@ -169,3 +228,17 @@ export default class Login extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  userInfo: state.userInfo,
+});
+
+const mapDispatchToProps = dispatch => ({
+  login: data => dispatch(login(data)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Login);
+

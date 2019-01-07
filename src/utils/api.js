@@ -9,9 +9,15 @@ const axios = Axios.create({
   },
 });
 
+
+
 // Add a request interceptor
 axios.interceptors.request.use(
-  config => config,
+  config => {
+    // Do something before request is sent
+    config.headers['x-access-token'] = this.userToken;
+    return config;
+  },
   error => {
     // Do something with request error
     // Do something with response error
@@ -26,7 +32,8 @@ axios.interceptors.response.use(
   error => {
     // Do something with response error
     console.log('API ERR:', error.message);
-    return Promise.reject(error);
+    return error.response;
+    // return Promise.reject(error);
   },
 );
 
