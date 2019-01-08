@@ -5,6 +5,7 @@ import CalendarBox from '../components/CreateProject/CalendarBox';
 import Input from '../components/Input';
 import Text from '../components/Text';
 import Button from '../components/Button';
+import * as API from '../utils/api';
 import { WHITE, YELLOW } from '../utils/constants';
 
 const { height, width } = Dimensions.get('window');
@@ -34,6 +35,7 @@ export default class CreateProject extends Component {
   state = {
     showFirstCalendar: false,
     showSecondCalendar: false,
+    loading: false,
   };
 
   // pickImage = async () => {
@@ -53,7 +55,7 @@ export default class CreateProject extends Component {
   // };
 
   // upload image to the server
-  uploadImageAsync = async data => {};
+  uploadImageAsync = async data => { };
 
   handleImagePicked = async pickerResult => {
     let uploadResponse;
@@ -99,8 +101,66 @@ export default class CreateProject extends Component {
     this.openCalender(val);
   };
 
+  submit = async () => {
+
+    const {
+      name,
+      description,
+      tags,
+      budget,
+      contractors,
+      avatar,
+      startDate,
+      endDate,
+      //  places:
+    } = this.state;
+
+    // const data = {
+    //   "name": "test project 1",
+    //   "description": "this is a simple test project 1",
+    //   "startDate": "2018-11-29",
+    //   "location": {
+    //     "name": "south-west",
+    //     "lat": 945054,
+    //     "lng": 744738
+    //   }
+    // };
+    const data = {
+      name,
+      description,
+      startDate: "2018-11-29",
+      endDate: "2018-11-29",
+      tags,
+      budget,
+      contractors,
+      avatar: 'https://placeimg.com/200/200/people',
+      "location": {
+        "name": "south-west",
+        "lat": 945054,
+        "lng": 744738
+      }
+    };
+    console.log('data', data)
+
+    this.setState({ loading: true });
+
+    try {
+      const resp = await API.addProject(data);
+      this.setState({ loading: false });
+      if (resp.data.success === true) {
+        this.props.navigation.navigate('Success');
+      }
+
+    }
+    catch (err) {
+      this.setState({ loading: false, error: err.message });
+    }
+
+
+  };
+
   render() {
-    const { image, showFirstCalendar, showSecondCalendar } = this.state;
+    const { image, showFirstCalendar, showSecondCalendar, loading } = this.state;
     const avatar = require('../../assets/selectImage.png');
     const avatarURI = image || '';
     const icon = avatarURI === '' ? avatar : { uri: avatarURI };
@@ -123,6 +183,11 @@ export default class CreateProject extends Component {
             style={styles.inputStyle}
             textSyle="#BBBBBB"
             placeHolderColor="#B1BAD2"
+            onChangeTheText={name => this.setState({ name })}
+            onTheChange={() => this.setState({
+              nameError: false,
+              nameErrorMessage: '',
+            })}
           />
         </View>
 
@@ -140,6 +205,11 @@ export default class CreateProject extends Component {
               marginLeft: '2%',
             }}
             placeHolderColor="#B1BAD2"
+            onChangeTheText={description => this.setState({ description })}
+            onTheChange={() => this.setState({
+              descriptionError: false,
+              descriptionErrorMessage: '',
+            })}
           />
         </View>
         <View style={styles.smallContainer}>
@@ -150,6 +220,11 @@ export default class CreateProject extends Component {
             text="e.g education, sustainable cities"
             style={styles.inputStyle}
             placeHolderColor="#B1BAD2"
+            onChangeTheText={tags => this.setState({ tags })}
+            onTheChange={() => this.setState({
+              tagsError: false,
+              tagsErrorMessage: '',
+            })}
           />
         </View>
         <View style={styles.smallContainer}>
@@ -161,6 +236,11 @@ export default class CreateProject extends Component {
             style={styles.inputStyle}
             placeHolderColor="#B1BAD2"
             numb
+            onChangeTheText={budget => this.setState({ budget })}
+            onTheChange={() => this.setState({
+              budgetError: false,
+              budgetErrorMessage: '',
+            })}
           />
         </View>
 
@@ -168,7 +248,16 @@ export default class CreateProject extends Component {
           <View style={{ marginBottom: 10 }}>
             <Text style={{ fontSize: 15 }}> Set the location </Text>
           </View>
-          <Input text="Search places" style={styles.inputStyle} placeHolderColor="#B1BAD2" />
+          <Input
+            text="Search places"
+            style={styles.inputStyle}
+            placeHolderColor="#B1BAD2"
+            onChangeTheText={places => this.setState({ places })}
+            onTheChange={() => this.setState({
+              placesError: false,
+              placesErrorMessage: '',
+            })}
+          />
         </View>
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
@@ -176,7 +265,16 @@ export default class CreateProject extends Component {
               {` Add contractors and team members to the project `}
             </Text>
           </View>
-          <Input text="Select" style={styles.inputStyle} placeHolderColor="#B1BAD2" />
+          <Input
+            text="Select"
+            style={styles.inputStyle}
+            placeHolderColor="#B1BAD2"
+            onChangeTheText={contractors => this.setState({ contractors })}
+          // onTheChange={() => this.setState({
+          //   plasError: false,
+          //   placesErrorMessage: '',
+          // })}
+          />
         </View>
 
         <View>
@@ -207,9 +305,9 @@ export default class CreateProject extends Component {
                 style={
                   avatarURI !== ''
                     ? {
-                        width: width / 1.1,
-                        height: height / 9,
-                      }
+                      width: width / 1.1,
+                      height: height / 9,
+                    }
                     : null
                 }
                 source={icon}
@@ -238,10 +336,10 @@ export default class CreateProject extends Component {
             {showFirstCalendar === true || showSecondCalendar === true ? (
               <Fragment />
             ) : (
-              <View style={{ justifyContent: 'center' }}>
-                <Image source={require('../../assets/minus.png')} />
-              </View>
-            )}
+                <View style={{ justifyContent: 'center' }}>
+                  <Image source={require('../../assets/minus.png')} />
+                </View>
+              )}
           </Fragment>
           <CalendarBox
             upText="Start Date"
@@ -259,10 +357,12 @@ export default class CreateProject extends Component {
             medium
             textColor={WHITE}
             style={styles.inputStyle}
-            fn={() => this.props.navigation.navigate('Success')}
+            loading={loading}
+            fn={() => this.submit()}
           />
         </View>
       </KeyboardAwareScrollView>
     );
   }
 }
+
