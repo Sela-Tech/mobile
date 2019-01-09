@@ -25,6 +25,7 @@ const HeaderB = ({ headerName, sideIconStatus, sideIconImage }) => (
       {
         sideIconStatus ? (
           <Button
+            light
             style={styles.backgroundColor}
             onPress={() => NavigationService.navigate('Notification')}>
             <Image source={sideIconImage} />

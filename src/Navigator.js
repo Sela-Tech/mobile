@@ -129,6 +129,6 @@ export const TestStackNavigator = createStackNavigator({
   },
 });
 
-export const RootNavigator = createAppContainer(TestStackNavigator);
+export const RootNavigator = createAppContainer(RootStackNavigator);
 
 // export const RootNavigator = createAppContainer(MainSwitchNavigator);
