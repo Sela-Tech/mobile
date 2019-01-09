@@ -111,24 +111,7 @@ export const MainSwitchNavigator = createSwitchNavigator(
   },
 );
 
-export const TestStackNavigator = createStackNavigator({
-  CreateProject: {
-    screen: CreateProject,
-  },
-  OnBoarding: {
-    screen: OnBoarding,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  SignUpSuccess: {
-    screen: SignUpSuccessScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
-});
 
-export const RootNavigator = createAppContainer(TestStackNavigator);
+// export const RootNavigator = createAppContainer(TestStackNavigator);
 
-// export const RootNavigator = createAppContainer(MainSwitchNavigator);
+export const RootNavigator = createAppContainer(MainSwitchNavigator);

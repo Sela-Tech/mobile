@@ -115,16 +115,7 @@ export default class CreateProject extends Component {
       //  places:
     } = this.state;
 
-    // const data = {
-    //   "name": "test project 1",
-    //   "description": "this is a simple test project 1",
-    //   "startDate": "2018-11-29",
-    //   "location": {
-    //     "name": "south-west",
-    //     "lat": 945054,
-    //     "lng": 744738
-    //   }
-    // };
+
     const data = {
       name,
       description,
