@@ -10,8 +10,8 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE,
   },
   headerName: {
-    color: "#201D41",
-  }
+    color: '#201D41',
+  },
 });
 
 const HeaderB = ({ headerName, sideIconStatus, sideIconImage }) => (
@@ -22,25 +22,21 @@ const HeaderB = ({ headerName, sideIconStatus, sideIconImage }) => (
     </Body>
 
     <Right style={{ flex: 1 }}>
-      {
-        sideIconStatus ? (
-          <Button
-            light
-            style={styles.backgroundColor}
-            onPress={() => NavigationService.navigate('Notification')}>
-            <Image source={sideIconImage} />
-          </Button>
-        ) : null}
+      {sideIconStatus ? (
+        <Button
+          light
+          style={styles.backgroundColor}
+          onPress={() => NavigationService.navigate('Notification')}
+        >
+          <Image source={sideIconImage} />
+        </Button>
+      ) : null}
     </Right>
   </Header>
 );
 
-HeaderB.defaultProps = {
+HeaderB.defaultProps = {};
 
-};
-
-HeaderB.propTypes = {
-
-};
+HeaderB.propTypes = {};
 
 export default HeaderB;

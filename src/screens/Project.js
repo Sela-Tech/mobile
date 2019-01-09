@@ -79,8 +79,7 @@ export default class Project extends Component {
                 {' '}
                 <B> added </B>
 {' '}
-saved any projects yet.You can propose a
-{' '}
+saved any projects yet.You can propose a{' '}
               </Text>
               <Text> project using the plus sign or button below or </Text>
               <Text> explore existing projects </Text>

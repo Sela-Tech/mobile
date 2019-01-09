@@ -40,26 +40,42 @@ const tabBarOptions = {
 
 export default class Navigator extends Component {
     state = {
-        isContractor: true
+        isContractor: true,
     }
 
     render() {
 
         const { isContractor } = this.state;
-        const updatesOrTask = isContractor === true ? Updates : Tasks;
+        const updatesOrTask = isContractor === false ? Updates : Tasks;
         const transactionOrOvervIew = isContractor === true ? Transactions : Overview;
 
-        const Tabs = createMaterialTopTabNavigator(
-            {
-                Description,
-                StakeHolders,
-                isContractor? 'Tasks' : 'Updates',
-                isContractor? 'Transactions' : 'OverView',
-            },
-            {
-                tabBarOptions
-            },
-        );
+        let Tabs;
+        if (isContractor) {
+            Tabs = createMaterialTopTabNavigator(
+                {
+                    Description,
+                    StakeHolders,
+                    Tasks: updatesOrTask,
+                    Overview: transactionOrOvervIew,
+                },
+                {
+                    tabBarOptions,
+                },
+            );
+        }
+        else {
+            Tabs = createMaterialTopTabNavigator(
+                {
+                    Description,
+                    StakeHolders,
+                    Updates: updatesOrTask,
+                    Transactions: transactionOrOvervIew,
+                },
+                {
+                    tabBarOptions,
+                },
+            );
+        }
         const ExploreTopTabs = createAppContainer(Tabs);
         return (<ExploreTopTabs />)
     }

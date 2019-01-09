@@ -55,7 +55,7 @@ export default class CreateProject extends Component {
   // };
 
   // upload image to the server
-  uploadImageAsync = async data => { };
+  uploadImageAsync = async data => {};
 
   handleImagePicked = async pickerResult => {
     let uploadResponse;
@@ -102,7 +102,6 @@ export default class CreateProject extends Component {
   };
 
   submit = async () => {
-
     const {
       name,
       description,
@@ -128,19 +127,19 @@ export default class CreateProject extends Component {
     const data = {
       name,
       description,
-      startDate: "2018-11-29",
-      endDate: "2018-11-29",
+      startDate: '2018-11-29',
+      endDate: '2018-11-29',
       tags,
       budget,
       contractors,
       avatar: 'https://placeimg.com/200/200/people',
-      "location": {
-        "name": "south-west",
-        "lat": 945054,
-        "lng": 744738
-      }
+      location: {
+        name: 'south-west',
+        lat: 945054,
+        lng: 744738,
+      },
     };
-    console.log('data', data)
+    console.log('data', data);
 
     this.setState({ loading: true });
 
@@ -150,13 +149,9 @@ export default class CreateProject extends Component {
       if (resp.data.success === true) {
         this.props.navigation.navigate('Success');
       }
-
-    }
-    catch (err) {
+    } catch (err) {
       this.setState({ loading: false, error: err.message });
     }
-
-
   };
 
   render() {
@@ -184,10 +179,12 @@ export default class CreateProject extends Component {
             textSyle="#BBBBBB"
             placeHolderColor="#B1BAD2"
             onChangeTheText={name => this.setState({ name })}
-            onTheChange={() => this.setState({
-              nameError: false,
-              nameErrorMessage: '',
-            })}
+            onTheChange={() =>
+              this.setState({
+                nameError: false,
+                nameErrorMessage: '',
+              })
+            }
           />
         </View>
 
@@ -206,10 +203,12 @@ export default class CreateProject extends Component {
             }}
             placeHolderColor="#B1BAD2"
             onChangeTheText={description => this.setState({ description })}
-            onTheChange={() => this.setState({
-              descriptionError: false,
-              descriptionErrorMessage: '',
-            })}
+            onTheChange={() =>
+              this.setState({
+                descriptionError: false,
+                descriptionErrorMessage: '',
+              })
+            }
           />
         </View>
         <View style={styles.smallContainer}>
@@ -221,10 +220,12 @@ export default class CreateProject extends Component {
             style={styles.inputStyle}
             placeHolderColor="#B1BAD2"
             onChangeTheText={tags => this.setState({ tags })}
-            onTheChange={() => this.setState({
-              tagsError: false,
-              tagsErrorMessage: '',
-            })}
+            onTheChange={() =>
+              this.setState({
+                tagsError: false,
+                tagsErrorMessage: '',
+              })
+            }
           />
         </View>
         <View style={styles.smallContainer}>
@@ -237,10 +238,12 @@ export default class CreateProject extends Component {
             placeHolderColor="#B1BAD2"
             numb
             onChangeTheText={budget => this.setState({ budget })}
-            onTheChange={() => this.setState({
-              budgetError: false,
-              budgetErrorMessage: '',
-            })}
+            onTheChange={() =>
+              this.setState({
+                budgetError: false,
+                budgetErrorMessage: '',
+              })
+            }
           />
         </View>
 
@@ -253,10 +256,12 @@ export default class CreateProject extends Component {
             style={styles.inputStyle}
             placeHolderColor="#B1BAD2"
             onChangeTheText={places => this.setState({ places })}
-            onTheChange={() => this.setState({
-              placesError: false,
-              placesErrorMessage: '',
-            })}
+            onTheChange={() =>
+              this.setState({
+                placesError: false,
+                placesErrorMessage: '',
+              })
+            }
           />
         </View>
         <View style={styles.smallContainer}>
@@ -270,10 +275,10 @@ export default class CreateProject extends Component {
             style={styles.inputStyle}
             placeHolderColor="#B1BAD2"
             onChangeTheText={contractors => this.setState({ contractors })}
-          // onTheChange={() => this.setState({
-          //   plasError: false,
-          //   placesErrorMessage: '',
-          // })}
+            // onTheChange={() => this.setState({
+            //   plasError: false,
+            //   placesErrorMessage: '',
+            // })}
           />
         </View>
 
@@ -305,9 +310,9 @@ export default class CreateProject extends Component {
                 style={
                   avatarURI !== ''
                     ? {
-                      width: width / 1.1,
-                      height: height / 9,
-                    }
+                        width: width / 1.1,
+                        height: height / 9,
+                      }
                     : null
                 }
                 source={icon}
@@ -336,10 +341,10 @@ export default class CreateProject extends Component {
             {showFirstCalendar === true || showSecondCalendar === true ? (
               <Fragment />
             ) : (
-                <View style={{ justifyContent: 'center' }}>
-                  <Image source={require('../../assets/minus.png')} />
-                </View>
-              )}
+              <View style={{ justifyContent: 'center' }}>
+                <Image source={require('../../assets/minus.png')} />
+              </View>
+            )}
           </Fragment>
           <CalendarBox
             upText="Start Date"
@@ -365,4 +370,3 @@ export default class CreateProject extends Component {
     );
   }
 }
-

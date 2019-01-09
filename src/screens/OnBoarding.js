@@ -54,9 +54,9 @@ export default class OnBoarding extends Component {
       password: '',
       role: 'funder',
       secure: true,
-      "isEvaluator": false,
-      "isContractor": false,
-      "isFunder": true,
+      isEvaluator: false,
+      isContractor: false,
+      isFunder: true,
       loading: false,
     };
   }
@@ -100,17 +100,14 @@ export default class OnBoarding extends Component {
         isContractor: false,
         isFunder: true,
       });
-    }
-
-    else if (role === 'contractor') {
+    } else if (role === 'contractor') {
       this.setState({
         role,
         isEvaluator: false,
         isContractor: true,
         isFunder: false,
       });
-    }
-    else {
+    } else {
       this.setState({
         role,
         isEvaluator: true,
@@ -122,27 +119,32 @@ export default class OnBoarding extends Component {
 
   keyboardDidShow() {
     return this.setState({ keyboard: true });
-  };
+  }
 
   keyboardDidHide() {
     return this.setState({ keyboard: false });
-  };
+  }
 
   fullNameFn = fullName => this.setState({ fullName });
+
   passwordFn = password => this.setState({ password });
+
   emailOrPhoneFn = emailOrPhone => this.setState({ emailOrPhone });
+
   onTheChangeFullName = () => {
     this.setState({
       fullNameError: false,
       fullNameErrorMessage: '',
     });
   };
+
   onTheChangePassword = () => {
     this.setState({
       passwordError: false,
       passwordErrorMessage: '',
     });
   };
+
   onTheChangeEmailOrPhone = () => {
     this.setState({
       emailOrPhoneError: false,
@@ -150,17 +152,8 @@ export default class OnBoarding extends Component {
     });
   };
 
-
   signUp = async () => {
-    const {
-      fullName,
-      emailOrPhone,
-      password,
-      isFunder,
-      isEvaluator,
-      isContractor,
-    } = this.state;
-
+    const { fullName, emailOrPhone, password, isFunder, isEvaluator, isContractor } = this.state;
 
     if (emailOrPhone === '' && password === '' && fullName === '') {
       return this.setState({
@@ -222,34 +215,32 @@ export default class OnBoarding extends Component {
     if (password.length < 8) {
       return this.setState({
         passwordError: true,
-        passwordErrorMessage: "Password should contain 8 characters or more",
+        passwordErrorMessage: 'Password should contain 8 characters or more',
       });
     }
 
     if (fullName.split(' ')[1] === undefined) {
       return this.setState({
         fullNameError: true,
-        fullNameErrorMessage: "Please enter fullName",
+        fullNameErrorMessage: 'Please enter fullName',
       });
     }
     const data = {
-      "email": emailOrPhone,
-      "phone": "89490358564",
-      "organization":
-        {
-          "id": "",
-          "name": "admin1 organisaction"
-        },
-      "firstName": fullName.split(' ')[0],
-      "lastName": fullName.split(' ')[1] === undefined ? '' : fullName.split(' ')[1],
-      "username": fullName,
+      email: emailOrPhone,
+      phone: '89490358564',
+      organization: {
+        id: '',
+        name: 'admin1 organisaction',
+      },
+      firstName: fullName.split(' ')[0],
+      lastName: fullName.split(' ')[1] === undefined ? '' : fullName.split(' ')[1],
+      username: fullName,
       isEvaluator,
       isContractor,
       isFunder,
       password,
-      "profilePhoto": 'https://placeimg.com/200/200/people',
-    }
-
+      profilePhoto: 'https://placeimg.com/200/200/people',
+    };
 
     this.setState({
       submitErrorMessage: '',
@@ -262,11 +253,10 @@ export default class OnBoarding extends Component {
       if (resp.data.success === true) {
         return NavigationService.navigate('SignUpSuccess');
       }
-      else {
-        this.setState({
-          submitErrorMessage: resp.data.message,
-        });
-      }
+
+      this.setState({
+        submitErrorMessage: resp.data.message,
+      });
     } catch {
       this.setState({ loading: false });
     }
@@ -317,30 +307,26 @@ export default class OnBoarding extends Component {
                     changeRole={this.changeRole}
                     navigate={navigate}
                     showPassword={this.showPassword}
-
-
-
                   />
                 ) : (
-                    <OnBoardView
-                      second
-                      currentPage={currentPage}
-                      changePage={this.changePage}
-                      secure={secure}
-                      state={this.state}
-                      changeRole={this.changeRole}
-                      navigate={navigate}
-                      showPassword={this.showPassword}
-
-                      changeFullNameFn={this.fullNameFn}
-                      passwordFn={this.passwordFn}
-                      emailOrPhoneFn={this.emailOrPhoneFn}
-                      onTheChangeEmailOrPhone={this.onTheChangeEmailOrPhone}
-                      onTheChangeFullName={this.onTheChangeFullName}
-                      onTheChangePassword={this.onTheChangePassword}
-                      signUp={this.signUp}
-                    />
-                  )}
+                  <OnBoardView
+                    second
+                    currentPage={currentPage}
+                    changePage={this.changePage}
+                    secure={secure}
+                    state={this.state}
+                    changeRole={this.changeRole}
+                    navigate={navigate}
+                    showPassword={this.showPassword}
+                    changeFullNameFn={this.fullNameFn}
+                    passwordFn={this.passwordFn}
+                    emailOrPhoneFn={this.emailOrPhoneFn}
+                    onTheChangeEmailOrPhone={this.onTheChangeEmailOrPhone}
+                    onTheChangeFullName={this.onTheChangeFullName}
+                    onTheChangePassword={this.onTheChangePassword}
+                    signUp={this.signUp}
+                  />
+                )}
               </View>
             </View>
           </KeyboardAvoidingView>

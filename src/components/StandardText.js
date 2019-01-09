@@ -4,36 +4,36 @@ import PropTypes from 'prop-types';
 import Text from './Text';
 
 const styles = StyleSheet.create({
-    container: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    text: {
-        textAlign: 'center',
-        color: 'red',
-        fontSize: 20,
-    },
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  text: {
+    textAlign: 'center',
+    color: 'red',
+    fontSize: 20,
+  },
 });
 
 const StandardText = ({ text, onPress, style }) => (
-    <View style={styles.container}>
-        <Text onPress={onPress} style={[styles.text, style]}>
-            {text}
-        </Text>
-    </View>
+  <View style={styles.container}>
+    <Text onPress={onPress} style={[styles.text, style]}>
+      {text}
+    </Text>
+  </View>
 );
 
 StandardText.defaultProps = {
-    text: '',
-    onPress: null,
-    style: {},
-    children: '',
+  text: '',
+  onPress: null,
+  style: {},
+  children: '',
 };
 
 StandardText.propTypes = {
-    text: PropTypes.string,
-    onPress: PropTypes.func,
-    style: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
-    children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+  text: PropTypes.string,
+  onPress: PropTypes.func,
+  style: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };
 export default StandardText;
