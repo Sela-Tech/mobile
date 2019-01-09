@@ -11,12 +11,12 @@ import { YELLOW } from './utils/constants';
 import ProjectListingScreen from './screens/ProjectListing';
 
 const ProjectStack = createStackNavigator({
-  ProjectListing: {
-    screen: ProjectListingScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
+  // ProjectListing: {
+  //   screen: ProjectListingScreen,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
   ExploreProject: {
     screen: ExploreProjectScreen,
     navigationOptions: {
