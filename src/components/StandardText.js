@@ -15,9 +15,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const StandardText = ({ text, onPress, style }) => (
-  <View style={styles.container}>
-    <Text onPress={onPress} style={[styles.text, style]}>
+const StandardText = ({ viewStyle, textStyle, text, onPress, style }) => (
+  <View style={[styles.container, viewStyle]}>
+    <Text onPress={onPress} style={[styles.text, style, textStyle]}>
       {text}
     </Text>
   </View>
@@ -27,12 +27,16 @@ StandardText.defaultProps = {
   text: '',
   onPress: null,
   style: {},
+  viewStyle: {},
+  textStyle: {},
   children: '',
 };
 
 StandardText.propTypes = {
   text: PropTypes.string,
   onPress: PropTypes.func,
+  viewStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
+  textStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
   style: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };

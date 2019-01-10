@@ -112,8 +112,14 @@ export const MainSwitchNavigator = createSwitchNavigator(
 );
 
 export const TestStackNavigator = createStackNavigator({
-  CreateProject: {
-    screen: CreateProject,
+  // CreateProject: {
+  //   screen: CreateProject,
+  // },
+  Intro: {
+    screen: IntroScreen,
+    navigationOptions: {
+      header: null,
+    },
   },
   OnBoarding: {
     screen: OnBoarding,

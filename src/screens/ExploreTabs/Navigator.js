@@ -46,16 +46,16 @@ export default class Navigator extends Component {
     render() {
 
         const { isContractor } = this.state;
-        const updatesOrTask = isContractor === false ? Updates : Tasks;
-        const transactionOrOvervIew = isContractor === true ? Transactions : Overview;
+        const updatesOrTask = !isContractor ? Updates : Tasks;
+        const transactionOrOvervIew = !isContractor ? Transactions : Overview;
 
         let Tabs;
         if (isContractor) {
             Tabs = createMaterialTopTabNavigator(
                 {
-                    Description,
-                    StakeHolders,
-                    Tasks: updatesOrTask,
+                    // Description,
+                    // StakeHolders,
+                    // Tasks: updatesOrTask,
                     Overview: transactionOrOvervIew,
                 },
                 {
