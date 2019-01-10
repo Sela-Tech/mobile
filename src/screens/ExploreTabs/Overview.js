@@ -46,12 +46,27 @@ export default class Overview extends Component {
                     }}
                 />
                 <Box
-                    upText="Progress"
-                    secondTextLeft="13%"
-                    secondTextRight="+12.4%"
+                    upText="Tasks Completed"
+                    secondTextLeft="13"
+                    secondTextRight="+6.9%"
                 />
                 <Box
-                    upText="Tasks Completed"
+                    upText="Progress"
+                    secondTextLeft="70%"
+                    secondTextRight="+12.4%"
+                />
+
+                <Box
+                    upText="Total funds spent"
+                    secondTextLeft="$1595"
+                    secondTextRight="+3.2%"
+                />
+
+                <Box
+                    upText="Budget used"
+                    secondTextLeft="70%"
+                    secondTextRight="+12.4%"
+                    lastText="Total budget"
                 />
             </ScrollView>
         );

@@ -23,13 +23,13 @@ const styles = StyleSheet.create({
 });
 
 export default class ViewProject extends Component {
-  static navigationOptions = {
-    title: 'EXPLORE',
-    headerStyle: {
-      fontFamily: 'proximaNova',
-      fontWeight: 'normal',
-    },
-  };
+  // static navigationOptions = {
+  //   title: 'EXPLORE',
+  //   headerStyle: {
+  //     fontFamily: 'proximaNova',
+  //     fontWeight: 'normal',
+  //   },
+  // };
 
   render() {
     return (
@@ -39,29 +39,29 @@ export default class ViewProject extends Component {
         }}
         contentContainerStyle={styles.container}
       >
-        <View style={styles.textContainer}>
+        {/* <View style={styles.textContainer}>
           <Text>
             {' '}
             Showing all projects in
             <B> Lagos,Nigeria</B>
-{' '}
-with status
+            {' '}
+            with status
 {' '}
           </Text>
           <Text>
             {' '}
             <B>Completed</B>, tagged<B>Sustainable Cities</B>{' '}
           </Text>
-        </View>
+        </View> */}
         <View style={styles.otherContainer}>
           <View style={{ marginBottom: 10, marginTop: 10 }}>
             <Box
-              img={require('../../assets/img/man.png')}
-              firstText="K-Dere Portharcourt"
-              secondText="Sustainability Intl"
+              img={require('../../assets/class.png')}
+              firstText="Lagos, Nigeria"
+              secondText="MAKERS LTD"
               thirdText="OnGoing"
-              title="Affordable housing scheme - 200 Units"
-              cost="$50,000"
+              title="Construction of Classroom Blocks"
+              cost="$1,500,000.00"
               tags={['Resilient infrasture', 'Sustainable Cities']}
               fn={() => this.props.navigation.navigate('ExploreProject')}
             />
@@ -69,17 +69,17 @@ with status
 
           <View>
             <Box
-              img={require('../../assets/img/woman.png')}
-              firstText="K-Dere Portharcourt"
+              img={require('../../assets/borehole-2.png')}
+              firstText="Lagos, Nigeria"
               secondText="Sustainability Intl"
-              thirdText="Proposed"
-              title="Affordable housing scheme - 200 Units"
-              cost="$25,000"
+              thirdText="Completed"
+              title="Rural Clean Water Initiative"
+              cost="$2,500,000"
               tags={['Resilient infrasture', 'Sustainable Cities']}
               fn={() => this.props.navigation.navigate('ExploreProject')}
             />
           </View>
-          <View>
+          {/* <View>
             <Box
               img={require('../../assets/img/woman.png')}
               firstText="K-Dere Portharcourt"
@@ -90,7 +90,7 @@ with status
               tags={['Resilient infrasture', 'Sustainable Cities']}
               fn={() => this.props.navigation.navigate('ExploreProject')}
             />
-          </View>
+          </View> */}
         </View>
       </ScrollView>
     );

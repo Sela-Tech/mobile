@@ -56,7 +56,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
           <Image source={require('../../../assets/money.png')} />
         </View>
         <View>
-          <Text style={{ color: WHITE }}> 34% funded </Text>
+          <Text style={{ color: WHITE }}> 100% funded </Text>
         </View>
       </View>
     </View>

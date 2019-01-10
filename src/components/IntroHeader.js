@@ -8,7 +8,6 @@ const { width } = Dimensions.get('window');
 
 const styles = {
   container: {
-    // flex: 1,
     flexDirection: 'row',
     width,
 
@@ -16,7 +15,6 @@ const styles = {
     justifyContent: 'center',
   },
 };
-// marginTop: keyboard === true ? null : 0,
 const IntroHeader = ({ back, keyboard, fn }) => (
   <View style={[styles.container]}>
     <View style={{ flex: 1, justifyContent: 'center' }}>
