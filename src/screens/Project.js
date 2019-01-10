@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Header from '../components/Header';
 import Text from '../components/Text';
@@ -37,7 +37,11 @@ const styles = StyleSheet.create({
 });
 
 export default class Project extends Component {
+  state = {
+    userRole: 'constractor', // funder,evaluation-agent,contractor
+  }
   render() {
+    const { userRole } = this.state;
     return (
       <View style={styles.container}>
         <Header
@@ -70,25 +74,34 @@ export default class Project extends Component {
           </View> */}
 
             <View style={styles.otherContainer}>
-              <Text>
-                Seems like you havent
-                <B> created</B>
-                <B> funded </B> or
-              </Text>
-              <Text>
-                {' '}
-                <B> added </B>
-{' '}
-saved any projects yet.You can propose a{' '}
-              </Text>
-              <Text> project using the plus sign or button below or </Text>
-              <Text> explore existing projects </Text>
+              {
+                userRole === 'funder' ?
+                  (
+                    <Fragment>
+                      <Text> You haven't created, funded, or saved any </Text>
+                      <Text> projects yet. </Text>
+                    </Fragment>
+                  ) : userRole === 'contractor' ?
+                    (
+                      <Fragment>
+                        <Text> You haven't propose or been </Text>
+                        <Text> added to any projects yet. </Text>
+                      </Fragment>
+                    ) :
+                    (
+                      <Fragment>
+                        <Text> You haven't evaluated or  </Text>
+                        <Text> saved any projects yet. </Text>
+                      </Fragment>
+                    )
+              }
+
             </View>
             <View>
               <Button
                 text="Explore Project"
-                color={WHITE}
-                textColor="#201D41"
+                color={userRole === 'funder' ? WHITE : YELLOW}
+                textColor={userRole === 'funder' ? '#201D41' : WHITE}
                 style={{
                   borderRadius: 5,
                   borderWidth: 1,
@@ -96,16 +109,24 @@ saved any projects yet.You can propose a{' '}
                 }}
                 fn={() => this.props.navigation.navigate('ProjectListing')}
               />
-              {/* <Button
-              text="Propose Project"
-              color={YELLOW}
-              textColor={WHITE}
-              fn={() => this.props.navigation.navigate('CreateProject')}
-            /> */}
+              <Fragment>
+                {
+                  userRole === 'funder' ?
+                    <View style={{ paddingTop: 15 }}>
+                      <Button
+                        text="Create new project"
+                        color={YELLOW}
+                        textColor={WHITE}
+                        fn={() => this.props.navigation.navigate('CreateProject')}
+                      />
+                    </View> : null
+                }
+
+              </Fragment>
             </View>
           </View>
 
-          <View style={styles.floatingButton}>
+          {/* <View style={styles.floatingButton}>
             <TouchableOpacity
               onPress={() => this.props.navigation.navigate('CreateProject')}
               style={{
@@ -116,7 +137,7 @@ saved any projects yet.You can propose a{' '}
             >
               <Image source={require('../../assets/plus.png')} />
             </TouchableOpacity>
-          </View>
+          </View> */}
         </View>
       </View>
     );

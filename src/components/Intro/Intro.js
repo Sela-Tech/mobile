@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { View, Image, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import Text from '../Text';
@@ -31,11 +31,11 @@ const Intro = ({ image, shortText, longText }) => {
       </View>
       <View style={styles.innerContainer}>
         <View style={{ marginTop: 25 }}>
-          <Text style={{ fontWeight: '400', fontSize: 25, color: '#222829' }}> 
-{' '}
-{shortText}
-{' '}
- </Text>
+          <Text style={{ fontWeight: '400', fontSize: 25, color: '#222829' }}>
+            {' '}
+            {shortText}
+            {' '}
+          </Text>
         </View>
         <View
           style={{
@@ -47,7 +47,11 @@ const Intro = ({ image, shortText, longText }) => {
           <Text style={styles.longText}>{display[0].trim('')}</Text>
           <Text style={styles.longText}>{display[1].trim('')}</Text>
           <Text style={styles.longText}>{display[2].trim('')}</Text>
-          <Text style={styles.longText}>{display[3].trim('')}</Text>
+          <Fragment>
+            {
+              display.length === 4 ? <Text style={styles.longText}>{display[3].trim('')}</Text> : null
+            }
+          </Fragment>
         </View>
       </View>
     </View>

@@ -53,9 +53,9 @@ export default class Navigator extends Component {
         if (isContractor) {
             Tabs = createMaterialTopTabNavigator(
                 {
-                    // Description,
-                    // StakeHolders,
-                    // Tasks: updatesOrTask,
+                    Description,
+                    StakeHolders,
+                    Tasks: updatesOrTask,
                     Overview: transactionOrOvervIew,
                 },
                 {

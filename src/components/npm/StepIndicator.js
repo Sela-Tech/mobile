@@ -16,6 +16,44 @@ const STEP_STATUS = {
   UNFINISHED: 'unfinished',
 };
 
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'transparent',
+  },
+  stepIndicatorContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+    backgroundColor: 'transparent',
+  },
+  stepLabelsContainer: {
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  step: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    zIndex: 2,
+  },
+  stepContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  stepLabel: {
+    fontSize: 12,
+    textAlign: 'center',
+    fontWeight: '500',
+  },
+  stepLabelItem: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
+
 export default class StepIndicator extends PureComponent {
   constructor(props) {
     super(props);
@@ -103,7 +141,8 @@ export default class StepIndicator extends PureComponent {
         left: (this.state.width - this.state.customStyles.separatorStrokeWidth) / 2,
         top: this.state.height / (2 * stepCount),
         bottom: this.state.height / (2 * stepCount),
-        width: this.state.customStyles.separatorStrokeWidth,
+        width: width / 1.3,
+        // width: this.state.customStyles.separatorStrokeWidth,
       };
     } else {
       progressBarBackgroundStyle = {
@@ -197,7 +236,8 @@ export default class StepIndicator extends PureComponent {
       <View
         onLayout={event =>
           this.setState({
-            width: event.nativeEvent.layout.width,
+            // width: event.nativeEvent.layout.width,
+            width: width / 1.3,
             height: event.nativeEvent.layout.height,
           })
         }
@@ -205,13 +245,14 @@ export default class StepIndicator extends PureComponent {
           styles.stepIndicatorContainer,
           direction === 'vertical'
             ? {
-                flexDirection: 'column',
-                width: this.state.customStyles.currentStepIndicatorSize,
-              }
+              flexDirection: 'column',
+              width: width / 1.3,
+              // width: this.state.customStyles.currentStepIndicatorSize,
+            }
             : {
-                flexDirection: 'row',
-                height: this.state.customStyles.currentStepIndicatorSize,
-              },
+              flexDirection: 'row',
+              height: this.state.customStyles.currentStepIndicatorSize,
+            },
         ]}
       >
         {steps}
@@ -267,19 +308,15 @@ export default class StepIndicator extends PureComponent {
     let indicatorLabelStyle;
     const separatorStyle =
       direction === 'vertical'
-        ? { width: this.state.customStyles.separatorStrokeWidth, zIndex: 10 }
+        ? {
+          width: this.state.customStyles.separatorStrokeWidth,
+          zIndex: 10
+        }
         : { height: this.state.customStyles.separatorStrokeWidth };
     switch (this.getStepStatus(position)) {
       case STEP_STATUS.CURRENT: {
         stepStyle = {
-          // backgroundColor: this.state.customStyles.stepIndicatorCurrentColor,
-          // borderWidth: this.state.customStyles.currentStepStrokeWidth,
-          // borderColor: this.state.customStyles.stepStrokeCurrentColor,
           borderRadius: 10,
-          // height: 50,
-          // height: this.sizeAnim,
-          // width: this.sizeAnim,
-          // borderRadius: this.borderRadiusAnim
         };
         indicatorLabelStyle = {
           fontSize: this.state.customStyles.currentStepIndicatorLabelFontSize,
@@ -293,10 +330,7 @@ export default class StepIndicator extends PureComponent {
           backgroundColor: this.state.customStyles.stepIndicatorFinishedColor,
           borderWidth: this.state.customStyles.stepStrokeWidth,
           borderColor: this.state.customStyles.stepStrokeFinishedColor,
-          borderRadius: 10,
-          // height: this.state.customStyles.stepIndicatorSize,
-          // width: this.state.customStyles.stepIndicatorSize,
-          // borderRadius: (this.state.customStyles.stepIndicatorSize) / 2
+          borderRadius: 10
         };
         indicatorLabelStyle = {
           fontSize: this.state.customStyles.stepIndicatorLabelFontSize,
@@ -309,11 +343,7 @@ export default class StepIndicator extends PureComponent {
         stepStyle = {
           backgroundColor: this.state.customStyles.stepIndicatorUnFinishedColor,
           borderWidth: this.state.customStyles.stepStrokeWidth,
-          borderColor: this.state.customStyles.stepStrokeUnFinishedColor,
-          // borderRadius: 10,
-          // height: this.state.customStyles.stepIndicatorSize,
-          // width: this.state.customStyles.stepIndicatorSize,
-          // borderRadius: (this.state.customStyles.stepIndicatorSize) / 2
+          borderColor: this.state.customStyles.stepStrokeUnFinishedColor
         };
         indicatorLabelStyle = {
           overflow: 'hidden',
@@ -365,43 +395,6 @@ export default class StepIndicator extends PureComponent {
     ]).start();
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: 'transparent',
-  },
-  stepIndicatorContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    backgroundColor: 'transparent',
-  },
-  stepLabelsContainer: {
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  step: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    zIndex: 2,
-  },
-  stepContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  stepLabel: {
-    fontSize: 12,
-    textAlign: 'center',
-    fontWeight: '500',
-  },
-  stepLabelItem: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 StepIndicator.propTypes = {
   currentPosition: PropTypes.number,

@@ -17,9 +17,9 @@ export default class ExploreProject extends Component {
             projectStatusText="COMPLETED"
             projectNameText="MARKERS LTD"
             projectTitleText="Construction of Classroom Blocks"
-            budgetAmount="$10,000.00"
-            numberOfStakeholders="$5,000.00"
-            raisedAmount="40"
+            budgetAmount="$1,500,000"
+            numberOfStakeholders="1"
+            raisedAmount="0"
             tags={['Resilient infrasture', 'Sustainable Cities']}
           />
         </View>

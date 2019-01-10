@@ -37,8 +37,12 @@ const Box = ({ color, textColor, fn, upText, downText, textSize, below, checked 
           />
         </View> */}
       <View style={{ paddingLeft: '10%' }}>
-        <B color={textColor}>{upText}</B>
-        <Text style={{ color: textColor, fontSize: textSize }}>{downText}</Text>
+        <View>
+          <B size={16} color={textColor}>{upText}</B>
+        </View>
+        <View style={{ paddingTop: 5 }}>
+          <Text style={{ color: textColor, fontSize: textSize }}>{downText}</Text>
+        </View>
       </View>
     </TouchableOpacity>
   </View>

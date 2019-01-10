@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, FlatList } from 'react-native';
+import { View, FlatList } from 'react-native';
 import Text from '../Text';
 import Tag from '../Tag';
 import B from '../BoldText';

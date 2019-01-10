@@ -115,12 +115,18 @@ export const TestStackNavigator = createStackNavigator({
   // CreateProject: {
   //   screen: CreateProject,
   // },
-  Intro: {
-    screen: IntroScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
+  // Login: {
+  //   screen: LoginScreen,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
+  // Intro: {
+  //   screen: IntroScreen,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
   OnBoarding: {
     screen: OnBoarding,
     navigationOptions: {

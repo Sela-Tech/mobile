@@ -135,21 +135,18 @@ class Login extends Component {
       <DismissKeyboard>
         <KeyboardAvoidingView style={ExtStyle.flex1} behavior="padding">
           <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="always">
-            <View style={{ flex: 3 }}>
+            <View style={{ paddingTop: 15, flex: 3 }}>
               <View style={{ flex: 1, justifyContent: 'flex-end' }}>
                 <IntroHeader fn={() => goBack()} back keyboard={keyboard} />
               </View>
-              <View style={{ alignItems: 'center', justifyContent: 'flex-end', flex: 2 }}>
-                <View style={{ paddingTop: 30, justifyContent: 'flex-end', flex: 1 }}>
+              <View style={{ alignItems: 'center', flex: 2 }}>
+                <View style={{ paddingTop: 30, flex: 1 }}>
                   <Text style={styles.boldText}> Log In</Text>
                 </View>
-                <View style={{ alignItems: 'center', flex: 2, marginTop: 10 }}>
-                  <Text style={styles.buttomText}> Welcome back ! Enter your details </Text>
-                  <Text style={styles.buttomText}> below to log into your account </Text>
-                </View>
+
               </View>
             </View>
-            <View style={{ flex: 3, alignItems: 'center' }}>
+            <View style={{ flex: 4, alignItems: 'center' }}>
               <Input
                 text="Email Address or Phone Number"
                 textStyle={styles.whiteText}
@@ -218,7 +215,7 @@ class Login extends Component {
               <View
                 style={{
                   position: 'absolute',
-                  bottom: keyboard ? -20 : 30,
+                  bottom: keyboard ? -20 : 50,
                 }}
               >
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>

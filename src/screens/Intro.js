@@ -6,18 +6,19 @@ import IntroComp from '../components/Intro/Intro';
 import Home from './Home';
 import { YELLOW } from '../utils/constants';
 
-const first = `Find,fund and track  development
-               projects in the emerging world
-               contributing to the attainment of the
-               Sustainable Development Goals(SDGS)`;
-const second = `Propose and execute development
-                projects in a trasnsparent manner with
-                impact-driven measurement and 
-                advanced analytics`;
-const third = `Provide progress updates on
-                project within your community.
-                Become an active citizen and lead
-                change through accountability`;
+const first = `Update to Find, fund and track 
+              development projects in the emerging 
+              world. See how your contribution impacts 
+              the UN's Sustainable Development Goals.`;
+
+const second = `Execute development projects with
+                transparency and impact-driven
+                measurements.`;
+
+const third = `Evaluate the progress of development 
+               projects within the community. Become 
+               an active participate in leading change 
+               through accountability.`;
 
 const styles = StyleSheet.create({
   image: {

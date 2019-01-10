@@ -1,7 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, ScrollView, Image, FlatList } from 'react-native';
-import Text from '../../components/Text';
-import Updates from '../../components/ExploreProject/Updates';
+import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import Tasks from '../../components/ExploreProject/Tasks';
 import EvalSubmission from '../../components/ExploreProject/EvalSubmission';
 import Button from '../../components/Button';
 import { WHITE } from '../../utils/constants';
@@ -25,50 +24,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const renderItem = item => <EvalSubmission imgSource={item.item.source} markedStatus />;
-
-const images = [
-  {
-    source: require('../../../assets/oilspill.png'),
-    id: 1,
-  },
-  {
-    source: require('../../../assets/road.png'),
-    id: 2,
-  },
-  {
-    source: require('../../../assets/borehole.png'),
-    id: 3,
-  },
-  {
-    source: require('../../../assets/road.png'),
-    id: 4,
-  },
-  {
-    source: require('../../../assets/borehole.png'),
-    id: 5,
-  },
-];
-
 export default () => (
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-    <Updates statusText="In Progress" />
-    <Updates statusText="Completed" />
-    <View
-      style={{
-        flexDirection: 'row',
-        marginVertical: 10,
-      }}
-    >
-      <View>
-        <Text style={{ color: '#201D41' }}> View transactions</Text>
-      </View>
-      <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
-        <Image source={require('../../../assets/forward-arrow.png')} />
-      </View>
-    </View>
+    <Tasks statusText="In Progress" />
+    <Tasks statusText="Completed" />
     <View style={{ paddingTop: 10, alignItems: 'center' }}>
-      <Button text="INVEST" />
+      <Button text="Submit Updates" />
     </View>
   </ScrollView>
 );
