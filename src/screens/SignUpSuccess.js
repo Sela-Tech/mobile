@@ -41,7 +41,7 @@ export default ({ navigation }) => (
         style={{
           borderWidth: 1,
         }}
-        fn={() => navigation.navigate('Project')}
+        fn={() => navigation.navigate('Login')}
       />
     </View>
   </View>

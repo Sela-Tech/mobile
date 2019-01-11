@@ -107,12 +107,12 @@ export default class ExploreProject extends Component {
               <View style={{ marginBottom: 10, marginTop: 10 }}>
                 <Box
                   fn={() => this.props.navigation.navigate('ExploreProject')}
-                  img={require('../../assets/img/man.png')}
+                  img={require('../../assets/class.png')}
                   firstText="K-Dere Portharcourt"
                   secondText="Sustainability Intl"
                   thirdText="OnGoing"
-                  title="Affordable housing scheme - 200 Units"
-                  cost="$50,000"
+                  title="Construction of Classroom Blocks"
+                  cost="$1,500,000"
                   tags={['Resilient infrasture', 'Sustainable Cities']}
                 />
               </View>

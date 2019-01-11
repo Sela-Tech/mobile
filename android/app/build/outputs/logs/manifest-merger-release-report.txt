@@ -4,6 +4,7 @@ ADDED from /Users/david/Desktop/projects/sela/SelaMobile/android/app/src/main/An
 INJECTED from /Users/david/Desktop/projects/sela/SelaMobile/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /Users/david/Desktop/projects/sela/SelaMobile/android/app/src/main/AndroidManifest.xml:1:1-26:12
 INJECTED from /Users/david/Desktop/projects/sela/SelaMobile/android/app/src/main/AndroidManifest.xml:1:1-26:12
+MERGED from [:react-native-svg] /Users/david/Desktop/projects/sela/SelaMobile/node_modules/react-native-svg/android/build/intermediates/manifests/full/release/AndroidManifest.xml:2:1-9:12
 MERGED from [:react-native-gesture-handler] /Users/david/Desktop/projects/sela/SelaMobile/node_modules/react-native-gesture-handler/android/build/intermediates/manifests/full/release/AndroidManifest.xml:2:1-11:12
 MERGED from [:react-native-vector-icons] /Users/david/Desktop/projects/sela/SelaMobile/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/release/AndroidManifest.xml:2:1-11:12
 MERGED from [com.facebook.react:react-native:0.57.8] /Users/david/.gradle/caches/transforms-1/files-1.1/react-native-0.57.8.aar/07391d582d2054e5940b780e06b78d0d/AndroidManifest.xml:2:1-15:12
@@ -99,6 +100,8 @@ uses-sdk
 INJECTED from /Users/david/Desktop/projects/sela/SelaMobile/android/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /Users/david/Desktop/projects/sela/SelaMobile/android/app/src/main/AndroidManifest.xml
 INJECTED from /Users/david/Desktop/projects/sela/SelaMobile/android/app/src/main/AndroidManifest.xml
+MERGED from [:react-native-svg] /Users/david/Desktop/projects/sela/SelaMobile/node_modules/react-native-svg/android/build/intermediates/manifests/full/release/AndroidManifest.xml:5:5-7:41
+MERGED from [:react-native-svg] /Users/david/Desktop/projects/sela/SelaMobile/node_modules/react-native-svg/android/build/intermediates/manifests/full/release/AndroidManifest.xml:5:5-7:41
 MERGED from [:react-native-gesture-handler] /Users/david/Desktop/projects/sela/SelaMobile/node_modules/react-native-gesture-handler/android/build/intermediates/manifests/full/release/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-gesture-handler] /Users/david/Desktop/projects/sela/SelaMobile/node_modules/react-native-gesture-handler/android/build/intermediates/manifests/full/release/AndroidManifest.xml:7:5-9:41
 MERGED from [:react-native-vector-icons] /Users/david/Desktop/projects/sela/SelaMobile/node_modules/react-native-vector-icons/android/build/intermediates/manifests/full/release/AndroidManifest.xml:7:5-9:41

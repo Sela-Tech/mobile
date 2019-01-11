@@ -24,7 +24,7 @@ const UserInfo = () => (
         <B size={20} color="#201D41">
           49
         </B>
-        <Text> Repition score</Text>
+        <Text> Reputation Score </Text>
       </View>
       <View style={{ alignItems: 'center', marginTop: 5 }}>
         <B size={20} color="#201D41">

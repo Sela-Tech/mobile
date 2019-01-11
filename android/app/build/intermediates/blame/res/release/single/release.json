@@ -952,10 +952,6 @@
         "source": "/Users/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/0791e9a339a0e62caf9de14ed55b2547/res/color-v23/abc_tint_spinner.xml"
     },
     {
-        "merged": "/Users/david/Desktop/projects/sela/SelaMobile/android/app/build/intermediates/res/merged/release/drawable-mdpi_assets_plus.png.flat",
-        "source": "/Users/david/Desktop/projects/sela/SelaMobile/android/app/build/generated/res/react/release/drawable-mdpi/assets_plus.png"
-    },
-    {
         "merged": "/Users/david/Desktop/projects/sela/SelaMobile/android/app/build/intermediates/res/merged/release/drawable-xxhdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
         "source": "/Users/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/0791e9a339a0e62caf9de14ed55b2547/res/drawable-xxhdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png"
     },
@@ -1714,6 +1710,10 @@
     {
         "merged": "/Users/david/Desktop/projects/sela/SelaMobile/android/app/build/intermediates/res/merged/release/drawable-xhdpi-v4_abc_ic_commit_search_api_mtrl_alpha.png.flat",
         "source": "/Users/david/.gradle/caches/transforms-1/files-1.1/appcompat-v7-27.1.1.aar/0791e9a339a0e62caf9de14ed55b2547/res/drawable-xhdpi-v4/abc_ic_commit_search_api_mtrl_alpha.png"
+    },
+    {
+        "merged": "/Users/david/Desktop/projects/sela/SelaMobile/android/app/build/intermediates/res/merged/release/drawable-mdpi_assets_borehole2.png.flat",
+        "source": "/Users/david/Desktop/projects/sela/SelaMobile/android/app/build/generated/res/react/release/drawable-mdpi/assets_borehole2.png"
     },
     {
         "merged": "/Users/david/Desktop/projects/sela/SelaMobile/android/app/build/intermediates/res/merged/release/drawable-hdpi-v4_abc_ic_star_half_black_48dp.png.flat",

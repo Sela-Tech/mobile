@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
 
 export default class Project extends Component {
   state = {
-    userRole: 'constractor', // funder,evaluation-agent,contractor
+    userRole: 'funder', // funder,evaluation-agent,contractor
   }
   render() {
     const { userRole } = this.state;

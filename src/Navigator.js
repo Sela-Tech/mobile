@@ -87,6 +87,12 @@ const IntroStack = createStackNavigator({
       header: null,
     },
   },
+  SignUpSuccess: {
+    screen: SignUpSuccessScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
 });
 
 export const HomeSwitchNavigator = createSwitchNavigator(
@@ -141,6 +147,6 @@ export const TestStackNavigator = createStackNavigator({
   },
 });
 
-export const RootNavigator = createAppContainer(RootStackNavigator);
+export const RootNavigator = createAppContainer(MainSwitchNavigator);
 
 // export const RootNavigator = createAppContainer(MainSwitchNavigator);
