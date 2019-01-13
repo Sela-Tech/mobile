@@ -13,6 +13,7 @@ import Notifications from './screens/Notifications';
 import AuthLoadingScreen from './screens/AuthLoading';
 import FirstTimeUserLoadingScreen from './screens/FirstTimeUserLoading';
 import SignUpSuccessScreen from './screens/SignUpSuccess';
+import ProfileScreen from './screens/Profile';
 
 export const RootStackNavigator = createStackNavigator({
   Project: {
@@ -36,12 +37,18 @@ export const RootStackNavigator = createStackNavigator({
       header: null,
     },
   },
-  // SubmitFeedback: {
-  //   screen: SubmitFeedback,
-  //   // navigationOptions: {
-  //   //   header: null,
-  //   // },
-  // },
+  SubmitFeedback: {
+    screen: SubmitFeedback,
+    // navigationOptions: {
+    //   header: null,
+    // },
+  },
+  UserProfile: {
+    screen: ProfileScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
 });
 
 const AuthStack = createStackNavigator({
@@ -147,6 +154,6 @@ export const TestStackNavigator = createStackNavigator({
   },
 });
 
-export const RootNavigator = createAppContainer(MainSwitchNavigator);
+export const RootNavigator = createAppContainer(RootStackNavigator);
 
 // export const RootNavigator = createAppContainer(MainSwitchNavigator);

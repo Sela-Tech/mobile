@@ -5,6 +5,7 @@ import Box from './OverviewComp/Box';
 import Button from '../../components/Button';
 import StandardText from '../../components/StandardText';
 import { WHITE } from '../../utils/constants';
+import Text from '../../components/Text';
 
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -32,7 +33,18 @@ export default class Overview extends Component {
     render() {
         return (
             <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-                <CalendarBox />
+                <View style={{ marginTop: '4%', flex: 1 }}>
+                    <Text style={{ color: '#222829' }}>
+                        This project involves the construction of fifteen classroom blocks at the Surulere Grammar
+                        School, Lagos. These classroom blocks will house twelve classrooms, one staff room and two
+                        offices each. It is expected to be completed by the 31st January, 2018. The aim is to
+                        provide a conducive learning environment for the students of this academic institution and
+                        contribute to lowering the illiteracy rate in Nigeria.
+      </Text>
+                </View>
+                <View style={{ paddingTop: 10 }}>
+                    <CalendarBox />
+                </View>
                 <StandardText
                     text="Project Health Overview"
                     viewStyle={{

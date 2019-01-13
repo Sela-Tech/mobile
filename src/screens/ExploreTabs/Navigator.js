@@ -40,7 +40,7 @@ const tabBarOptions = {
 
 export default class Navigator extends Component {
     state = {
-        isContractor: true,
+        isContractor: false,
     }
 
     render() {
@@ -66,10 +66,15 @@ export default class Navigator extends Component {
         else {
             Tabs = createMaterialTopTabNavigator(
                 {
-                    Description,
+                    Overview: Overview,
                     StakeHolders,
                     Updates: updatesOrTask,
                     Transactions: transactionOrOvervIew,
+
+                    // Description,
+                    // StakeHolders,
+                    // Updates: updatesOrTask,
+                    // Transactions: transactionOrOvervIew,
                 },
                 {
                     tabBarOptions,

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
 const SingleTrans = ({ price, date }) => (
   <View style={styles.container}>
     <View style={{ flex: 2, marginContent: 'space-around' }}>
-      <B color="#201D41">Transcation Memo Listed here </B>
+      <B color="#201D41">Transac    tion Memo Listed here </B>
       <Text style={{ color: '#201D41' }}>Ese Family trust </Text>
       <Text style={{ color: '#696F74' }}>Evaluation team </Text>
     </View>

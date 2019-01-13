@@ -1,6 +1,5 @@
 import React from 'react';
 import { Image } from 'react-native';
-import PropTypes from 'prop-types';
 import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 import Inbox from './screens/Inbox';
 import Project from './screens/Project';
@@ -26,17 +25,11 @@ const ProjectStack = createStackNavigator({
 });
 
 export const ProfileStack = createStackNavigator({
-  Profile: {
-    screen: ProfileScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
   ProfileSettings: {
     screen: ProfileSettingsScreen,
-    navigationOptions: {
-      header: null,
-    },
+    // navigationOptions: {
+    //   header: null,
+    // },
   },
 });
 
