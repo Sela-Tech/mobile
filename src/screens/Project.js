@@ -1,10 +1,13 @@
 import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
+import { connect } from 'react-redux';
+import { getUserProject } from '../../actions/project';
 import Header from '../components/Header';
 import Text from '../components/Text';
 import SingularProject from '../components/Project/Project';
 import Button from '../components/Button';
 import { YELLOW, WHITE } from '../utils/constants';
+import Spinner from '../components/Spinner';
 
 const { height } = Dimensions.get('window');
 
@@ -27,18 +30,58 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     borderRadius: 30,
-    bottom: height / 3,
+    bottom: height / 7,
     right: 30,
   },
 });
 
-export default class Project extends Component {
+class Project extends Component {
   state = {
-    userRole: 'funder', // funder,evaluation-agent,contractor
+    loading: true,
     empty: true,
+    isFunder: this.props && this.props.userInfo && this.props.userInfo.user.isFunder,
+    isEvaluator: this.props && this.props.userInfo && this.props.userInfo.user.isFunder,
+    isContractor: this.props && this.props.userInfo && this.props.userInfo.user.isContractor,
+  };
+
+  async componentDidMount() {
+    // console.log('thth', this.props.userInfo)
+    await this.props.getProjects();
+    this.setState({ loading: false })
+
   }
+
   render() {
-    const { userRole, empty } = this.state;
+    const {
+      isFunder,
+      isEvaluator,
+      isContractor,
+      empty,
+      loading,
+    } = this.state;
+    const userRoleObj = {
+      isFunder,
+      isEvaluator,
+      isContractor,
+    };
+    let userRole;
+    if (userRoleObj.isFunder) {
+      userRole = 'funder'
+    }
+    else if (!!userRoleObj.isContractor) {
+      userRole = 'contractor';
+    }
+    else {
+      userRole = 'evaluator';
+    }
+    const userData = this.props && this.props.userInfo && this.props.userInfo.user;
+    const projects = this.props && this.props.projects && this.props.projects.projects && this.props.projects.projects.projects;
+
+    const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
+
+    if (loading) {
+      return <Spinner />
+    }
     return (
       <View style={styles.container}>
         <Header
@@ -56,6 +99,7 @@ export default class Project extends Component {
                     <SingularProject
                       leftText="Projects you created"
                       rightText="See all"
+                      projects={projectCreatedByMe}
                     />
                   </View>
 
@@ -63,6 +107,7 @@ export default class Project extends Component {
                     <SingularProject
                       leftText="Projects you funded"
                       rightText="See all"
+                      projects={projects}
                     />
                   </View>
 
@@ -70,6 +115,7 @@ export default class Project extends Component {
                     <SingularProject
                       leftText="Projects that may interest you"
                       rightText="Edit interest"
+                      projects={projects}
                     />
                   </View>
 
@@ -77,6 +123,7 @@ export default class Project extends Component {
                     <SingularProject
                       leftText="Save Project"
                       rightText="See all"
+                      project={projects}
                     />
                   </View>
                 </View>
@@ -162,3 +209,17 @@ export default class Project extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  userInfo: state.userInfo,
+  projects: state.projects,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getProjects: () => dispatch(getUserProject()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Project);

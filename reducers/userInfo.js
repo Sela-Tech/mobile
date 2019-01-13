@@ -13,7 +13,7 @@ const userInfoReducer = (
     // case REHYDRATE:
     //   return action.payload && action.payload.token || {};
     case types.ADD_USERINFO:
-      return { ...state, userInfo: action.userInfo };
+      return { ...state, user: action.userInfo };
     case types.USERINFO_IS_LOADING:
       return { ...state, loading: action.isLoading };
     case types.HANDLE_USERINFO_ERROR:

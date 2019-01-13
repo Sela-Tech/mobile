@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
+import { YELLOW } from '../utils/constants';
 
 const styles = {
   spinnerStyle: {
@@ -12,13 +13,13 @@ const styles = {
 
 const Spinner = ({ size, color }) => (
   <View style={styles.spinnerStyle}>
-    <ActivityIndicator size={size || 'large'} color={color || 'lightblue'} />
+    <ActivityIndicator size={size || 'large'} color={color || YELLOW} />
   </View>
 );
 
 Spinner.defaultProps = {
   size: 'large',
-  color: 'lightblue',
+  color: YELLOW,
 };
 
 Spinner.propTypes = {

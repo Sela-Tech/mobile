@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 const Box = ({ empty, siteName, imageSource }) => (
     <TouchableOpacity style={styles.container} onPress={() => NavigationService.navigate('ExploreProject')}>
         <ImageBackground
-            source={imageSource}
+            source={{ uri: imageSource }}
             style={styles.imageBack}
         >
             <View style={styles.textView}>

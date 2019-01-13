@@ -18,7 +18,8 @@ const styles = StyleSheet.create({
     },
 });
 
-const Project = ({ leftText, rightText }) => (
+
+const Project = ({ leftText, rightText, projects }) => (
     <View style={styles.container}>
         <View style={styles.semiContainer}>
             <View style={{ flex: 2, paddingLeft: 5 }}>
@@ -40,7 +41,9 @@ const Project = ({ leftText, rightText }) => (
         </View>
 
         <View style={{ paddingTop: 10, flex: 3 }}>
-            <Images />
+            <Images
+                projects={projects}
+            />
         </View>
     </View>
 );

@@ -1,4 +1,3 @@
-import { AsyncStorage } from 'react-native';
 import * as types from './actionTypes';
 
 export const isLoading = bool => ({
@@ -17,12 +16,4 @@ export const addUserInfo = userInfo => ({
 
 export const saveUserInfo = data => dispatch => {
   dispatch(addUserInfo(data));
-  AsyncStorage.setItem('userInfo', JSON.stringify(data))
-    .then(() => {
-      dispatch(isLoading(false));
-    })
-    .catch(err => {
-      dispatch(isLoading(false));
-      dispatch(error(err.message || 'ERROR'));
-    });
 };
