@@ -3,7 +3,6 @@ import { View, Image } from 'react-native';
 import Header from '../components/ExploreTopTabs/Header';
 import Navigator from './ExploreTabs/Navigator';
 
-
 export default class ExploreProject extends Component {
   render() {
     return (
@@ -30,4 +29,3 @@ export default class ExploreProject extends Component {
     );
   }
 }
-

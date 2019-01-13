@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, ScrollView, Image, FlatList } from 'react-native';
+import { View, StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
 import Text from '../../components/Text';
 import Updates from '../../components/ExploreProject/Updates';
 import EvalSubmission from '../../components/ExploreProject/EvalSubmission';

@@ -8,80 +8,77 @@ import Tasks from './Tasks';
 import Updates from './Updates';
 import { WHITE } from '../../utils/constants';
 
-
 const tabBarOptions = {
-    tabBarVisible: false,
-    activeTintColor: '#201D41',
-    inactiveTintColor: '#B1BAD2',
-    showIcon: false,
-    labelStyle: {
-        fontSize: 9,
-        fontWeight: '600',
+  tabBarVisible: false,
+  activeTintColor: '#201D41',
+  inactiveTintColor: '#B1BAD2',
+  showIcon: false,
+  labelStyle: {
+    fontSize: 9,
+    fontWeight: '600',
+  },
+  style: {
+    backgroundColor: '#fff',
+    shadowColor: '#fff',
+    shadowOffset: {
+      width: 0,
+      height: 0,
     },
-    style: {
-        backgroundColor: '#fff',
-        shadowColor: '#fff',
-        shadowOffset: {
-            width: 0,
-            height: 0,
-        },
-        shadowOpacity: 0,
-        shadowRadius: 0,
-        elevation: 0,
-        height: 47,
-        borderBottomWidth: 1,
-        borderBottomColor: '#E8E8E8',
-    },
-    indicatorStyle: {
-        height: 2,
-        backgroundColor: WHITE,
-    },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
+    height: 47,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E8E8E8',
+  },
+  indicatorStyle: {
+    height: 2,
+    backgroundColor: WHITE,
+  },
 };
 
 export default class Navigator extends Component {
-    state = {
-        isContractor: false,
+  state = {
+    isContractor: false,
+  };
+
+  render() {
+    const { isContractor } = this.state;
+    const updatesOrTask = !isContractor ? Updates : Tasks;
+    const transactionOrOvervIew = !isContractor ? Transactions : Overview;
+
+    let Tabs;
+    if (isContractor) {
+      Tabs = createMaterialTopTabNavigator(
+        {
+          Description,
+          StakeHolders,
+          Tasks: updatesOrTask,
+          Overview: transactionOrOvervIew,
+        },
+        {
+          tabBarOptions,
+        },
+      );
+    } else {
+      Tabs = createMaterialTopTabNavigator(
+        {
+          Overview,
+          StakeHolders,
+          Updates: updatesOrTask,
+          Transactions: transactionOrOvervIew,
+
+          // Description,
+          // StakeHolders,
+          // Updates: updatesOrTask,
+          // Transactions: transactionOrOvervIew,
+        },
+        {
+          tabBarOptions,
+        },
+      );
     }
-
-    render() {
-
-        const { isContractor } = this.state;
-        const updatesOrTask = !isContractor ? Updates : Tasks;
-        const transactionOrOvervIew = !isContractor ? Transactions : Overview;
-
-        let Tabs;
-        if (isContractor) {
-            Tabs = createMaterialTopTabNavigator(
-                {
-                    Description,
-                    StakeHolders,
-                    Tasks: updatesOrTask,
-                    Overview: transactionOrOvervIew,
-                },
-                {
-                    tabBarOptions,
-                },
-            );
-        }
-        else {
-            Tabs = createMaterialTopTabNavigator(
-                {
-                    Overview: Overview,
-                    StakeHolders,
-                    Updates: updatesOrTask,
-                    Transactions: transactionOrOvervIew,
-
-                    // Description,
-                    // StakeHolders,
-                    // Updates: updatesOrTask,
-                    // Transactions: transactionOrOvervIew,
-                },
-                {
-                    tabBarOptions,
-                },
-            );
-        }
-        const ExploreTopTabs = createAppContainer(Tabs);
-        return (<ExploreTopTabs />)
-    }
+    const ExploreTopTabs = createAppContainer(Tabs);
+    return <ExploreTopTabs />;
+  }
 }

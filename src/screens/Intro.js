@@ -58,9 +58,8 @@ export default class Intro extends React.Component {
       // navigation or simply by controlling state
       AsyncStorage.setItem('newUser', JSON.stringify(true));
       this.setState({ showRealApp: true });
-    }
-    catch (err) {
-      this.setState({ error: err.message })
+    } catch (err) {
+      this.setState({ error: err.message });
     }
   };
 

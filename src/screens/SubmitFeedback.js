@@ -216,50 +216,50 @@ export default class SubmitFeedback extends Component {
   };
 
   takeVideo = async () => {
-    const { videoStarted } = this.state;
-    if (videoStarted) {
-      if (!this.camera) return;
-      this.setState({ videoStarted: false });
-      await this.camera.stopRecording();
-    }
+    // const { videoStarted } = this.state;
+    // if (videoStarted) {
+    //   if (!this.camera) return;
+    //   this.setState({ videoStarted: false });
+    //   await this.camera.stopRecording();
+    // }
 
-    let { step } = this.state;
-    step += 1;
-    if (this.camera) {
-      try {
-        // this.setState({ videoStarted: false });
-        const video = await this.camera.recordAsync();
-        const messages = [
-          {
-            _id: Math.round(Math.random() * 1000000).toString(), // .toString(),
-            text: '',
-            user: {
-              //   _id: '1',
-              //   name: 'User',
-            },
-            createdAt: new Date(),
-            image: video.uri,
-            sent: true,
-            received: true,
-          },
-        ];
-        this.setState(previousState => ({
-          messages: GiftedChat.append(previousState.messages, [
-            { ...messages[0], ...messages[1], sent: true, received: true },
-          ]),
-          step,
-          openCamera: false,
-          videoStarted: false,
-        }));
-      } catch (error) {
-        this.setState({ error: error.message, videoStarted: false });
-      }
-    } else {
-      console.log('not working');
-      this.setState({
-        error: 'Request failed',
-      });
-    }
+    // let { step } = this.state;
+    // step += 1;
+    // if (this.camera) {
+    //   try {
+    //     // this.setState({ videoStarted: false });
+    //     const video = await this.camera.recordAsync();
+    //     const messages = [
+    //       {
+    //         _id: Math.round(Math.random() * 1000000).toString(), // .toString(),
+    //         text: '',
+    //         user: {
+    //           //   _id: '1',
+    //           //   name: 'User',
+    //         },
+    //         createdAt: new Date(),
+    //         image: video.uri,
+    //         sent: true,
+    //         received: true,
+    //       },
+    //     ];
+    //     this.setState(previousState => ({
+    //       messages: GiftedChat.append(previousState.messages, [
+    //         { ...messages[0], ...messages[1], sent: true, received: true },
+    //       ]),
+    //       step,
+    //       openCamera: false,
+    //       videoStarted: false,
+    //     }));
+    //   } catch (error) {
+    //     this.setState({ error: error.message, videoStarted: false });
+    //   }
+    // } else {
+    //   console.log('not working');
+    //   this.setState({
+    //     error: 'Request failed',
+    //   });
+    // }
   };
 
   sendReponse = async text => {
@@ -289,40 +289,40 @@ export default class SubmitFeedback extends Component {
   };
 
   takePicture = async () => {
-    let { step } = this.state;
-    step += 1;
-    // const { openCamera } = this.state;
+    // let { step } = this.state;
+    // step += 1;
+    // // const { openCamera } = this.state;
 
-    if (this.camera) {
-      try {
-        const photo = await this.camera.takePictureAsync({
-          skipProcessing: true,
-        });
-        const messages = [
-          {
-            _id: Math.round(Math.random() * 1000000),
-            text: '',
-            createdAt: new Date(),
-            image: photo.uri,
-            sent: true,
-            received: true,
-          },
-        ];
-        this.setState(previousState => ({
-          messages: GiftedChat.append(previousState.messages, [
-            { ...messages[0], ...messages[1], sent: true, received: true },
-          ]),
-          step,
-          openCamera: false,
-        }));
-      } catch (error) {
-        this.setState({ error: error.message });
-      }
-    } else {
-      this.setState({
-        error: 'Request failed',
-      });
-    }
+    // if (this.camera) {
+    //   try {
+    //     const photo = await this.camera.takePictureAsync({
+    //       skipProcessing: true,
+    //     });
+    //     const messages = [
+    //       {
+    //         _id: Math.round(Math.random() * 1000000),
+    //         text: '',
+    //         createdAt: new Date(),
+    //         image: photo.uri,
+    //         sent: true,
+    //         received: true,
+    //       },
+    //     ];
+    //     this.setState(previousState => ({
+    //       messages: GiftedChat.append(previousState.messages, [
+    //         { ...messages[0], ...messages[1], sent: true, received: true },
+    //       ]),
+    //       step,
+    //       openCamera: false,
+    //     }));
+    //   } catch (error) {
+    //     this.setState({ error: error.message });
+    //   }
+    // } else {
+    //   this.setState({
+    //     error: 'Request failed',
+    //   });
+    // }
   };
 
   renderTopBar = () => <View style={styles.topBar} />;
@@ -375,21 +375,21 @@ export default class SubmitFeedback extends Component {
             </View>
           </View>
         ) : (
-          <View style={styles.topBottom}>
-            <View style={styles.floatingButton}>
-              <TouchableOpacity
-                onPress={() => this.snap()}
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Image source={require('../../assets/img/camera.png')} />
-              </TouchableOpacity>
+            <View style={styles.topBottom}>
+              <View style={styles.floatingButton}>
+                <TouchableOpacity
+                  onPress={() => this.snap()}
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image source={require('../../assets/img/camera.png')} />
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        )}
+          )}
       </Fragment>
     );
   };
@@ -434,7 +434,25 @@ export default class SubmitFeedback extends Component {
 
         <Fragment>
           {openCamera ? (
-            <Camera
+            <View />
+
+          ) : (
+              <Fragment>
+                <GiftedChat
+                  messages={messages}
+                  onSend={this.onSend}
+                  renderActions={this.renderLeftIcon}
+                />
+              </Fragment>
+            )}
+        </Fragment>
+      </View>
+    );
+  }
+}
+
+
+{/* <Camera
               ref={ref => {
                 this.camera = ref;
               }}
@@ -445,18 +463,4 @@ export default class SubmitFeedback extends Component {
             >
               {this.renderTopBar()}
               {this.renderBottomBar()}
-            </Camera>
-          ) : (
-            <Fragment>
-              <GiftedChat
-                messages={messages}
-                onSend={this.onSend}
-                renderActions={this.renderLeftIcon}
-              />
-            </Fragment>
-          )}
-        </Fragment>
-      </View>
-    );
-  }
-}
+            </Camera> */}

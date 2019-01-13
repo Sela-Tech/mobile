@@ -45,17 +45,17 @@ export default () => (
       <View style={{ alignItems: 'center', marginTop: '3%' }}>
         <Text style={styles.buttomText}>
           Select
-        <B fn={() => NavigationService.navigate('OnBoarding')}> Create account </B>
+          <B fn={() => NavigationService.navigate('OnBoarding')}> Create account </B>
           {` if this is your first`}
         </Text>
         <Text style={styles.buttomText}>
           time or
-        <B fn={() => NavigationService.navigate('Login')}> Log in </B>
+          <B fn={() => NavigationService.navigate('Login')}> Log in </B>
           {`if you already have an`}
         </Text>
         <Text style={styles.buttomText}>
           account. You can also
-        <B> Explore Projects</B>
+          <B> Explore Projects</B>
         </Text>
         <Text style={styles.buttomText}> right away. </Text>
       </View>
@@ -75,7 +75,7 @@ export default () => (
             text="Log In"
             color="#FFFFFF"
             medium
-            textColor={"#F2994A"}
+            textColor="#F2994A"
             textSize={16}
             fn={() => NavigationService.navigate('Login')}
           />
@@ -84,17 +84,19 @@ export default () => (
       <View
         style={{
           position: 'absolute',
-          bottom: 40
+          bottom: 40,
         }}
       >
-        <View style={{
-          width: '100%',
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
+        <View
+          style={{
+            width: '100%',
+            flexDirection: 'row',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
           <View>
-            <Text style={{ color: '#FFFFFF', fontSize: 20 }}>  Explore Projects   </Text>
+            <Text style={{ color: '#FFFFFF', fontSize: 20 }}> Explore Projects </Text>
           </View>
           <View style={{ paddingLeft: 5, justifyContent: 'center' }}>
             <Image

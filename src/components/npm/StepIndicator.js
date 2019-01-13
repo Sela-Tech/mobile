@@ -16,7 +16,6 @@ const STEP_STATUS = {
   UNFINISHED: 'unfinished',
 };
 
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'transparent',
@@ -245,14 +244,14 @@ export default class StepIndicator extends PureComponent {
           styles.stepIndicatorContainer,
           direction === 'vertical'
             ? {
-              flexDirection: 'column',
-              width: width / 1.3,
-              // width: this.state.customStyles.currentStepIndicatorSize,
-            }
+                flexDirection: 'column',
+                width: width / 1.3,
+                // width: this.state.customStyles.currentStepIndicatorSize,
+              }
             : {
-              flexDirection: 'row',
-              height: this.state.customStyles.currentStepIndicatorSize,
-            },
+                flexDirection: 'row',
+                height: this.state.customStyles.currentStepIndicatorSize,
+              },
         ]}
       >
         {steps}
@@ -309,9 +308,9 @@ export default class StepIndicator extends PureComponent {
     const separatorStyle =
       direction === 'vertical'
         ? {
-          width: this.state.customStyles.separatorStrokeWidth,
-          zIndex: 10
-        }
+            width: this.state.customStyles.separatorStrokeWidth,
+            zIndex: 10,
+          }
         : { height: this.state.customStyles.separatorStrokeWidth };
     switch (this.getStepStatus(position)) {
       case STEP_STATUS.CURRENT: {
@@ -330,7 +329,7 @@ export default class StepIndicator extends PureComponent {
           backgroundColor: this.state.customStyles.stepIndicatorFinishedColor,
           borderWidth: this.state.customStyles.stepStrokeWidth,
           borderColor: this.state.customStyles.stepStrokeFinishedColor,
-          borderRadius: 10
+          borderRadius: 10,
         };
         indicatorLabelStyle = {
           fontSize: this.state.customStyles.stepIndicatorLabelFontSize,
@@ -343,7 +342,7 @@ export default class StepIndicator extends PureComponent {
         stepStyle = {
           backgroundColor: this.state.customStyles.stepIndicatorUnFinishedColor,
           borderWidth: this.state.customStyles.stepStrokeWidth,
-          borderColor: this.state.customStyles.stepStrokeUnFinishedColor
+          borderColor: this.state.customStyles.stepStrokeUnFinishedColor,
         };
         indicatorLabelStyle = {
           overflow: 'hidden',

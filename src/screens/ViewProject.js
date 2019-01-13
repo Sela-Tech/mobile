@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
-import Text from '../components/Text';
-import B from '../components/BoldText';
 import { WHITE } from '../utils/constants';
 import Box from '../components/ExploreProject/Box';
 

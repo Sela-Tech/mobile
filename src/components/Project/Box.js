@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-    View,
-    StyleSheet,
-    Dimensions,
-    ImageBackground,
-    TouchableOpacity,
-} from 'react-native';
+import { View, StyleSheet, Dimensions, ImageBackground, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import NavigationService from '../../services/NavigationService';
 import Text from '../Text';
@@ -38,13 +32,15 @@ const styles = StyleSheet.create({
 });
 
 const Box = ({ empty, siteName, imageSource }) => (
-    <TouchableOpacity style={styles.container} onPress={() => NavigationService.navigate('ExploreProject')}>
+    <TouchableOpacity
+        style={styles.container}
+        onPress={() => NavigationService.navigate('ExploreProject')}>
         <ImageBackground
             source={{ uri: imageSource }}
             style={styles.imageBack}
         >
             <View style={styles.textView}>
-                <Text style={styles.text} >{siteName}</Text>
+                <Text style={styles.text}>{siteName}</Text>
             </View>
         </ImageBackground>
     </TouchableOpacity>

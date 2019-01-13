@@ -143,7 +143,6 @@ class Login extends Component {
                 <View style={{ paddingTop: 30, flex: 1 }}>
                   <Text style={styles.boldText}> Log In</Text>
                 </View>
-
               </View>
             </View>
             <View style={{ flex: 4, alignItems: 'center' }}>

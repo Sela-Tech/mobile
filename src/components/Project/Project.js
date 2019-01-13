@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import Text from '../../components/Text';
+import Text from "../Text";
 import Images from './Images';
 import { YELLOW } from '../../utils/constants';
 
@@ -18,27 +18,37 @@ const styles = StyleSheet.create({
     },
 });
 
-
 const Project = ({ leftText, rightText, projects }) => (
     <View style={styles.container}>
         <View style={styles.semiContainer}>
             <View style={{ flex: 2, paddingLeft: 5 }}>
                 <Text
-                    style={{ fontSize: 14, color: '#201D41' }}> {leftText} </Text>
+                    style={{ fontSize: 14, color: '#201D41' }}
+                >
+                    {' '}
+                    {leftText}
+                    {' '}
+
+                </Text>
             </View>
             <View style={{
                 justifyContent: 'center',
                 flex: 1,
-                flexDirection: 'row'
+                flexDirection: 'row',
             }}>
                 <View style={{ paddingLeft: '5%' }}>
-                    <Text style={{ textAlign: 'center', color: YELLOW, fontSize: 14 }}> {rightText} </Text>
+                    <Text style={{ textAlign: 'center', color: YELLOW, fontSize: 14 }}>
+                        {' '}
+                        {rightText}
+                        {' '}
+                    </Text>
                 </View>
                 <View style={{ justifyContent: 'center' }}>
                     <Image source={require('../../../assets/forward-yellow.png')} />
                 </View>
             </View>
         </View>
+
 
         <View style={{ paddingTop: 10, flex: 3 }}>
             <Images

@@ -43,7 +43,6 @@ export const RootStackNavigator = createStackNavigator({
     //   header: null,
     // },
   },
-
 });
 
 const AuthStack = createStackNavigator({

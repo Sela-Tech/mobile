@@ -3,7 +3,6 @@ import * as API from '../src/utils/api';
 import { saveUserInfo } from './userInfo';
 import * as types from './actionTypes';
 
-
 export const getToken = token => ({
   type: types.GET_TOKEN,
   token,
@@ -42,7 +41,6 @@ export const saveUserToken = userInfo => dispatch => {
     });
 };
 
-
 export const login = data => dispatch =>
   API.login(data)
     .then(resp => {
@@ -62,7 +60,6 @@ export const login = data => dispatch =>
       dispatch(tokenIsLoading(false));
       dispatch(tokenLoadingError(err.message || 'ERROR'));
     });
-
 
 export const getUserToken = () => dispatch =>
   AsyncStorage.getItem('token')

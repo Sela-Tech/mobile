@@ -257,8 +257,7 @@ export default class OnBoarding extends Component {
       this.setState({
         submitErrorMessage: resp.data.message,
       });
-    }
-    catch {
+    } catch {
       this.setState({ loading: false });
     }
   };
@@ -310,24 +309,24 @@ export default class OnBoarding extends Component {
                     showPassword={this.showPassword}
                   />
                 ) : (
-                    <OnBoardView
-                      second
-                      currentPage={currentPage}
-                      changePage={this.changePage}
-                      secure={secure}
-                      state={this.state}
-                      changeRole={this.changeRole}
-                      navigate={navigate}
-                      showPassword={this.showPassword}
-                      changeFullNameFn={this.fullNameFn}
-                      passwordFn={this.passwordFn}
-                      emailOrPhoneFn={this.emailOrPhoneFn}
-                      onTheChangeEmailOrPhone={this.onTheChangeEmailOrPhone}
-                      onTheChangeFullName={this.onTheChangeFullName}
-                      onTheChangePassword={this.onTheChangePassword}
-                      signUp={this.signUp}
-                    />
-                  )}
+                  <OnBoardView
+                    second
+                    currentPage={currentPage}
+                    changePage={this.changePage}
+                    secure={secure}
+                    state={this.state}
+                    changeRole={this.changeRole}
+                    navigate={navigate}
+                    showPassword={this.showPassword}
+                    changeFullNameFn={this.fullNameFn}
+                    passwordFn={this.passwordFn}
+                    emailOrPhoneFn={this.emailOrPhoneFn}
+                    onTheChangeEmailOrPhone={this.onTheChangeEmailOrPhone}
+                    onTheChangeFullName={this.onTheChangeFullName}
+                    onTheChangePassword={this.onTheChangePassword}
+                    signUp={this.signUp}
+                  />
+                )}
               </View>
             </View>
           </KeyboardAvoidingView>

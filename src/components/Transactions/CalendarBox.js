@@ -27,7 +27,7 @@ const style = StyleSheet.create({
   },
 });
 
-const CalendarBox = ({ showCalendar }) => (
+const CalendarBox = ({ showCalendar, chooseDate, val }) => (
   <Fragment>
     {!showCalendar ? (
       <TouchableOpacity style={style.innerContainer} onPress={() => openCalender(val)}>
@@ -41,8 +41,8 @@ const CalendarBox = ({ showCalendar }) => (
         </View>
       </TouchableOpacity>
     ) : (
-      <Calendar onDayPress={day => chooseDate(day, val)} />
-    )}
+        <Calendar onDayPress={day => chooseDate(day, val)} />
+      )}
   </Fragment>
 );
 
