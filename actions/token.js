@@ -2,6 +2,7 @@ import { AsyncStorage } from 'react-native';
 import * as API from '../src/utils/api';
 import { saveUserInfo } from './userInfo';
 import * as types from './actionTypes';
+import { userInfo } from 'os';
 
 export const getToken = token => ({
   type: types.GET_TOKEN,
@@ -30,6 +31,7 @@ export const removeToken = () => ({
 export const login = data => dispatch =>
   API.login(data)
     .then(resp => {
+      dispatch(saveUserToken(resp.data));
       if (resp.status === 200) {
         dispatch(tokenIsLoading(false));
         dispatch(saveUserInfo(resp.data));
@@ -45,6 +47,20 @@ export const login = data => dispatch =>
       dispatch(tokenIsLoading(false));
       dispatch(tokenLoadingError(err.message || 'ERROR'));
     });
+
+export const saveUserToken = userInfo => dispatch => {
+
+  this.userToken = userInfo.token;
+  const userInfoToSave = JSON.stringify(userInfo);
+  AsyncStorage.setItem('token', userInfoToSave)
+    .then(() => {
+      dispatch(tokenIsLoading(false));
+    })
+    .catch(err => {
+      dispatch(tokenIsLoading(false));
+      dispatch(tokenLoadingError(err.message || 'ERROR'));
+    });
+};
 
 export const getUserToken = () => dispatch =>
   AsyncStorage.getItem('token')
@@ -65,5 +81,5 @@ export const removeUserToken = () => dispatch =>
     })
     .catch(err => {
       dispatch(tokenIsLoading(false));
-      dispatch(error(err.message || 'ERROR'));
+      dispatch(tokenLoadingError(err.message || 'ERROR'));
     });

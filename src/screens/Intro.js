@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
-
+import { StyleSheet, AsyncStorage } from 'react-native';
 import AppIntroSlider from '../components/npm/AppIntroSlider';
 import IntroComp from '../components/Intro/Intro';
 import Home from './Home';
@@ -53,10 +52,16 @@ export default class Intro extends React.Component {
     showRealApp: false,
   };
 
-  onDone = () => {
-    // User finished the introduction. Show real app through
-    // navigation or simply by controlling state
-    this.setState({ showRealApp: true });
+  onDone = async () => {
+    try {
+      // User finished the introduction. Show real app through
+      // navigation or simply by controlling state
+      AsyncStorage.setItem('newUser', JSON.stringify(true));
+      this.setState({ showRealApp: true });
+    }
+    catch (err) {
+      this.setState({ error: err.message })
+    }
   };
 
   renderItem = props => (

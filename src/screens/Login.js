@@ -72,46 +72,46 @@ class Login extends Component {
   login = async () => {
     const { emailOrPhone, password } = this.state;
 
-    // if (emailOrPhone === '' || password === '') {
-    //   return this.setState({
-    //     emailOrPhoneError: true,
-    //     emailOrPhoneErrorMessage: "Email field can't be blank",
-    //     passwordError: true,
-    //     passwordErrorMessage: "Password Field can't be blank",
-    //   });
-    // }
+    if (emailOrPhone === '' || password === '') {
+      return this.setState({
+        emailOrPhoneError: true,
+        emailOrPhoneErrorMessage: "Email field can't be blank",
+        passwordError: true,
+        passwordErrorMessage: "Password Field can't be blank",
+      });
+    }
 
-    // if (emailOrPhone === '') {
-    //   return this.setState({
-    //     emailOrPhoneError: true,
-    //     emailOrPhoneErrorMessage: "Email field can't be blank",
-    //   });
-    // }
-    // if (password === '') {
-    //   return this.setState({
-    //     passwordError: true,
-    //     passwordErrorMessage: "Password Field can't be blank",
-    //   });
-    // }
-    // const data = {
-    //   email: emailOrPhone,
-    //   password,
-    // };
-    // this.setState({ submitErrorMessage: '', loading: true });
+    if (emailOrPhone === '') {
+      return this.setState({
+        emailOrPhoneError: true,
+        emailOrPhoneErrorMessage: "Email field can't be blank",
+      });
+    }
+    if (password === '') {
+      return this.setState({
+        passwordError: true,
+        passwordErrorMessage: "Password Field can't be blank",
+      });
+    }
+    const data = {
+      email: emailOrPhone,
+      password,
+    };
+    this.setState({ submitErrorMessage: '', loading: true });
     try {
-      // const resp = await this.props.login(data);
-      // this.setState({ loading: false });
-      // if (resp === true) {
-      return NavigationService.navigate('Project');
-      // }
+      const resp = await this.props.login(data);
+      this.setState({ loading: false });
+      if (resp === true) {
+        return NavigationService.navigate('Project');
+      }
 
-      // if (
-      //   resp ===
-      //   'Sela does not have an account with those user credentials. Please try another email/phone number.'
-      // )
-      //   this.setState({
-      //     submitErrorMessage: 'Wrong Username or Password',
-      //   });
+      if (
+        resp ===
+        'Sela does not have an account with those user credentials. Please try another email/phone number.'
+      )
+        this.setState({
+          submitErrorMessage: 'Wrong Username or Password',
+        });
     } catch {
       this.setState({ loading: false });
     }
