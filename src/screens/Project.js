@@ -1,23 +1,21 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
 import Header from '../components/Header';
 import Text from '../components/Text';
-import B from '../components/BoldText';
 import SingularProject from '../components/Project/Project';
 import Button from '../components/Button';
 import { YELLOW, WHITE } from '../utils/constants';
-import { isAndroid } from '../utils/helpers';
+
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    // height: 50,
     flex: 1,
   },
   subContainer: {
     justifyContent: 'center',
     flex: 8,
     alignItems: 'center',
-    // marginTop: isAndroid ? '25%' : '20%',
   },
   otherContainer: {
     alignItems: 'center',
@@ -29,11 +27,8 @@ const styles = StyleSheet.create({
     height: 60,
     width: 60,
     borderRadius: 30,
-    bottom: 25,
-    flex: 1,
+    bottom: height / 3,
     right: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
   },
 });
 
@@ -54,26 +49,36 @@ export default class Project extends Component {
         <Fragment>
           {
             userRole === 'funder' ? (
-              <ScrollView contentContainerStyle={{ flex: 1 }}>
-                <View style={{ flex: 1 }}>
-                  <SingularProject
-                    leftText="Projects you created"
-                    rightText="See all"
-                  />
-                </View>
 
-                <View style={{ flex: 1 }}>
-                  <SingularProject
-                    leftText="Projects you funded"
-                    rightText="See all"
-                  />
-                </View>
+              <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
+                <View>
+                  <View style={{ flex: 1 }}>
+                    <SingularProject
+                      leftText="Projects you created"
+                      rightText="See all"
+                    />
+                  </View>
 
-                <View style={{ flex: 1 }}>
-                  <SingularProject
-                    leftText="Projects that may interest you"
-                    rightText="Edit interest"
-                  />
+                  <View style={{ flex: 1 }}>
+                    <SingularProject
+                      leftText="Projects you funded"
+                      rightText="See all"
+                    />
+                  </View>
+
+                  <View style={{ flex: 1 }}>
+                    <SingularProject
+                      leftText="Projects that may interest you"
+                      rightText="Edit interest"
+                    />
+                  </View>
+
+                  <View style={{ flex: 1 }}>
+                    <SingularProject
+                      leftText="Save Project"
+                      rightText="See all"
+                    />
+                  </View>
                 </View>
 
                 <View style={styles.floatingButton}>
@@ -88,6 +93,7 @@ export default class Project extends Component {
                     <Image source={require('../../assets/plus.png')} />
                   </TouchableOpacity>
                 </View>
+
               </ScrollView>
             ) :
               (
@@ -96,25 +102,6 @@ export default class Project extends Component {
                     <Image source={require('../../assets/Illustration.png')} />
                   </View>
                   <View style={styles.otherContainer}>
-                    {/* <View style={styles.otherContainer}>
-                      <Text>
-                        {' '}
-                        Seems like you havent
-                        <B>proposed</B>
-                        {' '}
-                        or
-                        <B>been</B>{' '}
-                      </Text>
-                      <Text>
-                        {' '}
-                        <B> added </B>
-                        {' '}
-                        to any projects yet.You can propose a{' '}
-                      </Text>
-                      <Text> project using the plus sign or button below or </Text>
-                      <Text> wait to be added to one </Text>
-                    </View> */}
-
                     <View style={styles.otherContainer}>
                       {
                         userRole === 'funder' ?
@@ -150,7 +137,6 @@ export default class Project extends Component {
                           borderColor: '#B1BAD2',
                         }}
                         fn={() => this.props.navigation.navigate('ExploreProject')}
-                      // fn={() => this.props.navigation.navigate('ProjectListing')}
                       />
                       <Fragment>
                         {
@@ -160,8 +146,7 @@ export default class Project extends Component {
                                 text="Create new project"
                                 color={YELLOW}
                                 textColor={WHITE}
-                                fn={() => this.props.navigation.navigate('ExploreProject')}
-                              // fn={() => this.props.navigation.navigate('CreateProject')}
+                                fn={() => this.props.navigation.navigate('CreateProject')}
                               />
                             </View> : null
                         }
@@ -170,7 +155,8 @@ export default class Project extends Component {
                     </View>
                   </View>
                 </View>
-              )}
+              )
+          }
         </Fragment>
       </View>
     );

@@ -1,56 +1,55 @@
 import React from 'react';
-import { View, FlatList, Image, TouchableOpacity } from 'react-native';
-import Text from '../Text';
-import Tag from '../Tag';
-import B from '../BoldText';
+import { View, FlatList } from 'react-native';
 import Box from './Box';
 
-const keyExtractor = item => item.id;
+const keyExtractor = (item, index) => index.toString();
 
-const renderItem = item => {
-    console.log('itere', item.item);
-    return (
-        <View style={{ backgroundColor: 'red', height: 100, width: 100 }}>
-
-        </View>
-    )
-}
-{/* <Box imgSource={item.item.source} markedStatus />; */ }
+const renderItem = item => (
+    <View style={{ paddingLeft: 5 }}>
+        <Box
+            imageSource={item.item.source}
+            siteName={item.item.name} />
+    </View>
+);
 
 const images = [
     {
-        source: require('../../../assets/oilspill.png'),//../../../assets/oilspill.png
+        source: require('../../../assets/borehole.png'),
         id: 1,
+        name: 'Idejo Classroom Blocks Construction',
     },
     {
         source: require('../../../assets/road.png'),
         id: 2,
+        name: 'Idejo Classroom Blocks Construction',
     },
     {
         source: require('../../../assets/borehole.png'),
         id: 3,
+        name: 'Idejo Classroom Blocks Construction',
     },
     {
         source: require('../../../assets/road.png'),
         id: 4,
+        name: 'Idejo Classroom Blocks Construction',
     },
     {
         source: require('../../../assets/borehole.png'),
         id: 5,
+        name: 'Idejo Classroom Blocks Construction',
     },
 ];
 
-const Images = ({ statusText }) => (
-    <View style={{ flex: 1, backgroundColor: 'red' }}>
-        {/* <View style={{ backgroundColor: 'red' }} /> */}
-        <FlatList
-            style={{ flex: 1, backgroundColor: 'red' }}
-            data={images}
-            keyExtractor={keyExtractor}
-            horizontal
-            renderItem={renderItem}
-        />
-    </View>
+const Images = () => (
+    <FlatList
+        style={{ flex: 1 }}
+        data={images}
+        keyExtractor={keyExtractor}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        renderItem={renderItem}
+    />
+
 );
 
 export default Images;

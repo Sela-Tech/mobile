@@ -4,21 +4,34 @@ import Text from '../../components/Text';
 import Images from './Images';
 import { YELLOW } from '../../utils/constants';
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        marginTop: 10,
+        marginHorizontal: 10,
+        marginVertical: 10,
+    },
+    semiContainer: {
+        flexDirection: 'row',
+        paddingTop: 10,
+        flex: 1,
+    },
+});
+
 const Project = ({ leftText, rightText }) => (
-    <View>
-        <View style={{ flexDirection: 'row', paddingTop: 10 }}>
-            <View style={{ flex: 1, paddingLeft: 5 }}>
-                <Text style={{ fontSize: 14, color: '#201D41' }}> {leftText} </Text>
+    <View style={styles.container}>
+        <View style={styles.semiContainer}>
+            <View style={{ flex: 2, paddingLeft: 5 }}>
+                <Text
+                    style={{ fontSize: 14, color: '#201D41' }}> {leftText} </Text>
             </View>
             <View style={{
-                alignItems: 'center',
                 justifyContent: 'center',
-                paddingLeft: '20%',
                 flex: 1,
                 flexDirection: 'row'
             }}>
-                <View style={{}}>
-                    <Text style={{ color: YELLOW, fontSize: 14 }}> {rightText} </Text>
+                <View style={{ paddingLeft: '5%' }}>
+                    <Text style={{ textAlign: 'center', color: YELLOW, fontSize: 14 }}> {rightText} </Text>
                 </View>
                 <View style={{ justifyContent: 'center' }}>
                     <Image source={require('../../../assets/forward-yellow.png')} />
@@ -26,9 +39,10 @@ const Project = ({ leftText, rightText }) => (
             </View>
         </View>
 
-        <View style={{ paddingTop: 10, flex: 2 }}>
+        <View style={{ paddingTop: 10, flex: 3 }}>
             <Images />
         </View>
     </View>
-)
+);
+
 export default Project;

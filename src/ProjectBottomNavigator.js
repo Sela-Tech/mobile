@@ -31,6 +31,12 @@ export const ProfileStack = createStackNavigator({
     //   header: null,
     // },
   },
+  UserProfile: {
+    screen: ProfileScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
 });
 
 export default createBottomTabNavigator(

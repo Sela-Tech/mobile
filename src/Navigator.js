@@ -43,12 +43,7 @@ export const RootStackNavigator = createStackNavigator({
     //   header: null,
     // },
   },
-  UserProfile: {
-    screen: ProfileScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
+
 });
 
 const AuthStack = createStackNavigator({
