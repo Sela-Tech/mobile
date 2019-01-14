@@ -31,6 +31,7 @@ export default class Transactions extends Component {
 
   render() {
     const { empty } = this.state;
+    const project = this.props;
     if (empty) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

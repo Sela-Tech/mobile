@@ -74,6 +74,7 @@ class Project extends Component {
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
 
+
     if (loading) {
       return <Spinner />;
     }
@@ -131,57 +132,57 @@ class Project extends Component {
               </View>
             </ScrollView>
           ) : (
-            <View style={styles.subContainer}>
-              <View>
-                <Image source={require('../../assets/Illustration.png')} />
-              </View>
-              <View style={styles.otherContainer}>
-                <View style={styles.otherContainer}>
-                  {userRole === 'funder' ? (
-                    <Fragment>
-                      <Text> You haven't created, funded, or saved any </Text>
-                      <Text> projects yet. </Text>
-                    </Fragment>
-                  ) : userRole === 'contractor' ? (
-                    <Fragment>
-                      <Text> You haven't propose or been </Text>
-                      <Text> added to any projects yet. </Text>
-                    </Fragment>
-                  ) : (
-                    <Fragment>
-                      <Text> You haven't evaluated or </Text>
-                      <Text> saved any projects yet. </Text>
-                    </Fragment>
-                  )}
-                </View>
+              <View style={styles.subContainer}>
                 <View>
-                  <Button
-                    text="Explore Project"
-                    color={userRole === 'funder' ? WHITE : YELLOW}
-                    textColor={userRole === 'funder' ? '#201D41' : WHITE}
-                    style={{
-                      borderRadius: 5,
-                      borderWidth: 1,
-                      borderColor: '#B1BAD2',
-                    }}
-                    fn={() => this.props.navigation.navigate('ExploreProject')}
-                  />
-                  <Fragment>
+                  <Image source={require('../../assets/Illustration.png')} />
+                </View>
+                <View style={styles.otherContainer}>
+                  <View style={styles.otherContainer}>
                     {userRole === 'funder' ? (
-                      <View style={{ paddingTop: 15 }}>
-                        <Button
-                          text="Create new project"
-                          color={YELLOW}
-                          textColor={WHITE}
-                          fn={() => this.props.navigation.navigate('CreateProject')}
-                        />
-                      </View>
-                    ) : null}
-                  </Fragment>
+                      <Fragment>
+                        <Text> You haven't created, funded, or saved any </Text>
+                        <Text> projects yet. </Text>
+                      </Fragment>
+                    ) : userRole === 'contractor' ? (
+                      <Fragment>
+                        <Text> You haven't propose or been </Text>
+                        <Text> added to any projects yet. </Text>
+                      </Fragment>
+                    ) : (
+                          <Fragment>
+                            <Text> You haven't evaluated or </Text>
+                            <Text> saved any projects yet. </Text>
+                          </Fragment>
+                        )}
+                  </View>
+                  <View>
+                    <Button
+                      text="Explore Project"
+                      color={userRole === 'funder' ? WHITE : YELLOW}
+                      textColor={userRole === 'funder' ? '#201D41' : WHITE}
+                      style={{
+                        borderRadius: 5,
+                        borderWidth: 1,
+                        borderColor: '#B1BAD2',
+                      }}
+                      fn={() => this.props.navigation.navigate('ExploreProject')}
+                    />
+                    <Fragment>
+                      {userRole === 'funder' ? (
+                        <View style={{ paddingTop: 15 }}>
+                          <Button
+                            text="Create new project"
+                            color={YELLOW}
+                            textColor={WHITE}
+                            fn={() => this.props.navigation.navigate('CreateProject')}
+                          />
+                        </View>
+                      ) : null}
+                    </Fragment>
+                  </View>
                 </View>
               </View>
-            </View>
-          )}
+            )}
         </Fragment>
       </View>
     );

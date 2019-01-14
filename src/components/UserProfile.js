@@ -18,20 +18,29 @@ const styles = StyleSheet.create({
 });
 
 const UserProfile = ({ imgSource, userName, companyName }) => (
+  console.log('...img source', imgSource),
   <TouchableOpacity
     style={styles.container}
     onPress={() => NavigationService.navigate('UserProfile')}
   >
     <View style={{ flex: 1, alignItems: 'center', flexDirection: 'row' }}>
       <View style={{ paddingLeft: 10 }}>
-        <Image style={{}} resizeMode="contain" source={imgSource} />
+        <Image
+          style={{
+            height: 50,
+            width: 50,
+            borderRadius: 25,
+          }}
+          // resizeMode="contain"
+          source={imgSource}
+        />
       </View>
       <View style={{ height: 80, marginLeft: 20, justifyContent: 'center' }}>
         <View>
           <B>
-{userName}
-{' '}
- </B>
+            {userName}
+            {' '}
+          </B>
         </View>
         <View style={{ flexDirection: 'row', marginTop: 5 }}>
           <Image source={require('../../assets/star.png')} />

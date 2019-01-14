@@ -7,7 +7,10 @@ const keyExtractor = (item, index) => index.toString();
 
 const renderItem = item => (
   <View style={{ paddingLeft: 5 }}>
-    <Box siteName={item.item.name} imageSource={item.item['project-avatar']} />
+    <Box
+      projectInfo={item.item}
+      siteName={item.item.name}
+      imageSource={item.item['project-avatar']} />
   </View>
 );
 

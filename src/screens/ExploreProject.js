@@ -1,31 +1,54 @@
 import React, { Component } from 'react';
 import { View, Image } from 'react-native';
+import { connect } from 'react-redux';
 import Header from '../components/ExploreTopTabs/Header';
 import Navigator from './ExploreTabs/Navigator';
 
-export default class ExploreProject extends Component {
+class ExploreProject extends Component {
+  state = {
+    projectId: this.props.navigation.state.params
+  }
+
   render() {
+    const { projectId } = this.state;
+    const allProjects =
+      this.props &&
+      this.props.projects &&
+      this.props.projects.projects &&
+      this.props.projects.projects.projects;
+
+    let theProject = allProjects.filter(c => c._id === projectId);
+    theProject = theProject[0];
     return (
       <View style={{ flex: 1 }}>
         <View>
-          <Image style={{ height: 200 }} source={require('../../assets/class.png')} />
+          <Image style={{ height: 200 }} source={{ uri: theProject['project-avatar'] }} />
         </View>
         <View style={{ flex: 3 }}>
           <Header
-            projectLocationText="LAGOS, NIGERIA."
-            projectStatusText="COMPLETED"
+            projectLocationText={theProject && theProject.location.name}
+            projectStatusText={theProject.status}
             projectNameText="MARKERS LTD"
-            projectTitleText="Construction of Classroom Blocks"
-            budgetAmount="$1,500,000"
-            numberOfStakeholders="1"
-            raisedAmount="0"
-            tags={['Resilient infrasture', 'Sustainable Cities']}
+            projectTitleText={theProject.name}
+            budgetAmount={theProject.goal}
+            numberOfStakeholders={theProject.stakeholders.length}
+            raisedAmount={theProject.raised}
+            tags={theProject.tags}
           />
         </View>
         <View style={{ flex: 6 }}>
-          <Navigator />
+          <Navigator
+            project={theProject}
+          />
         </View>
       </View>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  userInfo: state.userInfo,
+  projects: state.projects,
+});
+
+export default connect(mapStateToProps)(ExploreProject);

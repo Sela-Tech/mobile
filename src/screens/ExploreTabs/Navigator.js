@@ -44,17 +44,26 @@ export default class Navigator extends Component {
 
   render() {
     const { isContractor } = this.state;
-    const updatesOrTask = !isContractor ? Updates : Tasks;
-    const transactionOrOvervIew = !isContractor ? Transactions : Overview;
+    const { project } = this.props;
+    const UpdatesOrTask = !isContractor ? Updates : Tasks;
+    const TransactionOrOvervIew = !isContractor ? Transactions : Overview;
 
     let Tabs;
     if (isContractor) {
       Tabs = createMaterialTopTabNavigator(
         {
-          Description,
-          StakeHolders,
-          Tasks: updatesOrTask,
-          Overview: transactionOrOvervIew,
+          Description: {
+            screen: () => <Description {...project} />,
+          },
+          StakeHolders: {
+            screen: () => <StakeHolders {...project} />,
+          },
+          Tasks: {
+            screen: () => <UpdatesOrTask {...project} />,
+          },
+          Overview: {
+            screen: () => <TransactionOrOvervIew {...project} />,
+          },
         },
         {
           tabBarOptions,
@@ -63,15 +72,18 @@ export default class Navigator extends Component {
     } else {
       Tabs = createMaterialTopTabNavigator(
         {
-          Overview,
-          StakeHolders,
-          Updates: updatesOrTask,
-          Transactions: transactionOrOvervIew,
-
-          // Description,
-          // StakeHolders,
-          // Updates: updatesOrTask,
-          // Transactions: transactionOrOvervIew,
+          Overview: {
+            screen: () => <Overview {...project} />,
+          },
+          StakeHolders: {
+            screen: () => <StakeHolders {...project} />,
+          },
+          Updates: {
+            screen: () => <UpdatesOrTask {...project} />,
+          },
+          Transactions: {
+            screen: () => <TransactionOrOvervIew {...project} />,
+          },
         },
         {
           tabBarOptions,

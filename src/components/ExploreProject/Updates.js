@@ -5,7 +5,7 @@ import Tag from '../Tag';
 import B from '../BoldText';
 import EvalSubmission from './EvalSubmission';
 
-const keyExtractor = item => item.id;
+const keyExtractor = item => item.id.toString();
 
 const renderItem = item => <EvalSubmission imgSource={item.item.source} markedStatus />;
 

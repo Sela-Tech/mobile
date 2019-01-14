@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
 import Text from '../../components/Text';
-import Updates from '../../components/ExploreProject/Updates';
+import IndUpdates from '../../components/ExploreProject/Updates';
 import EvalSubmission from '../../components/ExploreProject/EvalSubmission';
 import Button from '../../components/Button';
 import { WHITE } from '../../utils/constants';
@@ -50,25 +50,32 @@ const images = [
   },
 ];
 
-export default () => (
-  <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-    <Updates statusText="In Progress" />
-    <Updates statusText="Completed" />
-    <View
-      style={{
-        flexDirection: 'row',
-        marginVertical: 10,
-      }}
-    >
-      <View>
-        <Text style={{ color: '#201D41' }}> View transactions</Text>
-      </View>
-      <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
-        <Image source={require('../../../assets/forward-arrow.png')} />
-      </View>
-    </View>
-    <View style={{ paddingTop: 10, alignItems: 'center' }}>
-      <Button text="INVEST" />
-    </View>
-  </ScrollView>
-);
+
+export default class Updates extends Component {
+  render() {
+    const project = this.props;
+    return (
+      <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
+        <IndUpdates statusText="In Progress" />
+        <IndUpdates statusText="Completed" />
+        <View
+          style={{
+            flexDirection: 'row',
+            marginVertical: 10,
+          }}
+        >
+          <View>
+            <Text style={{ color: '#201D41' }}> View transactions</Text>
+          </View>
+          <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
+            <Image source={require('../../../assets/forward-arrow.png')} />
+          </View>
+        </View>
+        <View style={{ paddingTop: 10, alignItems: 'center' }}>
+          <Button text="INVEST" />
+        </View>
+      </ScrollView>
+    )
+  }
+}
+

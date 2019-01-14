@@ -31,15 +31,12 @@ export default class Overview extends Component {
   };
 
   render() {
+    const project = this.props;
     return (
       <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
         <View style={{ marginTop: '4%', flex: 1 }}>
           <Text style={{ color: '#222829' }}>
-            This project involves the construction of fifteen classroom blocks at the Surulere
-            Grammar School, Lagos. These classroom blocks will house twelve classrooms, one staff
-            room and two offices each. It is expected to be completed by the 31st January, 2018. The
-            aim is to provide a conducive learning environment for the students of this academic
-            institution and contribute to lowering the illiteracy rate in Nigeria.
+            {project.description}
           </Text>
         </View>
         <View style={{ paddingTop: 10 }}>

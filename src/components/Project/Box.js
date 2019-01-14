@@ -31,20 +31,25 @@ const styles = StyleSheet.create({
     },
 });
 
-const Box = ({ empty, siteName, imageSource }) => (
-    <TouchableOpacity
-        style={styles.container}
-        onPress={() => NavigationService.navigate('ExploreProject')}>
-        <ImageBackground
-            source={{ uri: imageSource }}
-            style={styles.imageBack}
-        >
-            <View style={styles.textView}>
-                <Text style={styles.text}>{siteName}</Text>
-            </View>
-        </ImageBackground>
-    </TouchableOpacity>
-);
+const Box = ({
+    projectInfo,
+    empty,
+    siteName,
+    imageSource
+}) => (
+        <TouchableOpacity
+            style={styles.container}
+            onPress={(id) => NavigationService.navigate('ExploreProject', projectInfo._id)}>
+            <ImageBackground
+                source={{ uri: imageSource }}
+                style={styles.imageBack}
+            >
+                <View style={styles.textView}>
+                    <Text style={styles.text}>{siteName}</Text>
+                </View>
+            </ImageBackground>
+        </TouchableOpacity>
+    );
 
 Box.defaultProps = {
     empty: null,

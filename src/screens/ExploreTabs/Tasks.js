@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
-import Tasks from '../../components/ExploreProject/Tasks';
-import EvalSubmission from '../../components/ExploreProject/EvalSubmission';
+import Task from '../../components/ExploreProject/Tasks';
 import Button from '../../components/Button';
 import { WHITE } from '../../utils/constants';
 
@@ -24,12 +23,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export default () => (
-  <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-    <Tasks statusText="In Progress" />
-    <Tasks statusText="Completed" />
-    <View style={{ paddingTop: 10, alignItems: 'center' }}>
-      <Button text="Submit Updates" />
-    </View>
-  </ScrollView>
-);
+export default class Tasks extends Component {
+
+  render() {
+    const project = this.props;
+    return (
+      <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
+        <Task statusText="In Progress" />
+        <Task statusText="Completed" />
+        <View style={{ paddingTop: 10, alignItems: 'center' }}>
+          <Button text="Submit Updates" />
+        </View>
+      </ScrollView>
+    )
+  }
+}
+
