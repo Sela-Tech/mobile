@@ -49,7 +49,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
       <Image
         resizeMode="cover"
         source={img}
-        style={{ height: height / 6, width: width / 1.1, borderRadius: 10 }}
+        style={{ height: height / 3, width: width / 1.1, borderRadius: 10 }}
       />
       <View style={styles.viewInImage}>
         <View style={{ paddingLeft: 5 }}>

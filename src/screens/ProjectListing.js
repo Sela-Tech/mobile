@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { View, ScrollView, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { getUserProject } from '../../actions/project';
@@ -53,6 +53,7 @@ class ExploreProject extends Component {
 
   render() {
 
+    const { loading } = this.state;
     const projects =
       this.props &&
       this.props.projects &&

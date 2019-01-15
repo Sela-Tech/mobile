@@ -22,7 +22,7 @@ axios.interceptors.request.use(
   config => {
     // Do something before request is sent
     // config.headers['x-access-token'] = this.userToken;
-    config.headers['x-access-token'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOnsibmFtZSI6IlRlc3QgT3JnYW5pemF0aW9uIiwiaWQiOiI1YzM0ZjIxYTBhZTU4MjAwMjIwODAyMmEifSwicHJvZmlsZVBob3RvIjoiaHR0cHM6Ly9zMy51cy1lYXN0LTIuYW1hem9uYXdzLmNvbS9zZWxhbXZwL3VzZXItYXZhdGFycy80YTdmNzgwMC04MTdmLTRhZmUtYmYzNi03NjNlYmVjYmJiMjNfcGV4ZWxzLXBob3RvLTQ2MjY4MC5qcGVnIiwiaWQiOiI1YzM0ZjIxYTBhZTU4MjAwMjIwODAyMmIiLCJpc0Z1bmRlciI6dHJ1ZSwiaXNFdmFsdWF0b3IiOmZhbHNlLCJpc0NvbnRyYWN0b3IiOmZhbHNlLCJmaXJzdE5hbWUiOiJUZXN0IiwicGhvbmUiOiIwODAwMDAwIiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImxhc3ROYW1lIjoiSmFtaWUiLCJpYXQiOjE1NDczOTUxMjIsImV4cCI6MTU0NzQ4MTUyMn0.Qxd8VhPYY00KMA8baHHoCpmwSB0B-1BRGdQ3rfr9YqA'
+    config.headers['x-access-token'] = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOnsibmFtZSI6IlRlc3QgT3JnYW5pemF0aW9uIiwiaWQiOiI1YzM0ZjIxYTBhZTU4MjAwMjIwODAyMmEifSwicHJvZmlsZVBob3RvIjoiaHR0cHM6Ly9zMy51cy1lYXN0LTIuYW1hem9uYXdzLmNvbS9zZWxhbXZwL3VzZXItYXZhdGFycy80YTdmNzgwMC04MTdmLTRhZmUtYmYzNi03NjNlYmVjYmJiMjNfcGV4ZWxzLXBob3RvLTQ2MjY4MC5qcGVnIiwiaWQiOiI1YzM0ZjIxYTBhZTU4MjAwMjIwODAyMmIiLCJpc0Z1bmRlciI6dHJ1ZSwiaXNFdmFsdWF0b3IiOmZhbHNlLCJpc0NvbnRyYWN0b3IiOmZhbHNlLCJmaXJzdE5hbWUiOiJUZXN0IiwicGhvbmUiOiIwODAwMDAwIiwiZW1haWwiOiJ0ZXN0QGdtYWlsLmNvbSIsImxhc3ROYW1lIjoiSmFtaWUiLCJpYXQiOjE1NDc1ODc0MjcsImV4cCI6MTU0NzY3MzgyN30.-pLPOG-wL_2gzjx-ex5eT_LoUT8PARz5Ycny2Zz-u3U'
     return config;
   },
   error => {
@@ -110,7 +110,7 @@ export const getGoogleApiKey = async () => {
 };
 
 //Assign evaluation agent to project
-export const assignEvaluationAgentToProject = async (projectId) => {
+export const assignEvaluationAgentToProject = async projectId => {
   try {
     const resp = await axios.put(`project/${projectId}/accept`, { agreed: true });
     return resp;

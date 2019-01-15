@@ -37,6 +37,17 @@ export default class CreateProject extends Component {
     showSecondCalendar: false,
     loading: false,
   };
+  async componentDidMount() {
+    try {
+      const resp = await API.getAllUsers();
+      console.log('res', resp.data);
+      this.setState({ users: resp.data })
+    }
+    catch (err) {
+      this.setState({ error: err.message })
+    }
+
+  }
 
   // pickImage = async () => {
   //   const { status: cameraRollPerm } = await Permissions.askAsync(
@@ -55,7 +66,7 @@ export default class CreateProject extends Component {
   // };
 
   // upload image to the server
-  uploadImageAsync = async data => {};
+  uploadImageAsync = async data => { };
 
   handleImagePicked = async pickerResult => {
     let uploadResponse;
@@ -275,10 +286,10 @@ export default class CreateProject extends Component {
             style={styles.inputStyle}
             placeHolderColor="#B1BAD2"
             onChangeTheText={contractors => this.setState({ contractors })}
-            // onTheChange={() => this.setState({
-            //   plasError: false,
-            //   placesErrorMessage: '',
-            // })}
+          // onTheChange={() => this.setState({
+          //   plasError: false,
+          //   placesErrorMessage: '',
+          // })}
           />
         </View>
 
@@ -310,9 +321,9 @@ export default class CreateProject extends Component {
                 style={
                   avatarURI !== ''
                     ? {
-                        width: width / 1.1,
-                        height: height / 9,
-                      }
+                      width: width / 1.1,
+                      height: height / 9,
+                    }
                     : null
                 }
                 source={icon}
@@ -341,10 +352,10 @@ export default class CreateProject extends Component {
             {showFirstCalendar === true || showSecondCalendar === true ? (
               <Fragment />
             ) : (
-              <View style={{ justifyContent: 'center' }}>
-                <Image source={require('../../assets/minus.png')} />
-              </View>
-            )}
+                <View style={{ justifyContent: 'center' }}>
+                  <Image source={require('../../assets/minus.png')} />
+                </View>
+              )}
           </Fragment>
           <CalendarBox
             upText="End Date"
