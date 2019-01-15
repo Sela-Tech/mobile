@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
 });
 
 const UserProfile = ({ imgSource, userName, companyName }) => (
-  console.log('...img source', imgSource),
   <TouchableOpacity
     style={styles.container}
     onPress={() => NavigationService.navigate('UserProfile')}

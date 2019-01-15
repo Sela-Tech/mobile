@@ -25,14 +25,12 @@ const styles = StyleSheet.create({
 });
 
 export default class Transactions extends Component {
-  state = {
-    empty: false,
-  };
+
 
   render() {
-    const { empty } = this.state;
     const project = this.props;
-    if (empty) {
+    const transactions = project.transactions;
+    if (transactions.length === 0) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <View>

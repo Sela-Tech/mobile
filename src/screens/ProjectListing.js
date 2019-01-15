@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { View, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { connect } from 'react-redux';
+import { getUserProject } from '../../actions/project';
+import Spinner from '../components/Spinner';
 import Input from '../components/Input';
 import Header from '../components/Header';
 import Button from '../components/Button';
@@ -25,7 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class ExploreProject extends Component {
+class ExploreProject extends Component {
   static navigationOptions = {
     title: 'EXPLORE',
     headerTitleStyle: {
@@ -39,7 +42,23 @@ export default class ExploreProject extends Component {
     },
   };
 
+  state = {
+    loading: true,
+  };
+
+  async componentDidMount() {
+    await this.props.getProjects();
+    this.setState({ loading: false });
+  }
+
   render() {
+
+    const projects =
+      this.props &&
+      this.props.projects &&
+      this.props.projects.projects &&
+      this.props.projects.projects.projects;
+
     return (
       <ScrollView
         style={{
@@ -104,31 +123,33 @@ export default class ExploreProject extends Component {
               <Text style={{ fontSize: 20, fontWeight: '500' }}>Featured Projects</Text>
             </View>
             <View style={{ flex: 1 }}>
-              <View style={{ marginBottom: 10, marginTop: 10 }}>
-                <Box
-                  fn={() => this.props.navigation.navigate('ExploreProject')}
-                  img={require('../../assets/class.png')}
-                  firstText="K-Dere Portharcourt"
-                  secondText="Sustainability Intl"
-                  thirdText="OnGoing"
-                  title="Construction of Classroom Blocks"
-                  cost="$1,500,000"
-                  tags={['Resilient infrasture', 'Sustainable Cities']}
-                />
-              </View>
+              {
+                loading === true ?
+                  <Spinner /> :
+                  (
+                    <Fragment>
+                      {
+                        projects.map((c, index) => {
+                          return (
+                            <View style={{ marginBottom: 10, marginTop: 10 }}>
+                              <Box
+                                fn={() => this.props.navigation.navigate('ExploreProject')}
+                                img={require('../../assets/class.png')}
+                                firstText="K-Dere Portharcourt"
+                                secondText="Sustainability Intl"
+                                thirdText="OnGoing"
+                                title="Construction of Classroom Blocks"
+                                cost="$1,500,000"
+                                tags={['Resilient infrasture', 'Sustainable Cities']}
+                              />
+                            </View>
+                          )
+                        })
+                      }
+                    </Fragment>
+                  )
+              }
 
-              <View>
-                <Box
-                  fn={() => this.props.navigation.navigate('ExploreProject')}
-                  img={require('../../assets/img/woman.png')}
-                  firstText="K-Dere Portharcourt"
-                  secondText="Sustainability Intl"
-                  thirdText="Proposed"
-                  title="Affordable housing scheme - 200 Units"
-                  cost="$25,000"
-                  tags={['Resilient infrasture', 'Sustainable Cities']}
-                />
-              </View>
             </View>
           </View>
         </View>
@@ -136,3 +157,16 @@ export default class ExploreProject extends Component {
     );
   }
 }
+const mapStateToProps = state => ({
+  userInfo: state.userInfo,
+  projects: state.projects,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getProjects: () => dispatch(getUserProject()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ExploreProject);

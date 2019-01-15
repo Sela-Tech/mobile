@@ -45,7 +45,6 @@ class Project extends Component {
   };
 
   async componentDidMount() {
-    // console.log('thth', this.props.userInfo)
     await this.props.getProjects();
     this.setState({ loading: false });
   }

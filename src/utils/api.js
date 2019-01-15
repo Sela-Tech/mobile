@@ -88,3 +88,45 @@ export const getAllProjects = async () => {
     return err;
   }
 };
+
+//View  project  assaigned to a contractor
+export const viewAssignedProject = async () => {
+  try {
+    const resp = await axios.get(`/stakeholder/projects`);
+    return resp;
+  } catch (err) {
+    return err;
+  }
+};
+
+export const getGoogleApiKey = async () => {
+  try {
+    const resp = await axios.get(`/stakeholder/projects`);
+    return resp;
+  }
+  catch (err) {
+    return err;
+  }
+};
+
+//Assign evaluation agent to project
+export const assignEvaluationAgentToProject = async (projectId) => {
+  try {
+    const resp = await axios.put(`project/${projectId}/accept`, { agreed: true });
+    return resp;
+  }
+  catch (err) {
+    return err;
+  }
+};
+
+//get all users
+export const getAllUsers = async () => {
+  try {
+    const resp = axios.get('/users');
+    return resp;
+  }
+  catch (err) {
+    return err;
+  }
+} 
