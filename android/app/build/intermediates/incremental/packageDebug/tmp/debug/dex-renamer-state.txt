@@ -1,4 +1,4 @@
-#Thu Jan 10 11:02:32 WAT 2019
+#Wed Jan 16 16:48:42 WAT 2019
 base.0=/Users/david/Desktop/projects/sela/SelaMobile/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

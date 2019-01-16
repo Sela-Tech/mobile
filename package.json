@@ -22,6 +22,8 @@
     "react-native-calendars": "^1.21.0",
     "react-native-gesture-handler": "^1.0.12",
     "react-native-gifted-chat": "^0.5.0",
+    "react-native-google-places": "^2.5.2",
+    "react-native-image-picker": "^0.28.0",
     "react-native-keyboard-aware-scroll-view": "^0.7.4",
     "react-native-material-dropdown": "^0.11.1",
     "react-native-modal": "^7.0.2",
@@ -38,9 +40,6 @@
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
-    "jest": "23.6.0",
-    "metro-react-native-babel-preset": "0.48.5",
-    "react-test-renderer": "16.6.3",
     "eslint": "^5.9.0",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-config-prettier": "^3.3.0",
@@ -48,7 +47,10 @@
     "eslint-plugin-jsx-a11y": "^6.1.2",
     "eslint-plugin-prettier": "^3.0.0",
     "eslint-plugin-react": "^7.11.1",
-    "prettier": "^1.15.2"
+    "jest": "23.6.0",
+    "metro-react-native-babel-preset": "0.48.5",
+    "prettier": "^1.15.2",
+    "react-test-renderer": "16.6.3"
   },
   "jest": {
     "preset": "react-native"

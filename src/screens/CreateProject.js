@@ -1,7 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import ImagePicker from 'react-native-image-picker';
 import { Dropdown } from 'react-native-material-dropdown';
+import RNGooglePlaces from 'react-native-google-places';
 import CalendarBox from '../components/CreateProject/CalendarBox';
 import Input from '../components/Input';
 import Text from '../components/Text';
@@ -27,6 +29,16 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
 });
+
+const options = {
+  title: 'Select Avatar',
+  customButtons: [{ name: 'sela', title: 'Choose Photo ' }],
+  storageOptions: {
+    skipBackup: true,
+    path: 'images',
+  },
+};
+
 
 export default class CreateProject extends Component {
   static navigationOptions = {
@@ -59,21 +71,42 @@ export default class CreateProject extends Component {
 
   }
 
-  // pickImage = async () => {
-  //   const { status: cameraRollPerm } = await Permissions.askAsync(
-  //     Permissions.CAMERA_ROLL,
-  //   );
+  pickImage = async () => {
+    ImagePicker.showImagePicker(options, (response) => {
+      console.log('Response = ', response);
 
-  //   // only if user allows permission to camera roll
-  //   if (cameraRollPerm === 'granted') {
-  //     const pickerResult = await ImagePicker.launchImageLibraryAsync({
-  //       allowsEditing: true,
-  //       aspect: [4, 3],
-  //     });
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        const source = { uri: response.uri };
 
-  //     await this.handleImagePicked(pickerResult);
-  //   }
-  // };
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+
+        this.setState({
+          avatarSource: source,
+        });
+      }
+    });
+
+    // const { status: cameraRollPerm } = await Permissions.askAsync(
+    //   Permissions.CAMERA_ROLL,
+    // );
+
+    // // only if user allows permission to camera roll
+    // if (cameraRollPerm === 'granted') {
+    //   const pickerResult = await ImagePicker.launchImageLibraryAsync({
+    //     allowsEditing: true,
+    //     aspect: [4, 3],
+    //   });
+
+    //   await this.handleImagePicked(pickerResult);
+    // }
+  };
 
   // upload image to the server
   uploadImageAsync = async data => { };
@@ -121,6 +154,16 @@ export default class CreateProject extends Component {
     console.log('selected day', day);
     this.openCalender(val);
   };
+
+  openSearchModal() {
+    RNGooglePlaces.openAutocompleteModal()
+      .then((place) => {
+        console.log(place);
+        // place represents user's selection from the
+        // suggestions and it is a simplified Google Place object.
+      })
+      .catch(error => console.log(error.message));  // error is a Javascript Error object
+  }
 
   chooseContractor = (id) => {
     const val = [id];
@@ -281,7 +324,8 @@ export default class CreateProject extends Component {
             text="Search places"
             style={styles.inputStyle}
             placeHolderColor="#B1BAD2"
-            onChangeTheText={places => this.setState({ places })}
+            onChangeTheText={() => this.openSearchModal()}
+            // onChangeTheText={places => this.setState({ places })}
             onTheChange={() =>
               this.setState({
                 placesError: false,

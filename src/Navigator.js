@@ -119,6 +119,12 @@ export const MainSwitchNavigator = createSwitchNavigator(
 );
 
 export const TestStackNavigator = createStackNavigator({
+  SubmitFeedback: {
+    screen: SubmitFeedback,
+    // navigationOptions: {
+    //   header: null,
+    // },
+  },
   CreateProject: {
     screen: CreateProject,
   },

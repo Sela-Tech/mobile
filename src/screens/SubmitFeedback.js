@@ -2,12 +2,23 @@ import React, { Fragment, Component } from 'react';
 import { View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Header } from 'native-base';
 import { GiftedChat } from 'react-native-gifted-chat';
+import ImagePicker from 'react-native-image-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Text from '../components/Text';
 import { isAndroid } from '../utils/helpers';
 import { YELLOW } from '../utils/constants';
 
 const { width } = Dimensions.get('window');
+
+const options = {
+  title: 'Take Picture',
+  customButtons: [{ name: 'sela', title: 'Choose Photo ' }],
+  storageOptions: {
+    skipBackup: true,
+    path: 'images',
+  },
+};
+
 
 const initialText =
   'Upload evidence of completion non-completion of this task.This can be a photo or video.Ensure you are at the project site before proceeding';
@@ -156,12 +167,8 @@ export default class SubmitFeedback extends Component {
       },
     ],
     step: 0,
+    showBottomButton: false,
   };
-
-  async componentWillMount() {
-    // const { status } = await Permissions.askAsync(Permissions.CAMERA);
-    // this.setState({ permissionsGranted: status === 'granted' });
-  }
 
   onSend = (messages = []) => {
     let { step } = this.state;
@@ -175,7 +182,50 @@ export default class SubmitFeedback extends Component {
   };
 
   snap = async () => {
-    this.setState(prevstate => ({ openCamera: !prevstate.openCamera }));
+
+    const { step } = this.state;
+    ImagePicker.launchCamera(options, (resp) => {
+
+      const messages = [
+        {
+          _id: Math.round(Math.random() * 1000000).toString(),
+          text: '',
+          createdAt: new Date(),
+          image: resp.path,
+          sent: true,
+          received: true,
+          user: {
+            _id: 1,
+            name: 'Admin',
+          },
+        }
+      ];
+      this.setState(previousState => ({
+        messages: GiftedChat.append(previousState.messages, [
+          { ...messages[0], sent: true, received: true },
+        ]),
+        step,
+        showBottomButton: true,
+        openCamera: false,
+      }));
+      const newMessages = [
+        {
+          _id: Math.round(Math.random() * 1000000).toString(),
+          text: response,
+          createdAt: new Date(),
+          sent: true,
+          received: true,
+          user: {
+            _id: 2,
+            name: 'Admidn',
+            avatar: require('../../assets/goldlogo.png'),
+          },
+        },
+      ];
+      this.setState(previousState => ({
+        messages: GiftedChat.append(previousState.messages, newMessages),
+      }))
+    });
   };
 
   updateFeedback = async val => {
@@ -185,30 +235,13 @@ export default class SubmitFeedback extends Component {
       showBottomButton: true,
     }));
     if (val === 1) {
-      await this.takePicture();
+      await this.snap();
     } else {
       await this.takeVideo();
     }
-    const messages = [
-      {
-        _id: Math.round(Math.random() * 1000000), // .toString(),
-        createdAt: new Date(),
-        user: {
-          _id: '2'.toString(),
-          name: 'React Native',
-          avatar: require('../../assets/goldlogo.png'),
-        },
-        text: response.trim(''),
-        sent: true,
-        received: true,
-      },
-    ];
     let { step } = this.state;
     step += 1;
     this.setState(previousState => ({
-      messages: GiftedChat.append(previousState.messages, [
-        { ...messages[0], sent: true, received: true },
-      ]),
       step,
       videoStarted: false,
       hideHeader: false,
@@ -267,89 +300,55 @@ export default class SubmitFeedback extends Component {
     step += 1;
     const messages = [
       {
-        _id: Math.round(Math.random() * 1000000), // .toString(),
+        _id: Math.round(Math.random() * 1000000).toString(),
         text,
         createdAt: new Date(),
         sent: true,
         received: true,
+        user: {
+          _id: 1,
+          name: 'user',
+        },
       },
     ];
     this.setState(previousState => ({
       messages: GiftedChat.append(previousState.messages, [
-        { ...messages[0], ...messages[1], sent: true, received: true },
+        { ...messages[0], sent: true, received: true },
       ]),
       step,
     }));
     if (text === 1) {
-      this.setState({ openCamera: true });
-      await this.updateFeedback();
+      await this.updateFeedback(text);
     } else {
       this.setState({ openCamera: false });
     }
   };
 
-  takePicture = async () => {
-    // let { step } = this.state;
-    // step += 1;
-    // // const { openCamera } = this.state;
+  // renderTopBar = () => <View style={styles.topBar} />;
 
-    // if (this.camera) {
-    //   try {
-    //     const photo = await this.camera.takePictureAsync({
-    //       skipProcessing: true,
-    //     });
-    //     const messages = [
-    //       {
-    //         _id: Math.round(Math.random() * 1000000),
-    //         text: '',
-    //         createdAt: new Date(),
-    //         image: photo.uri,
-    //         sent: true,
-    //         received: true,
-    //       },
-    //     ];
-    //     this.setState(previousState => ({
-    //       messages: GiftedChat.append(previousState.messages, [
-    //         { ...messages[0], ...messages[1], sent: true, received: true },
-    //       ]),
-    //       step,
-    //       openCamera: false,
-    //     }));
-    //   } catch (error) {
-    //     this.setState({ error: error.message });
-    //   }
-    // } else {
-    //   this.setState({
-    //     error: 'Request failed',
-    //   });
-    // }
-  };
-
-  renderTopBar = () => <View style={styles.topBar} />;
-
-  renderBottomBar = () => {
-    const { videoStarted } = this.state;
-    return (
-      <View style={styles.bottomBar}>
-        <View style={{ flex: 0.4 }}>
-          <TouchableOpacity
-            onPress={this.updateFeedback(1)}
-            onLongPress={this.updateFeedback(2)}
-            style={{ alignSelf: 'center' }}
-          >
-            <Fragment>
-              <Text>{!videoStarted ? 'video' : 'picture'}</Text>
-              <Ionicons
-                name="ios-radio-button-on"
-                size={70}
-                color={!videoStarted ? 'white' : 'red'}
-              />
-            </Fragment>
-          </TouchableOpacity>
-        </View>
-      </View>
-    );
-  };
+  // renderBottomBar = () => {
+  //   const { videoStarted } = this.state;
+  //   return (
+  //     <View style={styles.bottomBar}>
+  //       <View style={{ flex: 0.4 }}>
+  //         <TouchableOpacity
+  //           onPress={this.updateFeedback(1)}
+  //           onLongPress={this.updateFeedback(2)}
+  //           style={{ alignSelf: 'center' }}
+  //         >
+  //           <Fragment>
+  //             <Text>{!videoStarted ? 'video' : 'picture'}</Text>
+  //             <Ionicons
+  //               name="ios-radio-button-on"
+  //               size={70}
+  //               color={!videoStarted ? 'white' : 'red'}
+  //             />
+  //           </Fragment>
+  //         </TouchableOpacity>
+  //       </View>
+  //     </View>
+  //   );
+  // };
 
   renderLeftIcon = () => {
     const { showBottomButton } = this.state;
@@ -433,34 +432,18 @@ export default class SubmitFeedback extends Component {
         </Fragment>
 
         <Fragment>
-          {openCamera ? (
-            <View />
-
-          ) : (
-              <Fragment>
-                <GiftedChat
-                  messages={messages}
-                  onSend={this.onSend}
-                  renderActions={this.renderLeftIcon}
-                />
-              </Fragment>
-            )}
+          <Fragment>
+            <GiftedChat
+              messages={messages}
+              onSend={this.onSend}
+              renderActions={this.renderLeftIcon}
+              user={{
+                _id: 1,
+              }}
+            />
+          </Fragment>
         </Fragment>
       </View>
     );
   }
 }
-
-
-{/* <Camera
-              ref={ref => {
-                this.camera = ref;
-              }}
-              type={type}
-              flashMode={flash}
-              autoFocus={autoFocus}
-              style={styles.camera}
-            >
-              {this.renderTopBar()}
-              {this.renderBottomBar()}
-            </Camera> */}
