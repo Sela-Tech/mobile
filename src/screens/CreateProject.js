@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Dropdown } from 'react-native-material-dropdown';
 import CalendarBox from '../components/CreateProject/CalendarBox';
 import Input from '../components/Input';
 import Text from '../components/Text';
@@ -35,13 +36,22 @@ export default class CreateProject extends Component {
   state = {
     showFirstCalendar: false,
     showSecondCalendar: false,
+    startDate: Date.now(),
+    endDate: Date.now(),
     loading: false,
+    users: [],
+    stakeholders: [],
   };
   async componentDidMount() {
     try {
       const resp = await API.getAllUsers();
-      console.log('res', resp.data);
-      this.setState({ users: resp.data })
+      // console.log('res', resp.data);
+      const users = resp.data.map((c) => {
+        c.label = c.firstName.concat(' ').concat(c.lastName);
+        c.value = c._id;
+        return c;
+      });
+      this.setState({ users })
     }
     catch (err) {
       this.setState({ error: err.message })
@@ -112,6 +122,11 @@ export default class CreateProject extends Component {
     this.openCalender(val);
   };
 
+  chooseContractor = (id) => {
+    const val = [id];
+    this.setState({ stakeholders: val });
+  }
+
   submit = async () => {
     const {
       name,
@@ -122,6 +137,7 @@ export default class CreateProject extends Component {
       avatar,
       startDate,
       endDate,
+      stakeholders,
       //  places:
     } = this.state;
 
@@ -142,7 +158,7 @@ export default class CreateProject extends Component {
       endDate: '2018-11-29',
       tags,
       budget,
-      contractors,
+      contractors: stakeholders,
       avatar: 'https://placeimg.com/200/200/people',
       location: {
         name: 'south-west',
@@ -166,11 +182,10 @@ export default class CreateProject extends Component {
   };
 
   render() {
-    const { image, showFirstCalendar, showSecondCalendar, loading } = this.state;
+    const { image, showFirstCalendar, showSecondCalendar, loading, users } = this.state;
     const avatar = require('../../assets/selectImage.png');
     const avatarURI = image || '';
     const icon = avatarURI === '' ? avatar : { uri: avatarURI };
-
     return (
       <KeyboardAwareScrollView
         // innerRef={ref => {
@@ -281,15 +296,17 @@ export default class CreateProject extends Component {
               {` Add contractors and team members to the project `}
             </Text>
           </View>
-          <Input
-            text="Select"
-            style={styles.inputStyle}
-            placeHolderColor="#B1BAD2"
-            onChangeTheText={contractors => this.setState({ contractors })}
-          // onTheChange={() => this.setState({
-          //   plasError: false,
-          //   placesErrorMessage: '',
-          // })}
+          <Dropdown
+            containerStyle={[{
+              height: height / 13,
+              justifyContent: 'center',
+              paddingLeft: 10,
+              borderRadius: 5,
+              borderColor: '#F5F5F8',
+              borderWidth: 1
+            }, styles.inputStyle]}
+            onChangeText={(id) => this.chooseContractor(id)}
+            data={users}
           />
         </View>
 
