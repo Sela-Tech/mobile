@@ -21,9 +21,9 @@ const options = {
 
 
 const initialText =
-  'Upload evidence of completion non-completion of this task.This can be a photo or video.Ensure you are at the project site before proceeding';
+  'Upload evidence of completion of this task.This can be a photo or video.Ensure you are at the project site before proceeding.';
 
-const response = ' Select  1 to add more evidence continue or  2 for terminate ';
+const response = ' Select  1 to add more evidence  or  2 for terminate. ';
 
 const styles = StyleSheet.create({
   container: {
@@ -191,7 +191,7 @@ export default class SubmitFeedback extends Component {
           _id: Math.round(Math.random() * 1000000).toString(),
           text: '',
           createdAt: new Date(),
-          image: resp.path,
+          image: resp.uri,
           sent: true,
           received: true,
           user: {

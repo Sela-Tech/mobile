@@ -154,8 +154,8 @@ class Project extends Component {
                                   <View style={{ flex: 1 }}>
                                     <SingularProject
                                       leftText="Projects you proposed"
-                                      rightText="See all"
-                                      projects={projectCreatedByMe}
+                                      // rightText="See all"
+                                      projects={projects.slice(2, 3)}
                                     />
                                   </View>
 

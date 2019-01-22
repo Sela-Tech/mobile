@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import { RootNavigator } from './src/Navigator';
 import ErrorHandler from './src/components/ErrorHandler';
+import Loading from './src/components/Loading';
 import NavigationService from './src/services/NavigationService';
-import store from './store';
+import { store, persistor } from './store';
 import { WHITE } from './src/utils/constants';
 
 const styles = StyleSheet.create({
@@ -14,27 +16,19 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class App extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      // isReady: false,
-    };
-  }
 
-  render() {
-    return (
-      <Provider store={store.store}>
-        <ErrorHandler>
-          <View style={styles.container}>
-            <RootNavigator
-              ref={navigatorRef => {
-                NavigationService.setTopLevelNavigator(navigatorRef);
-              }}
-            />
-          </View>
-        </ErrorHandler>
-      </Provider>
-    );
-  }
-}
+export default () => (
+  <Provider store={store}>
+    <PersistGate persistor={persistor} loading={<Loading />}>
+      <ErrorHandler>
+        <View style={styles.container}>
+          <RootNavigator
+            ref={navigatorRef => {
+              NavigationService.setTopLevelNavigator(navigatorRef);
+            }}
+          />
+        </View>
+      </ErrorHandler>
+    </PersistGate>
+  </Provider>
+);
