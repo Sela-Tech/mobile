@@ -19,9 +19,9 @@ const middlewares = [
   // logger, // use during development alone
 ];
 
-if (__DEV__) {
-  middlewares.push(createLogger());
-}
+// if (__DEV__) {
+//   middlewares.push(createLogger());
+// }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 

@@ -1,12 +1,13 @@
 import React, { Fragment, Component } from 'react';
 import { View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Header } from 'native-base';
+import io from 'socket.io-client';
 import { GiftedChat } from 'react-native-gifted-chat';
 import ImagePicker from 'react-native-image-picker';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Text from '../components/Text';
 import { isAndroid } from '../utils/helpers';
-import { YELLOW } from '../utils/constants';
+import { YELLOW, SOCKET_URL } from '../utils/constants';
 
 const { width } = Dimensions.get('window');
 
@@ -144,31 +145,73 @@ export default class SubmitFeedback extends Component {
       </View>
     ),
   });
+  constructor(props) {
+    super(props);
+    // this.socke = io(SOCKET_URL, {
+    //   jsonp: false,
+    //   // transports: ['websocket'],
+    //   // transports: ['websocket'],
+    // });
+    // const socket = this.socke;
 
-  state = {
-    hideHeader: false,
-    openCamera: false,
-    videoStarted: false,
-    flash: 'off',
-    autoFocus: 'on',
-    messages: [
-      {
-        _id: Math.round(Math.random() * 1000000).toString(),
-        text: '',
-        createdAt: new Date(),
-        user: {
-          _id: '2',
-          name: 'Admin',
-          avatar: require('../../assets/goldlogo.png'),
+    // this.socke.on('connect', (socet) => {
+    //   // console.log('djdjdjdj', socket)
+    //   // console.log('jdjdjdj', data)
+    //   // socket.on('connected',)
+    //   this.socke.on('connected', (data) => {
+    //     console.log('tette', data)
+    //     //   })
+    //   });
+    // })
+    this.state = {
+      hideHeader: false,
+      openCamera: false,
+      videoStarted: false,
+      flash: 'off',
+      autoFocus: 'on',
+      messages: [
+        {
+          _id: Math.round(Math.random() * 1000000).toString(),
+          text: '',
+          createdAt: new Date(),
+          user: {
+            _id: '2',
+            name: 'Admin',
+            avatar: require('../../assets/goldlogo.png'),
+          },
+          text: initialText.trim(' '),
+          sent: true,
+          received: true,
         },
-        text: initialText.trim(' '),
-        sent: true,
-        received: true,
-      },
-    ],
-    step: 0,
-    showBottomButton: false,
-  };
+      ],
+      step: 0,
+      showBottomButton: false,
+    };
+  }
+
+
+  // CONST socket = io(BASE_URL, {
+  //   transports: ['websocket'],
+  // });
+
+  componentDidMount() {
+    // const socket = this.socke;
+
+    // socket.on('connect', (socet) => {
+    //   // console.log('djdjdjdj', socket)
+    //   // console.log('jdjdjdj', data)
+    //   // socket.on('connected',)
+    //   socket.on('connected', (data) => {
+    //     console.log('tette', data)
+    //     //   })
+    //   });
+    // })
+
+    // socket.on('connected', (data) => {
+    //   console.log('tette', data)
+    //   //   })
+    // });
+  }
 
   onSend = (messages = []) => {
     let { step } = this.state;
