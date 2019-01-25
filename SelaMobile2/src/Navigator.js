@@ -17,12 +17,12 @@ import ProfileScreen from './screens/Profile';
 
 
 export const RootStackNavigator = createStackNavigator({
-  Project: {
-    screen: ProjectBottomNavigator,
-    navigationOptions: {
-      header: null,
-    },
-  },
+  // Project: {
+  //   screen: ProjectBottomNavigator,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
   Notification: {
     screen: Notifications,
   },
@@ -157,6 +157,6 @@ export const TestStackNavigator = createStackNavigator({
 
 // export const RootNavigator = createAppContainer(TestStackNavigator);
 
-// export const RootNavigator = createAppContainer(AuthenticatedUserNavigator);
+export const RootNavigator = createAppContainer(MainSwitchNavigator);
 
-export const RootNavigator = createAppContainer(RootStackNavigator);
+// export const RootNavigator = createAppContainer(RootStackNavigator);

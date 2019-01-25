@@ -84,7 +84,7 @@ class Project extends Component {
     await this.props.getContractorProjects();
     this.setState({ loading: false });
 
-    getCurrentState();
+    // getCurrentState();
   }
 
   renderButton() {

@@ -12,6 +12,8 @@ const styles = StyleSheet.create({
 
 class AuthLoading extends Component {
   async componentDidMount() {
+    // console.log('gogogoo')
+    // AsyncStorage.removeItem('user');
     try {
       await this.getKey();
     } catch (error) {

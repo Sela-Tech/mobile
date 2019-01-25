@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import { getUserNotifications, updateUserNotifications } from '../../actions/notifications';
 import Text from '../components/Text';
+import Spinner from '../components/Spinner';
 import SingleNotificationText from '../components/Notifications/SingleNotificationText';
 import { WHITE } from '../utils/constants';
+import { formattedDate } from '../utils/helpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -10,20 +14,46 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     backgroundColor: WHITE,
   },
+  spinnerCenter: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
-export default class Notifications extends Component {
+// export default 
+class Notifications extends Component {
   static navigationOptions = {
     title: 'Notifications',
   };
 
   state = {
-    empty: false,
+    loading: true,
   };
 
+  async componentDidMount() {
+    await this.props.getNotifications();
+    const notifications = this.props.notifications && this.props.notifications.notifications && this.props.notifications.notifications.notifications || [];
+    const unreadNIds = notifications.filter(c => c.read === false).map(d => d._id);
+    if (unreadNIds.length > 0) {
+      this.props.updateNotifs(unreadNIds);
+    }
+    this.setState({ loading: false });
+  }
+
+
   render() {
-    const { empty } = this.state;
-    if (empty) {
+    const { empty, loading } = this.state;
+    const notifications = this.props.notifications && this.props.notifications.notifications && this.props.notifications.notifications.notifications || [];
+    // console.log('d noti', notifications);
+    if (!!loading) {
+      return (
+        <View style={styles.spinnerCenter}>
+          <Spinner />
+        </View>
+      )
+    }
+    if (notifications.length === 0) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <View>
@@ -39,58 +69,35 @@ export default class Notifications extends Component {
     return (
       <ScrollView
         showsVerticalScrollIndicator={false}
-       style={styles.container} 
-       contentContainerStyle={{ flex: 0 }}>
-        <SingleNotificationText
-          text="A new project - 250 Housing Units in Owerri, 
-                    Nigeria - has been proposed by Aisha Hammed for 
-                    funding. View project"
-          imageSRC={require('../../assets/man1.png')}
-          time="1 day ago"
-        />
-
-        <SingleNotificationText
-          text="Your proposed project “Yenagoa Fish Farm” has been approved and is open for investors."
-          imageSRC={require('../../assets/logo_pink.png')}
-          time="2 days ago"
-        />
-
-        <SingleNotificationText
-          text="A new project - 250 Housing Units in Owerri, 
-                    Nigeria - has been proposed by Aisha Hammed for 
-                    funding. View project"
-          imageSRC={require('../../assets/woman1.png')}
-          time="2 days ago"
-        />
-        <SingleNotificationText
-          text="A new project - 250 Housing Units in Owerri, 
-                    Nigeria - has been proposed by Aisha Hammed for 
-                    funding. View project"
-          imageSRC={require('../../assets/man2.png')}
-          time="2 days ago"
-        />
-        <SingleNotificationText
-          text="A new project - 250 Housing Units in Owerri, 
-                    Nigeria - has been proposed by Aisha Hammed for 
-                    funding. View project"
-          imageSRC={require('../../assets/img/man.png')}
-          time="2 days ago"
-        />
-        <SingleNotificationText
-          text="A new project - 250 Housing Units in Owerri, 
-                    Nigeria - has been proposed by Aisha Hammed for 
-                    funding. View project"
-          imageSRC={require('../../assets/img/woman.png')}
-          time="2 days ago"
-        />
-        <SingleNotificationText
-          text="A new project - 250 Housing Units in Owerri, 
-                    Nigeria - has been proposed by Aisha Hammed for 
-                    funding. View project"
-          imageSRC={require('../../assets/img/man.png')}
-          time="2 days ago"
-        />
+        style={styles.container}
+        contentContainerStyle={{ flex: 0 }}>
+        {
+          notifications.map((c, index) => {
+            return (
+              <SingleNotificationText
+                key={index}
+                text={c.message}
+                imageSRC={c.stakeholder.profilePhoto ? { uri: c.stakeholder.profilePhoto } : require('../../assets/man1.png')}
+                time={formattedDate(c.createdOn)}
+              />
+            )
+          })
+        }
       </ScrollView>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  notifications: state.notifications,
+});
+
+const mapDispatchToProps = dispatch => ({
+  getNotifications: () => dispatch(getUserNotifications()),
+  updateNotifs: data => dispatch(updateUserNotifications(data))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Notifications);

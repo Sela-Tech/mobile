@@ -33,8 +33,8 @@ export const getUserNotifications = () => dispatch =>
             dispatch(notificationsIsLoadingError(err.message || 'ERROR'));
         });
 
-export const updateUserNotifications = () => dispatch =>
-    API.updateNotifications()
+export const updateUserNotifications = data => dispatch =>
+    API.updateNotifications(data)
         .then(resp => {
             dispatch(notificationsIsLoading(false));
             dispatch(updateNotifications(resp.data));

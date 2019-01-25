@@ -16,22 +16,29 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginLeft: 10,
   },
+  flex1: {
+    flex: 1
+  },
+  mt5: {
+    marginTop: 5,
+  },
+  subContainer: {
+    flex: 5,
+    paddingLeft: 10,
+  },
 });
 
 const SingleNotificationText = ({ text, imageSRC, time }) => (
   <View style={styles.container}>
-    <View style={{ flex: 1 }}>
+    <View style={styles.flex1}>
       <Image source={imageSRC} style={styles.imgStyle} />
     </View>
-    <View style={{ flex: 5, paddingLeft: 10 }}>
-      <View style={{}}>
+    <View style={styles.subContainer}>
+      <View>
         <B>{text}</B>
       </View>
-      <View style={{ marginTop: 5 }}>
-        <Text>
-{time}
-{' '}
- </Text>
+      <View style={styles.mt5}>
+        <Text> {time} </Text>
       </View>
     </View>
   </View>
