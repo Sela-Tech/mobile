@@ -50,8 +50,12 @@ const getCurrentState = () => {
     console.log(data);
   });
 
-  socket.on('notifications', data => {
-    store.dispatch(getAllUserNotifications({ notifications: data }));
+  socket.on('notifications', notifications => {
+    console.log('notifications', notifications);
+    if (notifications.notifications.message !== 'You currently have no new notifications') {
+      store.dispatch(getAllUserNotifications({ notifications }));
+    }
+
   });
 
 
@@ -84,7 +88,7 @@ class Project extends Component {
     await this.props.getContractorProjects();
     this.setState({ loading: false });
 
-    // getCurrentState();
+    getCurrentState();
   }
 
   renderButton() {

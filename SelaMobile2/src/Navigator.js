@@ -17,12 +17,12 @@ import ProfileScreen from './screens/Profile';
 
 
 export const RootStackNavigator = createStackNavigator({
-  // Project: {
-  //   screen: ProjectBottomNavigator,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
+  Project: {
+    screen: ProjectBottomNavigator,
+    navigationOptions: {
+      header: null,
+    },
+  },
   Notification: {
     screen: Notifications,
   },
