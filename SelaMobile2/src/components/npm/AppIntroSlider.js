@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 4,
   },
   leftButtonContainer: {
-    color: 'blue',
+    // color: 'blue',
     position: 'absolute',
     left: 80,
   },
