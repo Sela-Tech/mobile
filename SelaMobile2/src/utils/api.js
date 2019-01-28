@@ -14,6 +14,7 @@ const axios2 = Axios.create({
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
+    'origin': 'https://sela-test.now.sh',
   },
 });
 

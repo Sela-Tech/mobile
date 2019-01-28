@@ -36,7 +36,7 @@ export const getContractorProject = () => dispatch =>
   API.viewAssignedProject()
     .then(resp => {
       dispatch(projectIsLoading(false));
-      dispatch(saveContractorProjects(resp.data));
+      dispatch(saveContractorProjects(resp.data.projects));
     })
     .catch(err => {
       dispatch(projectIsLoading(false));

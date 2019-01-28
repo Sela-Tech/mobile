@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import Text from '../Text';
+import Box from '../Project/Box';
 import Images from './Images';
 import { YELLOW } from '../../utils/constants';
 
@@ -54,24 +55,36 @@ const Project = ({ leftText, rightText, projects }) => (
           {' '}
         </Text>
       </View>
-      <View style={styles.rightContainer}>
-        <View style={styles.rightContainerWithPadding}>
-          <Text style={styles.rightTextContainer}>
-            {' '}
-            {rightText}
-            {' '}
-          </Text>
-        </View>
-        <View style={{ justifyContent: 'center' }}>
-          <Image source={require('../../../assets/forward-yellow.png')} />
-        </View>
-      </View>
+      <Fragment>
+        {
+          projects.length > 0 ?
+            (
+              <View style={styles.rightContainer}>
+                <View style={styles.rightContainerWithPadding}>
+                  <Text style={styles.rightTextContainer}>
+                    {' '}
+                    {rightText}
+                    {' '}
+                  </Text>
+                </View>
+                <View style={{ justifyContent: 'center' }}>
+                  <Image source={require('../../../assets/forward-yellow.png')} />
+                </View>
+              </View>
+            ) : null
+        }
+      </Fragment>
     </View>
 
     <View style={styles.bottomContainer}>
-      <Images
-        projects={projects}
-      />
+      {
+        projects.length === 0 ?
+          <Box
+            empty
+            fn={() => console.log('navigate')}
+          />
+          : <Images projects={projects} />
+      }
     </View>
   </View>
 );

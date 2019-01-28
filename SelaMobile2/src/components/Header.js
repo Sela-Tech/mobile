@@ -7,7 +7,8 @@ import { WHITE } from '../utils/constants';
 
 const styles = StyleSheet.create({
   buttonColor: {
-    backgroundColor: WHITE,
+    // backgroundColor: WHITE,
+    backgroundColor: 'red',
   },
   headerName: {
     color: '#201D41',
@@ -21,7 +22,7 @@ const HeaderB = ({ headerName, sideIconStatus, sideIconImage }) => (
       <Title style={styles.headerName}>{headerName}</Title>
     </Body>
 
-    <Right style={{ flex: 1 }}>
+    <Right style={{ flex: 1, backgroundColor: 'blue' }}>
       {sideIconStatus ? (
         <Button
           light
@@ -29,7 +30,10 @@ const HeaderB = ({ headerName, sideIconStatus, sideIconImage }) => (
           onPress={() => NavigationService.navigate('Notification')}
         // onPress={() => console.log('bigigi')}
         >
-          <Image source={sideIconImage} />
+          <Image
+            // style={{ flex: 1 }}
+            resizeMode="cover"
+            source={sideIconImage} />
         </Button>
       ) : null}
     </Right>
