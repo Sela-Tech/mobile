@@ -83,6 +83,7 @@ export const getSingleProject = async id => {
 export const getAllProjects = async () => {
   try {
     const resp = await axios.get(`/projects`);
+    // console.log('get -user project', resp.data)
     return resp;
   } catch (err) {
     return err;
@@ -93,6 +94,7 @@ export const getAllProjects = async () => {
 export const viewAssignedProject = async () => {
   try {
     const resp = await axios.get(`/stakeholder/projects`);
+    // console.log('get -contractor project', resp.data)
     return resp;
   } catch (err) {
     return err;
@@ -137,8 +139,12 @@ export const getUserNotifications = async () => {
   }
 };
 
-export const updateNotifications = async data => {
+export const updateNotifications = async datum => {
   try {
+    const data = {
+      unreadNIds: datum,
+    };
+    console.log('data,i am sending', data);
     const resp = axios.post('/notifications/mark-as-read', data);
     return resp;
   } catch (err) {

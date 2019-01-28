@@ -10,10 +10,14 @@ const notificationsReducer = (
 ) => {
   switch (action.type) {
     case types.GET_ALL_USER_NOTIFICATION:
-      // console.log('got to this reducer side', action.notifications)
       return { ...state, notifications: action.notifications };
     case types.UPDATE_NOTIFICATION:
-      return { ...state, notifications: action.notifications };
+    // return { ...state, notifications: action.notifications };
+    case types.GET_NEW_NOTIFICATION:
+      const newState = Object.assign({}, state, {
+        notifications: action.notifications.notifications
+      });
+      return { ...state, ...newState }
     case types.NOTIFICATION_IS_LOADING:
       return { ...state, loading: action.isLoading };
     case types.NOTIFICATION_ERROR:

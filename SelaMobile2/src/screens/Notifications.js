@@ -6,7 +6,7 @@ import Text from '../components/Text';
 import Spinner from '../components/Spinner';
 import SingleNotificationText from '../components/Notifications/SingleNotificationText';
 import { WHITE } from '../utils/constants';
-import { formattedDate } from '../utils/helpers';
+import { formattedDate, sortNotificationsByDate } from '../utils/helpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -19,9 +19,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  flex0: {
+    flex: 0,
+  },
 });
 
-// export default
 class Notifications extends Component {
   static navigationOptions = {
     title: 'Notifications',
@@ -32,27 +34,39 @@ class Notifications extends Component {
   };
 
   async componentDidMount() {
-    await this.props.getNotifications();
-    const notifications =
+    let notifications =
       (this.props.notifications &&
         this.props.notifications.notifications &&
         this.props.notifications.notifications.notifications) ||
       [];
-    const unreadNIds = notifications.filter(c => c.read === false).map(d => d._id);
-    if (unreadNIds.length > 0) {
-      this.props.updateNotifs(unreadNIds);
+    console.log(' at comp did mount notifications', notifications)
+
+    try {
+      if (notifications.length !== 0) {
+        this.setState({ loading: false });
+      }
+      await this.props.getNotifications();
+
+      const unreadNIds = notifications.filter(c => c.read === false).map(d => d._id);
+      if (unreadNIds.length > 0) {
+        this.props.updateNotifs(unreadNIds);
+      }
+      this.setState({ loading: false });
     }
-    this.setState({ loading: false });
+    catch (err) {
+      this.setState({ error: err.message })
+    }
   }
 
   render() {
-    const { empty, loading } = this.state;
-    const notifications =
+    const { loading } = this.state;
+    let notifications =
       (this.props.notifications &&
         this.props.notifications.notifications &&
         this.props.notifications.notifications.notifications) ||
       [];
-    // console.log('d noti', notifications);
+    notifications = sortNotificationsByDate(notifications);
+
     if (loading) {
       return (
         <View style={styles.spinnerCenter}>
@@ -77,7 +91,7 @@ class Notifications extends Component {
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={styles.container}
-        contentContainerStyle={{ flex: 0 }}
+        contentContainerStyle={styles.flex0}
       >
         {notifications.map((c, index) => (
           <SingleNotificationText

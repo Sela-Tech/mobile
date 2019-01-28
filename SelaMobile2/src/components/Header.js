@@ -27,6 +27,7 @@ const HeaderB = ({ headerName, sideIconStatus, sideIconImage }) => (
           light
           style={styles.backgroundColor}
           onPress={() => NavigationService.navigate('Notification')}
+        // onPress={() => console.log('bigigi')}
         >
           <Image source={sideIconImage} />
         </Button>
