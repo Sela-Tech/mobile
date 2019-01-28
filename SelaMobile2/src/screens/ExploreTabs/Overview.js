@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
+import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import CalendarBox from '../../components/Transactions/CalendarBox';
 import Box from './OverviewComp/Box';
-import Button from '../../components/Button';
 import StandardText from '../../components/StandardText';
 import { WHITE } from '../../utils/constants';
 import Text from '../../components/Text';
@@ -35,9 +34,7 @@ export default class Overview extends Component {
     return (
       <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
         <View style={{ marginTop: '4%', flex: 1 }}>
-          <Text style={{ color: '#222829' }}>
-            {project.description}
-          </Text>
+          <Text style={{ color: '#222829' }}>{project.description}</Text>
         </View>
         <View style={{ paddingTop: 10 }}>
           <CalendarBox />

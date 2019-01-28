@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
 import Text from '../../components/Text';
 import IndUpdates from '../../components/ExploreProject/Updates';
-import EvalSubmission from '../../components/ExploreProject/EvalSubmission';
 import Button from '../../components/Button';
 import { WHITE } from '../../utils/constants';
 
@@ -24,31 +23,6 @@ const styles = StyleSheet.create({
     width: width / 2,
   },
 });
-
-const renderItem = item => <EvalSubmission imgSource={item.item.source} markedStatus />;
-
-const images = [
-  {
-    source: require('../../../assets/oilspill.png'),
-    id: 1,
-  },
-  {
-    source: require('../../../assets/road.png'),
-    id: 2,
-  },
-  {
-    source: require('../../../assets/borehole.png'),
-    id: 3,
-  },
-  {
-    source: require('../../../assets/road.png'),
-    id: 4,
-  },
-  {
-    source: require('../../../assets/borehole.png'),
-    id: 5,
-  },
-];
 
 
 export default class Updates extends Component {
@@ -75,7 +49,6 @@ export default class Updates extends Component {
           <Button text="INVEST" />
         </View>
       </ScrollView>
-    )
+    );
   }
 }
-

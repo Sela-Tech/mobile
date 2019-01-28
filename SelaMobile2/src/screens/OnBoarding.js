@@ -154,7 +154,6 @@ export default class OnBoarding extends Component {
 
   signUp = async () => {
     // const { fullName, emailOrPhone, password, isFunder, isEvaluator, isContractor } = this.state;
-
     // if (emailOrPhone === '' && password === '' && fullName === '') {
     //   return this.setState({
     //     emailOrPhoneError: true,
@@ -165,7 +164,6 @@ export default class OnBoarding extends Component {
     //     fullNameErrorMessage: "Full Name field can't be blank",
     //   });
     // }
-
     // if (emailOrPhone === '' && password === '') {
     //   return this.setState({
     //     emailOrPhoneError: true,
@@ -174,7 +172,6 @@ export default class OnBoarding extends Component {
     //     passwordErrorMessage: "Password Field can't be blank",
     //   });
     // }
-
     // if (emailOrPhone === '' && fullName === '') {
     //   return this.setState({
     //     emailOrPhoneError: true,
@@ -183,7 +180,6 @@ export default class OnBoarding extends Component {
     //     fullNameErrorMessage: "Full Name field can't be blank",
     //   });
     // }
-
     // if (password === '' && fullName === '') {
     //   return this.setState({
     //     passwordError: true,
@@ -198,7 +194,6 @@ export default class OnBoarding extends Component {
     //     fullNameErrorMessage: "Full Name field can't be blank",
     //   });
     // }
-
     // if (emailOrPhone === '') {
     //   return this.setState({
     //     emailOrPhoneError: true,
@@ -211,14 +206,12 @@ export default class OnBoarding extends Component {
     //     passwordErrorMessage: "Password Field can't be blank",
     //   });
     // }
-
     // if (password.length < 8) {
     //   return this.setState({
     //     passwordError: true,
     //     passwordErrorMessage: 'Password should contain 8 characters or more',
     //   });
     // }
-
     // if (fullName.split(' ')[1] === undefined) {
     //   return this.setState({
     //     fullNameError: true,
@@ -241,7 +234,6 @@ export default class OnBoarding extends Component {
     //   password,
     //   profilePhoto: 'https://placeimg.com/200/200/people',
     // };
-
     // this.setState({
     //   submitErrorMessage: '',
     //   loading: true,
@@ -249,11 +241,9 @@ export default class OnBoarding extends Component {
     // try {
     //   const resp = await signUp(data);
     //   this.setState({ loading: false });
-
     //   if (resp.data.success === true) {
     //     return NavigationService.navigate('SignUpSuccess');
     //   }
-
     //   this.setState({
     //     submitErrorMessage: resp.data.message,
     //   });
@@ -309,24 +299,24 @@ export default class OnBoarding extends Component {
                     showPassword={this.showPassword}
                   />
                 ) : (
-                    <OnBoardView
-                      second
-                      currentPage={currentPage}
-                      changePage={this.changePage}
-                      secure={secure}
-                      state={this.state}
-                      changeRole={this.changeRole}
-                      navigate={navigate}
-                      showPassword={this.showPassword}
-                      changeFullNameFn={this.fullNameFn}
-                      passwordFn={this.passwordFn}
-                      emailOrPhoneFn={this.emailOrPhoneFn}
-                      onTheChangeEmailOrPhone={this.onTheChangeEmailOrPhone}
-                      onTheChangeFullName={this.onTheChangeFullName}
-                      onTheChangePassword={this.onTheChangePassword}
-                      signUp={this.signUp}
-                    />
-                  )}
+                  <OnBoardView
+                    second
+                    currentPage={currentPage}
+                    changePage={this.changePage}
+                    secure={secure}
+                    state={this.state}
+                    changeRole={this.changeRole}
+                    navigate={navigate}
+                    showPassword={this.showPassword}
+                    changeFullNameFn={this.fullNameFn}
+                    passwordFn={this.passwordFn}
+                    emailOrPhoneFn={this.emailOrPhoneFn}
+                    onTheChangeEmailOrPhone={this.onTheChangeEmailOrPhone}
+                    onTheChangeFullName={this.onTheChangeFullName}
+                    onTheChangePassword={this.onTheChangePassword}
+                    signUp={this.signUp}
+                  />
+                )}
               </View>
             </View>
           </KeyboardAvoidingView>

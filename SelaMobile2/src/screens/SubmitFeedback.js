@@ -4,10 +4,9 @@ import { Header } from 'native-base';
 import io from 'socket.io-client';
 import { GiftedChat } from 'react-native-gifted-chat';
 import ImagePicker from 'react-native-image-picker';
-import Ionicons from 'react-native-vector-icons/Ionicons';
 import Text from '../components/Text';
 import { isAndroid } from '../utils/helpers';
-import { YELLOW, SOCKET_URL } from '../utils/constants';
+import { YELLOW } from '../utils/constants';
 
 const { width } = Dimensions.get('window');
 
@@ -19,7 +18,6 @@ const options = {
     path: 'images',
   },
 };
-
 
 const initialText =
   'Upload evidence of completion of this task.This can be a photo or video.Ensure you are at the project site before proceeding.';
@@ -145,24 +143,10 @@ export default class SubmitFeedback extends Component {
       </View>
     ),
   });
+
   constructor(props) {
     super(props);
-    this.socke = io('https://sela-develop.herokuapp.com/', {
-      // jsonp: false,
-      // transports: ['websocket'],
-      // transports: ['websocket'],
-    });
-    // const socket = this.socke;
 
-    // this.socke.on('connect', (socet) => {
-    //   // console.log('djdjdjdj', socket)
-    //   // console.log('jdjdjdj', data)
-    //   // socket.on('connected',)
-    //   this.socke.on('connected', (data) => {
-    //     console.log('tette', data)
-    //     //   })
-    //   });
-    // })
     this.state = {
       hideHeader: false,
       openCamera: false,
@@ -190,30 +174,6 @@ export default class SubmitFeedback extends Component {
   }
 
 
-  // CONST socket = io(BASE_URL, {
-  //   transports: ['websocket'],
-  // });
-
-  componentDidMount() {
-    console.log('djdjjdj')
-    const socket = this.socke;
-
-    socket.on('connect', (socet) => {
-      // console.log('djdjdjdj', socket)
-      // console.log('jdjdjdj', data)
-      // socket.on('connected',)
-      // socket.on('connected', (data) => {
-      //   console.log('tette', data)
-      //   //   })
-      // });
-    })
-
-    socket.on('connected', (data) => {
-      console.log('tette', data)
-      //   })
-    });
-  }
-
   onSend = (messages = []) => {
     let { step } = this.state;
     step += 1;
@@ -226,10 +186,8 @@ export default class SubmitFeedback extends Component {
   };
 
   snap = async () => {
-
     const { step } = this.state;
-    ImagePicker.launchCamera(options, (resp) => {
-
+    ImagePicker.launchCamera(options, resp => {
       const messages = [
         {
           _id: Math.round(Math.random() * 1000000).toString(),
@@ -242,7 +200,7 @@ export default class SubmitFeedback extends Component {
             _id: 1,
             name: 'Admin',
           },
-        }
+        },
       ];
       this.setState(previousState => ({
         messages: GiftedChat.append(previousState.messages, [
@@ -268,7 +226,7 @@ export default class SubmitFeedback extends Component {
       ];
       this.setState(previousState => ({
         messages: GiftedChat.append(previousState.messages, newMessages),
-      }))
+      }));
     });
   };
 
@@ -299,7 +257,6 @@ export default class SubmitFeedback extends Component {
     //   this.setState({ videoStarted: false });
     //   await this.camera.stopRecording();
     // }
-
     // let { step } = this.state;
     // step += 1;
     // if (this.camera) {

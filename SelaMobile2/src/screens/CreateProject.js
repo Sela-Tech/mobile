@@ -39,7 +39,6 @@ const options = {
   },
 };
 
-
 export default class CreateProject extends Component {
   static navigationOptions = {
     title: 'Create project',
@@ -54,25 +53,24 @@ export default class CreateProject extends Component {
     users: [],
     stakeholders: [],
   };
+
   async componentDidMount() {
     try {
       const resp = await API.getAllUsers();
       // console.log('res', resp.data);
-      const users = resp.data.map((c) => {
+      const users = resp.data.map(c => {
         c.label = c.firstName.concat(' ').concat(c.lastName);
         c.value = c._id;
         return c;
       });
-      this.setState({ users })
+      this.setState({ users });
+    } catch (err) {
+      this.setState({ error: err.message });
     }
-    catch (err) {
-      this.setState({ error: err.message })
-    }
-
   }
 
   pickImage = async () => {
-    ImagePicker.showImagePicker(options, (response) => {
+    ImagePicker.showImagePicker(options, response => {
       console.log('Response = ', response);
 
       if (response.didCancel) {
@@ -109,7 +107,7 @@ export default class CreateProject extends Component {
   };
 
   // upload image to the server
-  uploadImageAsync = async data => { };
+  uploadImageAsync = async data => {};
 
   handleImagePicked = async pickerResult => {
     let uploadResponse;
@@ -157,18 +155,18 @@ export default class CreateProject extends Component {
 
   openSearchModal() {
     RNGooglePlaces.openAutocompleteModal()
-      .then((place) => {
+      .then(place => {
         console.log(place);
         // place represents user's selection from the
         // suggestions and it is a simplified Google Place object.
       })
-      .catch(error => console.log(error.message));  // error is a Javascript Error object
+      .catch(error => console.log(error.message)); // error is a Javascript Error object
   }
 
-  chooseContractor = (id) => {
+  chooseContractor = id => {
     const val = [id];
     this.setState({ stakeholders: val });
-  }
+  };
 
   submit = async () => {
     const {
@@ -341,15 +339,18 @@ export default class CreateProject extends Component {
             </Text>
           </View>
           <Dropdown
-            containerStyle={[{
-              height: height / 13,
-              justifyContent: 'center',
-              paddingLeft: 10,
-              borderRadius: 5,
-              borderColor: '#F5F5F8',
-              borderWidth: 1
-            }, styles.inputStyle]}
-            onChangeText={(id) => this.chooseContractor(id)}
+            containerStyle={[
+              {
+                height: height / 13,
+                justifyContent: 'center',
+                paddingLeft: 10,
+                borderRadius: 5,
+                borderColor: '#F5F5F8',
+                borderWidth: 1,
+              },
+              styles.inputStyle,
+            ]}
+            onChangeText={id => this.chooseContractor(id)}
             data={users}
           />
         </View>
@@ -382,9 +383,9 @@ export default class CreateProject extends Component {
                 style={
                   avatarURI !== ''
                     ? {
-                      width: width / 1.1,
-                      height: height / 9,
-                    }
+                        width: width / 1.1,
+                        height: height / 9,
+                      }
                     : null
                 }
                 source={icon}
@@ -413,10 +414,10 @@ export default class CreateProject extends Component {
             {showFirstCalendar === true || showSecondCalendar === true ? (
               <Fragment />
             ) : (
-                <View style={{ justifyContent: 'center' }}>
-                  <Image source={require('../../assets/minus.png')} />
-                </View>
-              )}
+              <View style={{ justifyContent: 'center' }}>
+                <Image source={require('../../assets/minus.png')} />
+              </View>
+            )}
           </Fragment>
           <CalendarBox
             upText="End Date"

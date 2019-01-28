@@ -113,8 +113,7 @@ class Login extends Component {
           submitErrorMessage: 'Wrong Username or Password',
         });
       }
-    }
-    catch (error) {
+    } catch (error) {
       this.setState({ loading: false });
     }
   };

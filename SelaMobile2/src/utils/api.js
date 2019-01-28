@@ -89,7 +89,7 @@ export const getAllProjects = async () => {
   }
 };
 
-//View  project  assaigned to a contractor
+// View  project  assaigned to a contractor
 export const viewAssignedProject = async () => {
   try {
     const resp = await axios.get(`/stakeholder/projects`);
@@ -103,30 +103,27 @@ export const getGoogleApiKey = async () => {
   try {
     const resp = await axios.get(`/stakeholder/projects`);
     return resp;
-  }
-  catch (err) {
+  } catch (err) {
     return err;
   }
 };
 
-//Assign evaluation agent to project
+// Assign evaluation agent to project
 export const assignEvaluationAgentToProject = async projectId => {
   try {
     const resp = await axios.put(`project/${projectId}/accept`, { agreed: true });
     return resp;
-  }
-  catch (err) {
+  } catch (err) {
     return err;
   }
 };
 
-//get all users
+// get all users
 export const getAllUsers = async () => {
   try {
     const resp = axios.get('/users');
     return resp;
-  }
-  catch (err) {
+  } catch (err) {
     return err;
   }
 };
@@ -135,8 +132,7 @@ export const getUserNotifications = async () => {
   try {
     const resp = axios.get('/notifications');
     return resp;
-  }
-  catch (err) {
+  } catch (err) {
     return err;
   }
 };
@@ -145,8 +141,7 @@ export const updateNotifications = async data => {
   try {
     const resp = axios.post('/notifications/mark-as-read', data);
     return resp;
-  }
-  catch (err) {
+  } catch (err) {
     return err;
   }
 };

@@ -6,8 +6,8 @@ import Navigator from './ExploreTabs/Navigator';
 
 class ExploreProject extends Component {
   state = {
-    projectId: this.props.navigation.state.params
-  }
+    projectId: this.props.navigation.state.params,
+  };
 
   render() {
     const { projectId } = this.state;
@@ -37,9 +37,7 @@ class ExploreProject extends Component {
           />
         </View>
         <View style={{ flex: 6 }}>
-          <Navigator
-            project={theProject}
-          />
+          <Navigator project={theProject} />
         </View>
       </View>
     );

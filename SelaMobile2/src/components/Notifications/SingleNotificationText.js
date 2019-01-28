@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   flex1: {
-    flex: 1
+    flex: 1,
   },
   mt5: {
     marginTop: 5,

@@ -25,8 +25,6 @@ const styles = StyleSheet.create({
 });
 
 export default class Transactions extends Component {
-
-
   render() {
     const project = this.props;
     const transactions = project.transactions;

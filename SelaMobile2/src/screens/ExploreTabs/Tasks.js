@@ -3,6 +3,7 @@ import { View, StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
 import Task from '../../components/ExploreProject/Tasks';
 import Button from '../../components/Button';
 import { WHITE } from '../../utils/constants';
+import Text from '../../components/Text';
 
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -24,11 +25,9 @@ const styles = StyleSheet.create({
 });
 
 export default class Tasks extends Component {
-
   render() {
     const project = this.props;
     const tasks = project.tasks;
-    console.log('tasks', tasks);
     if (tasks.length === 0) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -42,7 +41,7 @@ export default class Tasks extends Component {
 
           <Button text="Add task" textColor={WHITE} />
         </View>
-      )
+      );
     }
     return (
       <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
@@ -52,7 +51,6 @@ export default class Tasks extends Component {
           <Button text="Submit Updates" />
         </View>
       </ScrollView>
-    )
+    );
   }
 }
-

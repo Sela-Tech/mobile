@@ -9,13 +9,15 @@ const B = ({ fn, size, children, color, style }) => (
 );
 
 B.defaultProps = {
-  onPress: null,
+  // color: '',
   style: {},
   children: '',
+  fn: null,
 };
 
 B.propTypes = {
-  onPress: PropTypes.func,
+  // color: PropTypes.string,
+  fn: PropTypes.func,
   style: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };

@@ -4,7 +4,6 @@ import userInfo from './userInfo';
 import projects from './project';
 import notifications from './notifications';
 
-
 const rootReducer = combineReducers({
   token,
   userInfo,

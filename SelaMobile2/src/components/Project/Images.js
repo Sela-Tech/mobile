@@ -10,7 +10,8 @@ const renderItem = item => (
     <Box
       projectInfo={item.item}
       siteName={item.item.name}
-      imageSource={item.item['project-avatar']} />
+      imageSource={item.item['project-avatar']}
+    />
   </View>
 );
 

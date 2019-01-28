@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
 });
 
 export default class StakeHolders extends Component {
-
   render() {
     const project = this.props;
     return (
@@ -37,21 +36,18 @@ export default class StakeHolders extends Component {
             <B color={YELLOW}>INITIATED BY</B>
           </View>
           <View style={{ flex: 1 }}>
-            {
-              project.stakeholders.map((c, index) => {
-                const photoLink = c.user.information.profilePhoto
-                return (
-                  <UserProfile
-                    key={index}
-                    userDetails={c}
-                    imgSource={{ uri: photoLink }}
-                    userName={c.user.information.firstName + c.user.information.lastName}
-                    companyName={c.user.information.organization.name}
-                  />
-                )
-              })
-            }
-
+            {project.stakeholders.map((c, index) => {
+              const photoLink = c.user.information.profilePhoto;
+              return (
+                <UserProfile
+                  key={index}
+                  userDetails={c}
+                  imgSource={{ uri: photoLink }}
+                  userName={c.user.information.firstName + c.user.information.lastName}
+                  companyName={c.user.information.organization.name}
+                />
+              );
+            })}
           </View>
         </View>
 
@@ -141,6 +137,6 @@ export default class StakeHolders extends Component {
           <Button text="INVEST" />
         </View>
       </ScrollView>
-    )
+    );
   }
 }

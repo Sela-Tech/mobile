@@ -37,9 +37,9 @@ const UserProfile = ({ imgSource, userName, companyName }) => (
       <View style={{ height: 80, marginLeft: 20, justifyContent: 'center' }}>
         <View>
           <B>
-            {userName}
-            {' '}
-          </B>
+{userName}
+{' '}
+ </B>
         </View>
         <View style={{ flexDirection: 'row', marginTop: 5 }}>
           <Image source={require('../../assets/star.png')} />

@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
   },
 });
 
-// export default 
+// export default
 class Notifications extends Component {
   static navigationOptions = {
     title: 'Notifications',
@@ -33,7 +33,11 @@ class Notifications extends Component {
 
   async componentDidMount() {
     await this.props.getNotifications();
-    const notifications = this.props.notifications && this.props.notifications.notifications && this.props.notifications.notifications.notifications || [];
+    const notifications =
+      (this.props.notifications &&
+        this.props.notifications.notifications &&
+        this.props.notifications.notifications.notifications) ||
+      [];
     const unreadNIds = notifications.filter(c => c.read === false).map(d => d._id);
     if (unreadNIds.length > 0) {
       this.props.updateNotifs(unreadNIds);
@@ -41,17 +45,20 @@ class Notifications extends Component {
     this.setState({ loading: false });
   }
 
-
   render() {
     const { empty, loading } = this.state;
-    const notifications = this.props.notifications && this.props.notifications.notifications && this.props.notifications.notifications.notifications || [];
+    const notifications =
+      (this.props.notifications &&
+        this.props.notifications.notifications &&
+        this.props.notifications.notifications.notifications) ||
+      [];
     // console.log('d noti', notifications);
-    if (!!loading) {
+    if (loading) {
       return (
         <View style={styles.spinnerCenter}>
           <Spinner />
         </View>
-      )
+      );
     }
     if (notifications.length === 0) {
       return (
@@ -70,19 +77,20 @@ class Notifications extends Component {
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={styles.container}
-        contentContainerStyle={{ flex: 0 }}>
-        {
-          notifications.map((c, index) => {
-            return (
-              <SingleNotificationText
-                key={index}
-                text={c.message}
-                imageSRC={c.stakeholder.profilePhoto ? { uri: c.stakeholder.profilePhoto } : require('../../assets/man1.png')}
-                time={formattedDate(c.createdOn)}
-              />
-            )
-          })
-        }
+        contentContainerStyle={{ flex: 0 }}
+      >
+        {notifications.map((c, index) => (
+          <SingleNotificationText
+            key={index}
+            text={c.message}
+            imageSRC={
+              c.stakeholder.profilePhoto
+                ? { uri: c.stakeholder.profilePhoto }
+                : require('../../assets/man1.png')
+            }
+            time={formattedDate(c.createdOn)}
+          />
+        ))}
       </ScrollView>
     );
   }
@@ -94,7 +102,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getNotifications: () => dispatch(getUserNotifications()),
-  updateNotifs: data => dispatch(updateUserNotifications(data))
+  updateNotifs: data => dispatch(updateUserNotifications(data)),
 });
 
 export default connect(
