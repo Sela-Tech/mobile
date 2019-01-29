@@ -6,6 +6,7 @@ import Text from '../../../components/Text';
 
 const { height, width } = Dimensions.get('window');
 
+
 const styles = StyleSheet.create({
   container: {
     // height: height / 5,
@@ -22,15 +23,21 @@ const styles = StyleSheet.create({
   viewStyle: {
     flex: 1,
     paddingLeft: 20,
-    // justifyContent: 'center',
-    // alignItems: 'center',
+    paddingVertical: 10,
   },
   viewStyle2: {
     paddingTop: 10,
     flex: 1,
     paddingLeft: 20,
     justifyContent: 'center',
-    // alignItems: 'center',
+  },
+  chartHeight: {
+    height: height / 4,
+  },
+  buttomText: {
+    alignItems: 'center',
+    marginVertical: 5,
+    justifyContent: 'center',
   },
 });
 
@@ -41,9 +48,9 @@ const Box = ({ upText, secondTextLeft, secondTextRight, lastText }) => (
   <View style={styles.container}>
     <View style={styles.viewStyle2}>
       <Text style={styles.text}>
-{upText}
-{' '}
- </Text>
+        {upText}
+        {' '}
+      </Text>
     </View>
     <View
       style={{
@@ -88,16 +95,16 @@ const Box = ({ upText, secondTextLeft, secondTextRight, lastText }) => (
     </View>
     <View style={styles.viewStyle}>
       {upText === 'Progress' || upText === 'Budget used' ? (
-        <ProgressCircle style={{ height: 150 }} progress={0.7} progressColor="#F2994A" />
+        <ProgressCircle style={styles.chartHeight} progress={0.7} progressColor="#F2994A" />
       ) : (
-        <BarChart style={{ height: 150 }} data={data} svg={{ fill }} contentInset={{}}>
-          <Grid />
-        </BarChart>
-      )}
+          <BarChart style={styles.chartHeight} data={data} svg={{ fill }} contentInset={{}}>
+            <Grid />
+          </BarChart>
+        )}
     </View>
     <Fragment>
       {lastText ? (
-        <View style={{ alignItems: 'center', marginTop: 5, justifyContent: 'center' }}>
+        <View style={styles.buttomText}>
           <Text> {lastText} </Text>
         </View>
       ) : null}

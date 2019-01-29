@@ -63,7 +63,7 @@ export const signUp = async data => {
 
 export const getUserDetails = async data => {
   try {
-    return await axios2.post('/users/i', data);
+    return await axios.post('/users/i', data);
   } catch (err) {
     return err;
   }

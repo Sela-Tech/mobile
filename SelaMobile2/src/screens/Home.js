@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
+    justifyContent: 'center',
     backgroundColor: DEFAULT_COLOUR,
   },
   boldText: {
@@ -59,7 +60,7 @@ export default () => (
         </Text>
         <Text style={styles.buttomText}> right away. </Text>
       </View>
-      <View style={{ marginTop: '15%' }}>
+      <View style={{ marginTop: '15%', alignItems: 'center' }}>
         <View>
           <Button
             text="Create account"
@@ -96,7 +97,7 @@ export default () => (
           }}
         >
           <View>
-            <Text style={{ color: '#FFFFFF', fontSize: 20 }}> Explore Projects </Text>
+            <Text style={{ color: '#FFFFFF', fontSize: 20 }}>   Explore Projects </Text>
           </View>
           <View style={{ paddingLeft: 5, justifyContent: 'center' }}>
             <Image

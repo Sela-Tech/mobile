@@ -46,6 +46,7 @@ export default class StakeHolders extends Component {
 
               return (
                 <UserProfile
+                  userId={c._id}
                   key={index}
                   userDetails={c}
                   imgSource={{ uri: photoLink }}
@@ -63,11 +64,13 @@ export default class StakeHolders extends Component {
           </View>
           <View style={{ flex: 1 }}>
             <UserProfile
+              userId={"5c4edbe8e7c1380022277653"}
               imgSource={require('../../../assets/person.png')}
               userName="Hawa Mohammed"
               companyName="Markers LTD"
             />
             <UserProfile
+              userId={"5c4edbe8e7c1380022277653"}
               imgSource={require('../../../assets/person.png')}
               userName="Hawa Mohammed"
               companyName="Markers LTD"
@@ -81,16 +84,19 @@ export default class StakeHolders extends Component {
           </View>
           <View style={{ flex: 1 }}>
             <UserProfile
+              userId={"5c4edbe8e7c1380022277653"}
               imgSource={require('../../../assets/person.png')}
               userName="Hawa Mohammed"
               companyName="Markers LTD"
             />
             <UserProfile
+              userId={"5c4edbe8e7c1380022277653"}
               imgSource={require('../../../assets/person.png')}
               userName="Hawa Mohammed"
               companyName="Markers LTD"
             />
             <UserProfile
+              userId={"5c4edbe8e7c1380022277653"}
               imgSource={require('../../../assets/person.png')}
               userName="Hawa Mohammed"
               companyName="Markers LTD"
@@ -103,21 +109,25 @@ export default class StakeHolders extends Component {
           </View>
           <View style={{ flex: 1 }}>
             <UserProfile
+              userId={"5c4edbe8e7c1380022277653"}
               imgSource={require('../../../assets/person.png')}
               userName="Hawa Mohammed"
               companyName="Markers LTD"
             />
             <UserProfile
+              userId={"5c4edbe8e7c1380022277653"}
               imgSource={require('../../../assets/person.png')}
               userName="Hawa Mohammed"
               companyName="Markers LTD"
             />
             <UserProfile
+              userId={"5c4edbe8e7c1380022277653"}
               imgSource={require('../../../assets/person.png')}
               userName="Hawa Mohammed"
               companyName="Markers LTD"
             />
             <UserProfile
+              userId={"5c4edbe8e7c1380022277653"}
               imgSource={require('../../../assets/person.png')}
               userName="Hawa Mohammed"
               companyName="Markers LTD"

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import Description from './Description';
 import StakeHolders from './StakeHolders';
@@ -8,13 +9,16 @@ import Tasks from './Tasks';
 import Updates from './Updates';
 import { WHITE } from '../../utils/constants';
 
+const { width } = Dimensions.get('window');
+
+
 const tabBarOptions = {
   tabBarVisible: false,
   activeTintColor: '#201D41',
   inactiveTintColor: '#B1BAD2',
   showIcon: false,
   labelStyle: {
-    fontSize: 9,
+    fontSize: width < 400 ? 7 : 10,
     fontWeight: '600',
   },
   style: {

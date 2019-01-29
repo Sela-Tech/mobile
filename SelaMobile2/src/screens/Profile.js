@@ -15,6 +15,7 @@ import Tag from '../components/Tag';
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
+    paddingBottom: 10,
     flexGrow: 1,
   },
   subContainer: {
@@ -147,13 +148,13 @@ class Profile extends Component {
                       )}
                   </Fragment>
                 </View>
-                <View>
-                  <View style={{ marginVertical: 15, marginLeft: 10 }}>
+                <View style={{ marginLeft: 10 }}>
+                  <View style={{ marginVertical: 15 }}>
                     <B color="#201D41"> Interests </B>
                   </View>
-                  <View style={{ flexDirection: 'row' }}>
+                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: 5, }}>
                     <Tag viewColor="#1ECD97" text="Education" />
-
+                    <Tag viewColor="#1ECD97" text="Education" />
                     <Tag viewColor="#1ECD97" text="Education" />
                   </View>
                 </View>
