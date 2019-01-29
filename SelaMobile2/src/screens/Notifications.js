@@ -39,7 +39,6 @@ class Notifications extends Component {
         this.props.notifications.notifications &&
         this.props.notifications.notifications.notifications) ||
       [];
-    console.log(' at comp did mount notifications', notifications)
 
     try {
       if (notifications.length !== 0) {
@@ -66,7 +65,6 @@ class Notifications extends Component {
         this.props.notifications.notifications.notifications) ||
       [];
     notifications = sortNotificationsByDate(notifications);
-
     if (loading) {
       return (
         <View style={styles.spinnerCenter}>
@@ -95,6 +93,7 @@ class Notifications extends Component {
       >
         {notifications.map((c, index) => (
           <SingleNotificationText
+            notifs={c}
             key={index}
             text={c.message}
             imageSRC={

@@ -19,6 +19,6 @@ B.propTypes = {
   // color: PropTypes.string,
   fn: PropTypes.func,
   style: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
-  children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.number]),
 };
 export default B;

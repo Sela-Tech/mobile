@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
+import NavigationService from '../../services/NavigationService';
 import B from '../BoldText';
 import Text from '../Text';
 
@@ -28,15 +29,33 @@ const styles = StyleSheet.create({
   },
 });
 
-const SingleNotificationText = ({ text, imageSRC, time }) => (
+const renderSwitch = (params, text) => {
+  switch (params.type) {
+    case 'INVITATION_TO_JOIN_PROJECT':
+      return (
+        <View>
+          <Text>
+            <B fn={() => NavigationService.navigate('UserProfile', params.stakeholder._id)}> {params.stakeholder.firstName.concat(' ').concat(params.stakeholder.lastName)}</B> added you to the project <B fn={() => NavigationService.navigate('ExploreProject', params.project.id)}>{params.project.name}.</B>  </Text>
+        </View>
+      );
+    default:
+      return (
+        <View>
+          <Text>{text}</Text>
+        </View>
+      );
+  }
+}
+
+const SingleNotificationText = ({ text, imageSRC, time, notifs }) => (
   <View style={styles.container}>
     <View style={styles.flex1}>
       <Image source={imageSRC} style={styles.imgStyle} />
     </View>
     <View style={styles.subContainer}>
-      <View>
-        <B>{text}</B>
-      </View>
+      <Fragment>
+        {renderSwitch(notifs, text)}
+      </Fragment>
       <View style={styles.mt5}>
         <Text> {time} </Text>
       </View>
@@ -45,3 +64,4 @@ const SingleNotificationText = ({ text, imageSRC, time }) => (
 );
 
 export default SingleNotificationText;
+

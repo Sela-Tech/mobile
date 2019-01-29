@@ -14,7 +14,7 @@ const axios2 = Axios.create({
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
-    'origin': 'https://sela-test.now.sh',
+    origin: 'https://sela-test.now.sh',
   },
 });
 
@@ -47,8 +47,7 @@ axios.interceptors.response.use(
 
 export const login = async data => {
   try {
-    const resp = await axios2.post('/login', data);
-    return resp;
+    return await axios2.post('/login', data);
   } catch (err) {
     return err;
   }
@@ -56,8 +55,15 @@ export const login = async data => {
 
 export const signUp = async data => {
   try {
-    const resp = await axios2.post('/register', data);
-    return resp;
+    return await axios2.post('/register', data);
+  } catch (err) {
+    return err;
+  }
+};
+
+export const getUserDetails = async data => {
+  try {
+    return await axios2.post('/users/i', data);
   } catch (err) {
     return err;
   }
@@ -65,8 +71,8 @@ export const signUp = async data => {
 
 export const addProject = async data => {
   try {
-    const resp = await axios.post('/project', data);
-    return resp;
+    return await axios.post('/project', data);
+
   } catch (err) {
     return err;
   }
@@ -74,8 +80,7 @@ export const addProject = async data => {
 
 export const getSingleProject = async id => {
   try {
-    const resp = await axios.get(`/project/${id}`);
-    return resp;
+    return await axios.get(`/project/${id}`);
   } catch (err) {
     return err;
   }
@@ -83,9 +88,7 @@ export const getSingleProject = async id => {
 
 export const getAllProjects = async () => {
   try {
-    const resp = await axios.get(`/projects`);
-    // console.log('get -user project', resp.data)
-    return resp;
+    return await axios.get(`/projects`);
   } catch (err) {
     return err;
   }
@@ -94,9 +97,7 @@ export const getAllProjects = async () => {
 // View  project  assaigned to a contractor
 export const viewAssignedProject = async () => {
   try {
-    const resp = await axios.get(`/stakeholder/projects`);
-    // console.log('get -contractor project', resp.data)
-    return resp;
+    return await axios.get(`/stakeholder/projects`);
   } catch (err) {
     return err;
   }
@@ -104,8 +105,7 @@ export const viewAssignedProject = async () => {
 
 export const getGoogleApiKey = async () => {
   try {
-    const resp = await axios.get(`/stakeholder/projects`);
-    return resp;
+    return await axios.get(`/stakeholder/projects`);
   } catch (err) {
     return err;
   }
@@ -114,8 +114,7 @@ export const getGoogleApiKey = async () => {
 // Assign evaluation agent to project
 export const assignEvaluationAgentToProject = async projectId => {
   try {
-    const resp = await axios.put(`project/${projectId}/accept`, { agreed: true });
-    return resp;
+    return await axios.put(`project/${projectId}/accept`, { agreed: true });
   } catch (err) {
     return err;
   }
@@ -124,8 +123,7 @@ export const assignEvaluationAgentToProject = async projectId => {
 // get all users
 export const getAllUsers = async () => {
   try {
-    const resp = axios.get('/users');
-    return resp;
+    return await axios.get('/users');
   } catch (err) {
     return err;
   }
@@ -133,8 +131,7 @@ export const getAllUsers = async () => {
 
 export const getUserNotifications = async () => {
   try {
-    const resp = axios.get('/notifications');
-    return resp;
+    return axios.get('/notifications');
   } catch (err) {
     return err;
   }
@@ -145,10 +142,17 @@ export const updateNotifications = async datum => {
     const data = {
       unreadNIds: datum,
     };
-    console.log('data,i am sending', data);
-    const resp = axios.post('/notifications/mark-as-read', data);
-    return resp;
+    return axios.post('/notifications/mark-as-read', data);
   } catch (err) {
+    return err;
+  }
+};
+
+export const forgotPassword = async data => {
+  try {
+    return axios.post('/forgot-password', data);
+  }
+  catch (err) {
     return err;
   }
 };
