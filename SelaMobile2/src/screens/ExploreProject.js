@@ -12,7 +12,7 @@ const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   imageHeight: {
-    height: height / 4,
+    height: height / 3.5,
   },
 });
 class ExploreProject extends Component {

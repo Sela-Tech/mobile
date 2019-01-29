@@ -37,13 +37,20 @@ export default class StakeHolders extends Component {
           </View>
           <View style={{ flex: 1 }}>
             {project.stakeholders.map((c, index) => {
-              const photoLink = c.user.information.profilePhoto;
+              let photoLink = c.user.information.profilePhoto;
+              if (photoLink === null) {
+                photoLink = 'https://placeimg.com/640/480/any';
+              }
+              else if (photoLink === undefined) {
+                photoLink = 'https://placeimg.com/640/480/any';
+              }
+
               return (
                 <UserProfile
                   key={index}
                   userDetails={c}
                   imgSource={{ uri: photoLink }}
-                  userName={c.user.information.firstName + c.user.information.lastName}
+                  userName={c.user.information.firstName + ' ' + c.user.information.lastName}
                   companyName={c.user.information.organization.name}
                 />
               );

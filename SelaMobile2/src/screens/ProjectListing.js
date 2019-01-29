@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Button from '../components/Button';
 import Text from '../components/Text';
 import { WHITE, YELLOW } from '../utils/constants';
+import ExtStyle from '../utils/styles';
 import { isAndroid } from '../utils/helpers';
 import Box from '../components/ExploreProject/Box';
 
@@ -58,6 +59,7 @@ class ExploreProject extends Component {
       this.props.projects &&
       this.props.projects.projects &&
       this.props.projects.projects.projects;
+
 
     return (
       <ScrollView
@@ -126,23 +128,32 @@ class ExploreProject extends Component {
               {loading === true ? (
                 <Spinner />
               ) : (
-                <Fragment>
-                  {projects.map((c, index) => (
-                    <View style={{ marginBottom: 10, marginTop: 10 }}>
-                      <Box
-                        fn={() => this.props.navigation.navigate('ExploreProject')}
-                        img={require('../../assets/class.png')}
-                        firstText="K-Dere Portharcourt"
-                        secondText="Sustainability Intl"
-                        thirdText="OnGoing"
-                        title="Construction of Classroom Blocks"
-                        cost="$1,500,000"
-                        tags={['Resilient infrasture', 'Sustainable Cities']}
-                      />
-                    </View>
-                  ))}
-                </Fragment>
-              )}
+                  <Fragment>
+                    {
+                      projects.length === 0 ?
+                        (
+                          <View style={[ExtStyle.center, { paddingTop: '10%' }]}>
+                            <Text style={ExtStyle.largeFontSize}> No project at the moment </Text>
+                          </View>
+                        ) :
+                        projects.map((c, index) => (
+                          <View style={{ marginBottom: 10, marginTop: 10 }}>
+                            <Box
+                              key={index}
+                              fn={() => this.props.navigation.navigate('ExploreProject')}
+                              img={require('../../assets/class.png')}
+                              firstText="K-Dere Portharcourt"
+                              secondText="Sustainability Intl"
+                              thirdText="OnGoing"
+                              title="Construction of Classroom Blocks"
+                              cost="$1,500,000"
+                              tags={['Resilient infrasture', 'Sustainable Cities']}
+                            />
+                          </View>
+                        ))
+                    }
+                  </Fragment>
+                )}
             </View>
           </View>
         </View>

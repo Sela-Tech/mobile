@@ -30,6 +30,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  largeFontSize: {
+    fontSize: 25,
+  },
 });
 
 export default styles;
