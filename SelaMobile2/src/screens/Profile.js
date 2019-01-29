@@ -138,7 +138,7 @@ class Profile extends Component {
                     ) : (
                         <FlatList
                           style={{ paddingTop: 10 }}
-                          data={projects || images}
+                          data={images}
                           keyExtractor={keyExtractor}
                           horizontal
                           renderItem={renderItem}

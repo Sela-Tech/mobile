@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, KeyboardAvoidingView, ScrollView, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
+import DropdownAlert from 'react-native-dropdownalert';
 import Text from '../components/Text';
 import DismissKeyboard from '../components/DismissKeyboard';
 import Input from '../components/Input';
@@ -114,6 +114,10 @@ class Login extends Component {
         this.setState({
           submitErrorMessage: 'Wrong Username or Password',
         });
+        this.dropdown.alertWithType('error', 'Error', 'Wrong Username or Password');
+      }
+      else {
+        this.dropdown.alertWithType('error', 'Error', 'Login Failed');
       }
     } catch (error) {
       this.setState({ loading: false });
@@ -140,7 +144,7 @@ class Login extends Component {
           <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="always">
             <View style={{ paddingTop: 15, flex: 3 }}>
               <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-                <IntroHeader fn={() => goBack()} back keyboard={keyboard} />
+                <IntroHeader fn={() => goBack()} keyboard={keyboard} />
               </View>
               <View style={{ alignItems: 'center', flex: 2 }}>
                 <View style={{ paddingTop: 30, flex: 1 }}>
@@ -230,7 +234,12 @@ class Login extends Component {
                 </View>
               </View>
             </View>
-            <FlashMessage ref="fmLocalInstance" position="bottom" animated={true} autoHide={false} />
+            <DropdownAlert
+              ref={ref => this.dropdown = ref}
+              // startDelta={height}
+              // endDelta={height - height / 8}
+              closeInterval={6000}
+            />
           </ScrollView>
         </KeyboardAvoidingView>
       </DismissKeyboard>

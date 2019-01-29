@@ -15,27 +15,27 @@ import FirstTimeUserLoadingScreen from './screens/FirstTimeUserLoading';
 import SignUpSuccessScreen from './screens/SignUpSuccess';
 
 export const RootStackNavigator = createStackNavigator({
-  // Project: {
-  //   screen: ProjectBottomNavigator,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
-  // Notification: {
-  //   screen: Notifications,
-  // },
-  // ViewProject: {
-  //   screen: ViewProject,
-  // },
-  // CreateProject: {
-  //   screen: CreateProject,
-  // },
-  // Success: {
-  //   screen: SuccessScreen,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
+  Project: {
+    screen: ProjectBottomNavigator,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Notification: {
+    screen: Notifications,
+  },
+  ViewProject: {
+    screen: ViewProject,
+  },
+  CreateProject: {
+    screen: CreateProject,
+  },
+  Success: {
+    screen: SuccessScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
   SubmitFeedback: {
     screen: SubmitFeedback,
     // navigationOptions: {

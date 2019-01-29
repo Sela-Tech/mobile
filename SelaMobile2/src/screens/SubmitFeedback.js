@@ -49,9 +49,9 @@ const styles = StyleSheet.create({
   floatingButton: {
     backgroundColor: YELLOW,
     position: 'absolute',
-    height: 60,
-    width: 60,
-    borderRadius: 30,
+    height: 50,
+    width: 50,
+    borderRadius: 25,
     bottom: 5,
     flex: 1,
     justifyContent: 'center',
@@ -93,7 +93,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   topBottom: {
-    height: '100%',
+    // height: '100%',
+    height: 55,
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
@@ -185,10 +186,8 @@ export default class SubmitFeedback extends Component {
   };
 
   snap = async () => {
-    console.log('dkkdkdk')
     const { step } = this.state;
     ImagePicker.launchCamera(options, resp => {
-      console.log('rees', resp);
       const messages = [
         {
           _id: Math.round(Math.random() * 1000000).toString(),

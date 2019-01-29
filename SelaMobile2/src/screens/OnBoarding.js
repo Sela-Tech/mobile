@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, KeyboardAvoidingView, ScrollView, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
+import DropdownAlert from 'react-native-dropdownalert';
 import NavigationService from '../services/NavigationService';
 import StepIndicator from '../components/npm/StepIndicator';
 import DismissKeyboard from '../components/DismissKeyboard';
@@ -240,11 +241,12 @@ export default class OnBoarding extends Component {
     });
     try {
       const resp = await signUp(data);
-      console.log('ree', resp.data);
+
       this.setState({ loading: false });
       if (resp.data.success === true) {
         return NavigationService.navigate('SignUpSuccess');
       }
+      this.dropdown.alertWithType('error', 'Error', resp.data.message);
       this.setState({
         submitErrorMessage: resp.data.message,
       });
@@ -273,7 +275,7 @@ export default class OnBoarding extends Component {
                   justifyContent: 'flex-end',
                 }}
               >
-                <View style={{}}>
+                <View>
                   <IntroHeader
                     fn={() => (currentPage === 1 ? this.changePage() : goBack())}
                     back
@@ -300,26 +302,31 @@ export default class OnBoarding extends Component {
                     showPassword={this.showPassword}
                   />
                 ) : (
-                  <OnBoardView
-                    second
-                    currentPage={currentPage}
-                    changePage={this.changePage}
-                    secure={secure}
-                    state={this.state}
-                    changeRole={this.changeRole}
-                    navigate={navigate}
-                    showPassword={this.showPassword}
-                    changeFullNameFn={this.fullNameFn}
-                    passwordFn={this.passwordFn}
-                    emailOrPhoneFn={this.emailOrPhoneFn}
-                    onTheChangeEmailOrPhone={this.onTheChangeEmailOrPhone}
-                    onTheChangeFullName={this.onTheChangeFullName}
-                    onTheChangePassword={this.onTheChangePassword}
-                    signUp={this.signUp}
-                  />
-                )}
+                    <OnBoardView
+                      second
+                      currentPage={currentPage}
+                      changePage={this.changePage}
+                      secure={secure}
+                      state={this.state}
+                      changeRole={this.changeRole}
+                      navigate={navigate}
+                      showPassword={this.showPassword}
+                      changeFullNameFn={this.fullNameFn}
+                      passwordFn={this.passwordFn}
+                      emailOrPhoneFn={this.emailOrPhoneFn}
+                      onTheChangeEmailOrPhone={this.onTheChangeEmailOrPhone}
+                      onTheChangeFullName={this.onTheChangeFullName}
+                      onTheChangePassword={this.onTheChangePassword}
+                      signUp={this.signUp}
+                    />
+                  )}
               </View>
+              <DropdownAlert
+                ref={ref => this.dropdown = ref}
+                closeInterval={6000}
+              />
             </View>
+
           </KeyboardAvoidingView>
         </DismissKeyboard>
       </ScrollView>

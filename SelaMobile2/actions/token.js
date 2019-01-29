@@ -44,10 +44,8 @@ export const saveUserToken = userInfo => dispatch => {
 export const login = data => dispatch =>
   API.login(data)
     .then(resp => {
-      console.log('...login', resp)
-      dispatch(saveUserToken(resp.data));
       if (resp.status === 200) {
-        // dispatch(saveUserToken(resp.data));
+        dispatch(saveUserToken(resp.data));
         dispatch(tokenIsLoading(false));
         dispatch(saveUserInfo(resp.data));
         return resp.data.success;
