@@ -65,8 +65,7 @@ class Profile extends Component {
   async componentDidMount() {
     if (Object.keys(this.props.navigation.state).length !== 2) {
       try {
-        const resp = await getUserDetails({ id: '5c4ed79ae7c138002227764f' });
-        console.log('resp.', resp.data);
+        const resp = await getUserDetails({ id: this.props.navigation.state.params });
         this.setState({ profileInfo: resp.data, loading: false, guestUser: true });
       } catch (err) {
         this.setState({ error: err.message, loading: false });
@@ -115,50 +114,50 @@ class Profile extends Component {
               <Spinner />
             </View>
           ) : (
-            <View style={styles.subContainer}>
-              <UserId
-                userType={guestUser ? userType : 'Funder'}
-                userName={guestUser ? userName : 'Eze'}
-                verificationStatus={verificationStatus}
-              />
-              <UserInfo
-                reputationScore={guestUser ? profileInfo.userInfo.reputationScore : '0'}
-                projects={guestUser ? profileInfo && profileInfo.projects.length : '0'}
-                dataUploads={guestUser ? profileInfo.uploads : '0'}
-                location={guestUser ? 'Lagos,Nigeria.' : 'Lagos,Nigeria.'}
-              />
-              <View style={{ marginVertical: 10 }}>
-                <View style={{ marginVertical: 15, marginLeft: 10 }}>
-                  <B color="#201D41"> Other projects with Ade </B>
+              <View style={styles.subContainer}>
+                <UserId
+                  userType={guestUser ? userType : 'Funder'}
+                  userName={guestUser ? userName : 'Eze'}
+                  verificationStatus={verificationStatus}
+                />
+                <UserInfo
+                  reputationScore={guestUser ? profileInfo.userInfo.reputationScore : '0'}
+                  projects={guestUser ? profileInfo && profileInfo.projects.length : '0'}
+                  dataUploads={guestUser ? profileInfo.uploads : '0'}
+                  location={guestUser ? 'Lagos,Nigeria.' : 'Lagos,Nigeria.'}
+                />
+                <View style={{ marginVertical: 10 }}>
+                  <View style={{ marginVertical: 15, marginLeft: 10 }}>
+                    <B color="#201D41"> Other projects with Ade </B>
+                  </View>
+                  <Fragment>
+                    {projects && projects.length === 0 ? (
+                      <View style={{ marginHorizontal: 15 }}>
+                        <Box empty fn={() => console.log('navigate')} />
+                      </View>
+                    ) : (
+                        <FlatList
+                          style={{ paddingTop: 10 }}
+                          data={projects || images}
+                          keyExtractor={keyExtractor}
+                          horizontal
+                          renderItem={renderItem}
+                        />
+                      )}
+                  </Fragment>
                 </View>
-                <Fragment>
-                  {projects && projects.length === 0 ? (
-                    <View style={{ marginHorizontal: 15 }}>
-                      <Box empty fn={() => console.log('navigate')} />
-                    </View>
-                  ) : (
-                    <FlatList
-                      style={{ paddingTop: 10 }}
-                      data={projects || images}
-                      keyExtractor={keyExtractor}
-                      horizontal
-                      renderItem={renderItem}
-                    />
-                  )}
-                </Fragment>
-              </View>
-              <View>
-                <View style={{ marginVertical: 15, marginLeft: 10 }}>
-                  <B color="#201D41"> Interests </B>
-                </View>
-                <View style={{ flexDirection: 'row' }}>
-                  <Tag viewColor="#1ECD97" text="Education" />
+                <View>
+                  <View style={{ marginVertical: 15, marginLeft: 10 }}>
+                    <B color="#201D41"> Interests </B>
+                  </View>
+                  <View style={{ flexDirection: 'row' }}>
+                    <Tag viewColor="#1ECD97" text="Education" />
 
-                  <Tag viewColor="#1ECD97" text="Education" />
+                    <Tag viewColor="#1ECD97" text="Education" />
+                  </View>
                 </View>
               </View>
-            </View>
-          )}
+            )}
         </Fragment>
       </ScrollView>
     );

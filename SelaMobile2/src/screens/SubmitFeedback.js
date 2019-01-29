@@ -185,8 +185,10 @@ export default class SubmitFeedback extends Component {
   };
 
   snap = async () => {
+    console.log('dkkdkdk')
     const { step } = this.state;
     ImagePicker.launchCamera(options, resp => {
+      console.log('rees', resp);
       const messages = [
         {
           _id: Math.round(Math.random() * 1000000).toString(),

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, KeyboardAvoidingView, ScrollView, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
+import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
 import Text from '../components/Text';
 import DismissKeyboard from '../components/DismissKeyboard';
 import Input from '../components/Input';
@@ -101,6 +102,7 @@ class Login extends Component {
     try {
       const resp = await this.props.login(data);
       this.setState({ loading: false });
+      // console.log(resp);
       if (resp === true) {
         return NavigationService.navigate('Project');
       }
@@ -228,6 +230,7 @@ class Login extends Component {
                 </View>
               </View>
             </View>
+            <FlashMessage ref="fmLocalInstance" position="bottom" animated={true} autoHide={false} />
           </ScrollView>
         </KeyboardAvoidingView>
       </DismissKeyboard>

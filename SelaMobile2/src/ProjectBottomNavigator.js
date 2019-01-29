@@ -27,9 +27,9 @@ const ProjectStack = createStackNavigator({
 export const ProfileStack = createStackNavigator({
   ProfileSettings: {
     screen: ProfileSettingsScreen,
-    // navigationOptions: {
-    //   header: null,
-    // },
+    navigationOptions: {
+      header: null,
+    },
   },
   UserProfile: {
     screen: ProfileScreen,
