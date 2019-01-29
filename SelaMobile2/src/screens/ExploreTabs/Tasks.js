@@ -30,17 +30,19 @@ export default class Tasks extends Component {
     const tasks = project.tasks;
     if (tasks.length === 0) {
       return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <View>
-            <Image source={require('../../../assets/docs.png')} />
-          </View>
-          <View style={{ alignItems: 'center', margin: 10 }}>
-            <Text> There are no transactions yet for </Text>
-            <Text> this project. Check back later. </Text>
-          </View>
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View>
+              <Image source={require('../../../assets/docs.png')} />
+            </View>
+            <View style={{ alignItems: 'center', margin: 10 }}>
+              <Text> There are no tasks yet for </Text>
+              <Text> this project. Check back later. </Text>
+            </View>
 
-          <Button text="Add task" textColor={WHITE} />
-        </View>
+            <Button text="Add task" textColor={WHITE} />
+          </View>
+        </ScrollView>
       );
     }
     return (

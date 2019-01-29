@@ -22,5 +22,24 @@ allprojects {
             url "$rootDir/../node_modules/react-native/android"
         }
         google()
+        jcenter()
     }
 }
+
+subprojects { subproject ->
+    afterEvaluate{
+        if((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
+            android {
+                compileSdkVersion rootProject.ext.compileSdkVersion
+                buildToolsVersion rootProject.ext.buildToolsVersion
+            }
+        }
+    }
+}
+
+ext {
+      compileSdkVersion   = 26
+      buildToolsVersion   =  "26.1.0"
+      targetSdkVersion    = 26
+ }
+

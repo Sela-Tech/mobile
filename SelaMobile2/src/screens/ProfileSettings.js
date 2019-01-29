@@ -9,7 +9,8 @@ import SettingsList from '../components/Profile/SettingsList';
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
+    flexGrow: 1,
   },
   headerMargin: {
     marginTop: 15,

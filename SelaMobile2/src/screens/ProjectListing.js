@@ -127,30 +127,30 @@ class ExploreProject extends Component {
               {loading === true ? (
                 <Spinner />
               ) : (
-                <Fragment>
-                  {projects.length === 0 ? (
-                    <View style={[ExtStyle.center, { paddingTop: '10%' }]}>
-                      <Text style={ExtStyle.largeFontSize}> No project at the moment </Text>
-                    </View>
-                  ) : (
-                    projects.map((c, index) => (
-                      <View style={{ marginBottom: 10, marginTop: 10 }}>
-                        <Box
-                          key={index}
-                          fn={() => this.props.navigation.navigate('ExploreProject')}
-                          img={require('../../assets/class.png')}
-                          firstText="K-Dere Portharcourt"
-                          secondText="Sustainability Intl"
-                          thirdText="OnGoing"
-                          title="Construction of Classroom Blocks"
-                          cost="$1,500,000"
-                          tags={['Resilient infrasture', 'Sustainable Cities']}
-                        />
+                  <Fragment>
+                    {projects.length === 0 ? (
+                      <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
+                        <Text style={ExtStyle.largeFontSize}> No project at the moment </Text>
                       </View>
-                    ))
-                  )}
-                </Fragment>
-              )}
+                    ) : (
+                        projects.map((c, index) => (
+                          <View style={{ marginBottom: 10, marginTop: 10 }}>
+                            <Box
+                              key={index}
+                              fn={() => this.props.navigation.navigate('ExploreProject')}
+                              img={require('../../assets/class.png')}
+                              firstText="K-Dere Portharcourt"
+                              secondText="Sustainability Intl"
+                              thirdText="OnGoing"
+                              title="Construction of Classroom Blocks"
+                              cost="$1,500,000"
+                              tags={['Resilient infrasture', 'Sustainable Cities']}
+                            />
+                          </View>
+                        ))
+                      )}
+                  </Fragment>
+                )}
             </View>
           </View>
         </View>

@@ -5,9 +5,6 @@ import Text from './Text';
 
 const styles = StyleSheet.create({
   container: {
-    height: 30,
-    width: 100,
-    marginLeft: 10,
     backgroundColor: '#d3f8ec',
     justifyContent: 'center',
     borderRadius: 4,
@@ -16,15 +13,17 @@ const styles = StyleSheet.create({
   text: {
     color: '#1ECD97',
     fontWeight: '400',
+    marginHorizontal: 10,
+    marginVertical: 5,
   },
 });
 
 const Tag = ({ text, viewColor, textColor, style }) => (
   <View style={[styles.container, style, { backgroundColor: viewColor }]}>
-    <Text style={[styles.text, { color: textColor }]}> 
-{' '}
-{text}
-</Text>
+    <Text style={[styles.text, { color: textColor }]}>
+      {' '}
+      {text}
+    </Text>
   </View>
 );
 
