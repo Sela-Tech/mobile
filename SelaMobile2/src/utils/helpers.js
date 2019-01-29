@@ -1,7 +1,6 @@
 import { Platform } from 'react-native';
 import moment from 'moment';
 
-
 export const isAndroid = Platform.OS === 'android';
 
 /**
@@ -15,5 +14,5 @@ export const validateparam = param => {
 
 export const formattedDate = currDate => moment(currDate).fromNow(true);
 
-export const sortNotificationsByDate = notifications => notifications.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn));
-
+export const sortNotificationsByDate = notifications =>
+  notifications.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn));

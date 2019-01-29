@@ -40,8 +40,7 @@ export default class StakeHolders extends Component {
               let photoLink = c.user.information.profilePhoto;
               if (photoLink === null) {
                 photoLink = 'https://placeimg.com/640/480/any';
-              }
-              else if (photoLink === undefined) {
+              } else if (photoLink === undefined) {
                 photoLink = 'https://placeimg.com/640/480/any';
               }
 
@@ -50,7 +49,7 @@ export default class StakeHolders extends Component {
                   key={index}
                   userDetails={c}
                   imgSource={{ uri: photoLink }}
-                  userName={c.user.information.firstName + ' ' + c.user.information.lastName}
+                  userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
                   companyName={c.user.information.organization.name}
                 />
               );

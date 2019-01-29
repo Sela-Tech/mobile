@@ -16,28 +16,23 @@ const styles = StyleSheet.create({
   },
 });
 
-const UserId = ({
-  settings,
-  userType,
-  userName,
-  verificationStatus,
-}) => (
-    <View style={styles.container}>
-      <View style={styles.imgStyle}>
-        <Image source={require('../../../assets/img/man.png')} style={styles.imgStyle} />
-      </View>
-      <View style={{ alignItems: 'center', paddingTop: 5 }}>
-        <View style={{ alignItems: 'center' }}>
-          <Text style={{ fontSize: 20, color: YELLOW, fontWeight: '400' }}> {userName} </Text>
-          <Text> {userType} </Text>
-        </View>
-        {settings ? (
-          <View style={{ paddingTop: 5 }}>
-            <Tag text={verificationStatus} viewColor="#BC1717" textColor={WHITE} />
-          </View>
-        ) : null}
-      </View>
+const UserId = ({ settings, userType, userName, verificationStatus }) => (
+  <View style={styles.container}>
+    <View style={styles.imgStyle}>
+      <Image source={require('../../../assets/img/man.png')} style={styles.imgStyle} />
     </View>
-  );
+    <View style={{ alignItems: 'center', paddingTop: 5 }}>
+      <View style={{ alignItems: 'center' }}>
+        <Text style={{ fontSize: 20, color: YELLOW, fontWeight: '400' }}> {userName} </Text>
+        <Text> {userType} </Text>
+      </View>
+      {settings ? (
+        <View style={{ paddingTop: 5 }}>
+          <Tag text={verificationStatus} viewColor="#BC1717" textColor={WHITE} />
+        </View>
+      ) : null}
+    </View>
+  </View>
+);
 
 export default UserId;

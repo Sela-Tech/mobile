@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     shadowOffset: {
       height: 10,
-      width: 10
+      width: 10,
     },
   },
   bodyStyle: {
@@ -48,8 +48,7 @@ const HeaderB = ({ headerName, sideIconStatus, sideIconImage }) => (
           onPress={() => NavigationService.navigate('Notification')}
         >
           <Image
-            resizeMode="cover"
-            source={sideIconImage} />
+resizeMode="cover" source={sideIconImage} />
         </Button>
       ) : null}
     </Right>

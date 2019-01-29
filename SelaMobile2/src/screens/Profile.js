@@ -57,25 +57,24 @@ class Profile extends Component {
   static navigationOptions = {
     title: 'Profile',
   };
+
   state = {
     loading: true,
   };
+
   async componentDidMount() {
     if (Object.keys(this.props.navigation.state).length !== 2) {
       try {
         const resp = await getUserDetails({ id: '5c4ed79ae7c138002227764f' });
-        console.log('resp.', resp.data)
+        console.log('resp.', resp.data);
         this.setState({ profileInfo: resp.data, loading: false, guestUser: true });
-      }
-      catch (err) {
+      } catch (err) {
         this.setState({ error: err.message, loading: false });
       }
+    } else {
+      this.setState({ loading: false });
     }
-    else {
-      this.setState({ loading: false })
-    }
-  };
-
+  }
 
   render() {
     const { loading, profileInfo, guestUser } = this.state;
@@ -100,11 +99,9 @@ class Profile extends Component {
       userName = firstName.concat(' ').concat(lastName);
       if (isFunder === true) {
         userType = 'Funder';
-      }
-      else if (isContractor === true) {
+      } else if (isContractor === true) {
         userType = 'Contractor';
-      }
-      else {
+      } else {
         userType = 'Evaluation agent';
       }
     }
@@ -113,78 +110,64 @@ class Profile extends Component {
       <ScrollView contentContainerStyle={styles.container}>
         <Header headerName="PROFILE" />
         <Fragment>
-          {
-            loading ?
-              (
-                <View style={ExtStyle.center}>
-                  <Spinner />
+          {loading ? (
+            <View style={ExtStyle.center}>
+              <Spinner />
+            </View>
+          ) : (
+            <View style={styles.subContainer}>
+              <UserId
+                userType={guestUser ? userType : 'Funder'}
+                userName={guestUser ? userName : 'Eze'}
+                verificationStatus={verificationStatus}
+              />
+              <UserInfo
+                reputationScore={guestUser ? profileInfo.userInfo.reputationScore : '0'}
+                projects={guestUser ? profileInfo && profileInfo.projects.length : '0'}
+                dataUploads={guestUser ? profileInfo.uploads : '0'}
+                location={guestUser ? 'Lagos,Nigeria.' : 'Lagos,Nigeria.'}
+              />
+              <View style={{ marginVertical: 10 }}>
+                <View style={{ marginVertical: 15, marginLeft: 10 }}>
+                  <B color="#201D41"> Other projects with Ade </B>
                 </View>
-              )
-              :
-              (
-                <View style={styles.subContainer}>
-                  <UserId
-                    userType={guestUser ? userType : 'Funder'}
-                    userName={guestUser ? userName : 'Eze'}
-                    verificationStatus={verificationStatus}
-                  />
-                  <UserInfo
-                    reputationScore={guestUser ? profileInfo.userInfo.reputationScore : '0'}
-                    projects={guestUser ? profileInfo && profileInfo.projects.length : '0'}
-                    dataUploads={guestUser ? profileInfo.uploads : '0'}
-                    location={guestUser ? 'Lagos,Nigeria.' : 'Lagos,Nigeria.'}
-                  />
-                  < View style={{ marginVertical: 10 }}>
-                    <View style={{ marginVertical: 15, marginLeft: 10 }}>
-                      <B color="#201D41"> Other projects with Ade </B>
+                <Fragment>
+                  {projects && projects.length === 0 ? (
+                    <View style={{ marginHorizontal: 15 }}>
+                      <Box empty fn={() => console.log('navigate')} />
                     </View>
-                    <Fragment>
-                      {
-                        projects && projects.length === 0 ?
-                          (
-                            <View style={{ marginHorizontal: 15 }}>
-                              <Box
-                                empty
-                                fn={() => console.log('navigate')}
-                              />
-                            </View>
-                          ) :
-                          (
-                            <FlatList
-                              style={{ paddingTop: 10 }}
-                              data={projects ? projects : images}
-                              keyExtractor={keyExtractor}
-                              horizontal
-                              renderItem={renderItem}
-                            />
-                          )
-                      }
-                    </Fragment>
-                  </View>
-                  <View>
-                    <View style={{ marginVertical: 15, marginLeft: 10 }}>
-                      <B color="#201D41"> Interests </B>
-                    </View>
-                    <View style={{ flexDirection: 'row' }}>
-                      <Tag viewColor="#1ECD97" text="Education" />
+                  ) : (
+                    <FlatList
+                      style={{ paddingTop: 10 }}
+                      data={projects || images}
+                      keyExtractor={keyExtractor}
+                      horizontal
+                      renderItem={renderItem}
+                    />
+                  )}
+                </Fragment>
+              </View>
+              <View>
+                <View style={{ marginVertical: 15, marginLeft: 10 }}>
+                  <B color="#201D41"> Interests </B>
+                </View>
+                <View style={{ flexDirection: 'row' }}>
+                  <Tag viewColor="#1ECD97" text="Education" />
 
-                      <Tag viewColor="#1ECD97" text="Education" />
-                    </View>
-                  </View>
+                  <Tag viewColor="#1ECD97" text="Education" />
                 </View>
-              )
-          }
+              </View>
+            </View>
+          )}
         </Fragment>
       </ScrollView>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   userInfo: state.userInfo,
   projects: state.projects,
 });
 
-
 export default connect(mapStateToProps)(Profile);
-

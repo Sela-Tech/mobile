@@ -13,7 +13,6 @@ import Notifications from './screens/Notifications';
 import AuthLoadingScreen from './screens/AuthLoading';
 import FirstTimeUserLoadingScreen from './screens/FirstTimeUserLoading';
 import SignUpSuccessScreen from './screens/SignUpSuccess';
-import ProfileScreen from './screens/Profile';
 
 export const RootStackNavigator = createStackNavigator({
   Project: {

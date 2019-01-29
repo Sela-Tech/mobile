@@ -72,7 +72,6 @@ export const getUserDetails = async data => {
 export const addProject = async data => {
   try {
     return await axios.post('/project', data);
-
   } catch (err) {
     return err;
   }
@@ -151,8 +150,7 @@ export const updateNotifications = async datum => {
 export const forgotPassword = async data => {
   try {
     return axios.post('/forgot-password', data);
-  }
-  catch (err) {
+  } catch (err) {
     return err;
   }
 };

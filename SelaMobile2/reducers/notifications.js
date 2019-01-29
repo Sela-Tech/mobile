@@ -15,9 +15,9 @@ const notificationsReducer = (
     // return { ...state, notifications: action.notifications };
     case types.GET_NEW_NOTIFICATION:
       const newState = Object.assign({}, state, {
-        notifications: action.notifications.notifications
+        notifications: action.notifications.notifications,
       });
-      return { ...state, ...newState }
+      return { ...state, ...newState };
     case types.NOTIFICATION_IS_LOADING:
       return { ...state, loading: action.isLoading };
     case types.NOTIFICATION_ERROR:

@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import Text from '../Text';
-import Box from '../Project/Box';
+import Box from './Box';
 import Images from './Images';
 import { YELLOW } from '../../utils/constants';
 
@@ -49,53 +49,42 @@ const Project = ({ leftText, rightText, projects }) => (
   <View style={styles.container}>
     <View style={styles.semiContainer}>
       <View style={styles.leftContainer}>
-        <Text style={styles.leftTextContainer}>
-          {' '}
-          {leftText}
-          {' '}
-        </Text>
+        <Text style={styles.leftTextContainer}> 
+{' '}
+{leftText}
+{' '}
+ </Text>
       </View>
       <Fragment>
-        {
-          projects.length > 0 ?
-            (
-              <View style={styles.rightContainer}>
-                <View style={styles.rightContainerWithPadding}>
-                  <Text style={styles.rightTextContainer}>
-                    {' '}
-                    {rightText}
-                    {' '}
-                  </Text>
-                </View>
-                <View style={{ justifyContent: 'center' }}>
-                  <Image source={require('../../../assets/forward-yellow.png')} />
-                </View>
-              </View>
-            ) : null
-        }
+        {projects.length > 0 ? (
+          <View style={styles.rightContainer}>
+            <View style={styles.rightContainerWithPadding}>
+              <Text style={styles.rightTextContainer}> 
+{' '}
+{rightText}
+{' '}
+ </Text>
+            </View>
+            <View style={{ justifyContent: 'center' }}>
+              <Image source={require('../../../assets/forward-yellow.png')} />
+            </View>
+          </View>
+        ) : null}
       </Fragment>
     </View>
 
     <View style={styles.bottomContainer}>
-      {
-        projects.length === 0 ?
-          <Box
-            empty
-            fn={() => console.log('navigate')}
-          />
-          : <Images projects={projects} />
-      }
+      {projects.length === 0 ? (
+        <Box empty fn={() => console.log('navigate')} />
+      ) : (
+        <Images projects={projects} />
+      )}
     </View>
   </View>
 );
 
-Project.defaultProps = {
+Project.defaultProps = {};
 
-};
-
-Project.propTypes = {
-
-};
-
+Project.propTypes = {};
 
 export default Project;

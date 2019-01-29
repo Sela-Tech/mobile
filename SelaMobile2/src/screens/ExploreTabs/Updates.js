@@ -24,7 +24,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
 export default class Updates extends Component {
   render() {
     const project = this.props;

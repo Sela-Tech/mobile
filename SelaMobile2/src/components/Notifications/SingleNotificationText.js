@@ -35,7 +35,18 @@ const renderSwitch = (params, text) => {
       return (
         <View>
           <Text>
-            <B fn={() => NavigationService.navigate('UserProfile', params.stakeholder._id)}> {params.stakeholder.firstName.concat(' ').concat(params.stakeholder.lastName)}</B> added you to the project <B fn={() => NavigationService.navigate('ExploreProject', params.project.id)}>{params.project.name}.</B>  </Text>
+            <B fn={() => NavigationService.navigate('UserProfile', params.stakeholder._id)}>
+              {' '}
+              {params.stakeholder.firstName.concat(' ').concat(params.stakeholder.lastName)}
+            </B>
+{' '}
+            added you to the project
+{' '}
+            <B fn={() => NavigationService.navigate('ExploreProject', params.project.id)}>
+              {params.project.name}
+.
+</B>{' '}
+          </Text>
         </View>
       );
     default:
@@ -45,7 +56,7 @@ const renderSwitch = (params, text) => {
         </View>
       );
   }
-}
+};
 
 const SingleNotificationText = ({ text, imageSRC, time, notifs }) => (
   <View style={styles.container}>
@@ -53,9 +64,7 @@ const SingleNotificationText = ({ text, imageSRC, time, notifs }) => (
       <Image source={imageSRC} style={styles.imgStyle} />
     </View>
     <View style={styles.subContainer}>
-      <Fragment>
-        {renderSwitch(notifs, text)}
-      </Fragment>
+      <Fragment>{renderSwitch(notifs, text)}</Fragment>
       <View style={styles.mt5}>
         <Text> {time} </Text>
       </View>
@@ -64,4 +73,3 @@ const SingleNotificationText = ({ text, imageSRC, time, notifs }) => (
 );
 
 export default SingleNotificationText;
-

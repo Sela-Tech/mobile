@@ -7,7 +7,6 @@ import Navigator from './ExploreTabs/Navigator';
 import { getSingleProject } from '../utils/api';
 import ExtStyle from '../utils/styles';
 
-
 const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -21,6 +20,7 @@ class ExploreProject extends Component {
     loading: true,
     notAvailaible: false,
   };
+
   async componentDidMount() {
     try {
       const { projectId } = this.state;
@@ -34,10 +34,9 @@ class ExploreProject extends Component {
         this.setState({
           projectInfo: resp.data,
           loading: false,
-          notAvailaible: true
+          notAvailaible: true,
         });
-      }
-      else {
+      } else {
         const status = allProjects && allProjects.includes(this.state.projectId);
         if (!status) {
           const resp = await getSingleProject(projectId);
@@ -46,14 +45,12 @@ class ExploreProject extends Component {
             loading: false,
             notAvailaible: true,
           });
-        }
-        else {
-          this.setState({ loading: false })
+        } else {
+          this.setState({ loading: false });
         }
       }
-    }
-    catch (err) {
-      this.setState({ error: err.message })
+    } catch (err) {
+      this.setState({ error: err.message });
     }
   }
 
@@ -78,53 +75,57 @@ class ExploreProject extends Component {
     return (
       <View style={ExtStyle.flex1}>
         <Fragment>
-          {
-            !!notAvailaible ?
-              (
-                <Fragment>
-                  <View>
-                    <Image style={styles.imageHeight} source={{ uri: projectInfo['project-avatar'] === undefined ? 'https://placeimg.com/640/480/any' : projectInfo['project-avatar'] }} />
-                  </View>
-                  <View style={ExtStyle.flex3}>
-                    <Header
-                      projectLocationText={projectInfo.location.name}
-                      projectStatusText={projectInfo.status}
-                      projectNameText="MARKERS LTD"
-                      projectTitleText={projectInfo.name}
-                      budgetAmount={projectInfo.goal}
-                      numberOfStakeholders={projectInfo.stakeholders.length}
-                      raisedAmount={projectInfo.raised}
-                      tags={projectInfo.tags}
-                    />
-                  </View>
-                  <View style={ExtStyle.flex6}>
-                    <Navigator project={projectInfo} />
-                  </View>
-                </Fragment>
-              ) :
-              (
-                <Fragment>
-                  <View>
-                    <Image style={styles.imageHeight} source={{ uri: theProject['project-avatar'] }} />
-                  </View>
-                  <View style={styles.flex3}>
-                    <Header
-                      projectLocationText={theProject && theProject.location.name}
-                      projectStatusText={theProject.status}
-                      projectNameText="MARKERS LTD"
-                      projectTitleText={theProject.name}
-                      budgetAmount={theProject.goal}
-                      numberOfStakeholders={theProject.stakeholders.length}
-                      raisedAmount={theProject.raised}
-                      tags={theProject.tags}
-                    />
-                  </View>
-                  <View style={ExtStyle.flex6}>
-                    <Navigator project={theProject} />
-                  </View>
-                </Fragment>
-              )
-          }
+          {notAvailaible ? (
+            <Fragment>
+              <View>
+                <Image
+                  style={styles.imageHeight}
+                  source={{
+                    uri:
+                      projectInfo['project-avatar'] === undefined
+                        ? 'https://placeimg.com/640/480/any'
+                        : projectInfo['project-avatar'],
+                  }}
+                />
+              </View>
+              <View style={ExtStyle.flex3}>
+                <Header
+                  projectLocationText={projectInfo.location.name}
+                  projectStatusText={projectInfo.status}
+                  projectNameText="MARKERS LTD"
+                  projectTitleText={projectInfo.name}
+                  budgetAmount={projectInfo.goal}
+                  numberOfStakeholders={projectInfo.stakeholders.length}
+                  raisedAmount={projectInfo.raised}
+                  tags={projectInfo.tags}
+                />
+              </View>
+              <View style={ExtStyle.flex6}>
+                <Navigator project={projectInfo} />
+              </View>
+            </Fragment>
+          ) : (
+            <Fragment>
+              <View>
+                <Image style={styles.imageHeight} source={{ uri: theProject['project-avatar'] }} />
+              </View>
+              <View style={styles.flex3}>
+                <Header
+                  projectLocationText={theProject && theProject.location.name}
+                  projectStatusText={theProject.status}
+                  projectNameText="MARKERS LTD"
+                  projectTitleText={theProject.name}
+                  budgetAmount={theProject.goal}
+                  numberOfStakeholders={theProject.stakeholders.length}
+                  raisedAmount={theProject.raised}
+                  tags={theProject.tags}
+                />
+              </View>
+              <View style={ExtStyle.flex6}>
+                <Navigator project={theProject} />
+              </View>
+            </Fragment>
+          )}
         </Fragment>
       </View>
     );

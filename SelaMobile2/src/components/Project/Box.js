@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, ImageBackground, TouchableOpacity, Image } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  ImageBackground,
+  TouchableOpacity,
+  Image,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import NavigationService from '../../services/NavigationService';
 import Text from '../Text';
@@ -34,28 +41,31 @@ const styles = StyleSheet.create({
 const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
   <TouchableOpacity
     style={styles.container}
-    onPress={empty ? () => NavigationService.navigate('CreateProject') : id => NavigationService.navigate('ExploreProject', projectInfo._id)}
-  >
-    {
-      !empty ?
-        (
-          <ImageBackground source={{ uri: imageSource === '' ? 'https://placeimg.com/640/480/any' : imageSource }} style={styles.imageBack}>
-            <View style={styles.textView}>
-              <Text style={styles.text}>{siteName}</Text>
-            </View>
-          </ImageBackground>
-        ) :
-        (
-          <View style={(styles.empty, { alignItems: 'center', borderColor: '#F2994A' })}>
-            <View style={{ justifyContent: 'center' }}>
-              <Image source={require('../../../assets/plus.png')} style={{ tintColor: '#696f74' }} />
-            </View>
-            <View style={{ marginTop: 10 }}>
-              <Text> {text ? text : 'Propose Project'} </Text>
-            </View>
-          </View>
-        )
+    onPress={
+      empty
+        ? () => NavigationService.navigate('CreateProject')
+        : id => NavigationService.navigate('ExploreProject', projectInfo._id)
     }
+  >
+    {!empty ? (
+      <ImageBackground
+        source={{ uri: imageSource === '' ? 'https://placeimg.com/640/480/any' : imageSource }}
+        style={styles.imageBack}
+      >
+        <View style={styles.textView}>
+          <Text style={styles.text}>{siteName}</Text>
+        </View>
+      </ImageBackground>
+    ) : (
+      <View style={(styles.empty, { alignItems: 'center', borderColor: '#F2994A' })}>
+        <View style={{ justifyContent: 'center' }}>
+          <Image source={require('../../../assets/plus.png')} style={{ tintColor: '#696f74' }} />
+        </View>
+        <View style={{ marginTop: 10 }}>
+          <Text> {text ? text : 'Propose Project'} </Text>
+        </View>
+      </View>
+    )}
   </TouchableOpacity>
 );
 

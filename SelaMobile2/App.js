@@ -16,7 +16,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
 export default () => (
   <Provider store={store}>
     <PersistGate persistor={persistor} loading={<Loading />}>

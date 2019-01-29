@@ -173,7 +173,6 @@ export default class SubmitFeedback extends Component {
     };
   }
 
-
   onSend = (messages = []) => {
     let { step } = this.state;
     step += 1;
@@ -243,11 +242,11 @@ export default class SubmitFeedback extends Component {
     }
     let { step } = this.state;
     step += 1;
-    this.setState(previousState => ({
+    this.setState({
       step,
       videoStarted: false,
       hideHeader: false,
-    }));
+    });
   };
 
   takeVideo = async () => {
@@ -395,7 +394,7 @@ export default class SubmitFeedback extends Component {
   };
 
   render() {
-    const { messages, openCamera, type, flash, autoFocus, hideHeader } = this.state;
+    const { messages, hideHeader } = this.state;
     return (
       <View style={styles.container}>
         <Fragment>

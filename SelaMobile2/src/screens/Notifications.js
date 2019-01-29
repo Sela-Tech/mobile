@@ -34,7 +34,7 @@ class Notifications extends Component {
   };
 
   async componentDidMount() {
-    let notifications =
+    const notifications =
       (this.props.notifications &&
         this.props.notifications.notifications &&
         this.props.notifications.notifications.notifications) ||
@@ -51,9 +51,8 @@ class Notifications extends Component {
         this.props.updateNotifs(unreadNIds);
       }
       this.setState({ loading: false });
-    }
-    catch (err) {
-      this.setState({ error: err.message })
+    } catch (err) {
+      this.setState({ error: err.message });
     }
   }
 

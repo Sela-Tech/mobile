@@ -240,7 +240,7 @@ export default class OnBoarding extends Component {
     });
     try {
       const resp = await signUp(data);
-      console.log('ree', resp.data)
+      console.log('ree', resp.data);
       this.setState({ loading: false });
       if (resp.data.success === true) {
         return NavigationService.navigate('SignUpSuccess');
@@ -300,24 +300,24 @@ export default class OnBoarding extends Component {
                     showPassword={this.showPassword}
                   />
                 ) : (
-                    <OnBoardView
-                      second
-                      currentPage={currentPage}
-                      changePage={this.changePage}
-                      secure={secure}
-                      state={this.state}
-                      changeRole={this.changeRole}
-                      navigate={navigate}
-                      showPassword={this.showPassword}
-                      changeFullNameFn={this.fullNameFn}
-                      passwordFn={this.passwordFn}
-                      emailOrPhoneFn={this.emailOrPhoneFn}
-                      onTheChangeEmailOrPhone={this.onTheChangeEmailOrPhone}
-                      onTheChangeFullName={this.onTheChangeFullName}
-                      onTheChangePassword={this.onTheChangePassword}
-                      signUp={this.signUp}
-                    />
-                  )}
+                  <OnBoardView
+                    second
+                    currentPage={currentPage}
+                    changePage={this.changePage}
+                    secure={secure}
+                    state={this.state}
+                    changeRole={this.changeRole}
+                    navigate={navigate}
+                    showPassword={this.showPassword}
+                    changeFullNameFn={this.fullNameFn}
+                    passwordFn={this.passwordFn}
+                    emailOrPhoneFn={this.emailOrPhoneFn}
+                    onTheChangeEmailOrPhone={this.onTheChangeEmailOrPhone}
+                    onTheChangeFullName={this.onTheChangeFullName}
+                    onTheChangePassword={this.onTheChangePassword}
+                    signUp={this.signUp}
+                  />
+                )}
               </View>
             </View>
           </KeyboardAvoidingView>
