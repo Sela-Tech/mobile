@@ -143,6 +143,7 @@ class Profile extends Component {
                           data={images}
                           keyExtractor={keyExtractor}
                           horizontal
+                          showsHorizontalScrollIndicator={false}
                           renderItem={renderItem}
                         />
                       )}

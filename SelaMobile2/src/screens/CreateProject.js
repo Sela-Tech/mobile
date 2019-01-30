@@ -9,6 +9,7 @@ import Input from '../components/Input';
 import Text from '../components/Text';
 import Button from '../components/Button';
 import * as API from '../utils/api';
+import ExtStyle from '../utils/styles';
 import { WHITE, YELLOW } from '../utils/constants';
 
 const { height, width } = Dimensions.get('window');
@@ -70,8 +71,9 @@ export default class CreateProject extends Component {
   }
 
   pickImage = async () => {
+    console.log('ooo')
     ImagePicker.showImagePicker(options, response => {
-      console.log('Response = ', response);
+      console.log('Response = ', response.uri);
 
       if (response.didCancel) {
         console.log('User cancelled image picker');
@@ -80,13 +82,13 @@ export default class CreateProject extends Component {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        const source = { uri: response.uri };
+        // const source = { uri: response.uri };
 
         // You can also display the image using data:
         // const source = { uri: 'data:image/jpeg;base64,' + response.data };
 
         this.setState({
-          avatarSource: source,
+          avatarSource: response.uri,
         });
       }
     });
@@ -107,7 +109,7 @@ export default class CreateProject extends Component {
   };
 
   // upload image to the server
-  uploadImageAsync = async data => {};
+  uploadImageAsync = async data => { };
 
   handleImagePicked = async pickerResult => {
     let uploadResponse;
@@ -117,6 +119,7 @@ export default class CreateProject extends Component {
       this.setState({
         uploading: true,
       });
+      console.log("ppp", pickerResult.source)
 
       if (!pickerResult.cancelled) {
         // uploadResponse = await uploadImageAsync(pickerResult.uri);
@@ -203,20 +206,21 @@ export default class CreateProject extends Component {
     this.setState({ loading: true });
 
     try {
-      // const resp = await API.addProject(data);
-      // this.setState({ loading: false });
-      // if (resp.data.success === true) {
-      this.props.navigation.navigate('Success');
-      // }
+      const resp = await API.addProject(data);
+      console.log('server', resp.data);
+      this.setState({ loading: false });
+      if (resp.data.success === true) {
+        this.props.navigation.navigate('Success');
+      }
     } catch (err) {
       this.setState({ loading: false, error: err.message });
     }
   };
 
   render() {
-    const { image, showFirstCalendar, showSecondCalendar, loading, users } = this.state;
+    const { avatarSource, showFirstCalendar, showSecondCalendar, loading, users } = this.state;
     const avatar = require('../../assets/selectImage.png');
-    const avatarURI = image || '';
+    const avatarURI = avatarSource || '';
     const icon = avatarURI === '' ? avatar : { uri: avatarURI };
     return (
       <KeyboardAwareScrollView
@@ -313,8 +317,8 @@ export default class CreateProject extends Component {
             text="Search places"
             style={styles.inputStyle}
             placeHolderColor="#B1BAD2"
-            onChangeTheText={() => this.openSearchModal()}
-            // onChangeTheText={places => this.setState({ places })}
+            // onChangeTheText={() => this.openSearchModal()}
+            onChangeTheText={places => console.log('places')}
             onTheChange={() =>
               this.setState({
                 placesError: false,
@@ -329,6 +333,7 @@ export default class CreateProject extends Component {
               {` Add contractors and team members to the project `}
             </Text>
           </View>
+          {/* <View style={ExtStyle.flex1}> */}
           <Dropdown
             containerStyle={[
               {
@@ -344,6 +349,7 @@ export default class CreateProject extends Component {
             onChangeText={id => this.chooseContractor(id)}
             data={users}
           />
+          {/* </View> */}
         </View>
 
         <View>
@@ -374,9 +380,9 @@ export default class CreateProject extends Component {
                 style={
                   avatarURI !== ''
                     ? {
-                        width: width / 1.1,
-                        height: height / 9,
-                      }
+                      width: width / 1.1,
+                      height: height / 9,
+                    }
                     : null
                 }
                 source={icon}
@@ -405,10 +411,10 @@ export default class CreateProject extends Component {
             {showFirstCalendar === true || showSecondCalendar === true ? (
               <Fragment />
             ) : (
-              <View style={{ justifyContent: 'center' }}>
-                <Image source={require('../../assets/minus.png')} />
-              </View>
-            )}
+                <View style={{ justifyContent: 'center' }}>
+                  <Image source={require('../../assets/minus.png')} />
+                </View>
+              )}
           </Fragment>
           <CalendarBox
             upText="End Date"

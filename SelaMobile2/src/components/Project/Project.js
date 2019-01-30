@@ -49,36 +49,37 @@ const Project = ({ leftText, rightText, projects }) => (
   <View style={styles.container}>
     <View style={styles.semiContainer}>
       <View style={styles.leftContainer}>
-        <Text style={styles.leftTextContainer}> 
-{' '}
-{leftText}
-{' '}
- </Text>
+        <Text style={styles.leftTextContainer}>
+          {leftText}
+          {' '}
+        </Text>
       </View>
       <Fragment>
-        {projects.length > 0 ? (
+        {projects && projects.length > 0 ? (
           <View style={styles.rightContainer}>
             <View style={styles.rightContainerWithPadding}>
-              <Text style={styles.rightTextContainer}> 
-{' '}
-{rightText}
-{' '}
- </Text>
+              <Text style={styles.rightTextContainer}>
+                {' '}
+                {rightText}
+                {' '}
+              </Text>
             </View>
-            <View style={{ justifyContent: 'center' }}>
+            {/* <View style={{ justifyContent: 'center' }}>
               <Image source={require('../../../assets/forward-yellow.png')} />
-            </View>
+            </View> */}
           </View>
         ) : null}
       </Fragment>
     </View>
 
     <View style={styles.bottomContainer}>
-      {projects.length === 0 ? (
-        <Box empty fn={() => console.log('navigate')} />
+      {projects && projects.length === 0 ? (
+        <Box
+          text={leftText === 'Projects you created' ? 'Create Project' : 'Propose Project'}
+          empty fn={() => console.log('navigate')} />
       ) : (
-        <Images projects={projects} />
-      )}
+          <Images projects={projects} />
+        )}
     </View>
   </View>
 );

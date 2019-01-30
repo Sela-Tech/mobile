@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   smallText: {
-    fontSize: 10,
+    fontSize: 12,
   },
   pt: {
     paddingTop: 3,
@@ -20,6 +20,11 @@ const styles = StyleSheet.create({
   text: {
     color: '#201D41',
     fontSize: 15,
+  },
+  bold: {
+    color: '#201D41',
+    fontSize: 18,
+    fontWeight: '600',
   },
 });
 
@@ -35,7 +40,7 @@ const Header = ({
 }) => (
     <View style={styles.container}>
       <View style={{ flex: 1, flexDirection: 'row' }}>
-        <View style={{ flexDirection: 'row', flex: 5 }}>
+        <View style={{ flexDirection: 'row', flex: 5, marginTop: 3, }}>
           <View>
             <Text style={styles.smallText}> {projectLocationText} </Text>
           </View>
@@ -57,9 +62,9 @@ const Header = ({
         </View>
       </View>
       <View style={{ flex: 1, marginTop: 5 }}>
-        <Text style={styles.text}> {projectTitleText}</Text>
+        <Text style={styles.bold}> {projectTitleText}</Text>
       </View>
-      <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between', marginTop: 5 }}>
+      <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between', marginTop: 9 }}>
         <View>
           <View>
             <Text> Budget </Text>

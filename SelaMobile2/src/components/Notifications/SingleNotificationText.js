@@ -33,18 +33,16 @@ const renderSwitch = (params, text) => {
   switch (params.type) {
     case 'INVITATION_TO_JOIN_PROJECT':
       return (
-        <View>
+        <View style={{ marginLeft: 4 }}>
           <Text>
-            <B fn={() => NavigationService.navigate('UserProfile', params.stakeholder._id)}>
-              {' '}
-              {params.stakeholder.firstName.concat(' ').concat(params.stakeholder.lastName)}
+            <B fn={() => NavigationService.navigate('UserProfile', params.stakeholder._id)}>{params.stakeholder.firstName.concat(' ').concat(params.stakeholder.lastName)}
             </B>
-{' '}
+            {' '}
             added you to the project
 {' '}
             <B fn={() => NavigationService.navigate('ExploreProject', params.project.id)}>
               {params.project.name}
-.
+              .
 </B>{' '}
           </Text>
         </View>

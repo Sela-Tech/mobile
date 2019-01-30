@@ -18,7 +18,7 @@ const tabBarOptions = {
   inactiveTintColor: '#B1BAD2',
   showIcon: false,
   labelStyle: {
-    fontSize: width < 400 ? 7 : 10,
+    fontSize: width < 400 ? 7 : 9,
     fontWeight: '600',
   },
   style: {

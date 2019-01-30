@@ -5,7 +5,7 @@ try {
   const rootDir = process.cwd();
 
   const file = `${rootDir}/node_modules/react-native/react.gradle`;
-  const dataFix = fs.readFileSync(`${curDir}/android-release-gradle-fix.js`, 'utf8');
+  const dataFix = fs.readFileSync(`${curDir}/android-react-gradle-fix`, 'utf8');
   const data = fs.readFileSync(file, 'utf8');
 
   const doLast = 'doLast \{';

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
 import Text from '../../components/Text';
 import B from '../../components/BoldText';
@@ -35,29 +35,40 @@ export default class StakeHolders extends Component {
           <View>
             <B color={YELLOW}>INITIATED BY</B>
           </View>
-          <View style={{ flex: 1 }}>
-            {project.stakeholders.map((c, index) => {
-              let photoLink = c.user.information.profilePhoto;
-              if (photoLink === null) {
-                photoLink = 'https://placeimg.com/640/480/any';
-              } else if (photoLink === undefined) {
-                photoLink = 'https://placeimg.com/640/480/any';
-              }
+          <Fragment>
+            {
+              project.stakeholders.length === 0 ?
+                (
+                  <View style={{ height: height / 7, justifyContent: 'center' }}>
+                    <Text> No StakeHolders at the moment </Text>
+                  </View>
+                ) :
+                (
+                  <View style={{ flex: 1 }}>
+                    {project.stakeholders.map((c, index) => {
+                      let photoLink = c.user.information.profilePhoto;
+                      if (photoLink === null) {
+                        photoLink = 'https://placeimg.com/640/480/any';
+                      } else if (photoLink === undefined) {
+                        photoLink = 'https://placeimg.com/640/480/any';
+                      }
 
-              return (
-                <UserProfile
-                  userId={c._id}
-                  key={index}
-                  userDetails={c}
-                  imgSource={{ uri: photoLink }}
-                  userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                  companyName={c.user.information.organization.name}
-                />
-              );
-            })}
-          </View>
+                      return (
+                        <UserProfile
+                          userId={c._id}
+                          key={index}
+                          userDetails={c}
+                          imgSource={{ uri: photoLink }}
+                          userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                          companyName={c.user.information.organization.name}
+                        />
+                      );
+                    })}
+                  </View>
+                )
+            }
+          </Fragment>
         </View>
-
         <View>
           <View>
             <B color={YELLOW}>CONTRACTOR</B>

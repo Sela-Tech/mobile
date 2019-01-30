@@ -1,17 +1,22 @@
 import React, { Component, Fragment } from 'react';
-import { View, Image, Dimensions, StyleSheet } from 'react-native';
+import { View, Image, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import Spinner from '../components/Spinner';
+import Text from '../components/Text';
 import Header from '../components/ExploreTopTabs/Header';
 import Navigator from './ExploreTabs/Navigator';
 import { getSingleProject } from '../utils/api';
 import ExtStyle from '../utils/styles';
+import { WHITE } from '../utils/constants';
 
 const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   imageHeight: {
     height: height / 3.5,
+  },
+  mt3: {
+    marginTop: height < 600 ? 3 : null,
   },
 });
 class ExploreProject extends Component {
@@ -77,18 +82,47 @@ class ExploreProject extends Component {
         <Fragment>
           {notAvailaible ? (
             <Fragment>
-              <View>
-                <Image
-                  style={styles.imageHeight}
-                  source={{
-                    uri:
-                      projectInfo['project-avatar'] === undefined
-                        ? 'https://placeimg.com/640/480/any'
-                        : projectInfo['project-avatar'],
-                  }}
-                />
+              <View style={{ flex: 4 }}>
+                <View style={{
+                  position: 'absolute',
+                  top: 0,
+                  bottom: 0,
+                  left: 0,
+                  right: 0,
+                }}>
+                  <Image
+                    style={styles.imageHeight}
+                    source={{
+                      uri:
+                        projectInfo['project-avatar'] === undefined
+                          ? 'https://placeimg.com/640/480/any'
+                          : projectInfo['project-avatar'],
+                    }}
+                  />
+                </View>
+                <View >
+                  <TouchableOpacity
+                    transparent
+                    style={{
+                      marginTop: '7%',
+                      marginHorizontal: '5%',
+                      flexDirection: 'row',
+                    }}
+                    onPress={() => this.props.navigation.goBack()}
+                  >
+
+                    <View>
+                      <Image
+                        source={require('../../assets/white-back.png')}
+                      />
+                    </View>
+                    <View>
+                      <Text style={{ color: WHITE }}>   Back to Explore </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
               </View>
-              <View style={ExtStyle.flex3}>
+              <View style={[ExtStyle.flex3, styles.mt3]}>
                 <Header
                   projectLocationText={projectInfo.location.name}
                   projectStatusText={projectInfo.status}
@@ -105,27 +139,27 @@ class ExploreProject extends Component {
               </View>
             </Fragment>
           ) : (
-            <Fragment>
-              <View>
-                <Image style={styles.imageHeight} source={{ uri: theProject['project-avatar'] }} />
-              </View>
-              <View style={styles.flex3}>
-                <Header
-                  projectLocationText={theProject && theProject.location.name}
-                  projectStatusText={theProject.status}
-                  projectNameText="MARKERS LTD"
-                  projectTitleText={theProject.name}
-                  budgetAmount={theProject.goal}
-                  numberOfStakeholders={theProject.stakeholders.length}
-                  raisedAmount={theProject.raised}
-                  tags={theProject.tags}
-                />
-              </View>
-              <View style={ExtStyle.flex6}>
-                <Navigator project={theProject} />
-              </View>
-            </Fragment>
-          )}
+              <Fragment>
+                <View>
+                  <Image style={styles.imageHeight} source={{ uri: theProject['project-avatar'] }} />
+                </View>
+                <View style={styles.flex3}>
+                  <Header
+                    projectLocationText={theProject && theProject.location.name}
+                    projectStatusText={theProject.status}
+                    projectNameText="MARKERS LTD"
+                    projectTitleText={theProject.name}
+                    budgetAmount={theProject.goal}
+                    numberOfStakeholders={theProject.stakeholders.length}
+                    raisedAmount={theProject.raised}
+                    tags={theProject.tags}
+                  />
+                </View>
+                <View style={ExtStyle.flex6}>
+                  <Navigator project={theProject} />
+                </View>
+              </Fragment>
+            )}
         </Fragment>
       </View>
     );

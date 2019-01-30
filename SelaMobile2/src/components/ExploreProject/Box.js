@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   fontS: {
-    fontSize: 15,
+    fontSize: width < 400 ? 11 : 15,
   },
   viewInImage: {
     backgroundColor: '#C13C1E',
@@ -47,9 +47,9 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
   <TouchableOpacity onPress={() => fn()} style={styles.container}>
     <View style={styles.boxHeight}>
       <Image
-        resizeMode="cover"
+        // resizeMode="cover"
         source={img}
-        style={{ height: height / 3, width: width / 1.1, borderRadius: 10 }}
+        style={{ height: height / 2, width: width / 1.1, borderRadius: 10 }}
       />
       <View style={styles.viewInImage}>
         <View style={{ paddingLeft: 5 }}>

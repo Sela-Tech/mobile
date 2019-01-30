@@ -35,14 +35,16 @@ const images = [
 const Updates = ({ statusText }) => (
   <View style={{ flex: 1, marginBottom: 10 }}>
     <View style={{ flexDirection: 'row', paddingTop: 10, marginTop: 15, flex: 1 }}>
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 2 }}>
         <Text style={{ color: '#696F74', fontWeight: '400' }}>Deadline </Text>
       </View>
-      <Tag
-        textColor={statusText === 'In Progress' ? '#369C05' : '#E06811'}
-        viewColor={statusText === 'In Progress' ? '#d2fdbf' : '#f7bc92'}
-        text={statusText}
-      />
+      <View style={{ flex: 1, marginRight: 5 }}>
+        <Tag
+          textColor={statusText === 'In Progress' ? '#369C05' : '#E06811'}
+          viewColor={statusText === 'In Progress' ? '#d2fdbf' : '#f7bc92'}
+          text={statusText}
+        />
+      </View>
     </View>
     <View style={{ flex: 4 }}>
       <View>
@@ -63,6 +65,7 @@ const Updates = ({ statusText }) => (
       <FlatList
         style={{ paddingTop: 10 }}
         data={images}
+        showsHorizontalScrollIndicator={false}
         keyExtractor={keyExtractor}
         horizontal
         renderItem={renderItem}

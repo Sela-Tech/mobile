@@ -139,7 +139,6 @@ class Project extends Component {
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
 
-    userRole = 'contractor';
     return (
       <View style={styles.container}>
         <Header
@@ -153,7 +152,6 @@ class Project extends Component {
                 : require('../../assets/notifications-received.png')
           }
         />
-
         <Fragment>
           {loading ? (
             <Spinner />
@@ -161,41 +159,39 @@ class Project extends Component {
               <Fragment>
                 {userRole === 'funder' ? (
                   <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
-                    <View>
-                      <View style={ExtStyle.flex1}>
-                        <SingularProject
-                          leftText="Projects you created"
-                          rightText="See all"
-                          projects={projectCreatedByMe}
-                        />
-                      </View>
+                    {/* <View> */}
+                    <View style={ExtStyle.flex1}>
+                      <SingularProject
+                        leftText="Projects you created"
+                        // rightText="See all"
+                        projects={projectCreatedByMe}
+                      />
+                    </View>
 
-                      <View style={ExtStyle.flex1}>
-                        <SingularProject
-                          leftText="Projects you funded"
-                          rightText="See all"
-                          projects={projects}
-                        />
-                      </View>
+                    <View style={ExtStyle.flex1}>
+                      <SingularProject
+                        leftText="Projects you funded"
+                        // rightText="See all"
+                        projects={projects}
+                      />
+                    </View>
 
-                      <View style={ExtStyle.flex1}>
-                        <SingularProject
-                          leftText="Projects that may interest you"
-                          rightText="Edit interest"
-                          projects={projects}
-                        />
-                      </View>
+                    <View style={ExtStyle.flex1}>
+                      <SingularProject
+                        leftText="Projects that may interest you"
+                        // rightText="Edit interest"
+                        projects={projects}
+                      />
+                    </View>
 
-                      <View style={ExtStyle.flex1}>
+                    {/* <View style={ExtStyle.flex1}>
                         <SingularProject
-                          leftText="Save Project"
+                          leftText="Saved Project"
                           rightText="See all"
                           project={projects}
                         />
-                      </View>
-                    </View>
+                      </View> */}
 
-                    <View style={ExtStyle.flex1}>{this.renderButton()}</View>
                   </ScrollView>
                 ) : (
                     <Fragment>
@@ -206,7 +202,7 @@ class Project extends Component {
                               <SingularProject
                                 leftText="Projects you proposed"
                                 rightText="See all"
-                                projects={projects.slice(2, 3)}
+                                projects={projects}
                               />
                             </View>
 

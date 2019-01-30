@@ -14,7 +14,6 @@
     "android:release": "cd ./android && ./gradlew app:assembleDebug && ./gradlew installDebug",
     "link": "react-native link",
     "release": "react-native run-android --variant=release",
-    "postinstall": "node ./android-release-gradle-fix.js",
     "clear": "watchman watch-del-all && rm -rf node_modules/ && yarn cache clean && yarn install && yarn start -- --reset-cache"
   },
   "dependencies": {
