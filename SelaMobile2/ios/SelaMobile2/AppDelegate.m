@@ -10,12 +10,26 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+@import GooglePlaces;
+@import GoogleMaps;
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
   NSURL *jsCodeLocation;
+  for (NSString* family in [UIFont familyNames])
+    {
+      NSLog(@"%@", family);
+      
+      for (NSString* name in [UIFont fontNamesForFamilyName: family])
+      {
+        NSLog(@"  %@", name);
+      }
+    }
 
+  [GMSPlacesClient provideAPIKey:@"YOUR_IOS_API_KEY_HERE"];
+  [GMSServices provideAPIKey:@"YOUR_IOS_API_KEY_HERE"];
   jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation

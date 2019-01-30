@@ -16,16 +16,16 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: '#F6F6F6',
-    borderBottomWidth: 0.4,
-    borderBottomColor: '#000000',
-    shadowColor: '#000000',
-    elevation: 6,
-    shadowOpacity: 0.5,
-    shadowRadius: 2,
-    shadowOffset: {
-      height: 10,
-      width: 10,
-    },
+    // borderBottomWidth: 0.4,
+    // borderBottomColor: '#000000',
+    // shadowColor: '#000000',
+    // elevation: 6,
+    // shadowOpacity: 0.5,
+    // shadowRadius: 2,
+    // shadowOffset: {
+    //   height: 10,
+    //   width: 10,
+    // },
   },
   bodyStyle: {
     alignItems: 'center',

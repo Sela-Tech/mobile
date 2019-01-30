@@ -1,10 +1,11 @@
 import React from 'react';
 import { Text, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
+import { isAndroid } from '../utils/helpers';
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: 'proximaNova',
+    fontFamily: isAndroid ? 'ProximaNova' : null,
   },
 });
 

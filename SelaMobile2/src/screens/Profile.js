@@ -152,7 +152,7 @@ class Profile extends Component {
                   <View style={{ marginVertical: 15 }}>
                     <B color="#201D41"> Interests </B>
                   </View>
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginLeft: 5, }}>
+                  <View style={{ marginHorizontal: 15, flexDirection: 'row', justifyContent: 'space-between', marginLeft: 5, alignItems: 'center' }}>
                     <Tag viewColor="#1ECD97" text="Education" />
                     <Tag viewColor="#1ECD97" text="Education" />
                     <Tag viewColor="#1ECD97" text="Education" />
