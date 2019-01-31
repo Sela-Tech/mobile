@@ -39,14 +39,33 @@ const renderSwitch = (params, text) => {
             </B>
             {' '}
             added you to the project
-{' '}
+            {' '}
             <B fn={() => NavigationService.navigate('ExploreProject', params.project.id)}>
               {params.project.name}
               .
-</B>{' '}
+          </B>{' '}
           </Text>
         </View>
       );
+    case 'YOU_SENT_INVITATION_TO_JOIN':
+      return (
+        <View style={{ marginLeft: 4 }}>
+          <Text>
+            You sent a request to
+            <B fn={() => NavigationService.navigate('UserProfile', params.stakeholder._id)}>
+              {` `} {params.stakeholder.firstName.concat(' ').concat(params.stakeholder.lastName)}
+            </B>
+            {' '}
+            to  join this project
+          {' '}
+            <B fn={() => NavigationService.navigate('ExploreProject', params.project.id)}>
+              {params.project.name}
+              .
+          </B>{' '}
+          </Text>
+        </View>
+      );
+
     default:
       return (
         <View>
