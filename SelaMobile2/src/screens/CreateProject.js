@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Dimensions, Image, TouchableOpacity, Picker } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-picker';
-import { Dropdown } from 'react-native-material-dropdown';
+import MultiSelect from 'react-native-multiple-select';
 import RNGooglePlaces from 'react-native-google-places';
 import CalendarBox from '../components/CreateProject/CalendarBox';
 import Input from '../components/Input';
@@ -26,8 +26,21 @@ const styles = StyleSheet.create({
     borderColor: '#B1BAD2',
     width: width / 1.1,
   },
+  multiSelect: {
+    borderColor: '#B1BAD2',
+    width: width / 1.1,
+    borderRadius: 5,
+    borderColor: '#B1BAD2',
+    // borderWidth: 1,
+  },
   smallContainer: {
     marginBottom: 15,
+  },
+  picker: {
+    borderColor: '#B1BAD2',
+    borderRadius: 5,
+    borderWidth: 1,
+    height: height / 13,
   },
 });
 
@@ -52,6 +65,8 @@ export default class CreateProject extends Component {
     endDate: Date.now(),
     loading: false,
     users: [],
+    selectedItems: [],
+    stakeholderName: '',
     stakeholders: [],
   };
 
@@ -71,7 +86,6 @@ export default class CreateProject extends Component {
   }
 
   pickImage = async () => {
-    console.log('ooo')
     ImagePicker.showImagePicker(options, response => {
       console.log('Response = ', response.uri);
 
@@ -93,19 +107,7 @@ export default class CreateProject extends Component {
       }
     });
 
-    // const { status: cameraRollPerm } = await Permissions.askAsync(
-    //   Permissions.CAMERA_ROLL,
-    // );
 
-    // // only if user allows permission to camera roll
-    // if (cameraRollPerm === 'granted') {
-    //   const pickerResult = await ImagePicker.launchImageLibraryAsync({
-    //     allowsEditing: true,
-    //     aspect: [4, 3],
-    //   });
-
-    //   await this.handleImagePicked(pickerResult);
-    // }
   };
 
   // upload image to the server
@@ -166,34 +168,34 @@ export default class CreateProject extends Component {
       .catch(error => console.log(error.message)); // error is a Javascript Error object
   }
 
-  chooseContractor = id => {
-    const val = [id];
-    this.setState({ stakeholders: val });
-  };
+
 
   submit = async () => {
     const {
       name,
       description,
-      tags,
+      selectedItems,
       budget,
       contractors,
       avatar,
       startDate,
       endDate,
       stakeholders,
+      stakeholderName,
+      users,
       //  places:
     } = this.state;
 
+    console.log('fjfjf', selectedItems)
 
     const data = {
       name,
       description,
       startDate: '2018-11-29',
       endDate: '2018-11-29',
-      tags,
+      tags: selectedItems,
       budget,
-      contractors: stakeholders,
+      contractors: stakeholderName,
       avatar: 'https://placeimg.com/200/200/people',
       location: {
         name: 'south-west',
@@ -201,13 +203,11 @@ export default class CreateProject extends Component {
         lng: 744738,
       },
     };
-    console.log('data', data);
 
     this.setState({ loading: true });
 
     try {
-      const resp = await API.addProject(data);
-      console.log('server', resp.data);
+      const resp = await API.addProject(data); x
       this.setState({ loading: false });
       if (resp.data.success === true) {
         this.props.navigation.navigate('Success');
@@ -217,11 +217,47 @@ export default class CreateProject extends Component {
     }
   };
 
+  onSelectedItemsChange = selectedItems => {
+    this.setState({ selectedItems });
+  };
+
   render() {
-    const { avatarSource, showFirstCalendar, showSecondCalendar, loading, users } = this.state;
+    const { selectedItems, avatarSource, showFirstCalendar, showSecondCalendar, loading, users, stakeholderName } = this.state;
     const avatar = require('../../assets/selectImage.png');
     const avatarURI = avatarSource || '';
     const icon = avatarURI === '' ? avatar : { uri: avatarURI };
+
+
+
+    const items = [{
+      id: 'Education',
+      name: 'Education',
+    },
+    {
+      id: 'Clean Hunger',
+      name: 'Clean Hunger',
+    },
+    {
+      // id: '3',
+      id: 'Zero Poverty',
+      name: 'Zero Poverty',
+    },
+    {
+      // id: '4',
+      id: 'Infrastucture',
+      name: 'Infrastucture',
+    },
+    {
+      // id: '4',
+      id: 'Sustainable cities',
+      name: 'Sustainable cities',
+    },
+    {
+      // id: '4',
+      id: 'Education',
+      name: 'Education',
+    },
+    ];
     return (
       <KeyboardAwareScrollView
         // innerRef={ref => {
@@ -275,9 +311,35 @@ export default class CreateProject extends Component {
         </View>
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
-            <Text style={{ fontSize: 15 }}> Project Tags (Seperate with a comma) </Text>
+            <Text style={{ fontSize: 15 }}>  select Project Tags  </Text>
           </View>
-          <Input
+          <View style={styles.multiSelect}>
+            <MultiSelect
+              // hideTags
+              canAddItems
+              items={items}
+              uniqueKey="id"
+              ref={(component) => { this.multiSelect = component }}
+              onSelectedItemsChange={this.onSelectedItemsChange}
+              selectedItems={selectedItems}
+              selectText="Pick project tags"
+              searchInputPlaceholderText="Search Items..."
+              onChangeInput={(text) => console.log(text)}
+              altFontFamily="ProximaNova-Light"
+              tagRemoveIconColor="#CCC"
+              tagBorderColor="#B1BAD2"
+              tagTextColor="#CCC"
+              selectedItemTextColor={YELLOW}
+              selectedItemIconColor={YELLOW}
+              itemTextColor="#000"
+              displayKey="name"
+              searchInputStyle={{ color: '#CCC' }}
+              submitButtonColor={YELLOW}
+              submitButtonText="Submit"
+            />
+          </View>
+
+          {/* <Input
             text="e.g education, sustainable cities"
             style={styles.inputStyle}
             placeHolderColor="#B1BAD2"
@@ -288,7 +350,7 @@ export default class CreateProject extends Component {
                 tagsErrorMessage: '',
               })
             }
-          />
+          /> */}
         </View>
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
@@ -328,28 +390,32 @@ export default class CreateProject extends Component {
           />
         </View>
         <View style={styles.smallContainer}>
-          <View style={{ marginBottom: 10 }}>
-            <Text style={{ fontSize: 15 }}>
-              {` Add contractors and team members to the project `}
-            </Text>
+          <View>
+            <View style={{ marginBottom: 10 }}>
+              <Text style={{ fontSize: 15 }}>
+                {` Add contractors and team members to the project `}
+              </Text>
+            </View>
+            <View style={[styles.inputStyle, styles.picker]}>
+              <Picker
+                style={[styles.inputStyle, styles.picker]}
+                selectedValue={stakeholderName}
+                onValueChange={stakeholder => this.setState({ stakeholderName: stakeholder })}
+              >
+                {users.map((contractor, i) => {
+                  const { firstName, lastName } = contractor;
+                  return (
+                    <Picker.Item
+                      style={[styles.inputStyle, styles.picker]}
+                      key={i}
+                      label={firstName.concat(' ').concat(lastName)}
+                      value={contractor._id}
+                    />
+                  )
+                })}
+              </Picker>
+            </View>
           </View>
-          {/* <View style={ExtStyle.flex1}> */}
-          <Dropdown
-            containerStyle={[
-              {
-                height: height / 13,
-                justifyContent: 'center',
-                paddingLeft: 10,
-                borderRadius: 5,
-                borderColor: '#F5F5F8',
-                borderWidth: 1,
-              },
-              styles.inputStyle,
-            ]}
-            onChangeText={id => this.chooseContractor(id)}
-            data={users}
-          />
-          {/* </View> */}
         </View>
 
         <View>

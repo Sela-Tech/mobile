@@ -52,7 +52,7 @@ const Input = ({
   errorMessage,
 }) => (
     <View style={{ flexDirection: 'column' }}>
-      <View style={[styles.container, { height: medium ? height / 11 : height / 11 }, style]}>
+      <View style={[styles.container, { height: height / 11 }, style]}>
         <TextInput
           value={value}
           placeholder={text}

@@ -201,7 +201,7 @@ class Project extends Component {
                             <View style={ExtStyle.flex1}>
                               <SingularProject
                                 leftText="Projects you proposed"
-                                rightText="See all"
+                                // rightText="See all"
                                 projects={projects}
                               />
                             </View>
@@ -209,7 +209,7 @@ class Project extends Component {
                             <View style={ExtStyle.flex1}>
                               <SingularProject
                                 leftText="Projects you were added to"
-                                rightText="See all"
+                                // rightText="See all"
                                 projects={contractorProjects}
                               />
                             </View>
