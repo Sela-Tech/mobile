@@ -21,9 +21,9 @@ export default () => (
     <PersistGate persistor={persistor} loading={<Loading />}>
       <ErrorHandler>
         <View style={styles.container}>
-          {/* <StatusBar
-            translucent
-          /> */}
+          <StatusBar
+            barStyle="light-content"
+          />
           <RootNavigator
             ref={navigatorRef => {
               NavigationService.setTopLevelNavigator(navigatorRef);
