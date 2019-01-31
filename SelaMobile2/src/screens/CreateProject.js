@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, Dimensions, Image, TouchableOpacity, Picker } from 'react-native';
+import { View, StyleSheet, Dimensions, Keyboard, Image, TouchableOpacity, Picker } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-picker';
 import MultiSelect from 'react-native-multiple-select';
 import RNGooglePlaces from 'react-native-google-places';
 import CalendarBox from '../components/CreateProject/CalendarBox';
+import SearchResult from '../components/SearchResult';
 import Input from '../components/Input';
 import Text from '../components/Text';
 import Button from '../components/Button';
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
 
 const options = {
   title: 'Select Avatar',
-  customButtons: [{ name: 'sela', title: 'Choose Photo ' }],
+  // customButtons: [{ name: 'sela', title: 'Choose Photo ' }],
   storageOptions: {
     skipBackup: true,
     path: 'images',
@@ -68,6 +69,12 @@ export default class CreateProject extends Component {
     selectedItems: [],
     stakeholderName: '',
     stakeholders: [],
+    googlePlaces: [],
+    locationObj: {
+      name: 'south-west',
+      lat: 945054,
+      lng: 744738,
+    },
   };
 
   async componentDidMount() {
@@ -87,7 +94,6 @@ export default class CreateProject extends Component {
 
   pickImage = async () => {
     ImagePicker.showImagePicker(options, response => {
-      console.log('Response = ', response.uri);
 
       if (response.didCancel) {
         console.log('User cancelled image picker');
@@ -121,7 +127,6 @@ export default class CreateProject extends Component {
       this.setState({
         uploading: true,
       });
-      console.log("ppp", pickerResult.source)
 
       if (!pickerResult.cancelled) {
         // uploadResponse = await uploadImageAsync(pickerResult.uri);
@@ -154,21 +159,45 @@ export default class CreateProject extends Component {
   };
 
   chooseDate = (day, val) => {
-    console.log('selected day', day);
     this.openCalender(val);
   };
 
-  openSearchModal() {
-    RNGooglePlaces.openAutocompleteModal()
-      .then(place => {
-        console.log(place);
-        // place represents user's selection from the
-        // suggestions and it is a simplified Google Place object.
+  searchResult = async () => {
+    const { places } = this.state;
+
+    RNGooglePlaces.getAutocompletePredictions(`${places}`, {
+
+    })
+      .then((place) => {
+        this.setState({ googlePlaces: place });
       })
-      .catch(error => console.log(error.message)); // error is a Javascript Error object
-  }
+      .catch(error => this.setState({ error: error.message }));
+  };
 
-
+  handleSelectedAddress = (payload, id) => {
+    Keyboard.dismiss();
+    RNGooglePlaces.lookUpPlaceByID(id)
+      .then(results => {
+        return this.setState({
+          searchResult: false,
+          googlePlaces: [],
+          location: payload,
+          locationObj: {
+            name: payload,
+            lat: results.latitude,
+            lng: results.longitude,
+          }
+        });
+      })
+      .catch(err => {
+        this.setState({
+          searchResult: false,
+          googlePlaces: [],
+          location: payload,
+          error: err.message,
+        })
+      });
+  };
 
   submit = async () => {
     const {
@@ -183,10 +212,8 @@ export default class CreateProject extends Component {
       stakeholders,
       stakeholderName,
       users,
-      //  places:
+      locationObj,
     } = this.state;
-
-    console.log('fjfjf', selectedItems)
 
     const data = {
       name,
@@ -197,11 +224,7 @@ export default class CreateProject extends Component {
       budget,
       contractors: stakeholderName,
       avatar: 'https://placeimg.com/200/200/people',
-      location: {
-        name: 'south-west',
-        lat: 945054,
-        lng: 744738,
-      },
+      location: locationObj,
     };
 
     this.setState({ loading: true });
@@ -222,7 +245,17 @@ export default class CreateProject extends Component {
   };
 
   render() {
-    const { selectedItems, avatarSource, showFirstCalendar, showSecondCalendar, loading, users, stakeholderName } = this.state;
+    const {
+      selectedItems,
+      avatarSource,
+      showFirstCalendar,
+      showSecondCalendar,
+      loading,
+      users,
+      googlePlaces,
+      location,
+      searchResult,
+      stakeholderName, } = this.state;
     const avatar = require('../../assets/selectImage.png');
     const avatarURI = avatarSource || '';
     const icon = avatarURI === '' ? avatar : { uri: avatarURI };
@@ -251,11 +284,6 @@ export default class CreateProject extends Component {
       // id: '4',
       id: 'Sustainable cities',
       name: 'Sustainable cities',
-    },
-    {
-      // id: '4',
-      id: 'Education',
-      name: 'Education',
     },
     ];
     return (
@@ -338,19 +366,6 @@ export default class CreateProject extends Component {
               submitButtonText="Submit"
             />
           </View>
-
-          {/* <Input
-            text="e.g education, sustainable cities"
-            style={styles.inputStyle}
-            placeHolderColor="#B1BAD2"
-            onChangeTheText={tags => this.setState({ tags })}
-            onTheChange={() =>
-              this.setState({
-                tagsError: false,
-                tagsErrorMessage: '',
-              })
-            }
-          /> */}
         </View>
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
@@ -376,18 +391,24 @@ export default class CreateProject extends Component {
             <Text style={{ fontSize: 15 }}> Set the location </Text>
           </View>
           <Input
+            value={location}
             text="Search places"
             style={styles.inputStyle}
             placeHolderColor="#B1BAD2"
-            // onChangeTheText={() => this.openSearchModal()}
-            onChangeTheText={places => console.log('places')}
-            onTheChange={() =>
-              this.setState({
-                placesError: false,
-                placesErrorMessage: '',
-              })
-            }
+            onChangeTheText={places => this.setState({ places })}
+            onTheChange={() => this.searchResult()}
           />
+          {
+            <Fragment>
+              {googlePlaces.length === 0 ? null : (
+                <SearchResult
+                  places={googlePlaces}
+                  searchResult={searchResult}
+                  handleSelectedAddress={(payload, id) => this.handleSelectedAddress(payload, id)}
+                />
+              )}
+            </Fragment>
+          }
         </View>
         <View style={styles.smallContainer}>
           <View>
