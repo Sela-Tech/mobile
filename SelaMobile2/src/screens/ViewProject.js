@@ -1,7 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { WHITE } from '../utils/constants';
 import Box from '../components/ExploreProject/Box';
+import Spinner from '../components/Spinner';
+import { getAllProjects } from '../utils/api';
+import ExtStyle from '../utils/styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,15 +24,31 @@ const styles = StyleSheet.create({
 });
 
 export default class ViewProject extends Component {
-  // static navigationOptions = {
-  //   title: 'EXPLORE',
-  //   headerStyle: {
-  //     fontFamily: 'proximaNova',
-  //     fontWeight: 'normal',
-  //   },
-  // };
+
+  state = {
+    loading: true,
+  };
+  async componentDidMount() {
+    try {
+      const resp = await getAllProjects();
+      if (resp.data.success === true) {
+        this.setState({ loading: false, projects: resp.data.projects })
+      }
+      else {
+        this.setState({
+          loading: false,
+          error: 'failed',
+        });
+      }
+    }
+    catch (err) {
+      this.setState({ loading: false });
+    }
+  }
+
 
   render() {
+    const { loading, projects } = this.state;
     return (
       <ScrollView
         style={{
@@ -37,59 +56,30 @@ export default class ViewProject extends Component {
         }}
         contentContainerStyle={styles.container}
       >
-        {/* <View style={styles.textContainer}>
-          <Text>
-            {' '}
-            Showing all projects in
-            <B> Lagos,Nigeria</B>
-            {' '}
-            with status
-{' '}
-          </Text>
-          <Text>
-            {' '}
-            <B>Completed</B>, tagged<B>Sustainable Cities</B>{' '}
-          </Text>
-        </View> */}
-        <View style={styles.otherContainer}>
-          <View style={{ marginBottom: 10, marginTop: 10 }}>
-            <Box
-              img={require('../../assets/class.png')}
-              firstText="Lagos, Nigeria"
-              secondText="MAKERS LTD"
-              thirdText="OnGoing"
-              title="Construction of Classroom Blocks"
-              cost="$1,500,000.00"
-              tags={['Resilient infrasture', 'Sustainable Cities']}
-              fn={() => this.props.navigation.navigate('ExploreProject')}
-            />
-          </View>
-
-          <View>
-            <Box
-              img={require('../../assets/borehole-2.png')}
-              firstText="Lagos, Nigeria"
-              secondText="Sustainability Intl"
-              thirdText="Completed"
-              title="Rural Clean Water Initiative"
-              cost="$2,500,000"
-              tags={['Resilient infrasture', 'Sustainable Cities']}
-              fn={() => this.props.navigation.navigate('ExploreProject')}
-            />
-          </View>
-          {/* <View>
-            <Box
-              img={require('../../assets/img/woman.png')}
-              firstText="K-Dere Portharcourt"
-              secondText="Sustainability Intl"
-              thirdText="Proposed"
-              title="Affordable housing scheme - 200 Units"
-              cost="$25,000"
-              tags={['Resilient infrasture', 'Sustainable Cities']}
-              fn={() => this.props.navigation.navigate('ExploreProject')}
-            />
-          </View> */}
-        </View>
+        <Fragment>
+          {loading ? (
+            <View style={ExtStyle.center}>
+              <Spinner />
+            </View>
+          ) :
+            (
+              projects.map((c, index) => (
+                <View style={{ marginBottom: 10, marginTop: 10 }}>
+                  <Box
+                    key={index}
+                    fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
+                    img={{ uri: 'https://placeimg.com/640/480/any' }}
+                    firstText={c.location.name}
+                    secondText={c.name}
+                    thirdText={c.status}
+                    title={c.description}
+                    cost={c.budget}
+                    tags={c.tags}
+                  />
+                </View>
+              )))
+          }
+        </Fragment>
       </ScrollView>
     );
   }

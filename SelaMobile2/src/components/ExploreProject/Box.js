@@ -63,7 +63,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
     <View style={[styles.boxHeight, { justifyContent: 'center' }]}>
       <View style={[styles.row, { marginTop: 10 }]}>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={{ fontSize: 15, fontWeight: '400', color: '#696F74' }}>{firstText}</Text>
+          <Text style={{ fontSize: 15, fontWeight: '400', color: '#696F74' }}>{firstText.slice(0, 18).concat(' ...')}</Text>
           <Entypo name="dot-single" size={18} color="#696F74" />
         </View>
         <View style={{ paddingLeft: isAndroid ? '1%' : 2, flexDirection: 'row' }}>

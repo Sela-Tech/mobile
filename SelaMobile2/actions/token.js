@@ -59,6 +59,7 @@ export const login = data => dispatch =>
     .catch(err => {
       dispatch(tokenIsLoading(false));
       dispatch(tokenLoadingError(err.message || 'ERROR'));
+      return err.message;
     });
 
 export const getUserToken = () => dispatch =>

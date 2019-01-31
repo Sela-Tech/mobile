@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { View, ScrollView, StyleSheet, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
-import { getUserProject } from '../../actions/project';
+// import { getUserProject } from '../../actions/project';
+import { getAllProjects } from '../utils/api';
 import Spinner from '../components/Spinner';
 import Input from '../components/Input';
 import Header from '../components/Header';
@@ -48,17 +49,25 @@ class ExploreProject extends Component {
   };
 
   async componentDidMount() {
-    await this.props.getProjects();
-    this.setState({ loading: false });
+    try {
+      const resp = await getAllProjects();
+      if (resp.data.success === true) {
+        this.setState({ loading: false, projects: resp.data.projects })
+      }
+      else {
+        this.setState({
+          loading: false,
+          error: 'failed',
+        });
+      }
+    }
+    catch (err) {
+      this.setState({ loading: false });
+    }
   }
 
   render() {
-    const { loading } = this.state;
-    const projects =
-      this.props &&
-      this.props.projects &&
-      this.props.projects.projects &&
-      this.props.projects.projects.projects;
+    const { loading, projects } = this.state;
 
     return (
       <ScrollView
@@ -137,14 +146,14 @@ class ExploreProject extends Component {
                           <View style={{ marginBottom: 10, marginTop: 10 }}>
                             <Box
                               key={index}
-                              fn={() => this.props.navigation.navigate('ExploreProject')}
-                              img={require('../../assets/class.png')}
-                              firstText="K-Dere Portharcourt"
-                              secondText="Sustainability Intl"
-                              thirdText="OnGoing"
-                              title="Construction of Classroom Blocks"
-                              cost="$1,500,000"
-                              tags={['Resilient infrasture', 'Sustainable Cities']}
+                              fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
+                              img={{ uri: 'https://placeimg.com/640/480/any' }}
+                              firstText={c.location.name}
+                              secondText={c.name}
+                              thirdText={c.status}
+                              title={c.description}
+                              cost={c.budget}
+                              tags={c.tags}
                             />
                           </View>
                         ))

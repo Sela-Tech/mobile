@@ -72,6 +72,7 @@ class Login extends Component {
 
   login = async () => {
     const { emailOrPhone, password } = this.state;
+    Keyboard.dismiss();
 
     if (emailOrPhone === '' || password === '') {
       return this.setState({
@@ -102,7 +103,6 @@ class Login extends Component {
     try {
       const resp = await this.props.login(data);
       this.setState({ loading: false });
-      // console.log(resp);
       if (resp === true) {
         return NavigationService.navigate('Project');
       }
@@ -114,13 +114,17 @@ class Login extends Component {
         this.setState({
           submitErrorMessage: 'Wrong Username or Password',
         });
-        this.dropdown.alertWithType('error', 'Error', 'Wrong Username or Password');
+        this.dropdown.alertWithType('error', 'Error', resp);
+      }
+      else if (resp === false) {
+        this.dropdown.alertWithType('error', 'Error', 'Authentication failed');
       }
       else {
-        this.dropdown.alertWithType('error', 'Error', 'Login Failed');
+        this.dropdown.alertWithType('error', 'Error', resp);
       }
     } catch (error) {
       this.setState({ loading: false });
+      this.dropdown.alertWithType('error', 'Error', error.message);
     }
   };
 
