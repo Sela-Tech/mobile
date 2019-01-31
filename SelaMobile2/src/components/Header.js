@@ -35,6 +35,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
   },
+  button: {
+    elevation: 0,
+  },
 });
 
 const HeaderB = ({ headerName, sideIconStatus, sideIconImage }) => (
@@ -48,7 +51,7 @@ const HeaderB = ({ headerName, sideIconStatus, sideIconImage }) => (
       {sideIconStatus ? (
         <Button
           light
-          style={styles.backgroundColor}
+          style={styles.button}
           onPress={() => NavigationService.navigate('Notification')}
         >
           <Image
