@@ -139,7 +139,7 @@ class ExploreProject extends Component {
                   <Fragment>
                     {projects.length === 0 ? (
                       <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
-                        <Text style={ExtStyle.largeFontSize}> No project at the moment </Text>
+                        <Text style={{ fontSize: 20 }}> No project at the moment </Text>
                       </View>
                     ) : (
                         projects.map((c, index) => (
@@ -152,7 +152,7 @@ class ExploreProject extends Component {
                               secondText={c.name}
                               thirdText={c.status}
                               title={c.description}
-                              cost={c.budget}
+                              cost={c.raised}
                               tags={c.tags}
                             />
                           </View>
@@ -163,7 +163,7 @@ class ExploreProject extends Component {
             </View>
           </View>
         </View>
-      </ScrollView>
+      </ScrollView >
     );
   }
 }

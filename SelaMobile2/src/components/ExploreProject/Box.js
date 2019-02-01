@@ -22,7 +22,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   boxHeight: {
-    height: height / 6,
+    // height: height / 4,
+    flex: 3,
+    borderRadius: 10,
+  },
+  smaller: {
+    flex: 3,
     borderRadius: 10,
   },
   fontS: {
@@ -49,7 +54,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
       <Image
         // resizeMode="cover"
         source={img}
-        style={{ height: height / 2, width: width / 1.1, borderRadius: 10 }}
+        style={{ height: height / 3, width: width / 1.1, borderRadius: 10 }}
       />
       <View style={styles.viewInImage}>
         <View style={{ paddingLeft: 5 }}>
@@ -60,8 +65,8 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
         </View>
       </View>
     </View>
-    <View style={[styles.boxHeight, { justifyContent: 'center' }]}>
-      <View style={[styles.row, { marginTop: 10 }]}>
+    <View style={[styles.smaller, { marginLeft: 3, justifyContent: 'center' }]}>
+      <View style={[styles.row, { marginTop: 5 }]}>
         <View style={{ flexDirection: 'row' }}>
           <Text style={{ fontSize: 15, fontWeight: '400', color: '#696F74' }}>{firstText.slice(0, 18).concat(' ...')}</Text>
           <Entypo name="dot-single" size={18} color="#696F74" />
@@ -80,15 +85,16 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
           <Text style={{ fontWeight: '300', color: YELLOW }}>{thirdText}</Text>
         </View>
       </View>
-      <View style={{ marginTop: isAndroid ? '2%' : 3 }}>
+      <View style={{ flex: 1, justifyContent: 'center' }}>
         <Text style={{ fontSize: 18, fontWeight: '400', color: '#201D41' }}>{title}</Text>
       </View>
-      <View style={{ marginTop: isAndroid ? '2%' : 3 }}>
+      <View style={{ flex: 1, justifyContent: 'center' }}>
         <Text style={{ fontSize: 20 }}>{cost}</Text>
       </View>
       <View
         style={{
-          marginTop: isAndroid ? '2%' : 3,
+          justifyContent: 'center',
+          // marginTop: isAndroid ? '2%' : 3,
           flexDirection: 'row',
           flex: 1,
         }}
@@ -120,7 +126,7 @@ Box.defaultProps = {};
 
 Box.propTypes = {
   fund: PropTypes.string,
-  cost: PropTypes.string, // .isRequired,
+  cost: PropTypes.number, // .isRequired,
   fn: PropTypes.func,
   title: PropTypes.string,
   third: PropTypes.number,

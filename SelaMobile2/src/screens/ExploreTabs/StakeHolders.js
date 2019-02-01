@@ -52,11 +52,11 @@ export default class StakeHolders extends Component {
                       } else if (photoLink === undefined) {
                         photoLink = 'https://placeimg.com/640/480/any';
                       }
-
                       return (
                         <UserProfile
-                          userId={c._id}
                           key={index}
+                          userId={c.user.information._id}
+
                           userDetails={c}
                           imgSource={{ uri: photoLink }}
                           userName={`${c.user.information.firstName} ${c.user.information.lastName}`}

@@ -41,19 +41,19 @@ const Header = ({
     <View style={styles.container}>
       <View style={{ flex: 1, flexDirection: 'row' }}>
         <View style={{ flexDirection: 'row', flex: 5, marginTop: 3, }}>
-          <View>
-            <Text style={styles.smallText}> {projectLocationText} </Text>
+          <View style={{}}>
+            <Text style={styles.smallText}> {projectLocationText.slice(0, 15).concat('...')} </Text>
           </View>
           <View style={{ marginTop: -5 }}>
             <Entypo name="dot-single" size={18} color="#696F74" />
           </View>
-          <View>
-            <Text style={styles.smallText}> {projectNameText}</Text>
+          <View style={{}}>
+            <Text style={styles.smallText}>{projectNameText.slice(0, 8).concat('...')}</Text>
           </View>
           <View style={{ marginTop: -5 }}>
             <Entypo name="dot-single" size={18} color="#696F74" />
           </View>
-          <View>
+          <View style={{}}>
             <Text style={[styles.smallText, { color: '#369C05' }]}>{projectStatusText}</Text>
           </View>
         </View>

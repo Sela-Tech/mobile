@@ -68,6 +68,7 @@ class Profile extends Component {
     if (Object.keys(this.props.navigation.state).length !== 2) {
       try {
         const resp = await getUserDetails({ id: this.props.navigation.state.params });
+        console.log('kkfkfkf', resp.data)
         this.setState({ profileInfo: resp.data, loading: false, guestUser: true });
       } catch (err) {
         this.setState({ error: err.message, loading: false });

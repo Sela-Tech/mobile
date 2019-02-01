@@ -186,7 +186,7 @@ export default class CreateProject extends Component {
             name: payload,
             lat: results.latitude,
             lng: results.longitude,
-          }
+          },
         });
       })
       .catch(err => {
@@ -195,7 +195,7 @@ export default class CreateProject extends Component {
           googlePlaces: [],
           location: payload,
           error: err.message,
-        })
+        });
       });
   };
 
@@ -230,7 +230,7 @@ export default class CreateProject extends Component {
     this.setState({ loading: true });
 
     try {
-      const resp = await API.addProject(data); x
+      const resp = await API.addProject(data);
       this.setState({ loading: false });
       if (resp.data.success === true) {
         this.props.navigation.navigate('Success');

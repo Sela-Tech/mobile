@@ -82,14 +82,8 @@ class ExploreProject extends Component {
         <Fragment>
           {notAvailaible ? (
             <Fragment>
-              <View style={{ flex: 4 }}>
-                <View style={{
-                  position: 'absolute',
-                  top: 0,
-                  bottom: 0,
-                  left: 0,
-                  right: 0,
-                }}>
+              <View style={{ flex: 4, marginBottom: 5 }}>
+                <View>
                   <Image
                     style={styles.imageHeight}
                     source={{
@@ -100,7 +94,15 @@ class ExploreProject extends Component {
                     }}
                   />
                 </View>
-                <View >
+                <View
+                  style={{
+                    position: 'absolute',
+                    top: 15,
+                    bottom: 0,
+                    left: 0,
+                    right: 0,
+                  }}>
+
                   <TouchableOpacity
                     transparent
                     style={{
