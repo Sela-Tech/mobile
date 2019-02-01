@@ -86,7 +86,7 @@ export default class CreateProject extends Component {
         c.value = c._id;
         return c;
       });
-      this.setState({ users });
+      this.setState({ users, stakeholderName: [users[0]._id] });
     } catch (err) {
       this.setState({ error: err.message });
     }
@@ -215,6 +215,7 @@ export default class CreateProject extends Component {
       locationObj,
     } = this.state;
 
+
     const data = {
       name,
       description,
@@ -222,13 +223,12 @@ export default class CreateProject extends Component {
       endDate: '2018-11-29',
       tags: selectedItems,
       budget,
-      contractors: stakeholderName,
+      stakeholders: stakeholderName,
       avatar: 'https://placeimg.com/200/200/people',
       location: locationObj,
     };
 
     this.setState({ loading: true });
-
     try {
       const resp = await API.addProject(data);
       this.setState({ loading: false });
@@ -421,7 +421,7 @@ export default class CreateProject extends Component {
               <Picker
                 style={[styles.inputStyle, styles.picker]}
                 selectedValue={stakeholderName}
-                onValueChange={stakeholder => this.setState({ stakeholderName: stakeholder })}
+                onValueChange={stakeholder => this.setState({ stakeholderName: [stakeholder] })}
               >
                 {users.map((contractor, i) => {
                   const { firstName, lastName } = contractor;

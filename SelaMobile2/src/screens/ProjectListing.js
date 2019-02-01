@@ -163,7 +163,7 @@ class ExploreProject extends Component {
             </View>
           </View>
         </View>
-      </ScrollView >
+      </ScrollView>
     );
   }
 }

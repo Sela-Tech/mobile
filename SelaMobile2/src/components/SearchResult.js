@@ -11,7 +11,7 @@ const styles = StyleSheet.create({
     searchResultsWrapper: {
         // flex: 1,
         borderRadius: 8,
-        height: height / 2.11,
+        height: height / 2,
         backgroundColor: '#F7F7FA',
         opacity: 0.9,
     },

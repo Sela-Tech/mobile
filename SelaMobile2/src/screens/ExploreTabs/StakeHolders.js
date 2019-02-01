@@ -56,7 +56,6 @@ export default class StakeHolders extends Component {
                         <UserProfile
                           key={index}
                           userId={c.user.information._id}
-
                           userDetails={c}
                           imgSource={{ uri: photoLink }}
                           userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
@@ -73,78 +72,117 @@ export default class StakeHolders extends Component {
           <View>
             <B color={YELLOW}>CONTRACTOR</B>
           </View>
-          <View style={{ flex: 1 }}>
-            <UserProfile
-              userId={"5c4edbe8e7c1380022277653"}
-              imgSource={require('../../../assets/person.png')}
-              userName="Hawa Mohammed"
-              companyName="Markers LTD"
-            />
-            <UserProfile
-              userId={"5c4edbe8e7c1380022277653"}
-              imgSource={require('../../../assets/person.png')}
-              userName="Hawa Mohammed"
-              companyName="Markers LTD"
-            />
-          </View>
+          <Fragment>
+            {
+              project.stakeholders.length === 0 ?
+                (
+                  <View style={{ height: height / 7, justifyContent: 'center' }}>
+                    <Text> No Contractors at the moment </Text>
+                  </View>
+                ) :
+                (
+                  <View style={{ flex: 1 }}>
+                    {project.stakeholders.map((c, index) => {
+                      let photoLink = c.user.information.profilePhoto;
+                      if (photoLink === null) {
+                        photoLink = 'https://placeimg.com/640/480/any';
+                      } else if (photoLink === undefined) {
+                        photoLink = 'https://placeimg.com/640/480/any';
+                      }
+                      return (
+                        <UserProfile
+                          key={index}
+                          userId={c.user.information._id}
+
+                          userDetails={c}
+                          imgSource={{ uri: photoLink }}
+                          userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                          companyName={c.user.information.organization.name}
+                        />
+                      );
+                    })}
+                  </View>
+                )
+            }
+          </Fragment>
         </View>
 
         <View>
           <View>
             <B color={YELLOW}>EVALUATION AGENTS</B>
           </View>
-          <View style={{ flex: 1 }}>
-            <UserProfile
-              userId={"5c4edbe8e7c1380022277653"}
-              imgSource={require('../../../assets/person.png')}
-              userName="Hawa Mohammed"
-              companyName="Markers LTD"
-            />
-            <UserProfile
-              userId={"5c4edbe8e7c1380022277653"}
-              imgSource={require('../../../assets/person.png')}
-              userName="Hawa Mohammed"
-              companyName="Markers LTD"
-            />
-            <UserProfile
-              userId={"5c4edbe8e7c1380022277653"}
-              imgSource={require('../../../assets/person.png')}
-              userName="Hawa Mohammed"
-              companyName="Markers LTD"
-            />
-          </View>
+          <Fragment>
+            {
+              project.stakeholders.length === 0 ?
+                (
+                  <View style={{ height: height / 7, justifyContent: 'center' }}>
+                    <Text> No Evaluation agent at the moment </Text>
+                  </View>
+                ) :
+                (
+                  <View style={{ flex: 1 }}>
+                    {project.stakeholders.map((c, index) => {
+                      let photoLink = c.user.information.profilePhoto;
+                      if (photoLink === null) {
+                        photoLink = 'https://placeimg.com/640/480/any';
+                      } else if (photoLink === undefined) {
+                        photoLink = 'https://placeimg.com/640/480/any';
+                      }
+                      return (
+                        <UserProfile
+                          key={index}
+                          userId={c.user.information._id}
+
+                          userDetails={c}
+                          imgSource={{ uri: photoLink }}
+                          userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                          companyName={c.user.information.organization.name}
+                        />
+                      );
+                    })}
+                  </View>
+                )
+            }
+          </Fragment>
+
         </View>
         <View>
           <View>
             <B color={YELLOW}>FUNDERS</B>
           </View>
-          <View style={{ flex: 1 }}>
-            <UserProfile
-              userId={"5c4edbe8e7c1380022277653"}
-              imgSource={require('../../../assets/person.png')}
-              userName="Hawa Mohammed"
-              companyName="Markers LTD"
-            />
-            <UserProfile
-              userId={"5c4edbe8e7c1380022277653"}
-              imgSource={require('../../../assets/person.png')}
-              userName="Hawa Mohammed"
-              companyName="Markers LTD"
-            />
-            <UserProfile
-              userId={"5c4edbe8e7c1380022277653"}
-              imgSource={require('../../../assets/person.png')}
-              userName="Hawa Mohammed"
-              companyName="Markers LTD"
-            />
-            <UserProfile
-              userId={"5c4edbe8e7c1380022277653"}
-              imgSource={require('../../../assets/person.png')}
-              userName="Hawa Mohammed"
-              companyName="Markers LTD"
-            />
-            <Text style={styles.textColor}> See more </Text>
-          </View>
+          <Fragment>
+            {
+              project.stakeholders.length === 0 ?
+                (
+                  <View style={{ height: height / 7, justifyContent: 'center' }}>
+                    <Text> No Funders at the moment </Text>
+                  </View>
+                ) :
+                (
+                  <View style={{ flex: 1 }}>
+                    {project.stakeholders.map((c, index) => {
+                      let photoLink = c.user.information.profilePhoto;
+                      if (photoLink === null) {
+                        photoLink = 'https://placeimg.com/640/480/any';
+                      } else if (photoLink === undefined) {
+                        photoLink = 'https://placeimg.com/640/480/any';
+                      }
+                      return (
+                        <UserProfile
+                          key={index}
+                          userId={c.user.information._id}
+
+                          userDetails={c}
+                          imgSource={{ uri: photoLink }}
+                          userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                          companyName={c.user.information.organization.name}
+                        />
+                      );
+                    })}
+                  </View>
+                )
+            }
+          </Fragment>
         </View>
         <View
           style={{
