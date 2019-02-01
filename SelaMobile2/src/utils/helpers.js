@@ -16,3 +16,7 @@ export const formattedDate = currDate => moment(currDate).fromNow(true);
 
 export const sortNotificationsByDate = notifications =>
   notifications.sort((a, b) => new Date(b.createdOn) - new Date(a.createdOn));
+
+export const isPhoneNum = value => /^(\+?0?86\-?)?1[3-8][0-9]{9}$/.test(String(value));
+
+export const isEmail = value => /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(value)
