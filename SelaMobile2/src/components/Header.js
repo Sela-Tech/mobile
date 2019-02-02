@@ -3,7 +3,7 @@ import { Image, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import { Header, Left, Body, Title, Button, Right } from 'native-base';
 import NavigationService from '../services/NavigationService';
-import { WHITE } from '../utils/constants';
+import { isAndroid } from '../utils/helpers';
 import ExtStyle from '../utils/styles';
 
 const styles = StyleSheet.create({
@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
   },
   headerName: {
     color: '#201D41',
+    fontFamily: isAndroid ? 'ProximaNova' : null,
   },
   header: {
     backgroundColor: '#F6F6F6',

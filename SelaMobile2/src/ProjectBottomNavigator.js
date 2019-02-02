@@ -7,6 +7,7 @@ import ProfileScreen from './screens/Profile';
 import ExploreProjectScreen from './screens/ExploreProject';
 import ProfileSettingsScreen from './screens/ProfileSettings';
 import { YELLOW } from './utils/constants';
+import { isAndroid } from './utils/helpers';
 import ProjectListingScreen from './screens/ProjectListing';
 
 const ProjectStack = createStackNavigator({
@@ -90,6 +91,11 @@ export default createBottomTabNavigator(
     tabBarOptions: {
       activeTintColor: YELLOW,
       inactiveTintColor: 'gray',
+      labelStyle: {
+        // fontSize: width < 400 ? 7 : 9,
+        // fontWeight: '400',
+        fontFamily: isAndroid ? 'ProximaNova' : null,
+      },
     },
   },
 );
