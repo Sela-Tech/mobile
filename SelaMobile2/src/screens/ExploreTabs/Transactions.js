@@ -24,49 +24,52 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Transactions extends Component {
-  render() {
-    const project = this.props;
-    const transactions = project.transactions;
-    if (transactions.length === 0) {
-      return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <View>
-              <Image source={require('../../../assets/docs.png')} />
-            </View>
-            <View style={{ alignItems: 'center', margin: 10 }}>
-              <Text> There are no transactions yet for </Text>
-              <Text> this project. Check back later. </Text>
-            </View>
-
-            <Button text="INVEST" textColor={WHITE} />
-          </View>
-        </ScrollView>
-      );
-    }
-
+// export default class Transactions extends Component {
+// render() {
+// const project = this.props;
+// const transactions = project.transactions;
+const Transactions = ({ project }) => {
+  const { transactions } = project
+  if (transactions.length === 0) {
     return (
-      <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-        <CalendarBox />
-        <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
-        <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
-        <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
-        <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
-        <View style={{ alignItems: 'center' }}>
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <View>
-            <Button text="INVEST" />
+            <Image source={require('../../../assets/docs.png')} />
           </View>
-          <View style={{ marginTop: 10 }}>
-            <Button
-              text="Join as Evaluation Agent"
-              color={WHITE}
-              textColor="#201D41"
-              style={{ borderWidth: 2, borderColor: '#B1BAD2' }}
-            />
+          <View style={{ alignItems: 'center', margin: 10 }}>
+            <Text> There are no transactions yet for </Text>
+            <Text> this project. Check back later. </Text>
           </View>
+
+          <Button text="INVEST" textColor={WHITE} />
         </View>
       </ScrollView>
     );
   }
-}
+
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
+      <CalendarBox />
+      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
+      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
+      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
+      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
+      <View style={{ alignItems: 'center' }}>
+        <View>
+          <Button text="INVEST" />
+        </View>
+        <View style={{ marginTop: 10 }}>
+          <Button
+            text="Join as Evaluation Agent"
+            color={WHITE}
+            textColor="#201D41"
+            style={{ borderWidth: 2, borderColor: '#B1BAD2' }}
+          />
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
+
+export default Transactions;

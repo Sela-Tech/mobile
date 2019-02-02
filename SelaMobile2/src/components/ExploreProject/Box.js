@@ -88,8 +88,9 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
       <View style={{ flex: 1, justifyContent: 'center' }}>
         <Text style={{ fontSize: 18, fontWeight: '400', color: '#201D41' }}>{title}</Text>
       </View>
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <Text style={{ fontSize: 20 }}>{cost}</Text>
+      <View style={{ paddingVertical: 5, flex: 1, justifyContent: 'center' }}>
+        {/* <Text style={{ fontSize: 15 }}>{cost}</Text> */}
+        <Text style={{ fontSize: 15, fontWeight: '600' }}>$200000</Text>
       </View>
       <View
         style={{

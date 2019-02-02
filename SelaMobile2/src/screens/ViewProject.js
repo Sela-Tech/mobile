@@ -81,7 +81,7 @@ export default class ViewProject extends Component {
                         justifyContent: 'center',
                         alignItems: 'center'
                       }}>
-                        <Text style={{ fontSize: 20 }}> No project at the moment </Text>
+                        <Text style={{ fontSize: 15 }}> No project at the moment </Text>
                       </View>
                     ) :
                     (
@@ -90,7 +90,8 @@ export default class ViewProject extends Component {
                           <Box
                             key={index}
                             fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
-                            img={{ uri: 'https://placeimg.com/640/480/any' }}
+                            img={require('../../assets/img/cleanup/water.jpg')}
+                            // img={{ uri: 'https://placeimg.com/640/480/any' }}
                             firstText={c.location.name}
                             secondText={c.name}
                             thirdText={c.status}

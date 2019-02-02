@@ -32,7 +32,7 @@ const images = [
   },
 ];
 
-const Updates = ({ statusText }) => (
+const Updates = ({ statusText, text }) => (
   <View style={{ flex: 1, marginBottom: 10 }}>
     <View style={{ flexDirection: 'row', paddingTop: 10, marginTop: 15, flex: 1 }}>
       <View style={{ flex: 2 }}>
@@ -51,11 +51,7 @@ const Updates = ({ statusText }) => (
         <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '400' }}>Name of Task </Text>
       </View>
       <View style={{ marginTop: '2%' }}>
-        <Text style={{ color: '#222829' }}>
-          This is where the brief description of the task goes. This is where the brief description
-          of the task goes. This is where the brief description of the task goes. This is where the
-          brief description of the task goes. This is where the brief description of the task goes.
-        </Text>
+        <Text style={{ color: '#222829' }}>{text}</Text>
       </View>
     </View>
     <View style={{ marginTop: 10 }}>

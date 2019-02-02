@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   smallText: {
-    fontSize: 12,
+    fontSize: 15,
   },
   pt: {
     paddingTop: 3,
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   bold: {
     color: '#201D41',
-    fontSize: 18,
+    fontSize: 15,
     fontWeight: '600',
   },
 });
@@ -40,18 +40,22 @@ const Header = ({
 }) => (
     <View style={styles.container}>
       <View style={{ flex: 1, flexDirection: 'row' }}>
-        <View style={{ flexDirection: 'row', flex: 5, marginTop: 3, }}>
-          <View style={{}}>
-            <Text style={styles.smallText}> {projectLocationText.slice(0, 15).concat('...')} </Text>
+        <View style={{ flexDirection: 'row', flex: 5, marginTop: 3 }}>
+          <View style={{ flexDirection: 'row' }}>
+            <View>
+              <Text style={styles.smallText}>{projectLocationText.toUpperCase().slice(0, 10).concat('...')} </Text>
+            </View>
+            <View style={{ justifyContent: 'center' }}>
+              <Entypo name="dot-single" size={20} color="#696F74" />
+            </View>
           </View>
-          <View style={{ marginTop: -5 }}>
-            <Entypo name="dot-single" size={18} color="#696F74" />
-          </View>
-          <View style={{}}>
-            <Text style={styles.smallText}>{projectNameText.slice(0, 8).concat('...')}</Text>
-          </View>
-          <View style={{ marginTop: -5 }}>
-            <Entypo name="dot-single" size={18} color="#696F74" />
+          <View style={{ flexDirection: 'row' }}>
+            <View>
+              <Text style={styles.smallText}>{projectNameText.slice(0, 8).concat('...')}</Text>
+            </View>
+            <View style={{ justifyContent: 'center' }}>
+              <Entypo name="dot-single" size={18} color="#696F74" />
+            </View>
           </View>
           <View style={{}}>
             <Text style={[styles.smallText, { color: '#369C05' }]}>{projectStatusText}</Text>
@@ -62,15 +66,15 @@ const Header = ({
         </View>
       </View>
       <View style={{ flex: 1, marginTop: 5 }}>
-        <Text style={styles.bold}> {projectTitleText}</Text>
+        <Text style={styles.bold}>{projectTitleText.toUpperCase()}</Text>
       </View>
       <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between', marginTop: 9 }}>
         <View>
           <View>
-            <Text> Budget </Text>
+            <Text>Budget </Text>
           </View>
           <View style={styles.pt}>
-            <Text style={styles.text}> {budgetAmount}</Text>
+            <Text style={styles.text}>{budgetAmount}</Text>
           </View>
         </View>
         <View>
@@ -78,7 +82,7 @@ const Header = ({
             <Text>Raised </Text>
           </View>
           <View style={styles.pt}>
-            <Text style={styles.text}> {raisedAmount}</Text>
+            <Text style={styles.text}>{raisedAmount}</Text>
           </View>
         </View>
         <View>
@@ -86,7 +90,7 @@ const Header = ({
             <Text>StakeHolders</Text>
           </View>
           <View style={styles.pt}>
-            <Text style={styles.text}> {numberOfStakeholders} </Text>
+            <Text style={styles.text}>{numberOfStakeholders} </Text>
           </View>
         </View>
       </View>

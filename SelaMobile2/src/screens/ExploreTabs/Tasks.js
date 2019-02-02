@@ -24,35 +24,54 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Tasks extends Component {
-  render() {
-    const project = this.props;
-    const tasks = project.tasks;
-    if (tasks.length === 0) {
-      return (
-        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <View>
-              <Image source={require('../../../assets/docs.png')} />
-            </View>
-            <View style={{ alignItems: 'center', margin: 10 }}>
-              <Text> There are no tasks yet for </Text>
-              <Text> this project. Check back later. </Text>
-            </View>
+const tasklisting = [
+  {
+    text: 'Identify the 3 ponds to be treated. Move Biotechnology products to secured location at the site.',
+    statusText: 'In Progress'
+  },
+  {
+    text: 'Identify VSE team and assignment to pond with laid out instructions for project execution',
+    statusText: 'Completed'
+  },
+  {
+    text: 'Collection of 1st samples of water and soil and data after treatment. Send samples to the laboratory',
+    statusText: 'Completed'
+  },
+];
 
-            <Button text="Add task" textColor={WHITE} />
-          </View>
-        </ScrollView>
-      );
-    }
+const Tasks = ({ project }) => {
+  const { tasks } = project;
+  if (tasks.length === 0) {
     return (
-      <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-        <Task statusText="In Progress" />
-        <Task statusText="Completed" />
-        <View style={{ paddingTop: 10, alignItems: 'center' }}>
-          <Button text="Submit Updates" />
+      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+          <View>
+            <Image source={require('../../../assets/docs.png')} />
+          </View>
+          <View style={{ alignItems: 'center', margin: 10 }}>
+            <Text> There are no tasks yet for </Text>
+            <Text> this project. Check back later. </Text>
+          </View>
+
+          <Button text="Add task" textColor={WHITE} />
         </View>
       </ScrollView>
     );
   }
-}
+  return (
+    <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
+      {
+        tasklisting.map(c => (
+          <Task
+            text={c.text}
+            statusText={c.statusText} />
+        ))
+      }
+      <View style={{ paddingTop: 10, alignItems: 'center' }}>
+        <Button text="Submit Updates" />
+      </View>
+    </ScrollView>
+  );
+};
+
+export default Tasks;

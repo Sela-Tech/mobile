@@ -19,4 +19,18 @@ export const sortNotificationsByDate = notifications =>
 
 export const isPhoneNum = value => /^(\+?0?86\-?)?1[3-8][0-9]{9}$/.test(String(value));
 
-export const isEmail = value => /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(value)
+export const isEmail = value => /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(value);
+
+/** Capitalize the first letter of  each word in a string
+ * @param str String
+ * @return String
+ */
+export const titleCase = str => {
+  const string = str.toLowerCase()
+    .split(' ')
+    .map(word => (word.charAt(0).toUpperCase() + word.slice(1)));
+
+  return string.join(' ');
+};
+
+export const firstLetterCapital = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();

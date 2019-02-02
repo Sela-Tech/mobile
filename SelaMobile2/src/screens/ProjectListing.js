@@ -130,7 +130,7 @@ class ExploreProject extends Component {
           </View>
           <View style={{ flex: 5, alignItems: 'center' }}>
             <View style={{ marginVertical: isAndroid ? '6%' : 20 }}>
-              <Text style={{ fontSize: 20, fontWeight: '500' }}>Featured Projects</Text>
+              <Text style={{ fontSize: 15, fontWeight: '500' }}>Featured Projects</Text>
             </View>
             <View style={{ flex: 1 }}>
               {loading === true ? (
@@ -139,7 +139,7 @@ class ExploreProject extends Component {
                   <Fragment>
                     {projects.length === 0 ? (
                       <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
-                        <Text style={{ fontSize: 20 }}> No project at the moment </Text>
+                        <Text style={{ fontSize: 15 }}> No project at the moment </Text>
                       </View>
                     ) : (
                         projects.map((c, index) => (
@@ -147,7 +147,8 @@ class ExploreProject extends Component {
                             <Box
                               key={index}
                               fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
-                              img={{ uri: 'https://placeimg.com/640/480/any' }}
+                              // img={{ uri: 'https://placeimg.com/640/480/any' }}
+                              img={require('../../assets/img/cleanup/water.jpg')}
                               firstText={c.location.name}
                               secondText={c.name}
                               thirdText={c.status}

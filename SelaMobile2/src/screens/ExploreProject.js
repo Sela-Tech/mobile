@@ -60,6 +60,7 @@ class ExploreProject extends Component {
   }
 
   render() {
+
     const { projectId, loading, notAvailaible, projectInfo } = this.state;
     const allProjects =
       this.props &&
@@ -69,6 +70,8 @@ class ExploreProject extends Component {
 
     let theProject = allProjects.filter(c => c._id === projectId);
     theProject = theProject[0];
+
+
 
     if (loading) {
       return (
@@ -86,18 +89,20 @@ class ExploreProject extends Component {
                 <View>
                   <Image
                     style={styles.imageHeight}
-                    source={{
-                      uri:
-                        projectInfo['project-avatar'] === undefined
-                          ? 'https://placeimg.com/640/480/any'
-                          : projectInfo['project-avatar'],
-                    }}
+                    // resizeMode="contain"
+                    source={require('../../assets/img/cleanup/water.jpg')}
+                  // source={{
+                  //   uri:
+                  //     projectInfo['project-avatar'] === undefined
+                  //       ? 'https://placeimg.com/640/480/any'
+                  //       : projectInfo['project-avatar'],
+                  // }}
                   />
                 </View>
                 <View
                   style={{
                     position: 'absolute',
-                    top: 15,
+                    top: 12,
                     bottom: 0,
                     left: 0,
                     right: 0,
@@ -119,7 +124,7 @@ class ExploreProject extends Component {
                       />
                     </View>
                     <View>
-                      <Text style={{ color: WHITE }}>   Back to Explore </Text>
+                      <Text style={{ color: WHITE, fontSize: 15 }}>   Back to Explore </Text>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -130,7 +135,7 @@ class ExploreProject extends Component {
                   projectStatusText={projectInfo.status}
                   projectNameText="MARKERS LTD"
                   projectTitleText={projectInfo.name}
-                  budgetAmount={projectInfo.goal}
+                  budgetAmount='$2,000,000'//{projectInfo.goal}
                   numberOfStakeholders={projectInfo.stakeholders.length}
                   raisedAmount={projectInfo.raised}
                   tags={projectInfo.tags}

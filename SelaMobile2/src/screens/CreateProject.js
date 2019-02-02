@@ -210,7 +210,7 @@ export default class CreateProject extends Component {
       startDate,
       endDate,
       stakeholders,
-      stakeholderName,
+      stakeholderNames,
       users,
       locationObj,
     } = this.state;
@@ -223,11 +223,13 @@ export default class CreateProject extends Component {
       endDate: '2018-11-29',
       tags: selectedItems,
       budget,
-      stakeholders: stakeholderName,
+      goal: budget,
+      stakeholders: stakeholderNames,
       avatar: 'https://placeimg.com/200/200/people',
       location: locationObj,
     };
 
+    // console.log('data', data)
     this.setState({ loading: true });
     try {
       const resp = await API.addProject(data);
@@ -421,7 +423,7 @@ export default class CreateProject extends Component {
               <Picker
                 style={[styles.inputStyle, styles.picker]}
                 selectedValue={stakeholderName}
-                onValueChange={stakeholder => this.setState({ stakeholderName: [stakeholder] })}
+                onValueChange={stakeholder => this.setState({ stakeholderName: stakeholder, stakeholderNames: [stakeholder] })}
               >
                 {users.map((contractor, i) => {
                   const { firstName, lastName } = contractor;

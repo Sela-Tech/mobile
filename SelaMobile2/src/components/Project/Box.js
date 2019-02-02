@@ -49,7 +49,8 @@ const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
   >
     {!empty ? (
       <ImageBackground
-        source={{ uri: imageSource === '' ? 'https://placeimg.com/640/480/any' : imageSource }}
+        source={require('../../../assets/img/cleanup/water.jpg')}
+        // source={{ uri: imageSource === '' ? 'https://placeimg.com/640/480/any' : imageSource }}
         style={styles.imageBack}
       >
         <View style={styles.textView}>
@@ -57,15 +58,15 @@ const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
         </View>
       </ImageBackground>
     ) : (
-      <View style={(styles.empty, { alignItems: 'center', borderColor: '#F2994A' })}>
-        <View style={{ justifyContent: 'center' }}>
-          <Image source={require('../../../assets/plus.png')} style={{ tintColor: '#696f74' }} />
+        <View style={(styles.empty, { alignItems: 'center', borderColor: '#F2994A' })}>
+          <View style={{ justifyContent: 'center' }}>
+            <Image source={require('../../../assets/plus.png')} style={{ tintColor: '#696f74' }} />
+          </View>
+          <View style={{ marginTop: 10 }}>
+            <Text> {text ? text : 'Propose Project'} </Text>
+          </View>
         </View>
-        <View style={{ marginTop: 10 }}>
-          <Text> {text ? text : 'Propose Project'} </Text>
-        </View>
-      </View>
-    )}
+      )}
   </TouchableOpacity>
 );
 

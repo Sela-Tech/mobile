@@ -7,6 +7,7 @@ import Transactions from './Transactions';
 import Overview from './Overview';
 import Tasks from './Tasks';
 import Updates from './Updates';
+import { isAndroid } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
 
 const { width } = Dimensions.get('window');
@@ -19,7 +20,8 @@ const tabBarOptions = {
   showIcon: false,
   labelStyle: {
     fontSize: width < 400 ? 7 : 9,
-    fontWeight: '600',
+    fontWeight: '400',
+    fontFamily: isAndroid ? 'ProximaNova' : null,
   },
   style: {
     backgroundColor: '#fff',
@@ -57,16 +59,16 @@ export default class Navigator extends Component {
       Tabs = createMaterialTopTabNavigator(
         {
           Description: {
-            screen: () => <Description {...project} />,
+            screen: () => <Description project={project} />,
           },
           StakeHolders: {
-            screen: () => <StakeHolders {...project} />,
+            screen: () => <StakeHolders project={project} />,
           },
           Tasks: {
-            screen: () => <UpdatesOrTask {...project} />,
+            screen: () => <UpdatesOrTask project={project} />,
           },
           Overview: {
-            screen: () => <TransactionOrOvervIew {...project} />,
+            screen: () => <TransactionOrOvervIew project={project} />,
           },
         },
         {
@@ -77,16 +79,16 @@ export default class Navigator extends Component {
       Tabs = createMaterialTopTabNavigator(
         {
           Overview: {
-            screen: () => <Overview {...project} />,
+            screen: () => <Overview project={project} />,
           },
           StakeHolders: {
-            screen: () => <StakeHolders {...project} />,
+            screen: () => <StakeHolders project={project} />,
           },
           Updates: {
-            screen: () => <UpdatesOrTask {...project} />,
+            screen: () => <UpdatesOrTask project={project} />,
           },
           Transactions: {
-            screen: () => <TransactionOrOvervIew {...project} />,
+            screen: () => <TransactionOrOvervIew project={project} />,
           },
         },
         {

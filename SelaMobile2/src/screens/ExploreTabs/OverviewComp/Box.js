@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
   },
   text: {
     color: '#222829',
-    fontSize: 20,
+    fontSize: 15,
   },
   viewStyle: {
     flex: 1,
-    paddingLeft: 20,
+    paddingHorizontal: 20,
     paddingVertical: 10,
   },
   viewStyle2: {
@@ -67,6 +67,7 @@ const Box = ({ upText, secondTextLeft, secondTextRight, lastText }) => (
             {
               fontSize: 30,
               fontWeight: '500',
+              color: '#201D41',
             },
           ]}
         >
@@ -89,7 +90,7 @@ const Box = ({ upText, secondTextLeft, secondTextRight, lastText }) => (
             },
           ]}
         >
-          {secondTextLeft}
+          {secondTextRight}
         </Text>
       </View>
     </View>
@@ -105,7 +106,7 @@ const Box = ({ upText, secondTextLeft, secondTextRight, lastText }) => (
     <Fragment>
       {lastText ? (
         <View style={styles.buttomText}>
-          <Text> {lastText} </Text>
+          <Text style={styles.text}> {lastText} </Text>
         </View>
       ) : null}
     </Fragment>

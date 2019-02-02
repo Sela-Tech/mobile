@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import Text from '../Text';
 import Tag from '../Tag';
 
-const Tasks = ({ statusText }) => (
+const Tasks = ({ statusText, text }) => (
   <View style={{ flex: 1, marginBottom: 10 }}>
     <View style={{ flexDirection: 'row', paddingTop: 10, marginTop: 15, flex: 1 }}>
       <View style={{ flex: 1 }}>
@@ -20,11 +20,12 @@ const Tasks = ({ statusText }) => (
         <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '400' }}>Name of Task </Text>
       </View>
       <View style={{ marginTop: '2%' }}>
-        <Text style={{ color: '#222829' }}>
+        <Text style={{ color: '#222829' }}>{text}</Text>
+        {/* <Text style={{ color: '#222829' }}>
           This is where the brief description of the task goes. This is where the brief description
           of the task goes. This is where the brief description of the task goes. This is where the
           brief description of the task goes. This is where the brief description of the task goes.
-        </Text>
+        </Text> */}
       </View>
     </View>
   </View>
