@@ -147,7 +147,6 @@ class Project extends Component {
         notifications.notifications.filter(c => c.read === false);
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
-
     return (
       <View style={styles.container}>
         <Header

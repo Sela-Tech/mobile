@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Image } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { projectStatusTextColor } from '../../utils/helpers';
 import Text from '../Text';
 import Tag from '../Tag';
 
@@ -57,8 +58,8 @@ const Header = ({
               <Entypo name="dot-single" size={18} color="#696F74" />
             </View>
           </View>
-          <View style={{}}>
-            <Text style={[styles.smallText, { color: '#369C05' }]}>{projectStatusText}</Text>
+          <View>
+            <Text style={[styles.smallText, { color: projectStatusTextColor(projectStatusText) }]}>{projectStatusText}</Text>
           </View>
         </View>
         <View style={{ flex: 1 }}>

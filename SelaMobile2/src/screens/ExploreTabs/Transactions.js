@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
+import NavigationService from '../../services/NavigationService';
 import CalendarBox from '../../components/Transactions/CalendarBox';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
@@ -24,12 +25,9 @@ const styles = StyleSheet.create({
   },
 });
 
-// export default class Transactions extends Component {
-// render() {
-// const project = this.props;
-// const transactions = project.transactions;
+
 const Transactions = ({ project }) => {
-  const { transactions } = project
+  const { transactions } = project;
   if (transactions.length === 0) {
     return (
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -42,7 +40,11 @@ const Transactions = ({ project }) => {
             <Text> this project. Check back later. </Text>
           </View>
 
-          <Button text="INVEST" textColor={WHITE} />
+          <Button
+            fn={() => NavigationService.navigate('Invest')}
+            text="INVEST"
+            textColor={WHITE}
+          />
         </View>
       </ScrollView>
     );
@@ -50,17 +52,21 @@ const Transactions = ({ project }) => {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-      <CalendarBox />
+      {/* <CalendarBox /> */}
       <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
       <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
       <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
       <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
       <View style={{ alignItems: 'center' }}>
         <View>
-          <Button text="INVEST" />
+          <Button
+            fn={() => NavigationService.navigate('Invest')}
+            text="INVEST"
+          />
         </View>
         <View style={{ marginTop: 10 }}>
           <Button
+            fn={() => NavigationService.navigate('Invest')}
             text="Join as Evaluation Agent"
             color={WHITE}
             textColor="#201D41"

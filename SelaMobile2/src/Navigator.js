@@ -13,6 +13,7 @@ import Notifications from './screens/Notifications';
 import AuthLoadingScreen from './screens/AuthLoading';
 import FirstTimeUserLoadingScreen from './screens/FirstTimeUserLoading';
 import SignUpSuccessScreen from './screens/SignUpSuccess';
+import InvestComp from './components/InvestComp';
 
 export const RootStackNavigator = createStackNavigator({
   Project: {
@@ -41,6 +42,9 @@ export const RootStackNavigator = createStackNavigator({
     // navigationOptions: {
     //   header: null,
     // },
+  },
+  Invest: {
+    screen: InvestComp,
   },
 });
 

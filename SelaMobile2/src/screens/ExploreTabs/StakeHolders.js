@@ -1,5 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import React, { Fragment } from 'react';
+import { View, TouchableOpacity, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
+import NavigationService from '../../services/NavigationService';
 import Text from '../../components/Text';
 import B from '../../components/BoldText';
 import UserProfile from '../../components/UserProfile';
@@ -186,22 +187,25 @@ const StakeHolders = ({ project }) => (
         }
       </Fragment>
     </View>
-    {/* <View
-          style={{
-            flexDirection: 'row',
-            marginVertical: 10,
-          }}
-        >
-          <View>
-            <Text style={{ color: '#201D41' }}> View updates</Text>
-          </View>
-          <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
-            <Image source={require('../../../assets/forward-arrow.png')} />
-          </View>
-        </View> */}
+    <TouchableOpacity
+      style={{
+        flexDirection: 'row',
+        marginVertical: 10,
+      }}
+      onPress={() => console.log('i am hehrh')}
+    >
+      <View>
+        <Text style={{ color: '#201D41' }}> View updates</Text>
+      </View>
+      <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
+        <Image source={require('../../../assets/forward-arrow.png')} />
+      </View>
+    </TouchableOpacity>
 
     <View style={{ paddingTop: 10, alignItems: 'center' }}>
-      <Button text="INVEST" />
+      <Button
+        fn={() => NavigationService.navigate('Invest')}
+        text="INVEST" />
     </View>
   </ScrollView>
 );

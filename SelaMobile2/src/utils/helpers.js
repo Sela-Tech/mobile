@@ -1,5 +1,6 @@
 import { Platform } from 'react-native';
 import moment from 'moment';
+import { WHITE } from './constants';
 
 export const isAndroid = Platform.OS === 'android';
 
@@ -34,3 +35,20 @@ export const titleCase = str => {
 };
 
 export const firstLetterCapital = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+
+export const projectStatusTextColor = status => {
+  switch (status) {
+    case 'DORMANT':
+      return 'red';
+    case 'ON GOING':
+      return '#E06811';
+    case 'COMPLETED':
+      return '#369C05';
+    case 'PROPOSED':
+      return '#0B089D';
+    case 'IN REVIEW':
+      return WHITE;
+    default:
+      return '#369C05';
+  }
+};

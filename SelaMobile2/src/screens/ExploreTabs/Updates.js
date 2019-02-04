@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-import { View, StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
+import { View, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Image } from 'react-native';
+import NavigationService from '../../services/NavigationService';
 import Text from '../../components/Text';
 import IndUpdates from '../../components/ExploreProject/Updates';
 import Button from '../../components/Button';
@@ -51,21 +52,25 @@ const Updates = ({ project }) => (
         ))
       }
     </Fragment>
-    <View
+    <TouchableOpacity
       style={{
         flexDirection: 'row',
         marginVertical: 10,
       }}
+      onPress={() => console.log('i am hehrh')}
     >
       <View>
-        <Text style={{ color: '#201D41' }}> View transactions</Text>
+        <Text
+          style={{ color: '#201D41' }}> View transactions</Text>
       </View>
       <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
         <Image source={require('../../../assets/forward-arrow.png')} />
       </View>
-    </View>
+    </TouchableOpacity>
     <View style={{ paddingTop: 10, alignItems: 'center' }}>
-      <Button text="INVEST" />
+      <Button
+        fn={() => NavigationService.navigate('Invest')}
+        text="INVEST" />
     </View>
   </ScrollView>
 );

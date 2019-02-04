@@ -3,7 +3,7 @@ import { TouchableOpacity, View, Dimensions, StyleSheet, Image } from 'react-nat
 import PropTypes from 'prop-types';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Text from '../Text';
-import { isAndroid } from '../../utils/helpers';
+import { isAndroid, projectStatusTextColor } from '../../utils/helpers';
 import { YELLOW, WHITE } from '../../utils/constants';
 
 const { height, width } = Dimensions.get('window');
@@ -82,7 +82,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
           </View>
         </View>
         <View style={{ paddingLeft: isAndroid ? '1%' : 2 }}>
-          <Text style={{ fontWeight: '300', color: YELLOW }}>{thirdText}</Text>
+          <Text style={{ fontWeight: '300', color: projectStatusTextColor(thirdText) }}>{thirdText}</Text>
         </View>
       </View>
       <View style={{ flex: 1, justifyContent: 'center' }}>
