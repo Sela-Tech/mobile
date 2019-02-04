@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { View, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { View, ScrollView, StyleSheet, Dimensions, Picker, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-// import { getUserProject } from '../../actions/project';
+import RNGooglePlaces from 'react-native-google-places';
+import SearchResult from '../components/SearchResult';
 import { getAllProjects } from '../utils/api';
 import Spinner from '../components/Spinner';
 import Input from '../components/Input';
@@ -13,7 +14,7 @@ import ExtStyle from '../utils/styles';
 import { isAndroid } from '../utils/helpers';
 import Box from '../components/ExploreProject/Box';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -28,7 +29,22 @@ const styles = StyleSheet.create({
     borderColor: '#B1BAD2',
     width: width / 1.1,
   },
+  picker: {
+    borderColor: '#B1BAD2',
+    borderRadius: 5,
+    borderWidth: 1,
+    height: height / 13,
+  },
 });
+
+const tags = [
+  'Education',
+  'Clean Water',
+  'Zero Poverty',
+  'Infrastucture',
+  'Sustainable cities',
+];
+const projectStatus = ['ON GOING', 'DORMANT', 'COMPLETED', 'PROPOSED', 'IN REVIEW'];
 
 class ExploreProject extends Component {
   static navigationOptions = {
@@ -46,6 +62,7 @@ class ExploreProject extends Component {
 
   state = {
     loading: true,
+    googlePlaces: [],
   };
 
   async componentDidMount() {
@@ -64,10 +81,47 @@ class ExploreProject extends Component {
     catch (err) {
       this.setState({ loading: false });
     }
-  }
+  };
+
+  searchResult = async () => {
+    const { places } = this.state;
+
+    RNGooglePlaces.getAutocompletePredictions(`${places}`, {
+
+    })
+      .then((place) => {
+        this.setState({ googlePlaces: place });
+      })
+      .catch(error => this.setState({ error: error.message }));
+  };
+
+  handleSelectedAddress = (payload, id) => {
+    Keyboard.dismiss();
+    RNGooglePlaces.lookUpPlaceByID(id)
+      .then(results => {
+        return this.setState({
+          searchResult: false,
+          googlePlaces: [],
+          location: payload,
+          locationObj: {
+            name: payload,
+            lat: results.latitude,
+            lng: results.longitude,
+          },
+        });
+      })
+      .catch(err => {
+        this.setState({
+          searchResult: false,
+          googlePlaces: [],
+          location: payload,
+          error: err.message,
+        });
+      });
+  };
 
   render() {
-    const { loading, projects } = this.state;
+    const { loading, projects, status, tag, googlePlaces, searchResult, location } = this.state;
 
     return (
       <ScrollView
@@ -91,30 +145,68 @@ class ExploreProject extends Component {
           <View style={{ flex: 1 }}>
             <View style={{ paddingBottom: 15 }}>
               <Input
+                value={location}
                 text="All Locations"
                 style={styles.inputStyle}
                 placeHolderColor="#696F74"
+                onChangeTheText={places => this.setState({ places })}
+                onTheChange={() => this.searchResult()}
                 sideImage={require('../../assets/location.png')}
                 sideImageStatus
               />
+              {
+                <Fragment>
+                  {googlePlaces.length === 0 ? null : (
+                    <SearchResult
+                      places={googlePlaces}
+                      searchResult={searchResult}
+                      handleSelectedAddress={(payload, id) => this.handleSelectedAddress(payload, id)}
+                    />
+                  )}
+                </Fragment>
+              }
             </View>
-            <View style={{ paddingBottom: 15 }}>
-              <Input
-                text="Project Status"
-                placeHolderColor="#696F74"
-                style={styles.inputStyle}
-                sideImage={require('../../assets/dropdown.png')}
-                sideImageStatus
-              />
+            <View style={{ marginBottom: 20 }}>
+              <View style={{ marginBottom: 5 }}>
+                <Text style={{ fontSize: 15 }}> Select Project status</Text>
+              </View>
+              <View style={[styles.inputStyle, styles.picker, { paddingBottom: 15 }]}>
+                <Picker
+                  style={[styles.picker]}
+                  selectedValue={status}
+                  onValueChange={stat => this.setState({ status: stat })}
+                >
+                  {projectStatus.map((s, i) => (
+                    <Picker.Item
+                      style={[styles.inputStyle, styles.picker]}
+                      key={i}
+                      label={s}
+                      value={s}
+                    />
+                  ))}
+                </Picker>
+              </View>
             </View>
-            <View style={{ marginBottom: 30 }}>
-              <Input
-                text="Project Tag"
-                placeHolderColor="#696F74"
-                style={styles.inputStyle}
-                sideImage={require('../../assets/dropdown.png')}
-                sideImageStatus
-              />
+            <View style={{ marginBottom: 20 }}>
+              <View style={{ marginBottom: 5 }}>
+                <Text style={{ fontSize: 15 }}> Select Project Tag</Text>
+              </View>
+              <View style={[styles.inputStyle, styles.picker, { paddingBottom: 15 }]}>
+                <Picker
+                  style={[styles.picker]}
+                  selectedValue={tag}
+                  onValueChange={t => this.setState({ tag: t })}
+                >
+                  {tags.map((s, i) => (
+                    <Picker.Item
+                      style={[styles.inputStyle, styles.picker]}
+                      key={i}
+                      label={s}
+                      value={s}
+                    />
+                  ))}
+                </Picker>
+              </View>
             </View>
             <View>
               <Button

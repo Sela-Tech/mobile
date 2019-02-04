@@ -57,7 +57,7 @@ class ExploreProject extends Component {
     } catch (err) {
       this.setState({ error: err.message });
     }
-  }
+  };
 
   render() {
 
