@@ -269,8 +269,8 @@ export default class CreateProject extends Component {
       name: 'Education',
     },
     {
-      id: 'Clean Hunger',
-      name: 'Clean Hunger',
+      id: 'Clean Water',
+      name: 'Clean Water',
     },
     {
       // id: '3',

@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const StakeHolders = ({ project }) => (
+const StakeHolders = ({ project, navigation }) => (
+  console.log(',mfmf', navigation),
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <View style={{ paddingTop: 10 }}>
       <View>
@@ -192,7 +193,7 @@ const StakeHolders = ({ project }) => (
         flexDirection: 'row',
         marginVertical: 10,
       }}
-      onPress={() => console.log('i am hehrh')}
+      onPress={() => navigation.navigate({ routeName: 'Transactions' })}
     >
       <View>
         <Text style={{ color: '#201D41' }}> View updates</Text>

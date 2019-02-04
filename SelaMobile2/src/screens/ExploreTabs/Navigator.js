@@ -49,6 +49,8 @@ export default class Navigator extends Component {
   };
 
   render() {
+    const { navigation } = this.props;
+    console.log('hhghgggg', navigation)
     const { isContractor } = this.state;
     const { project } = this.props;
     const UpdatesOrTask = !isContractor ? Updates : Tasks;
@@ -82,7 +84,9 @@ export default class Navigator extends Component {
             screen: () => <Overview project={project} />,
           },
           StakeHolders: {
-            screen: () => <StakeHolders project={project} />,
+            screen: () => <StakeHolders
+              navigation={navigation}
+              project={project} />,
           },
           Updates: {
             screen: () => <UpdatesOrTask project={project} />,

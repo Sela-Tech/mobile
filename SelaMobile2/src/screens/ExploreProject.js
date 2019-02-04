@@ -140,7 +140,9 @@ class ExploreProject extends Component {
                 />
               </View>
               <View style={ExtStyle.flex6}>
-                <Navigator project={projectInfo} />
+                <Navigator
+                  navigation={this.props.navigation}
+                  project={projectInfo} />
               </View>
             </Fragment>
           ) : (
