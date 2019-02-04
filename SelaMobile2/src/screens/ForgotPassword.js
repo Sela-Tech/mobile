@@ -45,7 +45,7 @@ export default class ForgotPassword extends Component {
         email: emailOrphone,
         phone: ''
       });
-      console.log(resp.data)
+      console.log(resp.data);
     }
     catch (err) {
       this.setState({ err: err.message })

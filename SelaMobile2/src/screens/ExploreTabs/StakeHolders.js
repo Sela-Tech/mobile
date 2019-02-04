@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
 });
 
 const StakeHolders = ({ project, navigation }) => (
-  console.log(',mfmf', navigation),
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <View style={{ paddingTop: 10 }}>
       <View>
