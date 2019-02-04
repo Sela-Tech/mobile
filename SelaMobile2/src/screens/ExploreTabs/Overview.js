@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
 });
 
 const Overview = ({ project }) => (
-  console.log('fkff', project),
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <View style={{ paddingTop: 10, flex: 1 }}>
       <Text style={{ color: '#222829', fontSize: 15 }}>{firstLetterCapital(project.description)}</Text>

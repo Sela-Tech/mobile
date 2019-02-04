@@ -27,17 +27,19 @@ const renderItem = item => (
 );
 
 
-const Images = ({ projects }) => (
-  <FlatList
-    style={{ flex: 1 }}
-    data={[{ val: 'empty' }, ...projects]}
-    keyExtractor={keyExtractor}
-    horizontal
-    showsHorizontalScrollIndicator={false}
-    renderItem={renderItem}
-  />
-)
-
+const Images = ({ projects, leftText }) => {
+  const proj = leftText === 'Projects you proposed' ? [{ val: 'empty' }, ...projects] : projects;
+  return (
+    <FlatList
+      style={{ flex: 1 }}
+      data={proj}
+      keyExtractor={keyExtractor}
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      renderItem={renderItem}
+    />
+  )
+}
 
 export default Images;
 

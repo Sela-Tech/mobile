@@ -84,7 +84,7 @@ class Project extends Component {
     await this.props.getFunderProjects();
     await this.props.getContractorProjects();
     this.setState({ loading: false });
-    getCurrentState();
+    // getCurrentState();
   }
   reload = async () => {
     this.setState({ reloading: true });
@@ -181,7 +181,7 @@ class Project extends Component {
                       {/* <View> */}
                       <View style={ExtStyle.flex1}>
                         <SingularProject
-                          leftText="Projects you created"
+                          leftText="Projects you proposed"
                           // rightText="See all"
                           projects={projectCreatedByMe}
                         />

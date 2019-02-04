@@ -1,11 +1,13 @@
 import React, { Fragment } from 'react';
-import { View, StyleSheet, Image } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import Box from './Box';
 import Images from './Images';
 import { YELLOW } from '../../utils/constants';
 
+
+const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -43,6 +45,15 @@ const styles = StyleSheet.create({
     color: YELLOW,
     fontSize: 14,
   },
+  emptyBox: {
+    height: height / 5,
+    paddingTop: '5%',
+    alignItems: 'center',
+  },
+  textInEmptyBox: {
+    fontSize: 15,
+    fontWeight: '300',
+  },
 });
 
 const Project = ({ leftText, rightText, projects }) => (
@@ -73,13 +84,40 @@ const Project = ({ leftText, rightText, projects }) => (
     </View>
 
     <View style={styles.bottomContainer}>
-      {projects && projects.length === 0 ? (
-        <Box
-          text={leftText === 'Projects you created' ? 'Create Project' : 'Propose Project'}
-          empty fn={() => console.log('navigate')} />
-      ) : (
-          <Images projects={projects} />
-        )}
+      <Fragment>
+        {
+          leftText === 'Projects you proposed' ? (
+            <Images
+              leftText={leftText}
+              projects={projects}
+            />
+          ) :
+            (
+              projects && projects.length === 0 ? (
+                <Fragment>
+                  {
+                    leftText === 'Projects you proposed' ?
+                      (
+                        <Box
+                          text={leftText === 'Projects you created' ? 'Create Project' : 'Propose Project'}
+                          empty fn={() => console.log('navigate')} />
+                      )
+                      :
+                      (
+                        <View style={styles.emptyBox}>
+                          <Text style={styles.textInEmptyBox}> You haven't been added to any project yet.</Text>
+                        </View>
+                      )
+                  }
+                </Fragment>
+              ) : (
+                  <Images
+                    leftText={leftText}
+                    projects={projects}
+                  />
+                ))
+        }
+      </Fragment>
     </View>
   </View>
 );
