@@ -4,6 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import ImagePicker from 'react-native-image-picker';
 import MultiSelect from 'react-native-multiple-select';
 import RNGooglePlaces from 'react-native-google-places';
+import moment from 'moment';
 import CalendarBox from '../components/CreateProject/CalendarBox';
 import SearchResult from '../components/SearchResult';
 import Input from '../components/Input';
@@ -61,8 +62,8 @@ export default class CreateProject extends Component {
   state = {
     showFirstCalendar: false,
     showSecondCalendar: false,
-    startDate: Date.now(),
-    endDate: Date.now(),
+    startDate: moment().format('YYYY-MM-DD'),
+    endDate: moment().format('YYYY-MM-DD'),
     loading: false,
     users: [],
     selectedItems: [],
@@ -158,6 +159,7 @@ export default class CreateProject extends Component {
   };
 
   chooseDate = (day, val) => {
+    console.log('the day', day, val)
     this.openCalender(val);
   };
 
@@ -218,8 +220,8 @@ export default class CreateProject extends Component {
     const data = {
       name,
       description,
-      startDate: '2018-11-29',
-      endDate: '2018-11-29',
+      startDate,
+      endDate,
       tags: selectedItems,
       budget,
       goal: budget,
@@ -245,6 +247,23 @@ export default class CreateProject extends Component {
     this.setState({ selectedItems });
   };
 
+  selectDate = (val, day) => {
+    console.log('d day', val);
+    console.log('day', day)
+    if (day === 'Start Date') {
+      this.setState({
+        startDate: val.dateString,
+        showFirstCalendar: false,
+      });
+    }
+    else {
+      this.setState({
+        endDate: val.dateString,
+        showSecondCalendar: false,
+      });
+    }
+  };
+
   render() {
     const {
       selectedItems,
@@ -256,7 +275,9 @@ export default class CreateProject extends Component {
       googlePlaces,
       location,
       searchResult,
-      stakeholderName, } = this.state;
+      stakeholderName,
+      startDate,
+      endDate } = this.state;
     const avatar = require('../../assets/selectImage.png');
     const avatarURI = avatarSource || '';
     const icon = avatarURI === '' ? avatar : { uri: avatarURI };
@@ -489,11 +510,14 @@ export default class CreateProject extends Component {
         >
           <CalendarBox
             upText="Start Date"
-            downText="11/08/2018"
+            dDate={startDate}
+            downText={startDate}
+            // downText="11/08/2018"
             val="first"
             showCalendar={showFirstCalendar}
             openCalender={this.openCalender}
             chooseDate={this.chooseDate}
+            selectDate={this.selectDate}
           />
           <Fragment>
             {showFirstCalendar === true || showSecondCalendar === true ? (
@@ -506,11 +530,14 @@ export default class CreateProject extends Component {
           </Fragment>
           <CalendarBox
             upText="End Date"
-            downText="11/08/2018"
+            dDate={endDate}
+            // downText="11/08/2018"
+            downText={endDate}
             val="second"
             showCalendar={showSecondCalendar}
             openCalender={this.openCalender}
             chooseDate={this.chooseDate}
+            selectDate={this.selectDate}
           />
         </View>
         <View>

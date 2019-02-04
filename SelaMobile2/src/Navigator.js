@@ -16,18 +16,18 @@ import SignUpSuccessScreen from './screens/SignUpSuccess';
 import InvestComp from './components/InvestComp';
 
 export const RootStackNavigator = createStackNavigator({
-  Project: {
-    screen: ProjectBottomNavigator,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  Notification: {
-    screen: Notifications,
-  },
-  ViewProject: {
-    screen: ViewProject,
-  },
+  // Project: {
+  //   screen: ProjectBottomNavigator,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
+  // Notification: {
+  //   screen: Notifications,
+  // },
+  // ViewProject: {
+  //   screen: ViewProject,
+  // },
   CreateProject: {
     screen: CreateProject,
   },

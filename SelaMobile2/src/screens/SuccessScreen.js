@@ -31,9 +31,8 @@ export default ({ navigation }) => (
       </View>
       <View style={{ justifyContent: 'center', alignItems: 'center', margin: 20 }}>
         <Text style={styles.fSize}> Your proposed project has been </Text>
-        <Text style={styles.fSize}> received and is under review. You</Text>
-        <Text style={styles.fSize}> will be notified once it has been </Text>
-        <Text style={styles.fSize}> approved for fund raising </Text>
+        <Text style={styles.fSize}> successfully submitted to the platform</Text>
+        <Text style={styles.fSize}> it will be visible shortly. </Text>
       </View>
     </View>
     <View style={{ flex: 1, alignItems: 'flex-end' }}>
