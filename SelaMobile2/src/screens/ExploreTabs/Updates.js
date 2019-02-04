@@ -43,8 +43,9 @@ const Updates = ({ project }) => (
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <Fragment>
       {
-        tasklisting.map(c => (
+        tasklisting.map((c, index) => (
           <IndUpdates
+            key={index}
             text={c.text}
             statusText={c.statusText} />
         ))

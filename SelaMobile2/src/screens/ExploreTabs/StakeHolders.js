@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
+import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import Text from '../../components/Text';
 import B from '../../components/BoldText';
 import UserProfile from '../../components/UserProfile';

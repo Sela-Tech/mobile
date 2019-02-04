@@ -71,8 +71,6 @@ class ExploreProject extends Component {
     let theProject = allProjects.filter(c => c._id === projectId);
     theProject = theProject[0];
 
-
-
     if (loading) {
       return (
         <View style={ExtStyle.center}>

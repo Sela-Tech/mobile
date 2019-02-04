@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
+import PropTypes from 'prop-types';
 import NavigationService from '../services/NavigationService';
 import Text from './Text';
 import B from './BoldText';
@@ -52,5 +53,13 @@ const UserProfile = ({ imgSource, userName, companyName, userId }) => (
     </View>
   </TouchableOpacity>
 );
+
+UserProfile.defaultProps = {
+
+};
+
+UserProfile.propTypes = {
+
+};
 
 export default UserProfile;

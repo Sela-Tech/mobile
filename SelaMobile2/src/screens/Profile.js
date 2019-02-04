@@ -1,17 +1,18 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, FlatList, ScrollView } from 'react-native';
+import { View, StyleSheet, FlatList, ScrollView, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import ExtStyle from '../utils/styles';
 import { getUserDetails } from '../utils/api';
 import Spinner from '../components/Spinner';
 import B from '../components/BoldText';
-import Box from '../components/Project/Box';
+import Text from '../components/Text';
 import Header from '../components/Header';
 import Project from '../components/ExploreProject/Project';
 import UserId from '../components/Profile/UserId';
 import UserInfo from '../components/Profile/UserInfo';
 import Tag from '../components/Tag';
 
+const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     // flex: 1,
@@ -20,6 +21,26 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     marginTop: '5%',
+  },
+  interestTag: {
+    flex: 1,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    marginLeft: 5,
+    marginBottom: 10,
+  },
+  interestSubContainer: {
+    marginVertical: 4,
+    marginHorizontal: 4,
+  },
+  emptyBox: {
+    height: height / 10,
+    paddingTop: '5%',
+    alignItems: 'center',
+  },
+  textInEmptyBox: {
+    fontSize: 15,
+    fontWeight: '300',
   },
 });
 
@@ -108,6 +129,13 @@ class Profile extends Component {
       }
     }
 
+    const interests = [
+      'Sustainable Cities',
+      'Education',
+      'Resilient Infrastructure',
+      'Resilient Infrastructure',
+    ];
+
     return (
       <ScrollView contentContainerStyle={styles.container}>
         <Header headerName="PROFILE" />
@@ -135,11 +163,12 @@ class Profile extends Component {
                   </View>
                   <Fragment>
                     {projects && projects.length === 0 ? (
-                      <View style={{ marginHorizontal: 15 }}>
-                        <Box empty fn={() => console.log('navigate')} />
+                      <View style={styles.emptyBox}>
+                        <Text style={styles.textInEmptyBox}> You haven't been added to any project yet.</Text>
                       </View>
                     ) : (
                         <FlatList
+                          keyExtractor={(item, index) => index.toString()}
                           style={{ paddingTop: 10 }}
                           data={images}
                           keyExtractor={keyExtractor}
@@ -154,10 +183,14 @@ class Profile extends Component {
                   <View style={{ marginVertical: 15 }}>
                     <B color="#201D41"> Interests </B>
                   </View>
-                  <View style={{ marginHorizontal: 15, flexDirection: 'row', justifyContent: 'space-between', marginLeft: 5, alignItems: 'center' }}>
-                    <Tag viewColor="#1ECD97" text="Education" />
-                    <Tag viewColor="#1ECD97" text="Education" />
-                    <Tag viewColor="#1ECD97" text="Education" />
+                  <View style={styles.interestTag}>
+                    {
+                      interests.map((c, index) => (
+                        <View key={index} style={styles.interestSubContainer}>
+                          <Tag viewColor="#1ECD97" text={c} />
+                        </View>
+                      ))
+                    }
                   </View>
                 </View>
               </View>

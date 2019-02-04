@@ -61,8 +61,9 @@ const Tasks = ({ project }) => {
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
       {
-        tasklisting.map(c => (
+        tasklisting.map((c, index) => (
           <Task
+            key={index}
             text={c.text}
             statusText={c.statusText} />
         ))
