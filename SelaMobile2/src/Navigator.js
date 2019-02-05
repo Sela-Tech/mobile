@@ -28,21 +28,21 @@ export const RootStackNavigator = createStackNavigator({
   // ViewProject: {
   //   screen: ViewProject,
   // },
-  CreateProject: {
-    screen: CreateProject,
-  },
-  Success: {
-    screen: SuccessScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  SubmitFeedback: {
-    screen: SubmitFeedback,
-    // navigationOptions: {
-    //   header: null,
-    // },
-  },
+  // CreateProject: {
+  //   screen: CreateProject,
+  // },
+  // Success: {
+  //   screen: SuccessScreen,
+  //   navigationOptions: {
+  //     header: null,
+  //   },
+  // },
+  // SubmitFeedback: {
+  //   screen: SubmitFeedback,
+  //   // navigationOptions: {
+  //   //   header: null,
+  //   // },
+  // },
   Invest: {
     screen: InvestComp,
   },

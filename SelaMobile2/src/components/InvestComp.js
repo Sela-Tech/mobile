@@ -1,48 +1,50 @@
 import React from 'react';
-import { View, Image, StyleSheet, Dimensions } from 'react-native';
-import Text from '../components/Text';
-import Button from '../components/Button';
-import { WHITE } from '../utils/constants';
+import { View, Image, StyleSheet } from 'react-native';
+import Text from './Text';
+import Box from './Invest/Box';
+import Extstyle from '../utils/styles';
 
-const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
         alignItems: 'center',
         flex: 1,
     },
-    success: {
-        height: height / 10,
-        width: height / 10,
-        borderRadius: height / 20,
+    top: {
+        paddingTop: '10%',
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
     fSize: {
-        fontSize: 18,
+        fontSize: 15,
+        color: '#222829',
     },
 });
 
 export default ({ navigation }) => (
     <View style={styles.container}>
-        <View style={{ flex: 4, alignItems: 'center', marginTop: '25%' }}>
-            <View style={styles.success}>
-                <Image source={require('../../assets/mark.png')} />
+        <View style={styles.top}>
+            <View>
+                <Image source={require('../../assets/money2.png')} />
             </View>
-            <View style={{ justifyContent: 'center', alignItems: 'center', margin: 20 }}>
-                <Text style={styles.fSize}> Sign up successfull.Kindly Visit email to </Text>
-                <Text style={styles.fSize}> activate account</Text>
+            <View style={{ paddingTop: '5%', alignItems: 'center' }}>
+                <Text style={styles.fSize}> Invest in the K-Dere Affordable Housing Scheme </Text>
+                <Text style={styles.fSize}> Scheme project using either of the  </Text>
+                <Text style={styles.fSize}> methods below </Text>
             </View>
         </View>
-        <View style={{ flex: 1, alignItems: 'flex-end' }}>
-            <Button
-                text="Login"
-                color={WHITE}
-                style={{
-                    borderWidth: 1,
-                }}
-                fn={() => navigation.navigate('Login')}
-            />
+        <View style={Extstyle.flex3}>
+            <View>
+                <Box
+                    imgSource={require('../../assets/gofundme-logo.png')}
+                />
+            </View>
+            <View>
+                <Box
+                    imgSource={require('../../assets/coinbase.png')}
+                />
+            </View>
         </View>
     </View>
 );
