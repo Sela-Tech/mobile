@@ -52,7 +52,7 @@ class ProfileSettings extends Component {
         </View>
         <UserInfo reputationScore="0" projects="0" dataUploads="0" location="Lagos,Nigeria." />
         <View style={styles.mv15}>
-          <View style={styls.accountSettingsView}>
+          <View style={styles.accountSettingsView}>
             <B color="#201D41"> Account Settings </B>
           </View>
           <View style={styles.ml10}>

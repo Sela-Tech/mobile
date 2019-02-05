@@ -7,11 +7,7 @@ import EvalSubmission from './EvalSubmission';
 
 const keyExtractor = item => item.id.toString();
 
-const renderItem = item => (
-  <EvalSubmission
-    imgSource={item.item.source}
-    markedStatus />
-);
+const renderItem = item => <EvalSubmission imgSource={item.item.source} markedStatus />;
 
 const images = [
   {

@@ -287,7 +287,7 @@ export default class CreateProject extends Component {
     const items = [
       {
         id: 'Education',
-        name: 'Education',
+        name: 'Education'
       },
       {
         id: 'Clean Water',
@@ -309,62 +309,62 @@ export default class CreateProject extends Component {
         name: 'Sustainable cities',
       },
       {
-        id: "No Poverty",
-        name: "No Poverty",
+        id: 'No Poverty',
+        name: 'No Poverty',
       },
       ,
       {
-        id: "No Poverty",
-        name: "Health & Well-being",
+        id: 'No Poverty',
+        name: 'Health & Well-being',
       },
       ,
       {
-        id: "Education",
-        name: "Education"
+        id: 'Education',
+        name: 'Education',
       },
       {
-        id: "Gender Equality",
-        name: "Gender Equality",
+        id: 'Gender Equality',
+        name: 'Gender Equality',
       },
       {
-        id: "Water & Sanitation",
-        name: "Water & Sanitation",
+        id: 'Water & Sanitation',
+        name: 'Water & Sanitation',
       },
       {
-        id: "Economic Growth",
-        name: "Economic Growth",
+        id: 'Economic Growth',
+        name: 'Economic Growth',
       },
       {
-        id: "Clean Energy",
-        name: "Clean Energy",
+        id: 'Clean Energy',
+        name: 'Clean Energy',
       },
       {
-        id: "Infrastructure",
-        name: "Infrastructure",
+        id: 'Infrastructure',
+        name: 'Infrastructure',
       },
       {
-        id: "Reduced Inequality",
-        name: "Reduced Inequality",
+        id: 'Reduced Inequality',
+        name: 'Reduced Inequality',
       },
       {
-        id: "Sustainable Cities",
-        name: "Sustainable Cities",
+        id: 'Sustainable Cities',
+        name: 'Sustainable Cities',
       },
       {
-        id: "Climate Action",
-        name: "Climate Action",
+        id: 'Climate Action',
+        name: 'Climate Action',
       },
       {
-        id: "Life Below Water",
-        name: "Life Below Water",
+        id: 'Life Below Water',
+        name: 'Life Below Water',
       },
       {
-        id: "Life on Land",
-        name: "Life on Land",
+        id: 'Life on Land',
+        name: 'Life on Land',
       },
       {
-        id: "Responsible Consumption & Production",
-        name: "Responsible Consumption & Production",
+        id: 'Responsible Consumption & Production',
+        name: 'Responsible Consumption & Production',
       },
     ];
     return (

@@ -17,78 +17,83 @@ import InvestComp from './components/InvestComp';
 
 import { isAndroid } from './utils/helpers';
 
-export const RootStackNavigator = createStackNavigator({
-  Project: {
-    screen: ProjectBottomNavigator,
-    navigationOptions: {
-      header: null,
+export const RootStackNavigator = createStackNavigator(
+  {
+    Project: {
+      screen: ProjectBottomNavigator,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    Notification: {
+      screen: Notifications,
+    },
+    ViewProject: {
+      screen: ViewProject,
+    },
+    CreateProject: {
+      screen: CreateProject,
+    },
+    Success: {
+      screen: SuccessScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    SubmitFeedback: {
+      screen: SubmitFeedback,
+      // navigationOptions: {
+      //   header: null,
+      // },
+    },
+    Invest: {
+      screen: InvestComp,
     },
   },
-  Notification: {
-    screen: Notifications,
-  },
-  ViewProject: {
-    screen: ViewProject,
-  },
-  CreateProject: {
-    screen: CreateProject,
-  },
-  Success: {
-    screen: SuccessScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  SubmitFeedback: {
-    screen: SubmitFeedback,
-    // navigationOptions: {
-    //   header: null,
-    // },
-  },
-  Invest: {
-    screen: InvestComp,
-  },
-}, {
+  {
     defaultNavigationOptions: {
       headerStyle: {
         fontFamily: isAndroid ? 'ProximaNova' : null,
       },
     },
-  });
+  },
+);
 
-const AuthStack = createStackNavigator({
-  Login: {
-    screen: LoginScreen,
-    navigationOptions: {
-      header: null,
+const AuthStack = createStackNavigator(
+  {
+    Login: {
+      screen: LoginScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    OnBoarding: {
+      screen: OnBoarding,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    ForgotPassword: {
+      screen: ForgotPassword,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    ResetPassword: {
+      screen: ResetPassword,
+      navigationOptions: {
+        header: null,
+      },
     },
   },
-  OnBoarding: {
-    screen: OnBoarding,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  ForgotPassword: {
-    screen: ForgotPassword,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  ResetPassword: {
-    screen: ResetPassword,
-    navigationOptions: {
-      header: null,
-    },
-  },
-}, {
+  {
     defaultNavigationOptions: {
       headerStyle: {
         fontFamily: isAndroid ? 'ProximaNova' : null,
       },
     },
-  });
-
+  },
+);
 
 const IntroStack = createStackNavigator({
   Intro: {

@@ -49,9 +49,7 @@ const styles = StyleSheet.create({
 const Overview = ({ project }) => (
   <ScrollView style={styles.container} contentContainerStyle={ExtStyle.flexGrow}>
     <View style={styles.topContainer}>
-      <Text style={styles.topTextContainer}>
-        {firstLetterCapital(project.description)}
-      </Text>
+      <Text style={styles.topTextContainer}>{firstLetterCapital(project.description)}</Text>
     </View>
     <View style={styles.pt10}>
       <CalendarBox />
@@ -64,18 +62,18 @@ const Overview = ({ project }) => (
     <Box
       upText="Tasks Completed"
       secondTextLeft="13"
-    //  secondTextRight="+6.9%"
+      //  secondTextRight="+6.9%"
     />
     <Box
       upText="Progress"
       secondTextLeft="70%"
-    // secondTextRight="+12.4%"
+      // secondTextRight="+12.4%"
     />
 
     <Box
       upText="Total funds spent"
       secondTextLeft="$1595"
-    //  secondTextRight="+3.2%"
+      //  secondTextRight="+3.2%"
     />
 
     <Box

@@ -43,15 +43,10 @@ const tasklisting = [
 ];
 
 const Updates = ({ project }) => (
-
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <Fragment>
       {tasklisting.map((c, index) => (
-        <IndUpdates
-          key={index}
-          text={c.text}
-          statusText={c.statusText}
-        />
+        <IndUpdates key={index} text={c.text} statusText={c.statusText} />
       ))}
     </Fragment>
     {/* <TouchableOpacity
@@ -69,10 +64,7 @@ const Updates = ({ project }) => (
       </View>
     </TouchableOpacity> */}
     <View style={{ paddingTop: 10, alignItems: 'center' }}>
-      <Button
-        fn={() => NavigationService.navigate('Invest')}
-        text="INVEST"
-      />
+      <Button fn={() => NavigationService.navigate('Invest')} text="INVEST" />
     </View>
   </ScrollView>
 );
