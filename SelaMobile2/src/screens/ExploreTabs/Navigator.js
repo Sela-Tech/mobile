@@ -49,7 +49,6 @@ export default class Navigator extends Component {
 
   render() {
     const { navigation } = this.props;
-    console.log('hhghgggg', navigation);
     const { isContractor } = this.state;
     const { project } = this.props;
     const UpdatesOrTask = !isContractor ? Updates : Tasks;

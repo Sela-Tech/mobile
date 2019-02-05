@@ -122,7 +122,7 @@ export default class CreateProject extends Component {
   };
 
   // upload image to the server
-  uploadImageAsync = async data => {};
+  uploadImageAsync = async data => { };
 
   handleImagePicked = async pickerResult => {
     let uploadResponse;
@@ -192,7 +192,7 @@ export default class CreateProject extends Component {
             lng: results.longitude,
           },
         }),
-      )
+    )
       .catch(err => {
         this.setState({
           searchResult: false,
@@ -307,6 +307,64 @@ export default class CreateProject extends Component {
         // id: '4',
         id: 'Sustainable cities',
         name: 'Sustainable cities',
+      },
+      {
+        id: "No Poverty",
+        name: "No Poverty",
+      },
+      ,
+      {
+        id: "No Poverty",
+        name: "Health & Well-being",
+      },
+      ,
+      {
+        id: "Education",
+        name: "Education"
+      },
+      {
+        id: "Gender Equality",
+        name: "Gender Equality",
+      },
+      {
+        id: "Water & Sanitation",
+        name: "Water & Sanitation",
+      },
+      {
+        id: "Economic Growth",
+        name: "Economic Growth",
+      },
+      {
+        id: "Clean Energy",
+        name: "Clean Energy",
+      },
+      {
+        id: "Infrastructure",
+        name: "Infrastructure",
+      },
+      {
+        id: "Reduced Inequality",
+        name: "Reduced Inequality",
+      },
+      {
+        id: "Sustainable Cities",
+        name: "Sustainable Cities",
+      },
+      {
+        id: "Climate Action",
+        name: "Climate Action",
+      },
+      {
+        id: "Life Below Water",
+        name: "Life Below Water",
+      },
+      {
+        id: "Life on Land",
+        name: "Life on Land",
+      },
+      {
+        id: "Responsible Consumption & Production",
+        name: "Responsible Consumption & Production",
       },
     ];
     return (
@@ -494,9 +552,9 @@ export default class CreateProject extends Component {
                 style={
                   avatarURI !== ''
                     ? {
-                        width: width / 1.1,
-                        height: height / 9,
-                      }
+                      width: width / 1.1,
+                      height: height / 9,
+                    }
                     : null
                 }
                 source={icon}
@@ -528,10 +586,10 @@ export default class CreateProject extends Component {
             {showFirstCalendar === true || showSecondCalendar === true ? (
               <Fragment />
             ) : (
-              <View style={{ justifyContent: 'center' }}>
-                <Image source={require('../../assets/minus.png')} />
-              </View>
-            )}
+                <View style={{ justifyContent: 'center' }}>
+                  <Image source={require('../../assets/minus.png')} />
+                </View>
+              )}
           </Fragment>
           <CalendarBox
             upText="End Date"

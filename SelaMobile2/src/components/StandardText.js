@@ -27,16 +27,16 @@ StandardText.defaultProps = {
   text: '',
   onPress: null,
   style: {},
-  viewStyle: {},
-  textStyle: {},
+  // viewStyle: {},
+  // textStyle: {},
   children: '',
 };
 
 StandardText.propTypes = {
   text: PropTypes.string,
   onPress: PropTypes.func,
-  viewStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
-  textStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
+  // viewStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
+  // textStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
   style: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };

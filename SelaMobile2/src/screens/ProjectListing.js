@@ -99,7 +99,7 @@ class ExploreProject extends Component {
             lng: results.longitude,
           },
         }),
-      )
+    )
       .catch(err => {
         this.setState({
           searchResult: false,
@@ -170,8 +170,8 @@ class ExploreProject extends Component {
                 >
                   {projectStatus.map((s, i) => (
                     <Picker.Item
-                      style={[styles.inputStyle, styles.picker]}
                       key={i}
+                      style={[styles.inputStyle, styles.picker]}
                       label={s}
                       value={s}
                     />
@@ -191,8 +191,8 @@ class ExploreProject extends Component {
                 >
                   {tags.map((s, i) => (
                     <Picker.Item
-                      style={[styles.inputStyle, styles.picker]}
                       key={i}
+                      style={[styles.inputStyle, styles.picker]}
                       label={s}
                       value={s}
                     />
@@ -220,31 +220,32 @@ class ExploreProject extends Component {
               {loading === true ? (
                 <Spinner />
               ) : (
-                <Fragment>
-                  {projects.length === 0 ? (
-                    <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
-                      <Text style={{ fontSize: 15 }}> No project at the moment </Text>
-                    </View>
-                  ) : (
-                    projects.map((c, index) => (
-                      <View style={{ marginBottom: 10, marginTop: 10 }}>
-                        <Box
-                          key={index}
-                          fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
-                          // img={{ uri: 'https://placeimg.com/640/480/any' }}
-                          img={require('../../assets/img/cleanup/water.jpg')}
-                          firstText={c.location.name}
-                          secondText={c.name}
-                          thirdText={c.status}
-                          title={c.description}
-                          cost={c.raised}
-                          tags={c.tags}
-                        />
+                  <Fragment>
+                    {projects.length === 0 ? (
+                      <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
+                        <Text style={{ fontSize: 15 }}> No project at the moment </Text>
                       </View>
-                    ))
-                  )}
-                </Fragment>
-              )}
+                    ) : (
+                        projects.map((c, index) => (
+                          <View
+                            key={index}
+                            style={{ marginBottom: 10, marginTop: 10 }}>
+                            <Box
+                              fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
+                              // img={{ uri: 'https://placeimg.com/640/480/any' }}
+                              img={require('../../assets/img/cleanup/water.jpg')}
+                              firstText={c.location.name}
+                              secondText={c.name}
+                              thirdText={c.status}
+                              title={c.description}
+                              cost={c.raised}
+                              tags={c.tags}
+                            />
+                          </View>
+                        ))
+                      )}
+                  </Fragment>
+                )}
             </View>
           </View>
         </View>

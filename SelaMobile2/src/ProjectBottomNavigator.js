@@ -42,7 +42,7 @@ export const ProfileStack = createStackNavigator({
 
 export default createBottomTabNavigator(
   {
-    Project,
+    // Project,
     Explore: ProjectStack,
     Inbox,
     Profile: ProfileStack,

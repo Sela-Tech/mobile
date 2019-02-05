@@ -1,7 +1,6 @@
-import React, { Fragment } from 'react';
-import { View, StyleSheet, Dimensions, TouchableOpacity, ScrollView, Image } from 'react-native';
+import React, { Fragment, Component } from 'react';
+import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import NavigationService from '../../services/NavigationService';
-import Text from '../../components/Text';
 import IndUpdates from '../../components/ExploreProject/Updates';
 import Button from '../../components/Button';
 import { WHITE } from '../../utils/constants';
@@ -44,14 +43,18 @@ const tasklisting = [
 ];
 
 const Updates = ({ project }) => (
+
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <Fragment>
       {tasklisting.map((c, index) => (
         <IndUpdates
-key={index} text={c.text} statusText={c.statusText} />
+          key={index}
+          text={c.text}
+          statusText={c.statusText}
+        />
       ))}
     </Fragment>
-    <TouchableOpacity
+    {/* <TouchableOpacity
       style={{
         flexDirection: 'row',
         marginVertical: 10,
@@ -64,10 +67,12 @@ key={index} text={c.text} statusText={c.statusText} />
       <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
         <Image source={require('../../../assets/forward-arrow.png')} />
       </View>
-    </TouchableOpacity>
+    </TouchableOpacity> */}
     <View style={{ paddingTop: 10, alignItems: 'center' }}>
       <Button
-fn={() => NavigationService.navigate('Invest')} text="INVEST" />
+        fn={() => NavigationService.navigate('Invest')}
+        text="INVEST"
+      />
     </View>
   </ScrollView>
 );
