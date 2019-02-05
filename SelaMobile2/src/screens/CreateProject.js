@@ -1,5 +1,13 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, Dimensions, Keyboard, Image, TouchableOpacity, Picker } from 'react-native';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  Keyboard,
+  Image,
+  TouchableOpacity,
+  Picker,
+} from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-picker';
 import MultiSelect from 'react-native-multiple-select';
@@ -94,7 +102,6 @@ export default class CreateProject extends Component {
 
   pickImage = async () => {
     ImagePicker.showImagePicker(options, response => {
-
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
@@ -112,12 +119,10 @@ export default class CreateProject extends Component {
         });
       }
     });
-
-
   };
 
   // upload image to the server
-  uploadImageAsync = async data => { };
+  uploadImageAsync = async data => {};
 
   handleImagePicked = async pickerResult => {
     let uploadResponse;
@@ -159,17 +164,15 @@ export default class CreateProject extends Component {
   };
 
   chooseDate = (day, val) => {
-    console.log('the day', day, val)
+    console.log('the day', day, val);
     this.openCalender(val);
   };
 
   searchResult = async () => {
     const { places } = this.state;
 
-    RNGooglePlaces.getAutocompletePredictions(`${places}`, {
-
-    })
-      .then((place) => {
+    RNGooglePlaces.getAutocompletePredictions(`${places}`, {})
+      .then(place => {
         this.setState({ googlePlaces: place });
       })
       .catch(error => this.setState({ error: error.message }));
@@ -178,8 +181,8 @@ export default class CreateProject extends Component {
   handleSelectedAddress = (payload, id) => {
     Keyboard.dismiss();
     RNGooglePlaces.lookUpPlaceByID(id)
-      .then(results => {
-        return this.setState({
+      .then(results =>
+        this.setState({
           searchResult: false,
           googlePlaces: [],
           location: payload,
@@ -188,8 +191,8 @@ export default class CreateProject extends Component {
             lat: results.latitude,
             lng: results.longitude,
           },
-        });
-      })
+        }),
+      )
       .catch(err => {
         this.setState({
           searchResult: false,
@@ -215,7 +218,6 @@ export default class CreateProject extends Component {
       users,
       locationObj,
     } = this.state;
-
 
     const data = {
       name,
@@ -249,14 +251,13 @@ export default class CreateProject extends Component {
 
   selectDate = (val, day) => {
     console.log('d day', val);
-    console.log('day', day)
+    console.log('day', day);
     if (day === 'Start Date') {
       this.setState({
         startDate: val.dateString,
         showFirstCalendar: false,
       });
-    }
-    else {
+    } else {
       this.setState({
         endDate: val.dateString,
         showSecondCalendar: false,
@@ -277,36 +278,36 @@ export default class CreateProject extends Component {
       searchResult,
       stakeholderName,
       startDate,
-      endDate } = this.state;
+      endDate,
+    } = this.state;
     const avatar = require('../../assets/selectImage.png');
     const avatarURI = avatarSource || '';
     const icon = avatarURI === '' ? avatar : { uri: avatarURI };
 
-
-
-    const items = [{
-      id: 'Education',
-      name: 'Education',
-    },
-    {
-      id: 'Clean Water',
-      name: 'Clean Water',
-    },
-    {
-      // id: '3',
-      id: 'Zero Poverty',
-      name: 'Zero Poverty',
-    },
-    {
-      // id: '4',
-      id: 'Infrastucture',
-      name: 'Infrastucture',
-    },
-    {
-      // id: '4',
-      id: 'Sustainable cities',
-      name: 'Sustainable cities',
-    },
+    const items = [
+      {
+        id: 'Education',
+        name: 'Education',
+      },
+      {
+        id: 'Clean Water',
+        name: 'Clean Water',
+      },
+      {
+        // id: '3',
+        id: 'Zero Poverty',
+        name: 'Zero Poverty',
+      },
+      {
+        // id: '4',
+        id: 'Infrastucture',
+        name: 'Infrastucture',
+      },
+      {
+        // id: '4',
+        id: 'Sustainable cities',
+        name: 'Sustainable cities',
+      },
     ];
     return (
       <KeyboardAwareScrollView
@@ -361,7 +362,7 @@ export default class CreateProject extends Component {
         </View>
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
-            <Text style={{ fontSize: 15 }}>  select Project Tags  </Text>
+            <Text style={{ fontSize: 15 }}> select Project Tags </Text>
           </View>
           <View style={styles.multiSelect}>
             <MultiSelect
@@ -369,12 +370,14 @@ export default class CreateProject extends Component {
               canAddItems
               items={items}
               uniqueKey="id"
-              ref={(component) => { this.multiSelect = component }}
+              ref={component => {
+                this.multiSelect = component;
+              }}
               onSelectedItemsChange={this.onSelectedItemsChange}
               selectedItems={selectedItems}
               selectText="Pick project tags"
               searchInputPlaceholderText="Search Items..."
-              onChangeInput={(text) => console.log(text)}
+              onChangeInput={text => console.log(text)}
               altFontFamily="ProximaNova-Light"
               tagRemoveIconColor="#CCC"
               tagBorderColor="#B1BAD2"
@@ -443,7 +446,9 @@ export default class CreateProject extends Component {
               <Picker
                 style={[styles.inputStyle, styles.picker]}
                 selectedValue={stakeholderName}
-                onValueChange={stakeholder => this.setState({ stakeholderName: stakeholder, stakeholderNames: [stakeholder] })}
+                onValueChange={stakeholder =>
+                  this.setState({ stakeholderName: stakeholder, stakeholderNames: [stakeholder] })
+                }
               >
                 {users.map((contractor, i) => {
                   const { firstName, lastName } = contractor;
@@ -454,7 +459,7 @@ export default class CreateProject extends Component {
                       label={firstName.concat(' ').concat(lastName)}
                       value={contractor._id}
                     />
-                  )
+                  );
                 })}
               </Picker>
             </View>
@@ -489,9 +494,9 @@ export default class CreateProject extends Component {
                 style={
                   avatarURI !== ''
                     ? {
-                      width: width / 1.1,
-                      height: height / 9,
-                    }
+                        width: width / 1.1,
+                        height: height / 9,
+                      }
                     : null
                 }
                 source={icon}
@@ -523,10 +528,10 @@ export default class CreateProject extends Component {
             {showFirstCalendar === true || showSecondCalendar === true ? (
               <Fragment />
             ) : (
-                <View style={{ justifyContent: 'center' }}>
-                  <Image source={require('../../assets/minus.png')} />
-                </View>
-              )}
+              <View style={{ justifyContent: 'center' }}>
+                <Image source={require('../../assets/minus.png')} />
+              </View>
+            )}
           </Fragment>
           <CalendarBox
             upText="End Date"

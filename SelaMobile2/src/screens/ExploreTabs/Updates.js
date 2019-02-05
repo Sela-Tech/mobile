@@ -27,30 +27,29 @@ const styles = StyleSheet.create({
 
 const tasklisting = [
   {
-    text: 'Identify the 3 ponds to be treated. Move Biotechnology products to secured location at the site.',
-    statusText: 'In Progress'
+    text:
+      'Identify the 3 ponds to be treated. Move Biotechnology products to secured location at the site.',
+    statusText: 'In Progress',
   },
   {
-    text: 'Identify VSE team and assignment to pond with laid out instructions for project execution',
-    statusText: 'Completed'
+    text:
+      'Identify VSE team and assignment to pond with laid out instructions for project execution',
+    statusText: 'Completed',
   },
   {
-    text: 'Collection of 1st samples of water and soil and data after treatment. Send samples to the laboratory',
-    statusText: 'Completed'
+    text:
+      'Collection of 1st samples of water and soil and data after treatment. Send samples to the laboratory',
+    statusText: 'Completed',
   },
 ];
 
 const Updates = ({ project }) => (
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <Fragment>
-      {
-        tasklisting.map((c, index) => (
-          <IndUpdates
-            key={index}
-            text={c.text}
-            statusText={c.statusText} />
-        ))
-      }
+      {tasklisting.map((c, index) => (
+        <IndUpdates
+key={index} text={c.text} statusText={c.statusText} />
+      ))}
     </Fragment>
     <TouchableOpacity
       style={{
@@ -60,8 +59,7 @@ const Updates = ({ project }) => (
       onPress={() => console.log('i am hehrh')}
     >
       <View>
-        <Text
-          style={{ color: '#201D41' }}> View transactions</Text>
+        <Text style={{ color: '#201D41' }}> View transactions</Text>
       </View>
       <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
         <Image source={require('../../../assets/forward-arrow.png')} />
@@ -69,8 +67,7 @@ const Updates = ({ project }) => (
     </TouchableOpacity>
     <View style={{ paddingTop: 10, alignItems: 'center' }}>
       <Button
-        fn={() => NavigationService.navigate('Invest')}
-        text="INVEST" />
+fn={() => NavigationService.navigate('Invest')} text="INVEST" />
     </View>
   </ScrollView>
 );

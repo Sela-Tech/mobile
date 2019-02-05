@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import CalendarBox from '../../components/Transactions/CalendarBox';
 import Box from './OverviewComp/Box';
 import StandardText from '../../components/StandardText';
 import { WHITE } from '../../utils/constants';
+import ExtStyle from '../../utils/styles';
 import { firstLetterCapital } from '../../utils/helpers';
 import Text from '../../components/Text';
 
@@ -13,7 +14,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: WHITE,
     marginHorizontal: 10,
-    // marginVertical: 10,
     marginBottom: 15,
   },
   subContainer: {
@@ -24,36 +24,52 @@ const styles = StyleSheet.create({
   button: {
     width: width / 2,
   },
+  pt10: {
+    paddingTop: 10,
+  },
+  topContainer: {
+    paddingTop: 10,
+    flex: 1,
+  },
+  topTextContainer: {
+    color: '#222829',
+    fontSize: 15,
+  },
+  healthContainer: {
+    marginTop: 20,
+    justifyContent: 'flex-start',
+    alignItems: 'flex-start',
+  },
+  text: {
+    color: '#201D41',
+    fontSize: 14,
+  },
 });
 
 const Overview = ({ project }) => (
-  <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-    <View style={{ paddingTop: 10, flex: 1 }}>
-      <Text style={{ color: '#222829', fontSize: 15 }}>{firstLetterCapital(project.description)}</Text>
+  <ScrollView style={styles.container} contentContainerStyle={ExtStyle.flexGrow}>
+    <View style={styles.topContainer}>
+      <Text style={styles.topTextContainer}>
+        {firstLetterCapital(project.description)}
+      </Text>
     </View>
-    <View style={{ paddingTop: 10 }}>
+    <View style={styles.pt10}>
       <CalendarBox />
     </View>
     <StandardText
       text="Project Health Overview"
-      viewStyle={{
-        marginTop: 20,
-        justifyContent: 'flex-start',
-        alignItems: 'flex-start',
-      }}
-      textStyle={{
-        color: '#201D41',
-        fontSize: 14,
-      }}
+      viewStyle={styles.healthContainer}
+      textStyle={styles.text}
     />
-    <Box upText="Tasks Completed"
+    <Box
+      upText="Tasks Completed"
       secondTextLeft="13"
     //  secondTextRight="+6.9%"
     />
     <Box
       upText="Progress"
       secondTextLeft="70%"
-    // secondTextRight="+12.4%" 
+    // secondTextRight="+12.4%"
     />
 
     <Box

@@ -154,4 +154,3 @@ export const forgotPassword = async data => {
     return err;
   }
 };
-

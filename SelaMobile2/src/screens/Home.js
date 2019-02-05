@@ -97,7 +97,7 @@ export default () => (
           }}
         >
           <View>
-            <Text style={{ color: '#FFFFFF', fontSize: 20 }}>   Explore Projects </Text>
+            <Text style={{ color: '#FFFFFF', fontSize: 20 }}> Explore Projects </Text>
           </View>
           <View style={{ paddingLeft: 5, justifyContent: 'center' }}>
             <Image

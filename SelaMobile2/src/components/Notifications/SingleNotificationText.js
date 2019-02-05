@@ -35,15 +35,16 @@ const renderSwitch = (params, text) => {
       return (
         <View style={{ marginLeft: 4 }}>
           <Text>
-            <B fn={() => NavigationService.navigate('UserProfile', params.stakeholder._id)}>{params.stakeholder.firstName.concat(' ').concat(params.stakeholder.lastName)}
+            <B fn={() => NavigationService.navigate('UserProfile', params.stakeholder._id)}>
+              {params.stakeholder.firstName.concat(' ').concat(params.stakeholder.lastName)}
             </B>
-            {' '}
+{' '}
             added you to the project
-            {' '}
+{' '}
             <B fn={() => NavigationService.navigate('ExploreProject', params.project.id)}>
               {params.project.name}
-              .
-          </B>{' '}
+.
+</B>{' '}
           </Text>
         </View>
       );
@@ -55,13 +56,13 @@ const renderSwitch = (params, text) => {
             <B fn={() => NavigationService.navigate('UserProfile', params.stakeholder._id)}>
               {` `} {params.stakeholder.firstName.concat(' ').concat(params.stakeholder.lastName)}
             </B>
-            {' '}
-            to  join this project
-          {' '}
+{' '}
+            to join this project
+{' '}
             <B fn={() => NavigationService.navigate('ExploreProject', params.project.id)}>
               {params.project.name}
-              .
-          </B>{' '}
+.
+</B>{' '}
           </Text>
         </View>
       );

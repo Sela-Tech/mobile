@@ -8,12 +8,15 @@ try {
   const dataFix = fs.readFileSync(`${curDir}/android-react-gradle-fix`, 'utf8');
   const data = fs.readFileSync(file, 'utf8');
 
-  const doLast = 'doLast \{';
+  const doLast = 'doLast {';
   if (data.indexOf(doLast) !== -1) {
     throw 'Already fixed.';
   }
 
-  const result = data.replace(/ {16}\/\/ Set up inputs and outputs so gradle can cache the result/g, dataFix);
+  const result = data.replace(
+    / {16}\/\/ Set up inputs and outputs so gradle can cache the result/g,
+    dataFix,
+  );
   fs.writeFileSync(file, result, 'utf8');
   console.log('Done');
 } catch (error) {

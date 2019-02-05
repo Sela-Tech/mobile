@@ -57,10 +57,9 @@ class ExploreProject extends Component {
     } catch (err) {
       this.setState({ error: err.message });
     }
-  };
+  }
 
   render() {
-
     const { projectId, loading, notAvailaible, projectInfo } = this.state;
     const allProjects =
       this.props &&
@@ -89,12 +88,12 @@ class ExploreProject extends Component {
                     style={styles.imageHeight}
                     // resizeMode="contain"
                     source={require('../../assets/img/cleanup/water.jpg')}
-                  // source={{
-                  //   uri:
-                  //     projectInfo['project-avatar'] === undefined
-                  //       ? 'https://placeimg.com/640/480/any'
-                  //       : projectInfo['project-avatar'],
-                  // }}
+                    // source={{
+                    //   uri:
+                    //     projectInfo['project-avatar'] === undefined
+                    //       ? 'https://placeimg.com/640/480/any'
+                    //       : projectInfo['project-avatar'],
+                    // }}
                   />
                 </View>
                 <View
@@ -104,8 +103,8 @@ class ExploreProject extends Component {
                     bottom: 0,
                     left: 0,
                     right: 0,
-                  }}>
-
+                  }}
+                >
                   <TouchableOpacity
                     transparent
                     style={{
@@ -115,14 +114,11 @@ class ExploreProject extends Component {
                     }}
                     onPress={() => this.props.navigation.goBack()}
                   >
-
                     <View>
-                      <Image
-                        source={require('../../assets/white-back.png')}
-                      />
+                      <Image source={require('../../assets/white-back.png')} />
                     </View>
                     <View>
-                      <Text style={{ color: WHITE, fontSize: 15 }}>   Back to Explore </Text>
+                      <Text style={{ color: WHITE, fontSize: 15 }}> Back to Explore </Text>
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -133,7 +129,7 @@ class ExploreProject extends Component {
                   projectStatusText={projectInfo.status}
                   projectNameText="MARKERS LTD"
                   projectTitleText={projectInfo.name}
-                  budgetAmount='$2,000,000'//{projectInfo.goal}
+                  budgetAmount="$2,000,000" // {projectInfo.goal}
                   numberOfStakeholders={projectInfo.stakeholders.length}
                   raisedAmount={projectInfo.raised}
                   tags={projectInfo.tags}
@@ -141,32 +137,31 @@ class ExploreProject extends Component {
               </View>
               <View style={ExtStyle.flex6}>
                 <Navigator
-                  navigation={this.props.navigation}
-                  project={projectInfo} />
+navigation={this.props.navigation} project={projectInfo} />
               </View>
             </Fragment>
           ) : (
-              <Fragment>
-                <View>
-                  <Image style={styles.imageHeight} source={{ uri: theProject['project-avatar'] }} />
-                </View>
-                <View style={styles.flex3}>
-                  <Header
-                    projectLocationText={theProject && theProject.location.name}
-                    projectStatusText={theProject.status}
-                    projectNameText="MARKERS LTD"
-                    projectTitleText={theProject.name}
-                    budgetAmount={theProject.goal}
-                    numberOfStakeholders={theProject.stakeholders.length}
-                    raisedAmount={theProject.raised}
-                    tags={theProject.tags}
-                  />
-                </View>
-                <View style={ExtStyle.flex6}>
-                  <Navigator project={theProject} />
-                </View>
-              </Fragment>
-            )}
+            <Fragment>
+              <View>
+                <Image style={styles.imageHeight} source={{ uri: theProject['project-avatar'] }} />
+              </View>
+              <View style={styles.flex3}>
+                <Header
+                  projectLocationText={theProject && theProject.location.name}
+                  projectStatusText={theProject.status}
+                  projectNameText="MARKERS LTD"
+                  projectTitleText={theProject.name}
+                  budgetAmount={theProject.goal}
+                  numberOfStakeholders={theProject.stakeholders.length}
+                  raisedAmount={theProject.raised}
+                  tags={theProject.tags}
+                />
+              </View>
+              <View style={ExtStyle.flex6}>
+                <Navigator project={theProject} />
+              </View>
+            </Fragment>
+          )}
         </Fragment>
       </View>
     );

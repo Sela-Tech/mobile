@@ -15,6 +15,16 @@ const styles = StyleSheet.create({
   headerMargin: {
     marginTop: 15,
   },
+  accountSettingsView: {
+    marginVertical: 10,
+    marginLeft: 10,
+  },
+  mv15: {
+    marginVertical: 15,
+  },
+  ml10: {
+    marginLeft: 10,
+  },
 });
 
 class ProfileSettings extends Component {
@@ -30,27 +40,22 @@ class ProfileSettings extends Component {
       userType = 'Evaluation agent';
     }
     return (
-      <ScrollView contentContainerStyle={styles.container} >
+      <ScrollView contentContainerStyle={styles.container}>
         <Header headerName="PROFILE" />
         <View style={styles.headerMargin}>
           <UserId
             settings
             userType={userType}
             userName={userInfo.user.firstName.concat(' ').concat(userInfo.user.lastName)}
-            verificationStatus={'verified'}
+            verificationStatus="verified"
           />
         </View>
-        <UserInfo
-          reputationScore={'0'}
-          projects={'0'}
-          dataUploads={'0'}
-          location={'Lagos,Nigeria.'}
-        />
-        <View style={{ marginVertical: 15 }}>
-          <View style={{ marginBottom: 7, marginTop: 10, marginBottom: 10, marginLeft: 10 }}>
+        <UserInfo reputationScore="0" projects="0" dataUploads="0" location="Lagos,Nigeria." />
+        <View style={styles.mv15}>
+          <View style={styls.accountSettingsView}>
             <B color="#201D41"> Account Settings </B>
           </View>
-          <View style={{ marginLeft: 10 }}>
+          <View style={styles.ml10}>
             <SettingsList upText="Verification" downText="View or update verification document" />
             <SettingsList
               upText="Edit Profile"
@@ -66,7 +71,7 @@ class ProfileSettings extends Component {
       </ScrollView>
     );
   }
-};
+}
 
 const mapStateToProps = state => ({
   userInfo: state.userInfo,

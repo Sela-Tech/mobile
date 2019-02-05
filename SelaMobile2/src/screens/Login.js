@@ -11,6 +11,7 @@ import StandardText from '../components/StandardText';
 import IntroHeader from '../components/IntroHeader';
 import NavigationService from '../services/NavigationService';
 import { DEFAULT_COLOUR, YELLOW, WHITE } from '../utils/constants';
+import { isEmail } from '../utils/helpers';
 import { login } from '../../actions/token';
 import ExtStyle from '../utils/styles';
 
@@ -95,8 +96,10 @@ class Login extends Component {
         passwordErrorMessage: "Password Field can't be blank",
       });
     }
+
     const data = {
-      email: emailOrPhone,
+      email: isEmail(emailOrPhone) ? emailOrPhone : '',
+      phone: !isEmail(emailOrPhone) ? emailOrPhone : '',
       password,
     };
     this.setState({ submitErrorMessage: '', loading: true });
@@ -115,11 +118,9 @@ class Login extends Component {
           submitErrorMessage: 'Wrong Username or Password',
         });
         this.dropdown.alertWithType('error', 'Error', resp);
-      }
-      else if (resp === false) {
+      } else if (resp === false) {
         this.dropdown.alertWithType('error', 'Error', 'Authentication failed');
-      }
-      else {
+      } else {
         this.dropdown.alertWithType('error', 'Error', resp);
       }
     } catch (error) {
@@ -239,7 +240,7 @@ class Login extends Component {
               </View>
             </View>
             <DropdownAlert
-              ref={ref => this.dropdown = ref}
+              ref={ref => (this.dropdown = ref)}
               // startDelta={height}
               // endDelta={height - height / 8}
               closeInterval={6000}

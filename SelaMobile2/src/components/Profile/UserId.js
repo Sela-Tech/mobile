@@ -26,10 +26,10 @@ const options = {
 };
 
 export default class UserId extends Component {
-
   state = {
     avatarSource: require('../../../assets/img/man.png'),
   };
+
   selectImage = async () => {
     ImagePicker.showImagePicker(options, async response => {
       if (response.didCancel) {
@@ -46,26 +46,23 @@ export default class UserId extends Component {
       }
     });
   };
+
   render() {
     const { settings, userType, userName, verificationStatus } = this.props;
     const { avatarSource } = this.state;
 
     return (
       <View style={styles.container}>
-        {
-          settings ?
-            (
-              <TouchableOpacity
-                onPress={() => this.selectImage()}
-                style={styles.imgStyle}>
-                <Image source={avatarSource} style={styles.imgStyle} />
-              </TouchableOpacity>
-            ) : (
-              <View style={styles.imgStyle}>
-                <Image source={avatarSource} style={styles.imgStyle} />
-              </View>
-            )
-        }
+        {settings ? (
+          <TouchableOpacity
+onPress={() => this.selectImage()} style={styles.imgStyle}>
+            <Image source={avatarSource} style={styles.imgStyle} />
+          </TouchableOpacity>
+        ) : (
+          <View style={styles.imgStyle}>
+            <Image source={avatarSource} style={styles.imgStyle} />
+          </View>
+        )}
 
         <View style={{ alignItems: 'center', paddingTop: 5 }}>
           <View style={{ alignItems: 'center' }}>
@@ -79,7 +76,6 @@ export default class UserId extends Component {
           ) : null}
         </View>
       </View>
-    )
+    );
   }
-};
-
+}

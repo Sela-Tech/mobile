@@ -26,16 +26,19 @@ const styles = StyleSheet.create({
 
 const tasklisting = [
   {
-    text: 'Identify the 3 ponds to be treated. Move Biotechnology products to secured location at the site.',
-    statusText: 'In Progress'
+    text:
+      'Identify the 3 ponds to be treated. Move Biotechnology products to secured location at the site.',
+    statusText: 'In Progress',
   },
   {
-    text: 'Identify VSE team and assignment to pond with laid out instructions for project execution',
-    statusText: 'Completed'
+    text:
+      'Identify VSE team and assignment to pond with laid out instructions for project execution',
+    statusText: 'Completed',
   },
   {
-    text: 'Collection of 1st samples of water and soil and data after treatment. Send samples to the laboratory',
-    statusText: 'Completed'
+    text:
+      'Collection of 1st samples of water and soil and data after treatment. Send samples to the laboratory',
+    statusText: 'Completed',
   },
 ];
 
@@ -60,14 +63,9 @@ const Tasks = ({ project }) => {
   }
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-      {
-        tasklisting.map((c, index) => (
-          <Task
-            key={index}
-            text={c.text}
-            statusText={c.statusText} />
-        ))
-      }
+      {tasklisting.map((c, index) => (
+        <Task key={index} text={c.text} statusText={c.statusText} />
+      ))}
       <View style={{ paddingTop: 10, alignItems: 'center' }}>
         <Button text="Submit Updates" />
       </View>

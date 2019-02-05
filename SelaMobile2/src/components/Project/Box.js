@@ -58,15 +58,15 @@ const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
         </View>
       </ImageBackground>
     ) : (
-        <View style={(styles.empty, { alignItems: 'center', borderColor: '#F2994A' })}>
-          <View style={{ justifyContent: 'center' }}>
-            <Image source={require('../../../assets/plus.png')} style={{ tintColor: '#696f74' }} />
-          </View>
-          <View style={{ marginTop: 10 }}>
-            <Text> {text ? text : 'Propose Project'} </Text>
-          </View>
+      <View style={(styles.empty, { alignItems: 'center', borderColor: '#F2994A' })}>
+        <View style={{ justifyContent: 'center' }}>
+          <Image source={require('../../../assets/plus.png')} style={{ tintColor: '#696f74' }} />
         </View>
-      )}
+        <View style={{ marginTop: 10 }}>
+          <Text> {text ? text : 'Propose Project'} </Text>
+        </View>
+      </View>
+    )}
   </TouchableOpacity>
 );
 

@@ -68,7 +68,9 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
     <View style={[styles.smaller, { marginLeft: 3, justifyContent: 'center' }]}>
       <View style={[styles.row, { marginTop: 5 }]}>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={{ fontSize: 15, fontWeight: '400', color: '#696F74' }}>{firstText.slice(0, 18).concat(' ...')}</Text>
+          <Text style={{ fontSize: 15, fontWeight: '400', color: '#696F74' }}>
+            {firstText.slice(0, 18).concat(' ...')}
+          </Text>
           <Entypo name="dot-single" size={18} color="#696F74" />
         </View>
         <View style={{ paddingLeft: isAndroid ? '1%' : 2, flexDirection: 'row' }}>
@@ -82,7 +84,9 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
           </View>
         </View>
         <View style={{ paddingLeft: isAndroid ? '1%' : 2 }}>
-          <Text style={{ fontWeight: '300', color: projectStatusTextColor(thirdText) }}>{thirdText}</Text>
+          <Text style={{ fontWeight: '300', color: projectStatusTextColor(thirdText) }}>
+            {thirdText}
+          </Text>
         </View>
       </View>
       <View style={{ flex: 1, justifyContent: 'center' }}>

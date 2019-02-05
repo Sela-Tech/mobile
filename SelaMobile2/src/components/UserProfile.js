@@ -38,9 +38,9 @@ const UserProfile = ({ imgSource, userName, companyName, userId }) => (
       <View style={{ height: 80, marginLeft: 20, justifyContent: 'center' }}>
         <View>
           <B>
-            {userName}
-            {' '}
-          </B>
+{userName}
+{' '}
+ </B>
         </View>
         <View style={{ flexDirection: 'row', marginTop: 5 }}>
           <Image source={require('../../assets/star.png')} />
@@ -54,12 +54,8 @@ const UserProfile = ({ imgSource, userName, companyName, userId }) => (
   </TouchableOpacity>
 );
 
-UserProfile.defaultProps = {
+UserProfile.defaultProps = {};
 
-};
-
-UserProfile.propTypes = {
-
-};
+UserProfile.propTypes = {};
 
 export default UserProfile;

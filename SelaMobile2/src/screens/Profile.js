@@ -144,56 +144,57 @@ class Profile extends Component {
               <Spinner />
             </View>
           ) : (
-              <View style={styles.subContainer}>
-                <UserId
-                  userType={guestUser ? userType : 'Funder'}
-                  userName={guestUser ? userName : 'Eze'}
-                  verificationStatus={verificationStatus}
-                />
-                <UserInfo
-                  reputationScore={guestUser ? profileInfo.userInfo.reputationScore : '0'}
-                  projects={guestUser ? profileInfo && profileInfo.projects.length : '0'}
-                  dataUploads={guestUser ? profileInfo.uploads : '0'}
-                  location={guestUser ? 'Lagos,Nigeria.' : 'Lagos,Nigeria.'}
-                />
-                <View style={{ marginVertical: 10 }}>
-                  <View style={{ marginVertical: 15, marginLeft: 10 }}>
-                    <B color="#201D41"> Other projects with Ade </B>
-                  </View>
-                  <Fragment>
-                    {projects && projects.length === 0 ? (
-                      <View style={styles.emptyBox}>
-                        <Text style={styles.textInEmptyBox}> You haven't been added to any project yet.</Text>
-                      </View>
-                    ) : (
-                        <FlatList
-                          keyExtractor={(item, index) => index.toString()}
-                          style={{ paddingTop: 10 }}
-                          data={images}
-                          keyExtractor={keyExtractor}
-                          horizontal
-                          showsHorizontalScrollIndicator={false}
-                          renderItem={renderItem}
-                        />
-                      )}
-                  </Fragment>
+            <View style={styles.subContainer}>
+              <UserId
+                userType={guestUser ? userType : 'Funder'}
+                userName={guestUser ? userName : 'Eze'}
+                verificationStatus={verificationStatus}
+              />
+              <UserInfo
+                reputationScore={guestUser ? profileInfo.userInfo.reputationScore : '0'}
+                projects={guestUser ? profileInfo && profileInfo.projects.length : '0'}
+                dataUploads={guestUser ? profileInfo.uploads : '0'}
+                location={guestUser ? 'Lagos,Nigeria.' : 'Lagos,Nigeria.'}
+              />
+              <View style={{ marginVertical: 10 }}>
+                <View style={{ marginVertical: 15, marginLeft: 10 }}>
+                  <B color="#201D41"> Other projects with Ade </B>
                 </View>
-                <View style={{ marginLeft: 10 }}>
-                  <View style={{ marginVertical: 15 }}>
-                    <B color="#201D41"> Interests </B>
-                  </View>
-                  <View style={styles.interestTag}>
-                    {
-                      interests.map((c, index) => (
-                        <View key={index} style={styles.interestSubContainer}>
-                          <Tag viewColor="#1ECD97" text={c} />
-                        </View>
-                      ))
-                    }
-                  </View>
+                <Fragment>
+                  {projects && projects.length === 0 ? (
+                    <View style={styles.emptyBox}>
+                      <Text style={styles.textInEmptyBox}>
+                        {' '}
+                        You haven't been added to any project yet.
+                      </Text>
+                    </View>
+                  ) : (
+                    <FlatList
+                      keyExtractor={(item, index) => index.toString()}
+                      style={{ paddingTop: 10 }}
+                      data={images}
+                      keyExtractor={keyExtractor}
+                      horizontal
+                      showsHorizontalScrollIndicator={false}
+                      renderItem={renderItem}
+                    />
+                  )}
+                </Fragment>
+              </View>
+              <View style={{ marginLeft: 10 }}>
+                <View style={{ marginVertical: 15 }}>
+                  <B color="#201D41"> Interests </B>
+                </View>
+                <View style={styles.interestTag}>
+                  {interests.map((c, index) => (
+                    <View key={index} style={styles.interestSubContainer}>
+                      <Tag viewColor="#1ECD97" text={c} />
+                    </View>
+                  ))}
                 </View>
               </View>
-            )}
+            </View>
+          )}
         </Fragment>
       </ScrollView>
     );

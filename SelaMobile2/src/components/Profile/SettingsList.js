@@ -14,12 +14,10 @@ const logOut = async () => {
   try {
     await AsyncStorage.removeItem('user');
     NavigationService.navigate('Login');
+  } catch (err) {
+    console.log(err.message);
   }
-  catch (err) {
-    console.log(err.message)
-  }
-}
-
+};
 
 const SettingsList = ({ upText, downText }) => (
   <TouchableOpacity style={styles.container}>

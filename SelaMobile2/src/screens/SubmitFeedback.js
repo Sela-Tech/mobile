@@ -1,7 +1,5 @@
 import React, { Fragment, Component } from 'react';
 import { View, StyleSheet, TouchableOpacity, Image, Dimensions } from 'react-native';
-import { Header } from 'native-base';
-import io from 'socket.io-client';
 import { GiftedChat } from 'react-native-gifted-chat';
 import ImagePicker from 'react-native-image-picker';
 import Text from '../components/Text';
@@ -375,21 +373,21 @@ export default class SubmitFeedback extends Component {
             </View>
           </View>
         ) : (
-            <View style={styles.topBottom}>
-              <View style={styles.floatingButton}>
-                <TouchableOpacity
-                  onPress={() => this.snap()}
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Image source={require('../../assets/img/camera.png')} />
-                </TouchableOpacity>
-              </View>
+          <View style={styles.topBottom}>
+            <View style={styles.floatingButton}>
+              <TouchableOpacity
+                onPress={() => this.snap()}
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Image source={require('../../assets/img/camera.png')} />
+              </TouchableOpacity>
             </View>
-          )}
+          </View>
+        )}
       </Fragment>
     );
   };
@@ -399,50 +397,14 @@ export default class SubmitFeedback extends Component {
     return (
       <View style={styles.container}>
         <Fragment>
-          {!hideHeader ? (
-            <Header>
-              <View style={styles.header}>
-                <View
-                  style={{
-                    justifyContent: 'center',
-                    paddingLeft: '5%',
-                  }}
-                >
-                  <TouchableOpacity
-                    style={{
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Image source={require('../../assets/img/blackback.png')} />
-                  </TouchableOpacity>
-                </View>
-
-                <View
-                  style={{
-                    left: 40,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Text style={{ fontSize: 20 }}>Submit Update</Text>
-                </View>
-              </View>
-            </Header>
-          ) : null}
-        </Fragment>
-
-        <Fragment>
-          <Fragment>
-            <GiftedChat
-              messages={messages}
-              onSend={this.onSend}
-              renderActions={this.renderLeftIcon}
-              user={{
-                _id: 1,
-              }}
-            />
-          </Fragment>
+          <GiftedChat
+            messages={messages}
+            onSend={this.onSend}
+            renderActions={this.renderLeftIcon}
+            user={{
+              _id: 1,
+            }}
+          />
         </Fragment>
       </View>
     );

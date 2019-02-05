@@ -7,25 +7,17 @@ const keyExtractor = (item, index) => index.toString();
 
 const renderItem = item => (
   <View style={{ paddingLeft: 5 }}>
-    {
-      item.item.val === 'empty' ?
-        (
-          <Box
-            text={'Propose Project'}
-            empty fn={() => console.log('navigate')} />
-        ) :
-        (
-          <Box
-            projectInfo={item.item}
-            siteName={item.item.name}
-            imageSource={item.item['project-avatar']}
-          />
-        )
-    }
-
+    {item.item.val === 'empty' ? (
+      <Box text="Propose Project" empty fn={() => console.log('navigate')} />
+    ) : (
+      <Box
+        projectInfo={item.item}
+        siteName={item.item.name}
+        imageSource={item.item['project-avatar']}
+      />
+    )}
   </View>
 );
-
 
 const Images = ({ projects, leftText }) => {
   const proj = leftText === 'Projects you proposed' ? [{ val: 'empty' }, ...projects] : projects;
@@ -38,9 +30,7 @@ const Images = ({ projects, leftText }) => {
       showsHorizontalScrollIndicator={false}
       renderItem={renderItem}
     />
-  )
-}
+  );
+};
 
 export default Images;
-
-

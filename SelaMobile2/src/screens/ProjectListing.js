@@ -37,13 +37,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const tags = [
-  'Education',
-  'Clean Water',
-  'Zero Poverty',
-  'Infrastucture',
-  'Sustainable cities',
-];
+const tags = ['Education', 'Clean Water', 'Zero Poverty', 'Infrastucture', 'Sustainable cities'];
 const projectStatus = ['ON GOING', 'DORMANT', 'COMPLETED', 'PROPOSED', 'IN REVIEW'];
 
 class ExploreProject extends Component {
@@ -69,27 +63,23 @@ class ExploreProject extends Component {
     try {
       const resp = await getAllProjects();
       if (resp.data.success === true) {
-        this.setState({ loading: false, projects: resp.data.projects })
-      }
-      else {
+        this.setState({ loading: false, projects: resp.data.projects });
+      } else {
         this.setState({
           loading: false,
           error: 'failed',
         });
       }
-    }
-    catch (err) {
+    } catch (err) {
       this.setState({ loading: false });
     }
-  };
+  }
 
   searchResult = async () => {
     const { places } = this.state;
 
-    RNGooglePlaces.getAutocompletePredictions(`${places}`, {
-
-    })
-      .then((place) => {
+    RNGooglePlaces.getAutocompletePredictions(`${places}`, {})
+      .then(place => {
         this.setState({ googlePlaces: place });
       })
       .catch(error => this.setState({ error: error.message }));
@@ -98,8 +88,8 @@ class ExploreProject extends Component {
   handleSelectedAddress = (payload, id) => {
     Keyboard.dismiss();
     RNGooglePlaces.lookUpPlaceByID(id)
-      .then(results => {
-        return this.setState({
+      .then(results =>
+        this.setState({
           searchResult: false,
           googlePlaces: [],
           location: payload,
@@ -108,8 +98,8 @@ class ExploreProject extends Component {
             lat: results.latitude,
             lng: results.longitude,
           },
-        });
-      })
+        }),
+      )
       .catch(err => {
         this.setState({
           searchResult: false,
@@ -160,7 +150,9 @@ class ExploreProject extends Component {
                     <SearchResult
                       places={googlePlaces}
                       searchResult={searchResult}
-                      handleSelectedAddress={(payload, id) => this.handleSelectedAddress(payload, id)}
+                      handleSelectedAddress={(payload, id) =>
+                        this.handleSelectedAddress(payload, id)
+                      }
                     />
                   )}
                 </Fragment>
@@ -228,31 +220,31 @@ class ExploreProject extends Component {
               {loading === true ? (
                 <Spinner />
               ) : (
-                  <Fragment>
-                    {projects.length === 0 ? (
-                      <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
-                        <Text style={{ fontSize: 15 }}> No project at the moment </Text>
+                <Fragment>
+                  {projects.length === 0 ? (
+                    <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
+                      <Text style={{ fontSize: 15 }}> No project at the moment </Text>
+                    </View>
+                  ) : (
+                    projects.map((c, index) => (
+                      <View style={{ marginBottom: 10, marginTop: 10 }}>
+                        <Box
+                          key={index}
+                          fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
+                          // img={{ uri: 'https://placeimg.com/640/480/any' }}
+                          img={require('../../assets/img/cleanup/water.jpg')}
+                          firstText={c.location.name}
+                          secondText={c.name}
+                          thirdText={c.status}
+                          title={c.description}
+                          cost={c.raised}
+                          tags={c.tags}
+                        />
                       </View>
-                    ) : (
-                        projects.map((c, index) => (
-                          <View style={{ marginBottom: 10, marginTop: 10 }}>
-                            <Box
-                              key={index}
-                              fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
-                              // img={{ uri: 'https://placeimg.com/640/480/any' }}
-                              img={require('../../assets/img/cleanup/water.jpg')}
-                              firstText={c.location.name}
-                              secondText={c.name}
-                              thirdText={c.status}
-                              title={c.description}
-                              cost={c.raised}
-                              tags={c.tags}
-                            />
-                          </View>
-                        ))
-                      )}
-                  </Fragment>
-                )}
+                    ))
+                  )}
+                </Fragment>
+              )}
             </View>
           </View>
         </View>

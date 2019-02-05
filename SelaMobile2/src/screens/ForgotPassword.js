@@ -43,15 +43,13 @@ export default class ForgotPassword extends Component {
     try {
       const resp = await forgotPassword({
         email: emailOrphone,
-        phone: ''
+        phone: '',
       });
       console.log(resp.data);
+    } catch (err) {
+      this.setState({ err: err.message });
     }
-    catch (err) {
-      this.setState({ err: err.message })
-    }
-
-  }
+  };
 
   render() {
     const { goBack } = this.props.navigation;

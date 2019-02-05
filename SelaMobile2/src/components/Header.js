@@ -1,5 +1,5 @@
-import React from 'react';
-import { Image, StyleSheet } from 'react-native';
+import React, { Fragment } from 'react';
+import { Image, StyleSheet, View } from 'react-native';
 import PropTypes from 'prop-types';
 import { Header, Left, Body, Title, Button, Right } from 'native-base';
 import NavigationService from '../services/NavigationService';
@@ -29,25 +29,37 @@ const styles = StyleSheet.create({
   },
 });
 
-const HeaderB = ({ headerName, sideIconStatus, sideIconImage }) => (
+const HeaderB = ({ positionLeft, headerName, sideIconStatus, sideIconImage }) => (
   <Header style={styles.header} androidStatusBarColor="#E5E5E5">
-    <Left style={ExtStyle.flex1} />
-    <Body style={styles.bodyStyle}>
-      <Title style={styles.headerName}>{headerName}</Title>
-    </Body>
+    {positionLeft ? (
+      <View>
+        <Left>
+          <Button light style={styles.button} onPress={() => console.log('k')} />
+          <Body style={styles.bodyStyle}>
+            <Title style={styles.headerName}>headerName</Title>
+          </Body>
+        </Left>
+      </View>
+    ) : (
+      <Fragment>
+        <Left style={ExtStyle.flex1} />
+        <Body style={styles.bodyStyle}>
+          <Title style={styles.headerName}>{headerName}</Title>
+        </Body>
 
-    <Right style={ExtStyle.flex1}>
-      {sideIconStatus ? (
-        <Button
-          light
-          style={styles.button}
-          onPress={() => NavigationService.navigate('Notification')}
-        >
-          <Image
-            resizeMode="cover" source={sideIconImage} />
-        </Button>
-      ) : null}
-    </Right>
+        <Right style={ExtStyle.flex1}>
+          {sideIconStatus ? (
+            <Button
+              light
+              style={styles.button}
+              onPress={() => NavigationService.navigate('Notification')}
+            >
+              <Image resizeMode="cover" source={sideIconImage} />
+            </Button>
+          ) : null}
+        </Right>
+      </Fragment>
+    )}
   </Header>
 );
 

@@ -6,7 +6,6 @@ import Text from '../../../components/Text';
 
 const { height, width } = Dimensions.get('window');
 
-
 const styles = StyleSheet.create({
   container: {
     // height: height / 5,
@@ -48,9 +47,9 @@ const Box = ({ upText, secondTextLeft, secondTextRight, lastText }) => (
   <View style={styles.container}>
     <View style={styles.viewStyle2}>
       <Text style={styles.text}>
-        {upText}
-        {' '}
-      </Text>
+{upText}
+{' '}
+ </Text>
     </View>
     <View
       style={{
@@ -98,10 +97,10 @@ const Box = ({ upText, secondTextLeft, secondTextRight, lastText }) => (
       {upText === 'Progress' || upText === 'Budget used' ? (
         <ProgressCircle style={styles.chartHeight} progress={0.7} progressColor="#F2994A" />
       ) : (
-          <BarChart style={styles.chartHeight} data={data} svg={{ fill }} contentInset={{}}>
-            <Grid />
-          </BarChart>
-        )}
+        <BarChart style={styles.chartHeight} data={data} svg={{ fill }} contentInset={{}}>
+          <Grid />
+        </BarChart>
+      )}
     </View>
     <Fragment>
       {lastText ? (

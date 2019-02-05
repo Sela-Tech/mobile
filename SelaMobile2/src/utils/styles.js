@@ -33,6 +33,12 @@ const styles = StyleSheet.create({
   largeFontSize: {
     fontSize: 25,
   },
+  ft15: {
+    fontSize: 15,
+  },
+  flexGrow: {
+    flexGrow: 1,
+  },
 });
 
 export default styles;

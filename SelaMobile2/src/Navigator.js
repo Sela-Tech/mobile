@@ -15,38 +15,46 @@ import FirstTimeUserLoadingScreen from './screens/FirstTimeUserLoading';
 import SignUpSuccessScreen from './screens/SignUpSuccess';
 import InvestComp from './components/InvestComp';
 
+import { isAndroid } from './utils/helpers';
+
 export const RootStackNavigator = createStackNavigator({
-  // Project: {
-  //   screen: ProjectBottomNavigator,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
-  // Notification: {
-  //   screen: Notifications,
-  // },
-  // ViewProject: {
-  //   screen: ViewProject,
-  // },
-  // CreateProject: {
-  //   screen: CreateProject,
-  // },
-  // Success: {
-  //   screen: SuccessScreen,
-  //   navigationOptions: {
-  //     header: null,
-  //   },
-  // },
-  // SubmitFeedback: {
-  //   screen: SubmitFeedback,
-  //   // navigationOptions: {
-  //   //   header: null,
-  //   // },
-  // },
+  Project: {
+    screen: ProjectBottomNavigator,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Notification: {
+    screen: Notifications,
+  },
+  ViewProject: {
+    screen: ViewProject,
+  },
+  CreateProject: {
+    screen: CreateProject,
+  },
+  Success: {
+    screen: SuccessScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  SubmitFeedback: {
+    screen: SubmitFeedback,
+    // navigationOptions: {
+    //   header: null,
+    // },
+  },
   Invest: {
     screen: InvestComp,
   },
-});
+}, {
+    defaultNavigationOptions: {
+      headerStyle: {
+        fontFamily: isAndroid ? 'ProximaNova' : null,
+      },
+    },
+  });
 
 const AuthStack = createStackNavigator({
   Login: {
@@ -73,16 +81,14 @@ const AuthStack = createStackNavigator({
       header: null,
     },
   },
-});
+}, {
+    defaultNavigationOptions: {
+      headerStyle: {
+        fontFamily: isAndroid ? 'ProximaNova' : null,
+      },
+    },
+  });
 
-// const OnBoardingStack = createStackNavigator({
-//   OnBoarding: {
-//     screen: OnBoarding,
-//     navigationOptions: {
-//       header: null,
-//     },
-//   },
-// });
 
 const IntroStack = createStackNavigator({
   Intro: {

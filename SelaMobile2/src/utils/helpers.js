@@ -27,9 +27,10 @@ export const isEmail = value => /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.te
  * @return String
  */
 export const titleCase = str => {
-  const string = str.toLowerCase()
+  const string = str
+    .toLowerCase()
     .split(' ')
-    .map(word => (word.charAt(0).toUpperCase() + word.slice(1)));
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1));
 
   return string.join(' ');
 };
