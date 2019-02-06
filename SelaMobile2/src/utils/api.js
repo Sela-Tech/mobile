@@ -187,3 +187,12 @@ export const forgotPassword = async data => {
     return err;
   }
 };
+
+export const updateProfile = async data => {
+  try {
+    return axios.post('/update', data);
+  } catch (err) {
+    return err;
+  }
+};
+

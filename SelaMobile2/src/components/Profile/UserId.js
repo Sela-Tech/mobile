@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import Text from '../Text';
 import Tag from '../Tag';
@@ -25,7 +26,8 @@ const options = {
   },
 };
 
-export default class UserId extends Component {
+// export default
+class UserId extends Component {
   state = {
     avatarSource: require('../../../assets/img/man.png'),
   };
@@ -55,14 +57,14 @@ export default class UserId extends Component {
       <View style={styles.container}>
         {settings ? (
           <TouchableOpacity
-onPress={() => this.selectImage()} style={styles.imgStyle}>
+            onPress={() => this.selectImage()} style={styles.imgStyle}>
             <Image source={avatarSource} style={styles.imgStyle} />
           </TouchableOpacity>
         ) : (
-          <View style={styles.imgStyle}>
-            <Image source={avatarSource} style={styles.imgStyle} />
-          </View>
-        )}
+            <View style={styles.imgStyle}>
+              <Image source={avatarSource} style={styles.imgStyle} />
+            </View>
+          )}
 
         <View style={{ alignItems: 'center', paddingTop: 5 }}>
           <View style={{ alignItems: 'center' }}>
@@ -78,4 +80,11 @@ onPress={() => this.selectImage()} style={styles.imgStyle}>
       </View>
     );
   }
-}
+};
+
+
+const mapStateToProps = state => ({
+  userInfo: state.userInfo,
+});
+
+export default connect(mapStateToProps)(UserId);

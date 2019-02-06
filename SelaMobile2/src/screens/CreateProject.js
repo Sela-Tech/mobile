@@ -246,7 +246,6 @@ class CreateProject extends Component {
         this.props.navigation.navigate('Success');
       }
     } catch (err) {
-      console.log('trtet', err.message)
       this.setState({ loading: false, error: err.message });
     }
   };
@@ -299,33 +298,20 @@ class CreateProject extends Component {
         name: 'Clean Water',
       },
       {
-        // id: '3',
         id: 'Zero Poverty',
         name: 'Zero Poverty',
       },
       {
-        // id: '4',
         id: 'Infrastucture',
         name: 'Infrastucture',
-      },
-      {
-        // id: '4',
-        id: 'Sustainable cities',
-        name: 'Sustainable cities',
       },
       {
         id: 'No Poverty',
         name: 'No Poverty',
       },
-      ,
       {
-        id: 'No Poverty',
+        id: 'Health & Well-being',
         name: 'Health & Well-being',
-      },
-      ,
-      {
-        id: 'Education',
-        name: 'Education',
       },
       {
         id: 'Gender Equality',
@@ -342,14 +328,6 @@ class CreateProject extends Component {
       {
         id: 'Clean Energy',
         name: 'Clean Energy',
-      },
-      {
-        id: 'Infrastructure',
-        name: 'Infrastructure',
-      },
-      {
-        id: 'Reduced Inequality',
-        name: 'Reduced Inequality',
       },
       {
         id: 'Sustainable Cities',
@@ -422,7 +400,7 @@ class CreateProject extends Component {
               })
             }
           />
-        </View>
+        </View> */}
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
             <Text style={{ fontSize: 15 }}> select Project Tags </Text>
@@ -436,6 +414,7 @@ class CreateProject extends Component {
               ref={component => {
                 this.multiSelect = component;
               }}
+              hideSubmitButton
               onSelectedItemsChange={this.onSelectedItemsChange}
               selectedItems={selectedItems}
               selectText="Pick project tags"
@@ -527,7 +506,7 @@ class CreateProject extends Component {
               </Picker>
             </View>
           </View>
-        </View> */}
+        </View>
 
         <View>
           <View style={{ marginBottom: 10 }}>

@@ -18,6 +18,26 @@ const styles = StyleSheet.create({
   mt3: {
     marginTop: height < 600 ? 3 : null,
   },
+  imagePosition: {
+    position: 'absolute',
+    top: 12,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  flex4mb5: {
+    flex: 4,
+    marginBottom: 5,
+  },
+  backButton: {
+    marginTop: '7%',
+    marginHorizontal: '5%',
+    flexDirection: 'row',
+  },
+  backButtonText: {
+    color: WHITE,
+    fontSize: 15,
+  },
 });
 class ExploreProject extends Component {
   state = {
@@ -82,7 +102,7 @@ class ExploreProject extends Component {
         <Fragment>
           {notAvailaible ? (
             <Fragment>
-              <View style={{ flex: 4, marginBottom: 5 }}>
+              <View style={styles.flex4mb5}>
                 <View>
                   <Image
                     style={styles.imageHeight}
@@ -96,29 +116,17 @@ class ExploreProject extends Component {
                   // }}
                   />
                 </View>
-                <View
-                  style={{
-                    position: 'absolute',
-                    top: 12,
-                    bottom: 0,
-                    left: 0,
-                    right: 0,
-                  }}
-                >
+                <View style={styles.imagePosition}>
                   <TouchableOpacity
                     transparent
-                    style={{
-                      marginTop: '7%',
-                      marginHorizontal: '5%',
-                      flexDirection: 'row',
-                    }}
+                    style={styles.backButton}
                     onPress={() => this.props.navigation.goBack()}
                   >
                     <View>
                       <Image source={require('../../assets/white-back.png')} />
                     </View>
                     <View>
-                      <Text style={{ color: WHITE, fontSize: 15 }}> Back to Explore </Text>
+                      <Text style={styles.backButtonText}> Back to Explore </Text>
                     </View>
                   </TouchableOpacity>
                 </View>

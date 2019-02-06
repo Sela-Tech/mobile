@@ -1,9 +1,14 @@
-import { Platform } from 'react-native';
+import { Platform, Dimensions } from 'react-native';
 import moment from 'moment';
 import { WHITE } from './constants';
 import { uploadToAWS } from './api';
 
+const { height } = Dimensions.get('window');
+
 export const isAndroid = Platform.OS === 'android';
+
+export const extraSmallScreen = height < 568;
+export const smallScreen = height < 667;
 
 /**
  * Validate param

@@ -1,4 +1,3 @@
-// import { REHYDRATE } from 'redux-persist';
 import * as types from '../actions/actionTypes';
 
 const userInfoReducer = (
@@ -10,8 +9,6 @@ const userInfoReducer = (
   action,
 ) => {
   switch (action.type) {
-    // case REHYDRATE:
-    //   return action.payload && action.payload.token || {};
     case types.ADD_USERINFO:
       return { ...state, user: action.userInfo };
     case types.USERINFO_IS_LOADING:

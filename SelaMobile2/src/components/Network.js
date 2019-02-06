@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 30,
   },
-  offlineText: { color: '#fff' },
+  offlineText: {
+    color: '#fff',
+  },
 });
 
 function MiniOfflineSign() {
@@ -47,7 +49,8 @@ export default class InternetConnectionCheck extends Component {
   };
 
   render() {
-    if (!this.state.isConnected) {
+    const { isConnected } = this.state;
+    if (!isConnected) {
       return <MiniOfflineSign />;
     }
     return null;
