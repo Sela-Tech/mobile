@@ -9,6 +9,7 @@ import {
   Picker,
 } from 'react-native';
 import { connect } from 'react-redux';
+import DropdownAlert from 'react-native-dropdownalert';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-picker';
 import MultiSelect from 'react-native-multiple-select';
@@ -232,7 +233,7 @@ class CreateProject extends Component {
       tags: selectedItems,
       budget,
       goal: budget,
-      stakeholders: selectedUsers,
+      stakeholders: [selectedUsers[0]],
       location: locationObj,
     };
 
@@ -242,12 +243,17 @@ class CreateProject extends Component {
     try {
       const imageLink = await uploadImageToAWS(avatarSource, cred);
       data.avatar = imageLink;
+
       const resp = await API.addProject(data);
       this.setState({ loading: false });
       if (resp.data.success === true) {
         this.props.navigation.navigate('Success');
       }
+      else {
+        this.dropdown.alertWithType('error', 'Error', resp.data.message);
+      }
     } catch (err) {
+      this.dropdown.alertWithType('error', 'Error', err.message);
       this.setState({ loading: false, error: err.message });
     }
   };
@@ -641,6 +647,12 @@ class CreateProject extends Component {
             fn={() => this.submit()}
           />
         </View>
+        <DropdownAlert
+          ref={ref => (this.dropdown = ref)}
+          startDelta={height}
+          endDelta={height - height / 8}
+          closeInterval={6000}
+        />
       </KeyboardAwareScrollView>
     );
   }
