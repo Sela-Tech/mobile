@@ -88,12 +88,12 @@ class ExploreProject extends Component {
                     style={styles.imageHeight}
                     // resizeMode="contain"
                     source={require('../../assets/img/cleanup/water.jpg')}
-                    // source={{
-                    //   uri:
-                    //     projectInfo['project-avatar'] === undefined
-                    //       ? 'https://placeimg.com/640/480/any'
-                    //       : projectInfo['project-avatar'],
-                    // }}
+                  // source={{
+                  //   uri:
+                  //     projectInfo['project-avatar'] === undefined
+                  //       ? 'https://placeimg.com/640/480/any'
+                  //       : projectInfo['project-avatar'],
+                  // }}
                   />
                 </View>
                 <View
@@ -137,31 +137,31 @@ class ExploreProject extends Component {
               </View>
               <View style={ExtStyle.flex6}>
                 <Navigator
-navigation={this.props.navigation} project={projectInfo} />
+                  navigation={this.props.navigation} project={projectInfo} />
               </View>
             </Fragment>
           ) : (
-            <Fragment>
-              <View>
-                <Image style={styles.imageHeight} source={{ uri: theProject['project-avatar'] }} />
-              </View>
-              <View style={styles.flex3}>
-                <Header
-                  projectLocationText={theProject && theProject.location.name}
-                  projectStatusText={theProject.status}
-                  projectNameText="MARKERS LTD"
-                  projectTitleText={theProject.name}
-                  budgetAmount={theProject.goal}
-                  numberOfStakeholders={theProject.stakeholders.length}
-                  raisedAmount={theProject.raised}
-                  tags={theProject.tags}
-                />
-              </View>
-              <View style={ExtStyle.flex6}>
-                <Navigator project={theProject} />
-              </View>
-            </Fragment>
-          )}
+              <Fragment>
+                <View>
+                  <Image style={styles.imageHeight} source={{ uri: theProject['project-avatar'] }} />
+                </View>
+                <View style={styles.flex3}>
+                  <Header
+                    projectLocationText={theProject && theProject.location.name}
+                    projectStatusText={theProject.status}
+                    projectNameText="MARKERS LTD"
+                    projectTitleText={theProject.name}
+                    budgetAmount={theProject.goal}
+                    numberOfStakeholders={theProject.stakeholders.length}
+                    raisedAmount={theProject.raised}
+                    tags={theProject.tags}
+                  />
+                </View>
+                <View style={ExtStyle.flex6}>
+                  <Navigator project={theProject} />
+                </View>
+              </Fragment>
+            )}
         </Fragment>
       </View>
     );

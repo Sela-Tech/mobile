@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   Picker,
 } from 'react-native';
+import { connect } from 'react-redux';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ImagePicker from 'react-native-image-picker';
 import MultiSelect from 'react-native-multiple-select';
@@ -18,6 +19,7 @@ import SearchResult from '../components/SearchResult';
 import Input from '../components/Input';
 import Text from '../components/Text';
 import Button from '../components/Button';
+import { uploadImageToAWS } from '../utils/helpers';
 import * as API from '../utils/api';
 import { WHITE, YELLOW } from '../utils/constants';
 
@@ -39,7 +41,6 @@ const styles = StyleSheet.create({
     borderColor: '#B1BAD2',
     width: width / 1.1,
     borderRadius: 5,
-    borderColor: '#B1BAD2',
     // borderWidth: 1,
   },
   smallContainer: {
@@ -62,7 +63,7 @@ const options = {
   },
 };
 
-export default class CreateProject extends Component {
+class CreateProject extends Component {
   static navigationOptions = {
     title: 'Create project',
   };
@@ -164,7 +165,6 @@ export default class CreateProject extends Component {
   };
 
   chooseDate = (day, val) => {
-    console.log('the day', day, val);
     this.openCalender(val);
   };
 
@@ -204,6 +204,8 @@ export default class CreateProject extends Component {
   };
 
   submit = async () => {
+    const cred = this.props && this.props.credentials && this.props.credentials.credentials;
+
     const {
       name,
       description,
@@ -217,6 +219,7 @@ export default class CreateProject extends Component {
       stakeholderNames,
       users,
       locationObj,
+      avatarSource,
     } = this.state;
 
     const data = {
@@ -228,19 +231,22 @@ export default class CreateProject extends Component {
       budget,
       goal: budget,
       stakeholders: stakeholderNames,
-      avatar: 'https://placeimg.com/200/200/people',
       location: locationObj,
     };
+
 
     // console.log('data', data)
     this.setState({ loading: true });
     try {
+      const imageLink = await uploadImageToAWS(avatarSource, cred);
+      data.avatar = imageLink;
       const resp = await API.addProject(data);
       this.setState({ loading: false });
       if (resp.data.success === true) {
         this.props.navigation.navigate('Success');
       }
     } catch (err) {
+      console.log('trtet', err.message)
       this.setState({ loading: false, error: err.message });
     }
   };
@@ -250,8 +256,7 @@ export default class CreateProject extends Component {
   };
 
   selectDate = (val, day) => {
-    console.log('d day', val);
-    console.log('day', day);
+
     if (day === 'Start Date') {
       this.setState({
         startDate: val.dateString,
@@ -376,7 +381,7 @@ export default class CreateProject extends Component {
         contentContainerStyle={styles.container}
         scrollEnabled
       >
-        <View style={styles.smallContainer}>
+        {/* <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
             <Text style={{ fontSize: 15 }}> Name your project </Text>
           </View>
@@ -522,7 +527,7 @@ export default class CreateProject extends Component {
               </Picker>
             </View>
           </View>
-        </View>
+        </View> */}
 
         <View>
           <View style={{ marginBottom: 10 }}>
@@ -617,4 +622,12 @@ export default class CreateProject extends Component {
       </KeyboardAwareScrollView>
     );
   }
-}
+};
+const mapStateToProps = state => ({
+  credentials: state.credentials,
+});
+
+export default connect(
+  mapStateToProps,
+)(CreateProject);
+

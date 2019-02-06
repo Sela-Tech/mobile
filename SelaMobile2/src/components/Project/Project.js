@@ -60,19 +60,19 @@ const Project = ({ leftText, rightText, projects }) => (
     <View style={styles.semiContainer}>
       <View style={styles.leftContainer}>
         <Text style={styles.leftTextContainer}>
-{leftText}
-{' '}
- </Text>
+          {leftText}
+          {' '}
+        </Text>
       </View>
       <Fragment>
         {projects && projects.length > 0 ? (
           <View style={styles.rightContainer}>
             <View style={styles.rightContainerWithPadding}>
-              <Text style={styles.rightTextContainer}> 
-{' '}
-{rightText}
-{' '}
- </Text>
+              <Text style={styles.rightTextContainer}>
+                {' '}
+                {rightText}
+                {' '}
+              </Text>
             </View>
             {/* <View style={{ justifyContent: 'center' }}>
               <Image source={require('../../../assets/forward-yellow.png')} />
@@ -95,17 +95,17 @@ const Project = ({ leftText, rightText, projects }) => (
                 fn={() => console.log('navigate')}
               />
             ) : (
-              <View style={styles.emptyBox}>
-                <Text style={styles.textInEmptyBox}>
-                  {' '}
-                  You haven't been added to any project yet.
+                <View style={styles.emptyBox}>
+                  <Text style={styles.textInEmptyBox}>
+                    {' '}
+                    You haven't been added to any project yet.
                 </Text>
-              </View>
-            )}
+                </View>
+              )}
           </Fragment>
         ) : (
-          <Images leftText={leftText} projects={projects} />
-        )}
+              <Images leftText={leftText} projects={projects} />
+            )}
       </Fragment>
     </View>
   </View>

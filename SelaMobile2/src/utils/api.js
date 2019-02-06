@@ -1,4 +1,7 @@
+/*eslint no-console: ["error", { allow: ["log"] }] */
+
 import Axios from 'axios';
+import { RNS3 } from 'react-native-aws3';
 import { BASE_URL } from './constants';
 
 const axios = Axios.create({
@@ -44,6 +47,36 @@ axios.interceptors.response.use(
     // return Promise.reject(error);
   },
 );
+
+const options = {
+  keyPrefix: 'uploads/',
+  bucket: 'iracks-dump',
+  region: 'us-east-1',
+  successActionStatus: 201,
+};
+
+export const uploadToAWS = (file, data, cred) => {
+  options.accessKey = cred.key;
+  options.secretKey = cred.secret;
+
+  return RNS3.put(file, options)
+    .then(response => {
+      if (response.status !== 201) {
+        return false;
+      }
+      return response.body;
+    })
+    .catch(err => console.log('..', err))
+  // .catch(err => false);
+};
+
+export const getPassCredentials = async () => {
+  try {
+    return await axios.get('https://sela-site-backend.now.sh/credentials');
+  } catch (err) {
+    return err;
+  }
+};
 
 export const login = async data => {
   try {

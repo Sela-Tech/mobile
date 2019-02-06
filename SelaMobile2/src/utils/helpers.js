@@ -1,6 +1,7 @@
 import { Platform } from 'react-native';
 import moment from 'moment';
 import { WHITE } from './constants';
+import { uploadToAWS } from './api';
 
 export const isAndroid = Platform.OS === 'android';
 
@@ -51,5 +52,25 @@ export const projectStatusTextColor = status => {
       return WHITE;
     default:
       return '#369C05';
+  }
+};
+
+export const uploadImageToAWS = async (avatarSource, cred) => {
+  try {
+    const file = {
+      uri: avatarSource,
+      name: 'image.png',
+      type: 'image/png',
+    };
+    const resp = await uploadToAWS(file, null, cred);
+    if (resp === false) {
+      return 'https://placeimg.com/200/200/people';
+    }
+    else {
+      return resp.postResponse.location;
+    }
+  }
+  catch (err) {
+    return 'https://placeimg.com/200/200/people';
   }
 };
