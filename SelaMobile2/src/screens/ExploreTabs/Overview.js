@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import React, { Component } from 'react';
+import { View, StyleSheet, Dimensions, ScrollView, Picker } from 'react-native';
 import CalendarBox from '../../components/Transactions/CalendarBox';
 import Box from './OverviewComp/Box';
 import StandardText from '../../components/StandardText';
@@ -44,45 +44,78 @@ const styles = StyleSheet.create({
     color: '#201D41',
     fontSize: 14,
   },
+  picker: {
+    borderColor: '#B1BAD2',
+    borderRadius: 5,
+    borderWidth: 1,
+    height: height / 13,
+  },
+  inputStyle: {
+    borderColor: '#B1BAD2',
+    width: width / 1.1,
+  },
 });
 
-const Overview = ({ project }) => (
-  <ScrollView style={styles.container} contentContainerStyle={ExtStyle.flexGrow}>
-    <View style={styles.topContainer}>
-      <Text style={styles.topTextContainer}>{firstLetterCapital(project.description)}</Text>
-    </View>
-    <View style={styles.pt10}>
-      <CalendarBox />
-    </View>
-    <StandardText
-      text="Project Health Overview"
-      viewStyle={styles.healthContainer}
-      textStyle={styles.text}
-    />
-    <Box
-      upText="Tasks Completed"
-      secondTextLeft="13"
-      //  secondTextRight="+6.9%"
-    />
-    <Box
-      upText="Progress"
-      secondTextLeft="70%"
-      // secondTextRight="+12.4%"
-    />
+class Overview extends Component {
+  state = {
+    filterBy: 1,
+  };
+  render() {
+    const { filterBy } = this.state;
+    const { project } = this.props;
+    return (
+      <ScrollView style={styles.container} contentContainerStyle={ExtStyle.flexGrow}>
+        <View style={styles.topContainer}>
+          <Text style={styles.topTextContainer}>{firstLetterCapital(project.description)}</Text>
+        </View>
+        <View style={styles.pt10}>
+          {/* <CalendarBox /> */}
 
-    <Box
-      upText="Total funds spent"
-      secondTextLeft="$1595"
-      //  secondTextRight="+3.2%"
-    />
+          <Picker
+            style={{
+              height: height / 15,
+              width: width / 2,
+            }}
+            selectedValue={filterBy}
+            onValueChange={filterBy => this.setState({ filterBy })}
+          >
+            <Picker.Item label="Last 30 days" value="01" />
+            <Picker.Item label="Last 60 days" value="02" />
+            <Picker.Item label="Last 90 days" value="03" />
+            <Picker.Item label="Last 120 days" value="04" />
+          </Picker>
+        </View>
+        <StandardText
+          text="Project Health Overview"
+          viewStyle={styles.healthContainer}
+          textStyle={styles.text}
+        />
+        <Box
+          upText="Tasks Completed"
+          secondTextLeft="13"
+        //  secondTextRight="+6.9%"
+        />
+        <Box
+          upText="Progress"
+          secondTextLeft="70%"
+        // secondTextRight="+12.4%"
+        />
 
-    <Box
-      upText="Budget used"
-      secondTextLeft="70%"
-      // secondTextRight="+12.4%"
-      lastText="Total budget"
-    />
-  </ScrollView>
-);
+        <Box
+          upText="Total funds spent"
+          secondTextLeft="$1595"
+        //  secondTextRight="+3.2%"
+        />
+
+        <Box
+          upText="Budget used"
+          secondTextLeft="70%"
+          // secondTextRight="+12.4%"
+          lastText="Total budget"
+        />
+      </ScrollView>
+    )
+  }
+};
 
 export default Overview;

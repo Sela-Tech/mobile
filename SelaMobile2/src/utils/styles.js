@@ -19,7 +19,14 @@ const styles = StyleSheet.create({
   flex6: {
     flex: 6,
   },
+  flexEnd: {
+    alignSelf: 'flex-end',
+  },
   row: {
+    flexDirection: 'row',
+  },
+  f1row: {
+    flex: 1,
     flexDirection: 'row',
   },
   boldText: {

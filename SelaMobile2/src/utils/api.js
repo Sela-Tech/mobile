@@ -196,3 +196,22 @@ export const updateProfile = async data => {
   }
 };
 
+export const dashboardRequest = async (type, pageNo, limit) => {
+  try {
+    return axios.get(`/user/dashboard-request?cat=${type}&limit=${limit}&${pageNo}=${pageNo}`);
+  } catch (err) {
+    return err;
+  }
+};
+
+export const getAllSavedProject = async () => {
+  return true;
+};
+
+export const saveProject = async projectId => {
+  try {
+    return axios.get(`/user/project/${projectId}/save`);
+  } catch (err) {
+    return err;
+  }
+};

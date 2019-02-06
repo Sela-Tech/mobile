@@ -61,7 +61,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
           <Image source={require('../../../assets/money.png')} />
         </View>
         <View>
-          <Text style={{ color: WHITE }}> 100% funded </Text>
+          <Text style={{ color: WHITE }}> 60% funded </Text>
         </View>
       </View>
     </View>
@@ -113,15 +113,15 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
         >
           <Text style={{ color: '#EB5757', fontWeight: '500' }}>{tags[0]}</Text>
         </View>
-        <View
+        <TouchableOpacity
           style={{
             flex: 1,
             alignItems: 'flex-end',
             justifyContent: 'center',
           }}
         >
-          <Image source={require('../../../assets/badge.png')} />
-        </View>
+          <Image source={require('../../../assets/badge.png') || require('../../../assets/badge-white.png')} />
+        </TouchableOpacity>
       </View>
     </View>
   </TouchableOpacity>

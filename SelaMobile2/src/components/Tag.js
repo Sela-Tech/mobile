@@ -16,13 +16,10 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
     marginVertical: 5,
   },
-  bg: backgroundColor => ({
-    backgroundColor,
-  }),
 });
 
 const Tag = ({ text, viewColor, textColor, style }) => (
-  <View style={[styles.container, style, styles.bg(viewColor)]}>
+  <View style={[styles.container, style, { backgroundColor: viewColor }]}>
     <Text style={[styles.text, { color: textColor }]}>
       {' '}
       {text}

@@ -19,18 +19,18 @@ import { isAndroid } from './utils/helpers';
 
 export const RootStackNavigator = createStackNavigator(
   {
-    // Project: {
-    //   screen: ProjectBottomNavigator,
-    //   navigationOptions: {
-    //     header: null,
-    //   },
-    // },
-    // Notification: {
-    //   screen: Notifications,
-    // },
-    // ViewProject: {
-    //   screen: ViewProject,
-    // },
+    Project: {
+      screen: ProjectBottomNavigator,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    Notification: {
+      screen: Notifications,
+    },
+    ViewProject: {
+      screen: ViewProject,
+    },
     CreateProject: {
       screen: CreateProject,
     },

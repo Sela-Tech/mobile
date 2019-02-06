@@ -75,6 +75,7 @@ class CreateProject extends Component {
     endDate: moment().format('YYYY-MM-DD'),
     loading: false,
     users: [],
+    selectedUsers: [],
     selectedItems: [],
     stakeholderName: '',
     stakeholders: [],
@@ -218,6 +219,7 @@ class CreateProject extends Component {
       stakeholders,
       stakeholderNames,
       users,
+      selectedUsers,
       locationObj,
       avatarSource,
     } = this.state;
@@ -230,7 +232,7 @@ class CreateProject extends Component {
       tags: selectedItems,
       budget,
       goal: budget,
-      stakeholders: stakeholderNames,
+      stakeholders: selectedUsers,
       location: locationObj,
     };
 
@@ -251,7 +253,12 @@ class CreateProject extends Component {
   };
 
   onSelectedItemsChange = selectedItems => {
+
     this.setState({ selectedItems });
+  };
+
+  onSelectedUsersChange = selectedUsers => {
+    this.setState({ selectedUsers });
   };
 
   selectDate = (val, day) => {
@@ -276,17 +283,24 @@ class CreateProject extends Component {
       showFirstCalendar,
       showSecondCalendar,
       loading,
-      users,
+      // users,
       googlePlaces,
       location,
       searchResult,
       stakeholderName,
       startDate,
       endDate,
+      selectedUsers,
     } = this.state;
     const avatar = require('../../assets/selectImage.png');
     const avatarURI = avatarSource || '';
     const icon = avatarURI === '' ? avatar : { uri: avatarURI };
+    let { users } = this.state;
+    users = users.map((c, index) => {
+      c.id = c._id;
+      c.name = c.firstName.concat(' ').concat(c.lastName);
+      return c;
+    });
 
     const items = [
       {
@@ -359,7 +373,7 @@ class CreateProject extends Component {
         contentContainerStyle={styles.container}
         scrollEnabled
       >
-        {/* <View style={styles.smallContainer}>
+        <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
             <Text style={{ fontSize: 15 }}> Name your project </Text>
           </View>
@@ -400,10 +414,10 @@ class CreateProject extends Component {
               })
             }
           />
-        </View> */}
+        </View>
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
-            <Text style={{ fontSize: 15 }}> select Project Tags </Text>
+            <Text style={{ fontSize: 15 }}> Select Project Tags </Text>
           </View>
           <View style={styles.multiSelect}>
             <MultiSelect
@@ -484,7 +498,36 @@ class CreateProject extends Component {
                 {` Add contractors and team members to the project `}
               </Text>
             </View>
-            <View style={[styles.inputStyle, styles.picker]}>
+
+            <View style={styles.multiSelect}>
+              <MultiSelect
+                // hideTags
+                canAddItems
+                items={users}
+                uniqueKey="id"
+                ref={component => {
+                  this.multiSelect = component;
+                }}
+                hideSubmitButton
+                onSelectedItemsChange={this.onSelectedUsersChange}
+                selectedItems={selectedUsers}
+                selectText="Pick contractors"
+                searchInputPlaceholderText="Search Contractor..."
+                onChangeInput={text => console.log(text)}
+                altFontFamily="ProximaNova-Light"
+                tagRemoveIconColor="#CCC"
+                tagBorderColor="#B1BAD2"
+                tagTextColor="#CCC"
+                selectedItemTextColor={YELLOW}
+                selectedItemIconColor={YELLOW}
+                itemTextColor="#000"
+                displayKey="name"
+                searchInputStyle={{ color: '#CCC' }}
+                submitButtonColor={YELLOW}
+                submitButtonText="Submit"
+              />
+            </View>
+            {/* <View style={[styles.inputStyle, styles.picker]}>
               <Picker
                 style={[styles.inputStyle, styles.picker]}
                 selectedValue={stakeholderName}
@@ -504,7 +547,7 @@ class CreateProject extends Component {
                   );
                 })}
               </Picker>
-            </View>
+            </View> */}
           </View>
         </View>
 
