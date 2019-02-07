@@ -54,7 +54,8 @@ const Transactions = ({ project }) => {
       <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
       <View style={{ alignItems: 'center' }}>
         <View>
-          <Button fn={() => NavigationService.navigate('Invest')} text="INVEST" />
+          <Button
+            fn={() => NavigationService.navigate('Invest', { name: project.name })} text="INVEST" />
         </View>
         <View style={{ marginTop: 10 }}>
           <Button

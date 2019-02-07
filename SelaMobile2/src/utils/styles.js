@@ -19,6 +19,9 @@ const styles = StyleSheet.create({
   flex6: {
     flex: 6,
   },
+  flex7: {
+    flex: 7,
+  },
   flexEnd: {
     alignSelf: 'flex-end',
   },

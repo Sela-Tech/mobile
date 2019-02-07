@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { projectStatusTextColor } from '../../utils/helpers';
@@ -9,12 +9,14 @@ import Tag from '../Tag';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 10,
+    // backgroundColor: 'blue',
+    // marginTop: '20%',
     marginHorizontal: 12,
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
   smallText: {
-    fontSize: 15,
+    fontSize: 14,
+    color: '#696F74',
   },
   pt: {
     paddingTop: 3,
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
   },
   bold: {
     color: '#201D41',
-    fontSize: 15,
+    fontSize: 16,
     fontWeight: '400',
   },
 });
@@ -50,8 +52,8 @@ class Header extends Component {
     const { bookmarkStatus } = this.state;
     return (
       <View style={styles.container}>
-        <View style={extStyle.f1row}>
-          <View style={{ flexDirection: 'row', flex: 5, marginTop: 3 }}>
+        <View style={[extStyle.f1row, { flex: 2, alignItems: 'center' }]}>
+          <View style={{ flexDirection: 'row', flex: 5 }}>
             <View style={extStyle.row}>
               <View>
                 <Text style={styles.smallText}>
@@ -80,20 +82,21 @@ class Header extends Component {
               </Text>
             </View>
           </View>
-          <TouchableOpacity
-            onPress={() => this.changeBookmark()}
-            style={extStyle.flex1}>
-            <Image style={extStyle.flexEnd} source={
-              bookmarkStatus ? require('../../../assets/badge.png') : require('../../../assets/badge-white.png')} />
-          </TouchableOpacity>
+          <View style={extStyle.flex1}>
+            <TouchableOpacity
+              onPress={() => this.changeBookmark()}>
+              <Image style={extStyle.flexEnd} source={
+                bookmarkStatus ? require('../../../assets/badge.png') : require('../../../assets/badge-white.png')} />
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={{ flex: 1, marginTop: 5 }}>
+        <View style={{ flex: 1 }}>
           <Text style={styles.bold}>{projectTitleText.toUpperCase()}</Text>
         </View>
-        <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between', marginTop: 9 }}>
+        <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
           <View>
             <View>
-              <Text>Budget </Text>
+              <Text style={styles.text}>Budget </Text>
             </View>
             <View style={styles.pt}>
               <Text style={styles.text}>{budgetAmount}</Text>
@@ -101,7 +104,7 @@ class Header extends Component {
           </View>
           <View>
             <View>
-              <Text>Raised </Text>
+              <Text style={styles.text}>Raised </Text>
             </View>
             <View style={styles.pt}>
               <Text style={styles.text}>{raisedAmount}</Text>
@@ -116,10 +119,27 @@ class Header extends Component {
             </View>
           </View>
         </View>
-        <View style={{ flexDirection: 'row', flex: 2, paddingTop: 10 }}>
-          <Tag text={tags[0]} viewColor="#fda0a0" textColor="#eb5757" />
-          {/* <View style={{ flex: 1 }} /> */}
-        </View>
+        <Fragment>
+          {
+            tags.length === 0 ? null :
+              (
+                <View style={{ flexDirection: 'row', flex: 2 }}>
+                  {
+                    tags.slice(2).map((c, index) => (
+                      <View
+                        key={index}
+                        style={{ marginLeft: 3 }}>
+                        <Tag
+                          text={c}
+                          viewColor="#fda0a0"
+                          textColor="#eb5757" />
+                      </View>
+                    ))
+                  }
+                </View>
+              )
+          }
+        </Fragment>
       </View>
     );
   }

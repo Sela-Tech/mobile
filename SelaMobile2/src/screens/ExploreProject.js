@@ -13,10 +13,10 @@ const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   imageHeight: {
-    height: height / 3.5,
+    height: height,
   },
   mt3: {
-    marginTop: height < 600 ? 3 : null,
+    // marginTop: height < 600 ? 3 : null,
   },
   imagePosition: {
     position: 'absolute',
@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
   },
   flex4mb5: {
     flex: 4,
-    marginBottom: 5,
+    backgroundColor: 'blue',
+    // marginBottom: 1,
   },
   backButton: {
     marginTop: '7%',
@@ -131,7 +132,7 @@ class ExploreProject extends Component {
                   </TouchableOpacity>
                 </View>
               </View>
-              <View style={[ExtStyle.flex3, styles.mt3]}>
+              <View style={[ExtStyle.flex3]}>
                 <Header
                   projectLocationText={projectInfo.location.name}
                   projectStatusText={projectInfo.status}
@@ -149,26 +150,7 @@ class ExploreProject extends Component {
               </View>
             </Fragment>
           ) : (
-              <Fragment>
-                <View>
-                  <Image style={styles.imageHeight} source={{ uri: theProject['project-avatar'] }} />
-                </View>
-                <View style={styles.flex3}>
-                  <Header
-                    projectLocationText={theProject && theProject.location.name}
-                    projectStatusText={theProject.status}
-                    projectNameText="MARKERS LTD"
-                    projectTitleText={theProject.name}
-                    budgetAmount={theProject.goal}
-                    numberOfStakeholders={theProject.stakeholders.length}
-                    raisedAmount={theProject.raised}
-                    tags={theProject.tags}
-                  />
-                </View>
-                <View style={ExtStyle.flex6}>
-                  <Navigator project={theProject} />
-                </View>
-              </Fragment>
+              <View />
             )}
         </Fragment>
       </View>

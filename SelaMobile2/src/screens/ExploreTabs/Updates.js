@@ -64,7 +64,8 @@ const Updates = ({ project }) => (
       </View>
     </TouchableOpacity> */}
     <View style={{ paddingTop: 10, alignItems: 'center' }}>
-      <Button fn={() => NavigationService.navigate('Invest')} text="INVEST" />
+      <Button
+        fn={() => NavigationService.navigate('Invest', { name: project.name })} text="INVEST" />
     </View>
   </ScrollView>
 );

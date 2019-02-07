@@ -168,7 +168,7 @@ class Project extends Component {
         />
         <ScrollView
           contentContainerstyle={{ flexGrow: 1 }}
-          refreshControl={<RefreshControl refreshing={reloading} onRefresh={this.reload} />}
+        // refreshControl={<RefreshControl refreshing={reloading} onRefresh={this.reload} />}
         >
           <Fragment>
             {loading ? (
@@ -204,13 +204,13 @@ class Project extends Component {
                         />
                       </View>
 
-                      {/* <View style={ExtStyle.flex1}>
+                      <View style={ExtStyle.flex1}>
                         <SingularProject
                           leftText="Saved Project"
-                          rightText="See all"
-                          project={projects}
+                          // rightText="See all"
+                          projects={projects}
                         />
-                      </View> */}
+                      </View>
                     </ScrollView>
                   ) : (
                       <Fragment>

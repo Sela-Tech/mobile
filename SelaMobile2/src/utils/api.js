@@ -48,7 +48,7 @@ axios.interceptors.response.use(
 
 const options = {
   keyPrefix: 'uploads/',
-  bucket: 'iracks-dump',
+  bucket: 'selamvp',
   region: 'us-east-1',
   successActionStatus: 201,
 };

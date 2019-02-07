@@ -28,7 +28,7 @@ export default ({ navigation }) => (
         <Image source={require('../../assets/money2.png')} />
       </View>
       <View style={{ paddingTop: '5%', alignItems: 'center' }}>
-        <Text style={styles.fSize}> Invest in the K-Dere Affordable Housing Scheme </Text>
+        <Text style={styles.fSize}> Invest in the {navigation.state.params.name} </Text>
         <Text style={styles.fSize}> Scheme project using either of the </Text>
         <Text style={styles.fSize}> methods below </Text>
       </View>
