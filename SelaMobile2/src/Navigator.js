@@ -14,6 +14,8 @@ import AuthLoadingScreen from './screens/AuthLoading';
 import FirstTimeUserLoadingScreen from './screens/FirstTimeUserLoading';
 import SignUpSuccessScreen from './screens/SignUpSuccess';
 import InvestComp from './components/InvestComp';
+import ExploreProjectScreen from './screens/ExploreProject';
+import ProfileScreen from './screens/Profile';
 
 import { isAndroid } from './utils/helpers';
 
@@ -30,6 +32,18 @@ export const RootStackNavigator = createStackNavigator(
     },
     ViewProject: {
       screen: ViewProject,
+    },
+    ExploreProject: {
+      screen: ExploreProjectScreen,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    UserProfile: {
+      screen: ProfileScreen,
+      navigationOptions: {
+        header: null,
+      },
     },
     CreateProject: {
       screen: CreateProject,

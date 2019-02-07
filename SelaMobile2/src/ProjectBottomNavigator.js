@@ -1,51 +1,20 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation';
 import Inbox from './screens/Inbox';
 import Project from './screens/Project';
-import ProfileScreen from './screens/Profile';
-import ExploreProjectScreen from './screens/ExploreProject';
-import ProfileSettingsScreen from './screens/ProfileSettings';
+import Profile from './screens/ProfileSettings';
 import { YELLOW } from './utils/constants';
 import { isAndroid } from './utils/helpers';
-import ProjectListingScreen from './screens/ProjectListing';
+import Explore from './screens/ProjectListing';
 
-const ProjectStack = createStackNavigator({
-  ProjectListing: {
-    screen: ProjectListingScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  ExploreProject: {
-    screen: ExploreProjectScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
-});
-
-export const ProfileStack = createStackNavigator({
-  ProfileSettings: {
-    screen: ProfileSettingsScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  UserProfile: {
-    screen: ProfileScreen,
-    navigationOptions: {
-      header: null,
-    },
-  },
-});
 
 export default createBottomTabNavigator(
   {
     Project,
-    Explore: ProjectStack,
+    Explore,
     Inbox,
-    Profile: ProfileStack,
+    Profile,
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({

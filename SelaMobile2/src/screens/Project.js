@@ -92,7 +92,7 @@ class Project extends Component {
     await this.props.getFunderProjects();
     await this.props.getContractorProjects();
     this.setState({ loading: false });
-    getCurrentState();
+    // getCurrentState();
   }
 
   reload = async () => {
@@ -168,7 +168,7 @@ class Project extends Component {
         />
         <ScrollView
           contentContainerstyle={{ flexGrow: 1 }}
-        // refreshControl={<RefreshControl refreshing={reloading} onRefresh={this.reload} />}
+          refreshControl={<RefreshControl refreshing={reloading} onRefresh={this.reload} />}
         >
           <Fragment>
             {loading ? (
