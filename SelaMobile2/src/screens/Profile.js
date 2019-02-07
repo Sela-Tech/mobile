@@ -15,7 +15,6 @@ import Tag from '../components/Tag';
 const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
-    // flex: 1,
     paddingBottom: 10,
     flexGrow: 1,
   },
@@ -89,7 +88,12 @@ class Profile extends Component {
     if (Object.keys(this.props.navigation.state).length !== 2) {
       try {
         const resp = await getUserDetails({ id: this.props.navigation.state.params });
-        this.setState({ profileInfo: resp.data, loading: false, guestUser: true });
+        this.setState({
+          profileInfo: resp.data,
+          interests: resp.data.userInfo.areasOfInterest,
+          loading: false,
+          guestUser: true,
+        });
       } catch (err) {
         this.setState({ error: err.message, loading: false });
       }
@@ -99,7 +103,7 @@ class Profile extends Component {
   }
 
   render() {
-    const { loading, profileInfo, guestUser } = this.state;
+    const { loading, profileInfo, guestUser, interests } = this.state;
     let userType;
     let userName;
     let projects;
@@ -127,12 +131,6 @@ class Profile extends Component {
         userType = 'Evaluation agent';
       }
     }
-
-    const interests = [
-      'Sustainable Cities',
-      'Education',
-      'Resilient Infrastructure',
-    ];
 
     return (
       <ScrollView contentContainerStyle={styles.container}>
@@ -184,18 +182,26 @@ class Profile extends Component {
                       )}
                   </Fragment>
                 </View>
-                <View style={{ marginLeft: 10 }}>
-                  <View style={{ marginVertical: 15 }}>
-                    <B color="#201D41"> Interests </B>
-                  </View>
-                  <View style={styles.interestTag}>
-                    {interests.map((c, index) => (
-                      <View key={index} style={styles.interestSubContainer}>
-                        <Tag viewColor="#1ECD97" text={c} />
-                      </View>
-                    ))}
-                  </View>
-                </View>
+                <Fragment>
+                  {
+                    interests.length === 0 ? <View />
+                      :
+                      (
+                        <View style={{ marginLeft: 10 }}>
+                          <View style={{ marginVertical: 15 }}>
+                            <B color="#201D41"> Interests </B>
+                          </View>
+                          <View style={styles.interestTag}>
+                            {interests.map((c, index) => (
+                              <View key={index} style={styles.interestSubContainer}>
+                                <Tag viewColor="#1ECD97" text={c} />
+                              </View>
+                            ))}
+                          </View>
+                        </View>
+                      )
+                  }
+                </Fragment>
               </View>
             )}
         </Fragment>

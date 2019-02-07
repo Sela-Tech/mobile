@@ -48,18 +48,30 @@ export const login = data => dispatch =>
         dispatch(saveUserToken(resp.data));
         dispatch(tokenIsLoading(false));
         dispatch(saveUserInfo(resp.data));
-        return resp.data.success;
+        return {
+          status: resp.data.success,
+          message: 'login successful',
+        };
       }
       if (resp.status === 401) {
         dispatch(tokenIsLoading(false));
-        return resp.data.message;
+        return {
+          status: resp.data.success,
+          message: resp.data.message,
+        };
       }
-      return false;
+      return {
+        status: resp && resp.response && resp.response.data && resp.response.data.success || false,
+        message: resp && resp.response && resp.response.data && resp.response.data.message || 'Authentication failed',
+      };
     })
     .catch(err => {
       dispatch(tokenIsLoading(false));
       dispatch(tokenLoadingError(err.message || 'ERROR'));
-      return err.message;
+      return {
+        status: false,
+        message: err.message,
+      };
     });
 
 export const getUserToken = () => dispatch =>

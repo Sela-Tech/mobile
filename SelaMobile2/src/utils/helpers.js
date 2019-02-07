@@ -60,6 +60,22 @@ export const projectStatusTextColor = status => {
   }
 };
 
+export const tags = tags => {
+  switch (tags) {
+    case 'Education':
+      return 'red';
+    case 'Economic Growth':
+      return '#E06811';
+    case 'Water & Sanitation':
+      return '#369C05';
+    case 'Infrastructure':
+      return '#0B089D';
+    default:
+      return '#369C05';
+  }
+};
+
+
 export const uploadImageToAWS = async (avatarSource, cred) => {
   try {
     const file = {

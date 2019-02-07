@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, KeyboardAvoidingView, ScrollView, Keyboard } from 'react-native';
+import { StyleSheet, View, KeyboardAvoidingView, ScrollView, AsyncStorage, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
 import Text from '../components/Text';
@@ -28,10 +28,54 @@ const styles = StyleSheet.create({
   },
   buttomText: {
     color: WHITE,
-    fontSize: 20,
+    fontSize: 16,
   },
   whiteText: {
     color: WHITE,
+  },
+  headerUp: {
+    paddingTop: 15,
+    flex: 3,
+  },
+  headerUpCont: {
+    flex: 1,
+    justifyContent: 'flex-end',
+  },
+  loginTextView: {
+    alignItems: 'center',
+    flex: 2,
+  },
+  loginText: {
+    paddingTop: 30,
+    flex: 1,
+  },
+  inputContainer: {
+    flex: 4,
+    alignItems: 'center',
+  },
+  mt5: {
+    marginTop: '5%',
+  },
+  bottomContainer: {
+    marginTop: '5%',
+    alignSelf: 'flex-end',
+  },
+  otherBottomContainer: {
+    marginTop: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  fs12: {
+    fontSize: 12,
+  },
+  bottomBottom: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  bottomAbsolute: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 });
 
@@ -45,6 +89,13 @@ class Login extends Component {
   };
 
   componentWillMount() {
+
+    AsyncStorage.getItem('emailOrPhone')
+      .then(emailOrPhone => {
+        if (emailOrPhone) this.setState({ emailOrPhone });
+      })
+      .catch(err => false)
+
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', e =>
       this.keyboardDidShow(e),
     );
@@ -73,6 +124,7 @@ class Login extends Component {
 
   login = async () => {
     const { emailOrPhone, password } = this.state;
+    AsyncStorage.setItem('emailOrPhone', emailOrPhone);
     Keyboard.dismiss();
 
     if (emailOrPhone === '' || password === '') {
@@ -102,26 +154,27 @@ class Login extends Component {
       phone: !isEmail(emailOrPhone) ? emailOrPhone : '',
       password,
     };
+
     this.setState({ submitErrorMessage: '', loading: true });
     try {
       const resp = await this.props.login(data);
       this.setState({ loading: false });
-      if (resp === true) {
+      if (resp.status === true) {
         return NavigationService.navigate('Project');
       }
 
       if (
-        resp ===
+        resp.message ===
         'Sela does not have an account with those user credentials. Please try another email/phone number.'
       ) {
         this.setState({
           submitErrorMessage: 'Wrong Username or Password',
         });
-        this.dropdown.alertWithType('error', 'Error', resp);
+        this.dropdown.alertWithType('error', 'Error', resp.message);
       } else if (resp === false) {
-        this.dropdown.alertWithType('error', 'Error', 'Authentication failed');
+        this.dropdown.alertWithType('error', 'Error', resp.message);
       } else {
-        this.dropdown.alertWithType('error', 'Error', resp);
+        this.dropdown.alertWithType('error', 'Error', resp.message);
       }
     } catch (error) {
       this.setState({ loading: false });
@@ -131,6 +184,7 @@ class Login extends Component {
 
   render() {
     const {
+      emailOrPhone,
       secure,
       keyboard,
       loading,
@@ -147,37 +201,40 @@ class Login extends Component {
       <DismissKeyboard>
         <KeyboardAvoidingView style={ExtStyle.flex1} behavior="padding">
           <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="always">
-            <View style={{ paddingTop: 15, flex: 3 }}>
-              <View style={{ flex: 1, justifyContent: 'flex-end' }}>
+            <View style={styles.headerUp}>
+              <View style={styles.headerUpCont}>
                 <IntroHeader fn={() => goBack()} keyboard={keyboard} />
               </View>
-              <View style={{ alignItems: 'center', flex: 2 }}>
-                <View style={{ paddingTop: 30, flex: 1 }}>
+              <View style={styles.loginTextView}>
+                <View style={styles.loginText}>
                   <Text style={styles.boldText}> Log In</Text>
                 </View>
               </View>
             </View>
-            <View style={{ flex: 4, alignItems: 'center' }}>
+            <View style={styles.inputContainer}>
               <Input
                 text="Email Address or Phone Number"
+                value={emailOrPhone}
                 textStyle={styles.whiteText}
                 onChangeTheText={emailOrPhone => this.setState({ emailOrPhone })}
                 onTheChange={() =>
                   this.setState({
                     emailOrPhoneError: false,
                     emailOrPhoneErrorMessage: '',
+                    submitErrorMessage: '',
                   })
                 }
                 error={emailOrPhoneError}
                 errorMessage={emailOrPhoneErrorMessage}
               />
-              <View style={{ marginTop: '5%' }}>
+              <View style={styles.mt5}>
                 <Input
                   onChangeTheText={password => this.setState({ password })}
                   onTheChange={() =>
                     this.setState({
                       passwordError: false,
                       passwordErrorMessage: '',
+                      submitErrorMessage: '',
                     })
                   }
                   error={passwordError}
@@ -189,12 +246,7 @@ class Login extends Component {
                   textStyle={styles.whiteText}
                 />
               </View>
-              <View
-                style={{
-                  marginTop: '5%',
-                  alignSelf: 'flex-end',
-                }}
-              >
+              <View style={styles.bottomContainer}>
                 <Text
                   onPress={() => NavigationService.navigate('ForgotPassword')}
                   style={styles.buttomText}
@@ -208,32 +260,30 @@ class Login extends Component {
                   text="Log In"
                   color={YELLOW}
                   textColor={WHITE}
-                  textSize={20}
+                  textSize={16}
                   loading={loading}
                   fn={() => this.login()}
                 />
-                <View style={{ marginTop: 10, alignItems: 'center', justifyContent: 'center' }}>
+                <View style={styles.otherBottomContainer}>
                   <StandardText
                     text={submitErrorMessage}
-                    style={{
-                      fontSize: 12,
-                    }}
+                    style={styles.fs12}
                   />
                 </View>
               </View>
             </View>
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={styles.bottomBottom}>
               <View
                 style={{
                   position: 'absolute',
                   bottom: keyboard ? -20 : 50,
                 }}
               >
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                <View style={styles.bottomAbsolute}>
                   <View>
                     <Text style={styles.buttomText}>
                       {" Don't  have an account? "}
-                      <B fn={() => NavigationService.navigate('OnBoarding')}> Get Started</B>
+                      <B fn={() => NavigationService.navigate('OnBoarding')}> Create account </B>
                     </Text>
                   </View>
                 </View>

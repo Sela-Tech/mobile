@@ -32,6 +32,9 @@ export const RootStackNavigator = createStackNavigator(
     },
     ViewProject: {
       screen: ViewProject,
+      navigationOptions: {
+        header: null,
+      },
     },
     ExploreProject: {
       screen: ExploreProjectScreen,

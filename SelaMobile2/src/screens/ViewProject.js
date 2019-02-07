@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import Box from '../components/ExploreProject/Box';
+import Header from '../components/Header';
 import Spinner from '../components/Spinner';
 import { getAllProjects } from '../utils/api';
 import ExtStyle from '../utils/styles';
@@ -9,6 +10,8 @@ import Text from '../components/Text';
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
+  },
+  pv20: {
     paddingVertical: 20,
   },
   textContainer: {
@@ -51,38 +54,44 @@ export default class ViewProject extends Component {
     const { loading, projects } = this.state;
     return (
       <ScrollView style={ExtStyle.flex1} contentContainerStyle={styles.container}>
-        <Fragment>
-          {loading ? (
-            <View style={ExtStyle.center}>
-              <Spinner />
-            </View>
-          ) : (
-            <View style={styles.subContainer}>
-              {projects.length === 0 ? (
-                <View style={ExtStyle.center}>
-                  <Text style={ExtStyle.ft15}> No project at the moment </Text>
+        <Header
+          justBack
+          navigation={this.props.navigation}
+          headerName="PROFILE"
+        />
+        <View style={styles.pv20}>
+          <Fragment>
+            {loading ? (
+              <View style={ExtStyle.center}>
+                <Spinner />
+              </View>
+            ) : (
+                <View style={styles.subContainer}>
+                  {projects.length === 0 ? (
+                    <View style={ExtStyle.center}>
+                      <Text style={ExtStyle.ft15}> No project at the moment </Text>
+                    </View>
+                  ) : (
+                      projects.map(c => (
+                        <View key={c._id}>
+                          <Box
+                            fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
+                            img={require('../../assets/img/cleanup/water.jpg')}
+                            // img={{ uri: 'https://placeimg.com/640/480/any' }}
+                            firstText={c.location.name}
+                            secondText={c.name}
+                            thirdText={c.status}
+                            title={c.description}
+                            cost={c.budget}
+                            tags={c.tags}
+                          />
+                        </View>
+                      ))
+                    )}
                 </View>
-              ) : (
-                projects.map((c, index) => (
-                  <View>
-                    <Box
-                      key={index}
-                      fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
-                      img={require('../../assets/img/cleanup/water.jpg')}
-                      // img={{ uri: 'https://placeimg.com/640/480/any' }}
-                      firstText={c.location.name}
-                      secondText={c.name}
-                      thirdText={c.status}
-                      title={c.description}
-                      cost={c.budget}
-                      tags={c.tags}
-                    />
-                  </View>
-                ))
               )}
-            </View>
-          )}
-        </Fragment>
+          </Fragment>
+        </View>
       </ScrollView>
     );
   }

@@ -41,8 +41,8 @@ axios.interceptors.response.use(
   error => {
     // Do something with response error
     console.log('API ERR:', error.message);
-    return error.response;
-    // return Promise.reject(error);
+    // return error.response;
+    return Promise.reject(error);
   },
 );
 
@@ -64,13 +64,12 @@ export const uploadToAWS = (file, data, cred) => {
       }
       return response.body;
     })
-    .catch(err => console.log('..', err))
-  // .catch(err => false);
+    .catch(() => false);
 };
 
 export const getPassCredentials = async () => {
   try {
-    return await axios.get('https://sela-site-backend.now.sh/credentials');
+    return await axios.get('/cred');
   } catch (err) {
     return err;
   }
