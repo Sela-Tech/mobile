@@ -13,6 +13,7 @@ import NavigationService from '../services/NavigationService';
 import { DEFAULT_COLOUR, YELLOW, WHITE } from '../utils/constants';
 import { isEmail } from '../utils/helpers';
 import { login } from '../../actions/token';
+import { getAccessCredentials } from '../../actions/credentials';
 import ExtStyle from '../utils/styles';
 
 const styles = StyleSheet.create({
@@ -94,7 +95,7 @@ class Login extends Component {
       .then(emailOrPhone => {
         if (emailOrPhone) this.setState({ emailOrPhone });
       })
-      .catch(err => false)
+      .catch(() => false)
 
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', e =>
       this.keyboardDidShow(e),
@@ -158,6 +159,7 @@ class Login extends Component {
     this.setState({ submitErrorMessage: '', loading: true });
     try {
       const resp = await this.props.login(data);
+      this.props.getCred();
       this.setState({ loading: false });
       if (resp.status === true) {
         return NavigationService.navigate('Project');
@@ -308,6 +310,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   login: data => dispatch(login(data)),
+  getCred: () => dispatch(getAccessCredentials()),
 });
 
 export default connect(

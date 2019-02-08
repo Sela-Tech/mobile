@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import { View, ScrollView, StyleSheet, Dimensions, Picker, Keyboard } from 'react-native';
+import { View, ScrollView, FlatList, StyleSheet, Dimensions, Picker, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
+import NavigationService from '../services/NavigationService';
 import RNGooglePlaces from 'react-native-google-places';
 import SearchResult from '../components/SearchResult';
-import { getAllProjects } from '../utils/api';
+import { getAllfeaturedProjects } from '../utils/api';
 import Spinner from '../components/Spinner';
 import Input from '../components/Input';
 import Header from '../components/Header';
@@ -37,9 +38,35 @@ const styles = StyleSheet.create({
   },
 });
 
-const tags = ['Education', 'Clean Water', 'Zero Poverty', 'Infrastucture', 'Sustainable cities'];
+const tags = [
+  "No Poverty", "Zero Hunger",
+  "Health & Well-being", "Education",
+  "Gender Equality", "Water & Sanitation",
+  "Clean Energy", "Economic Growth",
+  "Infrastructure", "Reduced Inequality",
+  "Sustainable Cities", "Climate Action", "Life Below Water",
+  "Life on Land", "Responsible Consumption & Production"
+];
+
 const projectStatus = ['ON GOING', 'DORMANT', 'COMPLETED', 'PROPOSED', 'IN REVIEW'];
 
+const renderItem = (item) => (
+  <View style={{ marginBottom: 10, marginTop: 10 }}>
+    <Box
+      fn={() => NavigationService.navigate('ExploreProject', item.item._id)}
+      // img={{ uri: 'https://placeimg.com/640/480/any' }}
+      img={require('../../assets/img/cleanup/water.jpg')}
+      firstText={item.item.location.name}
+      secondText={item.item.name}
+      thirdText={item.item.status}
+      title={item.item.description}
+      cost={item.item.goal}
+      tags={item.item.tags}
+    />
+  </View>
+);
+
+const keyExtractor = (item, index) => index.toString();
 class ExploreProject extends Component {
   static navigationOptions = {
     title: 'EXPLORE',
@@ -61,7 +88,7 @@ class ExploreProject extends Component {
 
   async componentDidMount() {
     try {
-      const resp = await getAllProjects();
+      const resp = await getAllfeaturedProjects('');
       if (resp.data.success === true) {
         this.setState({ loading: false, projects: resp.data.projects });
       } else {
@@ -221,26 +248,17 @@ class ExploreProject extends Component {
                 <Spinner />
               ) : (
                   <Fragment>
-                    {projects.length === 0 ? (
+                    {projects && projects.length === 0 ? (
                       <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
                         <Text style={{ fontSize: 15 }}> No project at the moment </Text>
                       </View>
                     ) : (
-                        projects.map((c, index) => (
-                          <View key={index} style={{ marginBottom: 10, marginTop: 10 }}>
-                            <Box
-                              fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
-                              // img={{ uri: 'https://placeimg.com/640/480/any' }}
-                              img={require('../../assets/img/cleanup/water.jpg')}
-                              firstText={c.location.name}
-                              secondText={c.name}
-                              thirdText={c.status}
-                              title={c.description}
-                              cost={c.raised}
-                              tags={c.tags}
-                            />
-                          </View>
-                        ))
+                        <FlatList
+                          data={projects}
+                          renderItem={renderItem}
+                          style={{ flex: 1 }}
+                          keyExtractor={keyExtractor}
+                        />
                       )}
                   </Fragment>
                 )}
@@ -256,11 +274,25 @@ const mapStateToProps = state => ({
   projects: state.projects,
 });
 
-const mapDispatchToProps = dispatch => ({
-  // getProjects: () => dispatch(getUserProject()),
-});
 
 export default connect(
   mapStateToProps,
-  mapDispatchToProps,
 )(ExploreProject);
+
+
+
+{/* projects && projects.map((c, index) => (
+                          <View key={index} style={{ marginBottom: 10, marginTop: 10 }}>
+                            <Box
+                              fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
+                              // img={{ uri: 'https://placeimg.com/640/480/any' }}
+                              img={require('../../assets/img/cleanup/water.jpg')}
+                              firstText={c.location.name}
+                              secondText={c.name}
+                              thirdText={c.status}
+                              title={c.description}
+                              cost={c.raised}
+                              tags={c.tags}
+                            />
+                          </View>
+                        )) */}

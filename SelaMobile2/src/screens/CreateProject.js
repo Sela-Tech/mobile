@@ -233,19 +233,17 @@ class CreateProject extends Component {
       tags: selectedItems,
       budget,
       goal: budget,
-      stakeholders: [selectedUsers[0]],
+      stakeholders: selectedUsers.length === 0 ? [] : [selectedUsers[0]],
       location: locationObj,
     };
 
-
-    // console.log('data', data)
     this.setState({ loading: true });
     try {
       const imageLink = await uploadImageToAWS(avatarSource, cred);
       data.avatar = imageLink;
-
       const resp = await API.addProject(data);
       this.setState({ loading: false });
+      console.log('fkfkd', resp.data)
       if (resp.data.success === true) {
         this.props.navigation.navigate('Success');
       }
@@ -422,9 +420,9 @@ class CreateProject extends Component {
           />
         </View>
         <View style={styles.smallContainer}>
-          <View style={{ marginBottom: 10 }}>
+          {/* <View style={{ marginBottom: 10 }}>
             <Text style={{ fontSize: 15 }}> Select Project Tags </Text>
-          </View>
+          </View> */}
           <View style={styles.multiSelect}>
             <MultiSelect
               // hideTags
@@ -499,11 +497,11 @@ class CreateProject extends Component {
         </View>
         <View style={styles.smallContainer}>
           <View>
-            <View style={{ marginBottom: 10 }}>
+            {/* <View style={{ marginBottom: 10 }}>
               <Text style={{ fontSize: 15 }}>
                 {` Add contractors and team members to the project `}
               </Text>
-            </View>
+            </View> */}
 
             <View style={styles.multiSelect}>
               <MultiSelect

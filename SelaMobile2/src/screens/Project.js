@@ -3,6 +3,7 @@ import {
   View,
   StyleSheet,
   RefreshControl,
+  NetInfo,
   Image,
   TouchableOpacity,
   ScrollView,
@@ -168,7 +169,7 @@ class Project extends Component {
         />
         <ScrollView
           contentContainerstyle={{ flexGrow: 1 }}
-        // refreshControl={<RefreshControl refreshing={reloading} onRefresh={this.reload} />}
+          refreshControl={<RefreshControl refreshing={reloading} onRefresh={this.reload} />}
         >
           <Fragment>
             {loading ? (
@@ -179,7 +180,6 @@ class Project extends Component {
                 <Fragment>
                   {userRole === 'funder' ? (
                     <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
-                      {/* <View> */}
                       <View style={ExtStyle.flex1}>
                         <SingularProject
                           leftText="Projects you proposed"

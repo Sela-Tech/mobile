@@ -90,6 +90,7 @@ class ExploreProject extends Component {
 
     let theProject = allProjects.filter(c => c._id === projectId);
     theProject = theProject[0];
+    console.log('odofdofd', projectInfo);
 
     if (loading) {
       return (
@@ -142,6 +143,7 @@ class ExploreProject extends Component {
                   numberOfStakeholders={projectInfo.stakeholders.length}
                   raisedAmount={projectInfo.raised}
                   tags={projectInfo.tags}
+                // tags={[]}
                 />
               </View>
               <View style={ExtStyle.flex6}>

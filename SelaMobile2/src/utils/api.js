@@ -48,7 +48,8 @@ axios.interceptors.response.use(
 
 const options = {
   keyPrefix: 'uploads/',
-  bucket: 'selamvp',
+  // bucket: 'selamvp',
+  bucket: 'iracks-dump',
   region: 'us-east-1',
   successActionStatus: 201,
 };
@@ -70,6 +71,7 @@ export const uploadToAWS = (file, data, cred) => {
 export const getPassCredentials = async () => {
   try {
     return await axios.get('/cred');
+    // await axios.get('https://sela-site-backend.now.sh/credentials');
   } catch (err) {
     return err;
   }
@@ -212,3 +214,18 @@ export const saveProject = async projectId => {
     return err;
   }
 };
+
+
+export const getAllfeaturedProjects = async query => {
+  try {
+    return Axios.get(`${BASE_URL}/projects?${query !== '' ? `limit=12&${query}` : 'limit=12'}`, {
+      headers: {
+        public: true,
+        'Content-Type': 'application/json',
+      },
+    });
+  } catch (err) {
+    return err;
+  }
+};
+

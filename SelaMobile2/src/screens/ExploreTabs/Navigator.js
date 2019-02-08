@@ -100,3 +100,45 @@ export default class Navigator extends Component {
     return <ExploreTopTabs />;
   }
 }
+
+// export const ContractorTab = createMaterialTopTabNavigator(
+//   {
+//     Description: {
+//       screen: () => <Description } />,
+//   },
+//   StakeHolders: {
+//     screen: () => <StakeHolders project={project} />,
+//   },
+//   Tasks: {
+//     screen: () => <UpdatesOrTask project={project} />,
+//   },
+//   Overview: {
+//     screen: () => <TransactionOrOvervIew project={project} />,
+//   },
+// {
+//   tabBarComponent: props => <Tabbar {...props} /> ,
+//     tabBarOptions,
+//   },
+// );
+
+
+// export const FunderTab = createMaterialTopTabNavigator(
+//   {
+//     Overview: {
+//       screen: () => <Overview />,
+//     },
+//     StakeHolders: {
+//       screen: () => <StakeHolders />,
+//     },
+//     Updates: {
+//       screen: () => <UpdatesOrTask />,
+//     },
+//     Transactions: {
+//       screen: () => <TransactionOrOvervIew />,
+//     },
+//   },
+//   {
+//     tabBarOptions,
+//   },
+// );
+

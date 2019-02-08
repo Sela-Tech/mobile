@@ -15,7 +15,7 @@ class AuthLoading extends Component {
   async componentDidMount() {
     // AsyncStorage.removeItem('user');
     try {
-      await Promise.all([this.getCredentials(true), this.getKey(true)]);
+      await Promise.all([this.getKey(true), this.getCredentials(true)]);
     } catch (error) {
       this.setState({ error: error.message });
     }

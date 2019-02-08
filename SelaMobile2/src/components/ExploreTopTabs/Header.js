@@ -50,6 +50,7 @@ class Header extends Component {
       tags,
     } = this.props;
     const { bookmarkStatus } = this.state;
+    console.log('d tags', tags)
     return (
       <View style={styles.container}>
         <View style={[extStyle.f1row, { flex: 2, alignItems: 'center' }]}>
@@ -121,18 +122,32 @@ class Header extends Component {
         </View>
         <Fragment>
           {
-            tags.length === 0 ? null :
+            tags.length === 0 ?
               (
-                <View style={{ flexDirection: 'row', flex: 2 }}>
+                <View style={{ marginTop: 2, flex: 2, flexDirection: 'row' }}>
+                  <View
+                    style={{ marginLeft: 3, marginTop: 2 }}>
+                    <Tag
+                      text="Clean Water"
+                      viewColor="#fda0a0"
+                      textColor="#eb5757" />
+                  </View>
+                </View>
+              ) :
+              (
+                <View style={{ marginTop: 2, flex: 2, flexDirection: 'row' }}>
                   {
-                    tags.slice(2).map((c, index) => (
+                    tags.slice(0, 2).map((c, index) => (
                       <View
                         key={index}
                         style={{ marginLeft: 3 }}>
                         <Tag
+                          // style={{ paddingLeft: 10 }}
                           text={c}
+                          // viewColor="#fda"
                           viewColor="#fda0a0"
-                          textColor="#eb5757" />
+                          textColor="#eb5757"
+                        />
                       </View>
                     ))
                   }
@@ -150,3 +165,16 @@ Header.defaultProps = {};
 Header.propTypes = {};
 
 export default Header;
+
+{/* <Tag
+                          style={{}}
+                          text={c}
+                          viewColor="#fda0a0"
+                          textColor="#eb5757"
+                        /> */}
+
+
+{/* <View
+                        key={index}
+                        style={{ marginLeft: 3 }}> */}
+{/* </View> */ }

@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { TouchableOpacity, View, Dimensions, StyleSheet, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Text from '../Text';
+import Tag from '../Tag';
 import { isAndroid, projectStatusTextColor } from '../../utils/helpers';
 import { YELLOW, WHITE } from '../../utils/constants';
 
@@ -93,8 +94,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
         <Text style={{ fontSize: 18, fontWeight: '400', color: '#201D41' }}>{title}</Text>
       </View>
       <View style={{ paddingVertical: 5, flex: 1, justifyContent: 'center' }}>
-        {/* <Text style={{ fontSize: 15 }}>{cost}</Text> */}
-        <Text style={{ fontSize: 15, fontWeight: '600' }}>$200000</Text>
+        <Text style={{ fontSize: 15, fontWeight: '600' }}> {cost === '' ? '$200000' : `$${cost}`} </Text>
       </View>
       <View
         style={{
@@ -104,15 +104,35 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
           flex: 1,
         }}
       >
-        <View
-          style={{
-            backgroundColor: '#FFFFFF',
-            justifyContent: 'center',
-            borderRadius: 2,
-          }}
-        >
-          <Text style={{ color: '#EB5757', fontWeight: '500' }}>{tags[0]}</Text>
-        </View>
+        <Fragment>
+          {
+            tags.length === 0 ? (
+              <View
+                style={{ marginLeft: 3 }}>
+                <Tag
+                  text="Clean Water"
+                  viewColor="#fda0a0"
+                  textColor="#eb5757" />
+              </View>
+            ) :
+              (
+                <View style={{ flexDirection: 'row', flex: 2 }}>
+                  {
+                    tags.slice(0, 2).map((c, index) => (
+                      <View
+                        key={index}
+                        style={{ marginLeft: 3 }}>
+                        <Tag
+                          text={c}
+                          viewColor="#fda0a0"
+                          textColor="#eb5757" />
+                      </View>
+                    ))
+                  }
+                </View>
+              )
+          }
+        </Fragment>
         <TouchableOpacity
           style={{
             flex: 1,
