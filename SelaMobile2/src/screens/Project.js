@@ -93,12 +93,12 @@ class Project extends Component {
     await this.props.getFunderProjects();
     await this.props.getContractorProjects();
     this.setState({ loading: false });
-    // getCurrentState();
+    getCurrentState();
   }
 
   reload = async () => {
     this.setState({ reloading: true });
-    await Promise.all([this.props.getFunderProjects(), this.props.getFunderProjects()]);
+    await Promise.all([this.props.getFunderProjects()]);
     this.setState({ reloading: false });
   };
 

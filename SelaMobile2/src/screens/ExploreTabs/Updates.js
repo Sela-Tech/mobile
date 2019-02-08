@@ -40,12 +40,30 @@ const tasklisting = [
       'Collection of 1st samples of water and soil and data after treatment. Send samples to the laboratory',
     statusText: 'Completed',
   },
+  {
+    text:
+      'Identify the 3 ponds to be treated. Move Biotechnology products to secured location at the site.',
+  },
+  {
+    text:
+      'Site preparation and Collection of baseline data',
+  },
+  {
+    text:
+      'Application of first part of biotechnology',
+  },
+  {
+    text:
+      'Application of second part of biotechnology',
+  },
 ];
+
+const filterTask = [tasklisting[Math.floor(Math.random() * tasklisting.length - 4)], tasklisting[Math.floor(Math.random() * tasklisting.length)]]
 
 const Updates = ({ project }) => (
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <Fragment>
-      {tasklisting.map((c, index) => (
+      {filterTask.map((c, index) => (
         <IndUpdates key={index} text={c.text} statusText={c.statusText} />
       ))}
     </Fragment>
