@@ -50,7 +50,6 @@ class Header extends Component {
       tags,
     } = this.props;
     const { bookmarkStatus } = this.state;
-    console.log('d tags', tags)
     return (
       <View style={styles.container}>
         <View style={[extStyle.f1row, { flex: 2, alignItems: 'center' }]}>

@@ -243,7 +243,6 @@ class CreateProject extends Component {
       data.avatar = imageLink;
       const resp = await API.addProject(data);
       this.setState({ loading: false });
-      console.log('fkfkd', resp.data)
       if (resp.data.success === true) {
         this.props.navigation.navigate('Success');
       }
@@ -316,16 +315,16 @@ class CreateProject extends Component {
         name: 'Clean Water',
       },
       {
-        id: 'Zero Poverty',
-        name: 'Zero Poverty',
+        id: 'No Poverty',
+        name: 'No Poverty',
       },
       {
         id: 'Infrastucture',
         name: 'Infrastucture',
       },
       {
-        id: 'No Poverty',
-        name: 'No Poverty',
+        id: 'Zero Hunger',
+        name: 'Zero Hunger',
       },
       {
         id: 'Health & Well-being',

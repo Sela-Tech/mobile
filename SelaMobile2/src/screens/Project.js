@@ -70,7 +70,7 @@ const getCurrentState = () => {
   socket.on('connected', userData => {
     const data = {
       userId: globalState.userInfo.user.id,
-      socketId: userData.user, // the socketId received
+      socketId: userData.user,
     };
     socket.emit('user', data);
   });
@@ -93,7 +93,7 @@ class Project extends Component {
     await this.props.getFunderProjects();
     await this.props.getContractorProjects();
     this.setState({ loading: false });
-    getCurrentState();
+    // getCurrentState();
   }
 
   reload = async () => {

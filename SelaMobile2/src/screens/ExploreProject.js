@@ -27,7 +27,6 @@ const styles = StyleSheet.create({
   },
   flex4mb5: {
     flex: 4,
-    backgroundColor: 'blue',
     // marginBottom: 1,
   },
   backButton: {
@@ -90,8 +89,6 @@ class ExploreProject extends Component {
 
     let theProject = allProjects.filter(c => c._id === projectId);
     theProject = theProject[0];
-    console.log('odofdofd', projectInfo);
-
     if (loading) {
       return (
         <View style={ExtStyle.center}>
@@ -105,9 +102,16 @@ class ExploreProject extends Component {
           {notAvailaible ? (
             <Fragment>
               <View style={styles.flex4mb5}>
-                <View>
+                <View style={{
+                  flex: 1,
+                }}>
                   <Image
-                    style={styles.imageHeight}
+                    style={{
+                      flex: 1,
+                      width: null,
+                      height: null,
+                      resizeMode: 'cover',
+                    }}
                     // resizeMode="contain"
                     source={require('../../assets/img/cleanup/water.jpg')}
                   // source={{

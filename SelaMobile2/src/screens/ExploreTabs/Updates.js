@@ -58,13 +58,17 @@ const tasklisting = [
   },
 ];
 
-const filterTask = [tasklisting[Math.floor(Math.random() * tasklisting.length - 4)], tasklisting[Math.floor(Math.random() * tasklisting.length)]]
+const filterTask = [tasklisting[Math.floor(Math.random() * tasklisting.length)], tasklisting[2]]
 
 const Updates = ({ project }) => (
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <Fragment>
       {filterTask.map((c, index) => (
-        <IndUpdates key={index} text={c.text} statusText={c.statusText} />
+        <IndUpdates
+          key={index}
+          text={c.text}
+          statusText={c.statusText}
+        />
       ))}
     </Fragment>
     {/* <TouchableOpacity
