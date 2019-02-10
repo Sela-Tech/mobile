@@ -67,6 +67,13 @@ export const projectStatusTextColor = status => {
 };
 
 
+const imageLocs = [
+  require('../../assets/img/cleanup/cleanup_2.jpg'),
+  require('../../assets/borehole.png'),
+  require('../../assets/borehole-2.png'),
+  require('../../assets/oilspill.png'),
+];
+
 export const getDummyDisplayPicture = name => {
   switch (name) {
     case 'Bodo clean up':
@@ -74,7 +81,7 @@ export const getDummyDisplayPicture = name => {
     case 'Ogoni land':
       return require('../../assets/img/cleanup/water.jpg');
     default:
-      return require('../../assets/img/cleanup/cleanup_2.jpg');
+      return imageLocs[Math.floor(Math.random() * imageLocs.length)];
   }
 };
 

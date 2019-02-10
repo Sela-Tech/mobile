@@ -93,7 +93,7 @@ class Project extends Component {
     await this.props.getFunderProjects();
     await this.props.getContractorProjects();
     this.setState({ loading: false });
-    // getCurrentState();
+    getCurrentState();
   }
 
   reload = async () => {

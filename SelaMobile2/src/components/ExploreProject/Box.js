@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Text from '../Text';
 import Tag from '../Tag';
-import { isAndroid, projectStatusTextColor } from '../../utils/helpers';
+import { isAndroid, projectStatusTextColor, tagsColor } from '../../utils/helpers';
 import { YELLOW, WHITE } from '../../utils/constants';
+// import { projectStatusTextColor, tagsColor } from '../../utils/helpers';
 
 const { height, width } = Dimensions.get('window');
 
@@ -49,6 +50,13 @@ const styles = StyleSheet.create({
   },
 });
 
+const fundedStatus = [
+  '60%',
+  '40%',
+  '20%',
+  '85%',
+];
+
 const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) => (
   <TouchableOpacity onPress={() => fn()} style={styles.container}>
     <View style={styles.boxHeight}>
@@ -62,7 +70,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
           <Image source={require('../../../assets/money.png')} />
         </View>
         <View>
-          <Text style={{ color: WHITE }}> 60% funded </Text>
+          <Text style={{ color: WHITE }}> {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded </Text>
         </View>
       </View>
     </View>
@@ -111,8 +119,9 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
                 style={{ marginLeft: 3 }}>
                 <Tag
                   text="Clean Water"
-                  viewColor="#fda0a0"
-                  textColor="#eb5757" />
+                  viewColor={tagsColor('Clean Water')}
+                  textColor={WHITE}
+                />
               </View>
             ) :
               (
@@ -124,8 +133,9 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
                         style={{ marginLeft: 3 }}>
                         <Tag
                           text={c}
-                          viewColor="#fda0a0"
-                          textColor="#eb5757" />
+                          viewColor={tagsColor(c)}
+                          textColor={WHITE}
+                        />
                       </View>
                     ))
                   }
