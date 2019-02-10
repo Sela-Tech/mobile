@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Picker } from 'react-native';
-import CalendarBox from '../../components/Transactions/CalendarBox';
 import Box from './OverviewComp/Box';
 import StandardText from '../../components/StandardText';
 import { WHITE } from '../../utils/constants';

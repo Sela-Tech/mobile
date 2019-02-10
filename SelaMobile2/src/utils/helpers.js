@@ -66,16 +66,50 @@ export const projectStatusTextColor = status => {
   }
 };
 
-export const tags = tags => {
-  switch (tags) {
-    case 'Education':
+export const tagsColor = tagsText => {
+  switch (tagsText && tagsText.toUpperCase()) {
+    case 'EDUCATION':
       return 'red';
-    case 'Economic Growth':
+    case 'ECONOMIC GROWTH':
       return '#E06811';
-    case 'Water & Sanitation':
+    case 'WATER & SANITATION':
       return '#369C05';
-    case 'Infrastructure':
+    case 'INFRASTRUCTURE':
       return '#0B089D';
+    case 'NO POVERTY':
+      return '#E3253C';
+    case 'ZERO HUNGER':
+      return '#DEA73A';
+    case 'GOOD HEALTH AND WELL BEING':
+      return '#4C9F45';
+    case 'QUALITY EDUCATION':
+      return '#C5202E';
+    case 'GENDER EQUALITY':
+      return '#F0412B';
+    case 'CLEAN WATER AND SANITATION':
+      return '#29BEE2';
+    case 'AFFORDABLE AND CLEAN ENERGY':
+      return '#FAC315';
+    case 'DECENT WORK AND ECONOMIC GROWTH':
+      return '#A21C44';
+    case 'INDUSTRY,INNOVATION AND INFRASTRUCTURE':
+      return '#F26A2C';
+    case 'REDUCED INEQULAITIES':
+      return '#DD1768';
+    case 'SUSTAINABLE CITIES AND COMMUNITIES':
+      return '#F99D27';
+    case 'RESPONSIBLE CONSUMPTION AND PRODUCTION':
+      return '#F99D27';
+    case 'CLIMATE ACTION':
+      return '#417F45';
+    case 'LIFE BELOW WATER':
+      return '#1C97D3';
+    case 'LIFE ON LAND':
+      return '#5DBB47';
+    case 'PEACE,JUSTICE AND STRONG INSTITUTIONS':
+      return '#06699E';
+    case 'PARTERNSHIP FOR THE GOALS':
+      return '#18486B';
     default:
       return '#369C05';
   }

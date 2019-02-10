@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
-import { projectStatusTextColor } from '../../utils/helpers';
+import { projectStatusTextColor, tagsColor } from '../../utils/helpers';
 import extStyle from '../../utils/styles';
 import Text from '../Text';
 import Tag from '../Tag';
+import { WHITE } from '../../utils/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -128,8 +129,9 @@ class Header extends Component {
                     style={{ marginLeft: 3, marginTop: 2 }}>
                     <Tag
                       text="Clean Water"
-                      viewColor="#fda0a0"
-                      textColor="#eb5757" />
+                      viewColor={tagsColor('Clean Water')}
+                      textColor={WHITE}
+                    />
                   </View>
                 </View>
               ) :
@@ -143,9 +145,8 @@ class Header extends Component {
                         <Tag
                           // style={{ paddingLeft: 10 }}
                           text={c}
-                          // viewColor="#fda"
-                          viewColor="#fda0a0"
-                          textColor="#eb5757"
+                          viewColor={tagsColor(c)}
+                          textColor={WHITE}
                         />
                       </View>
                     ))

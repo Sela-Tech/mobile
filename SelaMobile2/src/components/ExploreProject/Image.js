@@ -16,7 +16,10 @@ const styles = StyleSheet.create({
 });
 
 const Image = ({ fn, imageSource }) => (
-  <ImageBackground style={styles.container} source={imageSource}>
+  <ImageBackground
+    style={styles.container}
+    source={imageSource}
+  >
     <View style={styles.upButton}>
       <BackButton fn={fn} />
     </View>

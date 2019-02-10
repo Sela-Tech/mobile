@@ -35,6 +35,7 @@ export default class EvalSubmission extends Component {
         <Modal isVisible>
           <View style={{
             flex: 1,
+            borderRadius: 10,
           }} />
           <BigImage fn={() => this.displayPicture()} imageSource={imgSource} />
         </Modal>

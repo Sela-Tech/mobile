@@ -13,7 +13,7 @@ const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   imageHeight: {
-    height: height,
+    height,
   },
   mt3: {
     // marginTop: height < 600 ? 3 : null,
