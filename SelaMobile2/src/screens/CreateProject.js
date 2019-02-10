@@ -308,7 +308,7 @@ class CreateProject extends Component {
     const items = [
       {
         id: 'Education',
-        name: 'Education'
+        name: 'Education',
       },
       {
         id: 'Clean Water',

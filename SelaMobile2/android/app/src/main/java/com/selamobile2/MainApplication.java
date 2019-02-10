@@ -12,6 +12,10 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.github.wuxudong.rncharts.MPAndroidChartPackage;
+
+import com.facebook.react.bridge.ReadableNativeArray;
+import com.facebook.react.bridge.ReadableNativeMap;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,14 +30,9 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-            new VectorIconsPackage(),
-            new SvgPackage(),
-            new ImagePickerPackage(),
-            new RNGooglePlacesPackage(),
-            new RNGestureHandlerPackage()
-      );
+      return Arrays.<ReactPackage>asList(new MainReactPackage(), new VectorIconsPackage(), new SvgPackage(),
+          new ImagePickerPackage(), new RNGooglePlacesPackage(), new MPAndroidChartPackage(),
+          new RNGestureHandlerPackage());
     }
 
     @Override
@@ -50,6 +49,11 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
+    // ReadableNativeArray.setUseNativeAccessor(true);
+    // ReadableNativeMap.setUseNativeAccessor(true);
+
     SoLoader.init(this, /* native exopackage */ false);
+    ReadableNativeArray.setUseNativeAccessor(true);
+    ReadableNativeMap.setUseNativeAccessor(true);
   }
 }

@@ -287,7 +287,6 @@ export default class SubmitFeedback extends Component {
     //     this.setState({ error: error.message, videoStarted: false });
     //   }
     // } else {
-    //   console.log('not working');
     //   this.setState({
     //     error: 'Request failed',
     //   });
@@ -373,21 +372,21 @@ export default class SubmitFeedback extends Component {
             </View>
           </View>
         ) : (
-          <View style={styles.topBottom}>
-            <View style={styles.floatingButton}>
-              <TouchableOpacity
-                onPress={() => this.snap()}
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Image source={require('../../assets/img/camera.png')} />
-              </TouchableOpacity>
+            <View style={styles.topBottom}>
+              <View style={styles.floatingButton}>
+                <TouchableOpacity
+                  onPress={() => this.snap()}
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image source={require('../../assets/img/camera.png')} />
+                </TouchableOpacity>
+              </View>
             </View>
-          </View>
-        )}
+          )}
       </Fragment>
     );
   };

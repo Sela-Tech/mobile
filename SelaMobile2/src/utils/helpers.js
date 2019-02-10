@@ -66,6 +66,18 @@ export const projectStatusTextColor = status => {
   }
 };
 
+
+export const getDummyDisplayPicture = name => {
+  switch (name) {
+    case 'Bodo clean up':
+      return require('../../assets/img/cleanup/grass.jpg');
+    case 'Ogoni land':
+      return require('../../assets/img/cleanup/water.jpg');
+    default:
+      return require('../../assets/img/cleanup/cleanup_2.jpg');
+  }
+};
+
 export const tagsColor = tagsText => {
   switch (tagsText && tagsText.toUpperCase()) {
     case 'EDUCATION':

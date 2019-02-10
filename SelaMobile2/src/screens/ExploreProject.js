@@ -7,6 +7,7 @@ import Header from '../components/ExploreTopTabs/Header';
 import Navigator from './ExploreTabs/Navigator';
 import { getSingleProject } from '../utils/api';
 import ExtStyle from '../utils/styles';
+import { getDummyDisplayPicture } from '../utils/helpers';
 import { WHITE } from '../utils/constants';
 
 const { height } = Dimensions.get('window');
@@ -87,6 +88,7 @@ class ExploreProject extends Component {
       this.props.projects.projects &&
       this.props.projects.projects.projects;
 
+
     let theProject = allProjects.filter(c => c._id === projectId);
     theProject = theProject[0];
     if (loading) {
@@ -113,7 +115,7 @@ class ExploreProject extends Component {
                       resizeMode: 'cover',
                     }}
                     // resizeMode="contain"
-                    source={require('../../assets/img/cleanup/water.jpg')}
+                    source={getDummyDisplayPicture(projectInfo && projectInfo.name)}
                   // source={{
                   //   uri:
                   //     projectInfo['project-avatar'] === undefined

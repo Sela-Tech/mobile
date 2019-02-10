@@ -38,7 +38,7 @@ const Updates = ({ title, statusText, text }) => (
   <View style={{ flex: 1, marginBottom: 10 }}>
     <View style={{ flexDirection: 'row', paddingTop: 10, marginTop: 15, flex: 1 }}>
       <View style={{ flex: 2 }}>
-        <Text style={{ color: '#696F74', fontWeight: '400' }}>Status </Text>
+        <Text style={{ color: '#201D41', fontWeight: '400' }}>Status </Text>
       </View>
       <View style={{ flex: 1, marginRight: 5 }}>
         <Tag
@@ -48,9 +48,14 @@ const Updates = ({ title, statusText, text }) => (
         />
       </View>
     </View>
-    <View style={{ flex: 4 }}>
-      <View>
-        <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '400' }}>{title} </Text>
+    <View style={{ flex: 4, paddingTop: 3 }}>
+      <View style={{ flexDirection: 'row' }}>
+        <View style={{ alignItems: 'center' }}>
+          <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Task Name:  </Text>
+        </View>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>{title} </Text>
+        </View>
       </View>
       <View style={{ marginTop: '2%' }}>
         <Text style={{ color: '#222829' }}>{text}</Text>
@@ -58,7 +63,7 @@ const Updates = ({ title, statusText, text }) => (
     </View>
     <View style={{ marginTop: 10 }}>
       <View>
-        <B> Evalaution Submissions</B>
+        <B color="#201D41"> Evalaution Submissions</B>
       </View>
       <FlatList
         style={{ paddingTop: 10 }}

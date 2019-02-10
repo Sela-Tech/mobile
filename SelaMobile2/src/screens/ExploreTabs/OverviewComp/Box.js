@@ -1,8 +1,9 @@
-import React, { Fragment } from 'react';
-import { View, Dimensions, StyleSheet } from 'react-native';
-import { BarChart, Grid, ProgressCircle, PieChart } from 'react-native-svg-charts';
+import React, { Fragment, Component } from 'react';
+import { View, Dimensions, StyleSheet, processColor } from 'react-native';
+import { BarChart, Grid, ProgressCircle } from 'react-native-svg-charts';
 import PropTypes from 'prop-types';
 import { Circle, G, Text, Line } from 'react-native-svg'
+import { PieChart } from 'react-native-charts-wrapper';
 import TextN from '../../../components/Text';
 
 const { height, width } = Dimensions.get('window');
@@ -39,7 +40,26 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     justifyContent: 'center',
   },
+  chart: {
+    // flex: 1,
+    height: 300,
+    width: width - width / 8,
+  },
 });
+
+const chartConfig = {
+  backgroundGradientFrom: '#1E2923',
+  backgroundGradientTo: '#08130D',
+  color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`
+}
+
+const ddata = [
+  { name: 'Seoul', population: 21500000, color: 'rgba(131, 167, 234, 1)', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+  { name: 'Toronto', population: 2800000, color: '#F00', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+  { name: 'Beijing', population: 527612, color: 'red', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+  { name: 'New York', population: 8538000, color: '#ffffff', legendFontColor: '#7F7F7F', legendFontSize: 15 },
+  { name: 'Moscow', population: 11920000, color: 'rgb(0, 0, 255)', legendFontColor: '#7F7F7F', legendFontSize: 15 }
+]
 
 const dataPie = [
   {
@@ -165,87 +185,179 @@ function totalClicks(arr, type) {
 let totalAmount = totalClicks(dataPie, 'amount');
 
 
-const Box = ({ upText, secondTextLeft, secondTextRight, lastText }) => (
-  <View style={styles.container}>
-    <View style={styles.viewStyle2}>
-      <TextN style={styles.text}>
-        {upText}
-        {' '}
-      </TextN>
-    </View>
-    <View
-      style={{
-        justifyContent: 'center',
-        paddingHorizontal: 20,
-        flexDirection: 'row',
-        flex: 1,
-      }}
-    >
-      <View style={{ justifyContent: 'center', paddingTop: 10, flex: 1 }}>
-        <TextN
-          style={[
-            styles.text,
-            {
-              fontSize: 30,
-              fontWeight: '500',
-              color: '#201D41',
-            },
-          ]}
-        >
-          {secondTextLeft}
-        </TextN>
-      </View>
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'flex-end',
-        }}
-      >
-        <TextN
-          style={[
-            styles.text,
-            {
-              color: '#369C05',
-              fontSize: 14,
-            },
-          ]}
-        >
-          {secondTextRight}
-        </TextN>
-      </View>
-    </View>
-    <View style={styles.viewStyle}>
-      {upText === 'Progress' || upText === 'Budget used' ? (
-        <ProgressCircle style={styles.chartHeight} progress={0.7} progressColor="#F2994A" />
-      ) : (
-          <PieChart
-            style={{ height: 200 }}
-            valueAccessor={({ item }) => item.amount}
-            data={dataPie}
-            spacing={0}
-            outerRadius={'95%'}
-          >
-            <Labels />
-          </PieChart>
+// const Box = ({ upText, secondTextLeft, secondTextRight, lastText }) => (
 
-        )}
-    </View>
-    <Fragment>
-      {lastText ? (
-        <View style={styles.buttomText}>
-          <TextN style={styles.text}> {lastText} </TextN>
+export default class Box extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      legend: {
+        enabled: true,
+        textSize: 10,
+        form: 'CIRCLE',
+
+        horizontalAlignment: "RIGHT",
+        verticalAlignment: "CENTER",
+        orientation: "VERTICAL",
+        wordWrapEnabled: true
+      },
+      data: {
+        dataSets: [{
+          values: [
+            { value: 45, label: 'Evaluation Teams' },
+            { value: 21, label: 'Contractor' },
+            { value: 21, label: 'Supplies' }
+          ],
+          label: 'Pie dataset',
+          config: {
+            colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C')],
+            valueTextSize: 9,
+            valueTextColor: processColor('green'),
+            sliceSpace: 5,
+            selectionShift: 13,
+            // xValuePosition: "OUTSIDE_SLICE",
+            // yValuePosition: "OUTSIDE_SLICE",
+            valueFormatter: "#.#'%'",
+            valueLineColor: processColor('green'),
+            valueLinePart1Length: 0.5
+          }
+        }],
+      },
+      highlights: [{ x: 2 }],
+      description: {
+        text: 'Monthly spend by category',
+        textSize: 15,
+        textColor: processColor('darkgray'),
+
+      }
+    };
+  }
+
+  handleSelect(event) {
+    let entry = event.nativeEvent
+    if (entry == null) {
+      this.setState({ ...this.state, selectedEntry: null })
+    } else {
+      this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) })
+    }
+
+    console.log(event.nativeEvent)
+  }
+
+  render() {
+    const { upText, secondTextLeft, secondTextRight, lastText } = this.props;
+    return (
+      <View style={styles.container}>
+        <View style={styles.viewStyle2}>
+          <TextN style={styles.text}>
+            {upText}
+            {' '}
+          </TextN>
         </View>
-      ) : null}
-    </Fragment>
-  </View>
-);
+        <View
+          style={{
+            justifyContent: 'center',
+            paddingHorizontal: 20,
+            flexDirection: 'row',
+            flex: 1,
+          }}
+        >
+          <View style={{ justifyContent: 'center', paddingTop: 10, flex: 1 }}>
+            <TextN
+              style={[
+                styles.text,
+                {
+                  fontSize: 30,
+                  fontWeight: '500',
+                  color: '#201D41',
+                },
+              ]}
+            >
+              {secondTextLeft}
+            </TextN>
+          </View>
+          <View
+            style={{
+              flex: 1,
+              justifyContent: 'center',
+              alignItems: 'flex-end',
+            }}
+          >
+            <TextN
+              style={[
+                styles.text,
+                {
+                  color: '#369C05',
+                  fontSize: 14,
+                },
+              ]}
+            >
+              {secondTextRight}
+            </TextN>
+          </View>
+        </View>
+        <View style={styles.viewStyle}>
+          {upText === 'Progress' || upText === 'Budget used' ? (
+            <ProgressCircle style={styles.chartHeight} progress={0.7} progressColor="#F2994A" />
+          ) : (
+              <PieChart
+                style={styles.chart}
+                logEnabled={true}
+                chartBackgroundColor={processColor('#FFFFFF')}
+                chartDescription={this.state.description}
+                data={this.state.data}
+                legend={this.state.legend}
+                highlights={this.state.highlights}
+
+                entryLabelColor={processColor('green')}
+                entryLabelTextSize={20}
+                drawEntryLabels={true}
+
+                rotationEnabled={true}
+                rotationAngle={45}
+                usePercentValues={true}
+                styledCenterText={{ text: '', color: processColor('#FFFFFF'), size: 20 }}
+                centerTextRadiusPercent={100}
+                holeRadius={40}
+                holeColor={processColor('#f0f0f0')}
+                transparentCircleRadius={45}
+                transparentCircleColor={processColor('#f0f0f088')}
+                maxAngle={350}
+                onChange={(event) => console.log(event.nativeEvent)}
+              />
+
+            )}
+        </View>
+        <Fragment>
+          {lastText ? (
+            <View style={styles.buttomText}>
+              <TextN style={styles.text}> {lastText} </TextN>
+            </View>
+          ) : null}
+        </Fragment>
+      </View>
+    )
+  }
+}
+
+// );
+
+{/* <PieChart
+  style={{ height: 200 }}
+  valueAccessor={({ item }) => item.amount}
+  data={dataPie}
+  spacing={0}
+  outerRadius={'95%'}
+>
+  <Labels />
+</PieChart> */}
 
 Box.defaultProps = {};
 
 Box.propTypes = {};
 
-export default Box;
+// export default Box;
 
 
 {/* <BarChart style={styles.chartHeight} data={data} svg={{ fill }} contentInset={{}}>

@@ -19,6 +19,10 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: '#696F74',
   },
+  verySmallText: {
+    fontSize: 11,
+    color: '#696F74',
+  },
   pt: {
     paddingTop: 3,
   },
@@ -57,28 +61,25 @@ class Header extends Component {
           <View style={{ flexDirection: 'row', flex: 5 }}>
             <View style={extStyle.row}>
               <View>
-                <Text style={styles.smallText}>
-                  {projectLocationText
-                    .toUpperCase()
-                    .slice(0, 10)
-                    .concat('...')}
+                <Text style={styles.verySmallText}>
+                  {projectLocationText}
                   {' '}
                 </Text>
               </View>
               <View style={{ justifyContent: 'center' }}>
-                <Entypo name="dot-single" size={20} color="#696F74" />
+                <Entypo name="dot-single" size={10} color="#696F74" />
               </View>
             </View>
             <View style={extStyle.row}>
               <View>
-                <Text style={styles.smallText}>{projectNameText.slice(0, 8).concat('...')}</Text>
+                <Text style={styles.verySmallText}>{projectNameText}</Text>
               </View>
               <View style={{ justifyContent: 'center' }}>
-                <Entypo name="dot-single" size={18} color="#696F74" />
+                <Entypo name="dot-single" size={10} color="#696F74" />
               </View>
             </View>
             <View>
-              <Text style={[styles.smallText, { color: projectStatusTextColor(projectStatusText) }]}>
+              <Text style={[styles.verySmallText, { color: projectStatusTextColor(projectStatusText) }]}>
                 {projectStatusText}
               </Text>
             </View>

@@ -10,7 +10,8 @@ import {
 import PropTypes from 'prop-types';
 import NavigationService from '../../services/NavigationService';
 import Text from '../Text';
-import { WHITE } from '../../utils/constants';
+import { WHITE, YELLOW } from '../../utils/constants';
+import { getDummyDisplayPicture } from '../../utils/helpers';
 
 const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -34,11 +35,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    color: WHITE,
+    color: YELLOW,
+    fontSize: 18,
+    fontWeight: '500',
   },
 });
 
 const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
+
   <TouchableOpacity
     style={styles.container}
     onPress={
@@ -49,7 +53,7 @@ const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
   >
     {!empty ? (
       <ImageBackground
-        source={require('../../../assets/img/cleanup/water.jpg')}
+        source={getDummyDisplayPicture(siteName)}
         // source={{ uri: imageSource === '' ? 'https://placeimg.com/640/480/any' : imageSource }}
         style={styles.imageBack}
       >
@@ -58,15 +62,15 @@ const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
         </View>
       </ImageBackground>
     ) : (
-      <View style={(styles.empty, { alignItems: 'center', borderColor: '#F2994A' })}>
-        <View style={{ justifyContent: 'center' }}>
-          <Image source={require('../../../assets/plus.png')} style={{ tintColor: '#696f74' }} />
+        <View style={(styles.empty, { alignItems: 'center', borderColor: '#F2994A' })}>
+          <View style={{ justifyContent: 'center' }}>
+            <Image source={require('../../../assets/plus.png')} style={{ tintColor: '#696f74' }} />
+          </View>
+          <View style={{ marginTop: 10 }}>
+            <Text> {text ? text : 'Propose Project'} </Text>
+          </View>
         </View>
-        <View style={{ marginTop: 10 }}>
-          <Text> {text ? text : 'Propose Project'} </Text>
-        </View>
-      </View>
-    )}
+      )}
   </TouchableOpacity>
 );
 
