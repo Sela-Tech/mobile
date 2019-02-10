@@ -3,11 +3,11 @@ import { View } from 'react-native';
 import Text from '../Text';
 import Tag from '../Tag';
 
-const Tasks = ({ statusText, text }) => (
+const Tasks = ({ statusText, text, title }) => (
   <View style={{ flex: 1, marginBottom: 10 }}>
     <View style={{ flexDirection: 'row', paddingTop: 10, marginTop: 15, flex: 1 }}>
       <View style={{ flex: 1 }}>
-        <Text style={{ color: '#696F74', fontWeight: '400' }}>Deadline </Text>
+        <Text style={{ color: '#696F74', fontWeight: '400' }}>Status </Text>
       </View>
       <Tag
         textColor={statusText === 'In Progress' ? '#369C05' : '#E06811'}

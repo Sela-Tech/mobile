@@ -26,35 +26,40 @@ const styles = StyleSheet.create({
 
 const tasklisting = [
   {
+    title: 'Identification of ponds to be treated',
     text:
       'Identify the 3 ponds to be treated. Move Biotechnology products to secured location at the site.',
     statusText: 'In Progress',
   },
   {
+    title: 'Identification of VSE teams',
     text:
       'Identify VSE team and assignment to pond with laid out instructions for project execution',
     statusText: 'Completed',
   },
   {
+    title: 'Collection of samples of water and soil',
     text:
       'Collection of 1st samples of water and soil and data after treatment. Send samples to the laboratory',
     statusText: 'Completed',
   },
   {
-    text:
-      'Identify the 3 ponds to be treated. Move Biotechnology products to secured location at the site.',
-  },
-  {
+    title: 'Site preparation',
     text:
       'Site preparation and Collection of baseline data',
+    statusText: 'In Progress',
   },
   {
+    title: 'Biotechnology application 1',
     text:
       'Application of first part of biotechnology',
+    statusText: 'Completed',
   },
   {
+    title: 'Biotechnology application 1',
     text:
       'Application of second part of biotechnology',
+    statusText: 'Completed',
   },
 ];
 
@@ -67,6 +72,7 @@ const Updates = ({ project }) => (
         <IndUpdates
           key={index}
           text={c.text}
+          title={c.title}
           statusText={c.statusText}
         />
       ))}

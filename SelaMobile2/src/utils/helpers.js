@@ -44,11 +44,17 @@ export const titleCase = str => {
 export const firstLetterCapital = str => str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
 
 export const projectStatusTextColor = status => {
-  switch (status) {
+  switch (status && status.toUpperCase()) {
     case 'DORMANT':
       return 'red';
     case 'ON GOING':
       return '#E06811';
+    case 'PENDING':
+      return '#E06811';
+    case 'IN PROGRESS':
+      return '#E06811';
+    case 'DELAYED':
+      return 'red';
     case 'COMPLETED':
       return '#369C05';
     case 'PROPOSED':
