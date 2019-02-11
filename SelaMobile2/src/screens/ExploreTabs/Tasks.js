@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
 import Task from '../../components/ExploreProject/Tasks';
 import Button from '../../components/Button';

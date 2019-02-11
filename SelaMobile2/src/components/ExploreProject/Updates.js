@@ -38,7 +38,7 @@ const Updates = ({ title, statusText, text }) => (
   <View style={{ flex: 1, marginBottom: 10 }}>
     <View style={{ flexDirection: 'row', paddingTop: 10, marginTop: 15, flex: 1 }}>
       <View style={{ flex: 2 }}>
-        <Text style={{ color: '#201D41', fontWeight: '400' }}>Status </Text>
+        <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Status </Text>
       </View>
       <View style={{ flex: 1, marginRight: 5 }}>
         <Tag
@@ -63,7 +63,7 @@ const Updates = ({ title, statusText, text }) => (
     </View>
     <View style={{ marginTop: 10 }}>
       <View>
-        <B color="#201D41"> Evalaution Submissions</B>
+        <B color="#201D41"> Evaluation Submissions</B>
       </View>
       <FlatList
         style={{ paddingTop: 10 }}

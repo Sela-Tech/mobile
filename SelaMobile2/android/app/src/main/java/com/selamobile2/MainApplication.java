@@ -3,6 +3,7 @@ package com.selamobile2;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.horcrux.svg.SvgPackage;
 import com.imagepicker.ImagePickerPackage;
@@ -30,7 +31,8 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(new MainReactPackage(), new VectorIconsPackage(), new SvgPackage(),
+      return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new MapsPackage(), new VectorIconsPackage(), new SvgPackage(),
           new ImagePickerPackage(), new RNGooglePlacesPackage(), //new MPAndroidChartPackage(),
           new RNGestureHandlerPackage());
     }

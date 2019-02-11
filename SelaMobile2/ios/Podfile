@@ -15,6 +15,8 @@ target 'SelaMobile2' do
   #   # Pods for testing
   # end
 
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
   target 'SelaMobile2Tests' do
     inherit! :search_paths
     # Pods for testing

@@ -5,6 +5,7 @@ import Description from './Description';
 import StakeHolders from './StakeHolders';
 import Transactions from './Transactions';
 import Overview from './Overview';
+import Location from './Location';
 import Tasks from './Tasks';
 import Updates from './Updates';
 import { isAndroid } from '../../utils/helpers';
@@ -14,6 +15,10 @@ const { width } = Dimensions.get('window');
 
 const tabBarOptions = {
   tabBarVisible: false,
+  scrollEnabled: true,
+  tabStyle: {
+    width: width / 4,
+  },
   activeTintColor: '#201D41',
   inactiveTintColor: '#B1BAD2',
   showIcon: false,
@@ -70,6 +75,9 @@ export default class Navigator extends Component {
           Overview: {
             screen: () => <TransactionOrOvervIew project={project} />,
           },
+          Location: {
+            screen: () => <Location project={project} />,
+          },
         },
         {
           tabBarOptions,
@@ -90,6 +98,9 @@ export default class Navigator extends Component {
           Transactions: {
             screen: () => <TransactionOrOvervIew project={project} />,
           },
+          Location: {
+            screen: () => <Location project={project} />,
+          },
         },
         {
           tabBarOptions,
@@ -100,45 +111,4 @@ export default class Navigator extends Component {
     return <ExploreTopTabs />;
   }
 }
-
-// export const ContractorTab = createMaterialTopTabNavigator(
-//   {
-//     Description: {
-//       screen: () => <Description } />,
-//   },
-//   StakeHolders: {
-//     screen: () => <StakeHolders project={project} />,
-//   },
-//   Tasks: {
-//     screen: () => <UpdatesOrTask project={project} />,
-//   },
-//   Overview: {
-//     screen: () => <TransactionOrOvervIew project={project} />,
-//   },
-// {
-//   tabBarComponent: props => <Tabbar {...props} /> ,
-//     tabBarOptions,
-//   },
-// );
-
-
-// export const FunderTab = createMaterialTopTabNavigator(
-//   {
-//     Overview: {
-//       screen: () => <Overview />,
-//     },
-//     StakeHolders: {
-//       screen: () => <StakeHolders />,
-//     },
-//     Updates: {
-//       screen: () => <UpdatesOrTask />,
-//     },
-//     Transactions: {
-//       screen: () => <TransactionOrOvervIew />,
-//     },
-//   },
-//   {
-//     tabBarOptions,
-//   },
-// );
 
