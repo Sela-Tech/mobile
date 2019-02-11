@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     color: '#696F74',
   },
   verySmallText: {
-    fontSize: 11,
+    fontSize: 14,
     color: '#696F74',
   },
   pt: {
@@ -46,7 +46,6 @@ class Header extends Component {
   render() {
     const {
       projectStatusText,
-      projectNameText,
       projectLocationText,
       projectTitleText,
       budgetAmount,
@@ -67,15 +66,7 @@ class Header extends Component {
                 </Text>
               </View>
               <View style={{ justifyContent: 'center' }}>
-                <Entypo name="dot-single" size={10} color="#696F74" />
-              </View>
-            </View>
-            <View style={extStyle.row}>
-              <View>
-                <Text style={styles.verySmallText}>{projectNameText}</Text>
-              </View>
-              <View style={{ justifyContent: 'center' }}>
-                <Entypo name="dot-single" size={10} color="#696F74" />
+                <Entypo name="dot-single" size={12} color="#696F74" />
               </View>
             </View>
             <View>

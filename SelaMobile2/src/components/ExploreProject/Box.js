@@ -33,7 +33,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   fontS: {
-    fontSize: width < 400 ? 11 : 15,
+    fontSize: 10,
+    // fontSize: width < 400 ? 11 : 15,
   },
   viewInImage: {
     backgroundColor: '#C13C1E',
@@ -77,7 +78,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
     <View style={[styles.smaller, { marginLeft: 3, justifyContent: 'center' }]}>
       <View style={[styles.row, { marginTop: 5 }]}>
         <View style={{ flexDirection: 'row' }}>
-          <Text style={{ fontSize: 15, fontWeight: '400', color: '#696F74' }}>
+          <Text style={{ fontSize: 10, fontWeight: '400', color: '#696F74' }}>
             {firstText.slice(0, 18).concat(' ...')}
           </Text>
           <Entypo name="dot-single" size={18} color="#696F74" />
@@ -93,7 +94,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
           </View>
         </View>
         <View style={{ paddingLeft: isAndroid ? '1%' : 2 }}>
-          <Text style={{ fontWeight: '300', color: projectStatusTextColor(thirdText) }}>
+          <Text style={[styles.fonts,{ fontWeight: '300', color: projectStatusTextColor(thirdText) }]}>
             {thirdText}
           </Text>
         </View>

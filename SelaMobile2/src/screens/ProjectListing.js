@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { View, ScrollView, FlatList, StyleSheet, Dimensions, Picker, Keyboard } from 'react-native';
 import { connect } from 'react-redux';
-import NavigationService from '../services/NavigationService';
 import RNGooglePlaces from 'react-native-google-places';
+import NavigationService from '../services/NavigationService';
 import SearchResult from '../components/SearchResult';
 import { getAllfeaturedProjects } from '../utils/api';
 import Spinner from '../components/Spinner';
@@ -145,6 +145,7 @@ class ExploreProject extends Component {
         style={{
           backgroundColor: WHITE,
         }}
+        stickyHeaderIndices={[0]}
         contentContainerStyle={styles.container}
       >
         <Header headerName="EXPLORE" />

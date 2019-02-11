@@ -133,7 +133,9 @@ class Profile extends Component {
     }
 
     return (
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView 
+      stickyHeaderIndices={[0]}
+      contentContainerStyle={styles.container}>
         <Header
           justBack
           navigation={this.props.navigation}

@@ -143,9 +143,8 @@ class ExploreProject extends Component {
                 <Header
                   projectLocationText={projectInfo.location.name}
                   projectStatusText={projectInfo.status}
-                  projectNameText="MARKERS LTD"
                   projectTitleText={projectInfo.name}
-                  budgetAmount="$2,000,000" // {projectInfo.goal}
+                  budgetAmount={projectInfo.goal}
                   numberOfStakeholders={projectInfo.stakeholders.length}
                   raisedAmount={projectInfo.raised}
                   tags={projectInfo.tags}

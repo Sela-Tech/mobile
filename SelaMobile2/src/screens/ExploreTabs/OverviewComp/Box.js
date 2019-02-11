@@ -1,9 +1,8 @@
 import React, { Fragment, Component } from 'react';
-import { View, Text, Dimensions, StyleSheet, processColor } from 'react-native';
+import { View, Text, Image, Dimensions, StyleSheet, processColor } from 'react-native';
 import { PieChart, BarChart, Grid, ProgressCircle } from 'react-native-svg-charts';
 import PropTypes from 'prop-types';
-import { Circle, G, Line } from 'react-native-svg'
-// import { PieChart } from 'react-native-charts-wrapper';
+import { Circle, G, Line } from 'react-native-svg';
 import TextN from '../../../components/Text';
 import { YELLOW } from '../../../utils/constants';
 
@@ -11,9 +10,9 @@ const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
-    // height: height / 5,
-    borderRadius: 5.5,
-    borderWidth: 2,
+    height: height / 4,
+    // borderRadius: 5.5,
+    // borderWidth: 2,
     borderColor: '#F5F5F8',
     width: width / 1.5,
     marginVertical: 12,
@@ -272,75 +271,76 @@ export default class Box extends Component {
     // });
     // console.log('data', data)
     // const deviceWidth = Dimensions.get('window').width
-
-    return (
-      <View style={styles.container}>
-        <View style={styles.viewStyle2}>
-          <TextN style={styles.text}>
-            {upText}
-            {' '}
-          </TextN>
-        </View>
-        <View
-          style={{
-            justifyContent: 'center',
-            paddingHorizontal: 20,
-            flexDirection: 'row',
-            flex: 1,
-          }}
-        >
-          <View style={{ justifyContent: 'center', paddingTop: 10, flex: 1 }}>
-            <TextN
-              style={[
-                styles.text,
-                {
-                  fontSize: 30,
-                  fontWeight: '500',
-                  color: '#201D41',
-                },
-              ]}
-            >
-              {secondTextLeft}
-            </TextN>
-          </View>
-          <View
+    if (upText === "Tasks Completed") {
+      return (
+        <View style={styles.container}>
+          <Image
             style={{
               flex: 1,
-              justifyContent: 'center',
-              alignItems: 'flex-end',
+              width: undefined, height: undefined,
+              // flex: 1,
+              // width: null,
+              // height: null,
+              // resizeMode: 'contain',
             }}
-          >
-            <TextN
-              style={[
-                styles.text,
-                {
-                  color: '#369C05',
-                  fontSize: 14,
-                },
-              ]}
-            >
-              {secondTextRight}
-            </TextN>
-          </View>
+            resizeMode="contain"
+            // source={require('../../../../assets/charts/Bar_Chart.png')}
+            source={require('../../../../assets/charts/task.png')}
+          />
         </View>
-        <View style={styles.viewStyle}>
-          {upText === 'Progress' || upText === 'Budget used' ? (
-            <ProgressCircle style={styles.chartHeight} progress={0.7} progressColor="#F2994A" />
-          ) : (
-              <BarChart style={styles.chartHeight} data={data} svg={{ fill }} contentInset={{}}>
-                <Grid />
-              </BarChart>
-            )}
+      )
+    }
+    else if (upText === "Progress") {
+      return (
+        <View style={styles.container}>
+          <Image
+            style={{
+              flex: 1, width: undefined, height: undefined
+              // flex: 1,
+              // width: null,
+              // height: null,
+              // resizeMode: 'contain',
+            }}
+            // source={require('../../../../assets/charts/Bar_Chart.png')}
+            source={require('../../../../assets/charts/progress.png')}
+          />
         </View>
-        <Fragment>
-          {lastText ? (
-            <View style={styles.buttomText}>
-              <TextN style={styles.text}> {lastText} </TextN>
-            </View>
-          ) : null}
-        </Fragment>
-      </View>
-    )
+      )
+    }
+    else if (upText === "Total funds spent") {
+      return (
+        <View style={styles.container}>
+          <Image
+            style={{
+              flex: 1, width: undefined, height: undefined
+              // flex: 1,
+              // width: null,
+              // height: null,
+              // resizeMode: 'contain',
+            }}
+            // source={require('../../../../assets/charts/Bar_Chart.png')}
+            source={require('../../../../assets/charts/pie_chart.png')}
+          />
+        </View>
+      )
+    }
+    else {
+      return (
+        <View style={styles.container}>
+          <Image
+            style={{
+              flex: 1, width: undefined, height: undefined
+              // flex: 1,
+              // width: null,
+              // height: null,
+              // resizeMode: 'contain',
+            }}
+            // source={require('../../../../assets/charts/Bar_Chart.png')}
+            source={require('../../../../assets/charts/Bar_Chart.png')}
+          />
+        </View>
+      )
+    }
   }
 }
 
@@ -413,3 +413,69 @@ Box.propTypes = {};
     {value}
   </Text>
 </View> */}
+
+
+
+// <View style={styles.viewStyle2}>
+//   <TextN style={styles.text}>
+//     {upText}
+//     {' '}
+//   </TextN>
+// </View>
+//   <View
+//     style={{
+//       justifyContent: 'center',
+//       paddingHorizontal: 20,
+//       flexDirection: 'row',
+//       flex: 1,
+//     }}
+//   >
+//     <View style={{ justifyContent: 'center', paddingTop: 10, flex: 1 }}>
+//       <TextN
+//         style={[
+//           styles.text,
+//           {
+//             fontSize: 30,
+//             fontWeight: '500',
+//             color: '#201D41',
+//           },
+//         ]}
+//       >
+//         {secondTextLeft}
+//       </TextN>
+//     </View>
+//     <View
+//       style={{
+//         flex: 1,
+//         justifyContent: 'center',
+//         alignItems: 'flex-end',
+//       }}
+//     >
+//       <TextN
+//         style={[
+//           styles.text,
+//           {
+//             color: '#369C05',
+//             fontSize: 14,
+//           },
+//         ]}
+//       >
+//         {secondTextRight}
+//       </TextN>
+//     </View>
+//   </View>
+//   <View style={styles.viewStyle}>
+//     {upText === 'Progress' || upText === 'Budget used' ? (
+//       <ProgressCircle style={styles.chartHeight} progress={0.7} progressColor="#F2994A" />
+//     ) : (
+//         <BarChart style={styles.chartHeight} data={data} svg={{ fill }} contentInset={{}}>
+//           <Grid />
+//         </BarChart>
+//       )}
+//   </View>
+//   <Fragment>
+//     {lastText ? (
+//       <View style={styles.buttomText}>
+//         <TextN style={styles.text}> {lastText} </TextN>
+//       </View>
+//     ) : null}

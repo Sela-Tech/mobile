@@ -12,8 +12,8 @@ import Explore from './screens/ProjectListing';
 export default createBottomTabNavigator(
   {
     Project,
-    Explore,
-    Inbox,
+    // Explore,
+    // Inbox,
     Profile,
   },
   {

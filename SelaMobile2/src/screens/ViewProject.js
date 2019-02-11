@@ -54,7 +54,9 @@ export default class ViewProject extends Component {
   render() {
     const { loading, projects } = this.state;
     return (
-      <ScrollView style={ExtStyle.flex1} contentContainerStyle={styles.container}>
+      <ScrollView style={ExtStyle.flex1}
+      stickyHeaderIndices={[0]}
+       contentContainerStyle={styles.container}>
         <Header
           justBack
           navigation={this.props.navigation}
