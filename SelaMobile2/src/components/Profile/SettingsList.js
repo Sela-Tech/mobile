@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 const logOut = async () => {
   try {
-    await AsyncStorage.removeItem('user');
+    AsyncStorage.removeItem('user');
     NavigationService.navigate('Login');
   } catch (err) {
     console.log(err.message);

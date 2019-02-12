@@ -91,7 +91,6 @@ class CreateProject extends Component {
   async componentDidMount() {
     try {
       const resp = await API.getAllUsers();
-      // console.log('res', resp.data);
       const users = resp.data.map(c => {
         c.label = c.firstName.concat(' ').concat(c.lastName);
         c.value = c._id;

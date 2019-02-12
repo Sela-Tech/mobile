@@ -79,7 +79,9 @@ export const getDummyDisplayPicture = name => {
     case 'Bodo clean up':
       return require('../../assets/img/cleanup/grass.jpg');
     case 'Ogoni land':
-      return require('../../assets/img/cleanup/water.jpg');
+      return require('../../assets/img/cleanup/cleanup_grass.jpg');
+    case 'Aba Factory construction':
+      return require('../../assets/img/cleanup/factory.jpg');
     default:
       return imageLocs[Math.floor(Math.random() * imageLocs.length)];
   }

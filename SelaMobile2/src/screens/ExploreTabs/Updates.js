@@ -24,6 +24,28 @@ const styles = StyleSheet.create({
   },
 });
 
+const task2 = [
+  {
+    title: 'Roofing',
+    text:
+      'Roofing of factory',
+    statusText: 'In Progress',
+  },
+  {
+    title: 'Insulation',
+    text:
+      'Spray Foam, Blown-in Insulation, or Batt Insulation.',
+    statusText: 'In Progress',
+  },
+  {
+    title: 'Framing',
+    text:
+      'Balloon Framing , Sheathing , Roof, Stairs.',
+    statusText: 'In Progress',
+  },
+
+];
+
 const tasklisting = [
   {
     title: 'Identification of ponds to be treated',
@@ -68,14 +90,25 @@ const filterTask = [tasklisting[Math.floor(Math.random() * tasklisting.length)],
 const Updates = ({ project }) => (
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <Fragment>
-      {filterTask.map((c, index) => (
+      {project.name !== 'Aba Factory construction' ? filterTask.map((c, index) => (
         <IndUpdates
           key={index}
           text={c.text}
+          projectName={project.name}
           title={c.title}
           statusText={c.statusText}
         />
-      ))}
+      )) :
+        task2.map((c, index) => (
+          <IndUpdates
+            key={index}
+            projectName={project.name}
+            text={c.text}
+            title={c.title}
+            statusText={c.statusText}
+          />
+        ))
+      }
     </Fragment>
     {/* <TouchableOpacity
       style={{

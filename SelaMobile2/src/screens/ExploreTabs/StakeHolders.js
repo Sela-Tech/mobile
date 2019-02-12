@@ -57,9 +57,10 @@ const StakeHolders = ({ project, navigation }) => (
                     userId={c.user.information._id}
                     userDetails={c}
                     // imgSource={{ uri: photoLink }}
-                    imgSource={require('../../../assets/man1.png')}
-                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                    companyName={c.user.information.organization.name}
+                    imgSource={require('../../../assets/logo_pink.png')}
+                    userName={`Sela`}
+                    // userName={`${project.owner.firstName} ${project.owner.lastName}`}
+                    companyName={`Sela`}
                   />
                 );
               })}
@@ -89,11 +90,12 @@ const StakeHolders = ({ project, navigation }) => (
                   <UserProfile
                     key={index}
                     userId={c.user.information._id}
-                    imgSource={require('../../../assets/man1.png')}
+                    imgSource={project.name !== 'Ogoni clean up' ? require('../../../assets/releaf_logo.png') : require('../../../assets/sustainability_international_logo.png')}
                     userDetails={c}
                     // imgSource={{ uri: photoLink }}
                     userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                    companyName={firstLetterCapital(c.user.information.organization.name)}
+                    companyName={project.name === 'Ogoni clean up' ? 'Sustainability International' : 'Releaf Nigeria'}
+                  // companyName={firstLetterCapital(c.user.information.organization.name)}
                   />
                 );
               })}
@@ -126,9 +128,10 @@ const StakeHolders = ({ project, navigation }) => (
                     userId={c.user.information._id}
                     imgSource={require('../../../assets/man1.png')}
                     userDetails={c}
-                    // imgSource={{ uri: photoLink }}
-                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                    companyName={firstLetterCapital(c.user.information.organization.name)}
+                    userName={`Eracks`}
+                    companyName={`Admiral International`}
+                  // userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                  // companyName={firstLetterCapital(c.user.information.organization.name)}
                   />
                 );
               })}
@@ -159,7 +162,7 @@ const StakeHolders = ({ project, navigation }) => (
                     key={index}
                     userId={c.user.information._id}
                     userDetails={c}
-                    imgSource={{ uri: photoLink }}
+                    imgSource={require('../../../assets/man2.png')}
                     userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
                     companyName={c.user.information.organization.name}
                   />

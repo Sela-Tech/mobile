@@ -13,28 +13,39 @@ const renderItem = item => <EvalSubmission imgSource={item.item.source} markedSt
 
 const images = [
   {
-    source: require('../../../assets/oilspill.png'),
+    source: require('../../../assets/img/cleanup/cleanup_3.jpg'),
     id: 1,
   },
   {
-    source: require('../../../assets/road.png'),
+    source: require('../../../assets/img/cleanup/cleanup_2.jpg'),
     id: 2,
   },
   {
-    source: require('../../../assets/borehole.png'),
+    source: require('../../../assets/img/cleanup/cleanup_4.jpg'),
     id: 3,
-  },
-  {
-    source: require('../../../assets/road.png'),
-    id: 4,
-  },
-  {
-    source: require('../../../assets/borehole.png'),
-    id: 5,
   },
 ];
 
-const Updates = ({ title, statusText, text }) => (
+const factoryImages = [
+  {
+    source: require('../../../assets/img/cleanup/factory.jpg'),
+    id: 1,
+  },
+  {
+    source: require('../../../assets/img/cleanup/factory_1.jpeg'),
+    id: 2,
+  },
+  {
+    source: require('../../../assets/img/cleanup/factory_2.jpg'),
+    id: 3,
+  },
+  {
+    source: require('../../../assets/img/cleanup/factory_4.jpg'),
+    id: 4,
+  },
+];
+
+const Updates = ({ projectName, title, statusText, text }) => (
   <View style={{ flex: 1, marginBottom: 10 }}>
     <View style={{ flexDirection: 'row', paddingTop: 10, marginTop: 15, flex: 1 }}>
       <View style={{ flex: 2 }}>
@@ -67,7 +78,7 @@ const Updates = ({ title, statusText, text }) => (
       </View>
       <FlatList
         style={{ paddingTop: 10 }}
-        data={images}
+        data={projectName === 'Aba Factory construction' ? factoryImages : images}
         showsHorizontalScrollIndicator={false}
         keyExtractor={keyExtractor}
         horizontal
