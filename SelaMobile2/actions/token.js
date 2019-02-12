@@ -61,8 +61,11 @@ export const login = data => dispatch =>
         };
       }
       return {
-        status: resp && resp.response && resp.response.data && resp.response.data.success || false,
-        message: resp && resp.response && resp.response.data && resp.response.data.message || 'Authentication failed',
+        status:
+          (resp && resp.response && resp.response.data && resp.response.data.success) || false,
+        message:
+          (resp && resp.response && resp.response.data && resp.response.data.message) ||
+          'Authentication failed',
       };
     })
     .catch(err => {

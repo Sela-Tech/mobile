@@ -88,7 +88,6 @@ class ExploreProject extends Component {
       this.props.projects.projects &&
       this.props.projects.projects.projects;
 
-
     let theProject = allProjects.filter(c => c._id === projectId);
     theProject = theProject[0];
     if (loading) {
@@ -104,9 +103,11 @@ class ExploreProject extends Component {
           {notAvailaible ? (
             <Fragment>
               <View style={styles.flex4mb5}>
-                <View style={{
-                  flex: 1,
-                }}>
+                <View
+                  style={{
+                    flex: 1,
+                  }}
+                >
                   <Image
                     style={{
                       flex: 1,
@@ -116,12 +117,12 @@ class ExploreProject extends Component {
                     }}
                     // resizeMode="contain"
                     source={getDummyDisplayPicture(projectInfo && projectInfo.name)}
-                  // source={{
-                  //   uri:
-                  //     projectInfo['project-avatar'] === undefined
-                  //       ? 'https://placeimg.com/640/480/any'
-                  //       : projectInfo['project-avatar'],
-                  // }}
+                    // source={{
+                    //   uri:
+                    //     projectInfo['project-avatar'] === undefined
+                    //       ? 'https://placeimg.com/640/480/any'
+                    //       : projectInfo['project-avatar'],
+                    // }}
                   />
                 </View>
                 <View style={styles.imagePosition}>
@@ -148,17 +149,16 @@ class ExploreProject extends Component {
                   numberOfStakeholders={projectInfo.stakeholders.length}
                   raisedAmount={projectInfo.raised}
                   tags={projectInfo.tags}
-                // tags={[]}
+                  // tags={[]}
                 />
               </View>
               <View style={ExtStyle.flex6}>
-                <Navigator
-                  navigation={this.props.navigation} project={projectInfo} />
+                <Navigator navigation={this.props.navigation} project={projectInfo} />
               </View>
             </Fragment>
           ) : (
-              <View />
-            )}
+            <View />
+          )}
         </Fragment>
       </View>
     );

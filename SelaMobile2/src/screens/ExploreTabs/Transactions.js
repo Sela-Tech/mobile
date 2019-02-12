@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
 import NavigationService from '../../services/NavigationService';
-import CalendarBox from '../../components/Transactions/CalendarBox';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import SingleTrans from '../../components/Transactions/SingleTrans';
@@ -47,7 +46,6 @@ const Transactions = ({ project }) => {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-      {/* <CalendarBox /> */}
       <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
       <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
       <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
@@ -55,7 +53,9 @@ const Transactions = ({ project }) => {
       <View style={{ alignItems: 'center' }}>
         <View>
           <Button
-            fn={() => NavigationService.navigate('Invest', { name: project.name })} text="INVEST" />
+            fn={() => NavigationService.navigate('Invest', { name: project.name })}
+            text="INVEST"
+          />
         </View>
         <View style={{ marginTop: 10 }}>
           <Button

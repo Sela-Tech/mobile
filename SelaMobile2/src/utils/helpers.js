@@ -66,7 +66,6 @@ export const projectStatusTextColor = status => {
   }
 };
 
-
 const imageLocs = [
   require('../../assets/img/cleanup/cleanup_2.jpg'),
   require('../../assets/borehole.png'),
@@ -103,10 +102,6 @@ export const pictureRelatedToUser = name => {
       return require('../../assets/man1.png');
   }
 };
-
-
-
-
 
 export const tagsColor = tagsText => {
   switch (tagsText && tagsText.toUpperCase()) {
@@ -157,7 +152,6 @@ export const tagsColor = tagsText => {
   }
 };
 
-
 export const uploadImageToAWS = async (avatarSource, cred) => {
   try {
     const file = {
@@ -169,11 +163,9 @@ export const uploadImageToAWS = async (avatarSource, cred) => {
     if (resp === false) {
       return 'https://placeimg.com/200/200/people';
     }
-    else {
-      return resp.postResponse.location;
-    }
-  }
-  catch (err) {
+
+    return resp.postResponse.location;
+  } catch (err) {
     return 'https://placeimg.com/200/200/people';
   }
 };

@@ -40,10 +40,7 @@ class ProfileSettings extends Component {
       userType = 'Evaluation agent';
     }
     return (
-      <ScrollView 
-      stickyHeaderIndices={[0]}
-      contentContainerStyle={styles.container}
-      >
+      <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={styles.container}>
         <Header headerName="PROFILE" />
         <View style={styles.headerMargin}>
           <UserId

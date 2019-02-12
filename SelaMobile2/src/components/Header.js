@@ -33,68 +33,70 @@ const styles = StyleSheet.create({
   },
 });
 
-const HeaderB = ({ navigation, justBack, positionLeft, headerName, sideIconStatus, sideIconImage }) => (
+const HeaderB = ({
+  navigation,
+  justBack,
+  positionLeft,
+  headerName,
+  sideIconStatus,
+  sideIconImage,
+}) => (
   <Header style={styles.header} androidStatusBarColor="#E5E5E5">
     <Fragment>
-      {
-        justBack ?
-          (
-            <Fragment>
+      {justBack ? (
+        <Fragment>
+          <Left>
+            <Button
+              onPress={() => navigation.goBack()}
+              style={{ flexDirection: 'row' }}
+              transparent
+            >
+              <View>
+                <Image source={require('../../assets/ddep-blue-black.png')} />
+              </View>
+              <View style={styles.ml3}>
+                <Text style={{ color: '#201D41' }}> Back</Text>
+              </View>
+            </Button>
+          </Left>
+          <Body />
+          <Right />
+          {/* </Right> */}
+        </Fragment>
+      ) : (
+        <Fragment>
+          {positionLeft ? (
+            <View>
               <Left>
-                <Button
-                  onPress={() => navigation.goBack()}
-                  style={{ flexDirection: 'row' }}
-                  transparent>
-                  <View>
-                    <Image
-                      source={require('../../assets/ddep-blue-black.png')} />
-                  </View>
-                  <View style={styles.ml3}>
-                    <Text style={{ color: '#201D41' }}> Back</Text>
-                  </View>
-                </Button>
+                <Button light style={styles.button} onPress={() => console.log('k')} />
+                <Body style={styles.bodyStyle}>
+                  <Title style={styles.headerName}>{headerName}</Title>
+                </Body>
               </Left>
-              <Body />
-              <Right />
-              {/* </Right> */}
-            </Fragment>
+            </View>
           ) : (
             <Fragment>
-              {
-                positionLeft ? (
-                  <View>
-                    <Left>
-                      <Button light style={styles.button} onPress={() => console.log('k')} />
-                      <Body style={styles.bodyStyle}>
-                        <Title style={styles.headerName}>{headerName}</Title>
-                      </Body>
-                    </Left>
-                  </View>
-                ) : (
-                    <Fragment>
-                      <Left style={ExtStyle.flex1} />
-                      <Body style={styles.bodyStyle}>
-                        <Title style={styles.headerName}>{headerName}</Title>
-                      </Body>
+              <Left style={ExtStyle.flex1} />
+              <Body style={styles.bodyStyle}>
+                <Title style={styles.headerName}>{headerName}</Title>
+              </Body>
 
-                      <Right style={ExtStyle.flex1}>
-                        {sideIconStatus ? (
-                          <Button
-                            light
-                            style={styles.button}
-                            onPress={() => NavigationService.navigate('Notification')}
-                          >
-                            <Image resizeMode="cover" source={sideIconImage} />
-                          </Button>
-                        ) : null}
-                      </Right>
-                    </Fragment>
-                  )}
+              <Right style={ExtStyle.flex1}>
+                {sideIconStatus ? (
+                  <Button
+                    light
+                    style={styles.button}
+                    onPress={() => NavigationService.navigate('Notification')}
+                  >
+                    <Image resizeMode="cover" source={sideIconImage} />
+                  </Button>
+                ) : null}
+              </Right>
             </Fragment>
-          )
-      }
+          )}
+        </Fragment>
+      )}
     </Fragment>
-
   </Header>
 );
 

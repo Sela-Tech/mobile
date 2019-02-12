@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, KeyboardAvoidingView, ScrollView, AsyncStorage, Keyboard } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  KeyboardAvoidingView,
+  ScrollView,
+  AsyncStorage,
+  Keyboard,
+} from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
 import Text from '../components/Text';
@@ -90,12 +97,11 @@ class Login extends Component {
   };
 
   componentWillMount() {
-
     AsyncStorage.getItem('emailOrPhone')
       .then(emailOrPhone => {
         if (emailOrPhone) this.setState({ emailOrPhone });
       })
-      .catch(() => false)
+      .catch(() => false);
 
     this.keyboardDidShowListener = Keyboard.addListener('keyboardDidShow', e =>
       this.keyboardDidShow(e),
@@ -267,10 +273,7 @@ class Login extends Component {
                   fn={() => this.login()}
                 />
                 <View style={styles.otherBottomContainer}>
-                  <StandardText
-                    text={submitErrorMessage}
-                    style={styles.fs12}
-                  />
+                  <StandardText text={submitErrorMessage} style={styles.fs12} />
                 </View>
               </View>
             </View>

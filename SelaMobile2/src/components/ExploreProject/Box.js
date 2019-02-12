@@ -51,12 +51,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const fundedStatus = [
-  '60%',
-  '40%',
-  '20%',
-  '85%',
-];
+const fundedStatus = ['60%', '40%', '20%', '85%'];
 
 const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) => (
   <TouchableOpacity onPress={() => fn()} style={styles.container}>
@@ -71,7 +66,13 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
           <Image source={require('../../../assets/money.png')} />
         </View>
         <View>
-          <Text style={{ color: WHITE }}> {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded </Text>
+          <Text style={{ color: WHITE }}>
+            {' '}
+            {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]}
+{' '}
+funded
+{' '}
+          </Text>
         </View>
       </View>
     </View>
@@ -94,7 +95,9 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
           </View>
         </View>
         <View style={{ paddingLeft: isAndroid ? '1%' : 2 }}>
-          <Text style={[styles.fonts,{ fontWeight: '300', color: projectStatusTextColor(thirdText) }]}>
+          <Text
+            style={[styles.fonts, { fontWeight: '300', color: projectStatusTextColor(thirdText) }]}
+          >
             {thirdText}
           </Text>
         </View>
@@ -103,7 +106,11 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
         <Text style={{ fontSize: 18, fontWeight: '400', color: '#201D41' }}>{title}</Text>
       </View>
       <View style={{ paddingVertical: 5, flex: 1, justifyContent: 'center' }}>
-        <Text style={{ fontSize: 15, fontWeight: '600' }}> {cost === '' ? '$200000' : `$${cost}`} </Text>
+        <Text style={{ fontSize: 15, fontWeight: '600' }}>
+          {' '}
+          {cost === '' ? '$200000' : `$${cost}`}
+{' '}
+        </Text>
       </View>
       <View
         style={{
@@ -114,35 +121,20 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
         }}
       >
         <Fragment>
-          {
-            tags.length === 0 ? (
-              <View
-                style={{ marginLeft: 3 }}>
-                <Tag
-                  text="Clean Water"
-                  viewColor={tagsColor('Clean Water')}
-                  textColor={WHITE}
-                />
-              </View>
-            ) :
-              (
-                <View style={{ flexDirection: 'row', flex: 2 }}>
-                  {
-                    tags.slice(0, 2).map((c, index) => (
-                      <View
-                        key={index}
-                        style={{ marginLeft: 3 }}>
-                        <Tag
-                          text={c}
-                          viewColor={tagsColor(c)}
-                          textColor={WHITE}
-                        />
-                      </View>
-                    ))
-                  }
+          {tags.length === 0 ? (
+            <View style={{ marginLeft: 3 }}>
+              <Tag text="Clean Water" viewColor={tagsColor('Clean Water')} textColor={WHITE} />
+            </View>
+          ) : (
+            <View style={{ flexDirection: 'row', flex: 2 }}>
+              {tags.slice(0, 2).map((c, index) => (
+                <View
+key={index} style={{ marginLeft: 3 }}>
+                  <Tag text={c} viewColor={tagsColor(c)} textColor={WHITE} />
                 </View>
-              )
-          }
+              ))}
+            </View>
+          )}
         </Fragment>
         <TouchableOpacity
           style={{
@@ -151,7 +143,11 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
             justifyContent: 'center',
           }}
         >
-          <Image source={require('../../../assets/badge.png') || require('../../../assets/badge-white.png')} />
+          <Image
+            source={
+              require('../../../assets/badge.png') || require('../../../assets/badge-white.png')
+            }
+          />
         </TouchableOpacity>
       </View>
     </View>

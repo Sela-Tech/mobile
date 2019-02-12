@@ -139,8 +139,6 @@ const styles = StyleSheet.create({
 //   })
 // }
 
-
-
 // const randomColor = () => ('#' + (Math.random() * 0xFFFFFF << 0).toString(16) + '000000').slice(0, 7)
 
 // const pieData = datas
@@ -150,7 +148,6 @@ const styles = StyleSheet.create({
 //     svg: { fill: randomColor() },
 //     key: `pie-${index}`,
 //   }))
-
 
 // // const Labels = ({ slices, height, width }) => {
 // //   return slices.map((slice, index) => {
@@ -184,7 +181,6 @@ const styles = StyleSheet.create({
 
 // let totalAmount = totalClicks(dataPie, 'amount');
 
-
 // const Box = ({ upText, secondTextLeft, secondTextRight, lastText }) => (
 
 const fill = '#F2994A';
@@ -197,7 +193,7 @@ export default class Box extends Component {
     this.state = {
       selectedSlice: {
         label: '',
-        value: 0
+        value: 0,
       },
       labelWidth: 0,
       legend: {
@@ -205,52 +201,53 @@ export default class Box extends Component {
         textSize: 10,
         form: 'CIRCLE',
 
-        horizontalAlignment: "RIGHT",
-        verticalAlignment: "CENTER",
-        orientation: "VERTICAL",
-        wordWrapEnabled: true
+        horizontalAlignment: 'RIGHT',
+        verticalAlignment: 'CENTER',
+        orientation: 'VERTICAL',
+        wordWrapEnabled: true,
       },
       data: {
-        dataSets: [{
-          values: [
-            { value: 45, label: 'Evaluation Teams' },
-            { value: 21, label: 'Contractor' },
-            { value: 21, label: 'Supplies' }
-          ],
-          label: 'Pie dataset',
-          config: {
-            colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C')],
-            valueTextSize: 9,
-            valueTextColor: processColor('green'),
-            sliceSpace: 5,
-            selectionShift: 13,
-            // xValuePosition: "OUTSIDE_SLICE",
-            // yValuePosition: "OUTSIDE_SLICE",
-            valueFormatter: "#.#'%'",
-            valueLineColor: processColor('green'),
-            valueLinePart1Length: 0.5
-          }
-        }],
+        dataSets: [
+          {
+            values: [
+              { value: 45, label: 'Evaluation Teams' },
+              { value: 21, label: 'Contractor' },
+              { value: 21, label: 'Supplies' },
+            ],
+            label: 'Pie dataset',
+            config: {
+              colors: [processColor('#C0FF8C'), processColor('#FFF78C'), processColor('#FFD08C')],
+              valueTextSize: 9,
+              valueTextColor: processColor('green'),
+              sliceSpace: 5,
+              selectionShift: 13,
+              // xValuePosition: "OUTSIDE_SLICE",
+              // yValuePosition: "OUTSIDE_SLICE",
+              valueFormatter: "#.#'%'",
+              valueLineColor: processColor('green'),
+              valueLinePart1Length: 0.5,
+            },
+          },
+        ],
       },
       highlights: [{ x: 2 }],
       description: {
         text: 'Monthly spend by category',
         textSize: 15,
         textColor: processColor('darkgray'),
-
-      }
+      },
     };
   }
 
   handleSelect(event) {
-    let entry = event.nativeEvent
+    const entry = event.nativeEvent;
     if (entry == null) {
-      this.setState({ ...this.state, selectedEntry: null })
+      this.setState({ ...this.state, selectedEntry: null });
     } else {
-      this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) })
+      this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) });
     }
 
-    console.log(event.nativeEvent)
+    console.log(event.nativeEvent);
   }
 
   render() {
@@ -271,13 +268,14 @@ export default class Box extends Component {
     // });
     // console.log('data', data)
     // const deviceWidth = Dimensions.get('window').width
-    if (upText === "Tasks Completed") {
+    if (upText === 'Tasks Completed') {
       return (
         <View style={styles.container}>
           <Image
             style={{
               flex: 1,
-              width: undefined, height: undefined,
+              width: undefined,
+              height: undefined,
               // flex: 1,
               // width: null,
               // height: null,
@@ -288,14 +286,16 @@ export default class Box extends Component {
             source={require('../../../../assets/charts/task.png')}
           />
         </View>
-      )
+      );
     }
-    else if (upText === "Progress") {
+    if (upText === 'Progress') {
       return (
         <View style={styles.container}>
           <Image
             style={{
-              flex: 1, width: undefined, height: undefined
+              flex: 1,
+              width: undefined,
+              height: undefined,
               // flex: 1,
               // width: null,
               // height: null,
@@ -305,14 +305,16 @@ export default class Box extends Component {
             source={require('../../../../assets/charts/progress.png')}
           />
         </View>
-      )
+      );
     }
-    else if (upText === "Total funds spent") {
+    if (upText === 'Total funds spent') {
       return (
         <View style={styles.container}>
           <Image
             style={{
-              flex: 1, width: undefined, height: undefined
+              flex: 1,
+              width: undefined,
+              height: undefined,
               // flex: 1,
               // width: null,
               // height: null,
@@ -322,31 +324,33 @@ export default class Box extends Component {
             source={require('../../../../assets/charts/pie_chart.png')}
           />
         </View>
-      )
+      );
     }
-    else {
-      return (
-        <View style={styles.container}>
-          <Image
-            style={{
-              flex: 1, width: undefined, height: undefined
-              // flex: 1,
-              // width: null,
-              // height: null,
-              // resizeMode: 'contain',
-            }}
-            // source={require('../../../../assets/charts/Bar_Chart.png')}
-            source={require('../../../../assets/charts/Bar_Chart.png')}
-          />
-        </View>
-      )
-    }
+
+    return (
+      <View style={styles.container}>
+        <Image
+          style={{
+            flex: 1,
+            width: undefined,
+            height: undefined,
+            // flex: 1,
+            // width: null,
+            // height: null,
+            // resizeMode: 'contain',
+          }}
+          // source={require('../../../../assets/charts/Bar_Chart.png')}
+          source={require('../../../../assets/charts/Bar_Chart.png')}
+        />
+      </View>
+    );
   }
 }
 
 // );
 
-{/* <PieChart
+{
+  /* <PieChart
   style={{ height: 200 }}
   valueAccessor={({ item }) => item.amount}
   data={dataPie}
@@ -354,7 +358,8 @@ export default class Box extends Component {
   outerRadius={'95%'}
 >
   <Labels />
-</PieChart> */}
+</PieChart> */
+}
 
 Box.defaultProps = {};
 
@@ -362,10 +367,8 @@ Box.propTypes = {};
 
 // export default Box;
 
-
-
-
-{/* <PieChart
+{
+  /* <PieChart
   style={styles.chart}
   logEnabled={true}
   chartBackgroundColor={processColor('#FFFFFF')}
@@ -389,11 +392,11 @@ Box.propTypes = {};
   transparentCircleColor={processColor('#f0f0f088')}
   maxAngle={350}
   onChange={(event) => console.log(event.nativeEvent)}
-/> */}
+/> */
+}
 
-
-
-{/* <View>
+{
+  /* <View>
   <PieChart
     style={{ height: 200 }}
     outerRadius={'80%'}
@@ -412,9 +415,8 @@ Box.propTypes = {};
     }}>
     {value}
   </Text>
-</View> */}
-
-
+</View> */
+}
 
 // <View style={styles.viewStyle2}>
 //   <TextN style={styles.text}>

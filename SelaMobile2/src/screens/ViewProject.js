@@ -54,14 +54,12 @@ export default class ViewProject extends Component {
   render() {
     const { loading, projects } = this.state;
     return (
-      <ScrollView style={ExtStyle.flex1}
-      stickyHeaderIndices={[0]}
-       contentContainerStyle={styles.container}>
-        <Header
-          justBack
-          navigation={this.props.navigation}
-          headerName="PROFILE"
-        />
+      <ScrollView
+        style={ExtStyle.flex1}
+        stickyHeaderIndices={[0]}
+        contentContainerStyle={styles.container}
+      >
+        <Header justBack navigation={this.props.navigation} headerName="PROFILE" />
         <View style={styles.pv20}>
           <Fragment>
             {loading ? (
@@ -69,30 +67,30 @@ export default class ViewProject extends Component {
                 <Spinner />
               </View>
             ) : (
-                <View style={styles.subContainer}>
-                  {projects.length === 0 ? (
-                    <View style={ExtStyle.center}>
-                      <Text style={ExtStyle.ft15}> No project at the moment </Text>
+              <View style={styles.subContainer}>
+                {projects.length === 0 ? (
+                  <View style={ExtStyle.center}>
+                    <Text style={ExtStyle.ft15}> No project at the moment </Text>
+                  </View>
+                ) : (
+                  projects.map(c => (
+                    <View key={c._id}>
+                      <Box
+                        fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
+                        img={getDummyDisplayPicture(c && c.name)}
+                        // img={{ uri: 'https://placeimg.com/640/480/any' }}
+                        firstText={c.location.name}
+                        secondText={c.name}
+                        thirdText={c.status}
+                        title={c.description}
+                        cost={c.budget}
+                        tags={c.tags}
+                      />
                     </View>
-                  ) : (
-                      projects.map(c => (
-                        <View key={c._id}>
-                          <Box
-                            fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
-                            img={getDummyDisplayPicture(c && c.name)}
-                            // img={{ uri: 'https://placeimg.com/640/480/any' }}
-                            firstText={c.location.name}
-                            secondText={c.name}
-                            thirdText={c.status}
-                            title={c.description}
-                            cost={c.budget}
-                            tags={c.tags}
-                          />
-                        </View>
-                      ))
-                    )}
-                </View>
-              )}
+                  ))
+                )}
+              </View>
+            )}
           </Fragment>
         </View>
       </ScrollView>

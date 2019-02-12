@@ -38,7 +38,7 @@ const BackButton = ({ fn }) => (
 );
 
 BackButton.defaultProps = {
-  fn: () => { },
+  fn: () => {},
 };
 
 BackButton.propTypes = {

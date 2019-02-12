@@ -27,23 +27,19 @@ const styles = StyleSheet.create({
 const task2 = [
   {
     title: 'Roofing',
-    text:
-      'Roofing of factory',
+    text: 'Roofing of factory',
     statusText: 'In Progress',
   },
   {
     title: 'Insulation',
-    text:
-      'Spray Foam, Blown-in Insulation, or Batt Insulation.',
+    text: 'Spray Foam, Blown-in Insulation, or Batt Insulation.',
     statusText: 'In Progress',
   },
   {
     title: 'Framing',
-    text:
-      'Balloon Framing , Sheathing , Roof, Stairs.',
+    text: 'Balloon Framing , Sheathing , Roof, Stairs.',
     statusText: 'In Progress',
   },
-
 ];
 
 const tasklisting = [
@@ -67,48 +63,45 @@ const tasklisting = [
   },
   {
     title: 'Site preparation',
-    text:
-      'Site preparation and Collection of baseline data',
+    text: 'Site preparation and Collection of baseline data',
     statusText: 'In Progress',
   },
   {
     title: 'Biotechnology application 1',
-    text:
-      'Application of first part of biotechnology',
+    text: 'Application of first part of biotechnology',
     statusText: 'Completed',
   },
   {
     title: 'Biotechnology application 1',
-    text:
-      'Application of second part of biotechnology',
+    text: 'Application of second part of biotechnology',
     statusText: 'Completed',
   },
 ];
 
-const filterTask = [tasklisting[Math.floor(Math.random() * tasklisting.length)], tasklisting[2]]
+const filterTask = [tasklisting[Math.floor(Math.random() * tasklisting.length)], tasklisting[2]];
 
 const Updates = ({ project }) => (
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <Fragment>
-      {project.name !== 'Aba Factory construction' ? filterTask.map((c, index) => (
-        <IndUpdates
-          key={index}
-          text={c.text}
-          projectName={project.name}
-          title={c.title}
-          statusText={c.statusText}
-        />
-      )) :
-        task2.map((c, index) => (
+      {project.name !== 'Aba Factory construction'
+        ? filterTask.map((c, index) => (
           <IndUpdates
-            key={index}
-            projectName={project.name}
-            text={c.text}
-            title={c.title}
-            statusText={c.statusText}
-          />
-        ))
-      }
+              key={index}
+              text={c.text}
+              projectName={project.name}
+              title={c.title}
+              statusText={c.statusText}
+            />
+          ))
+        : task2.map((c, index) => (
+          <IndUpdates
+              key={index}
+              projectName={project.name}
+              text={c.text}
+              title={c.title}
+              statusText={c.statusText}
+            />
+          ))}
     </Fragment>
     {/* <TouchableOpacity
       style={{
@@ -126,7 +119,9 @@ const Updates = ({ project }) => (
     </TouchableOpacity> */}
     <View style={{ paddingTop: 10, alignItems: 'center' }}>
       <Button
-        fn={() => NavigationService.navigate('Invest', { name: project.name })} text="INVEST" />
+        fn={() => NavigationService.navigate('Invest', { name: project.name })}
+        text="INVEST"
+      />
     </View>
   </ScrollView>
 );

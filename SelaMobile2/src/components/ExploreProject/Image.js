@@ -3,7 +3,6 @@ import { ImageBackground, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import BackButton from '../BackButton';
 
-
 const styles = StyleSheet.create({
   container: {
     width: '100%',
@@ -16,10 +15,7 @@ const styles = StyleSheet.create({
 });
 
 const Image = ({ fn, imageSource }) => (
-  <ImageBackground
-    style={styles.container}
-    source={imageSource}
-  >
+  <ImageBackground style={styles.container} source={imageSource}>
     <View style={styles.upButton}>
       <BackButton fn={fn} />
     </View>

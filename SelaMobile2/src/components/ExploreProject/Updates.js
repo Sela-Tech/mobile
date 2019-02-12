@@ -52,17 +52,13 @@ const Updates = ({ projectName, title, statusText, text }) => (
         <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Status </Text>
       </View>
       <View style={{ flex: 1, marginRight: 5 }}>
-        <Tag
-          textColor={WHITE}
-          text={statusText}
-          viewColor={projectStatusTextColor(statusText)}
-        />
+        <Tag textColor={WHITE} text={statusText} viewColor={projectStatusTextColor(statusText)} />
       </View>
     </View>
     <View style={{ flex: 4, paddingTop: 3 }}>
       <View style={{ flexDirection: 'row' }}>
         <View style={{ alignItems: 'center' }}>
-          <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Task Name:  </Text>
+          <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Task Name: </Text>
         </View>
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
           <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>{title} </Text>

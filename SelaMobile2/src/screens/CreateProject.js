@@ -123,8 +123,7 @@ class CreateProject extends Component {
     });
   };
 
-  // upload image to the server
-  uploadImageAsync = async data => { };
+
 
   handleImagePicked = async pickerResult => {
     let uploadResponse;
@@ -244,8 +243,7 @@ class CreateProject extends Component {
       this.setState({ loading: false });
       if (resp.data.success === true) {
         this.props.navigation.navigate('Success');
-      }
-      else {
+      } else {
         this.dropdown.alertWithType('error', 'Error', resp.data.message);
       }
     } catch (err) {
@@ -255,7 +253,6 @@ class CreateProject extends Component {
   };
 
   onSelectedItemsChange = selectedItems => {
-
     this.setState({ selectedItems });
   };
 
@@ -264,7 +261,6 @@ class CreateProject extends Component {
   };
 
   selectDate = (val, day) => {
-
     if (day === 'Start Date') {
       this.setState({
         startDate: val.dateString,
@@ -652,12 +648,9 @@ class CreateProject extends Component {
       </KeyboardAwareScrollView>
     );
   }
-};
+}
 const mapStateToProps = state => ({
   credentials: state.credentials,
 });
 
-export default connect(
-  mapStateToProps,
-)(CreateProject);
-
+export default connect(mapStateToProps)(CreateProject);

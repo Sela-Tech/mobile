@@ -39,18 +39,26 @@ const styles = StyleSheet.create({
 });
 
 const tags = [
-  "No Poverty", "Zero Hunger",
-  "Health & Well-being", "Education",
-  "Gender Equality", "Water & Sanitation",
-  "Clean Energy", "Economic Growth",
-  "Infrastructure", "Reduced Inequality",
-  "Sustainable Cities", "Climate Action", "Life Below Water",
-  "Life on Land", "Responsible Consumption & Production"
+  'No Poverty',
+  'Zero Hunger',
+  'Health & Well-being',
+  'Education',
+  'Gender Equality',
+  'Water & Sanitation',
+  'Clean Energy',
+  'Economic Growth',
+  'Infrastructure',
+  'Reduced Inequality',
+  'Sustainable Cities',
+  'Climate Action',
+  'Life Below Water',
+  'Life on Land',
+  'Responsible Consumption & Production',
 ];
 
 const projectStatus = ['ON GOING', 'DORMANT', 'COMPLETED', 'PROPOSED', 'IN REVIEW'];
 
-const renderItem = (item) => (
+const renderItem = item => (
   <View style={{ marginBottom: 10, marginTop: 10 }}>
     <Box
       fn={() => NavigationService.navigate('ExploreProject', item.item._id)}
@@ -126,7 +134,7 @@ class ExploreProject extends Component {
             lng: results.longitude,
           },
         }),
-    )
+      )
       .catch(err => {
         this.setState({
           searchResult: false,
@@ -248,21 +256,21 @@ class ExploreProject extends Component {
               {loading === true ? (
                 <Spinner />
               ) : (
-                  <Fragment>
-                    {projects && projects.length === 0 ? (
-                      <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
-                        <Text style={{ fontSize: 15 }}> No project at the moment </Text>
-                      </View>
-                    ) : (
-                        <FlatList
-                          data={projects}
-                          renderItem={renderItem}
-                          style={{ flex: 1 }}
-                          keyExtractor={keyExtractor}
-                        />
-                      )}
-                  </Fragment>
-                )}
+                <Fragment>
+                  {projects && projects.length === 0 ? (
+                    <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
+                      <Text style={{ fontSize: 15 }}> No project at the moment </Text>
+                    </View>
+                  ) : (
+                    <FlatList
+                      data={projects}
+                      renderItem={renderItem}
+                      style={{ flex: 1 }}
+                      keyExtractor={keyExtractor}
+                    />
+                  )}
+                </Fragment>
+              )}
             </View>
           </View>
         </View>
@@ -275,14 +283,10 @@ const mapStateToProps = state => ({
   projects: state.projects,
 });
 
+export default connect(mapStateToProps)(ExploreProject);
 
-export default connect(
-  mapStateToProps,
-)(ExploreProject);
-
-
-
-{/* projects && projects.map((c, index) => (
+{
+  /* projects && projects.map((c, index) => (
                           <View key={index} style={{ marginBottom: 10, marginTop: 10 }}>
                             <Box
                               fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
@@ -296,4 +300,5 @@ export default connect(
                               tags={c.tags}
                             />
                           </View>
-                        )) */}
+                        )) */
+}

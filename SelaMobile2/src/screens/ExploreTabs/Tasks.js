@@ -68,10 +68,7 @@ const Tasks = ({ project }) => {
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
       {tasklisting.map((c, index) => (
         <Task
-          key={index}
-          text={c.text}
-          title={c.title}
-          statusText={c.statusText} />
+key={index} text={c.text} title={c.title} statusText={c.statusText} />
       ))}
       <View style={{ paddingTop: 10, alignItems: 'center' }}>
         <Button text="Submit Updates" />

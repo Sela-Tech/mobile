@@ -43,13 +43,12 @@ export const getContractorProject = () => dispatch =>
       dispatch(projectIsLoadingError(err.message || 'ERROR'));
     });
 
-
 export const getAllUserProjects = (type, pageNo, limit) => dispatch =>
   API.dashboardRequest(type, pageNo, limit)
     .then(resp => {
-      console.log('...', resp.data)
+      console.log('...', resp.data);
     })
     .catch(err => {
       dispatch(projectIsLoading(false));
       dispatch(projectIsLoadingError(err.message || 'ERROR'));
-    })
+    });

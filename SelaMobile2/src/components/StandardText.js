@@ -37,7 +37,12 @@ StandardText.propTypes = {
   onPress: PropTypes.func,
   // viewStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
   // textStyle: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object]),
-  style: PropTypes.oneOfType([PropTypes.array, PropTypes.string, PropTypes.object, PropTypes.number]),
+  style: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.string,
+    PropTypes.object,
+    PropTypes.number,
+  ]),
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
 };
 export default StandardText;

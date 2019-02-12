@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
 
 const Tag = ({ text, viewColor, textColor, style }) => (
   <View style={[styles.container, style, { backgroundColor: viewColor }]}>
-    <Text style={[styles.text, { color: textColor }]}>
-      {' '}
-      {text}
-    </Text>
+    <Text style={[styles.text, { color: textColor }]}> 
+{' '}
+{text}
+</Text>
   </View>
 );
 

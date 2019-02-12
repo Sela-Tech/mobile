@@ -35,7 +35,6 @@ const styles = StyleSheet.create({
   },
   companyNameStyle: {
     fontWeight: '400',
-
   },
   userNameStyle: {
     height: 80,
@@ -63,9 +62,9 @@ const UserProfile = ({ imgSource, userName, companyName, userId }) => (
       <View style={styles.userNameStyle}>
         <View>
           <B>
-            {userName}
-            {' '}
-          </B>
+{userName}
+{' '}
+ </B>
         </View>
         <View style={styles.starImageStyle}>
           <Image source={require('../../assets/star.png')} />

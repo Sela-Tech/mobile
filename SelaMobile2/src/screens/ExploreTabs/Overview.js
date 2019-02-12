@@ -59,6 +59,7 @@ class Overview extends Component {
   state = {
     filterBy: 1,
   };
+
   render() {
     const { filterBy } = this.state;
     const { project } = this.props;
@@ -92,18 +93,18 @@ class Overview extends Component {
         <Box
           upText="Tasks Completed"
           secondTextLeft="13"
-        //  secondTextRight="+6.9%"
+          //  secondTextRight="+6.9%"
         />
         <Box
           upText="Progress"
           secondTextLeft="70%"
-        // secondTextRight="+12.4%"
+          // secondTextRight="+12.4%"
         />
 
         <Box
           upText="Total funds spent"
           secondTextLeft="$1595"
-        //  secondTextRight="+3.2%"
+          //  secondTextRight="+3.2%"
         />
 
         <Box
@@ -113,8 +114,8 @@ class Overview extends Component {
           lastText="Total budget"
         />
       </ScrollView>
-    )
+    );
   }
-};
+}
 
 export default Overview;

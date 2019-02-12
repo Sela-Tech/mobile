@@ -33,10 +33,12 @@ export default class EvalSubmission extends Component {
     if (expand) {
       return (
         <Modal isVisible>
-          <View style={{
-            flex: 1,
-            borderRadius: 10,
-          }} />
+          <View
+            style={{
+              flex: 1,
+              borderRadius: 10,
+            }}
+          />
           <BigImage fn={() => this.displayPicture()} imageSource={imgSource} />
         </Modal>
       );

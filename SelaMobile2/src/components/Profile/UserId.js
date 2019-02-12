@@ -30,7 +30,7 @@ const options = {
 // export default
 class UserId extends Component {
   state = {
-    avatarSource: pictureRelatedToUser(this.props.userName)
+    avatarSource: pictureRelatedToUser(this.props.userName),
   };
 
   selectImage = async () => {
@@ -56,15 +56,14 @@ class UserId extends Component {
     return (
       <View style={styles.container}>
         {settings ? (
-          <TouchableOpacity
-            onPress={() => this.selectImage()} style={styles.imgStyle}>
+          <TouchableOpacity onPress={() => this.selectImage()} style={styles.imgStyle}>
             <Image source={avatarSource} style={styles.imgStyle} />
           </TouchableOpacity>
         ) : (
-            <View style={styles.imgStyle}>
-              <Image source={avatarSource} style={styles.imgStyle} />
-            </View>
-          )}
+          <View style={styles.imgStyle}>
+            <Image source={avatarSource} style={styles.imgStyle} />
+          </View>
+        )}
 
         <View style={{ alignItems: 'center', paddingTop: 5 }}>
           <View style={{ alignItems: 'center' }}>
@@ -80,8 +79,7 @@ class UserId extends Component {
       </View>
     );
   }
-};
-
+}
 
 const mapStateToProps = state => ({
   userInfo: state.userInfo,

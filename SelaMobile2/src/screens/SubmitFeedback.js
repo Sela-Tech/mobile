@@ -372,21 +372,21 @@ export default class SubmitFeedback extends Component {
             </View>
           </View>
         ) : (
-            <View style={styles.topBottom}>
-              <View style={styles.floatingButton}>
-                <TouchableOpacity
-                  onPress={() => this.snap()}
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Image source={require('../../assets/img/camera.png')} />
-                </TouchableOpacity>
-              </View>
+          <View style={styles.topBottom}>
+            <View style={styles.floatingButton}>
+              <TouchableOpacity
+                onPress={() => this.snap()}
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Image source={require('../../assets/img/camera.png')} />
+              </TouchableOpacity>
             </View>
-          )}
+          </View>
+        )}
       </Fragment>
     );
   };

@@ -1,4 +1,4 @@
-/*eslint no-console: ["error", { allow: ["log"] }] */
+/* eslint no-console: ["error", { allow: ["log"] }] */
 
 import Axios from 'axios';
 import { RNS3 } from 'react-native-aws3';
@@ -203,9 +203,7 @@ export const dashboardRequest = async (type, pageNo, limit) => {
   }
 };
 
-export const getAllSavedProject = async () => {
-  return true;
-};
+export const getAllSavedProject = async () => true;
 
 export const saveProject = async projectId => {
   try {
@@ -214,7 +212,6 @@ export const saveProject = async projectId => {
     return err;
   }
 };
-
 
 export const getAllfeaturedProjects = async query => {
   try {
@@ -228,4 +225,3 @@ export const getAllfeaturedProjects = async query => {
     return err;
   }
 };
-

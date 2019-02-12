@@ -39,9 +39,11 @@ const styles = StyleSheet.create({
 
 class Header extends Component {
   state = {
-    bookmarkStatus: false
+    bookmarkStatus: false,
   };
-  changeBookmark = () => this.setState(prevState => ({ bookmarkStatus: !prevState.bookmarkStatus }))
+
+  changeBookmark = () =>
+    this.setState(prevState => ({ bookmarkStatus: !prevState.bookmarkStatus }));
 
   render() {
     const {
@@ -61,11 +63,10 @@ class Header extends Component {
             <View style={extStyle.row}>
               <View>
                 <Text style={styles.verySmallText}>
-                  {projectLocationText.length > 35 ?
-                    projectLocationText.slice(0, 32).concat('...')
-                    : projectLocationText
-                  }
-                  {' '}
+                  {projectLocationText.length > 35
+                    ? projectLocationText.slice(0, 32).concat('...')
+                    : projectLocationText}
+{' '}
                 </Text>
               </View>
               <View style={{ justifyContent: 'center' }}>
@@ -73,16 +74,23 @@ class Header extends Component {
               </View>
             </View>
             <View>
-              <Text style={[styles.verySmallText, { color: projectStatusTextColor(projectStatusText) }]}>
+              <Text
+                style={[styles.verySmallText, { color: projectStatusTextColor(projectStatusText) }]}
+              >
                 {projectStatusText}
               </Text>
             </View>
           </View>
           <View style={extStyle.flex1}>
-            <TouchableOpacity
-              onPress={() => this.changeBookmark()}>
-              <Image style={extStyle.flexEnd} source={
-                bookmarkStatus ? require('../../../assets/badge.png') : require('../../../assets/badge-white.png')} />
+            <TouchableOpacity onPress={() => this.changeBookmark()}>
+              <Image
+                style={extStyle.flexEnd}
+                source={
+                  bookmarkStatus
+                    ? require('../../../assets/badge.png')
+                    : require('../../../assets/badge-white.png')
+                }
+              />
             </TouchableOpacity>
           </View>
         </View>
@@ -116,39 +124,27 @@ class Header extends Component {
           </View>
         </View>
         <Fragment>
-          {
-            tags.length === 0 ?
-              (
-                <View style={{ marginTop: 2, flex: 2, flexDirection: 'row' }}>
-                  <View
-                    style={{ marginLeft: 3, marginTop: 2 }}>
-                    <Tag
-                      text="Clean Water"
-                      viewColor={tagsColor('Clean Water')}
-                      textColor={WHITE}
-                    />
-                  </View>
+          {tags.length === 0 ? (
+            <View style={{ marginTop: 2, flex: 2, flexDirection: 'row' }}>
+              <View style={{ marginLeft: 3, marginTop: 2 }}>
+                <Tag text="Clean Water" viewColor={tagsColor('Clean Water')} textColor={WHITE} />
+              </View>
+            </View>
+          ) : (
+            <View style={{ marginTop: 2, flex: 2, flexDirection: 'row' }}>
+              {tags.slice(0, 2).map((c, index) => (
+                <View
+key={index} style={{ marginLeft: 3 }}>
+                  <Tag
+                    // style={{ paddingLeft: 10 }}
+                    text={c}
+                    viewColor={tagsColor(c)}
+                    textColor={WHITE}
+                  />
                 </View>
-              ) :
-              (
-                <View style={{ marginTop: 2, flex: 2, flexDirection: 'row' }}>
-                  {
-                    tags.slice(0, 2).map((c, index) => (
-                      <View
-                        key={index}
-                        style={{ marginLeft: 3 }}>
-                        <Tag
-                          // style={{ paddingLeft: 10 }}
-                          text={c}
-                          viewColor={tagsColor(c)}
-                          textColor={WHITE}
-                        />
-                      </View>
-                    ))
-                  }
-                </View>
-              )
-          }
+              ))}
+            </View>
+          )}
         </Fragment>
       </View>
     );
@@ -161,15 +157,20 @@ Header.propTypes = {};
 
 export default Header;
 
-{/* <Tag
+{
+  /* <Tag
                           style={{}}
                           text={c}
                           viewColor="#fda0a0"
                           textColor="#eb5757"
-                        /> */}
+                        /> */
+}
 
-
-{/* <View
+{
+  /* <View
                         key={index}
-                        style={{ marginLeft: 3 }}> */}
-{/* </View> */ }
+                        style={{ marginLeft: 3 }}> */
+}
+{
+  /* </View> */
+}

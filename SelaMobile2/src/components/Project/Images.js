@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, FlatList } from 'react-native';
-import { Avatar } from 'react-native-gifted-chat';
 import Box from './Box';
 
 const keyExtractor = (item, index) => index.toString();

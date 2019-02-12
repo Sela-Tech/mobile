@@ -8,7 +8,6 @@ import { YELLOW } from './utils/constants';
 import { isAndroid } from './utils/helpers';
 import Explore from './screens/ProjectListing';
 
-
 export default createBottomTabNavigator(
   {
     Project,
