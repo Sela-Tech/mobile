@@ -61,7 +61,10 @@ class Header extends Component {
             <View style={extStyle.row}>
               <View>
                 <Text style={styles.verySmallText}>
-                  {projectLocationText}
+                  {projectLocationText.length > 35 ?
+                    projectLocationText.slice(0, 32).concat('...')
+                    : projectLocationText
+                  }
                   {' '}
                 </Text>
               </View>

@@ -5,6 +5,7 @@ import ImagePicker from 'react-native-image-picker';
 import Text from '../Text';
 import Tag from '../Tag';
 import { YELLOW, WHITE } from '../../utils/constants';
+import { pictureRelatedToUser } from '../../utils/helpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -29,7 +30,7 @@ const options = {
 // export default
 class UserId extends Component {
   state = {
-    avatarSource: require('../../../assets/img/man.png'),
+    avatarSource: pictureRelatedToUser(this.props.userName)
   };
 
   selectImage = async () => {
@@ -52,7 +53,6 @@ class UserId extends Component {
   render() {
     const { settings, userType, userName, verificationStatus } = this.props;
     const { avatarSource } = this.state;
-
     return (
       <View style={styles.container}>
         {settings ? (

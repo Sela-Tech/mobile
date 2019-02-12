@@ -54,7 +54,8 @@ const StakeHolders = ({ project, navigation }) => (
                 return (
                   <UserProfile
                     key={index}
-                    userId={c.user.information._id}
+                    userId={'Sela'}
+                    // userId={c.user.information._id}
                     userDetails={c}
                     // imgSource={{ uri: photoLink }}
                     imgSource={require('../../../assets/logo_pink.png')}
@@ -90,11 +91,11 @@ const StakeHolders = ({ project, navigation }) => (
                   <UserProfile
                     key={index}
                     userId={c.user.information._id}
-                    imgSource={project.name !== 'Ogoni clean up' ? require('../../../assets/releaf_logo.png') : require('../../../assets/sustainability_international_logo.png')}
+                    imgSource={project.name !== 'Ogoni Oil Clean up' ? require('../../../assets/releaf_logo.png') : require('../../../assets/sustainability_international_logo.png')}
                     userDetails={c}
                     // imgSource={{ uri: photoLink }}
                     userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                    companyName={project.name === 'Ogoni clean up' ? 'Sustainability International' : 'Releaf Nigeria'}
+                    companyName={project.name === 'Ogoni Oil Clean up' ? 'Sustainability International' : 'Releaf Nigeria'}
                   // companyName={firstLetterCapital(c.user.information.organization.name)}
                   />
                 );
@@ -125,7 +126,8 @@ const StakeHolders = ({ project, navigation }) => (
                 return (
                   <UserProfile
                     key={index}
-                    userId={c.user.information._id}
+                    userId={'Eracks'}
+                    // userId={c.user.information._id}
                     imgSource={require('../../../assets/man1.png')}
                     userDetails={c}
                     userName={`Eracks`}
@@ -160,11 +162,14 @@ const StakeHolders = ({ project, navigation }) => (
                 return (
                   <UserProfile
                     key={index}
-                    userId={c.user.information._id}
+                    // userId={c.user.information._id}
+                    userId={'Intuit'}
                     userDetails={c}
                     imgSource={require('../../../assets/man2.png')}
-                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                    companyName={c.user.information.organization.name}
+                    userName={`Dr Fidelia Nnandi`}
+                    companyName={`Intuit`}
+                  // userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                  // companyName={c.user.information.organization.name}
                   />
                 );
               })}

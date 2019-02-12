@@ -13,8 +13,37 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     borderWidth: 1,
     borderColor: '#F5F5F8',
-    width: width / 1.5,
+    width: width / 1.3,
     marginVertical: 12,
+  },
+  subContainer: {
+    flex: 1,
+    alignItems: 'center',
+    flexDirection: 'row',
+  },
+  imageStyle: {
+    height: width / 6,
+    width: width / 6,
+    borderRadius: width / 12,
+  },
+  starImageStyle: {
+    flexDirection: 'row',
+    marginTop: 5,
+  },
+  companyNameViewStyle: {
+    marginTop: 5,
+  },
+  companyNameStyle: {
+    fontWeight: '400',
+
+  },
+  userNameStyle: {
+    height: 80,
+    marginLeft: 20,
+    justifyContent: 'center',
+  },
+  pl10: {
+    paddingLeft: 10,
   },
 });
 
@@ -23,31 +52,27 @@ const UserProfile = ({ imgSource, userName, companyName, userId }) => (
     style={styles.container}
     onPress={() => NavigationService.navigate('UserProfile', userId)}
   >
-    <View style={{ flex: 1, alignItems: 'center', flexDirection: 'row' }}>
-      <View style={{ paddingLeft: 10 }}>
+    <View style={styles.subContainer}>
+      <View style={styles.pl10}>
         <Image
-          style={{
-            height: 50,
-            width: 50,
-            borderRadius: 25,
-          }}
+          style={styles.imageStyle}
           // resizeMode="contain"
           source={imgSource}
         />
       </View>
-      <View style={{ height: 80, marginLeft: 20, justifyContent: 'center' }}>
+      <View style={styles.userNameStyle}>
         <View>
           <B>
-{userName}
-{' '}
- </B>
+            {userName}
+            {' '}
+          </B>
         </View>
-        <View style={{ flexDirection: 'row', marginTop: 5 }}>
+        <View style={styles.starImageStyle}>
           <Image source={require('../../assets/star.png')} />
           <Text> 80 </Text>
         </View>
-        <View style={{ marginTop: 5 }}>
-          <Text>{companyName}</Text>
+        <View style={styles.companyNameViewStyle}>
+          <B style={styles.companyNameStyle}>{companyName}</B>
         </View>
       </View>
     </View>

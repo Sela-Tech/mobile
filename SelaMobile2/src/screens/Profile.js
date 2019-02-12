@@ -11,6 +11,7 @@ import Project from '../components/ExploreProject/Project';
 import UserId from '../components/Profile/UserId';
 import UserInfo from '../components/Profile/UserInfo';
 import Tag from '../components/Tag';
+import { tagsColor } from '../utils/helpers';
 
 const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -86,17 +87,88 @@ class Profile extends Component {
 
   async componentDidMount() {
     if (Object.keys(this.props.navigation.state).length !== 2) {
-      try {
-        const resp = await getUserDetails({ id: this.props.navigation.state.params });
+
+      const info = this.props.navigation.state.params;
+      if (info === 'Sela') {
         this.setState({
-          profileInfo: resp.data,
-          interests: resp.data.userInfo.areasOfInterest,
+          profileInfo: {
+            userInfo: {
+              isFunder: true,
+              isContractor: false,
+              // isEvaluator,
+              firstName: 'Sela',
+              lastName: '',
+              isVerified: true,
+              reputationScore: 5,
+              uploads: 2,
+            },
+            projects: [],
+          },
+          interests: [
+            'ZERO HUNGER', 'CLEAN WATER AND SANITATION'
+          ],
           loading: false,
           guestUser: true,
         });
-      } catch (err) {
-        this.setState({ error: err.message, loading: false });
       }
+      else if (info === 'Eracks') {
+        this.setState({
+          profileInfo: {
+            userInfo: {
+              isFunder: false,
+              isContractor: false,
+              isEvaluator: true,
+              firstName: 'Admiral ',
+              lastName: 'International',
+              isVerified: true,
+              reputationScore: 5,
+              uploads: 2,
+            },
+            projects: []
+          },
+          interests: [
+            'ZERO HUNGER', 'AFFORDABLE AND CLEAN ENERGY'
+          ],
+          loading: false,
+          guestUser: true,
+        });
+      }
+      else if (info === 'Intuit') {
+        this.setState({
+          profileInfo: {
+            userInfo: {
+              isFunder: true,
+              isContractor: false,
+              isEvaluator: false,
+              firstName: 'Dr Fidelia',
+              lastName: 'Nnandi',
+              isVerified: true,
+              reputationScore: 5,
+              uploads: 2,
+            },
+            projects: [1, 2],
+          },
+          interests: [
+            'ZERO HUNGER', 'AFFORDABLE AND CLEAN ENERGY'
+          ],
+          loading: false,
+          guestUser: true,
+        });
+      }
+      else {
+        try {
+          const resp = await getUserDetails({ id: this.props.navigation.state.params });
+          this.setState({
+            profileInfo: resp.data,
+            interests: resp.data.userInfo.areasOfInterest,
+            loading: false,
+            guestUser: true,
+          });
+        } catch (err) {
+          this.setState({ error: err.message, loading: false });
+        }
+      }
+
     } else {
       this.setState({ loading: false });
     }
@@ -133,9 +205,9 @@ class Profile extends Component {
     }
 
     return (
-      <ScrollView 
-      stickyHeaderIndices={[0]}
-      contentContainerStyle={styles.container}>
+      <ScrollView
+        stickyHeaderIndices={[0]}
+        contentContainerStyle={styles.container}>
         <Header
           justBack
           navigation={this.props.navigation}
@@ -196,7 +268,7 @@ class Profile extends Component {
                           <View style={styles.interestTag}>
                             {interests.map((c, index) => (
                               <View key={index} style={styles.interestSubContainer}>
-                                <Tag viewColor="#1ECD97" text={c} />
+                                <Tag viewColor={tagsColor(c)} text={c} />
                               </View>
                             ))}
                           </View>

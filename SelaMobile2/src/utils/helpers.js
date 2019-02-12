@@ -78,14 +78,35 @@ export const getDummyDisplayPicture = name => {
   switch (name) {
     case 'Bodo clean up':
       return require('../../assets/img/cleanup/grass.jpg');
-    case 'Ogoni land':
-      return require('../../assets/img/cleanup/cleanup_grass.jpg');
+    case 'Ogoni Oil Clean up':
+      return require('../../assets/img/cleanup/cleanup_3.jpg');
     case 'Aba Factory construction':
       return require('../../assets/img/cleanup/factory.jpg');
     default:
       return imageLocs[Math.floor(Math.random() * imageLocs.length)];
   }
 };
+
+export const pictureRelatedToUser = name => {
+  switch (name) {
+    case 'Sela ':
+      return require('../../assets/goldlogo.png');
+    case 'Sustainability International':
+      return require('../../assets/sustainability_international_logo.png');
+    case 'Dr Fidelia Nnandi':
+      return require('../../assets/man2.png');
+    case 'Releaf Nigeria':
+      return require('../../assets/releaf_logo.png');
+    case 'Admiral International':
+      return require('../../assets/man1.png');
+    default:
+      return require('../../assets/man1.png');
+  }
+};
+
+
+
+
 
 export const tagsColor = tagsText => {
   switch (tagsText && tagsText.toUpperCase()) {
