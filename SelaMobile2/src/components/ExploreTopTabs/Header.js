@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { projectStatusTextColor, tagsColor } from '../../utils/helpers';
 import extStyle from '../../utils/styles';
@@ -7,6 +7,8 @@ import Text from '../Text';
 import Tag from '../Tag';
 import { WHITE } from '../../utils/constants';
 
+
+const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -66,7 +68,7 @@ class Header extends Component {
                   {projectLocationText.length > 35
                     ? projectLocationText.slice(0, 32).concat('...')
                     : projectLocationText}
-{' '}
+                  {' '}
                 </Text>
               </View>
               <View style={{ justifyContent: 'center' }}>
@@ -103,7 +105,12 @@ class Header extends Component {
               <Text style={styles.text}>Budget </Text>
             </View>
             <View style={styles.pt}>
-              <Text style={styles.text}>{budgetAmount}</Text>
+              <Text style={styles.text}>
+                {projectTitleText.toUpperCase()
+                  === 'ABA FACTORY CONSTRUCTION' ?
+                  '$125,000' : '  $2800'
+                }
+              </Text>
             </View>
           </View>
           <View>
@@ -111,7 +118,12 @@ class Header extends Component {
               <Text style={styles.text}>Raised </Text>
             </View>
             <View style={styles.pt}>
-              <Text style={styles.text}>{raisedAmount}</Text>
+              <Text style={styles.text}>
+                {projectTitleText.toUpperCase()
+                  === 'ABA FACTORY CONSTRUCTION' ?
+                  '$65,000' : '  $2800'
+                }
+              </Text>
             </View>
           </View>
           <View>
@@ -119,7 +131,7 @@ class Header extends Component {
               <Text>StakeHolders</Text>
             </View>
             <View style={styles.pt}>
-              <Text style={styles.text}>{numberOfStakeholders} </Text>
+              <Text style={styles.text}>4</Text>
             </View>
           </View>
         </View>
@@ -131,20 +143,249 @@ class Header extends Component {
               </View>
             </View>
           ) : (
-            <View style={{ marginTop: 2, flex: 2, flexDirection: 'row' }}>
-              {tags.slice(0, 2).map((c, index) => (
-                <View
-key={index} style={{ marginLeft: 3 }}>
-                  <Tag
-                    // style={{ paddingLeft: 10 }}
-                    text={c}
-                    viewColor={tagsColor(c)}
-                    textColor={WHITE}
-                  />
-                </View>
-              ))}
-            </View>
-          )}
+              <View style={{
+                marginTop: 2, flex: 2,
+                flexDirection: 'row'
+              }}>
+
+                {
+                  projectTitleText.toUpperCase()
+                    === 'ABA FACTORY CONSTRUCTION' ?
+                    (
+                      <View style={{ flexDirection: 'row' }} >
+                        <View
+                          // key={index} 
+                          style={{
+                            // flex: 1,
+
+                            width: width / 6,
+                            height: width / 8,
+                            // marginLeft: 3
+                          }}>
+                          <Image
+                            // resizeMode="contain"
+                            style={{
+                              flex: 1,
+                              width: '100%',
+                              height: '100%',
+                              resizeMode: 'contain'
+                            }}
+                            source={require('../../../assets/sdgs/SDG_1.png')}
+                          />
+
+
+                          {/* <Image
+                      // resizeMode="contain"
+                      style={{
+                        flex: 1,
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain'
+                      }}
+                      source={require('../../../assets/below_water.png')}
+                    /> */}
+                          {/* <Tag
+                      // style={{ paddingLeft: 10 }}
+                      text={c}
+                      viewColor={tagsColor(c)}
+                      textColor={WHITE}
+                    /> */}
+                        </View>
+
+
+                        <View
+                          // key={index} 
+                          style={{
+                            // flex: 1,
+
+                            width: width / 6,
+                            height: width / 8,
+                            // marginLeft: 3
+                          }}>
+                          <Image
+                            // resizeMode="contain"
+                            style={{
+                              flex: 1,
+                              width: '100%',
+                              height: '100%',
+                              resizeMode: 'contain'
+                            }}
+                            source={require('../../../assets/sdgs/SDG_8.png')}
+                          />
+
+
+                          {/* <Image
+                      // resizeMode="contain"
+                      style={{
+                        flex: 1,
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain'
+                      }}
+                      source={require('../../../assets/below_water.png')}
+                    /> */}
+                          {/* <Tag
+                      // style={{ paddingLeft: 10 }}
+                      text={c}
+                      viewColor={tagsColor(c)}
+                      textColor={WHITE}
+                    /> */}
+                        </View>
+
+                        {/* ))} */}
+                      </View>
+                    ) :
+                    (
+                      <View style={{ flexDirection: 'row' }} >
+                        <View
+                          // key={index} 
+                          style={{
+                            // flex: 1,
+
+                            width: width / 6,
+                            height: width / 8,
+                            // marginLeft: 3
+                          }}>
+                          <Image
+                            // resizeMode="contain"
+                            style={{
+                              flex: 1,
+                              width: '100%',
+                              height: '100%',
+                              resizeMode: 'contain'
+                            }}
+                            source={require('../../../assets/sdgs/SDG_3.png')}
+                          />
+
+
+                          {/* <Image
+                      // resizeMode="contain"
+                      style={{
+                        flex: 1,
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain'
+                      }}
+                      source={require('../../../assets/below_water.png')}
+                    /> */}
+                          {/* <Tag
+                      // style={{ paddingLeft: 10 }}
+                      text={c}
+                      viewColor={tagsColor(c)}
+                      textColor={WHITE}
+                    /> */}
+                        </View>
+
+                        <View
+                          // key={index} 
+                          style={{
+                            // flex: 1,
+
+                            width: width / 6,
+                            height: width / 8,
+                            // marginLeft: 3
+                          }}>
+                          <Image
+                            // resizeMode="contain"
+                            style={{
+                              flex: 1,
+                              width: '100%',
+                              height: '100%',
+                              resizeMode: 'contain'
+                            }}
+                            source={require('../../../assets/sdgs/SDG_13.png')}
+                          />
+                        </View>
+
+                        <View
+                          // key={index} 
+                          style={{
+                            // flex: 1,
+
+                            width: width / 6,
+                            height: width / 8,
+                            // marginLeft: 3
+                          }}>
+                          <Image
+                            // resizeMode="contain"
+                            style={{
+                              flex: 1,
+                              width: '100%',
+                              height: '100%',
+                              resizeMode: 'contain'
+                            }}
+                            source={require('../../../assets/sdgs/SDG_14.jpg')}
+                          />
+                        </View>
+                        <View
+                          // key={index} 
+                          style={{
+                            // flex: 1,
+
+                            width: width / 6,
+                            height: width / 8,
+                            // marginLeft: 3
+                          }}>
+                          <Image
+                            // resizeMode="contain"
+                            style={{
+                              flex: 1,
+                              width: '100%',
+                              height: '100%',
+                              resizeMode: 'contain'
+                            }}
+                            source={require('../../../assets/sdgs/SDG_15.png')}
+                          />
+                        </View>
+
+                        <View
+                          // key={index} 
+                          style={{
+                            // flex: 1,
+
+                            width: width / 6,
+                            height: width / 8,
+                            // marginLeft: 3
+                          }}>
+                          <Image
+                            // resizeMode="contain"
+                            style={{
+                              flex: 1,
+                              width: '100%',
+                              height: '100%',
+                              resizeMode: 'contain'
+                            }}
+                            source={require('../../../assets/sdgs/SDG_6.png')}
+                          />
+
+
+                          {/* <Image
+                      // resizeMode="contain"
+                      style={{
+                        flex: 1,
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain'
+                      }}
+                      source={require('../../../assets/below_water.png')}
+                    /> */}
+                          {/* <Tag
+                      // style={{ paddingLeft: 10 }}
+                      text={c}
+                      viewColor={tagsColor(c)}
+                      textColor={WHITE}
+                    /> */}
+                        </View>
+
+                        {/* ))} */}
+                      </View>
+                    )
+                }
+                {/* {tags.slice(0, 2).map((c, index) => ( */}
+
+                <View />
+              </View>
+            )}
         </Fragment>
       </View>
     );

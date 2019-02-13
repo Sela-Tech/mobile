@@ -76,18 +76,18 @@ const renderItem = item => (
 
 const keyExtractor = (item, index) => index.toString();
 class ExploreProject extends Component {
-  static navigationOptions = {
-    title: 'EXPLORE',
-    headerTitleStyle: {
-      textAlign: 'center',
-      alignSelf: 'center',
-      flex: 1,
-    },
-    headerStyle: {
-      fontFamily: 'proximaNova',
-      fontWeight: 'normal',
-    },
-  };
+  // static navigationOptions = {
+  //   title: 'EX',
+  //   headerTitleStyle: {
+  //     textAlign: 'center',
+  //     alignSelf: 'center',
+  //     flex: 1,
+  //   },
+  //   headerStyle: {
+  //     fontFamily: 'proximaNova',
+  //     fontWeight: 'normal',
+  //   },
+  // };
 
   state = {
     loading: true,
@@ -134,7 +134,7 @@ class ExploreProject extends Component {
             lng: results.longitude,
           },
         }),
-      )
+    )
       .catch(err => {
         this.setState({
           searchResult: false,
@@ -256,21 +256,21 @@ class ExploreProject extends Component {
               {loading === true ? (
                 <Spinner />
               ) : (
-                <Fragment>
-                  {projects && projects.length === 0 ? (
-                    <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
-                      <Text style={{ fontSize: 15 }}> No project at the moment </Text>
-                    </View>
-                  ) : (
-                    <FlatList
-                      data={projects}
-                      renderItem={renderItem}
-                      style={{ flex: 1 }}
-                      keyExtractor={keyExtractor}
-                    />
-                  )}
-                </Fragment>
-              )}
+                  <Fragment>
+                    {projects && projects.length === 0 ? (
+                      <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
+                        <Text style={{ fontSize: 15 }}> No project at the moment </Text>
+                      </View>
+                    ) : (
+                        <FlatList
+                          data={projects}
+                          renderItem={renderItem}
+                          style={{ flex: 1 }}
+                          keyExtractor={keyExtractor}
+                        />
+                      )}
+                  </Fragment>
+                )}
             </View>
           </View>
         </View>
@@ -284,21 +284,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(ExploreProject);
-
-{
-  /* projects && projects.map((c, index) => (
-                          <View key={index} style={{ marginBottom: 10, marginTop: 10 }}>
-                            <Box
-                              fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
-                              // img={{ uri: 'https://placeimg.com/640/480/any' }}
-                              img={require('../../assets/img/cleanup/water.jpg')}
-                              firstText={c.location.name}
-                              secondText={c.name}
-                              thirdText={c.status}
-                              title={c.description}
-                              cost={c.raised}
-                              tags={c.tags}
-                            />
-                          </View>
-                        )) */
-}

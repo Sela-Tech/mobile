@@ -13,7 +13,7 @@ export default createBottomTabNavigator(
     Project,
     Explore,
     Inbox,
-    Profile,
+    Account: Profile,
   },
   {
     defaultNavigationOptions: ({ navigation }) => ({
