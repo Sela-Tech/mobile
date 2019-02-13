@@ -88,6 +88,31 @@ export const getDummyDisplayPicture = name => {
 
 export const pictureRelatedToUser = name => {
   switch (name) {
+
+    case 'Isaiah Udotong':
+      return require('../../assets/factory_cleanup/isaiah_udotong.jpg');
+
+    case 'Fidelia Nnandi':
+      return require('../../assets/project_cleanup/fidelia_nnadi.jpg');
+
+
+    case 'Collins Peter':
+      return require('../../assets/man1.png');
+
+    case 'Simi Olatopin':
+      return require('../../assets/factory_cleanup/Simi_Olatopin.jpg');
+
+    case 'Tunde Olatope':
+      return require('../../assets/project_cleanup/Tunde_Olatope.jpg');
+
+
+    case 'Carla Walker':
+      return require('../../assets/factory_cleanup/carla_walker.jpeg');
+
+    case 'Victoria Botvin':
+      return require('../../assets/project_cleanup/victoria_botvin.jpg');
+
+
     case 'Sela ':
       return require('../../assets/goldlogo.png');
     case 'Sustainability International':

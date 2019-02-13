@@ -215,15 +215,15 @@ class Profile extends Component {
         });
       }
 
-      else if (info === 'Victoria') {
+      else if (info === 'Tunde') {
         this.setState({
           profileInfo: {
             userInfo: {
-              isFunder: true,
+              isFunder: false,
               isContractor: false,
-              isEvaluator: false,
-              firstName: 'Victoria',
-              lastName: 'Botvin',
+              isEvaluator: true,
+              firstName: 'Tunde',
+              lastName: 'Olatope',
               isVerified: true,
               reputationScore: 5,
               uploads: 2,
@@ -238,6 +238,68 @@ class Profile extends Component {
 
 
 
+      else if (info === 'Isaiah') {
+        this.setState({
+          profileInfo: {
+            userInfo: {
+              isFunder: false,
+              isContractor: true,
+              isEvaluator: false,
+              firstName: 'Isaiah',
+              lastName: 'Udotong',
+              isVerified: true,
+              reputationScore: 5,
+              uploads: 2,
+            },
+            projects: [1, 2],
+          },
+          interests: ['ZERO HUNGER', 'AFFORDABLE AND CLEAN ENERGY'],
+          loading: false,
+          guestUser: true,
+        });
+      }
+
+      else if (info === 'Collins') {
+        this.setState({
+          profileInfo: {
+            userInfo: {
+              isFunder: false,
+              isContractor: true,
+              isEvaluator: false,
+              firstName: 'Collins',
+              lastName: 'Peter',
+              isVerified: true,
+              reputationScore: 5,
+              uploads: 2,
+            },
+            projects: [1, 2],
+          },
+          interests: ['ZERO HUNGER', 'AFFORDABLE AND CLEAN ENERGY'],
+          loading: false,
+          guestUser: true,
+        });
+      }
+
+      else if (info === 'Fidelia') {
+        this.setState({
+          profileInfo: {
+            userInfo: {
+              isFunder: true,
+              isContractor: false,
+              isEvaluator: false,
+              firstName: 'Fidelia',
+              lastName: 'Nnandi',
+              isVerified: true,
+              reputationScore: 5,
+              uploads: 2,
+            },
+            projects: [1, 2],
+          },
+          interests: ['ZERO HUNGER', 'AFFORDABLE AND CLEAN ENERGY'],
+          loading: false,
+          guestUser: true,
+        });
+      }
 
       else {
         try {
