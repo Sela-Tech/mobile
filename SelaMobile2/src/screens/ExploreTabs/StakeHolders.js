@@ -253,12 +253,12 @@ const StakeHolders = ({ project, navigation }) => (
       </View>
     </TouchableOpacity> */}
 
-    <View style={{ paddingTop: 10, alignItems: 'center' }}>
+    {/* <View style={{ paddingTop: 10, alignItems: 'center' }}>
       <Button
         fn={() => NavigationService.navigate('Invest', { name: project.name })}
         text="INVEST"
       />
-    </View>
+    </View> */}
   </ScrollView>
 );
 

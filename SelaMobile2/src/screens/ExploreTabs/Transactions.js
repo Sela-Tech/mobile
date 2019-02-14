@@ -38,7 +38,7 @@ const Transactions = ({ project }) => {
             <Text> this project. Check back later. </Text>
           </View>
 
-          <Button fn={() => NavigationService.navigate('Invest')} text="INVEST" textColor={WHITE} />
+          {/* <Button fn={() => NavigationService.navigate('Invest')} text="INVEST" textColor={WHITE} /> */}
         </View>
       </ScrollView>
     );
@@ -51,12 +51,12 @@ const Transactions = ({ project }) => {
       <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
       <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
       <View style={{ alignItems: 'center' }}>
-        <View>
+        {/* <View>
           <Button
             fn={() => NavigationService.navigate('Invest', { name: project.name })}
             text="INVEST"
           />
-        </View>
+        </View> */}
         <View style={{ marginTop: 10 }}>
           <Button
             fn={() => NavigationService.navigate('Invest')}

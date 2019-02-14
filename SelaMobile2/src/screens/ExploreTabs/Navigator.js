@@ -14,16 +14,17 @@ import { WHITE } from '../../utils/constants';
 const { width } = Dimensions.get('window');
 
 const tabBarOptions = {
+  upperCaseLabel: false,
   tabBarVisible: false,
   scrollEnabled: true,
   tabStyle: {
-    width: width / 4,
+    width: width / 3,
   },
   activeTintColor: '#201D41',
   inactiveTintColor: '#B1BAD2',
   showIcon: false,
   labelStyle: {
-    fontSize: width < 400 ? 7 : 9,
+    // fontSize: 12,
     fontWeight: '400',
     fontFamily: isAndroid ? 'ProximaNova' : null,
   },

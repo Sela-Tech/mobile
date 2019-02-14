@@ -86,22 +86,22 @@ const Updates = ({ project }) => (
       {project.name !== 'Aba Factory construction'
         ? filterTask.map((c, index) => (
           <IndUpdates
-              key={index}
-              text={c.text}
-              projectName={project.name}
-              title={c.title}
-              statusText={c.statusText}
-            />
-          ))
+            key={index}
+            text={c.text}
+            projectName={project.name}
+            title={c.title}
+            statusText={c.statusText}
+          />
+        ))
         : task2.map((c, index) => (
           <IndUpdates
-              key={index}
-              projectName={project.name}
-              text={c.text}
-              title={c.title}
-              statusText={c.statusText}
-            />
-          ))}
+            key={index}
+            projectName={project.name}
+            text={c.text}
+            title={c.title}
+            statusText={c.statusText}
+          />
+        ))}
     </Fragment>
     {/* <TouchableOpacity
       style={{
@@ -117,12 +117,12 @@ const Updates = ({ project }) => (
         <Image source={require('../../../assets/forward-arrow.png')} />
       </View>
     </TouchableOpacity> */}
-    <View style={{ paddingTop: 10, alignItems: 'center' }}>
+    {/* <View style={{ paddingTop: 10, alignItems: 'center' }}>
       <Button
         fn={() => NavigationService.navigate('Invest', { name: project.name })}
         text="INVEST"
       />
-    </View>
+    </View> */}
   </ScrollView>
 );
 

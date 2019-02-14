@@ -22,7 +22,7 @@ const UserInfo = ({ reputationScore, projects, dataUploads, location }) => (
     <View style={styles.subContainer}>
       <View style={{ alignItems: 'center' }}>
         <B size={20} color="#201D41">
-          {reputationScore}
+          {reputationScore}/5
         </B>
         <Text> Reputation Score </Text>
       </View>

@@ -77,9 +77,11 @@ class Header extends Component {
             </View>
             <View>
               <Text
-                style={[styles.verySmallText, { color: projectStatusTextColor(projectStatusText) }]}
+                style={[styles.verySmallText, {
+                  color: projectStatusTextColor('ON GOING')
+                }]}
               >
-                {projectStatusText}
+                {'ON GOING'}
               </Text>
             </View>
           </View>
@@ -108,7 +110,7 @@ class Header extends Component {
               <Text style={styles.text}>
                 {projectTitleText.toUpperCase()
                   === 'ABA FACTORY CONSTRUCTION' ?
-                  '$125,000' : '  $2800'
+                  '$750,000' : '$2,000,000'
                 }
               </Text>
             </View>
@@ -121,7 +123,7 @@ class Header extends Component {
               <Text style={styles.text}>
                 {projectTitleText.toUpperCase()
                   === 'ABA FACTORY CONSTRUCTION' ?
-                  '$65,000' : '  $2800'
+                  '$350,000' : '$350,000'
                 }
               </Text>
             </View>

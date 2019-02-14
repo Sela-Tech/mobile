@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Keyboard } from 'react-native';
 import PropTypes from 'prop-types';
+import DropdownAlert from 'react-native-dropdownalert';
 import DismissKeyboard from '../components/DismissKeyboard';
 import Text from '../components/Text';
 import Input from '../components/Input';
@@ -9,7 +10,7 @@ import IntroHeader from '../components/IntroHeader';
 import ExtStyle from '../utils/styles';
 import { forgotPassword } from '../utils/api';
 
-import { DEFAULT_COLOUR } from '../utils/constants';
+import { DEFAULT_COLOUR, WHITE } from '../utils/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +26,9 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     fontSize: 18,
   },
+  whiteText: {
+    color: WHITE,
+  },
 });
 
 export default class ForgotPassword extends Component {
@@ -35,24 +39,34 @@ export default class ForgotPassword extends Component {
   };
 
   state = {
-    emailOrphone: '',
+    emailOrPhone: '',
+    emailOrPhoneError: '',
+    loading: false,
   };
 
   reset = async () => {
-    const { emailOrphone } = this.state;
+    Keyboard.dismiss();
+    const { emailOrPhone } = this.state;
+    this.setState({ loading: true })
     try {
       const resp = await forgotPassword({
-        email: emailOrphone,
+        email: emailOrPhone,
         phone: '',
       });
-      console.log(resp.data);
+      this.setState({
+        loading: false,
+      });
+      this.dropdown.alertWithType('success', 'Success', resp.data.message);
+      console.log('fjdjfjd', resp.data);
     } catch (err) {
-      this.setState({ err: err.message });
+      this.dropdown.alertWithType('error', 'Error', err.message);
+      this.setState({ err: err.message, loading: false });
     }
   };
 
   render() {
     const { goBack } = this.props.navigation;
+    const { emailOrPhoneError, loading } = this.state;
     return (
       <DismissKeyboard>
         <View style={styles.container}>
@@ -66,12 +80,21 @@ export default class ForgotPassword extends Component {
             <View style={{ alignItems: 'center', marginTop: '3%' }}>
               <Text style={styles.buttomText}>Enter email address or phone</Text>
               <Text style={styles.buttomText}>number you signed up with to</Text>
-              <Text style={styles.buttomText}>got a password reset link</Text>
+              <Text style={styles.buttomText}>get a password reset link</Text>
             </View>
             <View style={{ marginTop: '15%', alignItems: 'center' }}>
               <Input
+                onChangeTheText={emailOrPhone => this.setState({ emailOrPhone })}
+                onTheChange={() =>
+                  this.setState({
+                    emailOrPhoneError: false,
+                    emailOrPhoneErrorMessage: '',
+                    submitErrorMessage: '',
+                  })
+                }
+                error={emailOrPhoneError}
+                textStyle={styles.whiteText}
                 text="Email Address or Phone Number"
-                onChangeTheText={emailOrphone => this.setState({ emailOrphone })}
               />
             </View>
             <View style={{ marginTop: '10%', alignItems: 'center' }}>
@@ -83,10 +106,17 @@ export default class ForgotPassword extends Component {
                   textSize={16}
                   medium
                   fn={() => this.reset()}
+                  loading={loading}
                 />
               </View>
             </View>
           </View>
+          <DropdownAlert
+            ref={ref => (this.dropdown = ref)}
+            // startDelta={height}
+            // endDelta={height - height / 8}
+            closeInterval={6000}
+          />
         </View>
       </DismissKeyboard>
     );

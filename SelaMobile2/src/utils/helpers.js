@@ -79,6 +79,8 @@ export const getDummyDisplayPicture = name => {
       return require('../../assets/img/cleanup/grass.jpg');
     case 'Ogoni Oil Clean up':
       return require('../../assets/img/cleanup/cleanup_3.jpg');
+    case 'Cleanup K-Dere 2':
+      return require('../../assets/img/cleanup/cleanup_3.jpg');
     case 'Aba Factory construction':
       return require('../../assets/img/cleanup/factory.jpg');
     default:

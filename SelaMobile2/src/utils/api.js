@@ -181,7 +181,7 @@ export const updateNotifications = async datum => {
 
 export const forgotPassword = async data => {
   try {
-    return axios.post('/forgot-password', data);
+    return axios.put('/forgot-password', data);
   } catch (err) {
     return err;
   }
