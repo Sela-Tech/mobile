@@ -130,6 +130,24 @@ export const pictureRelatedToUser = name => {
   }
 };
 
+export const emptyProjectText = text => {
+  switch (text) {
+    case 'Projects you funded':
+      return 'You haven\'t funded any project yet';
+    case 'Projects you proposed':
+      return 'You haven\'t proposed any project yet';
+    case 'Projects that may interest you':
+      return 'No project that under this category';
+    case 'Saved Project':
+      return 'You haven\'t saved any project yet';
+    case 'Projects you were added to':
+      return 'You haven\'t been added to any project yet';
+
+    default:
+      return require('../../assets/man1.png');
+  }
+}
+
 export const tagsColor = tagsText => {
   switch (tagsText && tagsText.toUpperCase()) {
     case 'EDUCATION':

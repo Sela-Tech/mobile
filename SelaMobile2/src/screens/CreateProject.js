@@ -231,7 +231,7 @@ class CreateProject extends Component {
       tags: selectedItems,
       budget,
       goal: budget,
-      stakeholders: selectedUsers.length === 0 ? [] : [selectedUsers[0]],
+      stakeholders: selectedUsers.length === 0 ? [] : selectedUsers,//[selectedUsers[0]],
       location: locationObj,
     };
 

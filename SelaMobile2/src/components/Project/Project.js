@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import Text from '../Text';
 import Box from './Box';
 import Images from './Images';
+import { emptyProjectText } from '../../utils/helpers';
 import { YELLOW } from '../../utils/constants';
 
 const { height } = Dimensions.get('window');
@@ -45,7 +46,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   emptyBox: {
-    height: height / 5,
+    height: height / 8,
     paddingTop: '5%',
     alignItems: 'center',
   },
@@ -60,19 +61,19 @@ const Project = ({ leftText, rightText, projects }) => (
     <View style={styles.semiContainer}>
       <View style={styles.leftContainer}>
         <Text style={styles.leftTextContainer}>
-{leftText}
-{' '}
- </Text>
+          {leftText}
+          {' '}
+        </Text>
       </View>
       <Fragment>
         {projects && projects.length > 0 ? (
           <View style={styles.rightContainer}>
             <View style={styles.rightContainerWithPadding}>
-              <Text style={styles.rightTextContainer}> 
-{' '}
-{rightText}
-{' '}
- </Text>
+              <Text style={styles.rightTextContainer}>
+                {' '}
+                {rightText}
+                {' '}
+              </Text>
             </View>
             {/* <View style={{ justifyContent: 'center' }}>
               <Image source={require('../../../assets/forward-yellow.png')} />
@@ -95,17 +96,16 @@ const Project = ({ leftText, rightText, projects }) => (
                 fn={() => console.log('navigate')}
               />
             ) : (
-              <View style={styles.emptyBox}>
-                <Text style={styles.textInEmptyBox}>
-                  {' '}
-                  You haven't been added to any project yet.
-                </Text>
-              </View>
-            )}
+                <View style={styles.emptyBox}>
+                  <Text style={styles.textInEmptyBox}>
+                    {emptyProjectText(leftText)}
+                  </Text>
+                </View>
+              )}
           </Fragment>
         ) : (
-          <Images leftText={leftText} projects={projects} />
-        )}
+              <Images leftText={leftText} projects={projects} />
+            )}
       </Fragment>
     </View>
   </View>
