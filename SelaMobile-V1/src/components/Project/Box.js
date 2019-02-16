@@ -149,7 +149,7 @@ const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
           <View style={[ExtStyles.flex1, styles.pl5]}>
             <Tag
               style={styles.tagStyle}
-              text="On Going"
+              text="Ongoing"
               viewColor={projectStatusTextColor('Ongoing')}
               textColor={WHITE}
             />

@@ -1,16 +1,19 @@
 import React, { Component, Fragment } from 'react';
-import { View, Image, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Image, Dimensions, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import Spinner from '../components/Spinner';
 import Text from '../components/Text';
+import Tag from '../components/Tag';
+import Button from '../components/Button';
 import Header from '../components/ExploreTopTabs/Header';
 import Navigator from './ExploreTabs/Navigator';
 import { getSingleProject } from '../utils/api';
 import ExtStyle from '../utils/styles';
-import { getDummyDisplayPicture } from '../utils/helpers';
+import { getDummyDisplayPicture, projectStatusTextColor } from '../utils/helpers';
 import { WHITE } from '../utils/constants';
 
-const { height } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
+const fundedStatus = ['60%', '40%', '20%', '85%'];
 
 const styles = StyleSheet.create({
   imageHeight: {
@@ -22,12 +25,46 @@ const styles = StyleSheet.create({
   imagePosition: {
     position: 'absolute',
     top: 12,
-    bottom: 0,
-    left: 0,
-    right: 0,
+    left: 10,
+  },
+  viewInImage: {
+    backgroundColor: WHITE,
+    width: width / 4,
+    position: 'absolute',
+    bottom: 80,
+    left: 10,
+    zIndex: 3,
+    flexDirection: 'row',
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 10,
+  },
+  innerView: {
+    flexDirection: 'row',
+    paddingHorizontal: 3,
+  },
+  fundedTextColor: {
+    color: '#201D41',
+  },
+  // tagPosition: {
+  //   position: 'absolute',
+  //   bottom: 60,
+  //   left: 10,
+  // },
+
+  buttonPosition: {
+    position: 'absolute',
+    bottom: 12,
+    left: 10,
+  },
+  settingsPosition: {
+    position: 'absolute',
+    top: 12,
+    right: 5,
   },
   flex4mb5: {
-    flex: 4,
+    flex: 5,
     // marginBottom: 1,
   },
   backButton: {
@@ -39,6 +76,15 @@ const styles = StyleSheet.create({
     color: WHITE,
     fontSize: 15,
   },
+  pl5: {
+    paddingLeft: 5,
+  },
+  // tagStyle: {
+  //   width: '100%',
+  //   height: '100%',
+  //   paddingHorizontal: 5,
+  //   borderRadius: 10,
+  // },
 });
 class ExploreProject extends Component {
   state = {
@@ -98,7 +144,8 @@ class ExploreProject extends Component {
       );
     }
     return (
-      <View style={ExtStyle.flex1}>
+      <ScrollView style={ExtStyle.flex1}
+        contentContainerStyle={{ flexGrow: 1 }}>
         <Fragment>
           {notAvailaible ? (
             <Fragment>
@@ -134,11 +181,65 @@ class ExploreProject extends Component {
                     <View>
                       <Image source={require('../../assets/white-back.png')} />
                     </View>
+                  </TouchableOpacity>
+                </View>
+                <View style={styles.settingsPosition}>
+                  <TouchableOpacity
+                    transparent
+                    style={styles.backButton}
+                    onPress={() => this.props.navigation.goBack()}
+                  >
                     <View>
-                      <Text style={styles.backButtonText}> Back </Text>
+                      <Image source={require('../../assets/settings.png')} />
                     </View>
                   </TouchableOpacity>
                 </View>
+                {/* <View style={styles.tagPosition}>
+                  <Tag
+                    style={styles.tagStyle}
+                    text="Ongoing"
+                    viewColor={projectStatusTextColor('Ongoing')}
+                    textColor={WHITE}
+                  />
+                </View> */}
+
+
+                <View style={styles.viewInImage}>
+                  <View style={styles.innerView}>
+                    <View style={styles.pl5}>
+                      <Image
+                        style={{ tintColor: '#201d41' }}
+                        source={require('../../assets/money.png')} />
+                    </View>
+                    <View>
+                      <Text style={styles.fundedTextColor}>
+                        {' '}
+                        {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]}
+                        {' '}
+                        funded
+              {' '}
+                      </Text>
+                    </View>
+                  </View>
+                </View>
+
+                <View style={styles.buttonPosition}>
+                  <Button
+                    style={{
+                      width: width / 3.5,
+                      height: height / 15,
+                    }}
+                    textStyle={{
+                      fontSize: 14,
+                      fontWeight: '500',
+                    }}
+                    text="Invest"
+                    textColor={WHITE}
+                  />
+                </View>
+
+
+
               </View>
               <View style={[ExtStyle.flex3]}>
                 <Header
@@ -152,15 +253,15 @@ class ExploreProject extends Component {
                 // tags={[]}
                 />
               </View>
-              <View style={ExtStyle.flex6}>
-                <Navigator navigation={this.props.navigation} project={projectInfo} />
+              <View style={ExtStyle.flex4}>
+                {/* <Navigator navigation={this.props.navigation} project={projectInfo} /> */}
               </View>
             </Fragment>
           ) : (
               <View />
             )}
         </Fragment>
-      </View>
+      </ScrollView>
     );
   }
 }

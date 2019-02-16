@@ -5,7 +5,7 @@ import { projectStatusTextColor, tagsColor } from '../../utils/helpers';
 import extStyle from '../../utils/styles';
 import Text from '../Text';
 import Tag from '../Tag';
-import { WHITE } from '../../utils/constants';
+import { WHITE, YELLOW } from '../../utils/constants';
 
 
 const { width } = Dimensions.get('window');
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'blue',
     // marginTop: '20%',
     marginHorizontal: 12,
-    justifyContent: 'space-evenly',
+    // justifyContent: 'space-evenly',
   },
   smallText: {
     fontSize: 14,
@@ -23,19 +23,27 @@ const styles = StyleSheet.create({
   },
   verySmallText: {
     fontSize: 14,
-    color: '#696F74',
+    color: '#201D41',
   },
   pt: {
     paddingTop: 3,
   },
   text: {
-    color: '#201D41',
+    color: '#696F74',
     fontSize: 15,
   },
   bold: {
     color: '#201D41',
     fontSize: 16,
-    fontWeight: '400',
+    fontWeight: '500',
+  },
+  tagStyle: {
+    // width: 80,
+    // height: 80,
+    // width: '100%',
+    // height: '100%',
+    // paddingHorizontal: 5,
+    borderRadius: 10,
   },
 });
 
@@ -61,8 +69,17 @@ class Header extends Component {
     return (
       <View style={styles.container}>
         <View style={[extStyle.f1row, { flex: 2, alignItems: 'center' }]}>
-          <View style={{ flexDirection: 'row', flex: 5 }}>
-            <View style={extStyle.row}>
+          <View style={{ flexDirection: 'row', flex: 4 }}>
+            <View style={[{ alignItems: 'center' }, extStyle.row]}>
+              <View>
+                <Image
+                  resizeMode="contain"
+                  style={{
+                    height: '50%',
+                  }}
+                  source={require('../../../assets/location_yellow.png')}
+                />
+              </View>
               <View>
                 <Text style={styles.verySmallText}>
                   {projectLocationText.length > 35
@@ -71,73 +88,85 @@ class Header extends Component {
                   {' '}
                 </Text>
               </View>
-              <View style={{ justifyContent: 'center' }}>
-                <Entypo name="dot-single" size={12} color="#696F74" />
+
+            </View>
+            <View style={{ paddingLeft: 8, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+              <View>
+                <Text style={{ color: YELLOW }}>View on map</Text>
+              </View>
+
+              <View style={{ paddingLeft: 5 }}>
+                <Image
+                  source={require('../../../assets/forward_yellow.png')}
+                />
               </View>
             </View>
+          </View>
+          <View style={extStyle.center}>
+            <Tag
+              style={styles.tagStyle}
+              text="Ongoing"
+              viewColor={projectStatusTextColor('Ongoing')}
+              textColor={WHITE}
+            />
+          </View>
+        </View>
+
+
+        <View style={extStyle.flex1}>
+          <Text style={styles.bold}>{projectTitleText.toUpperCase()}</Text>
+        </View>
+
+        <View style={{ flex: 1 }}>
+          <Text>
+            Energy is at the heart of development, . Without energy, communities live in darkness, essential services such as clinics and schools suffer, and businesses operate under crippling constraints. Because the process is taking longer than expected and will not be completed by the original closing date a one year extension is being requested.
+                    </Text>
+        </View>
+        <View style={{ flex: 1 }}>
+          <View style={{ flex: 1 }}>
             <View>
-              <Text
-                style={[styles.verySmallText, {
-                  color: projectStatusTextColor('ON GOING')
-                }]}
-              >
-                {'ON GOING'}
-              </Text>
+              <Text style={{ color: '#696F74' }}>Duration </Text>
+            </View>
+            <View style={styles.pt}>
+              <Text style={{ color: '#3D4851', fontSize: 16 }}>12 Jan 19 - 02 Dec 20</Text>
             </View>
           </View>
-          <View style={extStyle.flex1}>
-            <TouchableOpacity onPress={() => this.changeBookmark()}>
+
+          <View style={{ flex: 1, flexDirection: 'row' }}>
+            <View>
+              <View>
+                <Text style={styles.text}>Budget </Text>
+              </View>
+              <View style={styles.pt}>
+                <Text style={styles.text}>
+                  {projectTitleText.toUpperCase()
+                    === 'ABA FACTORY CONSTRUCTION' ?
+                    '$750,000' : '$2,000,000'
+                  }
+                </Text>
+              </View>
+            </View>
+            <View style={{ paddingHorizontal: 10 }}>
               <Image
-                style={extStyle.flexEnd}
-                source={
-                  bookmarkStatus
-                    ? require('../../../assets/badge.png')
-                    : require('../../../assets/badge-white.png')
-                }
+                source={require('../../../assets/Line.png')}
               />
-            </TouchableOpacity>
+            </View>
+            <View>
+              <View>
+                <Text style={styles.text}>Raised </Text>
+              </View>
+              <View style={styles.pt}>
+                <Text style={styles.text}>
+                  {projectTitleText.toUpperCase()
+                    === 'ABA FACTORY CONSTRUCTION' ?
+                    '$350,000' : '$350,000'
+                  }
+                </Text>
+              </View>
+            </View>
           </View>
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={styles.bold}>{projectTitleText.toUpperCase()}</Text>
-        </View>
-        <View style={{ flex: 2, flexDirection: 'row', justifyContent: 'space-between' }}>
-          <View>
-            <View>
-              <Text style={styles.text}>Budget </Text>
-            </View>
-            <View style={styles.pt}>
-              <Text style={styles.text}>
-                {projectTitleText.toUpperCase()
-                  === 'ABA FACTORY CONSTRUCTION' ?
-                  '$750,000' : '$2,000,000'
-                }
-              </Text>
-            </View>
-          </View>
-          <View>
-            <View>
-              <Text style={styles.text}>Raised </Text>
-            </View>
-            <View style={styles.pt}>
-              <Text style={styles.text}>
-                {projectTitleText.toUpperCase()
-                  === 'ABA FACTORY CONSTRUCTION' ?
-                  '$350,000' : '$350,000'
-                }
-              </Text>
-            </View>
-          </View>
-          <View>
-            <View>
-              <Text>StakeHolders</Text>
-            </View>
-            <View style={styles.pt}>
-              <Text style={styles.text}>4</Text>
-            </View>
-          </View>
-        </View>
-        <Fragment>
           {tags.length === 0 ? (
             <View style={{ marginTop: 2, flex: 2, flexDirection: 'row' }}>
               <View style={{ marginLeft: 3, marginTop: 2 }}>
@@ -146,8 +175,9 @@ class Header extends Component {
             </View>
           ) : (
               <View style={{
-                marginTop: 2, flex: 2,
-                flexDirection: 'row'
+                marginTop: 2,
+                flex: 2,
+                flexDirection: 'row',
               }}>
 
                 {
@@ -174,24 +204,6 @@ class Header extends Component {
                             }}
                             source={require('../../../assets/sdgs/SDG_1.png')}
                           />
-
-
-                          {/* <Image
-                      // resizeMode="contain"
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain'
-                      }}
-                      source={require('../../../assets/below_water.png')}
-                    /> */}
-                          {/* <Tag
-                      // style={{ paddingLeft: 10 }}
-                      text={c}
-                      viewColor={tagsColor(c)}
-                      textColor={WHITE}
-                    /> */}
                         </View>
 
 
@@ -214,27 +226,7 @@ class Header extends Component {
                             }}
                             source={require('../../../assets/sdgs/SDG_8.png')}
                           />
-
-
-                          {/* <Image
-                      // resizeMode="contain"
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain'
-                      }}
-                      source={require('../../../assets/below_water.png')}
-                    /> */}
-                          {/* <Tag
-                      // style={{ paddingLeft: 10 }}
-                      text={c}
-                      viewColor={tagsColor(c)}
-                      textColor={WHITE}
-                    /> */}
                         </View>
-
-                        {/* ))} */}
                       </View>
                     ) :
                     (
@@ -259,23 +251,6 @@ class Header extends Component {
                             source={require('../../../assets/sdgs/SDG_3.png')}
                           />
 
-
-                          {/* <Image
-                      // resizeMode="contain"
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain'
-                      }}
-                      source={require('../../../assets/below_water.png')}
-                    /> */}
-                          {/* <Tag
-                      // style={{ paddingLeft: 10 }}
-                      text={c}
-                      viewColor={tagsColor(c)}
-                      textColor={WHITE}
-                    /> */}
                         </View>
 
                         <View
@@ -322,8 +297,6 @@ class Header extends Component {
                         <View
                           // key={index} 
                           style={{
-                            // flex: 1,
-
                             width: width / 6,
                             height: width / 8,
                             // marginLeft: 3
@@ -359,36 +332,14 @@ class Header extends Component {
                             }}
                             source={require('../../../assets/sdgs/SDG_6.png')}
                           />
-
-
-                          {/* <Image
-                      // resizeMode="contain"
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain'
-                      }}
-                      source={require('../../../assets/below_water.png')}
-                    /> */}
-                          {/* <Tag
-                      // style={{ paddingLeft: 10 }}
-                      text={c}
-                      viewColor={tagsColor(c)}
-                      textColor={WHITE}
-                    /> */}
                         </View>
-
-                        {/* ))} */}
                       </View>
                     )
                 }
-                {/* {tags.slice(0, 2).map((c, index) => ( */}
-
                 <View />
               </View>
             )}
-        </Fragment>
+        </View>
       </View>
     );
   }
