@@ -3,12 +3,15 @@
 import Axios from 'axios';
 import { RNS3 } from 'react-native-aws3';
 import { BASE_URL } from './constants';
+import { AsyncStorage } from 'react-native';
+import NavigationService from '../services/NavigationService';
 
 const axios = Axios.create({
   baseURL: BASE_URL,
   timeout: 80000,
   headers: {
     'Content-Type': 'application/json',
+    origin: 'https://sela-test.now.sh',
   },
 });
 
@@ -26,6 +29,7 @@ axios.interceptors.request.use(
   config => {
     // Do something before request is sent
     config.headers['x-access-token'] = this.userToken;
+    console.log('this.uu', this.userToken)
     return config;
   },
   error => {
@@ -39,6 +43,10 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(
   response => response,
   error => {
+    if (error.response.data.message === 'jwt expired') {
+      AsyncStorage.removeItem('user');
+      NavigationService.navigate('Login');
+    }
     // Do something with response error
     console.log('API ERR:', error.message);
     // return error.response;
@@ -225,3 +233,5 @@ export const getAllfeaturedProjects = async query => {
     return err;
   }
 };
+
+//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOnsibmFtZSI6InRlc3QiLCJpZCI6IjVjNGVkNmYzZTdjMTM4MDAyMjI3NzY0YiJ9LCJwcm9maWxlUGhvdG8iOm51bGwsImlkIjoiNWM0ZWQ3OWFlN2MxMzgwMDIyMjc3NjRmIiwiaXNGdW5kZXIiOmZhbHNlLCJpc0V2YWx1YXRvciI6ZmFsc2UsImlzQ29udHJhY3RvciI6dHJ1ZSwiZmlyc3ROYW1lIjoiRGF2aWQiLCJwaG9uZSI6IjEyMzQ1Njc4OSIsImVtYWlsIjoiYWJpbWJvbGEuZEBzZWxhLWxhYnMuY28iLCJsYXN0TmFtZSI6IkFiaW1ib2xhIiwiYXJlYXNPZkludGVyZXN0IjpbXSwiaWF0IjoxNTQ5NjA3MzAzLCJleHAiOjE1NTAyMTIxMDN9.DCEnxDyx1drBSdaN3tBzCPk98aDJo71V8oWSheNEzQQ

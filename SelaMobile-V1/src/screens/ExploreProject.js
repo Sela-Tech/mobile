@@ -194,17 +194,8 @@ class ExploreProject extends Component {
                     </View>
                   </TouchableOpacity>
                 </View>
-                {/* <View style={styles.tagPosition}>
-                  <Tag
-                    style={styles.tagStyle}
-                    text="Ongoing"
-                    viewColor={projectStatusTextColor('Ongoing')}
-                    textColor={WHITE}
-                  />
-                </View> */}
 
-
-                <View style={styles.viewInImage}>
+                {/* <View style={styles.viewInImage}>
                   <View style={styles.innerView}>
                     <View style={styles.pl5}>
                       <Image
@@ -221,7 +212,7 @@ class ExploreProject extends Component {
                       </Text>
                     </View>
                   </View>
-                </View>
+                </View> */}
 
                 <View style={styles.buttonPosition}>
                   <Button
@@ -243,6 +234,7 @@ class ExploreProject extends Component {
               </View>
               <View style={[ExtStyle.flex3]}>
                 <Header
+                  locationDetails={projectInfo.location}
                   projectLocationText={projectInfo.location.name}
                   projectStatusText={projectInfo.status}
                   projectTitleText={projectInfo.name}
@@ -253,9 +245,9 @@ class ExploreProject extends Component {
                 // tags={[]}
                 />
               </View>
-              <View style={ExtStyle.flex4}>
-                {/* <Navigator navigation={this.props.navigation} project={projectInfo} /> */}
-              </View>
+              {/* <View style={ExtStyle.flex4}> */}
+              {/* <Navigator navigation={this.props.navigation} project={projectInfo} /> */}
+              {/* </View> */}
             </Fragment>
           ) : (
               <View />

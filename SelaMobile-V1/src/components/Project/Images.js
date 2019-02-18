@@ -9,12 +9,12 @@ const renderItem = item => (
     {item.item.val === 'empty' ? (
       <Box text="Propose Project" empty fn={() => console.log('navigate')} />
     ) : (
-      <Box
-        projectInfo={item.item}
-        siteName={item.item.name}
-        imageSource={item.item['project-avatar']}
-      />
-    )}
+        <Box
+          projectInfo={item.item}
+          siteName={item.item.name}
+          imageSource={item.item['project-avatar']}
+        />
+      )}
   </View>
 );
 

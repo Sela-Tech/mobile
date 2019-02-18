@@ -1,0 +1,33 @@
+import React from 'react';
+import { Dimensions, TouchableOpacity, StyleSheet, Image } from 'react-native';
+
+const { width } = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+    container: {
+        width: width / 6,
+        height: width / 8,
+        marginLeft: 5,
+    },
+    imageStyle: {
+        // flex: 1,
+        // width: '100%',
+        // height: '100%',
+        // resizeMode: 'cover',
+
+
+        flex: 1, height: undefined, width: undefined
+    },
+});
+
+const Tag = ({ src }) => (
+    <TouchableOpacity style={styles.container}>
+        <Image
+            resizeMode="contain"
+            style={styles.imageStyle}
+            source={src}
+        />
+    </TouchableOpacity>
+)
+
+export default Tag;

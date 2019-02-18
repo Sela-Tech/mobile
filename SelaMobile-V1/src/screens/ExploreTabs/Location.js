@@ -42,6 +42,7 @@ export default class Location extends Component {
     }
   }
 
+
   render() {
     const { project } = this.props;
     const { isMapReady, view } = this.state;

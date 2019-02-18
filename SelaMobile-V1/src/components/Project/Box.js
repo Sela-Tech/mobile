@@ -16,6 +16,7 @@ import { WHITE, YELLOW } from '../../utils/constants';
 import { getDummyDisplayPicture, projectStatusTextColor } from '../../utils/helpers';
 
 const { height, width } = Dimensions.get('window');
+console.log('ddd== ', width)
 const styles = StyleSheet.create({
   container: {
     height: height / 4,
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     flex: 2,
     paddingLeft: 5,
     paddingTop: 5,
-    // justifyContent: 'space-around',
+    // justifyContent: 'center',
     // alignItems: 'center',
   },
   address: {
@@ -51,10 +52,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   pt3: {
-    paddingTop: 4,
+    // paddingTop: '1%',
+    justifyContent: 'center',
   },
   pl5: {
+    // flex: 1,
+    borderRadius: 10,
     paddingLeft: 5,
+    flexDirection: 'row',
+    // paddingLeft: 5,
+    // justifyContent: 'flex-start',
   },
   otherCont: {
     alignItems: 'center',
@@ -68,30 +75,57 @@ const styles = StyleSheet.create({
     tintColor: '#696f74',
   },
   tagStyle: {
-    width: '30%',
-    height: '65%',
+    width: '40%',
+    // flex: 1,
+    // height: '65%',
     paddingHorizontal: 5,
-    borderRadius: 10,
+    paddingVertical: 3,
+    // borderRadius: 10,
   },
   viewInImage: {
-    backgroundColor: WHITE,
-    width: width / 4,
-    position: 'absolute',
-    top: 20,
-    right: 30,
-    zIndex: 3,
-    flexDirection: 'row',
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+
+
+
+    // borderRadius: 10,
+    paddingLeft: 5,
+    // flexDirection: 'row',
+
+    // paddingHorizontal: 5,
+    // height: '65%',
+    // paddingVertical: 5,
+    backgroundColor: YELLOW,
+    // flex: 1,
+    // borderRadius: 10,
     borderRadius: 10,
+    flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+    // width: '40%',
+    // paddingHorizontal: 5,
+    // paddingVertical: 3,
+    // borderRadius: 10,
+    flexDirection: 'row',
+    // paddingLeft: 5,
+    // justifyContent: 'flex-start',
+
+    // position: 'absolute',
+    // top: 20,
+    // right: 30,
+    // zIndex: 3,
+    // borderRadius: 10,
   },
   fundedTextColor: {
     color: '#201D41',
   },
   innerView: {
+    flex: 1,
+    height: '65%',
+    borderRadius: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: 3,
+    paddingHorizontal: 5,
+    paddingVertical: 5,
   },
 });
 
@@ -115,27 +149,11 @@ const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
           // source={{ uri: imageSource === '' ? 'https://placeimg.com/640/480/any' : imageSource }}
           style={styles.imageBack}
         >
-          <View style={styles.viewInImage}>
-            <View style={styles.innerView}>
-              <View style={styles.pl5}>
-                <Image
-                  style={{ tintColor: '#201d41' }}
-                  source={require('../../../assets/money.png')} />
-              </View>
-              <View>
-                <Text style={styles.fundedTextColor}>
-                  {' '}
-                  {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]}
-                  {' '}
-                  funded
-              {' '}
-                </Text>
-              </View>
-            </View>
-          </View>
+
         </ImageBackground>
-        <View style={ExtStyles.flex1}>
-          <View style={styles.textView}>
+        <View style={[ExtStyles.flex1
+          , { justifyContent: 'center' }]}>
+          <View style={[styles.textView]}>
             <View style={styles.pt3}>
               <Text style={styles.address}>{projectInfo.location.name}</Text>
             </View>
@@ -147,12 +165,35 @@ const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
             </View>
           </View>
           <View style={[ExtStyles.flex1, styles.pl5]}>
-            <Tag
-              style={styles.tagStyle}
-              text="Ongoing"
-              viewColor={projectStatusTextColor('Ongoing')}
-              textColor={WHITE}
-            />
+            <View style={styles.tagStyle}>
+              <Tag
+                style={{ flex: 1 }}
+                text="Ongoing"
+                viewColor={projectStatusTextColor('Ongoing')}
+                textColor={WHITE}
+              />
+            </View>
+            <View style={{ flex: 1 }} />
+            <View style={{ flex: 1 }} />
+            {/* <View style={styles.viewInImage}> */}
+            {/* <View style={styles.pl5}>
+                <Image
+                  style={{ tintColor: '#201d41' }}
+                  source={require('../../../assets/money.png')} />
+              </View> */}
+            {/* <View style={{
+                justifyContent: 'center',
+                borderRadius: 4,
+                alignItems: 'center',
+                flex: 1,
+              }}>
+                <Text style={styles.fundedTextColor}>
+                  {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]}
+                  funded
+                </Text>
+              </View> */}
+            {/* </View> */}
+            <View style={ExtStyles.flex2} />
           </View>
         </View>
       </View>

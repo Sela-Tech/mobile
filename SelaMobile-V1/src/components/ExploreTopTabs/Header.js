@@ -1,10 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
+import Map from './Map';
 import { projectStatusTextColor, tagsColor } from '../../utils/helpers';
 import extStyle from '../../utils/styles';
+
 import Text from '../Text';
 import Tag from '../Tag';
+import ClTag from './ClickableTag';
 import { WHITE, YELLOW } from '../../utils/constants';
 
 
@@ -37,12 +39,27 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '500',
   },
+  parentTagStyle: {
+    // flex: 1,
+    borderRadius: 10,
+    paddingHorizontal: 5,
+    // flexDirection: 'row',
+    // paddingLeft: 5,
+    // justifyContent: 'flex-start',
+  },
   tagStyle: {
     // width: 80,
     // height: 80,
     // width: '100%',
     // height: '100%',
     // paddingHorizontal: 5,
+    // borderRadius: 10,
+
+    // flex: 1,
+    height: '25%',
+    // width: '150%',
+    paddingHorizontal: 5,
+    paddingVertical: 5,
     borderRadius: 10,
   },
 });
@@ -50,10 +67,14 @@ const styles = StyleSheet.create({
 class Header extends Component {
   state = {
     bookmarkStatus: false,
+    openMap: false,
   };
 
   changeBookmark = () =>
     this.setState(prevState => ({ bookmarkStatus: !prevState.bookmarkStatus }));
+
+  toggleMapView = () =>
+    this.setState(prevState => ({ openMap: !prevState.openMap }));
 
   render() {
     const {
@@ -64,12 +85,24 @@ class Header extends Component {
       numberOfStakeholders,
       raisedAmount,
       tags,
+      locationDetails,
     } = this.props;
-    const { bookmarkStatus } = this.state;
+    const { bookmarkStatus, openMap } = this.state;
+    if (openMap) {
+      return (
+        <View style={styles.container}>
+          <Map
+            visible={openMap}
+            toggleMapView={this.toggleMapView}
+            location={locationDetails}
+          />
+        </View>
+      )
+    }
     return (
       <View style={styles.container}>
         <View style={[extStyle.f1row, { flex: 2, alignItems: 'center' }]}>
-          <View style={{ flexDirection: 'row', flex: 4 }}>
+          <View style={{ flexDirection: 'row', flex: 3 }}>
             <View style={[{ alignItems: 'center' }, extStyle.row]}>
               <View>
                 <Image
@@ -90,9 +123,11 @@ class Header extends Component {
               </View>
 
             </View>
-            <View style={{ paddingLeft: 8, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+            <TouchableOpacity
+              onPress={() => this.toggleMapView()}
+              style={{ paddingLeft: 8, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
               <View>
-                <Text style={{ color: YELLOW }}>View on map</Text>
+                <Text style={{ color: YELLOW }}>Map</Text>
               </View>
 
               <View style={{ paddingLeft: 5 }}>
@@ -100,9 +135,9 @@ class Header extends Component {
                   source={require('../../../assets/forward_yellow.png')}
                 />
               </View>
-            </View>
+            </TouchableOpacity>
           </View>
-          <View style={extStyle.center}>
+          <View style={styles.parentTagStyle}>
             <Tag
               style={styles.tagStyle}
               text="Ongoing"
@@ -117,11 +152,6 @@ class Header extends Component {
           <Text style={styles.bold}>{projectTitleText.toUpperCase()}</Text>
         </View>
 
-        <View style={{ flex: 1 }}>
-          <Text>
-            Energy is at the heart of development, . Without energy, communities live in darkness, essential services such as clinics and schools suffer, and businesses operate under crippling constraints. Because the process is taking longer than expected and will not be completed by the original closing date a one year extension is being requested.
-                    </Text>
-        </View>
         <View style={{ flex: 1 }}>
           <View style={{ flex: 1 }}>
             <View>
@@ -166,6 +196,8 @@ class Header extends Component {
             </View>
           </View>
         </View>
+
+
         <View style={{ flex: 1 }}>
           {tags.length === 0 ? (
             <View style={{ marginTop: 2, flex: 2, flexDirection: 'row' }}>
@@ -185,48 +217,14 @@ class Header extends Component {
                     === 'ABA FACTORY CONSTRUCTION' ?
                     (
                       <View style={{ flexDirection: 'row' }} >
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
 
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_1.png')}
-                          />
-                        </View>
+                        <ClTag
+                          src={require('../../../assets/sdgs/SDG_1.png')}
+                        />
+                        <ClTag
+                          src={require('../../../assets/sdgs/SDG_8.png')}
+                        />
 
-
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
-
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_8.png')}
-                          />
-                        </View>
                       </View>
                     ) :
                     (
@@ -340,6 +338,12 @@ class Header extends Component {
               </View>
             )}
         </View>
+
+        <View style={{ flex: 1 }}>
+          <Text>
+            Energy is at the heart of development, . Without energy, communities live in darkness, essential services such as clinics and schools suffer, and businesses operate under crippling constraints. Because the process is taking longer than expected and will not be completed by the original closing date a one year extension is being requested.
+                    </Text>
+        </View>
       </View>
     );
   }
@@ -350,21 +354,3 @@ Header.defaultProps = {};
 Header.propTypes = {};
 
 export default Header;
-
-{
-  /* <Tag
-                          style={{}}
-                          text={c}
-                          viewColor="#fda0a0"
-                          textColor="#eb5757"
-                        /> */
-}
-
-{
-  /* <View
-                        key={index}
-                        style={{ marginLeft: 3 }}> */
-}
-{
-  /* </View> */
-}
