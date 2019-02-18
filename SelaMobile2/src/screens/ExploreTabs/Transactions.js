@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 
 const Transactions = ({ project }) => {
   const { transactions } = project;
-  if (transactions.length === 0) {
+  if (transactions.length !== 0) {
     return (
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -46,10 +46,35 @@ const Transactions = ({ project }) => {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
-      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
-      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
-      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
+      <SingleTrans
+        price="$4,500"
+        date="13 Jun 2018, 14:55"
+        content="Supplies"
+        spendingCategory="Evaluation Team"
+        transactionInitiator="Isaiah Udotong"
+      />
+
+      <SingleTrans
+        price="$3,500"
+        date="13 Jun 2018, 14:55"
+        content="Purchase of Equipment"
+        transactionInitiator="Collins Peter"
+        spendingCategory="Evaluation Team"
+      />
+      <SingleTrans
+        price="$10,500"
+        date="13 Jun 2018, 14:55"
+        content="VSE team payment"
+        spendingCategory="Evaluation Team"
+        transactionInitiator="Isaiah Udotong"
+      />
+      <SingleTrans
+        price="$1,500"
+        date="13 Jun 2018, 14:55"
+        content="Miscellaneous"
+        spendingCategory="Evaluation Team"
+        transactionInitiator="Collins Peter"
+      />
       <View style={{ alignItems: 'center' }}>
         {/* <View>
           <Button
@@ -57,15 +82,6 @@ const Transactions = ({ project }) => {
             text="INVEST"
           />
         </View> */}
-        <View style={{ marginTop: 10 }}>
-          <Button
-            fn={() => NavigationService.navigate('Invest')}
-            text="Join as Evaluation Agent"
-            color={WHITE}
-            textColor="#201D41"
-            style={{ borderWidth: 2, borderColor: '#B1BAD2' }}
-          />
-        </View>
       </View>
     </ScrollView>
   );

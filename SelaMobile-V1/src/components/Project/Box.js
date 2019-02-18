@@ -16,7 +16,6 @@ import { WHITE, YELLOW } from '../../utils/constants';
 import { getDummyDisplayPicture, projectStatusTextColor } from '../../utils/helpers';
 
 const { height, width } = Dimensions.get('window');
-console.log('ddd== ', width)
 const styles = StyleSheet.create({
   container: {
     height: height / 4,

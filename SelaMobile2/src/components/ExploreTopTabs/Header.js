@@ -4,7 +4,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { projectStatusTextColor, tagsColor } from '../../utils/helpers';
 import extStyle from '../../utils/styles';
 import Text from '../Text';
-import Tag from '../Tag';
+import Tag from './ClTag';
 import { WHITE } from '../../utils/constants';
 
 
@@ -155,236 +155,38 @@ class Header extends Component {
                     === 'ABA FACTORY CONSTRUCTION' ?
                     (
                       <View style={{ flexDirection: 'row' }} >
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
 
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_1.png')}
-                          />
+                        <Tag
+                          src={require('../../../assets/sdgs/SDG_1.png')}
+                        />
+                        <Tag
+                          src={require('../../../assets/sdgs/SDG_8.png')}
+                        />
 
-
-                          {/* <Image
-                      // resizeMode="contain"
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain'
-                      }}
-                      source={require('../../../assets/below_water.png')}
-                    /> */}
-                          {/* <Tag
-                      // style={{ paddingLeft: 10 }}
-                      text={c}
-                      viewColor={tagsColor(c)}
-                      textColor={WHITE}
-                    /> */}
-                        </View>
-
-
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
-
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_8.png')}
-                          />
-
-
-                          {/* <Image
-                      // resizeMode="contain"
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain'
-                      }}
-                      source={require('../../../assets/below_water.png')}
-                    /> */}
-                          {/* <Tag
-                      // style={{ paddingLeft: 10 }}
-                      text={c}
-                      viewColor={tagsColor(c)}
-                      textColor={WHITE}
-                    /> */}
-                        </View>
-
-                        {/* ))} */}
                       </View>
                     ) :
                     (
                       <View style={{ flexDirection: 'row' }} >
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
+                        <Tag
+                          src={require('../../../assets/sdgs/SDG_3.png')}
+                        />
 
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_3.png')}
-                          />
+                        <Tag
+                          src={require('../../../assets/sdgs/SDG_13.png')}
+                        />
+
+                        <Tag
+                          src={require('../../../assets/sdgs/SDG_14.jpg')}
+                        />
 
 
-                          {/* <Image
-                      // resizeMode="contain"
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain'
-                      }}
-                      source={require('../../../assets/below_water.png')}
-                    /> */}
-                          {/* <Tag
-                      // style={{ paddingLeft: 10 }}
-                      text={c}
-                      viewColor={tagsColor(c)}
-                      textColor={WHITE}
-                    /> */}
-                        </View>
+                        <Tag
+                          src={require('../../../assets/sdgs/SDG_6.png')}
+                        />
 
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
-
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_13.png')}
-                          />
-                        </View>
-
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
-
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_14.jpg')}
-                          />
-                        </View>
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
-
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_15.png')}
-                          />
-                        </View>
-
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
-
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_6.png')}
-                          />
-
-
-                          {/* <Image
-                      // resizeMode="contain"
-                      style={{
-                        flex: 1,
-                        width: '100%',
-                        height: '100%',
-                        resizeMode: 'contain'
-                      }}
-                      source={require('../../../assets/below_water.png')}
-                    /> */}
-                          {/* <Tag
-                      // style={{ paddingLeft: 10 }}
-                      text={c}
-                      viewColor={tagsColor(c)}
-                      textColor={WHITE}
-                    /> */}
-                        </View>
-
-                        {/* ))} */}
                       </View>
                     )
                 }
-                {/* {tags.slice(0, 2).map((c, index) => ( */}
-
                 <View />
               </View>
             )}
@@ -399,21 +201,3 @@ Header.defaultProps = {};
 Header.propTypes = {};
 
 export default Header;
-
-{
-  /* <Tag
-                          style={{}}
-                          text={c}
-                          viewColor="#fda0a0"
-                          textColor="#eb5757"
-                        /> */
-}
-
-{
-  /* <View
-                        key={index}
-                        style={{ marginLeft: 3 }}> */
-}
-{
-  /* </View> */
-}
