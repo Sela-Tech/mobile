@@ -1,10 +1,15 @@
 import React, { Fragment, Component } from 'react';
-import { View, Text, Image, Dimensions, StyleSheet, processColor } from 'react-native';
+import { View, Text, TouchableOpacity, Image, Dimensions, StyleSheet, processColor } from 'react-native';
 import { PieChart, BarChart, Grid, ProgressCircle } from 'react-native-svg-charts';
 import PropTypes from 'prop-types';
 import { Circle, G, Line } from 'react-native-svg';
 import TextN from '../../../components/Text';
+import StakeHolders from '../StakeHolders';
 import { YELLOW } from '../../../utils/constants';
+import DropdownAlert from 'react-native-dropdownalert';
+import NavigationService from '../../../services/NavigationService';
+
+import { NavigationActions } from 'react-navigation';
 
 const { height, width } = Dimensions.get('window');
 
@@ -17,6 +22,15 @@ const styles = StyleSheet.create({
     width: width / 1.5,
     marginVertical: 12,
   },
+  container2: {
+    height: height / 1.4,
+    // borderRadius: 5.5,
+    // borderWidth: 2,
+    borderColor: '#F5F5F8',
+    width: width / 1.5,
+    marginVertical: 12,
+  },
+
   text: {
     color: '#222829',
     fontSize: 15,
@@ -251,7 +265,7 @@ export default class Box extends Component {
   }
 
   render() {
-    const { upText, secondTextLeft, secondTextRight, lastText } = this.props;
+    const { upText, secondTextLeft, secondTextRight, navigation, lastText } = this.props;
     // const { labelWidth, selectedSlice } = this.state;
     // const { label, value } = selectedSlice;
     // const keys = ['Evaluation team', 'Contractor payout', 'Supplies'];
@@ -270,7 +284,17 @@ export default class Box extends Component {
     // const deviceWidth = Dimensions.get('window').width
     if (upText === 'Tasks Completed') {
       return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={
+          () => this.dropdown.alertWithType('info', 'Task Details', 'Check task Screen for more info')
+          //   const resetAction = NavigationActions.reset({
+          //     index: 0,
+          //     actions: [
+          //       NavigationActions.navigate({ routeName: 'StakeHolders' })
+          //     ]
+          //   });
+          //   navigation.dispatch(resetAction);
+          // }
+        }>
           <Image
             style={{
               flex: 1,
@@ -285,7 +309,13 @@ export default class Box extends Component {
             // source={require('../../../../assets/charts/Bar_Chart.png')}
             source={require('../../../../assets/charts/task.png')}
           />
-        </View>
+          <DropdownAlert
+            ref={ref => (this.dropdown = ref)}
+            // startDelta={height}
+            // endDelta={height - height / 8}
+            closeInterval={6000}
+          />
+        </TouchableOpacity>
       );
     }
     if (upText === 'Progress') {
@@ -304,12 +334,28 @@ export default class Box extends Component {
             // source={require('../../../../assets/charts/Bar_Chart.png')}
             source={require('../../../../assets/charts/progress.png')}
           />
+          <DropdownAlert
+            ref={ref => (this.dropdown = ref)}
+            // startDelta={height}
+            // endDelta={height - height / 8}
+            closeInterval={6000}
+          />
         </View>
       );
     }
     if (upText === 'Total funds spent') {
       return (
-        <View style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={
+          () => this.dropdown.alertWithType('info', 'Transaction Details', 'Check transaction Screen for more info')
+          //   const resetAction = NavigationActions.reset({
+          //     index: 0,
+          //     actions: [
+          //       NavigationActions.navigate({ routeName: 'StakeHolders' })
+          //     ]
+          //   });
+          //   navigation.dispatch(resetAction);
+          // }
+        }>
           <Image
             style={{
               flex: 1,
@@ -323,9 +369,107 @@ export default class Box extends Component {
             // source={require('../../../../assets/charts/Bar_Chart.png')}
             source={require('../../../../assets/charts/pie_chart.png')}
           />
+          <DropdownAlert
+            ref={ref => (this.dropdown = ref)}
+            // startDelta={height}
+            // endDelta={height - height / 8}
+            closeInterval={6000}
+          />
+        </TouchableOpacity>
+      );
+    }
+    // Community Feedback
+
+
+    if (upText === 'Community Feedback') {
+      return (
+        <View style={styles.container2}>
+          <Image
+            style={{
+              flex: 1,
+              width: undefined,
+              height: undefined,
+              // flex: 1,
+              // width: null,
+              // height: null,
+              // resizeMode: 'contain',
+            }}
+            // source={require('../../../../assets/charts/Bar_Chart.png')}
+            source={require('../../../../assets/oil-spill/bar3.png')}
+          />
+
+          {/* <View style={{ marginTop: 5 }}> */}
+          <Image
+            style={{
+              paddingTop: 4,
+              flex: 1,
+              width: undefined,
+              height: undefined,
+              // flex: 1,
+              // width: null,
+              // height: null,
+              // resizeMode: 'contain',
+            }}
+            // source={require('../../../../assets/charts/Bar_Chart.png')}
+            source={require('../../../../assets/oil-spill/bar4.png')}
+          />
+
+          <DropdownAlert
+            ref={ref => (this.dropdown = ref)}
+            // startDelta={height}
+            // endDelta={height - height / 8}
+            closeInterval={6000}
+          />
+          {/* </View> */}
         </View>
       );
     }
+
+
+    if (upText === 'Changes in TPH Level') {
+      return (
+        <View style={styles.container2}>
+          <Image
+            style={{
+              flex: 1,
+              width: undefined,
+              height: undefined,
+              // flex: 1,
+              // width: null,
+              // height: null,
+              // resizeMode: 'contain',
+            }}
+            // source={require('../../../../assets/charts/Bar_Chart.png')}
+            source={require('../../../../assets/oil-spill/bar1.png')}
+          />
+
+          {/* <View style={{ marginTop: 5 }}> */}
+          <Image
+            style={{
+              paddingTop: 4,
+              flex: 1,
+              width: undefined,
+              height: undefined,
+              // flex: 1,
+              // width: null,
+              // height: null,
+              // resizeMode: 'contain',
+            }}
+            // source={require('../../../../assets/charts/Bar_Chart.png')}
+            source={require('../../../../assets/oil-spill/bar2.png')}
+          />
+
+          <DropdownAlert
+            ref={ref => (this.dropdown = ref)}
+            // startDelta={height}
+            // endDelta={height - height / 8}
+            closeInterval={6000}
+          />
+          {/* </View> */}
+        </View>
+      );
+    }
+
 
     return (
       <View style={styles.container}>
@@ -341,6 +485,12 @@ export default class Box extends Component {
           }}
           // source={require('../../../../assets/charts/Bar_Chart.png')}
           source={require('../../../../assets/charts/Bar_Chart.png')}
+        />
+        <DropdownAlert
+          ref={ref => (this.dropdown = ref)}
+          // startDelta={height}
+          // endDelta={height - height / 8}
+          closeInterval={6000}
         />
       </View>
     );

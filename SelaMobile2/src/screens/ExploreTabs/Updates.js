@@ -24,7 +24,27 @@ const styles = StyleSheet.create({
   },
 });
 
+// Break Ground
+// Excavation
+// Foundation
+
 const task2 = [
+  {
+    title: 'Break Ground',
+    text: 'Break Ground',
+    statusText: 'Completed',
+  },
+  {
+    title: 'Excavation',
+    text: 'Excavation',
+    statusText: 'Completed',
+  },
+  {
+    title: 'Foundation',
+    text: 'Foundation',
+    statusText: 'Foundation',
+  },
+
   {
     title: 'Roofing',
     text: 'Roofing of factory',
@@ -117,11 +137,10 @@ const tasklisting = [
 const filterTask = [tasklisting[Math.floor(Math.random() * tasklisting.length)], tasklisting[2]];
 
 const Updates = ({ project }) => (
-  console.log('kkkdf', project.name),
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <Fragment>
-      {project.name !== 'ABA FACTORY CONSTRUCTION'
-        ? filterTask.map((c, index) => (
+      {project.name === 'ABA FACTORY CONSTRUCTION'
+        ? task2.map((c, index) => (
           <IndUpdates
             key={index}
             text={c.text}

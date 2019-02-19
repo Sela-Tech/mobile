@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Picker } from 'react-native';
 import Box from './OverviewComp/Box';
 import StandardText from '../../components/StandardText';
@@ -6,6 +6,7 @@ import { WHITE } from '../../utils/constants';
 import ExtStyle from '../../utils/styles';
 import { firstLetterCapital } from '../../utils/helpers';
 import Text from '../../components/Text';
+import DropdownAlert from 'react-native-dropdownalert';
 
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -62,7 +63,7 @@ class Overview extends Component {
 
   render() {
     const { filterBy } = this.state;
-    const { project } = this.props;
+    const { project, navigation } = this.props;
     return (
       <ScrollView style={styles.container} contentContainerStyle={ExtStyle.flexGrow}>
         <View style={styles.topContainer}>
@@ -90,28 +91,68 @@ class Overview extends Component {
           viewStyle={styles.healthContainer}
           textStyle={styles.text}
         />
-        <Box
-          upText="Tasks Completed"
-          secondTextLeft="13"
-        //  secondTextRight="+6.9%"
-        />
-        <Box
-          upText="Progress"
-          secondTextLeft="70%"
-        // secondTextRight="+12.4%"
-        />
+        <Fragment>
+          {
+            project.name === 'ABA FACTORY CONSTRUCTION' ? (
+              <Fragment>
+                <Box
+                  upText="Tasks Completed"
+                  secondTextLeft="13"
+                  navigation={navigation}
+                //  secondTextRight="+6.9%"
+                />
+                <Box
+                  upText="Progress"
+                  secondTextLeft="70%"
+                // secondTextRight="+12.4%"
+                />
 
-        <Box
-          upText="Total funds spent"
-          secondTextLeft="$1595"
-        //  secondTextRight="+3.2%"
-        />
+                <Box
+                  upText="Total funds spent"
+                  secondTextLeft="$1595"
+                //  secondTextRight="+3.2%"
+                />
 
-        <Box
-          upText="Budget used"
-          secondTextLeft="70%"
-          // secondTextRight="+12.4%"
-          lastText="Total budget"
+                <Box
+                  upText="Budget used"
+                  secondTextLeft="70%"
+                  // secondTextRight="+12.4%"
+                  lastText="Total budget"
+                />
+              </Fragment>
+            ) :
+              (
+                <Fragment>
+
+
+                  <Box
+                    upText="Changes in TPH Level"
+                  // secondTextLeft="$1595"
+                  //  secondTextRight="+3.2%"
+                  />
+
+                  <Box
+                    upText="Community Feedback"
+                    secondTextLeft="$1595"
+                  //  secondTextRight="+3.2%"
+                  />
+
+                  <Box
+                    upText="Budget used"
+                    secondTextLeft="70%"
+                    // secondTextRight="+12.4%"
+                    lastText="Total budget"
+                  />
+
+                </Fragment>
+              )
+          }
+        </Fragment>
+        <DropdownAlert
+          ref={ref => (this.dropdown = ref)}
+          // startDelta={height}
+          // endDelta={height - height / 8}
+          closeInterval={6000}
         />
       </ScrollView>
     );

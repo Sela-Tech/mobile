@@ -86,7 +86,7 @@ export const getDummyDisplayPicture = name => {
     case 'ABA FACTORY CONSTRUCTION':
       return require('../../assets/img/cleanup/factory.jpg');
     default:
-      return imageLocs[Math.floor(Math.random() * imageLocs.length)];
+      return require('../../assets/img/cleanup/cleanup_2.jpg');
   }
 };
 
@@ -220,7 +220,9 @@ export const uploadImageToAWS = async (avatarSource, cred) => {
 const sdg = [
   {
     title: 'No Poverty',
-    text: `1.1 By 2030, eradicate extreme poverty for all people everywhere, currently measured as people living on less than $1.25 a day 1.2 By 2030, reduce at least by half the proportion of men, women and children of all ages living in poverty in all its dimensions according to national definitions
+    text: `1.1 By 2030, eradicate extreme poverty for all people everywhere, currently measured as people living on less than $1.25 a day 
+    1.2 By 2030,
+     reduce at least by half the proportion of men, women and children of all ages living in poverty in all its dimensions according to national definitions
     1.3 Implement nationally appropriate social protection systems and measures for all, including floors, and by 2030 achieve substantial coverage of the poor and the vulnerable
     1.4 By 2030, ensure that all men and women, in particular the poor and the vulnerable, have equal rights to economic resources, as well as access to basic services, ownership and control over land and other forms of property, inheritance, natural resources, appropriate new technology and financial services, including microfinance
     1.5 By 2030, build the resilience of the poor and those in vulnerable situations and reduce their exposure and vulnerability to climate-related extreme events and other economic, social and environmental shocks and disasters
@@ -229,7 +231,7 @@ const sdg = [
   },
   {
     title: 'Decent Work and Economic Growth',
-    text: ` 8.1 Sustain per capita economic growth in accordance with national circumstances and, in particular, at least 7 per cent gross domestic product growth per annum in the least developed countries
+    text: `8.1 Sustain per capita economic growth in accordance with national circumstances and, in particular, at least 7 per cent gross domestic product growth per annum in the least developed countries
             8.2 Achieve higher levels of economic productivity through diversification, technological upgrading and innovation, including through a focus on high-value added and labour-intensive sectors
             8.3 Promote development-oriented policies that support productive activities, decent job creation, entrepreneurship, creativity and innovation, and encourage the formalization and growth of micro-, small- and medium-sized enterprises, including through access to financial services
             8.4 Improve progressively, through 2030, global resource efficiency in consumption and production and endeavour to decouple economic growth from environmental degradation, in accordance with

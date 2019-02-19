@@ -74,7 +74,7 @@ const Updates = ({ projectName, title, statusText, text }) => (
       </View>
       <FlatList
         style={{ paddingTop: 10 }}
-        data={projectName === 'Aba Factory construction' ? factoryImages : images}
+        data={projectName === 'ABA FACTORY CONSTRUCTION' ? factoryImages : images}
         showsHorizontalScrollIndicator={false}
         keyExtractor={keyExtractor}
         horizontal
