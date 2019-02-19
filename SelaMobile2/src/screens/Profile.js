@@ -92,9 +92,9 @@ class Profile extends Component {
         this.setState({
           profileInfo: {
             userInfo: {
-              isFunder: true,
+              isFunder: false,
               isContractor: false,
-              // isEvaluator,
+              isEvaluator: true,
               firstName: 'Sela',
               lastName: '',
               isVerified: true,

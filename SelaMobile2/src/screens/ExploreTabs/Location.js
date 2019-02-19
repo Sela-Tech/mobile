@@ -167,7 +167,7 @@ export default class Location extends Component {
           {isMapReady ? (
             <Fragment>
               {
-                project.location.name === 'Abia, Nigeria' ?
+                project.location.name === 'Aba, Nigeria' ?
                   (
                     <Fragment>
                       {<Marker.Animated

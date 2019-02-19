@@ -47,7 +47,7 @@ const tasklisting = [
     title: 'Identification of ponds to be treated',
     text:
       'Identify the 3 ponds to be treated. Move Biotechnology products to secured location at the site.',
-    statusText: 'In Progress',
+    statusText: 'Completed',
   },
   {
     title: 'Identification of VSE teams',
@@ -55,17 +55,13 @@ const tasklisting = [
       'Identify VSE team and assignment to pond with laid out instructions for project execution',
     statusText: 'Completed',
   },
-  {
-    title: 'Collection of samples of water and soil',
-    text:
-      'Collection of 1st samples of water and soil and data after treatment. Send samples to the laboratory',
-    statusText: 'Completed',
-  },
+
   {
     title: 'Site preparation',
     text: 'Site preparation and Collection of baseline data',
-    statusText: 'In Progress',
+    statusText: 'Completed',
   },
+
   {
     title: 'Biotechnology application 1',
     text: 'Application of first part of biotechnology',
@@ -76,14 +72,55 @@ const tasklisting = [
     text: 'Application of second part of biotechnology',
     statusText: 'Completed',
   },
+
+  {
+    title: 'Collection of samples of water and soil',
+    text:
+      'Collection of 1st samples of water and soil and data after treatment. Send samples to the laboratory',
+    statusText: 'Completed',
+  },
+  {
+    title: 'Site preparation',
+    text: 'Collection of 2nd samples and data. Send samples to the laboratory',
+    statusText: 'In Progress',
+  },
+  {
+    title: 'Site preparation',
+    text: 'Collection of 3rd samples and data. Send samples to the laboratory',
+    statusText: 'In Progress',
+  },
+  {
+    title: 'Site preparation',
+    text: 'Collection of 4th samples and data. Send samples to the laboratory',
+    statusText: 'In Progress',
+  },
+  {
+    title: 'Site preparation',
+    text: 'Collection of 5th samples and data. Send samples to the laboratory',
+    statusText: 'In Progress',
+  },
+  {
+    title: 'Collection of laboratory result',
+    text: 'Collection of laboratory results and report writing',
+    statusText: 'In Progress',
+  },
+
+
+  // {
+  //   title: 'Biotechnology application 1',
+  //   text: 'Application of first part of biotechnology',
+  //   statusText: 'Completed',
+  // },
+
 ];
 
 const filterTask = [tasklisting[Math.floor(Math.random() * tasklisting.length)], tasklisting[2]];
 
 const Updates = ({ project }) => (
+  console.log('kkkdf', project.name),
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <Fragment>
-      {project.name !== 'Aba Factory construction'
+      {project.name !== 'ABA FACTORY CONSTRUCTION'
         ? filterTask.map((c, index) => (
           <IndUpdates
             key={index}
@@ -93,7 +130,7 @@ const Updates = ({ project }) => (
             statusText={c.statusText}
           />
         ))
-        : task2.map((c, index) => (
+        : tasklisting.map((c, index) => (
           <IndUpdates
             key={index}
             projectName={project.name}

@@ -155,33 +155,49 @@ const StakeHolders = ({ project, navigation }) => (
                   photoLink = 'https://placeimg.com/640/480/any';
                 }
                 return (
-                  <UserProfile
-                    key={index}
-                    userId={
-                      project.name === 'ABA FACTORY CONSTRUCTION'
-                        ? 'Simi'
-                        : 'Tunde'
-                    }
-                    // userId={c.user.information._id}
-                    userDetails={c}
-                    // imgSource={{ uri: photoLink }}
-                    imgSource={
-                      project.name === 'ABA FACTORY CONSTRUCTION' ?
-                        require('../../../assets/factory_cleanup/Simi_Olatopin.jpg')
-                        :
-                        require('../../../assets/project_cleanup/Tunde_Olatope.jpg')
-                    }
-                    userName={
-                      project.name === 'ABA FACTORY CONSTRUCTION'
-                        ? 'Simi Olatopin' : 'Tunde Olatope'}
-                    // userName={`${project.owner.firstName} ${project.owner.lastName}`}
-                    companyName={
-                      project.name === 'ABA FACTORY CONSTRUCTION'
-                        ? 'Media for Justice'
-                        : 'Media for Justice'
-                    }
-                  />
-                );
+                  <View key={index}>
+                    <UserProfile
+
+                      userId={
+                        project.name === 'ABA FACTORY CONSTRUCTION'
+                          ? 'Simi'
+                          : 'Tunde'
+                      }
+                      // userId={c.user.information._id}
+                      userDetails={c}
+                      // imgSource={{ uri: photoLink }}
+                      imgSource={
+                        project.name === 'ABA FACTORY CONSTRUCTION' ?
+                          require('../../../assets/factory_cleanup/Simi_Olatopin.jpg')
+                          :
+                          require('../../../assets/project_cleanup/Tunde_Olatope.jpg')
+                      }
+                      userName={
+                        project.name === 'ABA FACTORY CONSTRUCTION'
+                          ? 'Simi Olatopin' : 'Tunde Olatope'}
+                      // userName={`${project.owner.firstName} ${project.owner.lastName}`}
+                      companyName={
+                        project.name === 'ABA FACTORY CONSTRUCTION'
+                          ? 'Media for Justice'
+                          : 'Media for Justice'
+                      }
+                    />
+
+                    <UserProfile
+                      key={index}
+                      userId={`Sela`}
+                      // userId={c.user.information._id}
+                      userDetails={c}
+                      // imgSource={{ uri: photoLink }}
+                      imgSource={
+                        require('../../../assets/goldlogo.png')
+                      }
+                      userName={'Sela'}
+                      // userName={`${project.owner.firstName} ${project.owner.lastName}`}
+                      companyName={'Sela'}
+                    />
+                  </View>
+                )
               })}
             </View>
           )}
