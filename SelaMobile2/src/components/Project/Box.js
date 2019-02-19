@@ -160,7 +160,12 @@ const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
               <Text style={styles.text}>{siteName}</Text>
             </View>
             <View style={styles.pt3}>
-              <Text style={styles.amount}>{`$${projectInfo.goal}`}</Text>
+              {/* <Text style={styles.amount}>{`$${projectInfo.goal}`}</Text> */}
+              <Text style={styles.amount}>{siteName.toUpperCase()
+                === 'ABA FACTORY CONSTRUCTION' ?
+                '$750,000' : '$2,000,000'
+              }
+              </Text>
             </View>
           </View>
           <View style={[ExtStyles.flex1, styles.pl5]}>

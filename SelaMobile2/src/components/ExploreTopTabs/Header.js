@@ -5,6 +5,7 @@ import { projectStatusTextColor, tagsColor } from '../../utils/helpers';
 import extStyle from '../../utils/styles';
 import Text from '../Text';
 import Tag from './ClTag';
+import TagDisplay from './TagDisplay';
 import { WHITE } from '../../utils/constants';
 
 
@@ -42,10 +43,20 @@ const styles = StyleSheet.create({
 class Header extends Component {
   state = {
     bookmarkStatus: false,
+    showTag: false,
+    // src: require('../../../assets/sdgs/SDG_6.png'),
   };
 
   changeBookmark = () =>
     this.setState(prevState => ({ bookmarkStatus: !prevState.bookmarkStatus }));
+
+  showTag = src => {
+    this.setState(prevState => ({
+      showTag: !prevState.showTag,
+      src,
+    }));
+  }
+
 
   render() {
     const {
@@ -57,7 +68,7 @@ class Header extends Component {
       raisedAmount,
       tags,
     } = this.props;
-    const { bookmarkStatus } = this.state;
+    const { bookmarkStatus, showTag, src } = this.state;
     return (
       <View style={styles.container}>
         <View style={[extStyle.f1row, { flex: 2, alignItems: 'center' }]}>
@@ -154,36 +165,53 @@ class Header extends Component {
                   projectTitleText.toUpperCase()
                     === 'ABA FACTORY CONSTRUCTION' ?
                     (
-                      <View style={{ flexDirection: 'row' }} >
+                      <View style={{ flexDirection: 'row' }}>
 
                         <Tag
+                          showTag={this.showTag}
+                          // showTag={this.showTag(require('../../../assets/sdgs/SDG_1.png'))}
                           src={require('../../../assets/sdgs/SDG_1.png')}
+                        // src={src}
                         />
                         <Tag
+                          showTag={this.showTag}
+                          // showTag={this.showTag(require('../../../assets/sdgs/SDG_8.png'))}
                           src={require('../../../assets/sdgs/SDG_8.png')}
+                        // src={src}
                         />
 
                       </View>
                     ) :
                     (
-                      <View style={{ flexDirection: 'row' }} >
+                      <View style={{ flexDirection: 'row' }}>
                         <Tag
+                          showTag={this.showTag}
+                          // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
                           src={require('../../../assets/sdgs/SDG_3.png')}
+                        // src={src}
                         />
 
                         <Tag
+                          showTag={this.showTag}
+                          // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
                           src={require('../../../assets/sdgs/SDG_13.png')}
+                        // src={src}
                         />
 
                         <Tag
+                          showTag={this.showTag}
+                          // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
                           src={require('../../../assets/sdgs/SDG_14.jpg')}
+                        // src={src}
                         />
 
 
                         <Tag
+                          showTag={this.showTag}
+                          // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
                           src={require('../../../assets/sdgs/SDG_6.png')}
+                        // src={src}
                         />
-
                       </View>
                     )
                 }
@@ -191,6 +219,11 @@ class Header extends Component {
               </View>
             )}
         </Fragment>
+        <TagDisplay
+          showTag={this.showTag}
+          visibility={showTag}
+          imageSource={src}
+        />
       </View>
     );
   }
@@ -201,3 +234,5 @@ Header.defaultProps = {};
 Header.propTypes = {};
 
 export default Header;
+
+

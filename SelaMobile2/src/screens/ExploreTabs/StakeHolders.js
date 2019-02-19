@@ -55,7 +55,7 @@ const StakeHolders = ({ project, navigation }) => (
                   <UserProfile
                     key={index}
                     userId={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Isaiah'
                         : 'Fidelia'
                     }
@@ -63,17 +63,17 @@ const StakeHolders = ({ project, navigation }) => (
                     userDetails={c}
                     // imgSource={{ uri: photoLink }}
                     imgSource={
-                      project.name === 'Aba Factory construction' ?
+                      project.name === 'ABA FACTORY CONSTRUCTION' ?
                         require('../../../assets/factory_cleanup/isaiah_udotong.jpg')
                         :
                         require('../../../assets/project_cleanup/fidelia_nnadi.jpg')
                     }
                     userName={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Isaiah Udotong' : 'Fidelia Nnadi'}
                     // userName={`${project.owner.firstName} ${project.owner.lastName}`}
                     companyName={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Releaf Nigeria'
                         : 'Sustainability International'
                     }
@@ -106,7 +106,7 @@ const StakeHolders = ({ project, navigation }) => (
                   <UserProfile
                     key={index}
                     userId={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Isaiah'
                         : 'Collins'
                     }
@@ -114,17 +114,17 @@ const StakeHolders = ({ project, navigation }) => (
                     userDetails={c}
                     // imgSource={{ uri: photoLink }}
                     imgSource={
-                      project.name === 'Aba Factory construction' ?
+                      project.name === 'ABA FACTORY CONSTRUCTION' ?
                         require('../../../assets/factory_cleanup/isaiah_udotong.jpg')
                         :
                         require('../../../assets/man1.png')
                     }
                     userName={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Isaiah Udotong' : 'Collins Peter'}
                     // userName={`${project.owner.firstName} ${project.owner.lastName}`}
                     companyName={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Releaf Nigeria'
                         : 'Sustainability International'
                     }
@@ -158,7 +158,7 @@ const StakeHolders = ({ project, navigation }) => (
                   <UserProfile
                     key={index}
                     userId={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Simi'
                         : 'Tunde'
                     }
@@ -166,17 +166,17 @@ const StakeHolders = ({ project, navigation }) => (
                     userDetails={c}
                     // imgSource={{ uri: photoLink }}
                     imgSource={
-                      project.name === 'Aba Factory construction' ?
+                      project.name === 'ABA FACTORY CONSTRUCTION' ?
                         require('../../../assets/factory_cleanup/Simi_Olatopin.jpg')
                         :
                         require('../../../assets/project_cleanup/Tunde_Olatope.jpg')
                     }
                     userName={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Simi Olatopin' : 'Tunde Olatope'}
                     // userName={`${project.owner.firstName} ${project.owner.lastName}`}
                     companyName={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Media for Justice'
                         : 'Media for Justice'
                     }
@@ -209,7 +209,7 @@ const StakeHolders = ({ project, navigation }) => (
                   <UserProfile
                     key={index}
                     userId={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Carla'
                         : 'Victoria'
                     }
@@ -217,17 +217,17 @@ const StakeHolders = ({ project, navigation }) => (
                     userDetails={c}
                     // imgSource={{ uri: photoLink }}
                     imgSource={
-                      project.name === 'Aba Factory construction' ?
+                      project.name === 'ABA FACTORY CONSTRUCTION' ?
                         require('../../../assets/factory_cleanup/carla_walker.jpeg')
                         :
                         require('../../../assets/project_cleanup/victoria_botvin.jpg')
                     }
                     userName={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Carla Walker' : 'Victoria Botvin'}
                     // userName={`${project.owner.firstName} ${project.owner.lastName}`}
                     companyName={
-                      project.name === 'Aba Factory construction'
+                      project.name === 'ABA FACTORY CONSTRUCTION'
                         ? 'Bamboo Capital Partners'
                         : 'Green Climate Fund'
                     }

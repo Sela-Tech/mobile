@@ -26,6 +26,6 @@ const middlewares = [
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-export const store = createStore(persistedReducer, {}, compose(applyMiddleware(...middlewares)));
+export const store = createStore(rootReducer, {}, compose(applyMiddleware(...middlewares)));
 
 export const persistor = persistStore(store);

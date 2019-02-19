@@ -85,6 +85,8 @@ export const getDummyDisplayPicture = name => {
       return require('../../assets/img/cleanup/cleanup_3.jpg');
     case 'Aba Factory construction':
       return require('../../assets/img/cleanup/factory.jpg');
+    case 'ABA FACTORY CONSTRUCTION':
+      return require('../../assets/img/cleanup/factory.jpg');
     default:
       return imageLocs[Math.floor(Math.random() * imageLocs.length)];
   }

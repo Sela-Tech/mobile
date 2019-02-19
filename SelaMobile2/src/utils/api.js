@@ -29,7 +29,7 @@ axios.interceptors.request.use(
   config => {
     // Do something before request is sent
     config.headers['x-access-token'] = this.userToken;
-    console.log('this.uu', this.userToken)
+    // console.log('this.uu', this.userToken)
     return config;
   },
   error => {

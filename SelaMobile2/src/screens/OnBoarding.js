@@ -233,7 +233,6 @@ export default class OnBoarding extends Component {
       isContractor,
       isFunder,
       password,
-      profilePhoto: 'https://placeimg.com/200/200/people',
     };
     this.setState({
       submitErrorMessage: '',
