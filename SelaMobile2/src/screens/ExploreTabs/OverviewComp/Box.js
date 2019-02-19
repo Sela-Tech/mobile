@@ -265,7 +265,7 @@ export default class Box extends Component {
   }
 
   render() {
-    const { upText, secondTextLeft, secondTextRight, navigation, lastText } = this.props;
+    const { show, upText, secondTextLeft, secondTextRight, navigation, lastText } = this.props;
     // const { labelWidth, selectedSlice } = this.state;
     // const { label, value } = selectedSlice;
     // const keys = ['Evaluation team', 'Contractor payout', 'Supplies'];
@@ -318,6 +318,8 @@ export default class Box extends Component {
         </TouchableOpacity>
       );
     }
+
+
     if (upText === 'Progress') {
       return (
         <View style={styles.container}>
@@ -383,7 +385,9 @@ export default class Box extends Component {
 
     if (upText === 'Community Feedback') {
       return (
-        <View style={styles.container2}>
+        <TouchableOpacity
+          onPress={() => show('COMMUNITY')}
+          style={styles.container2}>
           <Image
             style={{
               flex: 1,
@@ -421,14 +425,16 @@ export default class Box extends Component {
             closeInterval={6000}
           />
           {/* </View> */}
-        </View>
+        </TouchableOpacity>
       );
     }
 
 
     if (upText === 'Changes in TPH Level') {
       return (
-        <View style={styles.container2}>
+        <TouchableOpacity style={styles.container2}
+          onPress={() => show('notCOMMUNITY')}
+        >
           <Image
             style={{
               flex: 1,
@@ -466,13 +472,16 @@ export default class Box extends Component {
             closeInterval={6000}
           />
           {/* </View> */}
-        </View>
+        </TouchableOpacity>
       );
     }
 
 
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, { height: height / 1.8 }]}>
+        <View>
+          <Text> Sample spending on one of the sites </Text>
+        </View>
         <Image
           style={{
             flex: 1,
@@ -481,17 +490,16 @@ export default class Box extends Component {
             // flex: 1,
             // width: null,
             // height: null,
-            // resizeMode: 'contain',
+            resizeMode: 'contain',
           }}
-          // source={require('../../../../assets/charts/Bar_Chart.png')}
-          source={require('../../../../assets/charts/Bar_Chart.png')}
+          source={require('../../../../assets/oil-spill/bar-budget.png')}
         />
-        <DropdownAlert
+        {/* <DropdownAlert
           ref={ref => (this.dropdown = ref)}
           // startDelta={height}
           // endDelta={height - height / 8}
           closeInterval={6000}
-        />
+        /> */}
       </View>
     );
   }
