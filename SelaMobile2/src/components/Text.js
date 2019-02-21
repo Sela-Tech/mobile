@@ -5,7 +5,7 @@ import { isAndroid } from '../utils/helpers';
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: isAndroid ? 'ProximaNova' : null,
+    fontFamily: isAndroid ? 'Acumin-ItPro' : null,
   },
 });
 

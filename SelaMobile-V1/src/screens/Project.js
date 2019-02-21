@@ -21,6 +21,7 @@ import Button from '../components/Button';
 import { YELLOW, WHITE, BASE_URL } from '../utils/constants';
 import ExtStyle from '../utils/styles';
 import Spinner from '../components/Spinner';
+import StandardText from '../components/StandardText';
 
 const { height } = Dimensions.get('window');
 
@@ -39,12 +40,16 @@ const styles = StyleSheet.create({
   },
   floatingButton: {
     backgroundColor: YELLOW,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    alignSelf: 'flex-end',
+    // flex: 1,
     position: 'absolute',
-    height: 60,
-    width: 60,
-    borderRadius: 30,
-    bottom: height / 7,
-    right: 30,
+    bottom: 35,
+    right: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -180,10 +185,23 @@ class Project extends Component {
                 <Fragment>
                   {userRole === 'funder' ? (
                     <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
+                      <StandardText
+                        text="Welcome back"
+                        viewStyle={{
+                          justifyContent: 'flex-start',
+                          alignItems: 'flex-start',
+                          marginLeft: 10,
+                          marginTop: 10,
+                        }}
+                        textStyle={{
+                          fontSize: 18,
+                          color: '#201D41',
+                        }}
+                      />
 
                       <View style={ExtStyle.flex1}>
                         <SingularProject
-                          leftText="Projects you funded"
+                          leftText="Projects you fund"
                           // rightText="See all"
                           projects={projects}
                         />
@@ -191,7 +209,7 @@ class Project extends Component {
 
                       <View style={ExtStyle.flex1}>
                         <SingularProject
-                          leftText="Projects you proposed"
+                          leftText="Projects you initiated"
                           // rightText="See all"
                           projects={projectCreatedByMe}
                         />
@@ -207,7 +225,7 @@ class Project extends Component {
 
                       <View style={ExtStyle.flex1}>
                         <SingularProject
-                          leftText="Saved Project"
+                          leftText="Bookmarks"
                           // rightText="See all"
                           projects={projects}
                         />
@@ -293,7 +311,13 @@ class Project extends Component {
                 </Fragment>
               )}
           </Fragment>
+
         </ScrollView>
+        <View style={styles.floatingButton}>
+          <Image
+            source={require('../../assets/plus.png')}
+          />
+        </View>
       </View>
     );
   }

@@ -24,8 +24,9 @@ export default createBottomTabNavigator(
         if (routeName === 'Project') {
           return (
             <Image
-              resizeMode="contain"
-              source={require('../assets/briefcase.png')}
+              style={{ tintColor: focused ? YELLOW : null, resizeMode: 'contain', flex: 1 }}
+              // resizeMode="contain"
+              source={require('../assets/folder.png')}
               style={{ tintColor: focused ? YELLOW : `gray` }}
             />
           );
@@ -33,7 +34,7 @@ export default createBottomTabNavigator(
         if (routeName === 'Inbox') {
           return (
             <Image
-              resizeMode="contain"
+              // resizeMode="contain"
               source={require('../assets/inbox.png')}
               style={{ tintColor: focused ? YELLOW : null }}
             />
@@ -42,27 +43,27 @@ export default createBottomTabNavigator(
         if (routeName === 'Explore') {
           return (
             <Image
-              resizeMode="contain"
+              // resizeMode="contain"
               source={require('../assets/explore.png')}
-              style={{ tintColor: focused ? YELLOW : null }}
+              style={{ tintColor: focused ? YELLOW : null, resizeMode: 'contain', flex: 1 }}
             />
           );
         }
         if (routeName === 'Wallet') {
           return (
             <Image
-              resizeMode="contain"
+              // resizeMode="contain"
               source={require('../assets/wallet.png')}
-              style={{ tintColor: focused ? YELLOW : null }}
+              style={{ tintColor: focused ? YELLOW : null, resizeMode: 'contain', flex: 1 }}
             />
           );
         }
 
         return (
           <Image
-            resizeMode="contain"
+            // resizeMode="contain"
             source={require('../assets/profile.png')}
-            style={{ tintColor: focused ? YELLOW : null }}
+            style={{ tintColor: focused ? YELLOW : null, resizeMode: 'contain', flex: 1 }}
           />
         );
       },
@@ -73,7 +74,7 @@ export default createBottomTabNavigator(
       labelStyle: {
         // fontSize: width < 400 ? 7 : 9,
         // fontWeight: '400',
-        fontFamily: isAndroid ? 'ProximaNova' : null,
+        fontFamily: isAndroid ? 'Acumin-ItPro' : null,
       },
     },
   },

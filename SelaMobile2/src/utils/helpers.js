@@ -148,7 +148,7 @@ export const emptyProjectText = text => {
     default:
       return require('../../assets/man1.png');
   }
-}
+};
 
 export const tagsColor = tagsText => {
   switch (tagsText && tagsText.toUpperCase()) {

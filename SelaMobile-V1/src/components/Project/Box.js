@@ -19,9 +19,9 @@ const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     height: height / 4,
-    width: width / 1.25,
+    // width: width / 1.25,
     borderRadius: 5,
-    borderStyle: 'dotted',
+    borderStyle: 'dashed', //https://github.com/facebook/react-native/issues/17251
     borderWidth: 1,
   },
   imageBack: {
@@ -65,13 +65,14 @@ const styles = StyleSheet.create({
   otherCont: {
     alignItems: 'center',
     borderColor: '#F2994A',
+    // flexDirection: 'row',
     // width: width / 1.5,
   },
   mt10: {
-    marginTop: 10
+    // marginTop: 10
   },
   imgTintColor: {
-    tintColor: '#696f74',
+    // tintColor: '#696f74',
   },
   tagStyle: {
     width: '40%',
@@ -82,36 +83,11 @@ const styles = StyleSheet.create({
     // borderRadius: 10,
   },
   viewInImage: {
-
-
-
-    // borderRadius: 10,
     paddingLeft: 5,
-    // flexDirection: 'row',
-
-    // paddingHorizontal: 5,
-    // height: '65%',
-    // paddingVertical: 5,
     backgroundColor: YELLOW,
-    // flex: 1,
-    // borderRadius: 10,
     borderRadius: 10,
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-    // width: '40%',
-    // paddingHorizontal: 5,
-    // paddingVertical: 3,
-    // borderRadius: 10,
     flexDirection: 'row',
-    // paddingLeft: 5,
-    // justifyContent: 'flex-start',
-
-    // position: 'absolute',
-    // top: 20,
-    // right: 30,
-    // zIndex: 3,
-    // borderRadius: 10,
   },
   fundedTextColor: {
     color: '#201D41',
@@ -126,14 +102,79 @@ const styles = StyleSheet.create({
     paddingHorizontal: 5,
     paddingVertical: 5,
   },
+  pl3: {
+    paddingLeft: 3,
+  }
 });
 
 const fundedStatus = ['60%', '40%', '20%', '85%'];
 
-const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
+const viewToReturn = text => {
+  switch (text) {
+    case 'Projects you fund':
+      return (
+        <View style={ExtStyles.row}>
+          <View style={styles.mt10}>
+            <Text style={styles.text}> Explore projects to fund </Text>
+          </View>
+          <View style={[ExtStyles.jc, styles.pl3]}>
+            <Image source={require('../../../assets/yellow_forward.png')} />
+          </View>
+        </View>
+      );
+    case 'Projects you initiated':
+      return (
+        <View style={ExtStyles.row}>
+          <View style={ExtStyles.jc}>
+            <Image source={require('../../../assets/yellow_plus.png')} />
+          </View>
+          <View style={styles.pl3}>
+            <Text style={styles.text}> New project </Text>
+          </View>
+        </View>
+      );
+    case 'Projects that may interest you':
+      return (
+        <View style={ExtStyles.row}>
+          <View style={ExtStyles.jc}>
+            <Image source={require('../../../assets/yellow_plus.png')} />
+          </View>
+          <View style={styles.pl3}>
+            <Text style={styles.text}> Edit interests</Text>
+          </View>
+        </View>
+      );
+
+    case 'Bookmarks':
+      return (
+        <View style={styles.mt10}>
+          <Text style={styles.text}>You have not bookmarked any project</Text>
+        </View>
+      );
+
+    default:
+      return (
+        <View style={ExtStyles.row}>
+          <View style={ExtStyles.jc}>
+            <Image source={require('../../../assets/yellow_plus.png')} />
+          </View>
+          <View style={styles.pl3}>
+            <Text> {text ? text : 'Propose Project'} </Text>
+          </View>
+        </View>
+      );
+  }
+}
+
+const Box = ({ projectInfo, empty, siteName, wide, imageSource, text }) => (
   <TouchableOpacity
     style={[styles.container, {
-      justifyContent: !!empty ? 'center' : undefined, width: !!empty ? width / 1.8 : width / 1.25
+      justifyContent: !!empty ? 'center' : undefined,
+      width: wide ? undefined : !!empty ? width / 1.8 : width / 1.25,
+      // paddingHorizontal: 5,
+      // backgroundColor: 'red',
+      paddingVertical: 5,
+      borderStyle: 'dotted',
     }]}
     onPress={
       empty
@@ -197,13 +238,8 @@ const Box = ({ projectInfo, empty, siteName, imageSource, text }) => (
         </View>
       </View>
     ) : (
-        <View style={[styles.empty, styles.otherCont]}>
-          <View style={ExtStyles.jc}>
-            <Image source={require('../../../assets/plus.png')} style={styles.imgTintColor} />
-          </View>
-          <View style={styles.mt10}>
-            <Text> {text ? text : 'Propose Project'} </Text>
-          </View>
+        <View style={[styles.otherCont]}>
+          {viewToReturn(text)}
         </View>
       )}
   </TouchableOpacity>

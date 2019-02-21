@@ -3,6 +3,7 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import Text from '../Text';
 import Box from './Box';
+import B from '../BoldText';
 import Images from './Images';
 import { emptyProjectText } from '../../utils/helpers';
 import { YELLOW } from '../../utils/constants';
@@ -60,10 +61,12 @@ const Project = ({ leftText, rightText, projects }) => (
   <View style={styles.container}>
     <View style={styles.semiContainer}>
       <View style={styles.leftContainer}>
-        <Text style={styles.leftTextContainer}>
+        <B
+          weight="400"
+          style={styles.leftTextContainer}>
           {leftText}
           {' '}
-        </Text>
+        </B>
       </View>
       <Fragment>
         {projects && projects.length > 0 ? (
@@ -75,9 +78,6 @@ const Project = ({ leftText, rightText, projects }) => (
                 {' '}
               </Text>
             </View>
-            {/* <View style={{ justifyContent: 'center' }}>
-              <Image source={require('../../../assets/forward-yellow.png')} />
-            </View> */}
           </View>
         ) : null}
       </Fragment>
@@ -85,27 +85,18 @@ const Project = ({ leftText, rightText, projects }) => (
 
     <View style={styles.bottomContainer}>
       <Fragment>
-        {leftText === 'Projects you proposed' ? (
-          <Images leftText={leftText} projects={projects} />
-        ) : projects && projects.length === 0 ? (
-          <Fragment>
-            {leftText === 'Projects you proposed' ? (
-              <Box
-                text={leftText === 'Projects you created' ? 'Create Project' : 'Propose Project'}
-                empty
-                fn={() => console.log('navigate')}
-              />
-            ) : (
-                <View style={styles.emptyBox}>
-                  <Text style={styles.textInEmptyBox}>
-                    {emptyProjectText(leftText)}
-                  </Text>
-                </View>
-              )}
-          </Fragment>
-        ) : (
+        {
+          projects && projects.length === 0 ?
+            <Box
+              text={leftText}
+              empty
+              wide
+              fn={() => console.log('navigate')}
+            />
+            : (
               <Images leftText={leftText} projects={projects} />
-            )}
+            )
+        }
       </Fragment>
     </View>
   </View>
