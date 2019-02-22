@@ -15,7 +15,7 @@ import { DEFAULT_COLOUR, WHITE } from '../utils/constants';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: DEFAULT_COLOUR,
+    backgroundColor: WHITE,
   },
   boldText: {
     color: '#F2994A',
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
   },
   buttomText: {
-    color: '#FFFFFF',
+    color: '#3D4851',
     fontSize: 18,
   },
   whiteText: {
@@ -93,7 +93,11 @@ export default class ForgotPassword extends Component {
                   })
                 }
                 error={emailOrPhoneError}
-                textStyle={styles.whiteText}
+                style={{
+                  borderColor: '#696F74'
+                }}
+                placeHolderColor="#696F74"
+                textStyle={{ color: '#696F74' }}
                 text="Email Address or Phone Number"
               />
             </View>

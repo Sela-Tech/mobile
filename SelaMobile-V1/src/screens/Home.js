@@ -13,15 +13,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: DEFAULT_COLOUR,
+    backgroundColor: WHITE,
   },
   boldText: {
-    color: '#F2994A',
+    color: '#3D4851',
     fontSize: 25,
-    fontWeight: '500',
+    fontWeight: '400',
   },
   buttomText: {
-    color: '#FFFFFF',
+    color: '#3D4851',
     fontSize: 17,
   },
 });
@@ -74,9 +74,9 @@ export default () => (
         <View style={{ marginTop: '5%' }}>
           <Button
             text="Log In"
-            color="#FFFFFF"
+            color="#201D41"
             medium
-            textColor="#F2994A"
+            textColor="#FFFFFF"
             textSize={16}
             fn={() => NavigationService.navigate('Login')}
           />
