@@ -242,12 +242,8 @@ class ExploreProject extends Component {
                   numberOfStakeholders={projectInfo.stakeholders.length}
                   raisedAmount={projectInfo.raised}
                   tags={projectInfo.tags}
-                // tags={[]}
                 />
               </View>
-              {/* <View style={ExtStyle.flex4}> */}
-              {/* <Navigator navigation={this.props.navigation} project={projectInfo} /> */}
-              {/* </View> */}
             </Fragment>
           ) : (
               <View />

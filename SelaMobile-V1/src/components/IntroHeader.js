@@ -10,7 +10,6 @@ const styles = {
   container: {
     flexDirection: 'row',
     width,
-
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -24,8 +23,8 @@ const IntroHeader = ({ back, keyboard, fn }) => (
             <TouchableOpacity onPress={fn}>
               <Image
                 resizeMode="contain"
-                style={{}}
-                source={require('../../assets/img/back.png')}
+                // source={require('../../assets/img/back.png')}
+                source={require('../../assets/header_back.png')}
               />
             </TouchableOpacity>
           </View>
@@ -34,7 +33,7 @@ const IntroHeader = ({ back, keyboard, fn }) => (
       ) : null}
     </View>
     <View style={[!back ? { flex: 3, alignItems: 'center' } : null]}>
-      <Image style={{ width: 50, height: 50 }} source={require('../../assets/img/logo.png')} />
+      <Image style={{ width: 50, height: 50 }} source={require('../../assets/logo.png')} />
     </View>
     <View style={ExtStyle.flex1} />
   </View>
