@@ -3,14 +3,17 @@ import { View, Image, Dimensions, StyleSheet, TouchableOpacity, ScrollView } fro
 import { connect } from 'react-redux';
 import Spinner from '../components/Spinner';
 import Text from '../components/Text';
+import StandardText from '../components/StandardText';
 import Tag from '../components/Tag';
 import Button from '../components/Button';
-import Header from '../components/ExploreTopTabs/Header';
+import Header from '../components/Explore/Header';
+import ExpandableBox from '../components/Explore/ExpandableBox';
 import Navigator from './ExploreTabs/Navigator';
 import { getSingleProject } from '../utils/api';
 import ExtStyle from '../utils/styles';
 import { getDummyDisplayPicture, projectStatusTextColor } from '../utils/helpers';
 import { WHITE } from '../utils/constants';
+
 
 const { height, width } = Dimensions.get('window');
 const fundedStatus = ['60%', '40%', '20%', '85%'];
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
 
   buttonPosition: {
     position: 'absolute',
-    bottom: 12,
+    top: 200,
     left: 10,
   },
   settingsPosition: {
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
     right: 5,
   },
   flex4mb5: {
-    flex: 5,
+    // flex: 5,
     // marginBottom: 1,
   },
   backButton: {
@@ -85,12 +88,34 @@ const styles = StyleSheet.create({
   //   paddingHorizontal: 5,
   //   borderRadius: 10,
   // },
+  expandableBox: {
+    height: 65,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 20,
+    flexDirection: 'row',
+    borderColor: '#ddd',
+    shadowColor: '#ddd',
+    shadowOpacity: 1.0,
+    shadowOffset: { width: 10, height: 10, },
+    elevation: 3,
+  },
+  textInExpandable: {
+    color: '#3D4851',
+    fontSize: 16,
+  },
+  viewInExpandable: {
+    flex: 7,
+    marginLeft: 10,
+  },
 });
 class ExploreProject extends Component {
   state = {
     projectId: this.props.navigation.state.params,
     loading: true,
     notAvailaible: false,
+    expandBox: false,
   };
 
   async componentDidMount() {
@@ -126,6 +151,9 @@ class ExploreProject extends Component {
     }
   }
 
+
+  expandTheBox = () => this.setState(prevState => ({ expandBox: !prevState.expandBox }));
+
   render() {
     const { projectId, loading, notAvailaible, projectInfo } = this.state;
     const allProjects =
@@ -146,13 +174,14 @@ class ExploreProject extends Component {
     return (
       <ScrollView style={ExtStyle.flex1}
         contentContainerStyle={{ flexGrow: 1 }}>
-        <Fragment>
+        <View style={{ flex: 1 }}>
           {notAvailaible ? (
-            <Fragment>
+            <View style={{ flex: 1 }}>
               <View style={styles.flex4mb5}>
                 <View
                   style={{
-                    flex: 1,
+                    // flex: 1,
+                    height: 300,
                   }}
                 >
                   <Image
@@ -228,12 +257,55 @@ class ExploreProject extends Component {
                     textColor={WHITE}
                   />
                 </View>
+              </View>
+              <View style={{
+                // backgroundColor: 'blue',
+                flex: 1,
+                // flexGrow: 1,
+                // backgroundColor: 'red',
+                marginVertical: 20,
+              }}>
+
+                <ExpandableBox
+                  expand={this.state.expandBox}
+                  fn={() => this.expandTheBox()}
+                  projectInfo={projectInfo}
+                  text="Overview"
+                />
+
+                <ExpandableBox
+                  expand={true}
+                  fn={() => console.log('hhhd')}
+                  projectInfo={projectInfo}
+                  text="Proposals"
+                />
+
+                <ExpandableBox
+                  expand={this.state.expandBox}
+                  projectInfo={projectInfo}
+                  fn={() => this.expandTheBox()}
+                  text="Analytics"
+                />
+
+                <ExpandableBox
+                  expand={this.state.expandBox}
+                  projectInfo={projectInfo}
+                  fn={() => this.expandTheBox()}
+                  text="Updates"
+                />
+
+                {/* <ExpandableBox
+                  expand={this.state.expandBox}
+                  projectInfo={projectInfo}
+                  fn={() => this.expandTheBox()}
+                  text="Transactions"
+                /> */}
+
 
 
 
               </View>
-              <View style={[ExtStyle.flex3]}>
-                <Header
+              {/* <Header
                   locationDetails={projectInfo.location}
                   projectLocationText={projectInfo.location.name}
                   projectStatusText={projectInfo.status}
@@ -242,13 +314,13 @@ class ExploreProject extends Component {
                   numberOfStakeholders={projectInfo.stakeholders.length}
                   raisedAmount={projectInfo.raised}
                   tags={projectInfo.tags}
-                />
-              </View>
-            </Fragment>
+                /> */}
+
+            </View>
           ) : (
               <View />
             )}
-        </Fragment>
+        </View>
       </ScrollView>
     );
   }
