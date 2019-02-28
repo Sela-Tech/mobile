@@ -115,7 +115,7 @@ class ExploreProject extends Component {
     projectId: this.props.navigation.state.params,
     loading: true,
     notAvailaible: false,
-    expandBox: false,
+    expandBox: true,
   };
 
   async componentDidMount() {
@@ -271,6 +271,7 @@ class ExploreProject extends Component {
                   fn={() => this.expandTheBox()}
                   projectInfo={projectInfo}
                   text="Overview"
+                  navigation={this.props.navigation}
                 />
 
                 <ExpandableBox
@@ -278,6 +279,15 @@ class ExploreProject extends Component {
                   fn={() => console.log('hhhd')}
                   projectInfo={projectInfo}
                   text="Proposals"
+                  navigation={this.props.navigation}
+                />
+
+                <ExpandableBox
+                  expand={this.state.expandBox}
+                  fn={() => this.expandTheBox()}
+                  projectInfo={projectInfo}
+                  text="Stakeholders"
+                  navigation={this.props.navigation}
                 />
 
                 <ExpandableBox
@@ -285,6 +295,7 @@ class ExploreProject extends Component {
                   projectInfo={projectInfo}
                   fn={() => this.expandTheBox()}
                   text="Analytics"
+                  navigation={this.props.navigation}
                 />
 
                 <ExpandableBox
@@ -292,30 +303,17 @@ class ExploreProject extends Component {
                   projectInfo={projectInfo}
                   fn={() => this.expandTheBox()}
                   text="Updates"
+                  navigation={this.props.navigation}
                 />
 
-                {/* <ExpandableBox
+                <ExpandableBox
                   expand={this.state.expandBox}
                   projectInfo={projectInfo}
                   fn={() => this.expandTheBox()}
                   text="Transactions"
-                /> */}
-
-
-
-
+                  navigation={this.props.navigation}
+                />
               </View>
-              {/* <Header
-                  locationDetails={projectInfo.location}
-                  projectLocationText={projectInfo.location.name}
-                  projectStatusText={projectInfo.status}
-                  projectTitleText={projectInfo.name}
-                  budgetAmount={projectInfo.goal}
-                  numberOfStakeholders={projectInfo.stakeholders.length}
-                  raisedAmount={projectInfo.raised}
-                  tags={projectInfo.tags}
-                /> */}
-
             </View>
           ) : (
               <View />

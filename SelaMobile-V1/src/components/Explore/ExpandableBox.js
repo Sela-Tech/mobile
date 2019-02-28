@@ -1,8 +1,11 @@
 import React, { Fragment } from 'react';
-import { TouchableOpacity, ScrollView, View, StyleSheet, Image, Dimensions } from 'react-native';
-import * as Animatable from 'react-native-animatable';
+import { TouchableOpacity, View, StyleSheet, Image, Dimensions } from 'react-native';
 import Text from '../Text';
 import OverView from './OverView';
+import Analytics from '../../screens/ExploreTabs/Overview';
+import Transactions from '../../screens/ExploreTabs/Transactions';
+import Updates from '../../screens/ExploreTabs/Updates';
+import Stakeholders from '../../screens/ExploreTabs/StakeHolders';
 import ExtStyle from '../../utils/styles';
 
 const { width } = Dimensions.get('window');
@@ -58,6 +61,57 @@ const styles = StyleSheet.create({
         // marginLeft: 10,
     },
 });
+
+
+export const renderView = (name, project, navigation) => {
+    switch (name) {
+        case 'Analytics':
+            return <Analytics
+                project={project}
+            />;
+        case 'Overview':
+            return
+            (
+                <OverView
+                    locationDetails={project.location}
+                    projectLocationText={project.location.name}
+                    projectStatusText={project.status}
+                    projectTitleText={project.name}
+                    budgetAmount={project.goal}
+                    numberOfStakeholders={project.stakeholders.length}
+                    raisedAmount={project.raised}
+                    tags={project.tags}
+                />);
+
+        case 'Transactions':
+            return (
+                <Transactions
+                    project={project}
+                />
+            );
+
+        case 'Updates':
+            return (
+                <Updates
+                    project={project}
+                />
+            );
+        case 'Stakeholders':
+            return (
+                <Stakeholders
+                    project={project}
+                    navigation={navigation}
+                />
+            );
+
+        default:
+            return (
+                <Updates
+                    project={project}
+                />
+            )
+    }
+};
 
 const ExpandableBox = ({ expand, projectInfo, fn, text }) => (
     <View
@@ -119,19 +173,12 @@ const ExpandableBox = ({ expand, projectInfo, fn, text }) => (
                 </Fragment>
             </View>
             {
-                <View >
+                <View>
                     {
                         !!expand ? null : (
-                            <OverView
-                                locationDetails={projectInfo.location}
-                                projectLocationText={projectInfo.location.name}
-                                projectStatusText={projectInfo.status}
-                                projectTitleText={projectInfo.name}
-                                budgetAmount={projectInfo.goal}
-                                numberOfStakeholders={projectInfo.stakeholders.length}
-                                raisedAmount={projectInfo.raised}
-                                tags={projectInfo.tags}
-                            />
+                            <Fragment>
+                                {renderView(text, projectInfo)}
+                            </Fragment>
                         )
                     }
                 </View>
@@ -140,3 +187,6 @@ const ExpandableBox = ({ expand, projectInfo, fn, text }) => (
     </View>
 );
 export default ExpandableBox;
+
+
+
