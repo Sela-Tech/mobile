@@ -70,8 +70,7 @@ export const renderView = (name, project, navigation) => {
                 project={project}
             />;
         case 'Overview':
-            return
-            (
+            return (
                 <OverView
                     locationDetails={project.location}
                     projectLocationText={project.location.name}
@@ -104,6 +103,14 @@ export const renderView = (name, project, navigation) => {
                 />
             );
 
+        case 'Proposals':
+            return (
+                <Stakeholders
+                    project={project}
+                    navigation={navigation}
+                />
+            );
+
         default:
             return (
                 <Updates
@@ -124,13 +131,11 @@ const ExpandableBox = ({ expand, projectInfo, fn, text }) => (
             <View style={!expand ? {
                 height: 65,
                 width: '100%',
-                // marginHorizontal: 5,
             } :
                 {
                     height: 65,
                     justifyContent: 'center',
                     alignItems: 'center',
-                    // marginHorizontal: 5,
                 }}>
                 <TouchableOpacity
                     onPress={fn}
@@ -158,11 +163,6 @@ const ExpandableBox = ({ expand, projectInfo, fn, text }) => (
                             (
                                 <View
                                     style={{
-                                        // flex: 1,
-                                        // marginHorizontal: 5,
-                                        // marginLeft: 20,
-
-                                        // marginHorizontal: 15,
                                         height: 1,
                                         backgroundColor: '#b1bad2',
                                     }}

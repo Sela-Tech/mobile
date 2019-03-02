@@ -37,6 +37,7 @@
     "react-native-maps": "^0.23.0",
     "react-native-modal": "^7.0.2",
     "react-native-multiple-select": "^0.4.4",
+    "react-native-pdf": "^5.0.11",
     "react-native-step-indicator": "0.0.9",
     "react-native-svg": "^8.0.10",
     "react-native-svg-charts": "^5.2.0",
@@ -47,6 +48,7 @@
     "redux-logger": "^3.0.6",
     "redux-persist": "^5.10.0",
     "redux-thunk": "^2.3.0",
+    "rn-fetch-blob": "^0.10.15",
     "socket.io-client": "^2.1.1"
   },
   "devDependencies": {

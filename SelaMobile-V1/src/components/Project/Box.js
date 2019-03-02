@@ -145,6 +145,14 @@ const viewToReturn = text => {
         </View>
       );
 
+    case 'Initiated by others':
+      return (
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <Text style={styles.text}>You have not joined or been added  </Text>
+          <Text style={styles.text}> to any project </Text>
+        </View>
+      );
+
     case 'Bookmarks':
       return (
         <View style={styles.mt10}>
@@ -159,7 +167,7 @@ const viewToReturn = text => {
             <Image source={require('../../../assets/yellow_plus.png')} />
           </View>
           <View style={styles.pl3}>
-            <Text> {text ? text : 'Propose Project'} </Text>
+            <Text style={styles.text}> {text ? text : 'Propose Project'} </Text>
           </View>
         </View>
       );
@@ -171,8 +179,6 @@ const Box = ({ projectInfo, empty, siteName, wide, imageSource, text }) => (
     style={[styles.container, {
       justifyContent: !!empty ? 'center' : undefined,
       width: wide ? undefined : !!empty ? width / 1.8 : width / 1.25,
-      // paddingHorizontal: 5,
-      // backgroundColor: 'red',
       paddingVertical: 5,
       borderStyle: 'dotted',
     }]}

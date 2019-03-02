@@ -57,6 +57,7 @@ const styles = StyleSheet.create({
 });
 
 const Project = ({ leftText, rightText, projects }) => (
+  console.log('leftr', leftText),
   <View style={styles.container}>
     <View style={styles.semiContainer}>
       <View style={styles.leftContainer}>
@@ -82,10 +83,10 @@ const Project = ({ leftText, rightText, projects }) => (
         ) : null}
       </Fragment>
     </View>
-
+    {/* //leftText === 'Projects you proposed' | */}
     <View style={styles.bottomContainer}>
       <Fragment>
-        {leftText === 'Projects you proposed' ? (
+        {leftText === 'Initiated by you' ? (
           <Images leftText={leftText} projects={projects} />
         ) : projects && projects.length === 0 ? (
           <Fragment>

@@ -17,6 +17,10 @@ target 'SelaMobile2' do
 
   pod 'react-native-maps', :path => '../node_modules/react-native-maps'
 
+  pod 'rn-fetch-blob', :path => '../node_modules/rn-fetch-blob'
+
+  pod 'react-native-pdf', :path => '../node_modules/react-native-pdf'
+
   target 'SelaMobile2Tests' do
     inherit! :search_paths
     # Pods for testing

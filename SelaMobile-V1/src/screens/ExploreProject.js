@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE,
     width: width / 4,
     position: 'absolute',
-    bottom: 80,
+    top: 150,
     left: 10,
     zIndex: 3,
     flexDirection: 'row',
@@ -115,7 +115,12 @@ class ExploreProject extends Component {
     projectId: this.props.navigation.state.params,
     loading: true,
     notAvailaible: false,
-    expandBox: true,
+    expandAnalyticsBox: true,
+    expandOverviewBox: true,
+    expandTransactionsBox: true,
+    expandUpdatesBox: true,
+    expandStakeHoldersBox: true,
+    expandProposalsBox: true,
   };
 
   async componentDidMount() {
@@ -152,10 +157,44 @@ class ExploreProject extends Component {
   }
 
 
-  expandTheBox = () => this.setState(prevState => ({ expandBox: !prevState.expandBox }));
+  expandTheBox = val => {
+    if (val === 'analytics') {
+      return this.setState(prevState => ({ expandAnalyticsBox: !prevState.expandAnalyticsBox }));
+    }
+    if (val === 'overview') {
+      return this.setState(prevState => ({ expandOverviewBox: !prevState.expandOverviewBox }));
+    }
+    if (val === 'transaction') {
+      return this.setState(prevState => ({ expandTransactionsBox: !prevState.expandTransactionsBox }));
+    }
+    if (val === 'updates') {
+      return this.setState(prevState => ({ expandUpdatesBox: !prevState.expandUpdatesBox }));
+    }
+    if (val === 'stakeholders') {
+      return this.setState(prevState => ({ expandStakeHoldersBox: !prevState.expandStakeHoldersBox }));
+    }
+    if (val === 'proposals') {
+      return this.setState(prevState => ({ expandProposalsBox: !prevState.expandProposalsBox }));
+    }
+    else {
+      this.setState(prevState => ({ expandProposalsBox: !prevState.expandProposalsBox }));
+    }
+  }
+
 
   render() {
-    const { projectId, loading, notAvailaible, projectInfo } = this.state;
+    const {
+      projectId,
+      loading,
+      notAvailaible,
+      projectInfo,
+      expandAnalyticsBox,
+      expandOverviewBox,
+      expandTransactionsBox,
+      expandStakeHoldersBox,
+      expandProposalsBox,
+      expandUpdatesBox,
+    } = this.state;
     const allProjects =
       this.props &&
       this.props.projects &&
@@ -164,6 +203,8 @@ class ExploreProject extends Component {
 
     let theProject = allProjects.filter(c => c._id === projectId);
     theProject = theProject[0];
+
+    console.log('preoject', projectInfo)
     if (loading) {
       return (
         <View style={ExtStyle.center}>
@@ -224,7 +265,17 @@ class ExploreProject extends Component {
                   </TouchableOpacity>
                 </View>
 
-                {/* <View style={styles.viewInImage}>
+                <View style={{
+                  position: 'absolute',
+                  top: 120,
+                  left: 10,
+                }}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold", color: '#FFFFFF' }}> {projectInfo.name} </Text>
+                </View>
+
+
+
+                <View style={styles.viewInImage}>
                   <View style={styles.innerView}>
                     <View style={styles.pl5}>
                       <Image
@@ -241,7 +292,7 @@ class ExploreProject extends Component {
                       </Text>
                     </View>
                   </View>
-                </View> */}
+                </View>
 
                 <View style={styles.buttonPosition}>
                   <Button
@@ -267,49 +318,49 @@ class ExploreProject extends Component {
               }}>
 
                 <ExpandableBox
-                  expand={this.state.expandBox}
-                  fn={() => this.expandTheBox()}
+                  expand={expandOverviewBox}
+                  fn={() => this.expandTheBox('overview')}
                   projectInfo={projectInfo}
                   text="Overview"
                   navigation={this.props.navigation}
                 />
 
-                <ExpandableBox
-                  expand={true}
-                  fn={() => console.log('hhhd')}
+                {/* <ExpandableBox
+                  expand={expandProposalsBox}
+                  fn={() => this.expandTheBox('proposals')}
                   projectInfo={projectInfo}
                   text="Proposals"
                   navigation={this.props.navigation}
-                />
+                /> */}
 
                 <ExpandableBox
-                  expand={this.state.expandBox}
-                  fn={() => this.expandTheBox()}
+                  expand={expandStakeHoldersBox}
+                  fn={() => this.expandTheBox('stakeholders')}
                   projectInfo={projectInfo}
                   text="Stakeholders"
                   navigation={this.props.navigation}
                 />
 
                 <ExpandableBox
-                  expand={this.state.expandBox}
+                  expand={expandAnalyticsBox}
                   projectInfo={projectInfo}
-                  fn={() => this.expandTheBox()}
+                  fn={() => this.expandTheBox('analytics')}
                   text="Analytics"
                   navigation={this.props.navigation}
                 />
 
                 <ExpandableBox
-                  expand={this.state.expandBox}
+                  expand={expandUpdatesBox}
                   projectInfo={projectInfo}
-                  fn={() => this.expandTheBox()}
+                  fn={() => this.expandTheBox('updates')}
                   text="Updates"
                   navigation={this.props.navigation}
                 />
 
                 <ExpandableBox
-                  expand={this.state.expandBox}
+                  expand={expandTransactionsBox}
                   projectInfo={projectInfo}
-                  fn={() => this.expandTheBox()}
+                  fn={() => this.expandTheBox('transaction')}
                   text="Transactions"
                   navigation={this.props.navigation}
                 />

@@ -16,6 +16,7 @@ import SignUpSuccessScreen from './screens/SignUpSuccess';
 import InvestComp from './components/InvestComp';
 import ExploreProjectScreen from './screens/ExploreProject';
 import ProfileScreen from './screens/Profile';
+import PDFView from './screens/Pdf';
 
 import { isAndroid } from './utils/helpers';
 
@@ -50,6 +51,9 @@ export const RootStackNavigator = createStackNavigator(
     },
     CreateProject: {
       screen: CreateProject,
+    },
+    PdfView: {
+      screen: PDFView,
     },
     Success: {
       screen: SuccessScreen,

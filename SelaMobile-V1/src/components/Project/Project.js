@@ -58,6 +58,7 @@ const styles = StyleSheet.create({
 });
 
 const Project = ({ leftText, rightText, projects }) => (
+  console.log('pppd', projects.length),
   <View style={styles.container}>
     <View style={styles.semiContainer}>
       <View style={styles.leftContainer}>

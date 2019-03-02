@@ -3,7 +3,7 @@ import {
   View,
   StyleSheet,
   RefreshControl,
-  NetInfo,
+  // NetInfo,
   Image,
   TouchableOpacity,
   ScrollView,
@@ -96,7 +96,7 @@ class Project extends Component {
 
   async componentDidMount() {
     await this.props.getFunderProjects();
-    await this.props.getContractorProjects();
+    // await this.props.getContractorProjects();
     this.setState({ loading: false });
     // getCurrentState();
   }
@@ -145,12 +145,15 @@ class Project extends Component {
         this.props.projects.projects.projects) ||
       [];
 
+    console.log('norema', this.props.projects)
+
     const contractorProjects =
       (this.props && this.props.projects && this.props.projects.contrProjects) || [];
 
     const notifications =
       this.props && this.props.notifications && this.props.notifications.notifications;
 
+    console.log('contr', contractorProjects);
     const newNotifs =
       notifications === undefined
         ? []
@@ -159,6 +162,8 @@ class Project extends Component {
         notifications.notifications.filter(c => c.read === false);
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
+
+    console.log('proere', projectCreatedByMe)
     return (
       <View style={styles.container}>
         <Header
@@ -238,7 +243,7 @@ class Project extends Component {
                             <View>
                               <View style={ExtStyle.flex1}>
                                 <SingularProject
-                                  leftText="Projects you proposed"
+                                  leftText="Initiated by others"
                                   // rightText="See all"
                                   projects={projects}
                                 />
@@ -246,13 +251,29 @@ class Project extends Component {
 
                               <View style={ExtStyle.flex1}>
                                 <SingularProject
-                                  leftText="Projects you were added to"
+                                  leftText="Initiated by you"
                                   // rightText="See all"
-                                  projects={contractorProjects}
+                                  projects={projects}
                                 />
                               </View>
+
+                              <View style={ExtStyle.flex1}>
+                                <SingularProject
+                                  leftText="Projects that may interest you"
+                                  // rightText="Edit interest"
+                                  projects={projects}
+                                />
+                              </View>
+
+                              <View style={ExtStyle.flex1}>
+                                <SingularProject
+                                  leftText="Bookmarks"
+                                  // rightText="See all"
+                                  projects={projects}
+                                />
+                              </View>
+                              <View style={ExtStyle.flex1}>{this.renderButton()}</View>
                             </View>
-                            <View style={ExtStyle.flex1}>{this.renderButton()}</View>
                           </ScrollView>
                         ) : (
                             <View style={styles.subContainer}>
