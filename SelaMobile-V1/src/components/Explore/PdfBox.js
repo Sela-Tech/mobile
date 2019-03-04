@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet, Dimensions, Image } from 'react-native';
 import Text from '../Text';
-import ExtStyle from '../../utils/styles';
 import NavigationService from '../../services/NavigationService';
 
 const { height } = Dimensions.get('window');

@@ -95,6 +95,7 @@ class Project extends Component {
   };
 
   async componentDidMount() {
+
     await this.props.getFunderProjects();
     // await this.props.getContractorProjects();
     this.setState({ loading: false });
@@ -137,6 +138,9 @@ class Project extends Component {
     } else {
       userRole = 'evaluator';
     }
+
+    userRole = 'evaluator';
+
     const userData = this.props && this.props.userInfo && this.props.userInfo.user;
     const projects =
       (this.props &&
@@ -145,7 +149,6 @@ class Project extends Component {
         this.props.projects.projects.projects) ||
       [];
 
-    console.log('norema', this.props.projects)
 
     const contractorProjects =
       (this.props && this.props.projects && this.props.projects.contrProjects) || [];
@@ -153,7 +156,6 @@ class Project extends Component {
     const notifications =
       this.props && this.props.notifications && this.props.notifications.notifications;
 
-    console.log('contr', contractorProjects);
     const newNotifs =
       notifications === undefined
         ? []
@@ -162,8 +164,6 @@ class Project extends Component {
         notifications.notifications.filter(c => c.read === false);
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
-
-    console.log('proere', projectCreatedByMe)
     return (
       <View style={styles.container}>
         <Header
@@ -173,7 +173,7 @@ class Project extends Component {
             newNotifs === undefined
               ? require('../../assets/emptyBell.png')
               : newNotifs && newNotifs.length === 0
-                ? require('../../assets/emptyBell.png')
+                ? require('../../assets/new_bell.png')
                 : require('../../assets/notifications-received.png')
           }
         />
@@ -276,56 +276,34 @@ class Project extends Component {
                             </View>
                           </ScrollView>
                         ) : (
-                            <View style={styles.subContainer}>
+                            <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
                               <View>
-                                <Image source={require('../../assets/Illustration.png')} />
-                              </View>
-                              <View style={styles.otherContainer}>
-                                <View style={styles.otherContainer}>
-                                  {userRole === 'funder' ? (
-                                    <Fragment>
-                                      <Text> You haven't created, funded, or saved any </Text>
-                                      <Text> projects yet. </Text>
-                                    </Fragment>
-                                  ) : userRole === 'contractor' ? (
-                                    <Fragment>
-                                      <Text> You haven't propose or been </Text>
-                                      <Text> added to any projects yet. </Text>
-                                    </Fragment>
-                                  ) : (
-                                        <Fragment>
-                                          <Text> You haven't evaluated or </Text>
-                                          <Text> saved any projects yet. </Text>
-                                        </Fragment>
-                                      )}
-                                </View>
-                                <View>
-                                  <Button
-                                    text="Explore Project"
-                                    color={userRole === 'funder' ? WHITE : YELLOW}
-                                    textColor={userRole === 'funder' ? '#201D41' : WHITE}
-                                    style={{
-                                      borderRadius: 5,
-                                      borderWidth: 1,
-                                      borderColor: '#B1BAD2',
-                                    }}
-                                    fn={() => this.props.navigation.navigate('ExploreProject')}
+                                <View style={ExtStyle.flex1}>
+                                  <SingularProject
+                                    leftText="Projects you evaluate"
+                                    // rightText="See all"
+                                    projects={projects}
                                   />
-                                  <Fragment>
-                                    {userRole === 'funder' ? (
-                                      <View style={{ paddingTop: 15 }}>
-                                        <Button
-                                          text="Create new project"
-                                          color={YELLOW}
-                                          textColor={WHITE}
-                                          fn={() => this.props.navigation.navigate('CreateProject')}
-                                        />
-                                      </View>
-                                    ) : null}
-                                  </Fragment>
                                 </View>
+
+                                <View style={ExtStyle.flex1}>
+                                  <SingularProject
+                                    leftText="Projects that may interest you"
+                                    // rightText="Edit interest"
+                                    projects={projects}
+                                  />
+                                </View>
+
+                                <View style={ExtStyle.flex1}>
+                                  <SingularProject
+                                    leftText="Bookmarks"
+                                    // rightText="See all"
+                                    projects={projects}
+                                  />
+                                </View>
+                                <View style={ExtStyle.flex1}>{this.renderButton()}</View>
                               </View>
-                            </View>
+                            </ScrollView>
                           )}
                       </Fragment>
                     )}

@@ -159,6 +159,12 @@ const viewToReturn = text => {
           <Text style={styles.text}>You have not bookmarked any project</Text>
         </View>
       );
+    case 'Projects you evaluate':
+      return (
+        <View style={styles.mt10}>
+          <Text style={styles.text}>You have not been added to any project</Text>
+        </View>
+      );
 
     default:
       return (
