@@ -14,16 +14,11 @@ const styles = StyleSheet.create({
     pdf: {
         flex: 1,
         width: Dimensions.get('window').width,
-    }
+    },
 });
 export default class PDFExample extends React.Component {
     render() {
         const source = { uri: 'http://samples.leanpub.com/thereactnativebook-sample.pdf', cache: true };
-        //const source = require('./test.pdf');  // ios only
-        //const source = {uri:'bundle-assets://test.pdf'};
-
-        //const source = {uri:'file:///sdcard/test.pdf'};
-        //const source = {uri:"data:application/pdf;base64,..."};
 
         return (
             <View style={styles.container}>
@@ -35,7 +30,7 @@ export default class PDFExample extends React.Component {
                     onPageChanged={(page, numberOfPages) => {
                         console.log(`current page: ${page}`);
                     }}
-                    onError={(error) => {
+                    onError={error => {
                         console.log(error);
                     }}
                     style={styles.pdf} />
