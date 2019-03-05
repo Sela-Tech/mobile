@@ -164,11 +164,11 @@ export const MainSwitchNavigator = createSwitchNavigator(
 );
 
 export const TestStackNavigator = createStackNavigator({
-  AddInterest: {
-    screen: AddInterest,
-    navigationOptions: {
-      header: null,
-    },
+  SubmitFeedback: {
+    screen: SubmitFeedback,
+    // navigationOptions: {
+    //   header: null,
+    // },
   },
   CreateProject: {
     screen: CreateProject,
@@ -199,8 +199,8 @@ export const TestStackNavigator = createStackNavigator({
   },
 });
 
-export const RootNavigator = createAppContainer(TestStackNavigator);
+// export const RootNavigator = createAppContainer(TestStackNavigator);
 
-// export const RootNavigator = createAppContainer(MainSwitchNavigator);
+export const RootNavigator = createAppContainer(MainSwitchNavigator);
 
 // export const RootNavigator = createAppContainer(RootStackNavigator);

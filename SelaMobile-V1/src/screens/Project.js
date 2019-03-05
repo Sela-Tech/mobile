@@ -10,18 +10,24 @@ import {
   Dimensions,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { Tabs, Tab, Container, Content } from 'native-base';
+
 import io from 'socket.io-client';
 import { store } from '../../store';
 import { getNewNotifications } from '../../actions/notifications';
 import { getUserProject, getContractorProject } from '../../actions/project';
-import Header from '../components/Header';
+import ParentHeader from '../components/Header';
 import Text from '../components/Text';
+import ContractorProject from '../components/Project/ContractorProject';
+import Proposals from '../components/Project/Proposals';
 import SingularProject from '../components/Project/Project';
 import Button from '../components/Button';
 import { YELLOW, WHITE, BASE_URL } from '../utils/constants';
 import ExtStyle from '../utils/styles';
 import Spinner from '../components/Spinner';
 import StandardText from '../components/StandardText';
+
+
 
 const { height } = Dimensions.get('window');
 
@@ -139,7 +145,7 @@ class Project extends Component {
       userRole = 'evaluator';
     }
 
-    userRole = 'evaluator';
+    userRole = 'contractor';
 
     const userData = this.props && this.props.userInfo && this.props.userInfo.user;
     const projects =
@@ -164,9 +170,10 @@ class Project extends Component {
         notifications.notifications.filter(c => c.read === false);
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
+
     return (
       <View style={styles.container}>
-        <Header
+        <ParentHeader
           headerName="PROJECTS"
           sideIconStatus
           sideIconImage={
@@ -239,42 +246,35 @@ class Project extends Component {
                   ) : (
                       <Fragment>
                         {userRole === 'contractor' ? (
-                          <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
-                            <View>
-                              <View style={ExtStyle.flex1}>
-                                <SingularProject
-                                  leftText="Initiated by others"
-                                  // rightText="See all"
-                                  projects={projects}
-                                />
-                              </View>
-
-                              <View style={ExtStyle.flex1}>
-                                <SingularProject
-                                  leftText="Initiated by you"
-                                  // rightText="See all"
-                                  projects={projects}
-                                />
-                              </View>
-
-                              <View style={ExtStyle.flex1}>
-                                <SingularProject
-                                  leftText="Projects that may interest you"
-                                  // rightText="Edit interest"
-                                  projects={projects}
-                                />
-                              </View>
-
-                              <View style={ExtStyle.flex1}>
-                                <SingularProject
-                                  leftText="Bookmarks"
-                                  // rightText="See all"
-                                  projects={projects}
-                                />
-                              </View>
-                              <View style={ExtStyle.flex1}>{this.renderButton()}</View>
-                            </View>
-                          </ScrollView>
+                          <Tabs
+                            tabBarUnderlineStyle={{
+                              backgroundColor: '#201D41'
+                            }}
+                          >
+                            <Tab
+                              heading="Your Projects"
+                              textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                              activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                              activeTabStyle={{
+                                backgroundColor: '#201D41'
+                              }}
+                              tabStyle={{ backgroundColor: '#FFFFFF' }}
+                            >
+                              <ContractorProject
+                                projects={projects}
+                              />
+                            </Tab>
+                            <Tab
+                              heading="Your Proposals"
+                              textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                              activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                              activeTabStyle={{ backgroundColor: '#201D41' }}
+                              tabStyle={{ backgroundColor: '#FFFFFF' }}
+                            >
+                              <Proposals
+                                projects={projects} />
+                            </Tab>
+                          </Tabs>
                         ) : (
                             <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
                               <View>
@@ -337,3 +337,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Project);
+
