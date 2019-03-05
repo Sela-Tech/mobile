@@ -17,7 +17,7 @@ import B from '../components/BoldText';
 import StandardText from '../components/StandardText';
 import IntroHeader from '../components/IntroHeader';
 import NavigationService from '../services/NavigationService';
-import { DEFAULT_COLOUR, YELLOW, WHITE } from '../utils/constants';
+import { YELLOW, WHITE } from '../utils/constants';
 import { isEmail } from '../utils/helpers';
 import { login } from '../../actions/token';
 import { getAccessCredentials } from '../../actions/credentials';
@@ -27,23 +27,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center',
-    backgroundColor: DEFAULT_COLOUR,
+    backgroundColor: WHITE,
   },
   boldText: {
-    color: YELLOW,
+    color: '#201D41',
     fontSize: 30,
-    fontWeight: '500',
+    fontWeight: '400',
   },
   buttomText: {
-    color: WHITE,
+    color: '#3D4851',
     fontSize: 16,
   },
   whiteText: {
     color: WHITE,
   },
   headerUp: {
-    paddingTop: 15,
-    flex: 3,
+    // backgroundColor: 'red',
+    // paddingTop: 15,
+    flex: 2,
+    justifyContent: 'center',
+    alignSelf: 'flex-end',
   },
   headerUpCont: {
     flex: 1,
@@ -51,15 +54,21 @@ const styles = StyleSheet.create({
   },
   loginTextView: {
     alignItems: 'center',
-    flex: 2,
+    // alignContent: 'flex-end',
+    // alignSelf: 'flex-end',
+    // backgroundColor: 'blue',
+    // justifyContent: 'flex-end',
+    flex: 1,
   },
   loginText: {
     paddingTop: 30,
     flex: 1,
   },
   inputContainer: {
-    flex: 4,
-    alignItems: 'center',
+    flex: 3,
+    // backgroundColor: 'red',
+    alignItems: 'flex-start',
+    // alignItems: 'center',
   },
   mt5: {
     marginTop: '5%',
@@ -232,6 +241,11 @@ class Login extends Component {
                     submitErrorMessage: '',
                   })
                 }
+                style={{
+                  borderColor: '#696F74'
+                }}
+                placeHolderColor="#696F74"
+                textStyle={{ color: '#696F74' }}
                 error={emailOrPhoneError}
                 errorMessage={emailOrPhoneErrorMessage}
               />
@@ -245,13 +259,17 @@ class Login extends Component {
                       submitErrorMessage: '',
                     })
                   }
+                  style={{
+                    borderColor: '#696F74'
+                  }}
+                  placeHolderColor="#696F74"
                   error={passwordError}
                   errorMessage={passwordErrorMessage}
                   text="Password"
                   showPass
                   secure={secure}
                   showPassword={this.showPassword}
-                  textStyle={styles.whiteText}
+                  textStyle={{ color: '#696F74' }}
                 />
               </View>
               <View style={styles.bottomContainer}>
@@ -281,7 +299,7 @@ class Login extends Component {
               <View
                 style={{
                   position: 'absolute',
-                  bottom: keyboard ? -20 : 50,
+                  bottom: keyboard ? -20 : 150,
                 }}
               >
                 <View style={styles.bottomAbsolute}>

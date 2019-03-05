@@ -88,7 +88,7 @@ const tasklisting = [
     statusText: 'Completed',
   },
   {
-    title: 'Biotechnology application 1',
+    title: 'Biotechnology application 2',
     text: 'Application of second part of biotechnology',
     statusText: 'Completed',
   },

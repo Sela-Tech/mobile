@@ -55,6 +55,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  floatingButtonAudio: {
+    backgroundColor: YELLOW,
+    position: 'absolute',
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+    bottom: 5,
+    flex: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
+  },
   camera: {
     flex: 1,
     justifyContent: 'space-between',
@@ -90,12 +101,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  topBottomAudio: {
+    height: 55,
+    width: '100%',
+    //  justifyContent: 'center',
+    //  alignItems: 'center',
+    flexDirection: 'row',
+  },
   topBottom: {
+    // backgroundColor: 'red',
     // height: '100%',
     height: 55,
     width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     flexDirection: 'row',
   },
   innerTopBottom: {
@@ -372,21 +391,59 @@ export default class SubmitFeedback extends Component {
             </View>
           </View>
         ) : (
-          <View style={styles.topBottom}>
-            <View style={styles.floatingButton}>
-              <TouchableOpacity
-                onPress={() => this.snap()}
-                style={{
-                  flex: 1,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Image source={require('../../assets/img/camera.png')} />
-              </TouchableOpacity>
+            <View style={styles.topBottom}>
+              {/* <View style={styles.floatingButtonAudio}> */}
+              <View style={{
+                // backgroundColor: 'red',
+                position: 'absolute',
+                height: 50,
+                width: 50,
+                borderRadius: 25,
+                // bottom: 5,
+                // flex: 1,
+                // justifyContent: 'flex-start',
+                // alignItems: 'flex-start',
+              }}>
+                <TouchableOpacity
+                  onPress={() => this.snap()}
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image source={require('../../assets/img/camera.png')} />
+                </TouchableOpacity>
+              </View>
+
+              <View style={styles.floatingButton}>
+                <TouchableOpacity
+                  onPress={() => this.snap()}
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image source={require('../../assets/img/camera.png')} />
+                </TouchableOpacity>
+              </View>
+
+
+              {/* <View style={styles.floatingButton}>
+                <TouchableOpacity
+                  onPress={() => this.snap()}
+                  style={{
+                    flex: 1,
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image source={require('../../assets/img/camera.png')} />
+                </TouchableOpacity>
+              </View> */}
             </View>
-          </View>
-        )}
+          )}
       </Fragment>
     );
   };

@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
 
 const Transactions = ({ project }) => {
   const { transactions } = project;
-  if (transactions.length === 0) {
+  if (transactions.length !== 0) {
     return (
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

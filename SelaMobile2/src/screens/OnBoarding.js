@@ -272,7 +272,7 @@ export default class OnBoarding extends Component {
         <DismissKeyboard>
           <KeyboardAvoidingView style={ExtStyle.flex1} behavior="padding">
             <View style={styles.container}>
-              <View
+              {/* <View
                 style={{
                   flex: 1,
                   justifyContent: 'flex-end',
@@ -292,7 +292,7 @@ export default class OnBoarding extends Component {
                     currentPosition={currentPage}
                   />
                 </View>
-              </View>
+              </View> */}
               <View style={{ flex: 5 }}>
                 {currentPage === 0 ? (
                   <OnBoardView

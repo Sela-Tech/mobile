@@ -24,7 +24,6 @@ const IntroHeader = ({ back, keyboard, fn }) => (
             <TouchableOpacity onPress={fn}>
               <Image
                 resizeMode="contain"
-                style={{}}
                 source={require('../../assets/img/back.png')}
               />
             </TouchableOpacity>

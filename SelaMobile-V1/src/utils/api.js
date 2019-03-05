@@ -46,6 +46,17 @@ axios.interceptors.response.use(
       AsyncStorage.removeItem('user');
       NavigationService.navigate('Login');
     }
+
+    else if (error.response.data.message === 'jwt malformed') {
+      try {
+        AsyncStorage.removeItem('user');
+        NavigationService.navigate('Login');
+      }
+      catch (err) {
+        console.log('err', err.message);
+      }
+
+    }
     // Do something with response error
     console.log('API ERR:', error.message);
     // return error.response;

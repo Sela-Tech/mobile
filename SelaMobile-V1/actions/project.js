@@ -24,6 +24,7 @@ export const projectIsLoadingError = error => ({
 export const getUserProject = () => dispatch =>
   API.getAllProjects()
     .then(resp => {
+      console.log('resp', resp)
       dispatch(projectIsLoading(false));
       dispatch(getFunderProjects(resp.data));
     })

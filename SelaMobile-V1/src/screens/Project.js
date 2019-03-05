@@ -3,24 +3,31 @@ import {
   View,
   StyleSheet,
   RefreshControl,
-  NetInfo,
+  // NetInfo,
   Image,
   TouchableOpacity,
   ScrollView,
   Dimensions,
 } from 'react-native';
 import { connect } from 'react-redux';
+import { Tabs, Tab, Container, Content } from 'native-base';
+
 import io from 'socket.io-client';
 import { store } from '../../store';
 import { getNewNotifications } from '../../actions/notifications';
 import { getUserProject, getContractorProject } from '../../actions/project';
-import Header from '../components/Header';
+import ParentHeader from '../components/Header';
 import Text from '../components/Text';
+import ContractorProject from '../components/Project/ContractorProject';
+import Proposals from '../components/Project/Proposals';
 import SingularProject from '../components/Project/Project';
 import Button from '../components/Button';
 import { YELLOW, WHITE, BASE_URL } from '../utils/constants';
 import ExtStyle from '../utils/styles';
 import Spinner from '../components/Spinner';
+import StandardText from '../components/StandardText';
+
+
 
 const { height } = Dimensions.get('window');
 
@@ -39,12 +46,16 @@ const styles = StyleSheet.create({
   },
   floatingButton: {
     backgroundColor: YELLOW,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    alignSelf: 'flex-end',
+    // flex: 1,
     position: 'absolute',
-    height: 60,
-    width: 60,
-    borderRadius: 30,
-    bottom: height / 7,
-    right: 30,
+    bottom: 35,
+    right: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
@@ -90,8 +101,9 @@ class Project extends Component {
   };
 
   async componentDidMount() {
+
     await this.props.getFunderProjects();
-    await this.props.getContractorProjects();
+    // await this.props.getContractorProjects();
     this.setState({ loading: false });
     // getCurrentState();
   }
@@ -132,6 +144,9 @@ class Project extends Component {
     } else {
       userRole = 'evaluator';
     }
+
+    userRole = 'contractor';
+
     const userData = this.props && this.props.userInfo && this.props.userInfo.user;
     const projects =
       (this.props &&
@@ -139,6 +154,7 @@ class Project extends Component {
         this.props.projects.projects &&
         this.props.projects.projects.projects) ||
       [];
+
 
     const contractorProjects =
       (this.props && this.props.projects && this.props.projects.contrProjects) || [];
@@ -154,16 +170,17 @@ class Project extends Component {
         notifications.notifications.filter(c => c.read === false);
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
+
     return (
       <View style={styles.container}>
-        <Header
+        <ParentHeader
           headerName="PROJECTS"
           sideIconStatus
           sideIconImage={
             newNotifs === undefined
               ? require('../../assets/emptyBell.png')
               : newNotifs && newNotifs.length === 0
-                ? require('../../assets/emptyBell.png')
+                ? require('../../assets/new_bell.png')
                 : require('../../assets/notifications-received.png')
           }
         />
@@ -180,10 +197,23 @@ class Project extends Component {
                 <Fragment>
                   {userRole === 'funder' ? (
                     <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
+                      <StandardText
+                        text="Welcome back"
+                        viewStyle={{
+                          justifyContent: 'flex-start',
+                          alignItems: 'flex-start',
+                          marginLeft: 10,
+                          marginTop: 10,
+                        }}
+                        textStyle={{
+                          fontSize: 18,
+                          color: '#201D41',
+                        }}
+                      />
 
                       <View style={ExtStyle.flex1}>
                         <SingularProject
-                          leftText="Projects you funded"
+                          leftText="Projects you fund"
                           // rightText="See all"
                           projects={projects}
                         />
@@ -191,7 +221,7 @@ class Project extends Component {
 
                       <View style={ExtStyle.flex1}>
                         <SingularProject
-                          leftText="Projects you proposed"
+                          leftText="Projects you initiated"
                           // rightText="See all"
                           projects={projectCreatedByMe}
                         />
@@ -207,7 +237,7 @@ class Project extends Component {
 
                       <View style={ExtStyle.flex1}>
                         <SingularProject
-                          leftText="Saved Project"
+                          leftText="Bookmarks"
                           // rightText="See all"
                           projects={projects}
                         />
@@ -216,84 +246,77 @@ class Project extends Component {
                   ) : (
                       <Fragment>
                         {userRole === 'contractor' ? (
-                          <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
-                            <View>
-                              <View style={ExtStyle.flex1}>
-                                <SingularProject
-                                  leftText="Projects you proposed"
-                                  // rightText="See all"
-                                  projects={projects}
-                                />
-                              </View>
-
-                              <View style={ExtStyle.flex1}>
-                                <SingularProject
-                                  leftText="Projects you were added to"
-                                  // rightText="See all"
-                                  projects={contractorProjects}
-                                />
-                              </View>
-                            </View>
-                            <View style={ExtStyle.flex1}>{this.renderButton()}</View>
-                          </ScrollView>
+                          <Tabs
+                            tabBarUnderlineStyle={{
+                              backgroundColor: '#201D41'
+                            }}
+                          >
+                            <Tab
+                              heading="Your Projects"
+                              textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                              activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                              activeTabStyle={{
+                                backgroundColor: '#201D41'
+                              }}
+                              tabStyle={{ backgroundColor: '#FFFFFF' }}
+                            >
+                              <ContractorProject
+                                projects={projects}
+                              />
+                            </Tab>
+                            <Tab
+                              heading="Your Proposals"
+                              textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                              activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                              activeTabStyle={{ backgroundColor: '#201D41' }}
+                              tabStyle={{ backgroundColor: '#FFFFFF' }}
+                            >
+                              <Proposals
+                                projects={projects} />
+                            </Tab>
+                          </Tabs>
                         ) : (
-                            <View style={styles.subContainer}>
+                            <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
                               <View>
-                                <Image source={require('../../assets/Illustration.png')} />
-                              </View>
-                              <View style={styles.otherContainer}>
-                                <View style={styles.otherContainer}>
-                                  {userRole === 'funder' ? (
-                                    <Fragment>
-                                      <Text> You haven't created, funded, or saved any </Text>
-                                      <Text> projects yet. </Text>
-                                    </Fragment>
-                                  ) : userRole === 'contractor' ? (
-                                    <Fragment>
-                                      <Text> You haven't propose or been </Text>
-                                      <Text> added to any projects yet. </Text>
-                                    </Fragment>
-                                  ) : (
-                                        <Fragment>
-                                          <Text> You haven't evaluated or </Text>
-                                          <Text> saved any projects yet. </Text>
-                                        </Fragment>
-                                      )}
-                                </View>
-                                <View>
-                                  <Button
-                                    text="Explore Project"
-                                    color={userRole === 'funder' ? WHITE : YELLOW}
-                                    textColor={userRole === 'funder' ? '#201D41' : WHITE}
-                                    style={{
-                                      borderRadius: 5,
-                                      borderWidth: 1,
-                                      borderColor: '#B1BAD2',
-                                    }}
-                                    fn={() => this.props.navigation.navigate('ExploreProject')}
+                                <View style={ExtStyle.flex1}>
+                                  <SingularProject
+                                    leftText="Projects you evaluate"
+                                    // rightText="See all"
+                                    projects={projects}
                                   />
-                                  <Fragment>
-                                    {userRole === 'funder' ? (
-                                      <View style={{ paddingTop: 15 }}>
-                                        <Button
-                                          text="Create new project"
-                                          color={YELLOW}
-                                          textColor={WHITE}
-                                          fn={() => this.props.navigation.navigate('CreateProject')}
-                                        />
-                                      </View>
-                                    ) : null}
-                                  </Fragment>
                                 </View>
+
+                                <View style={ExtStyle.flex1}>
+                                  <SingularProject
+                                    leftText="Projects that may interest you"
+                                    // rightText="Edit interest"
+                                    projects={projects}
+                                  />
+                                </View>
+
+                                <View style={ExtStyle.flex1}>
+                                  <SingularProject
+                                    leftText="Bookmarks"
+                                    // rightText="See all"
+                                    projects={projects}
+                                  />
+                                </View>
+                                <View style={ExtStyle.flex1}>{this.renderButton()}</View>
                               </View>
-                            </View>
+                            </ScrollView>
                           )}
                       </Fragment>
                     )}
                 </Fragment>
               )}
           </Fragment>
+
         </ScrollView>
+        <View style={styles.floatingButton}>
+          <Image
+            source={require('../../assets/plus.png')}
+          />
+        </View>
       </View>
     );
   }
@@ -314,3 +337,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Project);
+

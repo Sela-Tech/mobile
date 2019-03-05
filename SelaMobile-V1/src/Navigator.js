@@ -16,6 +16,8 @@ import SignUpSuccessScreen from './screens/SignUpSuccess';
 import InvestComp from './components/InvestComp';
 import ExploreProjectScreen from './screens/ExploreProject';
 import ProfileScreen from './screens/Profile';
+import PDFView from './screens/Pdf';
+import AddInterest from './screens/AddInterest';
 
 import { isAndroid } from './utils/helpers';
 
@@ -51,6 +53,9 @@ export const RootStackNavigator = createStackNavigator(
     CreateProject: {
       screen: CreateProject,
     },
+    PdfView: {
+      screen: PDFView,
+    },
     Success: {
       screen: SuccessScreen,
       navigationOptions: {
@@ -66,13 +71,20 @@ export const RootStackNavigator = createStackNavigator(
     Invest: {
       screen: InvestComp,
     },
+
+    AddInterest: {
+      screen: AddInterest,
+      navigationOptions: {
+        header: null,
+      },
+    },
   },
   {
     defaultNavigationOptions: {
       labelStyle: {
         // fontSize: width < 400 ? 7 : 9,
         // fontWeight: '400',
-        fontFamily: isAndroid ? 'ProximaNova' : null,
+        fontFamily: isAndroid ? 'Acumin-ItPro' : null,
       },
     },
   },

@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     // backgroundColor: 'blue',
     // marginTop: '20%',
     marginHorizontal: 12,
+    marginBottom: 10,
     // justifyContent: 'space-evenly',
   },
   smallText: {
@@ -176,12 +177,12 @@ class Header extends Component {
                 </Text>
               </View>
             </View>
-            <View style={{ paddingHorizontal: 10 }}>
+            {/* <View style={{ paddingHorizontal: 10 }}>
               <Image
                 source={require('../../../assets/Line.png')}
               />
-            </View>
-            <View>
+            </View> */}
+            {/* <View>
               <View>
                 <Text style={styles.text}>Raised </Text>
               </View>
@@ -193,7 +194,7 @@ class Header extends Component {
                   }
                 </Text>
               </View>
-            </View>
+            </View> */}
           </View>
         </View>
 

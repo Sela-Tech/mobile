@@ -3,14 +3,17 @@ import { View, Image, Dimensions, StyleSheet, TouchableOpacity, ScrollView } fro
 import { connect } from 'react-redux';
 import Spinner from '../components/Spinner';
 import Text from '../components/Text';
+import StandardText from '../components/StandardText';
 import Tag from '../components/Tag';
 import Button from '../components/Button';
-import Header from '../components/ExploreTopTabs/Header';
+import Header from '../components/Explore/Header';
+import ExpandableBox from '../components/Explore/ExpandableBox';
 import Navigator from './ExploreTabs/Navigator';
 import { getSingleProject } from '../utils/api';
 import ExtStyle from '../utils/styles';
 import { getDummyDisplayPicture, projectStatusTextColor } from '../utils/helpers';
 import { WHITE } from '../utils/constants';
+
 
 const { height, width } = Dimensions.get('window');
 const fundedStatus = ['60%', '40%', '20%', '85%'];
@@ -31,7 +34,7 @@ const styles = StyleSheet.create({
     backgroundColor: WHITE,
     width: width / 4,
     position: 'absolute',
-    bottom: 80,
+    top: 150,
     left: 10,
     zIndex: 3,
     flexDirection: 'row',
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
 
   buttonPosition: {
     position: 'absolute',
-    bottom: 12,
+    top: 200,
     left: 10,
   },
   settingsPosition: {
@@ -64,7 +67,7 @@ const styles = StyleSheet.create({
     right: 5,
   },
   flex4mb5: {
-    flex: 5,
+    // flex: 5,
     // marginBottom: 1,
   },
   backButton: {
@@ -85,12 +88,39 @@ const styles = StyleSheet.create({
   //   paddingHorizontal: 5,
   //   borderRadius: 10,
   // },
+  expandableBox: {
+    height: 65,
+    borderRadius: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginHorizontal: 20,
+    flexDirection: 'row',
+    borderColor: '#ddd',
+    shadowColor: '#ddd',
+    shadowOpacity: 1.0,
+    shadowOffset: { width: 10, height: 10, },
+    elevation: 3,
+  },
+  textInExpandable: {
+    color: '#3D4851',
+    fontSize: 16,
+  },
+  viewInExpandable: {
+    flex: 7,
+    marginLeft: 10,
+  },
 });
 class ExploreProject extends Component {
   state = {
     projectId: this.props.navigation.state.params,
     loading: true,
     notAvailaible: false,
+    expandAnalyticsBox: true,
+    expandOverviewBox: true,
+    expandTransactionsBox: true,
+    expandUpdatesBox: true,
+    expandStakeHoldersBox: true,
+    expandProposalsBox: true,
   };
 
   async componentDidMount() {
@@ -126,8 +156,45 @@ class ExploreProject extends Component {
     }
   }
 
+
+  expandTheBox = val => {
+    if (val === 'analytics') {
+      return this.setState(prevState => ({ expandAnalyticsBox: !prevState.expandAnalyticsBox }));
+    }
+    if (val === 'overview') {
+      return this.setState(prevState => ({ expandOverviewBox: !prevState.expandOverviewBox }));
+    }
+    if (val === 'transaction') {
+      return this.setState(prevState => ({ expandTransactionsBox: !prevState.expandTransactionsBox }));
+    }
+    if (val === 'updates') {
+      return this.setState(prevState => ({ expandUpdatesBox: !prevState.expandUpdatesBox }));
+    }
+    if (val === 'stakeholders') {
+      return this.setState(prevState => ({ expandStakeHoldersBox: !prevState.expandStakeHoldersBox }));
+    }
+    if (val === 'proposals') {
+      return this.setState(prevState => ({ expandProposalsBox: !prevState.expandProposalsBox }));
+    }
+    else {
+      this.setState(prevState => ({ expandProposalsBox: !prevState.expandProposalsBox }));
+    }
+  }
+
+
   render() {
-    const { projectId, loading, notAvailaible, projectInfo } = this.state;
+    const {
+      projectId,
+      loading,
+      notAvailaible,
+      projectInfo,
+      expandAnalyticsBox,
+      expandOverviewBox,
+      expandTransactionsBox,
+      expandStakeHoldersBox,
+      expandProposalsBox,
+      expandUpdatesBox,
+    } = this.state;
     const allProjects =
       this.props &&
       this.props.projects &&
@@ -136,6 +203,8 @@ class ExploreProject extends Component {
 
     let theProject = allProjects.filter(c => c._id === projectId);
     theProject = theProject[0];
+
+    console.log('preoject', projectInfo)
     if (loading) {
       return (
         <View style={ExtStyle.center}>
@@ -146,13 +215,14 @@ class ExploreProject extends Component {
     return (
       <ScrollView style={ExtStyle.flex1}
         contentContainerStyle={{ flexGrow: 1 }}>
-        <Fragment>
+        <View style={{ flex: 1 }}>
           {notAvailaible ? (
-            <Fragment>
+            <View style={{ flex: 1 }}>
               <View style={styles.flex4mb5}>
                 <View
                   style={{
-                    flex: 1,
+                    // flex: 1,
+                    height: 300,
                   }}
                 >
                   <Image
@@ -195,7 +265,17 @@ class ExploreProject extends Component {
                   </TouchableOpacity>
                 </View>
 
-                {/* <View style={styles.viewInImage}>
+                <View style={{
+                  position: 'absolute',
+                  top: 120,
+                  left: 10,
+                }}>
+                  <Text style={{ fontSize: 20, fontWeight: "bold", color: '#FFFFFF' }}> {projectInfo.name} </Text>
+                </View>
+
+
+
+                <View style={styles.viewInImage}>
                   <View style={styles.innerView}>
                     <View style={styles.pl5}>
                       <Image
@@ -212,7 +292,7 @@ class ExploreProject extends Component {
                       </Text>
                     </View>
                   </View>
-                </View> */}
+                </View>
 
                 <View style={styles.buttonPosition}>
                   <Button
@@ -228,31 +308,68 @@ class ExploreProject extends Component {
                     textColor={WHITE}
                   />
                 </View>
-
-
-
               </View>
-              <View style={[ExtStyle.flex3]}>
-                <Header
-                  locationDetails={projectInfo.location}
-                  projectLocationText={projectInfo.location.name}
-                  projectStatusText={projectInfo.status}
-                  projectTitleText={projectInfo.name}
-                  budgetAmount={projectInfo.goal}
-                  numberOfStakeholders={projectInfo.stakeholders.length}
-                  raisedAmount={projectInfo.raised}
-                  tags={projectInfo.tags}
-                // tags={[]}
+              <View style={{
+                // backgroundColor: 'blue',
+                flex: 1,
+                // flexGrow: 1,
+                // backgroundColor: 'red',
+                marginVertical: 20,
+              }}>
+
+                <ExpandableBox
+                  expand={expandOverviewBox}
+                  fn={() => this.expandTheBox('overview')}
+                  projectInfo={projectInfo}
+                  text="Overview"
+                  navigation={this.props.navigation}
+                />
+
+                {/* <ExpandableBox
+                  expand={expandProposalsBox}
+                  fn={() => this.expandTheBox('proposals')}
+                  projectInfo={projectInfo}
+                  text="Proposals"
+                  navigation={this.props.navigation}
+                /> */}
+
+                <ExpandableBox
+                  expand={expandStakeHoldersBox}
+                  fn={() => this.expandTheBox('stakeholders')}
+                  projectInfo={projectInfo}
+                  text="Stakeholders"
+                  navigation={this.props.navigation}
+                />
+
+                <ExpandableBox
+                  expand={expandAnalyticsBox}
+                  projectInfo={projectInfo}
+                  fn={() => this.expandTheBox('analytics')}
+                  text="Analytics"
+                  navigation={this.props.navigation}
+                />
+
+                <ExpandableBox
+                  expand={expandUpdatesBox}
+                  projectInfo={projectInfo}
+                  fn={() => this.expandTheBox('updates')}
+                  text="Updates"
+                  navigation={this.props.navigation}
+                />
+
+                <ExpandableBox
+                  expand={expandTransactionsBox}
+                  projectInfo={projectInfo}
+                  fn={() => this.expandTheBox('transaction')}
+                  text="Transactions"
+                  navigation={this.props.navigation}
                 />
               </View>
-              {/* <View style={ExtStyle.flex4}> */}
-              {/* <Navigator navigation={this.props.navigation} project={projectInfo} /> */}
-              {/* </View> */}
-            </Fragment>
+            </View>
           ) : (
               <View />
             )}
-        </Fragment>
+        </View>
       </ScrollView>
     );
   }

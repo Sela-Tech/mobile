@@ -15,7 +15,7 @@ const styles = {
     fontSize: 15,
   },
   whiteText: {
-    color: WHITE,
+    color: "#696F74",
   },
 };
 
@@ -50,9 +50,14 @@ const OnBoardView = ({
               alignItems: 'center',
             }}
           >
-            <B color={YELLOW} size={22}>
-              {second ? ` Your Personal Details` : `  Select Your Role`}
+            <B
+              size={24}
+              weight="400"
+              color="#201D41"
+            >
+              Create account
             </B>
+            <Text style={{ fontSize: 16, color: '#3D4851' }}>{!second ? 'Select your role ' : 'Enter your personal details'}  </Text>
           </View>
           <View
             style={{
@@ -74,6 +79,10 @@ const OnBoardView = ({
               <Fragment>
                 <View>
                   <Input
+                    style={{
+                      borderColor: '#696F74'
+                    }}
+                    placeHolderColor="#696F74"
                     text="Please enter first and last name"
                     medium
                     textStyle={styles.whiteText}
@@ -85,6 +94,10 @@ const OnBoardView = ({
                 </View>
                 <View style={{ marginTop: '4%' }}>
                   <Input
+                    style={{
+                      borderColor: '#696F74'
+                    }}
+                    placeHolderColor="#696F74"
                     text="Email Address or Phone Number"
                     medium
                     textStyle={styles.whiteText}
@@ -96,6 +109,10 @@ const OnBoardView = ({
                 </View>
                 <View style={{ marginTop: '4%' }}>
                   <Input
+                    style={{
+                      borderColor: '#696F74'
+                    }}
+                    placeHolderColor="#696F74"
                     text="Password"
                     showPass
                     secure={secure}
@@ -112,31 +129,40 @@ const OnBoardView = ({
             ) : (
                 <View>
                   <Box
+                    style={{
+                      borderColor: '#696F74'
+                    }}
+                    textColor={state.role === 'funder' ? WHITE : "#3D4851"}
                     upText="Project Funder"
                     downText="I want to fund projects"
                     fn={() => changeRole('funder')}
-                    textColor={WHITE}
-                    color={state.role === 'funder' ? YELLOW : null}
+                    color={state.role === 'funder' ? '#201D41' : null}
                     checked
                     textSize={12}
                     below
                   />
                   <Box
+                    style={{
+                      borderColor: '#696F74'
+                    }}
                     upText="Contractor"
                     downText="I want to propose and execute projects"
                     fn={() => changeRole('contractor')}
-                    textColor={WHITE}
+                    textColor={state.role === 'contractor' ? WHITE : "#3D4851"}
                     textSize={12}
-                    color={state.role === 'contractor' ? YELLOW : null}
+                    color={state.role === 'contractor' ? '#201D41' : null}
                     below
                   />
                   <Box
+                    style={{
+                      borderColor: '#696F74'
+                    }}
+                    textColor={state.role === 'evaluator' ? WHITE : "#3D4851"}
                     upText="Evaluation Agent"
                     downText="I want to validate projects in my community"
                     fn={() => changeRole('evaluator')}
-                    textColor={WHITE}
                     textSize={12}
-                    color={state.role === 'evaluator' ? YELLOW : null}
+                    color={state.role === 'evaluator' ? '#201D41' : null}
                     below
                   />
                 </View>

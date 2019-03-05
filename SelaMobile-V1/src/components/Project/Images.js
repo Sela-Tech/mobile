@@ -19,7 +19,7 @@ const renderItem = item => (
 );
 
 const Images = ({ projects, leftText }) => {
-  const proj = leftText === 'Projects you proposed' ? [{ val: 'empty' }, ...projects] : projects;
+  const proj = leftText === 'Projects you proposed' || leftText === 'Initiated by you' ? [{ val: 'empty' }, ...projects] : projects;
   return (
     <FlatList
       style={{ flex: 1 }}

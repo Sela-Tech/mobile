@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Text from './Text';
 
-const B = ({ fn, size, children, color, style }) => (
-  <Text onPress={fn} style={[style, { fontWeight: 'bold', fontSize: size, color }]}>
+const B = ({ fn, size, children, color, weight, style }) => (
+  <Text onPress={fn} style={[style, { fontWeight: weight ? weight : 'bold', fontSize: size, color }]}>
     {children}
   </Text>
 );

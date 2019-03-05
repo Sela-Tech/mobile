@@ -9,12 +9,13 @@ import IntroHeader from '../components/IntroHeader';
 import OnBoardView from '../components/OnBoarding/OnBoardView';
 import { signUp } from '../utils/api';
 import ExtStyle from '../utils/styles';
-import { DEFAULT_COLOUR, YELLOW } from '../utils/constants';
+import { DEFAULT_COLOUR, WHITE, YELLOW } from '../utils/constants';
+// import { WHITE } from '../../../SelaMobile2/src/utils/constants';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: DEFAULT_COLOUR,
+    backgroundColor: WHITE,
   },
   stepIndicator: {
     marginVertical: '4%',
@@ -278,7 +279,7 @@ export default class OnBoarding extends Component {
             <View style={styles.container}>
               <View
                 style={{
-                  flex: 1,
+                  flex: 3,
                   justifyContent: 'flex-end',
                 }}
               >
@@ -289,13 +290,13 @@ export default class OnBoarding extends Component {
                     keyboard={keyboard}
                   />
                 </View>
-                <View style={styles.stepIndicator}>
+                {/* <View style={styles.stepIndicator}>
                   <StepIndicator
                     stepCount={3}
                     customStyles={firstIndicatorStyles}
                     currentPosition={currentPage}
                   />
-                </View>
+                </View> */}
               </View>
               <View style={{ flex: 5 }}>
                 {currentPage === 0 ? (

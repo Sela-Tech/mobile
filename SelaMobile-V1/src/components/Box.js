@@ -16,7 +16,7 @@ const styles = {
   },
 };
 
-const Box = ({ color, textColor, fn, upText, downText, textSize, below, checked }) => (
+const Box = ({ color, style, textColor, fn, upText, downText, textSize, below, checked }) => (
   <View
     style={[
       styles.BoxStyle,
@@ -26,6 +26,7 @@ const Box = ({ color, textColor, fn, upText, downText, textSize, below, checked 
         borderWidth: below ? 1 : null,
         marginTop: below ? '3%' : null,
       },
+      style,
     ]}
   >
     <TouchableOpacity onPress={fn} style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>

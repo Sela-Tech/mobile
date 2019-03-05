@@ -6,6 +6,7 @@ import { WHITE } from '../../utils/constants';
 import ExtStyle from '../../utils/styles';
 import { firstLetterCapital } from '../../utils/helpers';
 import Text from '../../components/Text';
+import DModal from '../../components/OverView/Modal';
 import DropdownAlert from 'react-native-dropdownalert';
 
 const { width, height } = Dimensions.get('window');
@@ -59,10 +60,20 @@ const styles = StyleSheet.create({
 class Overview extends Component {
   state = {
     filterBy: 1,
+    content: '',
+    visibility: false,
   };
 
+  show = (val) => {
+    this.setState(prevState => ({
+      visibility: !prevState.visibility,
+      content: val === 'COMMUNITY' ? 'Community members answered a survey telling how they felt about their environment being affected by unresolved oil spills'
+        : 'For the purpose of this pilot, a single parameter was used to determine possible range of hydrocarbons reported as total petroleum hydrocarbon (TPH). The TPH content of the samples was determined using Gravimetric and spectrophotometric methods'
+    }));
+  }
+
   render() {
-    const { filterBy } = this.state;
+    const { filterBy, visibility } = this.state;
     const { project, navigation } = this.props;
     return (
       <ScrollView style={styles.container} contentContainerStyle={ExtStyle.flexGrow}>
@@ -99,15 +110,18 @@ class Overview extends Component {
                   upText="Tasks Completed"
                   secondTextLeft="13"
                   navigation={navigation}
+                  show={this.show}
                 //  secondTextRight="+6.9%"
                 />
                 <Box
                   upText="Progress"
                   secondTextLeft="70%"
+                  show={this.show}
                 // secondTextRight="+12.4%"
                 />
 
                 <Box
+                  show={this.show}
                   upText="Total Funds Spent"
                   secondTextLeft="$1595"
                 //  secondTextRight="+3.2%"
@@ -116,6 +130,7 @@ class Overview extends Component {
                 <Box
                   upText="Budget Used"
                   secondTextLeft="70%"
+                  show={this.show}
                   // secondTextRight="+12.4%"
                   lastText="Total Budget"
                 />
@@ -126,28 +141,48 @@ class Overview extends Component {
 
 
                   <Box
+                    show={this.show}
                     upText="Changes in TPH Level"
                   // secondTextLeft="$1595"
                   //  secondTextRight="+3.2%"
                   />
 
                   <Box
+                    show={this.show}
                     upText="Community Feedback"
                     secondTextLeft="$1595"
                   //  secondTextRight="+3.2%"
                   />
 
                   <Box
+                    show={this.show}
+                    upText="Community Feedback"
+                    secondTextLeft="$1595"
+                  //  secondTextRight="+3.2%"
+                  />
+
+                  <Box
+<<<<<<< HEAD
                     upText="Budget Used"
                     secondTextLeft="70%"
                     // secondTextRight="+12.4%"
                     lastText="Total Budget"
+=======
+                    show={this.show}
+                    upText="budget"
+>>>>>>> abf39b00ad611a40eed012374cff68e51d7d5a0b
                   />
+
 
                 </Fragment>
               )
           }
         </Fragment>
+        <DModal
+          visibility={visibility}
+          show={this.show}
+          content={this.state.content}
+        />
         <DropdownAlert
           ref={ref => (this.dropdown = ref)}
           // startDelta={height}
