@@ -62,21 +62,20 @@ const Project = ({ leftText, rightText, projects }) => (
     <View style={styles.semiContainer}>
       <View style={styles.leftContainer}>
         <B
-          weight="400"
-          style={styles.leftTextContainer}>
+weight="400" style={styles.leftTextContainer}>
           {leftText}
-          {' '}
+{' '}
         </B>
       </View>
       <Fragment>
         {projects && projects.length > 0 ? (
           <View style={styles.rightContainer}>
             <View style={styles.rightContainerWithPadding}>
-              <Text style={styles.rightTextContainer}>
-                {' '}
-                {rightText}
-                {' '}
-              </Text>
+              <Text style={styles.rightTextContainer}> 
+{' '}
+{rightText}
+{' '}
+ </Text>
             </View>
           </View>
         ) : null}
@@ -85,18 +84,11 @@ const Project = ({ leftText, rightText, projects }) => (
 
     <View style={styles.bottomContainer}>
       <Fragment>
-        {
-          projects && projects.length === 0 ?
-            <Box
-              text={leftText}
-              empty
-              wide
-              fn={() => console.log('navigate')}
-            />
-            : (
-              <Images leftText={leftText} projects={projects} />
-            )
-        }
+        {projects && projects.length === 0 ? (
+          <Box text={leftText} empty wide fn={() => console.log('navigate')} />
+        ) : (
+          <Images leftText={leftText} projects={projects} />
+        )}
       </Fragment>
     </View>
   </View>

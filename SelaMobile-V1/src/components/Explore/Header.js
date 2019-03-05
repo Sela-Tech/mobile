@@ -9,7 +9,6 @@ import Tag from '../Tag';
 import ClTag from './ClickableTag';
 import { WHITE, YELLOW } from '../../utils/constants';
 
-
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
@@ -74,8 +73,7 @@ class Header extends Component {
   changeBookmark = () =>
     this.setState(prevState => ({ bookmarkStatus: !prevState.bookmarkStatus }));
 
-  toggleMapView = () =>
-    this.setState(prevState => ({ openMap: !prevState.openMap }));
+  toggleMapView = () => this.setState(prevState => ({ openMap: !prevState.openMap }));
 
   render() {
     const {
@@ -92,13 +90,9 @@ class Header extends Component {
     if (openMap) {
       return (
         <View style={styles.container}>
-          <Map
-            visible={openMap}
-            toggleMapView={this.toggleMapView}
-            location={locationDetails}
-          />
+          <Map visible={openMap} toggleMapView={this.toggleMapView} location={locationDetails} />
         </View>
-      )
+      );
     }
     return (
       <View style={styles.container}>
@@ -119,22 +113,25 @@ class Header extends Component {
                   {projectLocationText.length > 35
                     ? projectLocationText.slice(0, 32).concat('...')
                     : projectLocationText}
-                  {' '}
+{' '}
                 </Text>
               </View>
-
             </View>
             <TouchableOpacity
               onPress={() => this.toggleMapView()}
-              style={{ paddingLeft: 8, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}>
+              style={{
+                paddingLeft: 8,
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
               <View>
                 <Text style={{ color: YELLOW }}>Map</Text>
               </View>
 
               <View style={{ paddingLeft: 5 }}>
-                <Image
-                  source={require('../../../assets/forward_yellow.png')}
-                />
+                <Image source={require('../../../assets/forward_yellow.png')} />
               </View>
             </TouchableOpacity>
           </View>
@@ -147,7 +144,6 @@ class Header extends Component {
             />
           </View>
         </View>
-
 
         <View style={extStyle.flex1}>
           <Text style={styles.bold}>{projectTitleText.toUpperCase()}</Text>
@@ -170,10 +166,9 @@ class Header extends Component {
               </View>
               <View style={styles.pt}>
                 <Text style={styles.text}>
-                  {projectTitleText.toUpperCase()
-                    === 'ABA FACTORY CONSTRUCTION' ?
-                    '$750,000' : '$2,000,000'
-                  }
+                  {projectTitleText.toUpperCase() === 'ABA FACTORY CONSTRUCTION'
+                    ? '$750,000'
+                    : '$2,000,000'}
                 </Text>
               </View>
             </View>
@@ -198,7 +193,6 @@ class Header extends Component {
           </View>
         </View>
 
-
         <View style={{ flex: 1 }}>
           {tags.length === 0 ? (
             <View style={{ marginTop: 2, flex: 2, flexDirection: 'row' }}>
@@ -207,143 +201,141 @@ class Header extends Component {
               </View>
             </View>
           ) : (
-              <View style={{
+            <View
+              style={{
                 marginTop: 2,
                 flex: 2,
                 flexDirection: 'row',
-              }}>
+              }}
+            >
+              >
+              {projectTitleText.toUpperCase() === 'ABA FACTORY CONSTRUCTION' ? (
+                <View style={{ flexDirection: 'row' }}>
+                  <ClTag src={require('../../../assets/sdgs/SDG_1.png')} />
+                  <ClTag src={require('../../../assets/sdgs/SDG_8.png')} />
+                </View>
+              ) : (
+                <View style={{ flexDirection: 'row' }}>
+                  <View
+                    // key={index}
+                    style={{
+                      // flex: 1,
 
-                {
-                  projectTitleText.toUpperCase()
-                    === 'ABA FACTORY CONSTRUCTION' ?
-                    (
-                      <View style={{ flexDirection: 'row' }} >
+                      width: width / 6,
+                      height: width / 8,
+                      // marginLeft: 3
+                    }}
+                  >
+                    <Image
+                      // resizeMode="contain"
+                      style={{
+                        flex: 1,
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain',
+                      }}
+                      source={require('../../../assets/sdgs/SDG_3.png')}
+                    />
+                  </View>
 
-                        <ClTag
-                          src={require('../../../assets/sdgs/SDG_1.png')}
-                        />
-                        <ClTag
-                          src={require('../../../assets/sdgs/SDG_8.png')}
-                        />
+                  <View
+                    // key={index}
+                    style={{
+                      // flex: 1,
 
-                      </View>
-                    ) :
-                    (
-                      <View style={{ flexDirection: 'row' }} >
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
+                      width: width / 6,
+                      height: width / 8,
+                      // marginLeft: 3
+                    }}
+                  >
+                    <Image
+                      // resizeMode="contain"
+                      style={{
+                        flex: 1,
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain',
+                      }}
+                      source={require('../../../assets/sdgs/SDG_13.png')}
+                    />
+                  </View>
 
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_3.png')}
-                          />
+                  <View
+                    // key={index}
+                    style={{
+                      // flex: 1,
 
-                        </View>
+                      width: width / 6,
+                      height: width / 8,
+                      // marginLeft: 3
+                    }}
+                  >
+                    <Image
+                      // resizeMode="contain"
+                      style={{
+                        flex: 1,
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain',
+                      }}
+                      source={require('../../../assets/sdgs/SDG_14.jpg')}
+                    />
+                  </View>
+                  <View
+                    // key={index}
+                    style={{
+                      width: width / 6,
+                      height: width / 8,
+                      // marginLeft: 3
+                    }}
+                  >
+                    <Image
+                      // resizeMode="contain"
+                      style={{
+                        flex: 1,
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain',
+                      }}
+                      source={require('../../../assets/sdgs/SDG_15.png')}
+                    />
+                  </View>
 
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
+                  <View
+                    // key={index}
+                    style={{
+                      // flex: 1,
 
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_13.png')}
-                          />
-                        </View>
-
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
-
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_14.jpg')}
-                          />
-                        </View>
-                        <View
-                          // key={index} 
-                          style={{
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_15.png')}
-                          />
-                        </View>
-
-                        <View
-                          // key={index} 
-                          style={{
-                            // flex: 1,
-
-                            width: width / 6,
-                            height: width / 8,
-                            // marginLeft: 3
-                          }}>
-                          <Image
-                            // resizeMode="contain"
-                            style={{
-                              flex: 1,
-                              width: '100%',
-                              height: '100%',
-                              resizeMode: 'contain'
-                            }}
-                            source={require('../../../assets/sdgs/SDG_6.png')}
-                          />
-                        </View>
-                      </View>
-                    )
-                }
-                <View />
-              </View>
-            )}
+                      width: width / 6,
+                      height: width / 8,
+                      // marginLeft: 3
+                    }}
+                  >
+                    <Image
+                      // resizeMode="contain"
+                      style={{
+                        flex: 1,
+                        width: '100%',
+                        height: '100%',
+                        resizeMode: 'contain',
+                      }}
+                      source={require('../../../assets/sdgs/SDG_6.png')}
+                    />
+                  </View>
+                </View>
+              )}
+              <View />
+            </View>
+          )}
         </View>
 
         <View style={{ flex: 1 }}>
           <Text>
-            Energy is at the heart of development, . Without energy, communities live in darkness, essential services such as clinics and schools suffer, and businesses operate under crippling constraints. Because the process is taking longer than expected and will not be completed by the original closing date a one year extension is being requested.
-                    </Text>
+            Energy is at the heart of development, . Without energy, communities live in darkness,
+            essential services such as clinics and schools suffer, and businesses operate under
+            crippling constraints. Because the process is taking longer than expected and will not
+            be completed by the original closing date a one year extension is being requested.
+          </Text>
         </View>
       </View>
     );

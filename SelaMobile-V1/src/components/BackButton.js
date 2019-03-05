@@ -31,16 +31,14 @@ const styles = StyleSheet.create({
 
 const BackButton = ({ fn }) => (
   <View style={styles.container}>
-    <TouchableOpacity
-      onPress={fn}
-    >
+    <TouchableOpacity onPress={fn}>
       <Image style={styles.icon} source={require('../../assets/img/blackback.png')} />
     </TouchableOpacity>
   </View>
 );
 
 BackButton.defaultProps = {
-  fn: () => { },
+  fn: () => {},
 };
 
 BackButton.propTypes = {

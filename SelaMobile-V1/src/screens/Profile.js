@@ -145,11 +145,7 @@ class Profile extends Component {
           loading: false,
           guestUser: true,
         });
-      }
-
-
-
-      else if (info === 'Carla') {
+      } else if (info === 'Carla') {
         this.setState({
           profileInfo: {
             userInfo: {
@@ -168,9 +164,7 @@ class Profile extends Component {
           loading: false,
           guestUser: true,
         });
-      }
-
-      else if (info === 'Victoria') {
+      } else if (info === 'Victoria') {
         this.setState({
           profileInfo: {
             userInfo: {
@@ -189,12 +183,7 @@ class Profile extends Component {
           loading: false,
           guestUser: true,
         });
-      }
-
-
-
-
-      else if (info === 'Simi') {
+      } else if (info === 'Simi') {
         this.setState({
           profileInfo: {
             userInfo: {
@@ -213,9 +202,7 @@ class Profile extends Component {
           loading: false,
           guestUser: true,
         });
-      }
-
-      else if (info === 'Tunde') {
+      } else if (info === 'Tunde') {
         this.setState({
           profileInfo: {
             userInfo: {
@@ -234,11 +221,7 @@ class Profile extends Component {
           loading: false,
           guestUser: true,
         });
-      }
-
-
-
-      else if (info === 'Isaiah') {
+      } else if (info === 'Isaiah') {
         this.setState({
           profileInfo: {
             userInfo: {
@@ -257,9 +240,7 @@ class Profile extends Component {
           loading: false,
           guestUser: true,
         });
-      }
-
-      else if (info === 'Collins') {
+      } else if (info === 'Collins') {
         this.setState({
           profileInfo: {
             userInfo: {
@@ -278,9 +259,7 @@ class Profile extends Component {
           loading: false,
           guestUser: true,
         });
-      }
-
-      else if (info === 'Fidelia') {
+      } else if (info === 'Fidelia') {
         this.setState({
           profileInfo: {
             userInfo: {
@@ -299,9 +278,7 @@ class Profile extends Component {
           loading: false,
           guestUser: true,
         });
-      }
-
-      else {
+      } else {
         try {
           const resp = await getUserDetails({ id: this.props.navigation.state.params });
           this.setState({
@@ -350,8 +327,7 @@ class Profile extends Component {
     }
 
     return (
-      <ScrollView
-        stickyHeaderIndices={[0]} contentContainerStyle={styles.container}>
+      <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={styles.container}>
         <Header justBack navigation={this.props.navigation} headerName="PROFILE" />
         <Fragment>
           {loading ? (
@@ -359,63 +335,63 @@ class Profile extends Component {
               <Spinner />
             </View>
           ) : (
-              <View style={styles.subContainer}>
-                <UserId
-                  userType={guestUser ? userType : 'Funder'}
-                  userName={guestUser ? userName : 'Eze'}
-                  verificationStatus={verificationStatus}
-                />
-                <UserInfo
-                  reputationScore={guestUser ? profileInfo.userInfo.reputationScore : '0'}
-                  projects={guestUser ? profileInfo && profileInfo.projects.length : '0'}
-                  dataUploads={guestUser ? profileInfo.uploads : '0'}
-                  location={guestUser ? 'Lagos,Nigeria.' : 'Lagos,Nigeria.'}
-                />
-                <View style={{ marginVertical: 10 }}>
-                  <View style={{ marginVertical: 15, marginLeft: 10 }}>
-                    <B color="#201D41"> Other projects with Ade </B>
-                  </View>
-                  <Fragment>
-                    {projects && projects.length === 0 ? (
-                      <View style={styles.emptyBox}>
-                        <Text style={styles.textInEmptyBox}>
-                          {' '}
-                          You haven't been added to any project yet.
-                      </Text>
-                      </View>
-                    ) : (
-                        <FlatList
-                          keyExtractor={(item, index) => index.toString()}
-                          style={{ paddingTop: 10 }}
-                          data={images}
-                          keyExtractor={keyExtractor}
-                          horizontal
-                          showsHorizontalScrollIndicator={false}
-                          renderItem={renderItem}
-                        />
-                      )}
-                  </Fragment>
+            <View style={styles.subContainer}>
+              <UserId
+                userType={guestUser ? userType : 'Funder'}
+                userName={guestUser ? userName : 'Eze'}
+                verificationStatus={verificationStatus}
+              />
+              <UserInfo
+                reputationScore={guestUser ? profileInfo.userInfo.reputationScore : '0'}
+                projects={guestUser ? profileInfo && profileInfo.projects.length : '0'}
+                dataUploads={guestUser ? profileInfo.uploads : '0'}
+                location={guestUser ? 'Lagos,Nigeria.' : 'Lagos,Nigeria.'}
+              />
+              <View style={{ marginVertical: 10 }}>
+                <View style={{ marginVertical: 15, marginLeft: 10 }}>
+                  <B color="#201D41"> Other projects with Ade </B>
                 </View>
                 <Fragment>
-                  {interests.length === 0 ? (
-                    <View />
+                  {projects && projects.length === 0 ? (
+                    <View style={styles.emptyBox}>
+                      <Text style={styles.textInEmptyBox}>
+                        {' '}
+                        You haven't been added to any project yet.
+                      </Text>
+                    </View>
                   ) : (
-                      <View style={{ marginLeft: 10 }}>
-                        <View style={{ marginVertical: 15 }}>
-                          <B color="#201D41"> Interests </B>
-                        </View>
-                        <View style={styles.interestTag}>
-                          {interests.map((c, index) => (
-                            <View key={index} style={styles.interestSubContainer}>
-                              <Tag viewColor={tagsColor(c)} text={c} />
-                            </View>
-                          ))}
-                        </View>
-                      </View>
-                    )}
+                    <FlatList
+                      keyExtractor={(item, index) => index.toString()}
+                      style={{ paddingTop: 10 }}
+                      data={images}
+                      keyExtractor={keyExtractor}
+                      horizontal
+                      showsHorizontalScrollIndicator={false}
+                      renderItem={renderItem}
+                    />
+                  )}
                 </Fragment>
               </View>
-            )}
+              <Fragment>
+                {interests.length === 0 ? (
+                  <View />
+                ) : (
+                  <View style={{ marginLeft: 10 }}>
+                    <View style={{ marginVertical: 15 }}>
+                      <B color="#201D41"> Interests </B>
+                    </View>
+                    <View style={styles.interestTag}>
+                      {interests.map((c, index) => (
+                        <View key={index} style={styles.interestSubContainer}>
+                          <Tag viewColor={tagsColor(c)} text={c} />
+                        </View>
+                      ))}
+                    </View>
+                  </View>
+                )}
+              </Fragment>
+            </View>
+          )}
         </Fragment>
       </ScrollView>
     );

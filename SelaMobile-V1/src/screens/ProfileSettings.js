@@ -31,7 +31,7 @@ class ProfileSettings extends Component {
   render() {
     const userInfo = this.props.userInfo;
     let userType;
-    const { isContractor, isFunder, isEvalautor } = this.props.userInfo.user;
+    const { isContractor, isFunder, isEvaluator } = this.props.userInfo.user;
     if (isFunder === true) {
       userType = 'Funder';
     } else if (isContractor === true) {

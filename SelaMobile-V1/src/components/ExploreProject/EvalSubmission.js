@@ -27,8 +27,8 @@ export default class EvalSubmission extends Component {
   displayPicture = () => {
     this.setState(prevState => ({ expand: !prevState.expand }));
     console.log('ddjfjd');
-    alert('fjdjj')
-  }
+    alert('fjdjj');
+  };
 
   render() {
     const { expand } = this.state;

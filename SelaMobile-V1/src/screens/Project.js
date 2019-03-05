@@ -27,8 +27,6 @@ import ExtStyle from '../utils/styles';
 import Spinner from '../components/Spinner';
 import StandardText from '../components/StandardText';
 
-
-
 const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -101,7 +99,6 @@ class Project extends Component {
   };
 
   async componentDidMount() {
-
     await this.props.getFunderProjects();
     // await this.props.getContractorProjects();
     this.setState({ loading: false });
@@ -155,7 +152,6 @@ class Project extends Component {
         this.props.projects.projects.projects) ||
       [];
 
-
     const contractorProjects =
       (this.props && this.props.projects && this.props.projects.contrProjects) || [];
 
@@ -166,8 +162,8 @@ class Project extends Component {
       notifications === undefined
         ? []
         : notifications &&
-        notifications.notifications &&
-        notifications.notifications.filter(c => c.read === false);
+          notifications.notifications &&
+          notifications.notifications.filter(c => c.read === false);
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
 
@@ -180,8 +176,8 @@ class Project extends Component {
             newNotifs === undefined
               ? require('../../assets/emptyBell.png')
               : newNotifs && newNotifs.length === 0
-                ? require('../../assets/new_bell.png')
-                : require('../../assets/notifications-received.png')
+              ? require('../../assets/new_bell.png')
+              : require('../../assets/notifications-received.png')
           }
         />
         <ScrollView
@@ -194,128 +190,122 @@ class Project extends Component {
                 <Spinner />
               </View>
             ) : (
-                <Fragment>
-                  {userRole === 'funder' ? (
-                    <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
-                      <StandardText
-                        text="Welcome back"
-                        viewStyle={{
-                          justifyContent: 'flex-start',
-                          alignItems: 'flex-start',
-                          marginLeft: 10,
-                          marginTop: 10,
-                        }}
-                        textStyle={{
-                          fontSize: 18,
-                          color: '#201D41',
-                        }}
+              <Fragment>
+                {userRole === 'funder' ? (
+                  <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
+                    <StandardText
+                      text="Welcome back"
+                      viewStyle={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                        marginLeft: 10,
+                        marginTop: 10,
+                      }}
+                      textStyle={{
+                        fontSize: 18,
+                        color: '#201D41',
+                      }}
+                    />
+
+                    <View style={ExtStyle.flex1}>
+                      <SingularProject
+                        leftText="Projects you fund"
+                        // rightText="See all"
+                        projects={projects}
                       />
+                    </View>
 
-                      <View style={ExtStyle.flex1}>
-                        <SingularProject
-                          leftText="Projects you fund"
-                          // rightText="See all"
-                          projects={projects}
-                        />
-                      </View>
+                    <View style={ExtStyle.flex1}>
+                      <SingularProject
+                        leftText="Projects you initiated"
+                        // rightText="See all"
+                        projects={projectCreatedByMe}
+                      />
+                    </View>
 
-                      <View style={ExtStyle.flex1}>
-                        <SingularProject
-                          leftText="Projects you initiated"
-                          // rightText="See all"
-                          projects={projectCreatedByMe}
-                        />
-                      </View>
+                    <View style={ExtStyle.flex1}>
+                      <SingularProject
+                        leftText="Projects that may interest you"
+                        // rightText="Edit interest"
+                        projects={projects}
+                      />
+                    </View>
 
-                      <View style={ExtStyle.flex1}>
-                        <SingularProject
-                          leftText="Projects that may interest you"
-                          // rightText="Edit interest"
-                          projects={projects}
-                        />
-                      </View>
+                    <View style={ExtStyle.flex1}>
+                      <SingularProject
+                        leftText="Bookmarks"
+                        // rightText="See all"
+                        projects={projects}
+                      />
+                    </View>
+                  </ScrollView>
+                ) : (
+                  <Fragment>
+                    {userRole === 'contractor' ? (
+                      <Tabs
+                        tabBarUnderlineStyle={{
+                          backgroundColor: '#201D41',
+                        }}
+                      >
+                        <Tab
+                          heading="Your Projects"
+                          textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                          activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                          activeTabStyle={{
+                            backgroundColor: '#201D41',
+                          }}
+                          tabStyle={{ backgroundColor: '#FFFFFF' }}
+                        >
+                          <ContractorProject projects={projects} />
+                        </Tab>
+                        <Tab
+                          heading="Your Proposals"
+                          textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                          activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                          activeTabStyle={{ backgroundColor: '#201D41' }}
+                          tabStyle={{ backgroundColor: '#FFFFFF' }}
+                        >
+                          <Proposals projects={projects} />
+                        </Tab>
+                      </Tabs>
+                    ) : (
+                      <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
+                        <View>
+                          <View style={ExtStyle.flex1}>
+                            <SingularProject
+                              leftText="Projects you evaluate"
+                              // rightText="See all"
+                              projects={projects}
+                            />
+                          </View>
 
-                      <View style={ExtStyle.flex1}>
-                        <SingularProject
-                          leftText="Bookmarks"
-                          // rightText="See all"
-                          projects={projects}
-                        />
-                      </View>
-                    </ScrollView>
-                  ) : (
-                      <Fragment>
-                        {userRole === 'contractor' ? (
-                          <Tabs
-                            tabBarUnderlineStyle={{
-                              backgroundColor: '#201D41'
-                            }}
-                          >
-                            <Tab
-                              heading="Your Projects"
-                              textStyle={{ color: '#B1BAD2', fontSize: 14 }}
-                              activeTextStyle={{ color: '#fff', fontSize: 14 }}
-                              activeTabStyle={{
-                                backgroundColor: '#201D41'
-                              }}
-                              tabStyle={{ backgroundColor: '#FFFFFF' }}
-                            >
-                              <ContractorProject
-                                projects={projects}
-                              />
-                            </Tab>
-                            <Tab
-                              heading="Your Proposals"
-                              textStyle={{ color: '#B1BAD2', fontSize: 14 }}
-                              activeTextStyle={{ color: '#fff', fontSize: 14 }}
-                              activeTabStyle={{ backgroundColor: '#201D41' }}
-                              tabStyle={{ backgroundColor: '#FFFFFF' }}
-                            >
-                              <Proposals
-                                projects={projects} />
-                            </Tab>
-                          </Tabs>
-                        ) : (
-                            <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
-                              <View>
-                                <View style={ExtStyle.flex1}>
-                                  <SingularProject
-                                    leftText="Projects you evaluate"
-                                    // rightText="See all"
-                                    projects={projects}
-                                  />
-                                </View>
+                          <View style={ExtStyle.flex1}>
+                            <SingularProject
+                              leftText="Projects that may interest you"
+                              // rightText="Edit interest"
+                              projects={projects}
+                            />
+                          </View>
 
-                                <View style={ExtStyle.flex1}>
-                                  <SingularProject
-                                    leftText="Projects that may interest you"
-                                    // rightText="Edit interest"
-                                    projects={projects}
-                                  />
-                                </View>
-
-                                <View style={ExtStyle.flex1}>
-                                  <SingularProject
-                                    leftText="Bookmarks"
-                                    // rightText="See all"
-                                    projects={projects}
-                                  />
-                                </View>
-                                <View style={ExtStyle.flex1}>{this.renderButton()}</View>
-                              </View>
-                            </ScrollView>
-                          )}
-                      </Fragment>
+                          <View style={ExtStyle.flex1}>
+                            <SingularProject
+                              leftText="Bookmarks"
+                              // rightText="See all"
+                              projects={projects}
+                            />
+                          </View>
+                          <View style={ExtStyle.flex1}>{this.renderButton()}</View>
+                        </View>
+                      </ScrollView>
                     )}
-                </Fragment>
-              )}
+                  </Fragment>
+                )}
+              </Fragment>
+            )}
           </Fragment>
-
         </ScrollView>
         <View style={styles.floatingButton}>
-          <Image
-            source={require('../../assets/plus.png')}
-          />
+          <Image source={require('../../assets/plus.png')} />
         </View>
       </View>
     );
@@ -337,4 +327,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Project);
-

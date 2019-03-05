@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Text from './Text';
 
 const B = ({ fn, size, children, color, weight, style }) => (
-  <Text onPress={fn} style={[style, { fontWeight: weight ? weight : 'bold', fontSize: size, color }]}>
+  <Text onPress={fn} style={[style, { fontWeight: weight || 'bold', fontSize: size, color }]}>
     {children}
   </Text>
 );

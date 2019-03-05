@@ -30,13 +30,13 @@ const Button = ({ text, color, textColor, fn, textSize, medium, style, textStyle
     {loading ? (
       <Spinner color={WHITE} size="small" />
     ) : (
-        <Text style={[textStyle, { color: textColor, fontSize: textSize }]}>{text}</Text>
-      )}
+      <Text style={[textStyle, { color: textColor, fontSize: textSize }]}>{text}</Text>
+    )}
   </TouchableOpacity>
 );
 
 Button.defaultProps = {
-  fn: () => { },
+  fn: () => {},
   color: YELLOW,
   textSize: null,
   textColor: null,

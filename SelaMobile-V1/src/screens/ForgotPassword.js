@@ -47,7 +47,7 @@ export default class ForgotPassword extends Component {
   reset = async () => {
     Keyboard.dismiss();
     const { emailOrPhone } = this.state;
-    this.setState({ loading: true })
+    this.setState({ loading: true });
     try {
       const resp = await forgotPassword({
         email: emailOrPhone,
@@ -94,7 +94,7 @@ export default class ForgotPassword extends Component {
                 }
                 error={emailOrPhoneError}
                 style={{
-                  borderColor: '#696F74'
+                  borderColor: '#696F74',
                 }}
                 placeHolderColor="#696F74"
                 textStyle={{ color: '#696F74' }}

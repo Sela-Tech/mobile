@@ -82,7 +82,6 @@ class Overview extends Component {
             <Picker.Item label="Last 30 days" value="01" />
             <Picker.Item label="Last 60 days" value="02" />
             <Picker.Item label="Forever" value="03" />
-
           </Picker>
         </View>
         <StandardText
@@ -93,18 +92,18 @@ class Overview extends Component {
         <Box
           upText="Tasks Completed"
           secondTextLeft="13"
-        //  secondTextRight="+6.9%"
+          //  secondTextRight="+6.9%"
         />
         <Box
           upText="Progress"
           secondTextLeft="70%"
-        // secondTextRight="+12.4%"
+          // secondTextRight="+12.4%"
         />
 
         <Box
           upText="Total funds spent"
           secondTextLeft="$1595"
-        //  secondTextRight="+3.2%"
+          //  secondTextRight="+3.2%"
         />
 
         <Box

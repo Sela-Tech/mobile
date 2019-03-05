@@ -14,7 +14,6 @@ import ExtStyle from '../utils/styles';
 import { getDummyDisplayPicture, projectStatusTextColor } from '../utils/helpers';
 import { WHITE } from '../utils/constants';
 
-
 const { height, width } = Dimensions.get('window');
 const fundedStatus = ['60%', '40%', '20%', '85%'];
 
@@ -98,7 +97,7 @@ const styles = StyleSheet.create({
     borderColor: '#ddd',
     shadowColor: '#ddd',
     shadowOpacity: 1.0,
-    shadowOffset: { width: 10, height: 10, },
+    shadowOffset: { width: 10, height: 10 },
     elevation: 3,
   },
   textInExpandable: {
@@ -156,7 +155,6 @@ class ExploreProject extends Component {
     }
   }
 
-
   expandTheBox = val => {
     if (val === 'analytics') {
       return this.setState(prevState => ({ expandAnalyticsBox: !prevState.expandAnalyticsBox }));
@@ -165,22 +163,24 @@ class ExploreProject extends Component {
       return this.setState(prevState => ({ expandOverviewBox: !prevState.expandOverviewBox }));
     }
     if (val === 'transaction') {
-      return this.setState(prevState => ({ expandTransactionsBox: !prevState.expandTransactionsBox }));
+      return this.setState(prevState => ({
+        expandTransactionsBox: !prevState.expandTransactionsBox,
+      }));
     }
     if (val === 'updates') {
       return this.setState(prevState => ({ expandUpdatesBox: !prevState.expandUpdatesBox }));
     }
     if (val === 'stakeholders') {
-      return this.setState(prevState => ({ expandStakeHoldersBox: !prevState.expandStakeHoldersBox }));
+      return this.setState(prevState => ({
+        expandStakeHoldersBox: !prevState.expandStakeHoldersBox,
+      }));
     }
     if (val === 'proposals') {
       return this.setState(prevState => ({ expandProposalsBox: !prevState.expandProposalsBox }));
     }
-    else {
-      this.setState(prevState => ({ expandProposalsBox: !prevState.expandProposalsBox }));
-    }
-  }
 
+    this.setState(prevState => ({ expandProposalsBox: !prevState.expandProposalsBox }));
+  };
 
   render() {
     const {
@@ -204,7 +204,7 @@ class ExploreProject extends Component {
     let theProject = allProjects.filter(c => c._id === projectId);
     theProject = theProject[0];
 
-    console.log('preoject', projectInfo)
+    console.log('preoject', projectInfo);
     if (loading) {
       return (
         <View style={ExtStyle.center}>
@@ -213,8 +213,7 @@ class ExploreProject extends Component {
       );
     }
     return (
-      <ScrollView style={ExtStyle.flex1}
-        contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView style={ExtStyle.flex1} contentContainerStyle={{ flexGrow: 1 }}>
         <View style={{ flex: 1 }}>
           {notAvailaible ? (
             <View style={{ flex: 1 }}>
@@ -234,12 +233,12 @@ class ExploreProject extends Component {
                     }}
                     // resizeMode="contain"
                     source={getDummyDisplayPicture(projectInfo && projectInfo.name)}
-                  // source={{
-                  //   uri:
-                  //     projectInfo['project-avatar'] === undefined
-                  //       ? 'https://placeimg.com/640/480/any'
-                  //       : projectInfo['project-avatar'],
-                  // }}
+                    // source={{
+                    //   uri:
+                    //     projectInfo['project-avatar'] === undefined
+                    //       ? 'https://placeimg.com/640/480/any'
+                    //       : projectInfo['project-avatar'],
+                    // }}
                   />
                 </View>
                 <View style={styles.imagePosition}>
@@ -265,30 +264,34 @@ class ExploreProject extends Component {
                   </TouchableOpacity>
                 </View>
 
-                <View style={{
-                  position: 'absolute',
-                  top: 120,
-                  left: 10,
-                }}>
-                  <Text style={{ fontSize: 20, fontWeight: "bold", color: '#FFFFFF' }}> {projectInfo.name} </Text>
+                <View
+                  style={{
+                    position: 'absolute',
+                    top: 120,
+                    left: 10,
+                  }}
+                >
+                  <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>
+                    {' '}
+                    {projectInfo.name}
+{' '}
+                  </Text>
                 </View>
-
-
 
                 <View style={styles.viewInImage}>
                   <View style={styles.innerView}>
                     <View style={styles.pl5}>
                       <Image
                         style={{ tintColor: '#201d41' }}
-                        source={require('../../assets/money.png')} />
+                        source={require('../../assets/money.png')}
+                      />
                     </View>
                     <View>
                       <Text style={styles.fundedTextColor}>
                         {' '}
                         {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]}
-                        {' '}
-                        funded
-              {' '}
+{' '}
+funded{' '}
                       </Text>
                     </View>
                   </View>
@@ -309,14 +312,15 @@ class ExploreProject extends Component {
                   />
                 </View>
               </View>
-              <View style={{
-                // backgroundColor: 'blue',
-                flex: 1,
-                // flexGrow: 1,
-                // backgroundColor: 'red',
-                marginVertical: 20,
-              }}>
-
+              <View
+                style={{
+                  // backgroundColor: 'blue',
+                  flex: 1,
+                  // flexGrow: 1,
+                  // backgroundColor: 'red',
+                  marginVertical: 20,
+                }}
+              >
                 <ExpandableBox
                   expand={expandOverviewBox}
                   fn={() => this.expandTheBox('overview')}
@@ -367,8 +371,8 @@ class ExploreProject extends Component {
               </View>
             </View>
           ) : (
-              <View />
-            )}
+            <View />
+          )}
         </View>
       </ScrollView>
     );

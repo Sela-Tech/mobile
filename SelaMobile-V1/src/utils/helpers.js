@@ -92,13 +92,11 @@ export const getDummyDisplayPicture = name => {
 
 export const pictureRelatedToUser = name => {
   switch (name) {
-
     case 'Isaiah Udotong':
       return require('../../assets/factory_cleanup/isaiah_udotong.jpg');
 
     case 'Fidelia Nnandi':
       return require('../../assets/project_cleanup/fidelia_nnadi.jpg');
-
 
     case 'Collins Peter':
       return require('../../assets/man1.png');
@@ -109,13 +107,11 @@ export const pictureRelatedToUser = name => {
     case 'Tunde Olatope':
       return require('../../assets/project_cleanup/Tunde_Olatope.jpg');
 
-
     case 'Carla Walker':
       return require('../../assets/factory_cleanup/carla_walker.jpeg');
 
     case 'Victoria Botvin':
       return require('../../assets/project_cleanup/victoria_botvin.jpg');
-
 
     case 'Sela ':
       return require('../../assets/goldlogo.png');
@@ -135,15 +131,15 @@ export const pictureRelatedToUser = name => {
 export const emptyProjectText = text => {
   switch (text) {
     case 'Projects you funded':
-      return 'You haven\'t funded any project yet';
+      return "You haven't funded any project yet";
     case 'Projects you proposed':
-      return 'You haven\'t proposed any project yet';
+      return "You haven't proposed any project yet";
     case 'Projects that may interest you':
       return 'No project that under this category';
     case 'Saved Project':
-      return 'You haven\'t saved any project yet';
+      return "You haven't saved any project yet";
     case 'Projects you were added to':
-      return 'You haven\'t been added to any project yet';
+      return "You haven't been added to any project yet";
 
     default:
       return require('../../assets/man1.png');
@@ -319,7 +315,6 @@ const sdg = [
     6.B Support and strengthen the participation of local communities in improving water and sanitation management
 `,
   },
-
 ];
 
 export const tagText = val => {
@@ -339,4 +334,4 @@ export const tagText = val => {
     default:
       return sdg[1];
   }
-}
+};

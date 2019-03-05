@@ -391,9 +391,10 @@ export default class SubmitFeedback extends Component {
             </View>
           </View>
         ) : (
-            <View style={styles.topBottom}>
-              {/* <View style={styles.floatingButtonAudio}> */}
-              <View style={{
+          <View style={styles.topBottom}>
+            {/* <View style={styles.floatingButtonAudio}> */}
+            <View
+              style={{
                 // backgroundColor: 'red',
                 position: 'absolute',
                 height: 50,
@@ -403,34 +404,34 @@ export default class SubmitFeedback extends Component {
                 // flex: 1,
                 // justifyContent: 'flex-start',
                 // alignItems: 'flex-start',
-              }}>
-                <TouchableOpacity
-                  onPress={() => this.snap()}
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Image source={require('../../assets/img/camera.png')} />
-                </TouchableOpacity>
-              </View>
+              }}
+            >
+              <TouchableOpacity
+                onPress={() => this.snap()}
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Image source={require('../../assets/img/camera.png')} />
+              </TouchableOpacity>
+            </View>
 
-              <View style={styles.floatingButton}>
-                <TouchableOpacity
-                  onPress={() => this.snap()}
-                  style={{
-                    flex: 1,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
-                  <Image source={require('../../assets/img/camera.png')} />
-                </TouchableOpacity>
-              </View>
+            <View style={styles.floatingButton}>
+              <TouchableOpacity
+                onPress={() => this.snap()}
+                style={{
+                  flex: 1,
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Image source={require('../../assets/img/camera.png')} />
+              </TouchableOpacity>
+            </View>
 
-
-              {/* <View style={styles.floatingButton}>
+            {/* <View style={styles.floatingButton}>
                 <TouchableOpacity
                   onPress={() => this.snap()}
                   style={{
@@ -442,8 +443,8 @@ export default class SubmitFeedback extends Component {
                   <Image source={require('../../assets/img/camera.png')} />
                 </TouchableOpacity>
               </View> */}
-            </View>
-          )}
+          </View>
+        )}
       </Fragment>
     );
   };

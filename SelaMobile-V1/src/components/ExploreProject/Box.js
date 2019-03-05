@@ -69,9 +69,8 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
           <Text style={{ color: WHITE }}>
             {' '}
             {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]}
-            {' '}
-            funded
-              {' '}
+{' '}
+funded{' '}
           </Text>
         </View>
       </View>
@@ -109,7 +108,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
         <Text style={{ fontSize: 15, fontWeight: '600' }}>
           {' '}
           {cost === '' ? '$200000' : `$${cost}`}
-          {' '}
+{' '}
         </Text>
       </View>
       <View
@@ -126,15 +125,14 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
               <Tag text="Clean Water" viewColor={tagsColor('Clean Water')} textColor={WHITE} />
             </View>
           ) : (
-              <View style={{ flexDirection: 'row', flex: 2 }}>
-                {tags.slice(0, 2).map((c, index) => (
-                  <View
-                    key={index} style={{ marginLeft: 3 }}>
-                    <Tag text={c} viewColor={tagsColor(c)} textColor={WHITE} />
-                  </View>
-                ))}
-              </View>
-            )}
+            <View style={{ flexDirection: 'row', flex: 2 }}>
+              {tags.slice(0, 2).map((c, index) => (
+                <View key={index} style={{ marginLeft: 3 }}>
+                  <Tag text={c} viewColor={tagsColor(c)} textColor={WHITE} />
+                </View>
+              ))}
+            </View>
+          )}
         </Fragment>
         <TouchableOpacity
           style={{

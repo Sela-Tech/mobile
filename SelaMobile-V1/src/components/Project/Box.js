@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     height: height / 4,
     // width: width / 1.25,
     borderRadius: 5,
-    borderStyle: 'dashed', //https://github.com/facebook/react-native/issues/17251
+    borderStyle: 'dashed', // https://github.com/facebook/react-native/issues/17251
     borderWidth: 1,
   },
   imageBack: {
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
   },
   pl3: {
     paddingLeft: 3,
-  }
+  },
 });
 
 const fundedStatus = ['60%', '40%', '20%', '85%'];
@@ -148,7 +148,7 @@ const viewToReturn = text => {
     case 'Initiated by others':
       return (
         <View style={{ justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={styles.text}>You have not joined or been added  </Text>
+          <Text style={styles.text}>You have not joined or been added </Text>
           <Text style={styles.text}> to any project </Text>
         </View>
       );
@@ -178,16 +178,19 @@ const viewToReturn = text => {
         </View>
       );
   }
-}
+};
 
 const Box = ({ projectInfo, empty, siteName, wide, imageSource, text }) => (
   <TouchableOpacity
-    style={[styles.container, {
-      justifyContent: !!empty ? 'center' : undefined,
-      width: wide ? undefined : !!empty ? width / 1.8 : width / 1.25,
-      paddingVertical: 5,
-      borderStyle: 'dotted',
-    }]}
+    style={[
+      styles.container,
+      {
+        justifyContent: empty ? 'center' : undefined,
+        width: wide ? undefined : empty ? width / 1.8 : width / 1.25,
+        paddingVertical: 5,
+        borderStyle: 'dotted',
+      },
+    ]}
     onPress={
       empty
         ? () => NavigationService.navigate('CreateProject')
@@ -200,11 +203,8 @@ const Box = ({ projectInfo, empty, siteName, wide, imageSource, text }) => (
           source={getDummyDisplayPicture(siteName)}
           // source={{ uri: imageSource === '' ? 'https://placeimg.com/640/480/any' : imageSource }}
           style={styles.imageBack}
-        >
-
-        </ImageBackground>
-        <View style={[ExtStyles.flex1
-          , { justifyContent: 'center' }]}>
+        />
+        <View style={[ExtStyles.flex1, { justifyContent: 'center' }]}>
           <View style={[styles.textView]}>
             <View style={styles.pt3}>
               <Text style={styles.address}>{projectInfo.location.name}</Text>
@@ -250,10 +250,8 @@ const Box = ({ projectInfo, empty, siteName, wide, imageSource, text }) => (
         </View>
       </View>
     ) : (
-        <View style={[styles.otherCont]}>
-          {viewToReturn(text)}
-        </View>
-      )}
+      <View style={[styles.otherCont]}>{viewToReturn(text)}</View>
+    )}
   </TouchableOpacity>
 );
 

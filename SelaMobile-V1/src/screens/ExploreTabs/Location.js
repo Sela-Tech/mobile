@@ -29,19 +29,18 @@ export default class Location extends Component {
   onMapLayout = () => {
     this.setState({ isMapReady: true });
   };
+
   toggleView = () => {
     if (this.state.view === 'standard') {
       this.setState({
         view: 'satellite',
-      })
-    }
-    else {
+      });
+    } else {
       this.setState({
         view: 'standard',
       });
     }
-  }
-
+  };
 
   render() {
     const { project } = this.props;
@@ -83,8 +82,8 @@ export default class Location extends Component {
         color: '#669FCE',
       },
       {
-        latitude: project.location.lat - 0.0052323220,
-        longitude: project.location.lng + 0.0040223230,
+        latitude: project.location.lat - 0.005232322,
+        longitude: project.location.lng + 0.004022323,
         color: '#E06811',
       },
       {
@@ -135,26 +134,24 @@ export default class Location extends Component {
         longitude: project.location.lng - 0.00916,
       },
       {
-        latitude: project.location.lat - 0.00223210,
-        longitude: project.location.lng - 0.001222320,
+        latitude: project.location.lat - 0.0022321,
+        longitude: project.location.lng - 0.00122232,
       },
       {
         latitude: project.location.lat - 0.0022,
         longitude: project.location.lng - 0.0022,
         color: '#0B089D',
       },
-
-    ]
+    ];
     return (
       <View style={styles.container}>
-
         <MapView
           provider={PROVIDER_GOOGLE}
           style={styles.map}
           loadingEnabled
           onPress
           mapType={view}
-          onPress={(event) => console.log(event.nativeEvent.coordinate)}
+          onPress={event => console.log(event.nativeEvent.coordinate)}
           onMapReady={() => this.onMapLayout()}
           // onLayout={this.onMapLayout}
           initialRegion={{
@@ -164,52 +161,47 @@ export default class Location extends Component {
             longitudeDelta: LONGITUDE_DELTA,
           }}
         >
-
           {isMapReady ? (
             <Fragment>
-              {
-                project.location.name === 'Abia, Nigeria' ?
-                  (
-                    <Fragment>
-                      {<Marker.Animated
-                        // pinColor={c.color}
-                        title={project.name}
-                        description={project.name}
-                        coordinate={{
-                          latitude: project.location.lat,
-                          longitude: project.location.lng,
-                        }}
-                      />
-                      }
-                    </Fragment>
-                  ) :
-                  (
-                    <Fragment>
-                      {
-                        cc.map((c, index) => (
-                          <Marker.Animated
-                            key={index}
-                            // pinColor={c.color}
-                            title={project.name}
-                            description={project.name}
-                            coordinate={{
-                              latitude: c.latitude,
-                              longitude: c.longitude,
-                            }}
-                          />
-                        ))
-                      }
-                    </Fragment>
-                  )
-              }
-
+              {project.location.name === 'Abia, Nigeria' ? (
+                <Fragment>
+                  {
+                    <Marker.Animated
+                      // pinColor={c.color}
+                      title={project.name}
+                      description={project.name}
+                      coordinate={{
+                        latitude: project.location.lat,
+                        longitude: project.location.lng,
+                      }}
+                    />
+                  }
+                </Fragment>
+              ) : (
+                <Fragment>
+                  {cc.map((c, index) => (
+                    <Marker.Animated
+                      key={index}
+                      // pinColor={c.color}
+                      title={project.name}
+                      description={project.name}
+                      coordinate={{
+                        latitude: c.latitude,
+                        longitude: c.longitude,
+                      }}
+                    />
+                  ))}
+                </Fragment>
+              )}
             </Fragment>
           ) : null}
         </MapView>
-        <View style={{
-          flex: 1,
-          marginTop: 10,
-        }}>
+        <View
+          style={{
+            flex: 1,
+            marginTop: 10,
+          }}
+        >
           <Button
             text="Toggle view"
             style={{

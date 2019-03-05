@@ -134,7 +134,7 @@ class ExploreProject extends Component {
             lng: results.longitude,
           },
         }),
-    )
+      )
       .catch(err => {
         this.setState({
           searchResult: false,
@@ -256,21 +256,21 @@ class ExploreProject extends Component {
               {loading === true ? (
                 <Spinner />
               ) : (
-                  <Fragment>
-                    {projects && projects.length === 0 ? (
-                      <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
-                        <Text style={{ fontSize: 15 }}> No project at the moment </Text>
-                      </View>
-                    ) : (
-                        <FlatList
-                          data={projects}
-                          renderItem={renderItem}
-                          style={{ flex: 1 }}
-                          keyExtractor={keyExtractor}
-                        />
-                      )}
-                  </Fragment>
-                )}
+                <Fragment>
+                  {projects && projects.length === 0 ? (
+                    <View style={[ExtStyle.center, { paddingTop: '2%' }]}>
+                      <Text style={{ fontSize: 15 }}> No project at the moment </Text>
+                    </View>
+                  ) : (
+                    <FlatList
+                      data={projects}
+                      renderItem={renderItem}
+                      style={{ flex: 1 }}
+                      keyExtractor={keyExtractor}
+                    />
+                  )}
+                </Fragment>
+              )}
             </View>
           </View>
         </View>

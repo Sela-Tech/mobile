@@ -242,7 +242,7 @@ class Login extends Component {
                   })
                 }
                 style={{
-                  borderColor: '#696F74'
+                  borderColor: '#696F74',
                 }}
                 placeHolderColor="#696F74"
                 textStyle={{ color: '#696F74' }}
@@ -260,7 +260,7 @@ class Login extends Component {
                     })
                   }
                   style={{
-                    borderColor: '#696F74'
+                    borderColor: '#696F74',
                   }}
                   placeHolderColor="#696F74"
                   error={passwordError}

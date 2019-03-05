@@ -9,17 +9,20 @@ const renderItem = item => (
     {item.item.val === 'empty' ? (
       <Box text="Propose Project" empty fn={() => console.log('navigate')} />
     ) : (
-        <Box
-          projectInfo={item.item}
-          siteName={item.item.name}
-          imageSource={item.item['project-avatar']}
-        />
-      )}
+      <Box
+        projectInfo={item.item}
+        siteName={item.item.name}
+        imageSource={item.item['project-avatar']}
+      />
+    )}
   </View>
 );
 
 const Images = ({ projects, leftText }) => {
-  const proj = leftText === 'Projects you proposed' || leftText === 'Initiated by you' ? [{ val: 'empty' }, ...projects] : projects;
+  const proj =
+    leftText === 'Projects you proposed' || leftText === 'Initiated by you'
+      ? [{ val: 'empty' }, ...projects]
+      : projects;
   return (
     <FlatList
       style={{ flex: 1 }}

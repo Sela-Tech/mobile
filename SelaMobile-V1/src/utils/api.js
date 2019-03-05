@@ -2,8 +2,8 @@
 
 import Axios from 'axios';
 import { RNS3 } from 'react-native-aws3';
-import { BASE_URL } from './constants';
 import { AsyncStorage } from 'react-native';
+import { BASE_URL } from './constants';
 import NavigationService from '../services/NavigationService';
 
 const axios = Axios.create({
@@ -45,17 +45,13 @@ axios.interceptors.response.use(
     if (error.response.data.message === 'jwt expired') {
       AsyncStorage.removeItem('user');
       NavigationService.navigate('Login');
-    }
-
-    else if (error.response.data.message === 'jwt malformed') {
+    } else if (error.response.data.message === 'jwt malformed') {
       try {
         AsyncStorage.removeItem('user');
         NavigationService.navigate('Login');
-      }
-      catch (err) {
+      } catch (err) {
         console.log('err', err.message);
       }
-
     }
     // Do something with response error
     console.log('API ERR:', error.message);
@@ -244,4 +240,4 @@ export const getAllfeaturedProjects = async query => {
   }
 };
 
-//eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOnsibmFtZSI6InRlc3QiLCJpZCI6IjVjNGVkNmYzZTdjMTM4MDAyMjI3NzY0YiJ9LCJwcm9maWxlUGhvdG8iOm51bGwsImlkIjoiNWM0ZWQ3OWFlN2MxMzgwMDIyMjc3NjRmIiwiaXNGdW5kZXIiOmZhbHNlLCJpc0V2YWx1YXRvciI6ZmFsc2UsImlzQ29udHJhY3RvciI6dHJ1ZSwiZmlyc3ROYW1lIjoiRGF2aWQiLCJwaG9uZSI6IjEyMzQ1Njc4OSIsImVtYWlsIjoiYWJpbWJvbGEuZEBzZWxhLWxhYnMuY28iLCJsYXN0TmFtZSI6IkFiaW1ib2xhIiwiYXJlYXNPZkludGVyZXN0IjpbXSwiaWF0IjoxNTQ5NjA3MzAzLCJleHAiOjE1NTAyMTIxMDN9.DCEnxDyx1drBSdaN3tBzCPk98aDJo71V8oWSheNEzQQ
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOnsibmFtZSI6InRlc3QiLCJpZCI6IjVjNGVkNmYzZTdjMTM4MDAyMjI3NzY0YiJ9LCJwcm9maWxlUGhvdG8iOm51bGwsImlkIjoiNWM0ZWQ3OWFlN2MxMzgwMDIyMjc3NjRmIiwiaXNGdW5kZXIiOmZhbHNlLCJpc0V2YWx1YXRvciI6ZmFsc2UsImlzQ29udHJhY3RvciI6dHJ1ZSwiZmlyc3ROYW1lIjoiRGF2aWQiLCJwaG9uZSI6IjEyMzQ1Njc4OSIsImVtYWlsIjoiYWJpbWJvbGEuZEBzZWxhLWxhYnMuY28iLCJsYXN0TmFtZSI6IkFiaW1ib2xhIiwiYXJlYXNPZkludGVyZXN0IjpbXSwiaWF0IjoxNTQ5NjA3MzAzLCJleHAiOjE1NTAyMTIxMDN9.DCEnxDyx1drBSdaN3tBzCPk98aDJo71V8oWSheNEzQQ
