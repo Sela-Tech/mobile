@@ -287,7 +287,7 @@ class Login extends Component {
                 <View style={styles.bottomAbsolute}>
                   <View>
                     <Text style={styles.buttomText}>
-                      {" Don't  have an account? "}
+                      {" Don't have an account? "}
                       <B fn={() => NavigationService.navigate('OnBoarding')}> Create account </B>
                     </Text>
                   </View>

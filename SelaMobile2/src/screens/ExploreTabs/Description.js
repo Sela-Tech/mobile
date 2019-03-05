@@ -54,7 +54,7 @@ const Description = ({ project }) => (
           style={{ flexDirection: 'row', flex: 1 }}
         >
           <View>
-            <Text style={{ color: '#201D41', fontSize: 15 }}> See all StakeHolder </Text>
+            <Text style={{ color: '#201D41', fontSize: 15 }}> See all Stakeholders </Text>
           </View>
           <View style={{ justifyContent: 'center', alignItems: 'center' }}>
             <Image source={require('../../../assets/forward-arrow.png')} />

@@ -18,7 +18,7 @@ const options = {
 };
 
 const initialText =
-  'Upload evidence of completion of this task.This can be a photo or video.Ensure you are at the project site before proceeding.';
+  'Upload evidence of completion of this task. This can be a photo or video. Ensure you are at the project site before proceeding.';
 
 const response = ' Select  1 to add more evidence  or  2 for terminate. ';
 

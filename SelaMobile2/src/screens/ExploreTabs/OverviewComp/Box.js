@@ -343,10 +343,10 @@ export default class Box extends Component {
         </View>
       );
     }
-    if (upText === 'Total funds spent') {
+    if (upText === 'Total Funds Spent') {
       return (
         <TouchableOpacity style={styles.container} onPress={
-          () => this.dropdown.alertWithType('info', 'Transaction Details', 'Check transaction Screen for more info')
+          () => this.dropdown.alertWithType('info', 'Transaction Details', 'Check Transaction Screen for more info')
           //   const resetAction = NavigationActions.reset({
           //     index: 0,
           //     actions: [

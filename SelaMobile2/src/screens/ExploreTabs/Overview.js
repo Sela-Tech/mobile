@@ -108,16 +108,16 @@ class Overview extends Component {
                 />
 
                 <Box
-                  upText="Total funds spent"
+                  upText="Total Funds Spent"
                   secondTextLeft="$1595"
                 //  secondTextRight="+3.2%"
                 />
 
                 <Box
-                  upText="Budget used"
+                  upText="Budget Used"
                   secondTextLeft="70%"
                   // secondTextRight="+12.4%"
-                  lastText="Total budget"
+                  lastText="Total Budget"
                 />
               </Fragment>
             ) :
@@ -138,10 +138,10 @@ class Overview extends Component {
                   />
 
                   <Box
-                    upText="Budget used"
+                    upText="Budget Used"
                     secondTextLeft="70%"
                     // secondTextRight="+12.4%"
-                    lastText="Total budget"
+                    lastText="Total Budget"
                   />
 
                 </Fragment>

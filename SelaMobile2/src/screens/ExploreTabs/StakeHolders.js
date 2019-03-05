@@ -41,7 +41,7 @@ const StakeHolders = ({ project, navigation }) => (
       <Fragment>
         {project.stakeholders.length === 0 ? (
           <View style={{ height: height / 7, justifyContent: 'center' }}>
-            <Text style={styles.emptyPersonText}> No StakeHolders at the moment </Text>
+            <Text style={styles.emptyPersonText}> No Stakeholders at the moment </Text>
           </View>
         ) : (
             <View style={{ flex: 1 }}>
@@ -144,7 +144,7 @@ const StakeHolders = ({ project, navigation }) => (
       <Fragment>
         {project.stakeholders.length === 0 ? (
           <View style={{ height: height / 7, justifyContent: 'center' }}>
-            <Text style={styles.emptyPersonText}> No Evaluation agent at the moment </Text>
+            <Text style={styles.emptyPersonText}> No Evaluation Agents at the moment </Text>
           </View>
         ) : (
             <View style={{ flex: 1 }}>

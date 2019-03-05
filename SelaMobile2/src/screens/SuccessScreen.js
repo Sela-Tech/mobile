@@ -31,8 +31,8 @@ export default ({ navigation }) => (
       </View>
       <View style={{ justifyContent: 'center', alignItems: 'center', margin: 20 }}>
         <Text style={styles.fSize}> Your proposed project has been </Text>
-        <Text style={styles.fSize}> successfully submitted to the platform</Text>
-        <Text style={styles.fSize}> it will be visible shortly. </Text>
+        <Text style={styles.fSize}> successfully submitted to the platform!</Text>
+        <Text style={styles.fSize}> It will be visible shortly. </Text>
       </View>
     </View>
     <View style={{ flex: 1, alignItems: 'flex-end' }}>
