@@ -50,7 +50,12 @@ class ProfileSettings extends Component {
             verificationStatus="verified"
           />
         </View>
-        <UserInfo reputationScore="0" projects="0" dataUploads="0" location="Lagos,Nigeria." />
+        <UserInfo
+          reputationScore="0"
+          projects="0"
+          dataUploads="0"
+          location="Lagos,Nigeria." q
+        />
         <View style={styles.mv15}>
           <View style={styles.accountSettingsView}>
             <B color="#201D41"> Account Settings </B>
