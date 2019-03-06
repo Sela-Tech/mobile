@@ -79,7 +79,7 @@ class Notifications extends Component {
           </View>
           <View style={{ alignItems: 'center', margin: 10 }}>
             <Text style={{ color: '#201D41' }}> You have not received any </Text>
-            <Text style={{ color: '#201D41' }}> notifications yet.</Text>
+            <Text style={{ color: '#201D41' }}> notifications yet</Text>
           </View>
         </View>
       );

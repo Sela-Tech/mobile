@@ -380,7 +380,7 @@ class Profile extends Component {
                       <View style={styles.emptyBox}>
                         <Text style={styles.textInEmptyBox}>
                           {' '}
-                          You haven't been added to any project yet.
+                          You haven't been added to any project yet
                       </Text>
                       </View>
                     ) : (

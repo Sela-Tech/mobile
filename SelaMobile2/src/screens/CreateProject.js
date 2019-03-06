@@ -448,7 +448,7 @@ class CreateProject extends Component {
         </View>
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
-            <Text style={{ fontSize: 15 }}> Budget or financial Goal(if fundraising) </Text>
+            <Text style={{ fontSize: 15 }}> Budget or Financial Goal (if fundraising) </Text>
           </View>
           <Input
             text="Enter amount in USD"

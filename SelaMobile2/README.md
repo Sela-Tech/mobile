@@ -48,4 +48,14 @@ npm i
 ```
 npm start
 ```
-create an APK :```react-native run-android --variant=release```
+
+### 5. Lauch Sela App
+```
+npm run android
+```
+or
+```
+npm run ios
+```
+### 6. Create an APK (Optional)
+```react-native run-android --variant=release```

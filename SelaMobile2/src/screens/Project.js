@@ -246,17 +246,17 @@ class Project extends Component {
                                   {userRole === 'funder' ? (
                                     <Fragment>
                                       <Text> You haven't created, funded, or saved any </Text>
-                                      <Text> projects yet. </Text>
+                                      <Text> projects yet </Text>
                                     </Fragment>
                                   ) : userRole === 'contractor' ? (
                                     <Fragment>
-                                      <Text> You haven't propose or been </Text>
-                                      <Text> added to any projects yet. </Text>
+                                      <Text> You haven't proposed or been </Text>
+                                      <Text> added to any projects yet </Text>
                                     </Fragment>
                                   ) : (
                                         <Fragment>
                                           <Text> You haven't evaluated or </Text>
-                                          <Text> saved any projects yet. </Text>
+                                          <Text> saved any projects yet </Text>
                                         </Fragment>
                                       )}
                                 </View>

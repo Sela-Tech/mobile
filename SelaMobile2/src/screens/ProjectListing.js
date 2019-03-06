@@ -196,7 +196,7 @@ class ExploreProject extends Component {
             </View>
             <View style={{ marginBottom: 20 }}>
               <View style={{ marginBottom: 5 }}>
-                <Text style={{ fontSize: 15 }}> Select Project status</Text>
+                <Text style={{ fontSize: 15 }}> Select Project Status</Text>
               </View>
               <View style={[styles.inputStyle, styles.picker, { paddingBottom: 15 }]}>
                 <Picker

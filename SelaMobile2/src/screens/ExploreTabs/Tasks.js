@@ -59,7 +59,7 @@ const Tasks = ({ project }) => {
             <Text> this project. Check back later. </Text>
           </View>
 
-          <Button text="Add task" textColor={WHITE} />
+          <Button text="Add Task" textColor={WHITE} />
         </View>
       </ScrollView>
     );

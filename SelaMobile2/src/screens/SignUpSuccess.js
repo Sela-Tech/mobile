@@ -30,7 +30,7 @@ export default ({ navigation }) => (
         <Image source={require('../../assets/mark.png')} />
       </View>
       <View style={{ justifyContent: 'center', alignItems: 'center', margin: 20 }}>
-        <Text style={styles.fSize}> Sign up successfull.Kindly Visit email to </Text>
+        <Text style={styles.fSize}> Sign up successful! Kindly visit email to </Text>
         <Text style={styles.fSize}> activate account</Text>
       </View>
     </View>
