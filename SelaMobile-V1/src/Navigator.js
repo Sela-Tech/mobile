@@ -18,6 +18,7 @@ import ExploreProjectScreen from './screens/ExploreProject';
 import ProfileScreen from './screens/Profile';
 import PDFView from './screens/Pdf';
 import AddInterest from './screens/AddInterest';
+import AddProposal from './screens/AddProposal';
 
 import { isAndroid } from './utils/helpers';
 
@@ -164,6 +165,13 @@ export const MainSwitchNavigator = createSwitchNavigator(
 );
 
 export const TestStackNavigator = createStackNavigator({
+
+  AddProposal: {
+    screen: AddProposal,
+    navigationOptions: {
+      header: null,
+    },
+  },
   SubmitFeedback: {
     screen: SubmitFeedback,
     // navigationOptions: {
@@ -199,8 +207,8 @@ export const TestStackNavigator = createStackNavigator({
   },
 });
 
-// export const RootNavigator = createAppContainer(TestStackNavigator);
+export const RootNavigator = createAppContainer(TestStackNavigator);
 
-export const RootNavigator = createAppContainer(MainSwitchNavigator);
+// export const RootNavigator = createAppContainer(MainSwitchNavigator);
 
 // export const RootNavigator = createAppContainer(RootStackNavigator);

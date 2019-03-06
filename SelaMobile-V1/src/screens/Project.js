@@ -142,7 +142,6 @@ class Project extends Component {
       userRole = 'evaluator';
     }
 
-    userRole = 'contractor';
 
     const userData = this.props && this.props.userInfo && this.props.userInfo.user;
     const projects =

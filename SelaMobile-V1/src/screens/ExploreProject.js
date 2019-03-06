@@ -204,7 +204,6 @@ class ExploreProject extends Component {
     let theProject = allProjects.filter(c => c._id === projectId);
     theProject = theProject[0];
 
-    console.log('preoject', projectInfo);
     if (loading) {
       return (
         <View style={ExtStyle.center}>
@@ -233,12 +232,12 @@ class ExploreProject extends Component {
                     }}
                     // resizeMode="contain"
                     source={getDummyDisplayPicture(projectInfo && projectInfo.name)}
-                    // source={{
-                    //   uri:
-                    //     projectInfo['project-avatar'] === undefined
-                    //       ? 'https://placeimg.com/640/480/any'
-                    //       : projectInfo['project-avatar'],
-                    // }}
+                  // source={{
+                  //   uri:
+                  //     projectInfo['project-avatar'] === undefined
+                  //       ? 'https://placeimg.com/640/480/any'
+                  //       : projectInfo['project-avatar'],
+                  // }}
                   />
                 </View>
                 <View style={styles.imagePosition}>
@@ -274,7 +273,7 @@ class ExploreProject extends Component {
                   <Text style={{ fontSize: 20, fontWeight: 'bold', color: '#FFFFFF' }}>
                     {' '}
                     {projectInfo.name}
-{' '}
+                    {' '}
                   </Text>
                 </View>
 
@@ -290,8 +289,8 @@ class ExploreProject extends Component {
                       <Text style={styles.fundedTextColor}>
                         {' '}
                         {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]}
-{' '}
-funded{' '}
+                        {' '}
+                        funded{' '}
                       </Text>
                     </View>
                   </View>
@@ -371,8 +370,8 @@ funded{' '}
               </View>
             </View>
           ) : (
-            <View />
-          )}
+              <View />
+            )}
         </View>
       </ScrollView>
     );

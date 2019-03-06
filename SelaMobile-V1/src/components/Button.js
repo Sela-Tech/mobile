@@ -1,5 +1,5 @@
-import React from 'react';
-import { TouchableOpacity, Dimensions } from 'react-native';
+import React, { Fragment } from 'react';
+import { TouchableOpacity, View, Dimensions, Image } from 'react-native';
 import PropTypes from 'prop-types';
 import Text from './Text';
 import Spinner from './Spinner';
@@ -13,30 +13,76 @@ const styles = {
     borderRadius: 5,
     alignItems: 'center',
   },
+  row: {
+    flexDirection: 'row',
+  },
+  ml5: {
+    marginLeft: 5,
+  }
 };
 
-const Button = ({ text, color, textColor, fn, textSize, medium, style, textStyle, loading }) => (
-  <TouchableOpacity
-    onPress={fn}
-    style={[
-      styles.buttonStyle,
-      {
-        height: medium ? height / 11 : height / 14,
-        backgroundColor: color,
-      },
-      style,
-    ]}
-  >
-    {loading ? (
-      <Spinner color={WHITE} size="small" />
-    ) : (
-      <Text style={[textStyle, { color: textColor, fontSize: textSize }]}>{text}</Text>
-    )}
-  </TouchableOpacity>
-);
+const Button = ({
+  text,
+  color,
+  textColor,
+  fn,
+  textSize,
+  medium,
+  style,
+  textStyle,
+  loading,
+  includeImage,
+  imageSource,
+}) => (
+    <TouchableOpacity
+      onPress={fn}
+      style={[
+        styles.buttonStyle,
+        {
+          height: medium ? height / 11 : height / 14,
+          backgroundColor: color,
+        },
+        style,
+      ]}
+    >
+
+      <Fragment>
+        {
+          includeImage ? (
+            <Fragment>
+              {
+                loading ? (
+                  <Spinner color={WHITE} size="small" />
+                ) : (
+                    <View style={styles.row}>
+                      <View>
+                        <Image
+                          source={imageSource}
+                        />
+                      </View>
+                      <View style={styles.ml5}>
+                        <Text style={[{ color: textColor, fontSize: textSize }, textStyle]}>{text}</Text>
+                      </View>
+                    </View>
+                  )}
+            </Fragment>
+          ) : (
+              <Fragment>
+                {
+                  loading ? (
+                    <Spinner color={WHITE} size="small" />
+                  ) : (
+                      <Text style={[{ color: textColor, fontSize: textSize }, textStyle]}>{text}</Text>
+                    )}
+              </Fragment>
+            )
+        }
+      </Fragment>
+    </TouchableOpacity>
+  );
 
 Button.defaultProps = {
-  fn: () => {},
+  fn: () => { },
   color: YELLOW,
   textSize: null,
   textColor: null,
