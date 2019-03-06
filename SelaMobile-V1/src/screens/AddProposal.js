@@ -16,6 +16,7 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        // backgroundColor: 'red',
     },
     container2: {
         flex: 1,
@@ -86,7 +87,10 @@ export default class AddProposals extends Component {
     showModal = () => this.setState(prevState => ({ modalVisibility: !prevState.modalVisibility }));
 
     createTask = () => {
-        this.showModal();
+        this.setState({
+            modalVisibility: !this.state.modalVisibility
+        })
+        // this.setState(prevState => ({ modalVisibility: !prevState.modalVisibility }))
     };
 
     render() {
@@ -156,8 +160,8 @@ export default class AddProposals extends Component {
                             </View>
                             <AddTaskModal
                                 visibility={modalVisibility}
-                                toggleModal={() => this.showModal()}
-                                createTask={() => this.createTask()}
+                                toggleModal={this.showModal}
+                                createTask={this.createTask}
                             />
                         </ScrollView>
                     </Tab>
