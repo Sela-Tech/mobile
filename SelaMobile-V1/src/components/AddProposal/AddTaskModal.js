@@ -1,11 +1,11 @@
 import React from 'react';
 import { View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Modal from 'react-native-modal';
 import Text from '../Text';
 import Button from '../Button';
 import Input from '../Input';
 import { WHITE } from '../../utils/constants';
-import ExtStyle from '../../utils/styles';
 
 const { width, height } = Dimensions.get('window');
 
@@ -75,8 +75,17 @@ const AddTaskModal = ({
     visibility,
     toggleModal,
     createTask,
-}) => (
-
+    updateInput,
+    taskData,
+    loading,
+}) => {
+    const {
+        name,
+        description,
+        estimatedCost,
+        dueDate
+    } = taskData;
+    return (
         <Modal isVisible={visibility}>
             <View style={styles.container}>
                 <View style={styles.upContainer}>
@@ -104,7 +113,8 @@ const AddTaskModal = ({
                         </View>
                         <Input
                             style={styles.inputStyle}
-                            text=""
+                            onChangeTheText={name => updateInput(name, 'name')}
+                            value={name}
                         />
                     </View>
 
@@ -115,6 +125,8 @@ const AddTaskModal = ({
                         <Input
                             style={[styles.inputStyle, { height: height / 6 }]}
                             multiline
+                            onChangeTheText={description => updateInput(description, 'description')}
+                            value={description}
                         />
                     </View>
 
@@ -124,8 +136,10 @@ const AddTaskModal = ({
                             <Text style={styles.textStyle}> Enter the estimated cost for this task </Text>
                         </View>
                         <Input
+                            numb
                             style={styles.inputStyle}
-                            text=""
+                            onChangeTheText={estimatedCost => updateInput(estimatedCost, 'estimatedCost')}
+                            value={estimatedCost}
                         />
                     </View>
 
@@ -136,7 +150,8 @@ const AddTaskModal = ({
                         </View>
                         <Input
                             style={styles.inputStyle}
-                            text=""
+                            onChangeTheText={dueDate => updateInput(dueDate, 'dueDate')}
+                            value={dueDate}
                         />
                     </View>
 
@@ -146,14 +161,13 @@ const AddTaskModal = ({
                     <Button
                         fn={() => createTask()}
                         text="Update Task"
-                        textStyle={{
-                            color: WHITE,
-                        }}
+                        textStyle={{ color: WHITE }}
+                        loading={loading}
                         style={styles.buttonStyle} />
                 </View>
             </View>
         </Modal>
-
-    );
+    )
+}
 
 export default AddTaskModal;

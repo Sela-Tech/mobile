@@ -7,7 +7,6 @@ import ExtStyle from '../../utils/styles';
 const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
-
     container: {
         height: height / 10,
         flexDirection: 'row',
@@ -47,16 +46,20 @@ const styles = StyleSheet.create({
     },
 });
 
-const ProposalContent = () => (
+const ProposalContent = ({ data, markTask, markedTask }) => (
     <View style={styles.container}>
         <View style={styles.checkBox}>
-            <CheckBox checked={true} />
+            <CheckBox
+                color="#201D41"
+                onPress={() => markTask(data._id)}
+                checked={markedTask.includes(data._id)}
+            />
         </View>
         <View style={ExtStyle.flex4}>
             <View style={styles.contentContainer}>
                 <Text style={styles.detailsTextColor}>
-                    Purchase and install electrical poles
-                    </Text>
+                    {data.description}
+                </Text>
             </View>
             <View style={styles.bottomContainer}>
                 <View style={styles.imageViewContainer}>
@@ -64,7 +67,7 @@ const ProposalContent = () => (
                         <Image source={require('../../../assets/funds.png')} />
                     </View>
                     <View>
-                        <Text style={styles.textColor}> 150,000 </Text>
+                        <Text style={styles.textColor}> {data.estimatedCost}</Text>
                     </View>
                 </View>
 
@@ -73,7 +76,7 @@ const ProposalContent = () => (
                         <Image source={require('../../../assets/calendar.png')} />
                     </View>
                     <View>
-                        <Text style={styles.textColor}> 150,000 </Text>
+                        <Text style={styles.textColor}> {data.dueDate} </Text>
                     </View>
                 </View>
             </View>

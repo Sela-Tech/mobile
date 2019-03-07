@@ -57,6 +57,12 @@ export const RootStackNavigator = createStackNavigator(
     PdfView: {
       screen: PDFView,
     },
+    AddProposal: {
+      screen: AddProposal,
+      navigationOptions: {
+        header: null,
+      },
+    },
     Success: {
       screen: SuccessScreen,
       navigationOptions: {
@@ -165,8 +171,7 @@ export const MainSwitchNavigator = createSwitchNavigator(
 );
 
 export const TestStackNavigator = createStackNavigator({
-
-  AddProposal: {
+  SubmitFeedbackd: {
     screen: AddProposal,
     navigationOptions: {
       header: null,

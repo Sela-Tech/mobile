@@ -64,6 +64,7 @@ const HeaderB = ({
   complete,
   rightText,
   bodyText,
+  headerRightFunction,
 }) => (
     <Header style={styles.header} androidStatusBarColor="#E5E5E5">
       <Fragment>
@@ -86,7 +87,7 @@ const HeaderB = ({
               </Body>
               <Right style={ExtStyle.flex1}>
                 <Button
-                  onPress={() => alert('hhdhfhh')}
+                  onPress={() => headerRightFunction()}
                   style={styles.rightButton}
                 >
                   <Text style={styles.rightText}>{rightText}</Text>

@@ -28,7 +28,8 @@ const axios2 = Axios.create({
 axios.interceptors.request.use(
   config => {
     // Do something before request is sent
-    config.headers['x-access-token'] = this.userToken;
+    const tt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOnsibmFtZSI6ImFkbWluMSBvcmdhbmlzYWN0aW9uIiwiaWQiOiI1YzZhYzExYWI0Mzc4ZTAwMjI4ODAxNGIifSwicHJvZmlsZVBob3RvIjoiaHR0cHM6Ly9wbGFjZWltZy5jb20vMjAwLzIwMC9wZW9wbGUiLCJpZCI6IjVjNmFjMTFhYjQzNzhlMDAyMjg4MDE0YyIsImlzRnVuZGVyIjpmYWxzZSwiaXNFdmFsdWF0b3IiOmZhbHNlLCJpc0NvbnRyYWN0b3IiOnRydWUsImZpcnN0TmFtZSI6IkFiaW1ib2xhIiwicGhvbmUiOiI4OTQ5MDM1ODU2NCIsImVtYWlsIjoiYWJpbWJvbGEuZEBzZWxhLWxhYnMuY28iLCJsYXN0TmFtZSI6IkRhdmlkIiwiYXJlYXNPZkludGVyZXN0IjpbXSwiaWF0IjoxNTUxNDU3NTY3LCJleHAiOjE1NTIwNjIzNjd9.ewu_50gk89wU4unAoOQ_RZsmfqVvE5ajS_Q53i7TMiQ';
+    config.headers['x-access-token'] = tt;//this.userToken;
     return config;
   },
   error => {
@@ -85,7 +86,6 @@ export const uploadToAWS = (file, data, cred) => {
 export const getPassCredentials = async () => {
   try {
     return await axios.get('/cred');
-    // await axios.get('https://sela-site-backend.now.sh/credentials');
   } catch (err) {
     return err;
   }
@@ -240,4 +240,96 @@ export const getAllfeaturedProjects = async query => {
   }
 };
 
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOnsibmFtZSI6InRlc3QiLCJpZCI6IjVjNGVkNmYzZTdjMTM4MDAyMjI3NzY0YiJ9LCJwcm9maWxlUGhvdG8iOm51bGwsImlkIjoiNWM0ZWQ3OWFlN2MxMzgwMDIyMjc3NjRmIiwiaXNGdW5kZXIiOmZhbHNlLCJpc0V2YWx1YXRvciI6ZmFsc2UsImlzQ29udHJhY3RvciI6dHJ1ZSwiZmlyc3ROYW1lIjoiRGF2aWQiLCJwaG9uZSI6IjEyMzQ1Njc4OSIsImVtYWlsIjoiYWJpbWJvbGEuZEBzZWxhLWxhYnMuY28iLCJsYXN0TmFtZSI6IkFiaW1ib2xhIiwiYXJlYXNPZkludGVyZXN0IjpbXSwiaWF0IjoxNTQ5NjA3MzAzLCJleHAiOjE1NTAyMTIxMDN9.DCEnxDyx1drBSdaN3tBzCPk98aDJo71V8oWSheNEzQQ
+
+export const createTask = async data => {
+  try {
+    return axios.post('/tasks', data);
+  } catch (err) {
+    return err;
+  }
+};
+
+export const getTaskAssociatedToAProject = projectId => {
+  try {
+    return axios.get(`/tasks?project=${projectId}`);
+  } catch (err) {
+    return err;
+  }
+};
+
+export const getSingleTaskDetails = taskId => {
+  try {
+    return axios.get(`/tasks/${taskId}`);
+  } catch (err) {
+    return err;
+  }
+};
+
+export const updateTask = (taskId, data) => {
+  try {
+    return axios.put(`/tasks/${taskId}/update`, data);
+  } catch (err) {
+    return err;
+  }
+};
+
+
+export const createMileStone = async data => {
+  try {
+    return axios.post('/milestones', data);
+  } catch (err) {
+    return err;
+  }
+};
+
+
+export const getMilestonesBelongingToAProject = projectId => {
+  try {
+    return axios.get(`/milestones?project${projectId}`);
+  } catch (err) {
+    return err;
+  }
+};
+
+
+export const getSingleMileStone = mileStoneId => {
+  try {
+    return axios.get(`/milestone/${mileStoneId}`);
+  } catch (err) {
+    return err;
+  }
+};
+
+export const createProposal = async data => {
+  try {
+    return axios.post('/proposals', data);
+  } catch (err) {
+    return err;
+  }
+};
+
+export const getProposalsBelongingToAProject = projectId => {
+  try {
+    return axios.get(`/project/${projectId}/proposals`);
+  } catch (err) {
+    return err;
+  }
+};
+
+
+export const performActionOnProposal = (proposalId, data) => {
+  try {
+    return axios.put(`/proposal/${proposalId}`, data);
+  } catch (err) {
+    return err;
+  }
+};
+
+export const getSingleProposal = proposalId => {
+  try {
+    return axios.get(`/proposal/${proposalId}`);
+  } catch (err) {
+    return err;
+  }
+};
+
