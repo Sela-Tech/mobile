@@ -51,8 +51,8 @@ const ProposalContent = ({ data, markTask, markedTask }) => (
         <View style={styles.checkBox}>
             <CheckBox
                 color="#201D41"
-                onPress={() => markTask(data._id)}
-                checked={markedTask.includes(data._id)}
+                onPress={() => markTask(data.id)}
+                checked={markedTask.includes(data.id)}
             />
         </View>
         <View style={ExtStyle.flex4}>

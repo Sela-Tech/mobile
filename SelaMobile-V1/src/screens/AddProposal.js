@@ -14,6 +14,7 @@ import { createTask, createMileStone, createProposal } from '../utils/api';
 
 
 import { WHITE, YELLOW } from '../utils/constants';
+import NavigationService from '../services/NavigationService';
 
 const { width, height } = Dimensions.get('window');
 
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
 });
 
 
-const MileStoneHeader = ({ newVal, mileStoneTitle, updateInput }) => (
+const MileStoneHeader = ({ newVal, mileStoneTitle, updateInput, index, totalAmount }) => (
     <View style={[ExtStyle.row, styles.pv10]}>
         {
             newVal ?
@@ -89,16 +90,16 @@ const MileStoneHeader = ({ newVal, mileStoneTitle, updateInput }) => (
                     </View>
                 ) : (
                     <View style={[ExtStyle.flex1, ExtStyle.row]}>
-                        <Fragment>
-                            <View style={ExtStyle.flex1}>
-                                <Text style={styles.mileStoneHeadingText}> 1</Text>
+                        <View style={[ExtStyle.flex4, ExtStyle.row]}>
+                            <View>
+                                <Text style={styles.mileStoneHeadingText}>{index + 1})</Text>
                             </View>
-                            <View style={ExtStyle.flex6}>
-                                <Text style={styles.mileStoneHeadingText}> {mileStoneTitle}</Text>
+                            <View >
+                                <Text style={styles.mileStoneHeadingText}>  {mileStoneTitle}</Text>
                             </View>
-                        </Fragment>
+                        </View>
                         <View style={styles.textAmountView}>
-                            <Text style={styles.textAmount}> $200,000 </Text>
+                            <Text style={styles.textAmount}> ${totalAmount} </Text>
                         </View>
                     </View>
                 )
@@ -109,7 +110,7 @@ const MileStoneHeader = ({ newVal, mileStoneTitle, updateInput }) => (
 export default class AddProposals extends Component {
 
     state = {
-        propopalName: '',
+        propopalName: 'd',
         new: true,
         mileStoneTitle: '',
         // projectId: this.props.navigation.state.params.projectId,
@@ -143,28 +144,34 @@ export default class AddProposals extends Component {
             projectId,
             milestones,
         } = this.state;
-        // const data = {
-        //     name: taskName,
-        //     description: taskDesription,
-        //     dueDate: taskDueDate,
-        //     projectId,
-        //     estimatedCost: taskEstimatedCost,
-        // };
+        const data = {
+            name: taskName,
+            description: taskDesription,
+            dueDate: taskDueDate,
+            projectId,
+            estimatedCost: taskEstimatedCost,
+            deadline: taskDueDate,
+            amount: taskEstimatedCost,
+            id: Math.floor((Math.random() * 1000000) + 1),
+        };
         // console.log('data', data);
 
 
-        const data = {
-            "name": "wewew",
-            "description": "eewew",
-            "dueDate": "232323",
-            "projectId": "5c6ac53bb4378e0022880150",
-            "estimatedCost": "2322"
-        }
+        // const data = {
+        //     "name": "wewew",
+        //     "description": "eewew",
+        //     "dueDate": "232323",
+        //     "projectId": "5c6ac53bb4378e0022880150",
+        //     "estimatedCost": "2322",
+        //     deadline: "232323",
+        //     amount: "2322",
+        //     id: Math.floor((Math.random() * 1000000) + 1),
+        // }
 
         try {
             this.setState({ loading: true });
-            const resp = await createTask(data);
-            milestones.push(resp.data.task);
+            // const resp = await createTask(data);
+            milestones.push(data);
             this.setState(prevState => ({
                 modalVisibility: !prevState.modalVisibility,
                 taskName: '',
@@ -182,18 +189,26 @@ export default class AddProposals extends Component {
 
     };
 
+
+
     sendProposal = async () => {
-        const { contractorId, comments, propopalName, projectId } = this.state;
+        const { contractorId, allMileStones, comments, propopalName, projectId } = this.state;
+        if (allMileStones.length === 0) {
+            return alert('Add milestones first');
+        }
+
 
         const data = {
-            comments: comments,
+            comments,
             projectId,
             contractor: contractorId,
             proposal_name: propopalName,
+            milestones: allMileStones,
         };
+        console.log('data', data);
         try {
             const resp = await createProposal(data);
-            console.log(' proposal,resp.data', resp.data)
+            NavigationService.navigate('Project')
         }
         catch (err) {
             this.setState({ proposalError: err.message })
@@ -219,11 +234,11 @@ export default class AddProposals extends Component {
         }
         try {
             this.setState({ loading: true });
-            const resp = await createMileStone(data);
+            // const resp = await createMileStone(data);
 
             const pushMilestones = milestones.reduce((a, b, i) => {
                 let aa = [];
-                if (b._id === markedTask[i]) {
+                if (b.id === markedTask[i]) {
                     a.push(b)
                 }
                 return a;
@@ -234,13 +249,11 @@ export default class AddProposals extends Component {
             };
 
             allMileStones.push(milestoneObj);
-            console.log('fkdkfd', allMileStones);
 
-            this.setState({ loading: false, allMileStones, milestones: [] });
+            this.setState({ mileStoneTitle: '', loading: false, markedTask: [], allMileStones, milestones: [] });
 
         }
         catch (err) {
-            console.log('ther ', err.message)
             this.setState({ loading: false, mileStoneError: err.message })
         }
     };
@@ -266,7 +279,6 @@ export default class AddProposals extends Component {
         }
 
         else if (name === 'mileStoneTitle') {
-            console.log('djjdfd', val)
             this.setState({
                 mileStoneTitle: val,
             });
@@ -400,15 +412,15 @@ export default class AddProposals extends Component {
                                                     allMileStones.map((val, index) => (
                                                         <Fragment key={index}>
                                                             <MileStoneHeader
+                                                                index={index}
                                                                 mileStoneTitle={val.name}
+                                                                totalAmount={val.tasks.reduce((acc, val) => acc + val.estimatedCost, 0)}
                                                                 updateInput={this.updateInput}
                                                             />
 
                                                             <Fragment>
                                                                 {
                                                                     val.tasks.map(c => {
-
-                                                                        {/* console.log('c,,c', c) */ }
                                                                         return (
                                                                             <ProposalContent
                                                                                 key={c._id}
