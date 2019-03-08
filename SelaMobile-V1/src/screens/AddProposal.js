@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { View, ScrollView, StyleSheet, Dimensions } from 'react-native';
+import { View, ScrollView, StyleSheet, Keyboard, Dimensions } from 'react-native';
 import { Tabs, Tab } from 'native-base';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ProposalContent from '../components/AddProposal/ProposalContent';
@@ -135,7 +135,7 @@ export default class AddProposals extends Component {
 
 
     createSingleTask = async () => {
-
+        Keyboard.dismiss();
         const {
             taskName,
             taskDesription,
@@ -183,7 +183,6 @@ export default class AddProposals extends Component {
             }));
         }
         catch (err) {
-            console.log('errere', err.message);
             this.setState({ mileStoneError: err.message, loading: false });
         }
 
@@ -205,7 +204,6 @@ export default class AddProposals extends Component {
             proposal_name: propopalName,
             milestones: allMileStones,
         };
-        console.log('data', data);
         try {
             const resp = await createProposal(data);
             NavigationService.navigate('Project')
@@ -219,6 +217,7 @@ export default class AddProposals extends Component {
 
 
     createTheMileStone = async () => {
+        Keyboard.dismiss();
         const { markedTask, projectId, loading, allMileStones, mileStoneTitle, milestones } = this.state;
         const data = {
             title: mileStoneTitle,
@@ -327,13 +326,10 @@ export default class AddProposals extends Component {
         };
         const { navigation } = this.props;
         return (
-            <KeyboardAwareScrollView
-                // innerRef={ref => {
-                //   this.scroll = ref;
-                // }}
-                // resetScrollToCoords={{ x: 0, y: 0 }}
+            <ScrollView
+                style={ExtStyle.flex1}
+                stickyHeaderIndices={[0]}
                 contentContainerStyle={styles.container}
-                scrollEnabled
             >
                 <Header
                     complete
@@ -356,6 +352,17 @@ export default class AddProposals extends Component {
                         <ScrollView style={styles.container2}
                             contentContainerStyle={ExtStyle.flexGrow}
                         >
+
+
+                            <AddTaskModal
+                                visibility={modalVisibility}
+                                toggleModal={this.showModal}
+                                taskData={taskData}
+                                updateInput={this.updateInput}
+                                createTask={this.createSingleTask}
+                                loading={loading}
+                            />
+
                             <View style={styles.mt5}>
                                 <Button
                                     style={styles.upButton}
@@ -388,9 +395,9 @@ export default class AddProposals extends Component {
                                                     updateInput={this.updateInput}
                                                 />
                                                 {
-                                                    milestones.map(c => (
+                                                    milestones.map((c, index) => (
                                                         <ProposalContent
-                                                            key={c._id}
+                                                            key={index}
                                                             markTask={this.markTask}
                                                             data={c}
                                                             markedTask={markedTask}
@@ -420,10 +427,10 @@ export default class AddProposals extends Component {
 
                                                             <Fragment>
                                                                 {
-                                                                    val.tasks.map(c => {
+                                                                    val.tasks.map((c, index) => {
                                                                         return (
                                                                             <ProposalContent
-                                                                                key={c._id}
+                                                                                key={index}
                                                                                 markTask={console.log()}
                                                                                 data={c}
                                                                                 markedTask={[]}
@@ -441,20 +448,11 @@ export default class AddProposals extends Component {
                                 }
                             </View>
 
-
-                            <AddTaskModal
-                                visibility={modalVisibility}
-                                toggleModal={this.showModal}
-                                taskData={taskData}
-                                updateInput={this.updateInput}
-                                createTask={this.createSingleTask}
-                                loading={loading}
-                            />
                         </ScrollView>
                     </Tab>
                 </Tabs>
 
-            </KeyboardAwareScrollView>
+            </ScrollView>
         )
     }
 };

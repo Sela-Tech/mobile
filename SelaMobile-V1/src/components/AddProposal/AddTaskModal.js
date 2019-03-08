@@ -1,11 +1,11 @@
 import React from 'react';
-import { View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { View, StyleSheet, ScrollView, Image, KeyboardAvoidingView, Dimensions, TouchableOpacity } from 'react-native';
 import Modal from 'react-native-modal';
 import Text from '../Text';
 import Button from '../Button';
 import Input from '../Input';
 import { WHITE } from '../../utils/constants';
+import ExtStyle from '../../utils/styles';
 
 const { width, height } = Dimensions.get('window');
 
@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: WHITE,
-
+        // backgroundColor: 'red',
     },
     bottomButton: {
         flex: 1,
@@ -87,85 +87,92 @@ const AddTaskModal = ({
     } = taskData;
     return (
         <Modal isVisible={visibility}>
-            <View style={styles.container}>
-                <View style={styles.upContainer}>
-                    <View style={styles.otherContainer}>
-                        <View style={styles.addTaskView}>
-                            <Text style={styles.addTaskText}>Add Task </Text>
+            <KeyboardAvoidingView
+                enabled
+                style={ExtStyle.flex1}
+            >
+                <ScrollView style={styles.container}
+                    contentContainerStyle={ExtStyle.flexGrow}
+                >
+                    <View style={styles.upContainer}>
+                        <View style={styles.otherContainer}>
+                            <View style={styles.addTaskView}>
+                                <Text style={styles.addTaskText}>Add Task </Text>
+                            </View>
+                            <TouchableOpacity
+                                style={styles.closeButton}
+                                onPress={() => toggleModal()}>
+                                <Image
+                                    source={require('../../../assets/close_icon.png')}
+                                />
+                            </TouchableOpacity>
                         </View>
-                        <TouchableOpacity
-                            style={styles.closeButton}
-                            onPress={() => toggleModal()}>
-                            <Image
-                                source={require('../../../assets/close_icon.png')}
+                        <View style={styles.centerUpText}>
+                            <Text> Create tasks that reflect phases of work and allow </Text>
+                            <Text>   your team to track progress of your project</Text>
+                        </View>
+                    </View>
+                    <View style={styles.middleContainer}>
+                        <View>
+                            <View style={styles.mv5}>
+                                <Text style={styles.textStyle}>Enter task name </Text>
+                            </View>
+                            <Input
+                                style={styles.inputStyle}
+                                onChangeTheText={name => updateInput(name, 'name')}
+                                value={name}
                             />
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.centerUpText}>
-                        <Text> Create tasks that reflect phases of work and allow </Text>
-                        <Text>   your team to track progress of your project</Text>
-                    </View>
-                </View>
-                <View style={styles.middleContainer}>
-                    <View>
-                        <View style={styles.mv5}>
-                            <Text style={styles.textStyle}>Enter task name </Text>
                         </View>
-                        <Input
-                            style={styles.inputStyle}
-                            onChangeTheText={name => updateInput(name, 'name')}
-                            value={name}
-                        />
-                    </View>
 
-                    <View>
-                        <View style={styles.mv5}>
-                            <Text style={styles.textStyle}> Add a description of the task </Text>
+                        <View>
+                            <View style={styles.mv5}>
+                                <Text style={styles.textStyle}> Add a description of the task </Text>
+                            </View>
+                            <Input
+                                style={[styles.inputStyle, { height: height / 6 }]}
+                                multiline
+                                onChangeTheText={description => updateInput(description, 'description')}
+                                value={description}
+                            />
                         </View>
-                        <Input
-                            style={[styles.inputStyle, { height: height / 6 }]}
-                            multiline
-                            onChangeTheText={description => updateInput(description, 'description')}
-                            value={description}
-                        />
-                    </View>
 
 
-                    <View>
-                        <View style={styles.mv5}>
-                            <Text style={styles.textStyle}> Enter the estimated cost for this task </Text>
+                        <View>
+                            <View style={styles.mv5}>
+                                <Text style={styles.textStyle}> Enter the estimated cost for this task </Text>
+                            </View>
+                            <Input
+                                numb
+                                style={styles.inputStyle}
+                                onChangeTheText={estimatedCost => updateInput(estimatedCost, 'estimatedCost')}
+                                value={estimatedCost}
+                            />
                         </View>
-                        <Input
-                            numb
-                            style={styles.inputStyle}
-                            onChangeTheText={estimatedCost => updateInput(estimatedCost, 'estimatedCost')}
-                            value={estimatedCost}
-                        />
-                    </View>
 
 
-                    <View>
-                        <View style={styles.mv5}>
-                            <Text style={styles.textStyle}>Set the deadline for the task </Text>
+                        <View>
+                            <View style={styles.mv5}>
+                                <Text style={styles.textStyle}>Set the deadline for the task </Text>
+                            </View>
+                            <Input
+                                style={styles.inputStyle}
+                                onChangeTheText={dueDate => updateInput(dueDate, 'dueDate')}
+                                value={dueDate}
+                            />
                         </View>
-                        <Input
-                            style={styles.inputStyle}
-                            onChangeTheText={dueDate => updateInput(dueDate, 'dueDate')}
-                            value={dueDate}
-                        />
+
+
                     </View>
-
-
-                </View>
-                <View style={styles.bottomButton}>
-                    <Button
-                        fn={() => createTask()}
-                        text="Update Task"
-                        textStyle={{ color: WHITE }}
-                        loading={loading}
-                        style={styles.buttonStyle} />
-                </View>
-            </View>
+                    <View style={styles.bottomButton}>
+                        <Button
+                            fn={() => createTask()}
+                            text="Update Task"
+                            textStyle={{ color: WHITE }}
+                            loading={loading}
+                            style={styles.buttonStyle} />
+                    </View>
+                </ScrollView>
+            </KeyboardAvoidingView>
         </Modal>
     )
 }
