@@ -94,70 +94,65 @@ export const renderView = (name, project, navigation) => {
 };
 
 const ExpandableBox = ({ expand, projectInfo, fn, text }) => (
-  <View
-    style={[styles.expandableBox, !expand ? styles.center : styles.other]}
-  >
+  <View style={[styles.expandableBox, !expand ? styles.center : styles.other]}>
     <View
       style={{
         marginHorizontal: 10,
-      }}>
-      <View style={!expand ? {
-        height: 65,
-        width: '100%',
-      }
-        : {
-          height: 65,
-          justifyContent: 'center',
-          alignItems: 'center',
+      }}
+    >
+      <View
+        style={
+          !expand
+            ? {
+                height: 65,
+                width: '100%',
+              }
+            : {
+                height: 65,
+                justifyContent: 'center',
+                alignItems: 'center',
+              }
         }
-      }>
+      >
         <TouchableOpacity
           onPress={fn}
-          style={!expand ?
-            {
-              justifyContent: 'center',
-              alignItems: 'center',
-              flex: 1,
-              flexDirection: 'row',
-            }
-            : styles.other2
-          }>
+          style={
+            !expand
+              ? {
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flex: 1,
+                  flexDirection: 'row',
+                }
+              : styles.other2
+          }
+        >
           <View style={styles.viewInExpandable}>
             <Text style={styles.textInExpandable}>
-              {text}
-              {' '}
-            </Text>
+{text}
+{' '}
+ </Text>
           </View>
           <View style={[ExtStyle.flex1, { alignItems: 'flex-end' }]}>
             <Image
-              source={expand ? require('../../../assets/down.png') : require('../../../assets/upper.png')}
+              source={
+                expand ? require('../../../assets/down.png') : require('../../../assets/upper.png')
+              }
             />
           </View>
         </TouchableOpacity>
         <Fragment>
-          {
-            !expand ?
-              (
-                <View
-                  style={{
-                    height: 1,
-                    backgroundColor: '#b1bad2',
-                  }}
-                />
-              ) : null}
+          {!expand ? (
+            <View
+              style={{
+                height: 1,
+                backgroundColor: '#b1bad2',
+              }}
+            />
+          ) : null}
         </Fragment>
       </View>
-      {
-        <View>
-          {
-            expand ? null : (
-              <Fragment>
-                {renderView(text, projectInfo)}
-              </Fragment>
-            )
-          }
-        </View>
-      }
+      {<View>{expand ? null : <Fragment>{renderView(text, projectInfo)}</Fragment>}</View>}
     </View>
   </View>
 );

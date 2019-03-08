@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 
 const Pending = ({ data }) => (
   <View style={styles.container}>
-      <ProposalContent />
+    <ProposalContent />
   </View>
 );
 
@@ -35,7 +35,7 @@ export default class Proposals extends Component {
           backgroundColor: YELLOW,
         }}
       >
-              <Tab
+        <Tab
           activeTabStyle={{ backgroundColor: '#FFFFFF' }}
           tabStyle={{ backgroundColor: '#FFFFFF' }}
           activeTextStyle={{ color: '#201D41', fontSize: 14 }}
@@ -45,14 +45,14 @@ export default class Proposals extends Component {
         </Tab>
         <Tab
           activeTabStyle={{ backgroundColor: '#FFFFFF' }}
-                  tabStyle={{ backgroundColor: '#FFFFFF' }}
+          tabStyle={{ backgroundColor: '#FFFFFF' }}
           activeTextStyle={{ color: '#201D41', fontSize: 14 }}
           heading="Approved"
         >
           <Approved />
         </Tab>
 
-              <Tab
+        <Tab
           activeTabStyle={{ backgroundColor: '#FFFFFF' }}
           tabStyle={{ backgroundColor: '#FFFFFF' }}
           activeTextStyle={{ color: '#201D41', fontSize: 14 }}

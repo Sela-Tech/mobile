@@ -9,10 +9,6 @@ import EvaluatorView from '../components/Explore/EvaluatorView';
 import { getSingleProject } from '../utils/api';
 import ExtStyle from '../utils/styles';
 
-
-
-
-
 const styles = StyleSheet.create({
   contentView: {
     flex: 1,
@@ -156,17 +152,12 @@ class ExploreProject extends Component {
     let theProject = allProjects.filter(c => c._id === projectId);
     theProject = theProject[0];
 
+    const userId =
+      this.props && this.props.userInfo && this.props.userInfo.user && this.props.userInfo.user.id;
+    const projectStakeholders = projectInfo && projectInfo.stakeholders;
 
-
-    const userId = this.props && this.props.userInfo && this.props.userInfo.user && this.props.userInfo.user.id;
-    const projectStakeholders = projectInfo && projectInfo.stakeholders
-
-
-    const {
-      isFunder,
-      isEvaluator,
-      isContractor,
-    } = this.props && this.props.userInfo && this.props.userInfo.user
+    const { isFunder, isEvaluator, isContractor } =
+      this.props && this.props.userInfo && this.props.userInfo.user;
     const userRoleObj = {
       isFunder,
       isEvaluator,
@@ -182,9 +173,9 @@ class ExploreProject extends Component {
       userRole = 'evaluator';
     }
 
-
-    //Check if user is part of the stakeholders
-    const userStakeholderStatus = projectStakeholders && projectStakeholders.filter(c => c.user.information._id === userId);
+    // Check if user is part of the stakeholders
+    const userStakeholderStatus =
+      projectStakeholders && projectStakeholders.filter(c => c.user.information._id === userId);
 
     if (loading) {
       return (
@@ -252,8 +243,8 @@ class ExploreProject extends Component {
               </View>
             </View>
           ) : (
-              <View />
-            )}
+            <View />
+          )}
         </View>
       </ScrollView>
     );

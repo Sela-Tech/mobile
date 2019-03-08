@@ -46,15 +46,10 @@ const styles = StyleSheet.create({
 });
 
 const TagDisplay = ({ visibility, imageSource, text, showTag }) => (
-  <Modal
-    isVisible={visibility}
-  >
+  <Modal isVisible={visibility}>
     <View style={styles.container}>
       <ScrollView>
-        <TouchableOpacity
-          style={styles.buttonStyle}
-          onPress={() => showTag(imageSource)}
-        >
+        <TouchableOpacity style={styles.buttonStyle} onPress={() => showTag(imageSource)}>
           <Image
             resizeMode="contain"
             style={{
@@ -66,25 +61,16 @@ const TagDisplay = ({ visibility, imageSource, text, showTag }) => (
         </TouchableOpacity>
         <View>
           <View>
-            <Image
-              style={styles.img}
-              source={imageSource}
-            />
+            <Image style={styles.img} source={imageSource} />
           </View>
 
           <View style={styles.mt10}>
             <View style={styles.center}>
-              <Text
-                style={styles.otherTextStyle}
-              >
-                {tagText(imageSource).title}
-              </Text>
+              <Text style={styles.otherTextStyle}>{tagText(imageSource).title}</Text>
             </View>
 
             <View style={styles.mt10mb10}>
-              <Text style={styles.textStyle}>
-                {tagText(imageSource).text}
-              </Text>
+              <Text style={styles.textStyle}>{tagText(imageSource).text}</Text>
             </View>
           </View>
         </View>

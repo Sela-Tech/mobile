@@ -10,19 +10,16 @@ import {
   Dimensions,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { Tabs, Tab } from 'native-base';
+// import { Tabs, Tab } from 'native-base';
 
 import io from 'socket.io-client';
 import { store } from '../../store';
 import { getNewNotifications } from '../../actions/notifications';
 import { getUserProject, getContractorProject } from '../../actions/project';
 import ParentHeader from '../components/Header';
-import Text from '../components/Text';
 import ContractorProject from '../components/Project/ContractorProject';
-import Proposals from '../components/Project/Proposals';
 import SingularProject from '../components/Project/Project';
-import Button from '../components/Button';
-import { YELLOW, WHITE, BASE_URL } from '../utils/constants';
+import { YELLOW, BASE_URL } from '../utils/constants';
 import ExtStyle from '../utils/styles';
 import Spinner from '../components/Spinner';
 import StandardText from '../components/StandardText';
@@ -143,7 +140,6 @@ class Project extends Component {
       userRole = 'evaluator';
     }
 
-
     const userData = this.props && this.props.userInfo && this.props.userInfo.user;
     const projects =
       (this.props &&
@@ -162,8 +158,8 @@ class Project extends Component {
       notifications === undefined
         ? []
         : notifications &&
-        notifications.notifications &&
-        notifications.notifications.filter(c => c.read === false);
+          notifications.notifications &&
+          notifications.notifications.filter(c => c.read === false);
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
 
@@ -176,8 +172,8 @@ class Project extends Component {
             newNotifs === undefined
               ? require('../../assets/emptyBell.png')
               : newNotifs && newNotifs.length === 0
-                ? require('../../assets/new_bell.png')
-                : require('../../assets/notifications-received.png')
+              ? require('../../assets/new_bell.png')
+              : require('../../assets/notifications-received.png')
           }
         />
         <ScrollView
@@ -190,98 +186,99 @@ class Project extends Component {
                 <Spinner />
               </View>
             ) : (
-                <Fragment>
-                  {userRole === 'funder' ? (
-                    <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
-                      <StandardText
-                        text="Welcome back"
-                        viewStyle={{
-                          justifyContent: 'flex-start',
-                          alignItems: 'flex-start',
-                          marginLeft: 10,
-                          marginTop: 10,
-                        }}
-                        textStyle={{
-                          fontSize: 18,
-                          color: '#201D41',
-                        }}
+              <Fragment>
+                {userRole === 'funder' ? (
+                  <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
+                    <StandardText
+                      text="Welcome back"
+                      viewStyle={{
+                        justifyContent: 'flex-start',
+                        alignItems: 'flex-start',
+                        marginLeft: 10,
+                        marginTop: 10,
+                      }}
+                      textStyle={{
+                        fontSize: 18,
+                        color: '#201D41',
+                      }}
+                    />
+
+                    <View style={ExtStyle.flex1}>
+                      <SingularProject
+                        leftText="Projects you fund"
+                        // rightText="See all"
+                        projects={projects}
                       />
+                    </View>
 
-                      <View style={ExtStyle.flex1}>
-                        <SingularProject
-                          leftText="Projects you fund"
-                          // rightText="See all"
-                          projects={projects}
-                        />
-                      </View>
+                    <View style={ExtStyle.flex1}>
+                      <SingularProject
+                        leftText="Projects you initiated"
+                        // rightText="See all"
+                        projects={projectCreatedByMe}
+                      />
+                    </View>
 
-                      <View style={ExtStyle.flex1}>
-                        <SingularProject
-                          leftText="Projects you initiated"
-                          // rightText="See all"
-                          projects={projectCreatedByMe}
-                        />
-                      </View>
+                    <View style={ExtStyle.flex1}>
+                      <SingularProject
+                        leftText="Projects that may interest you"
+                        // rightText="Edit interest"
+                        projects={projects}
+                      />
+                    </View>
 
-                      <View style={ExtStyle.flex1}>
-                        <SingularProject
-                          leftText="Projects that may interest you"
-                          // rightText="Edit interest"
-                          projects={projects}
-                        />
-                      </View>
+                    <View style={ExtStyle.flex1}>
+                      <SingularProject
+                        leftText="Bookmarks"
+                        // rightText="See all"
+                        projects={projects}
+                      />
+                    </View>
+                  </ScrollView>
+                ) : (
+                  <Fragment>
+                    {userRole === 'contractor' ? (
+                      <ContractorProject projects={projects} />
+                    ) : (
+                      <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
+                        <View>
+                          <View style={ExtStyle.flex1}>
+                            <SingularProject
+                              leftText="Projects you evaluate"
+                              // rightText="See all"
+                              projects={projects}
+                            />
+                          </View>
 
-                      <View style={ExtStyle.flex1}>
-                        <SingularProject
-                          leftText="Bookmarks"
-                          // rightText="See all"
-                          projects={projects}
-                        />
-                      </View>
-                    </ScrollView>
-                  ) : (
-                      <Fragment>
-                        {userRole === 'contractor' ? (
-                          <ContractorProject projects={projects} />
-                        ) : (
-                            <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
-                              <View>
-                                <View style={ExtStyle.flex1}>
-                                  <SingularProject
-                                    leftText="Projects you evaluate"
-                                    // rightText="See all"
-                                    projects={projects}
-                                  />
-                                </View>
+                          <View style={ExtStyle.flex1}>
+                            <SingularProject
+                              leftText="Projects that may interest you"
+                              // rightText="Edit interest"
+                              projects={projects}
+                            />
+                          </View>
 
-                                <View style={ExtStyle.flex1}>
-                                  <SingularProject
-                                    leftText="Projects that may interest you"
-                                    // rightText="Edit interest"
-                                    projects={projects}
-                                  />
-                                </View>
-
-                                <View style={ExtStyle.flex1}>
-                                  <SingularProject
-                                    leftText="Bookmarks"
-                                    // rightText="See all"
-                                    projects={projects}
-                                  />
-                                </View>
-                                <View style={ExtStyle.flex1}>{this.renderButton()}</View>
-                              </View>
-                            </ScrollView>
-                          )}
-                      </Fragment>
+                          <View style={ExtStyle.flex1}>
+                            <SingularProject
+                              leftText="Bookmarks"
+                              // rightText="See all"
+                              projects={projects}
+                            />
+                          </View>
+                          <View style={ExtStyle.flex1}>{this.renderButton()}</View>
+                        </View>
+                      </ScrollView>
                     )}
-                </Fragment>
-              )}
+                  </Fragment>
+                )}
+              </Fragment>
+            )}
           </Fragment>
         </ScrollView>
         <TouchableOpacity
           onPress={() => NavigationService.navigate('CreateProject')}
-          style={styles.floatingButton}>
+          style={styles.floatingButton}
+        >
           <Image source={require('../../assets/plus.png')} />
         </TouchableOpacity>
       </View>
@@ -305,9 +302,9 @@ export default connect(
   mapDispatchToProps,
 )(Project);
 
-
-//Contractor View 
-{/* <Tabs
+// Contractor View
+{
+  /* <Tabs
                             tabBarUnderlineStyle={{
                               backgroundColor: '#201D41',
                             }}
@@ -332,4 +329,5 @@ export default connect(
                             >
                               <Proposals projects={projects} />
                             </Tab>
-                          </Tabs> */}
+                          </Tabs> */
+}

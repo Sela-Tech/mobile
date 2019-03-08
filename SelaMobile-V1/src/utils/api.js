@@ -28,8 +28,9 @@ const axios2 = Axios.create({
 axios.interceptors.request.use(
   config => {
     // Do something before request is sent
-    const tt = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOnsibmFtZSI6ImFkbWluMSBvcmdhbmlzYWN0aW9uIiwiaWQiOiI1YzZhYzExYWI0Mzc4ZTAwMjI4ODAxNGIifSwicHJvZmlsZVBob3RvIjoiaHR0cHM6Ly9wbGFjZWltZy5jb20vMjAwLzIwMC9wZW9wbGUiLCJpZCI6IjVjNmFjMTFhYjQzNzhlMDAyMjg4MDE0YyIsImlzRnVuZGVyIjpmYWxzZSwiaXNFdmFsdWF0b3IiOmZhbHNlLCJpc0NvbnRyYWN0b3IiOnRydWUsImZpcnN0TmFtZSI6IkFiaW1ib2xhIiwicGhvbmUiOiI4OTQ5MDM1ODU2NCIsImVtYWlsIjoiYWJpbWJvbGEuZEBzZWxhLWxhYnMuY28iLCJsYXN0TmFtZSI6IkRhdmlkIiwiYXJlYXNPZkludGVyZXN0IjpbXSwiaWF0IjoxNTUxNDU3NTY3LCJleHAiOjE1NTIwNjIzNjd9.ewu_50gk89wU4unAoOQ_RZsmfqVvE5ajS_Q53i7TMiQ';
-    config.headers['x-access-token'] = tt;//this.userToken;
+    const tt =
+      // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOnsibmFtZSI6ImFkbWluMSBvcmdhbmlzYWN0aW9uIiwiaWQiOiI1YzZhYzExYWI0Mzc4ZTAwMjI4ODAxNGIifSwicHJvZmlsZVBob3RvIjoiaHR0cHM6Ly9wbGFjZWltZy5jb20vMjAwLzIwMC9wZW9wbGUiLCJpZCI6IjVjNmFjMTFhYjQzNzhlMDAyMjg4MDE0YyIsImlzRnVuZGVyIjpmYWxzZSwiaXNFdmFsdWF0b3IiOmZhbHNlLCJpc0NvbnRyYWN0b3IiOnRydWUsImZpcnN0TmFtZSI6IkFiaW1ib2xhIiwicGhvbmUiOiI4OTQ5MDM1ODU2NCIsImVtYWlsIjoiYWJpbWJvbGEuZEBzZWxhLWxhYnMuY28iLCJsYXN0TmFtZSI6IkRhdmlkIiwiYXJlYXNPZkludGVyZXN0IjpbXSwiaWF0IjoxNTUxNDU3NTY3LCJleHAiOjE1NTIwNjIzNjd9.ewu_50gk89wU4unAoOQ_RZsmfqVvE5ajS_Q53i7TMiQ';
+      config.headers['x-access-token'] = this.userToken;
     return config;
   },
   error => {
@@ -240,7 +241,6 @@ export const getAllfeaturedProjects = async query => {
   }
 };
 
-
 export const createTask = async data => {
   try {
     return axios.post('/tasks', data);
@@ -273,7 +273,6 @@ export const updateTask = (taskId, data) => {
   }
 };
 
-
 export const createMileStone = async data => {
   try {
     return axios.post('/milestones', data);
@@ -282,7 +281,6 @@ export const createMileStone = async data => {
   }
 };
 
-
 export const getMilestonesBelongingToAProject = projectId => {
   try {
     return axios.get(`/milestones?project${projectId}`);
@@ -290,7 +288,6 @@ export const getMilestonesBelongingToAProject = projectId => {
     return err;
   }
 };
-
 
 export const getSingleMileStone = mileStoneId => {
   try {
@@ -316,7 +313,6 @@ export const getProposalsBelongingToAProject = projectId => {
   }
 };
 
-
 export const performActionOnProposal = (proposalId, data) => {
   try {
     return axios.put(`/proposal/${proposalId}`, data);
@@ -332,4 +328,3 @@ export const getSingleProposal = proposalId => {
     return err;
   }
 };
-

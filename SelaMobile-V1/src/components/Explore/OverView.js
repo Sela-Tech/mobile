@@ -9,7 +9,6 @@ import PdfBox from './PdfBox';
 import TagDisplay from './TagDisplay';
 import { WHITE, YELLOW } from '../../utils/constants';
 
-
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
@@ -97,11 +96,7 @@ export default class OverView extends Component {
     if (openMap) {
       return (
         <View style={styles.container}>
-          <Map
-            visible={openMap}
-            toggleMapView={this.toggleMapView}
-            location={locationDetails}
-          />
+          <Map visible={openMap} toggleMapView={this.toggleMapView} location={locationDetails} />
         </View>
       );
     }
@@ -111,11 +106,7 @@ export default class OverView extends Component {
           <View style={{ flexDirection: 'row', flex: 3 }}>
             <View style={[{ paddingTop: 5, flex: 1 }]}>
               <View>
-                <Text
-                  style={{ fontSize: 12, color: '#696F74' }}
-                >
-                  LOCATION
-                                </Text>
+                <Text style={{ fontSize: 12, color: '#696F74' }}>LOCATION</Text>
               </View>
               <View style={[extStyle.row, {}]}>
                 <View>
@@ -128,16 +119,19 @@ export default class OverView extends Component {
                 <View>
                   <TouchableOpacity
                     onPress={() => this.toggleMapView()}
-                    style={{ paddingLeft: 8, flexDirection: 'row', justifyContent: 'center', alignItems: 'center' }}
+                    style={{
+                      paddingLeft: 8,
+                      flexDirection: 'row',
+                      justifyContent: 'center',
+                      alignItems: 'center',
+                    }}
                   >
                     <View>
                       <Text style={{ color: YELLOW }}> View on map</Text>
                     </View>
 
                     <View style={{ paddingLeft: 5 }}>
-                      <Image
-                        source={require('../../../assets/forward_yellow.png')}
-                      />
+                      <Image source={require('../../../assets/forward_yellow.png')} />
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -159,7 +153,7 @@ export default class OverView extends Component {
               essential services such as clinics and schools suffer, and businesses operate under
               crippling constraints. Because the process is taking longer than expected and will not
               be completed by the original closing date a one year extension is being requested.
-                        </Text>
+            </Text>
           </View>
 
           <View style={{ flex: 1 }}>
@@ -179,9 +173,8 @@ export default class OverView extends Component {
                 </View>
                 <View style={styles.pt}>
                   <Text style={styles.text}>
-                    {projectTitleText.toUpperCase()
-                      === 'ABA FACTORY CONSTRUCTION' ?
-                      '$750,000'
+                    {projectTitleText.toUpperCase() === 'ABA FACTORY CONSTRUCTION'
+                      ? '$750,000'
                       : '$2,000,000'}
                   </Text>
                 </View>
@@ -197,71 +190,68 @@ export default class OverView extends Component {
                 </View>
               </View>
             ) : (
-                <View style={{
+              <View
+                style={{
                   marginTop: 2,
                   flex: 2,
                   flexDirection: 'row',
                 }}
-                >
-                  {projectTitleText.toUpperCase() === 'ABA FACTORY CONSTRUCTION' ? (
-                    <View style={{ flexDirection: 'row' }}>
-                      <Tag
-                        showTag={this.showTag}
-                        // showTag={this.showTag(require('../../../assets/sdgs/SDG_1.png'))}
-                        src={require('../../../assets/sdgs/SDG_1.png')}
+              >
+                {projectTitleText.toUpperCase() === 'ABA FACTORY CONSTRUCTION' ? (
+                  <View style={{ flexDirection: 'row' }}>
+                    <Tag
+                      showTag={this.showTag}
+                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_1.png'))}
+                      src={require('../../../assets/sdgs/SDG_1.png')}
                       // src={src}
-                      />
-                      <Tag
-                        showTag={this.showTag}
-                        // showTag={this.showTag(require('../../../assets/sdgs/SDG_8.png'))}
-                        src={require('../../../assets/sdgs/SDG_8.png')}
+                    />
+                    <Tag
+                      showTag={this.showTag}
+                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_8.png'))}
+                      src={require('../../../assets/sdgs/SDG_8.png')}
                       // src={src}
-                      />
-                    </View>
-                  ) : (
-                      <View style={{ flexDirection: 'row' }}>
-                        <Tag
-                          showTag={this.showTag}
-                          // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
-                          src={require('../../../assets/sdgs/SDG_3.png')}
-                        // src={src}
-                        />
+                    />
+                  </View>
+                ) : (
+                  <View style={{ flexDirection: 'row' }}>
+                    <Tag
+                      showTag={this.showTag}
+                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
+                      src={require('../../../assets/sdgs/SDG_3.png')}
+                      // src={src}
+                    />
 
-                        <Tag
-                          showTag={this.showTag}
-                          // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
-                          src={require('../../../assets/sdgs/SDG_13.png')}
-                        // src={src}
-                        />
+                    <Tag
+                      showTag={this.showTag}
+                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
+                      src={require('../../../assets/sdgs/SDG_13.png')}
+                      // src={src}
+                    />
 
-                        <Tag
-                          showTag={this.showTag}
-                          // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
-                          src={require('../../../assets/sdgs/SDG_14.jpg')}
-                        // src={src}
-                        />
+                    <Tag
+                      showTag={this.showTag}
+                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
+                      src={require('../../../assets/sdgs/SDG_14.jpg')}
+                      // src={src}
+                    />
 
-                        <Tag
-                          showTag={this.showTag}
-                          // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
-                          src={require('../../../assets/sdgs/SDG_6.png')}
-                        // src={src}
-                        />
-                      </View>
-                    )}
-                  <View />
-                </View>
-              )}
+                    <Tag
+                      showTag={this.showTag}
+                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
+                      src={require('../../../assets/sdgs/SDG_6.png')}
+                      // src={src}
+                    />
+                  </View>
+                )}
+                <View />
+              </View>
+            )}
           </Fragment>
-          <TagDisplay
-            showTag={this.showTag}
-            visibility={showTag}
-            imageSource={src}
-          />
+          <TagDisplay showTag={this.showTag} visibility={showTag} imageSource={src} />
 
           <View style={{ paddingTop: 5 }}>
             <View>
-              <Text style={{ color: '#696F74' }}>  Additional Documents </Text>
+              <Text style={{ color: '#696F74' }}> Additional Documents </Text>
             </View>
             <PdfBox />
           </View>

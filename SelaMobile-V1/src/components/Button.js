@@ -18,7 +18,7 @@ const styles = {
   },
   ml5: {
     marginLeft: 5,
-  }
+  },
 };
 
 const Button = ({
@@ -34,55 +34,48 @@ const Button = ({
   includeImage,
   imageSource,
 }) => (
-    <TouchableOpacity
-      onPress={fn}
-      style={[
-        styles.buttonStyle,
-        {
-          height: medium ? height / 11 : height / 14,
-          backgroundColor: color,
-        },
-        style,
-      ]}
-    >
-
-      <Fragment>
-        {
-          includeImage ? (
-            <Fragment>
-              {
-                loading ? (
-                  <Spinner color={WHITE} size="small" />
-                ) : (
-                    <View style={styles.row}>
-                      <View>
-                        <Image
-                          source={imageSource}
-                        />
-                      </View>
-                      <View style={styles.ml5}>
-                        <Text style={[{ color: textColor, fontSize: textSize }, textStyle]}>{text}</Text>
-                      </View>
-                    </View>
-                  )}
-            </Fragment>
+  <TouchableOpacity
+    onPress={fn}
+    style={[
+      styles.buttonStyle,
+      {
+        height: medium ? height / 11 : height / 14,
+        backgroundColor: color,
+      },
+      style,
+    ]}
+  >
+    <Fragment>
+      {includeImage ? (
+        <Fragment>
+          {loading ? (
+            <Spinner color={WHITE} size="small" />
           ) : (
-              <Fragment>
-                {
-                  loading ? (
-                    <Spinner color={WHITE} size="small" />
-                  ) : (
-                      <Text style={[{ color: textColor, fontSize: textSize }, textStyle]}>{text}</Text>
-                    )}
-              </Fragment>
-            )
-        }
-      </Fragment>
-    </TouchableOpacity>
-  );
+            <View style={styles.row}>
+              <View>
+                <Image source={imageSource} />
+              </View>
+              <View style={styles.ml5}>
+                <Text style={[{ color: textColor, fontSize: textSize }, textStyle]}>{text}</Text>
+              </View>
+            </View>
+          )}
+        </Fragment>
+      ) : (
+        <Fragment>
+          {loading ? (
+            <Spinner color={WHITE} size="small" />
+          ) : (
+            <Text style={[{ color: textColor, fontSize: textSize }, textStyle]}>{text}</Text>
+          )}
+        </Fragment>
+      )}
+    </Fragment>
+  </TouchableOpacity>
+);
 
 Button.defaultProps = {
-  fn: () => { },
+  fn: () => {},
   color: YELLOW,
   textSize: null,
   textColor: null,

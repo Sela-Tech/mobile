@@ -172,13 +172,13 @@ export default class Map extends Component {
                       {
                         <Marker.Animated
                           // pinColor={c.color}
-                                title={location.name}
-                                description={location.name}
-                                coordinate={{
+                          title={location.name}
+                          description={location.name}
+                          coordinate={{
                             latitude: location.lat,
                             longitude: location.lng,
                           }}
-                              />
+                        />
                       }
                     </Fragment>
                   ) : (
