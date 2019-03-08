@@ -155,7 +155,6 @@ const AddTaskModal = ({ visibility, toggleModal, createTask, updateInput, taskDa
               loading={loading}
               style={styles.buttonStyle}
             />
-            />
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

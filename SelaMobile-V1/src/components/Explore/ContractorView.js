@@ -24,7 +24,7 @@ const styles = StyleSheet.flatten({
   },
   imagePosition: {
     position: 'absolute',
-    top: 12,
+    top: 20,
     left: 10,
   },
   buttonPosition: {
@@ -37,7 +37,7 @@ const styles = StyleSheet.flatten({
   },
   settingsPosition: {
     position: 'absolute',
-    top: 12,
+    top: 20,
     right: 5,
   },
   viewInImage: {
@@ -100,7 +100,10 @@ const ContractorView = ({ navigation, projectInfo, userId }) => (
       />
     </View>
     <View style={styles.imagePosition}>
-      <TouchableOpacity transparent style={styles.backButton} onPress={() => navigation.goBack()}>
+      <TouchableOpacity transparent style={styles.backButton} 
+      onPress={() => navigation.goBack()}
+      // onPress ={()  => alert('fkdk')}
+      >
         <View>
           <Image source={require('../../../assets/white-back.png')} />
         </View>

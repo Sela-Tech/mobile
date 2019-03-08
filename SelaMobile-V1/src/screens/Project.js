@@ -10,13 +10,14 @@ import {
   Dimensions,
 } from 'react-native';
 import { connect } from 'react-redux';
-// import { Tabs, Tab } from 'native-base';
+import { Tabs, Tab } from 'native-base';
 
 import io from 'socket.io-client';
 import { store } from '../../store';
 import { getNewNotifications } from '../../actions/notifications';
 import { getUserProject, getContractorProject } from '../../actions/project';
 import ParentHeader from '../components/Header';
+import Proposals from '../components/Project/Proposals';
 import ContractorProject from '../components/Project/ContractorProject';
 import SingularProject from '../components/Project/Project';
 import { YELLOW, BASE_URL } from '../utils/constants';
@@ -238,7 +239,34 @@ class Project extends Component {
                 ) : (
                   <Fragment>
                     {userRole === 'contractor' ? (
-                      <ContractorProject projects={projects} />
+                        <Tabs
+                          locked={true}
+                          tabBarUnderlineStyle={{
+                            backgroundColor: '#201D41',
+                          }}
+                        >
+                          <Tab
+                            heading="Your Projects"
+                            textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                            activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                            activeTabStyle={{
+                              backgroundColor: '#201D41',
+                            }}
+                            tabStyle={{ backgroundColor: '#FFFFFF' }}
+                          >
+                            <ContractorProject projects={projects} />
+                          </Tab>
+                          <Tab
+                            heading="Your Proposals"
+                            textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                            activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                            activeTabStyle={{ backgroundColor: '#201D41' }}
+                            tabStyle={{ backgroundColor: '#FFFFFF' }}
+                          >
+                            <Proposals projects={projects} />
+                          </Tab>
+                        </Tabs>
+                 
                     ) : (
                       <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
                         <View>

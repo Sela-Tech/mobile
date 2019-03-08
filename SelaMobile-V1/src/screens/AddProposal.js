@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { View, ScrollView, StyleSheet, Keyboard, Dimensions } from 'react-native';
 import { Tabs, Tab } from 'native-base';
+import DropdownAlert from 'react-native-dropdownalert';
 import ProposalContent from '../components/AddProposal/ProposalContent';
 import AddTaskModal from '../components/AddProposal/AddTaskModal';
 import SpinnerOverLay from '../components/SpinnerOverlay';
@@ -88,24 +89,18 @@ const MileStoneHeader = ({ newVal, mileStoneTitle, updateInput, index, totalAmou
       <View style={[ExtStyle.flex1, ExtStyle.row]}>
         <View style={[ExtStyle.flex4, ExtStyle.row]}>
           <View>
-            <Text style={styles.mileStoneHeadingText}>
-{index + 1}
+            <Text style={styles.mileStoneHeadingText}>{index + 1}
 )
-            </Text>
+</Text>
           </View>
           <View>
-            <Text style={styles.mileStoneHeadingText}> 
-{' '}
-{mileStoneTitle}
-</Text>
+            <Text style={styles.mileStoneHeadingText}> {mileStoneTitle}</Text>
           </View>
         </View>
         <View style={styles.textAmountView}>
-          <Text style={styles.textAmount}>
-{' '}
-$
+          <Text style={styles.textAmount}> $
 {totalAmount}
-            {' '}
+{' '}
  
           </Text>
         </View>
@@ -211,7 +206,9 @@ export default class AddProposals extends Component {
       this.setState({ submitProposalLoading: true });
       const resp = await createProposal(data);
       this.setState({ submitProposalLoading: false });
-      NavigationService.navigate('Project');
+      this.dropdown.alertWithType('success','Status','Proposal Sent');
+      setTimeout(() => NavigationService.navigate('Project'), 3000)
+    
     } catch (err) {
       this.setState({ submitProposalLoading: false, proposalError: err.message });
     }
@@ -448,6 +445,12 @@ export default class AddProposals extends Component {
                   </Fragment>
                 )}
               </View>
+                <DropdownAlert
+                  ref={ref => (this.dropdown = ref)}
+                  // startDelta={height}
+                  // endDelta={height - height / 8}
+                  closeInterval={6000}
+                />
             </ScrollView>
           </Tab>
         </Tabs>
