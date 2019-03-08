@@ -131,6 +131,7 @@ const AddTaskModal = ({
                             <Input
                                 style={[styles.inputStyle, { height: height / 6 }]}
                                 multiline
+                                textStyle={ExtStyle.multiLineInputStyle}
                                 onChangeTheText={description => updateInput(description, 'description')}
                                 value={description}
                             />
@@ -166,7 +167,7 @@ const AddTaskModal = ({
                     <View style={styles.bottomButton}>
                         <Button
                             fn={() => createTask()}
-                            text="Update Task"
+                            text="Create Task"
                             textStyle={{ color: WHITE }}
                             loading={loading}
                             style={styles.buttonStyle} />

@@ -2,7 +2,7 @@ import React from 'react';
 import { Image } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import Inbox from './screens/Inbox';
-import Wallet from './screens/Inbox';
+import Wallet from './screens/Wallet';
 import Project from './screens/Project';
 import Profile from './screens/ProfileSettings';
 import { YELLOW } from './utils/constants';

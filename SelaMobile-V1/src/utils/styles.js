@@ -55,6 +55,11 @@ const styles = StyleSheet.create({
   jc: {
     justifyContent: 'center',
   },
+  multiLineInputStyle: {
+    textAlignVertical: 'top',
+    marginTop: '2%',
+    marginLeft: '2%',
+  },
 });
 
 export default styles;

@@ -23,6 +23,7 @@ import Button from '../components/Button';
 import { uploadImageToAWS } from '../utils/helpers';
 import * as API from '../utils/api';
 import { WHITE, YELLOW } from '../utils/constants';
+import ExtStyle from '../utils/styles';
 
 const { height, width } = Dimensions.get('window');
 
@@ -395,12 +396,8 @@ class CreateProject extends Component {
           <Input
             text="Project  description"
             multiline
-            style={[styles.inputStyle, { height: 150 }]}
-            textStyle={{
-              textAlignVertical: 'top',
-              marginTop: '2%',
-              marginLeft: '2%',
-            }}
+            style={[styles.inputStyle, { height: height / 5.1 }]}
+            textStyle={ExtStyle.multiLineInputStyle}
             placeHolderColor="#B1BAD2"
             onChangeTheText={description => this.setState({ description })}
             onTheChange={() =>

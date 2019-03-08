@@ -1,9 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { View, ScrollView, StyleSheet, Keyboard, Dimensions } from 'react-native';
 import { Tabs, Tab } from 'native-base';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import ProposalContent from '../components/AddProposal/ProposalContent';
 import AddTaskModal from '../components/AddProposal/AddTaskModal';
+import SpinnerOverLay from '../components/SpinnerOverlay';
 import Header from '../components/Header';
 import Input from '../components/Input';
 import Text from '../components/Text';
@@ -17,6 +17,7 @@ import { WHITE, YELLOW } from '../utils/constants';
 import NavigationService from '../services/NavigationService';
 
 const { width, height } = Dimensions.get('window');
+
 
 const styles = StyleSheet.create({
     container: {
@@ -94,7 +95,7 @@ const MileStoneHeader = ({ newVal, mileStoneTitle, updateInput, index, totalAmou
                             <View>
                                 <Text style={styles.mileStoneHeadingText}>{index + 1})</Text>
                             </View>
-                            <View >
+                            <View>
                                 <Text style={styles.mileStoneHeadingText}>  {mileStoneTitle}</Text>
                             </View>
                         </View>
@@ -110,7 +111,7 @@ const MileStoneHeader = ({ newVal, mileStoneTitle, updateInput, index, totalAmou
 export default class AddProposals extends Component {
 
     state = {
-        propopalName: 'd',
+        propopalName: '',
         new: true,
         mileStoneTitle: '',
         // projectId: this.props.navigation.state.params.projectId,
@@ -125,6 +126,7 @@ export default class AddProposals extends Component {
         taskEstimatedCost: '',
         taskDueDate: '',
         loading: false,
+        submitProposalLoading: false,
         markedTask: [],
         comments: [],
     }
@@ -192,6 +194,10 @@ export default class AddProposals extends Component {
 
     sendProposal = async () => {
         const { contractorId, allMileStones, comments, propopalName, projectId } = this.state;
+
+        if (propopalName === '') {
+            return alert('Enter Proposal Name');
+        }
         if (allMileStones.length === 0) {
             return alert('Add milestones first');
         }
@@ -204,12 +210,15 @@ export default class AddProposals extends Component {
             proposal_name: propopalName,
             milestones: allMileStones,
         };
+
         try {
+            this.setState({ submitProposalLoading: true });
             const resp = await createProposal(data);
+            this.setState({ submitProposalLoading: false });
             NavigationService.navigate('Project')
         }
         catch (err) {
-            this.setState({ proposalError: err.message })
+            this.setState({ submitProposalLoading: false, proposalError: err.message })
         }
     };
 
@@ -246,9 +255,7 @@ export default class AddProposals extends Component {
                 name: mileStoneTitle,
                 tasks: pushMilestones,
             };
-
             allMileStones.push(milestoneObj);
-
             this.setState({ mileStoneTitle: '', loading: false, markedTask: [], allMileStones, milestones: [] });
 
         }
@@ -280,6 +287,12 @@ export default class AddProposals extends Component {
         else if (name === 'mileStoneTitle') {
             this.setState({
                 mileStoneTitle: val,
+            });
+        }
+
+        else if (name === 'propopalName') {
+            this.setState({
+                propopalName: val,
             });
         }
 
@@ -315,6 +328,8 @@ export default class AddProposals extends Component {
             mileStoneTitle,
             markedTask,
             allMileStones,
+            propopalName,
+            submitProposalLoading,
         } = this.state;
 
         const taskData = {
@@ -353,6 +368,7 @@ export default class AddProposals extends Component {
                             contentContainerStyle={ExtStyle.flexGrow}
                         >
 
+                            <SpinnerOverLay loading={submitProposalLoading} />
 
                             <AddTaskModal
                                 visibility={modalVisibility}
@@ -362,6 +378,16 @@ export default class AddProposals extends Component {
                                 createTask={this.createSingleTask}
                                 loading={loading}
                             />
+
+                            <View style={ExtStyle.mt5}>
+                                <Input
+                                    value={propopalName}
+                                    style={styles.inputStyle}
+                                    onChangeTheText={propopalName => this.updateInput(propopalName, 'propopalName')}
+                                    text="Enter Proposal name"
+                                    placeHolderColor="#201D41"
+                                />
+                            </View>
 
                             <View style={styles.mt5}>
                                 <Button
