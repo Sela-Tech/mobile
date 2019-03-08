@@ -11,11 +11,12 @@ const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    // height: height / 8,
-    // marginLeft: 5,
-    // borderBottomWidth: 2,
-    // borderBottomColor: '#F5F5F8',
-    // alignItems: 'center',
+    height: height / 8,
+    marginLeft: 5,
+    // backgroundColor: 'red',
+    borderBottomWidth: 2,
+    borderBottomColor: '#F5F5F8',
+    alignItems: 'center',
   },
   yellowText: {
     color: YELLOW,
@@ -33,7 +34,7 @@ const styles = StyleSheet.create({
 
 const ProposalContent = () => (
   <View style={styles.container}>
-    {/* <View style={ExtStyle.flex2}>
+    <View style={ExtStyle.flex2}>
       <View>
         <Text style={styles.titleText}> Owerri Oil Spill Clean-up Project </Text>
       </View>
@@ -65,7 +66,7 @@ const ProposalContent = () => (
           borderColor: '#B1BAD2',
         }}
       />
-    </View> */}
+    </View>
   </View>
 );
 

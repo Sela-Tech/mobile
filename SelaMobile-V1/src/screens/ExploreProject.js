@@ -1,8 +1,9 @@
 import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import Navigator from './ExploreTabs/Navigator';
 import Spinner from '../components/Spinner';
-import ExpandableBox from '../components/Explore/ExpandableBox';
+// import ExpandableBox from '../components/Explore/ExpandableBox';
 import FunderView from '../components/Explore/FunderView';
 import ContractorView from '../components/Explore/ContractorView';
 import EvaluatorView from '../components/Explore/EvaluatorView';
@@ -192,54 +193,8 @@ class ExploreProject extends Component {
               <Fragment>
                 {this.userView(userRole, userId, navigation, projectInfo, userStakeholderStatus)}
               </Fragment>
-              <View style={styles.contentView}>
-                <ExpandableBox
-                  expand={expandOverviewBox}
-                  fn={() => this.expandTheBox('overview')}
-                  projectInfo={projectInfo}
-                  text="Overview"
-                  navigation={navigation}
-                />
-
-                {/* <ExpandableBox
-                  expand={expandProposalsBox}
-                  fn={() => this.expandTheBox('proposals')}
-                  projectInfo={projectInfo}
-                  text="Proposals"
-                  navigation={navigation}
-                /> */}
-
-                <ExpandableBox
-                  expand={expandStakeHoldersBox}
-                  fn={() => this.expandTheBox('stakeholders')}
-                  projectInfo={projectInfo}
-                  text="Stakeholders"
-                  navigation={navigation}
-                />
-
-                <ExpandableBox
-                  expand={expandAnalyticsBox}
-                  projectInfo={projectInfo}
-                  fn={() => this.expandTheBox('analytics')}
-                  text="Analytics"
-                  navigation={navigation}
-                />
-
-                <ExpandableBox
-                  expand={expandUpdatesBox}
-                  projectInfo={projectInfo}
-                  fn={() => this.expandTheBox('updates')}
-                  text="Updates"
-                  navigation={navigation}
-                />
-
-                <ExpandableBox
-                  expand={expandTransactionsBox}
-                  projectInfo={projectInfo}
-                  fn={() => this.expandTheBox('transaction')}
-                  text="Transactions"
-                  navigation={navigation}
-                />
+              <View style={ExtStyle.flex6}>
+                <Navigator navigation={this.props.navigation} project={projectInfo} />
               </View>
             </View>
           ) : (
