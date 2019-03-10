@@ -7,7 +7,7 @@ const keyExtractor = (item, index) => index.toString();
 const renderItem = item => (
   <View style={{ paddingLeft: 5 }}>
     {item.item.val === 'empty' ? (
-      <Box text="Propose Project" empty fn={() => console.log('navigate')} />
+      <Box text="Propose Project" fn={() => console.log('navigate')} />
     ) : (
       <Box
         projectInfo={item.item}
@@ -18,17 +18,17 @@ const renderItem = item => (
   </View>
 );
 
-const Images = ({ projects, leftText }) => {
+const Images = ({ projects, leftText, column }) => {
   const proj =
     leftText === 'Projects you proposed' || leftText === 'Initiated by you'
-      ? [{ val: 'empty' }, ...projects]
+      ? [...projects]
       : projects;
   return (
     <FlatList
       style={{ flex: 1 }}
       data={proj}
       keyExtractor={keyExtractor}
-      horizontal
+      horizontal={!column}
       showsHorizontalScrollIndicator={false}
       renderItem={renderItem}
     />

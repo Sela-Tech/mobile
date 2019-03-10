@@ -1,19 +1,72 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, Dimensions, ScrollView, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import Navigator from './ExploreTabs/Navigator';
 import Spinner from '../components/Spinner';
+import Text from '../components/Text';
+import Button from '../components/Button';
+import Header from '../components/Explore/Header';
 // import ExpandableBox from '../components/Explore/ExpandableBox';
 import FunderView from '../components/Explore/FunderView';
 import ContractorView from '../components/Explore/ContractorView';
 import EvaluatorView from '../components/Explore/EvaluatorView';
+import NavigationService from '../services/NavigationService';
 import { getSingleProject } from '../utils/api';
 import ExtStyle from '../utils/styles';
+import { WHITE } from '../utils/constants';
 
-const styles = StyleSheet.create({
+import { getDummyDisplayPicture } from '../utils/helpers';
+
+const { height, width } = Dimensions.get('window');
+
+const styles = StyleSheet.flatten({
   contentView: {
     flex: 1,
     marginVertical: 20,
+  },
+  imageHeight: {
+    height,
+  },
+  bottomButton: {
+    view: {
+      width: width / 3.5,
+      height: height / 15,
+    },
+    text: {
+      fontSize: 14,
+      fontWeight: '500',
+    },
+  },
+  mt3: {
+    // marginTop: height < 600 ? 3 : null,
+  },
+  imagePosition: {
+    position: 'absolute',
+    top: 12,
+    bottom: 0,
+    left: 0,
+    right: 0,
+  },
+  buttonPosition: {
+    position: 'absolute',
+    top: height / 8,
+    bottom: 0,
+    left: 20,
+    right: 0,
+  },
+
+  flex4mb5: {
+    flex: 4,
+    // marginBottom: 1,
+  },
+  backButton: {
+    marginTop: '7%',
+    marginHorizontal: '5%',
+    flexDirection: 'row',
+  },
+  backButtonText: {
+    color: WHITE,
+    fontSize: 15,
   },
 });
 class ExploreProject extends Component {
@@ -186,22 +239,76 @@ class ExploreProject extends Component {
       );
     }
     return (
-      <ScrollView style={ExtStyle.flex1} contentContainerStyle={ExtStyle.flexGrow}>
-        <View style={ExtStyle.flex1}>
+      <View style={ExtStyle.flex1}>
+        <Fragment>
           {notAvailaible ? (
-            <View style={ExtStyle.flex1}>
-              <Fragment>
-                {this.userView(userRole, userId, navigation, projectInfo, userStakeholderStatus)}
-              </Fragment>
+            <Fragment>
+              <View style={styles.flex4mb5}>
+                <View
+                  style={{
+                    flex: 1,
+                  }}
+                >
+                  <Image
+                    style={{
+                      flex: 1,
+                      width: null,
+                      height: null,
+                      resizeMode: 'cover',
+                    }}
+                    source={getDummyDisplayPicture(projectInfo && projectInfo.name)}
+                  />
+                </View>
+                <View style={styles.imagePosition}>
+                  <TouchableOpacity
+                    transparent
+                    style={styles.backButton}
+                    onPress={() => this.props.navigation.goBack()}
+                  >
+                    <View>
+                      <Image source={require('../../assets/white-back.png')} />
+                    </View>
+                    <View>
+                      <Text style={styles.backButtonText}> Back </Text>
+                    </View>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={styles.buttonPosition}>
+                  <Button
+                    fn={() =>
+                      NavigationService.navigate('AddProposal', {
+                        projectId: projectInfo._id,
+                        userId,
+                      })
+                    }
+                    style={styles.bottomButton.view}
+                    textStyle={styles.bottomButton.text}
+                    text="Send Proposal"
+                    textColor={WHITE}
+                  />
+                </View>
+              </View>
+              <View style={[ExtStyle.flex3]}>
+                <Header
+                  projectLocationText={projectInfo.location.name}
+                  projectStatusText={projectInfo.status}
+                  projectTitleText={projectInfo.name}
+                  budgetAmount={projectInfo.goal}
+                  numberOfStakeholders={projectInfo.stakeholders.length}
+                  raisedAmount={projectInfo.raised}
+                  tags={projectInfo.tags}
+                />
+              </View>
               <View style={ExtStyle.flex6}>
                 <Navigator navigation={this.props.navigation} project={projectInfo} />
               </View>
-            </View>
+            </Fragment>
           ) : (
             <View />
           )}
-        </View>
-      </ScrollView>
+        </Fragment>
+      </View>
     );
   }
 }

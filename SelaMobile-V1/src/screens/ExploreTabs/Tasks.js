@@ -47,7 +47,7 @@ const tasklisting = [
 
 const Tasks = ({ project }) => {
   const { tasks } = project;
-  if (tasks.length === 0) {
+  if ((tasks && tasks.length === 0) || tasks === undefined) {
     return (
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -67,8 +67,7 @@ const Tasks = ({ project }) => {
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
       {tasklisting.map((c, index) => (
-        <Task
-key={index} text={c.text} title={c.title} statusText={c.statusText} />
+        <Task key={index} text={c.text} title={c.title} statusText={c.statusText} />
       ))}
       <View style={{ paddingTop: 10, alignItems: 'center' }}>
         <Button text="Submit Updates" />

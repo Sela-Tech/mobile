@@ -127,7 +127,7 @@ const AuthStack = createStackNavigator(
   {
     defaultNavigationOptions: {
       headerStyle: {
-        fontFamily: isAndroid ? 'ProximaNova' : null,
+        fontFamily: isAndroid ? 'Acumin-RPro' : null,
       },
     },
   },

@@ -74,7 +74,7 @@ export default createBottomTabNavigator(
       labelStyle: {
         // fontSize: width < 400 ? 7 : 9,
         // fontWeight: '400',
-        fontFamily: isAndroid ? 'Acumin-ItPro' : null,
+        fontFamily: isAndroid ? 'Acumin-RPro' : null,
       },
     },
   },

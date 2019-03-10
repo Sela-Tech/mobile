@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Project = ({ leftText, rightText, projects }) => (
+const Project = ({ column, leftText, rightText, projects }) => (
   <View style={styles.container}>
     <View style={styles.semiContainer}>
       <View style={styles.leftContainer}>
@@ -84,11 +84,7 @@ weight="400" style={styles.leftTextContainer}>
 
     <View style={styles.bottomContainer}>
       <Fragment>
-        {projects && projects.length === 0 ? (
-          <Box text={leftText} empty wide fn={() => console.log('navigate')} />
-        ) : (
-          <Images leftText={leftText} projects={projects} />
-        )}
+          <Images  column leftText={leftText} projects={projects} />
       </Fragment>
     </View>
   </View>

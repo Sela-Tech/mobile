@@ -58,6 +58,8 @@ const tags = [
 
 const projectStatus = ['ON GOING', 'DORMANT', 'COMPLETED', 'PROPOSED', 'IN REVIEW'];
 
+const otherFilters = ['Bookmarked project', 'Project that may Interest you'];
+
 const renderItem = item => (
   <View style={{ marginBottom: 10, marginTop: 10 }}>
     <Box
@@ -92,6 +94,7 @@ class ExploreProject extends Component {
   state = {
     loading: true,
     googlePlaces: [],
+    relevantProject: otherFilters,
   };
 
   async componentDidMount() {
@@ -146,7 +149,17 @@ class ExploreProject extends Component {
   };
 
   render() {
-    const { loading, projects, status, tag, googlePlaces, searchResult, location } = this.state;
+    const {
+      loading,
+      relevantProject,
+      projects,
+      status,
+      tag,
+      googlePlaces,
+      relevantProjectVal,
+      searchResult,
+      location,
+    } = this.state;
 
     return (
       <ScrollView
@@ -226,6 +239,28 @@ class ExploreProject extends Component {
                   onValueChange={t => this.setState({ tag: t })}
                 >
                   {tags.map((s, i) => (
+                    <Picker.Item
+                      key={i}
+                      style={[styles.inputStyle, styles.picker]}
+                      label={s}
+                      value={s}
+                    />
+                  ))}
+                </Picker>
+              </View>
+            </View>
+
+            <View style={{ marginBottom: 20 }}>
+              <View style={{ marginBottom: 5 }}>
+                <Text style={{ fontSize: 15 }}> Relevant projects</Text>
+              </View>
+              <View style={[styles.inputStyle, styles.picker, { paddingBottom: 15 }]}>
+                <Picker
+                  style={[styles.picker]}
+                  selectedValue={relevantProjectVal}
+                  onValueChange={t => this.setState({ relevantProjectVal: t })}
+                >
+                  {relevantProject.map((s, i) => (
                     <Picker.Item
                       key={i}
                       style={[styles.inputStyle, styles.picker]}

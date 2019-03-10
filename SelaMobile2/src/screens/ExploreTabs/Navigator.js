@@ -5,6 +5,7 @@ import Description from './Description';
 import StakeHolders from './StakeHolders';
 import Transactions from './Transactions';
 import Overview from './Overview';
+import Evidence from './Evidence';
 import Location from './Location';
 import Tasks from './Tasks';
 import Updates from './Updates';
@@ -49,34 +50,6 @@ const tabBarOptions = {
   },
 };
 
-
-
-// const Tabd = createMaterialTopTabNavigator(
-//   {
-//     Overview,
-//     StakeHolders,
-//     Updates,
-//     Transactions,
-//     Location,
-//   },
-//   {
-//     tabBarOptions,
-//   },
-// );
-
-// class Page extends React.Component {
-//   static router = Tabd.router;
-//   render() {
-//     return (
-//       <Tabd
-//       // navigation={this.props.navigation}
-//       />
-//     );
-//   }
-// }
-// export default Page;
-
-
 export default class Navigator extends Component {
   state = {
     isContractor: false,
@@ -89,56 +62,61 @@ export default class Navigator extends Component {
     const UpdatesOrTask = !isContractor ? Updates : Tasks;
     const TransactionOrOvervIew = !isContractor ? Transactions : Overview;
 
-    // let Tabs;
-    // if (isContractor) {
-    //   Tabs = createMaterialTopTabNavigator(
-    //     {
-    //       Description: {
-    //         screen: () => <Description project={project} />,
-    //       },
-    //       StakeHolders: {
-    //         screen: () => <StakeHolders project={project} />,
-    //       },
-    //       Tasks: {
-    //         screen: () => <UpdatesOrTask project={project} />,
-    //       },
-    //       Overview: {
-    //         screen: () => <TransactionOrOvervIew project={project} />,
-    //       },
-    //       Location: {
-    //         screen: () => <Location project={project} />,
-    //       },
-    //     },
-    //     {
-    //       tabBarOptions,
-    //     },
-    //   );
-    // } else {
+    let Tabs;
+    if (isContractor) {
+      Tabs = createMaterialTopTabNavigator(
+        {
+          Description: {
+            screen: () => <Description project={project} />,
+          },
+          StakeHolders: {
+            screen: () => <StakeHolders project={project} />,
+          },
+          Evidence: {
+            screen: () => <Evidence navigation={navigation} project={project} />,
+          },
+          Tasks: {
+            screen: () => <UpdatesOrTask project={project} />,
+          },
+          Overview: {
+            screen: () => <TransactionOrOvervIew project={project} />,
+          },
+          Location: {
+            screen: () => <Location project={project} />,
+          },
+        },
+        {
+          tabBarOptions,
+        },
+      );
+    } else {
+      Tabs = createMaterialTopTabNavigator(
+        {
+          Overview: {
+            screen: () => <Overview navigation={navigation} project={project} />,
+          },
+          StakeHolders: {
+            screen: () => <StakeHolders navigation={navigation} project={project} />,
+          },
+          Evidence: {
+            screen: () => <Evidence navigation={navigation} project={project} />,
+          },
+          Updates: {
+            screen: () => <UpdatesOrTask navigation={navigation} project={project} />,
+          },
+          Transactions: {
+            screen: () => <TransactionOrOvervIew navigation={navigation} project={project} />,
+          },
+          Location: {
+            screen: () => <Location navigation={navigation} project={project} />,
+          },
+        },
+        {
+          tabBarOptions,
+        },
+      );
+    }
 
-    // }
-
-    const Tabs = createMaterialTopTabNavigator(
-      {
-        Overview: {
-          screen: () => <Overview navigation={navigation} project={project} />,
-        },
-        StakeHolders: {
-          screen: () => <StakeHolders navigation={navigation} project={project} />,
-        },
-        Updates: {
-          screen: () => <UpdatesOrTask navigation={navigation} project={project} />,
-        },
-        Transactions: {
-          screen: () => <TransactionOrOvervIew navigation={navigation} project={project} />,
-        },
-        Location: {
-          screen: () => <Location navigation={navigation} project={project} />,
-        },
-      },
-      {
-        tabBarOptions,
-      },
-    );
     const ExploreTopTabs = createAppContainer(Tabs);
     return <ExploreTopTabs />;
   }

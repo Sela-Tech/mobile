@@ -69,6 +69,7 @@
 		FF63D1BF24C343308580F0C0 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 729D80A304D9409296DAA1FD /* FontAwesome5_Brands.ttf */; };
 		108B55EA7285429987B1D700 /* ProximaNova.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD7308776E684E55B0920B2A /* ProximaNova.ttf */; };
 		FFBCBF9B08CD4B37AD84AFC6 /* Acumin-ItPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 81E5C93756F54AC782E71A4C /* Acumin-ItPro.otf */; };
+		44B77CC618BD473489833787 /* Acumin-RPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 77CA48EBBB5E4F5186FF2D8D /* Acumin-RPro.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -468,6 +469,7 @@
 		FCAE464CE288410C50AC3D8A /* libPods-SelaMobile2Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SelaMobile2Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD7308776E684E55B0920B2A /* ProximaNova.ttf */ = {isa = PBXFileReference; name = "ProximaNova.ttf"; path = "../assets/fonts/ProximaNova.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		81E5C93756F54AC782E71A4C /* Acumin-ItPro.otf */ = {isa = PBXFileReference; name = "Acumin-ItPro.otf"; path = "../assets/fonts/Acumin-ItPro.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		77CA48EBBB5E4F5186FF2D8D /* Acumin-RPro.otf */ = {isa = PBXFileReference; name = "Acumin-RPro.otf"; path = "../assets/fonts/Acumin-RPro.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -753,6 +755,7 @@
 				C6C2930A07664FF48814DAE5 /* Zocial.ttf */,
 				DD7308776E684E55B0920B2A /* ProximaNova.ttf */,
 				81E5C93756F54AC782E71A4C /* Acumin-ItPro.otf */,
+				77CA48EBBB5E4F5186FF2D8D /* Acumin-RPro.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1392,6 +1395,7 @@
 				DFFF81D269354F11A2C45D13 /* Zocial.ttf in Resources */,
 				108B55EA7285429987B1D700 /* ProximaNova.ttf in Resources */,
 				FFBCBF9B08CD4B37AD84AFC6 /* Acumin-ItPro.otf in Resources */,
+				44B77CC618BD473489833787 /* Acumin-RPro.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

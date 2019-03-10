@@ -46,36 +46,14 @@ const ContractorProjects = ({ projects }) => (
     <View>
       <View style={ExtStyle.flex1}>
         <SingularProject
-          leftText="Initiated by others"
-          // rightText="See all"
-          projects={projects}
-        />
-      </View>
-
-      <View style={ExtStyle.flex1}>
-        <SingularProject
           leftText="Initiated by you"
+          column
           // rightText="See all"
           projects={projects}
         />
       </View>
 
-      <View style={ExtStyle.flex1}>
-        <SingularProject
-          leftText="Projects that may interest you"
-          // rightText="Edit interest"
-          projects={projects}
-        />
-      </View>
-
-      <View style={ExtStyle.flex1}>
-        <SingularProject
-          leftText="Bookmarks"
-          // rightText="See all"
-          projects={projects}
-        />
-      </View>
-      <View style={ExtStyle.flex1}>{renderButton()}</View>
+      {/* <View style={ExtStyle.flex1}>{renderButton()}</View> */}
     </View>
   </ScrollView>
 );
