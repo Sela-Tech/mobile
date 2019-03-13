@@ -277,14 +277,14 @@ class ExploreProject extends Component {
                 <View style={styles.buttonPosition}>
                   <Button
                     fn={() =>
-                      NavigationService.navigate('AddProposal', {
-                        projectId: projectInfo._id,
+                      userRole !== 'evaluator' ?   NavigationService.navigate('AddProposal', {
+                       projectId: projectInfo._id,
                         userId,
-                      })
+                      }) : console.log('')
                     }
                     style={styles.bottomButton.view}
                     textStyle={styles.bottomButton.text}
-                    text="Send Proposal"
+                    text={ userRole !== 'evaluator' ?"Send Proposal" : "Request to Join"}
                     textColor={WHITE}
                   />
                 </View>

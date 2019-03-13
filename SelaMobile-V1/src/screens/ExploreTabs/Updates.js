@@ -80,27 +80,29 @@ const tasklisting = [
 
 const filterTask = [tasklisting[Math.floor(Math.random() * tasklisting.length)], tasklisting[2]];
 
-const Updates = ({ project }) => (
+const Updates = ({ project, userRole }) => (
   <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
     <Fragment>
       {project.name !== 'Aba Factory construction'
         ? filterTask.map((c, index) => (
-          <IndUpdates
-              key={index}
-              text={c.text}
-              projectName={project.name}
-              title={c.title}
-              statusText={c.statusText}
-            />
+            <IndUpdates
+            userRole={userRole}
+            key={index}
+            text={c.text}
+            projectName={project.name}
+            title={c.title}
+            statusText={c.statusText}
+          />
           ))
         : task2.map((c, index) => (
-          <IndUpdates
-              key={index}
-              projectName={project.name}
-              text={c.text}
-              title={c.title}
-              statusText={c.statusText}
-            />
+            <IndUpdates
+            userRole={userRole}
+            key={index}
+            projectName={project.name}
+            text={c.text}
+            title={c.title}
+            statusText={c.statusText}
+          />
           ))}
     </Fragment>
     {/* <TouchableOpacity

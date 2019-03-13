@@ -1,5 +1,7 @@
 import React from 'react';
-import { ScrollView, View, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { ScrollView, FlatList, View, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { getDummyDisplayPicture } from '../../utils/helpers';
+import Box from '../ExploreProject/Box';
 import SingularProject from './Project';
 import ExtStyle from '../../utils/styles';
 import NavigationService from '../../services/NavigationService';
@@ -8,7 +10,8 @@ import { YELLOW } from '../../utils/constants';
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: 'red',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buttonCenter: {
     flex: 1,
@@ -28,32 +31,39 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  center: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
-const renderButton = () => (
-  <View style={styles.floatingButton}>
-    <TouchableOpacity
-      onPress={() => NavigationService.navigate('ExploreProject')}
-      style={styles.buttonCenter}
-    >
-      <Image source={require('../../../assets/plus.png')} />
-    </TouchableOpacity>
+const keyExtractor = (item, index) => index.toString();
+
+const renderItem = item => (
+  <View style={{ marginBottom: 10, marginTop: 10 }}>
+    <Box
+      fn={() => NavigationService.navigate('ExploreProject', item.item._id)}
+      // img={{ uri: 'https://placeimg.com/640/480/any' }}
+      img={getDummyDisplayPicture(item && item.item && item.item.name)}
+      firstText={item.item.location.name}
+      secondText={item.item.name}
+      thirdText={item.item.status}
+      title={item.item.description}
+      cost={item.item.goal}
+      tags={item.item.tags}
+    />
   </View>
 );
 
 const ContractorProjects = ({ projects }) => (
   <ScrollView contentContainerstyle={styles.container}>
-    <View>
-      <View style={ExtStyle.flex1}>
-        <SingularProject
-          leftText="Initiated by you"
-          column
-          // rightText="See all"
-          projects={projects}
-        />
-      </View>
-
-      {/* <View style={ExtStyle.flex1}>{renderButton()}</View> */}
+    <View style={styles.center}>
+      <FlatList
+        data={projects}
+        renderItem={renderItem}
+        style={{ flex: 1 }}
+        keyExtractor={keyExtractor}
+      />
     </View>
   </ScrollView>
 );

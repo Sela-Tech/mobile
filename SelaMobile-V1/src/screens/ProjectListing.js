@@ -78,18 +78,6 @@ const renderItem = item => (
 
 const keyExtractor = (item, index) => index.toString();
 class ExploreProject extends Component {
-  // static navigationOptions = {
-  //   title: 'EX',
-  //   headerTitleStyle: {
-  //     textAlign: 'center',
-  //     alignSelf: 'center',
-  //     flex: 1,
-  //   },
-  //   headerStyle: {
-  //     fontFamily: 'proximaNova',
-  //     fontWeight: 'normal',
-  //   },
-  // };
 
   state = {
     loading: true,

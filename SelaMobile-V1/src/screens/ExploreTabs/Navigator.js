@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Description from './Description';
 import StakeHolders from './StakeHolders';
 import Transactions from './Transactions';
+import Evidence from './Evidence';
 import Overview from './Overview';
 import Location from './Location';
 import Tasks from './Tasks';
@@ -78,23 +79,30 @@ class Navigator extends Component {
 
     let Tabs;
 
+    console.log('the user =role', userRole);
     if (userRole === 'funder') {
       Tabs = createMaterialTopTabNavigator(
         {
           Description: {
-            screen: () => <Description project={project} />,
+            screen: () => <Description userRole={userRole} project={project} />,
           },
           StakeHolders: {
-            screen: () => <StakeHolders project={project} />,
+            screen: () => <StakeHolders userRole={userRole} project={project} />,
+          },
+          Evidence: {
+            screen: () => <Evidence userRole={userRole} project={project} />,
           },
           Tasks: {
-            screen: () => <Tasks project={project} />,
+            screen: () => <Tasks userRole={userRole} project={project} />,
+          },
+          Transactions: {
+            screen: () => <Transactions userRole={userRole} project={project} />,
           },
           Overview: {
-            screen: () => <Overview project={project} />,
+            screen: () => <Overview userRole={userRole} project={project} />,
           },
           Location: {
-            screen: () => <Location project={project} />,
+            screen: () => <Location userRole={userRole} project={project} />,
           },
         },
         {
@@ -106,20 +114,19 @@ class Navigator extends Component {
     if (userRole === 'evaluator') {
       Tabs = createMaterialTopTabNavigator(
         {
-          Description: {
-            screen: () => <Description project={project} />,
+          Overview: {
+            screen: () => <Overview userRole={userRole} project={project} />,
           },
           StakeHolders: {
-            screen: () => <StakeHolders project={project} />,
+            screen: () => (
+              <StakeHolders userRole={userRole} navigation={navigation} project={project} />
+            ),
           },
-          Tasks: {
-            screen: () => <Tasks project={project} />,
+          Evidence: {
+            screen: () => <Evidence userRole={userRole} project={project} />,
           },
-          Overview: {
-            screen: () => <Overview project={project} />,
-          },
-          Location: {
-            screen: () => <Location project={project} />,
+          Updates: {
+            screen: () => <Updates userRole={userRole} project={project} />,
           },
         },
         {
@@ -130,10 +137,21 @@ class Navigator extends Component {
       Tabs = createMaterialTopTabNavigator(
         {
           Overview: {
-            screen: () => <Overview project={project} />,
+            screen: () => <Overview userRole={userRole} project={project} />,
           },
           StakeHolders: {
-            screen: () => <StakeHolders navigation={navigation} project={project} />,
+            screen: () => (
+              <StakeHolders userRole={userRole} navigation={navigation} project={project} />
+            ),
+          },
+          Evidence: {
+            screen: () => <Evidence userRole={userRole} project={project} />,
+          },
+          Updates: {
+            screen: () => <Updates userRole={userRole} project={project} />,
+          },
+          Transactions: {
+            screen: () => <Transactions userRole={userRole} project={project} />,
           },
         },
         {

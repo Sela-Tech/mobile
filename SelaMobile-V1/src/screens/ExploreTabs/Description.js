@@ -67,3 +67,5 @@ const Description = ({ project }) => (
     </View>
   </ScrollView>
 );
+
+export default Description;

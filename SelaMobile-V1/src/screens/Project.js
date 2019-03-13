@@ -17,6 +17,7 @@ import { store } from '../../store';
 import { getNewNotifications } from '../../actions/notifications';
 import { getUserProject, getContractorProject } from '../../actions/project';
 import ParentHeader from '../components/Header';
+import Text from '../components/Text';
 import Proposals from '../components/Project/Proposals';
 import ContractorProject from '../components/Project/ContractorProject';
 import SingularProject from '../components/Project/Project';
@@ -33,8 +34,8 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   subContainer: {
-    justifyContent: 'center',
-    flex: 8,
+    flex: 1,
+    marginTop: '40%',
     alignItems: 'center',
   },
   otherContainer: {
@@ -53,6 +54,9 @@ const styles = StyleSheet.create({
     right: 10,
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  emptyText: {
+    fontSize: 16,
   },
 });
 
@@ -239,62 +243,57 @@ class Project extends Component {
                 ) : (
                   <Fragment>
                     {userRole === 'contractor' ? (
-                        <Tabs
-                          locked={true}
-                          tabBarUnderlineStyle={{
+                      <Tabs
+                        locked
+                        tabBarUnderlineStyle={{
+                          backgroundColor: '#201D41',
+                        }}
+                      >
+                        <Tab
+                          heading="Your Projects"
+                          textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                          activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                          activeTabStyle={{
                             backgroundColor: '#201D41',
                           }}
+                          tabStyle={{ backgroundColor: '#FFFFFF' }}
                         >
-                          <Tab
-                            heading="Your Projects"
-                            textStyle={{ color: '#B1BAD2', fontSize: 14 }}
-                            activeTextStyle={{ color: '#fff', fontSize: 14 }}
-                            activeTabStyle={{
-                              backgroundColor: '#201D41',
-                            }}
-                            tabStyle={{ backgroundColor: '#FFFFFF' }}
-                          >
-                            <ContractorProject projects={projects} />
-                          </Tab>
-                          <Tab
-                            heading="Your Proposals"
-                            textStyle={{ color: '#B1BAD2', fontSize: 14 }}
-                            activeTextStyle={{ color: '#fff', fontSize: 14 }}
-                            activeTabStyle={{ backgroundColor: '#201D41' }}
-                            tabStyle={{ backgroundColor: '#FFFFFF' }}
-                          >
-                            <Proposals projects={projects} />
-                          </Tab>
-                        </Tabs>
-                 
+                          <ContractorProject projects={projects} />
+                        </Tab>
+                        <Tab
+                          heading="Your Proposals"
+                          textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                          activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                          activeTabStyle={{ backgroundColor: '#201D41' }}
+                          tabStyle={{ backgroundColor: '#FFFFFF' }}
+                        >
+                          <Proposals projects={projects} />
+                        </Tab>
+                      </Tabs>
                     ) : (
-                      <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
-                        <View>
-                          <View style={ExtStyle.flex1}>
-                            <SingularProject
-                              leftText="Projects you evaluate"
-                              // rightText="See all"
-                              projects={projects}
-                            />
+                      <ScrollView style={{ flex: 1 }} contentContainerstyle={{ flexGrow: 1 }}>
+                        {projects.length === 0 ? (
+                          <View style={styles.subContainer}>
+                            <View>
+                              <Image source={require('../../assets/Illustration.png')} />
+                            </View>
+                            <View style={styles.otherContainer}>
+                              <Text style={styles.emptyText}> You haven't been </Text>
+                              <Text style={styles.emptyText}> added to  any project yet. </Text>
+                            </View>
                           </View>
-
-                          <View style={ExtStyle.flex1}>
-                            <SingularProject
-                              leftText="Projects that may interest you"
-                              // rightText="Edit interest"
-                              projects={projects}
-                            />
+                        ) : (
+                          <View>
+                            <View style={ExtStyle.flex1}>
+                              <SingularProject
+                                leftText="Projects you evaluate"
+                                // rightText="See all"
+                                projects={projects}
+                              />
+                            </View>
+                            <View style={ExtStyle.flex1}>{this.renderButton()}</View>
                           </View>
-
-                          <View style={ExtStyle.flex1}>
-                            <SingularProject
-                              leftText="Bookmarks"
-                              // rightText="See all"
-                              projects={projects}
-                            />
-                          </View>
-                          <View style={ExtStyle.flex1}>{this.renderButton()}</View>
-                        </View>
+                        )}
                       </ScrollView>
                     )}
                   </Fragment>
@@ -303,12 +302,16 @@ class Project extends Component {
             )}
           </Fragment>
         </ScrollView>
-        <TouchableOpacity
-          onPress={() => NavigationService.navigate('CreateProject')}
-          style={styles.floatingButton}
-        >
-          <Image source={require('../../assets/plus.png')} />
-        </TouchableOpacity>
+        <Fragment>
+          {userRole !== 'evaluator' ? (
+            <TouchableOpacity
+              onPress={() => NavigationService.navigate('CreateProject')}
+              style={styles.floatingButton}
+            >
+              <Image source={require('../../assets/plus.png')} />
+            </TouchableOpacity>
+          ) : null}
+        </Fragment>
       </View>
     );
   }

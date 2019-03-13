@@ -84,6 +84,7 @@ const styles = StyleSheet.create({
   },
   fs12: {
     fontSize: 12,
+    color: 'red',
   },
   bottomBottom: {
     flex: 1,

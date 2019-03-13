@@ -1,8 +1,18 @@
-import React, { Component } from 'react';
-import { View, StyleSheet, Dimensions, ScrollView, Picker } from 'react-native';
+import React, { Component,Fragment } from 'react';
+import {
+  View,
+  StyleSheet,
+  Dimensions,
+  ScrollView,
+  Picker,
+  Image,
+  TouchableOpacity,
+} from 'react-native';
+import ImagePicker from 'react-native-image-picker';
+import NavigationService from '../../services/NavigationService';
 import Box from './OverviewComp/Box';
 import StandardText from '../../components/StandardText';
-import { WHITE } from '../../utils/constants';
+import { WHITE, YELLOW } from '../../utils/constants';
 import ExtStyle from '../../utils/styles';
 import { firstLetterCapital } from '../../utils/helpers';
 import Text from '../../components/Text';
@@ -53,66 +63,122 @@ const styles = StyleSheet.create({
     borderColor: '#B1BAD2',
     width: width / 1.1,
   },
+  floatingButton: {
+    backgroundColor: YELLOW,
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    alignSelf: 'flex-end',
+    // flex: 1,
+    position: 'absolute',
+    top: 35,
+    right: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
+
+const options = {
+  title: 'Select Avatar',
+  storageOptions: {
+    skipBackup: true,
+    // path: 'images',
+  },
+};
 
 class Overview extends Component {
   state = {
     filterBy: 1,
   };
 
+  uploadFile = () => {
+    // Launch Camera:
+    ImagePicker.launchCamera(options, response => {
+      // Same code as in above section!
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        const source = { uri: response.uri };
+
+        // You can also display the image using data:
+        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+        alert('image uploaded successfully');
+        this.setState({
+          avatarSource: source,
+        });
+      }
+    });
+  };
+
   render() {
     const { filterBy } = this.state;
-    const { project } = this.props;
+    const { project, userRole } = this.props;
     return (
-      <ScrollView style={styles.container} contentContainerStyle={ExtStyle.flexGrow}>
-        <View style={styles.topContainer}>
-          <Text style={styles.topTextContainer}>{firstLetterCapital(project.description)}</Text>
-        </View>
-        <View style={styles.pt10}>
-          {/* <CalendarBox /> */}
+      <View style={{ flex: 1 }}>
+        <ScrollView style={styles.container} contentContainerStyle={ExtStyle.flexGrow}>
+          <View style={styles.topContainer}>
+            <Text style={styles.topTextContainer}>{firstLetterCapital(project.description)}</Text>
+          </View>
 
-          <Picker
-            style={{
-              height: height / 15,
-              width: width / 2,
-            }}
-            selectedValue={filterBy}
-            onValueChange={filterBy => this.setState({ filterBy })}
-          >
-            <Picker.Item label="Last 30 days" value="01" />
-            <Picker.Item label="Last 60 days" value="02" />
-            <Picker.Item label="Forever" value="03" />
-          </Picker>
-        </View>
-        <StandardText
-          text="Project Health Overview"
-          viewStyle={styles.healthContainer}
-          textStyle={styles.text}
-        />
-        <Box
-          upText="Tasks Completed"
-          secondTextLeft="13"
-          //  secondTextRight="+6.9%"
-        />
-        <Box
-          upText="Progress"
-          secondTextLeft="70%"
-          // secondTextRight="+12.4%"
-        />
+          <View style={styles.pt10}>
+            {/* <CalendarBox /> */}
 
-        <Box
-          upText="Total funds spent"
-          secondTextLeft="$1595"
-          //  secondTextRight="+3.2%"
-        />
+            <Picker
+              style={{
+                height: height / 15,
+                width: width / 2,
+              }}
+              selectedValue={filterBy}
+              onValueChange={filterBy => this.setState({ filterBy })}
+            >
+              <Picker.Item label="Last 30 days" value="01" />
+              <Picker.Item label="Last 60 days" value="02" />
+              <Picker.Item label="Forever" value="03" />
+            </Picker>
+          </View>
+          <StandardText
+            text="Project Health Overview"
+            viewStyle={styles.healthContainer}
+            textStyle={styles.text}
+          />
+          <Box
+            upText="Tasks Completed"
+            secondTextLeft="13"
+            //  secondTextRight="+6.9%"
+          />
+          <Box
+            upText="Progress"
+            secondTextLeft="70%"
+            // secondTextRight="+12.4%"
+          />
 
-        <Box
-          upText="Budget used"
-          secondTextLeft="70%"
-          // secondTextRight="+12.4%"
-          lastText="Total budget"
-        />
-      </ScrollView>
+          <Box
+            upText="Total funds spent"
+            secondTextLeft="$1595"
+            //  secondTextRight="+3.2%"
+          />
+
+          <Box
+            upText="Budget used"
+            secondTextLeft="70%"
+            // secondTextRight="+12.4%"
+            lastText="Total budget"
+          />
+        </ScrollView>
+        <Fragment>
+          {userRole === 'funder' ? null : (
+            <View style={styles.floatingButton}>
+              <TouchableOpacity onPress={() => this.uploadFile()}>
+                <Image source={require('../../../assets/plus.png')} />
+              </TouchableOpacity>
+            </View>
+          )}
+        </Fragment>
+      </View>
     );
   }
 }
