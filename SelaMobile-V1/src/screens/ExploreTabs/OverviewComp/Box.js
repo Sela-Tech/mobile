@@ -1,8 +1,9 @@
 import React, { Fragment, Component } from 'react';
-import { View, Text, Image, Dimensions, StyleSheet, processColor } from 'react-native';
+import { View, Image, Dimensions, StyleSheet, processColor } from 'react-native';
 import { PieChart, BarChart, Grid, ProgressCircle } from 'react-native-svg-charts';
 import PropTypes from 'prop-types';
-import { Circle, G, Line } from 'react-native-svg';
+import { Circle, G, Line, Text } from 'react-native-svg';
+import PureChart from 'react-native-pure-chart';
 import TextN from '../../../components/Text';
 import { YELLOW } from '../../../utils/constants';
 
@@ -268,10 +269,157 @@ export default class Box extends Component {
     // });
     // console.log('data', data)
     // const deviceWidth = Dimensions.get('window').width
+
+    // const piedata = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80];
+
+    const piedata = [
+      {
+        key: 1,
+        amount: 750,
+        svg: { fill: 'blue' },
+      },
+      {
+        key: 2,
+        amount: 500,
+        svg: { fill: '#990' },
+      },
+      {
+        key: 3,
+        amount: 400,
+        svg: { fill: '#c61aff' },
+      },
+      {
+        key: 4,
+        amount: 950,
+        svg: { fill: '#d96' },
+      },
+      {
+        key: 5,
+        amount: 350,
+        svg: { fill: 'red' },
+      },
+    ];
+
+    const randomColor = () =>
+      `#${((Math.random() * 0xffffff) << 0).toString(16)}000000`.slice(0, 7);
+
+    const pieData = piedata
+      .filter(value => value > 0)
+      .map((value, index) => ({
+        value,
+        svg: {
+          fill: randomColor(),
+          onPress: () => console.log('press', index),
+        },
+        key: `pie-${index}`,
+      }));
+
+    // const Labels = ({ slices }) =>
+    //   slices.map((slice, index) => {
+    //     const { labelCentroid, pieCentroid, data } = slice;
+    //     return (
+    //       <G key={index}>
+    //         <Line
+    //           x1={labelCentroid[0]}
+    //           y1={labelCentroid[1]}
+    //           x2={pieCentroid[0]}
+    //           y2={pieCentroid[1]}
+    //           stroke={data.svg.fill}
+    //         />
+    //         <Circle cx={labelCentroid[0]} cy={labelCentroid[1]} r={15} fill={data.svg.fill} />
+    //       </G>
+    //     );
+    //   });
+
+    const Labels = ({ slices, height, width }) =>
+      slices.map((slice, index) => {
+        const { labelCentroid, pieCentroid, data } = slice;
+        return (
+          <Text
+            key={index}
+            x={pieCentroid[0]}
+            y={pieCentroid[1]}
+            fill="white"
+            textAnchor="middle"
+            alignmentBaseline="middle"
+            fontSize={24}
+            stroke="black"
+            strokeWidth={0.2}
+          >
+            $ {data.amount}
+          </Text>
+        );
+      });
+
+    const sampleData = [
+      {
+        seriesName: 'series1',
+        data: [
+          { x: '2018-02-01', y: 30 },
+          { x: '2018-02-02', y: 200 },
+          { x: '2018-02-03', y: 170 },
+          { x: '2018-02-04', y: 250 },
+          { x: '2018-02-05', y: 10 },
+        ],
+        color: '#297AB1',
+      },
+      {
+        seriesName: 'series2',
+        data: [
+          { x: '2018-02-01', y: 20 },
+          { x: '2018-02-02', y: 100 },
+          { x: '2018-02-03', y: 140 },
+          { x: '2018-02-04', y: 550 },
+          { x: '2018-02-05', y: 40 },
+        ],
+        color: '#F2994A',
+      },
+    ];
+
+    const sampleData2 = [
+      {
+        value: 500,
+        label: 'Payment for evlauation agent',
+        color: YELLOW,
+      },
+      {
+        value: 400,
+        label: 'Miscellaneous expenses',
+        color: 'blue',
+      },
+      {
+        value: 325,
+        label: 'Support',
+        color: 'green',
+      },
+    ];
+
+    const databar = [
+      { x: '1', y: 300 },
+      { x: '2', y: 150 },
+      { x: '3', y: 120 },
+      { x: '4', y: 230 },
+      { x: '7', y: 600 },
+       { x: '8', y: 190 },
+      { x: '10', y: 930 },
+      { x: '9', y: 60 },
+    ];
     if (upText === 'Tasks Completed') {
       return (
-        <View style={styles.container}>
-          <Image
+        <View style={{}}>
+          <PureChart data={databar} type="bar" />
+          {/* <PureChart data={sampleData2} type="pie" /> */}
+          {/* <PieChart
+            style={{ height: 200 }}
+            data={piedata}
+            valueAccessor={({ item }) => item.amount}
+            // data={data}
+            spacing={0}
+            outerRadius="95%"
+          >
+            <Labels />
+          </PieChart> */}
+          {/* <Image
             style={{
               flex: 1,
               width: undefined,
@@ -284,14 +432,15 @@ export default class Box extends Component {
             resizeMode="contain"
             // source={require('../../../../assets/charts/Bar_Chart.png')}
             source={require('../../../../assets/charts/task.png')}
-          />
+          /> */}
         </View>
       );
     }
     if (upText === 'Progress') {
       return (
         <View style={styles.container}>
-          <Image
+          <PureChart data={sampleData} type="line" />
+           {/* <Image
             style={{
               flex: 1,
               width: undefined,
@@ -303,14 +452,19 @@ export default class Box extends Component {
             }}
             // source={require('../../../../assets/charts/Bar_Chart.png')}
             source={require('../../../../assets/charts/progress.png')}
-          />
+          />  */}
         </View>
       );
     }
     if (upText === 'Total funds spent') {
       return (
-        <View style={styles.container}>
-          <Image
+        <View style={{justifyContent: 'center', alignItems: 'center' }}>
+    <View style={{ marginBottom: 5}}> 
+      <TextN style ={{ fontSize: 20}}>  Transactions</TextN>
+    </View>
+
+          <PureChart data={sampleData2} type="pie" />
+         {/* <Image
             style={{
               flex: 1,
               width: undefined,
@@ -322,7 +476,7 @@ export default class Box extends Component {
             }}
             // source={require('../../../../assets/charts/Bar_Chart.png')}
             source={require('../../../../assets/charts/pie_chart.png')}
-          />
+          />  */}
         </View>
       );
     }

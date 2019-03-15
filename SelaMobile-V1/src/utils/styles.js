@@ -60,6 +60,12 @@ const styles = StyleSheet.create({
     marginTop: '2%',
     marginLeft: '2%',
   },
+  pt5: {
+    paddingTop: 5,
+  },
+  ptL: {
+    paddingLeft: 5,
+  },
 });
 
 export default styles;
