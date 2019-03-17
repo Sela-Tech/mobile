@@ -4,10 +4,9 @@ import Button from '../Button';
 import Text from '../Text';
 import RequestDetails from './RequestDetails';
 import EvidenceRequestModal from './EvidenceRequestModal';
-import TableRequestModal from './TableRequestModal';
 import { WHITE } from '../../utils/constants';
 
-const { height, width } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     // justifyContent: 'center',
@@ -41,16 +40,7 @@ export default class Request extends Component {
     if (empty) {
       return (
         <View style={styles.container}>
-          {/* <EvidenceRequestModal
-          formData={this.state}
-          visibility={showModal}
-          toggleModal={this.toggleModal}
-          loading={loading}
-          addRequest={this.addRequest}
-          updateInput={this.updateInput}
-        /> */}
-
-          <TableRequestModal
+          <EvidenceRequestModal
             formData={this.state}
             visibility={showModal}
             toggleModal={this.toggleModal}
@@ -58,7 +48,6 @@ export default class Request extends Component {
             addRequest={this.addRequest}
             updateInput={this.updateInput}
           />
-
           <View style={{ marginTop: '10%' }}>
             <Button
               fn={() => this.toggleModal()}
@@ -78,6 +67,14 @@ export default class Request extends Component {
     }
     return (
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+        <EvidenceRequestModal
+          formData={this.state}
+          visibility={showModal}
+          toggleModal={this.toggleModal}
+          loading={loading}
+          addRequest={this.addRequest}
+          updateInput={this.updateInput}
+        />
         <View style={{ marginTop: '8%' }}>
           <Button
             fn={() => this.toggleModal()}

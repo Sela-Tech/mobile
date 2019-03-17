@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
     color: '#3D4851',
   },
 });
-export default class TableeRequestModal extends Component {
+export default class TableRequestModal extends Component {
   state = {
     loading: false,
     fieldTitle: '',
@@ -80,7 +80,7 @@ export default class TableeRequestModal extends Component {
               <Image source={require('../../../assets/close_icon.png')} />
             </TouchableOpacity>
           </View>
-          <View style={{ paddingVertical: 15, flex: 3, paddingHorizontal: 10 }}>
+          <View style={{ paddingVertical: 15, flex: 5, paddingHorizontal: 10 }}>
             <View style={styles.mv5}>
               <Text style={styles.textStyle}> Table </Text>
             </View>

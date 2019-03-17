@@ -313,8 +313,8 @@ class CreateProject extends Component {
         name: 'No Poverty',
       },
       {
-        id: 'Infrastucture',
-        name: 'Infrastucture',
+        id: 'Infrastructure',
+        name: 'Infrastructure',
       },
       {
         id: 'Zero Hunger',

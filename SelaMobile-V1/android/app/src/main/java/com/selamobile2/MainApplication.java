@@ -3,6 +3,7 @@ package com.selamobile2;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.brentvatne.react.ReactVideoPackage;
 import org.wonday.pdf.RCTPdfView;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.airbnb.android.react.maps.MapsPackage;
@@ -34,10 +35,9 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new RCTPdfView(),
-            new RNFetchBlobPackage(),
-            new MapsPackage(), new VectorIconsPackage(), new SvgPackage(),
-          new ImagePickerPackage(), new RNGooglePlacesPackage(), //new MPAndroidChartPackage(),
+            new ReactVideoPackage(), new RCTPdfView(), new RNFetchBlobPackage(),
+          new ReactVideoPackage(), new MapsPackage(), new VectorIconsPackage(), new SvgPackage(),
+          new ImagePickerPackage(), new RNGooglePlacesPackage(), // new MPAndroidChartPackage(),
           new RNGestureHandlerPackage());
     }
 
