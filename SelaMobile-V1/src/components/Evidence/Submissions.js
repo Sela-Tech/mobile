@@ -1,22 +1,52 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, ScrollView } from 'react-native';
+import { Tabs, Tab } from 'native-base';
+import TaskLevelSubmission from './TaskLevelSubmission';
+import ProjectLevelSubmission from './ProjectLevelSubmission';
 import Button from '../Button';
 import Text from '../Text';
+import ExtStyles from '../../utils/styles';
+import { WHITE } from '../../utils/constants';
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
     flex: 1,
   },
 });
 
 const Submissions = () => (
-  <View style={styles.container}>
-    <Button text="Add Submissions" />
-    <View>
-      <Text>You have not made any evidence Submissions</Text>
-    </View>
-  </View>
+  <ScrollView style={styles.container} contentContainerStyle={ExtStyles.flexGrow}>
+    <Tabs
+      tabBarUnderlineStyle={{
+        backgroundColor: '#201D41',
+      }}
+    >
+      <Tab
+        heading="Project level"
+        textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+        activeTextStyle={{ color: '#B1BAD2', fontSize: 14 }}
+        activeTabStyle={{
+          backgroundColor: WHITE,
+        }}
+        tabStyle={{ backgroundColor: '#F5F5F8' }}
+      >
+        <ProjectLevelSubmission />
+      </Tab>
+
+      <Tab
+        heading="Task level"
+        textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+        activeTextStyle={{ color: '#B1BAD2', fontSize: 14 }}
+        activeTabStyle={{
+          backgroundColor: WHITE,
+        }}
+        tabStyle={{ backgroundColor: '#F5F5F8' }}
+      >
+        <TaskLevelSubmission />
+      </Tab>
+    </Tabs>
+  </ScrollView>
 );
 export default Submissions;

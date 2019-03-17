@@ -67,8 +67,8 @@ export default class TableeRequestModal extends Component {
   };
 
   render() {
-    const { loading, toggleModal, fieldTitle, responseType } = this.state;
-    const { addRequest, visibility } = this.props;
+    const { loading, fieldTitle, responseType } = this.state;
+    const { addRequest, visibility, toggleModal } = this.props;
     return (
       <Modal isVisible={visibility}>
         <View style={{ backgroundColor: WHITE, marginBottom: 10, height: height / 1.5 }}>

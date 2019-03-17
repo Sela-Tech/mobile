@@ -1,12 +1,10 @@
 import React from 'react';
-import { StyleSheet, View, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Tabs, Tab } from 'native-base';
 import Request from '../../components/Evidence/Request';
 import Submissions from '../../components/Evidence/Submissions';
 import ExtStyles from '../../utils/styles';
-import { WHITE } from '../../utils/constants';
 
-const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -30,7 +28,7 @@ const Evidence = ({}) => (
         activeTabStyle={{
           backgroundColor: '#201D41',
         }}
-        tabStyle={{ backgroundColor: '#FFFFFF' }}
+        tabStyle={{ backgroundColor: '#F5F5F8' }}
       >
         <Request />
       </Tab>
@@ -42,7 +40,7 @@ const Evidence = ({}) => (
         activeTabStyle={{
           backgroundColor: '#201D41',
         }}
-        tabStyle={{ backgroundColor: '#FFFFFF' }}
+        tabStyle={{ backgroundColor: '#F5F5F8' }}
       >
         <Submissions />
       </Tab>

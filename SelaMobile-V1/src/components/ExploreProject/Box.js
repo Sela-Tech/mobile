@@ -5,7 +5,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import Text from '../Text';
 import Tag from '../Tag';
 import { isAndroid, projectStatusTextColor, tagsColor } from '../../utils/helpers';
-import { YELLOW, WHITE } from '../../utils/constants';
+import {  WHITE } from '../../utils/constants';
 // import { projectStatusTextColor, tagsColor } from '../../utils/helpers';
 
 const { height, width } = Dimensions.get('window');
