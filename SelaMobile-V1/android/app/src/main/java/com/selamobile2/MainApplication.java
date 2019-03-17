@@ -35,9 +35,13 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(new MainReactPackage(),
-            new ReactVideoPackage(), new RCTPdfView(), new RNFetchBlobPackage(),
-          new ReactVideoPackage(), new MapsPackage(), new VectorIconsPackage(), new SvgPackage(),
-          new ImagePickerPackage(), new RNGooglePlacesPackage(), // new MPAndroidChartPackage(),
+          // new RNInstabugReactnativePackage.Builder("a1713df89289cd1a3490a23f2a1c8208",
+          // MainApplication.this)
+          // .setInvocationEvent("shake").setPrimaryColor("#1D82DC").setFloatingEdge("left")
+          // .setFloatingButtonOffsetFromTop(250).build(),
+          new ReactVideoPackage(), new RCTPdfView(), new RNFetchBlobPackage(), new ReactVideoPackage(),
+          new MapsPackage(), new VectorIconsPackage(), new SvgPackage(), new ImagePickerPackage(),
+          new RNGooglePlacesPackage(), // new MPAndroidChartPackage(),
           new RNGestureHandlerPackage());
     }
 

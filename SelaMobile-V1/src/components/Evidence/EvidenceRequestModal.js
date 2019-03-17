@@ -145,7 +145,7 @@ export default class EvidenceRequestModal extends Component {
               </TouchableOpacity>
             </View>
             <View style={styles.middleContainer}>
-              <View style={{ flex: 1, height: height /10, }}>
+              <View style={{ flex: 1, height: height /10 }}>
                 <CheckBoxContainer level="Task" />
                 <CheckBoxContainer level="Project" />
               </View>
@@ -305,7 +305,7 @@ export default class EvidenceRequestModal extends Component {
                 style={styles.buttonStyle}
               />
             </View>
-            <View  style ={{ flex: 1,marginTop: 10}}/>
+            <View style={{ flex: 1,marginTop: 10}}/>
           </ScrollView>
         </KeyboardAvoidingView>
       </Modal>

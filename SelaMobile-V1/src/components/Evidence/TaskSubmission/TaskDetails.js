@@ -4,12 +4,15 @@ import InnerContent from './InnerContent';
 import Text from '../../Text';
 
 const styles = StyleSheet.create({
-  container: {},
+  subContainer: {
+    marginVertical: 5,
+    flexDirection: 'row',
+  },
 });
 
 const TaskDetails = ({ toggleModal }) => (
-  <View style={styles.container}>
-    <View style={{ marginVertical: 5, flexDirection: 'row' }}>
+  <View>
+    <View style={styles.subContainer}>
       <Text> 1 </Text>
       <Text style={{ fontSize: 16, color: '#0A2C56' }}> MileStone 1</Text>
     </View>

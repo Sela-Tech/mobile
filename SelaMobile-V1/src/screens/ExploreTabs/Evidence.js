@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Tabs, Tab } from 'native-base';
 import Request from '../../components/Evidence/Request';
 import Submissions from '../../components/Evidence/Submissions';
@@ -10,11 +10,10 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 12,
     marginVertical: 12,
-    // backgroundColor: 'red',
   },
 });
 
-const Evidence = ({}) => (
+const Evidence = () => (
   <ScrollView style={styles.container} contentContainerStyle={ExtStyles.flexGrow}>
     <Tabs
       tabBarUnderlineStyle={{

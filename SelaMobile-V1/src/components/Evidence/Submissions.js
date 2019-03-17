@@ -1,17 +1,13 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { StyleSheet, ScrollView } from 'react-native';
 import { Tabs, Tab } from 'native-base';
 import TaskLevelSubmission from './TaskLevelSubmission';
 import ProjectLevelSubmission from './ProjectLevelSubmission';
-import Button from '../Button';
-import Text from '../Text';
 import ExtStyles from '../../utils/styles';
 import { WHITE } from '../../utils/constants';
 
 const styles = StyleSheet.create({
   container: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
     flex: 1,
   },
 });

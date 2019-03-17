@@ -28,7 +28,7 @@ const tabBarOptions = {
   labelStyle: {
     // fontSize: 12,
     fontWeight: '400',
-    fontFamily: isAndroid ? 'ProximaNova' : null,
+    fontFamily: isAndroid ? 'Acumin-RPro' : null,
   },
   style: {
     backgroundColor: '#fff',
@@ -69,9 +69,9 @@ class Navigator extends Component {
     };
 
     let userRole;
-    if (userRoleObj.isFunder) {
+    if (userRoleObj && userRoleObj.isFunder) {
       userRole = 'funder';
-    } else if (userRoleObj.isContractor) {
+    } else if (userRoleObj && userRoleObj.isContractor) {
       userRole = 'contractor';
     } else {
       userRole = 'evaluator';
@@ -89,9 +89,9 @@ class Navigator extends Component {
           StakeHolders: {
             screen: () => <StakeHolders userRole={userRole} project={project} />,
           },
-          Evidence: {
-            screen: () => <Evidence userRole={userRole} project={project} />,
-          },
+          // Evidence: {
+          //   screen: () => <Evidence userRole={userRole} project={project} />,
+          // },
           Tasks: {
             screen: () => <Tasks userRole={userRole} project={project} />,
           },
@@ -101,9 +101,9 @@ class Navigator extends Component {
           Overview: {
             screen: () => <Overview userRole={userRole} project={project} />,
           },
-          Location: {
-            screen: () => <Location userRole={userRole} project={project} />,
-          },
+          // Location: {
+          //   screen: () => <Location userRole={userRole} project={project} />,
+          // },
         },
         {
           tabBarOptions,
@@ -122,9 +122,9 @@ class Navigator extends Component {
               <StakeHolders userRole={userRole} navigation={navigation} project={project} />
             ),
           },
-          Evidence: {
-            screen: () => <Evidence userRole={userRole} project={project} />,
-          },
+          // Evidence: {
+          //   screen: () => <Evidence userRole={userRole} project={project} />,
+          // },
           Updates: {
             screen: () => <Updates userRole={userRole} project={project} />,
           },

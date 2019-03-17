@@ -3,9 +3,12 @@ import { View, StyleSheet } from 'react-native';
 import TaskDetails from './TaskSubmission/TaskDetails';
 import Text from '../Text';
 import TaskLevelDetails from './TaskLevelDetails';
+import ExtStyles from '../../utils/styles';
 
 const styles = StyleSheet.create({
-  container: {},
+  viewContainer: {
+    marginTop: '10%',
+  },
   taskDetailsContainer: {},
 });
 
@@ -27,7 +30,7 @@ export default class TaskLevelSubmission extends Component {
       );
     }
     return (
-      <View style={{ flex: 1 }}>
+      <View style={ExtStyles.flex1}>
         <TaskDetails toggleModal={this.toggleModal} />
         <TaskLevelDetails visibility={modalVisibility} toggleModal={this.toggleModal} />
       </View>

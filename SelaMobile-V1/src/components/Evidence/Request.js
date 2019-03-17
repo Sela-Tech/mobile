@@ -9,8 +9,6 @@ import { WHITE } from '../../utils/constants';
 const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
     flex: 1,
   },
 });
@@ -28,11 +26,10 @@ export default class Request extends Component {
 
   addRequest = () => {
     this.setState(prevState => ({ showModal: !prevState.showModal }));
-    alert('success');
   };
 
-  updateInput = (ref, val) => {
-    console.log('ref', ref);
+  updateInput = val => {
+    console.log('ref', val);
   };
 
   render() {
@@ -87,7 +84,6 @@ export default class Request extends Component {
         </View>
         <View style={{ marginVertical: 10 }}>
           <RequestDetails title="Results of laboratory analysis" />
-
           <RequestDetails title="Community response to project" />
         </View>
       </ScrollView>

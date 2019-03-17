@@ -1,4 +1,4 @@
-import React, { Component,Fragment } from 'react';
+import React, { Component, Fragment } from 'react';
 import {
   View,
   StyleSheet,
@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-import NavigationService from '../../services/NavigationService';
+// import NavigationService from '../../services/NavigationService';
 import Box from './OverviewComp/Box';
 import StandardText from '../../components/StandardText';
 import { WHITE, YELLOW } from '../../utils/constants';
@@ -69,7 +69,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     alignSelf: 'flex-end',
-    // flex: 1,
     position: 'absolute',
     top: 35,
     right: 10,
@@ -94,7 +93,6 @@ class Overview extends Component {
   uploadFile = () => {
     // Launch Camera:
     ImagePicker.launchCamera(options, response => {
-      // Same code as in above section!
       if (response.didCancel) {
         console.log('User cancelled image picker');
       } else if (response.error) {
@@ -125,15 +123,13 @@ class Overview extends Component {
           </View>
 
           <View style={styles.pt10}>
-            {/* <CalendarBox /> */}
-
             <Picker
               style={{
                 height: height / 15,
                 width: width / 2,
               }}
               selectedValue={filterBy}
-              onValueChange={filterBy => this.setState({ filterBy })}
+              onValueChange={val => this.setState({ filterBy: val })}
             >
               <Picker.Item label="Last 30 days" value="01" />
               <Picker.Item label="Last 60 days" value="02" />
@@ -145,29 +141,12 @@ class Overview extends Component {
             viewStyle={styles.healthContainer}
             textStyle={styles.text}
           />
-          <Box
-            upText="Tasks Completed"
-            secondTextLeft="13"
-            //  secondTextRight="+6.9%"
-          />
-          <Box
-            upText="Progress"
-            secondTextLeft="70%"
-            // secondTextRight="+12.4%"
-          />
+          <Box upText="Tasks Completed" secondTextLeft="13" />
+          <Box upText="Progress" secondTextLeft="70%" />
 
-          <Box
-            upText="Total funds spent"
-            secondTextLeft="$1595"
-            //  secondTextRight="+3.2%"
-          />
+          <Box upText="Total funds spent" secondTextLeft="$1595" />
 
-          <Box
-            upText="Budget used"
-            secondTextLeft="70%"
-            // secondTextRight="+12.4%"
-            lastText="Total budget"
-          />
+          <Box upText="Budget used" secondTextLeft="70%" lastText="Total budget" />
         </ScrollView>
         <Fragment>
           {userRole === 'funder' ? null : (

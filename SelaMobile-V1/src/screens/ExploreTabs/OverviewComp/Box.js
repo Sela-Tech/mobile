@@ -400,7 +400,7 @@ export default class Box extends Component {
       { x: '3', y: 120 },
       { x: '4', y: 230 },
       { x: '7', y: 600 },
-       { x: '8', y: 190 },
+      { x: '8', y: 190 },
       { x: '10', y: 930 },
       { x: '9', y: 60 },
     ];
@@ -440,7 +440,7 @@ export default class Box extends Component {
       return (
         <View style={styles.container}>
           <PureChart data={sampleData} type="line" />
-           {/* <Image
+          {/* <Image
             style={{
               flex: 1,
               width: undefined,
@@ -458,13 +458,13 @@ export default class Box extends Component {
     }
     if (upText === 'Total funds spent') {
       return (
-        <View style={{justifyContent: 'center', alignItems: 'center' }}>
-    <View style={{ marginBottom: 5}}> 
-      <TextN style ={{ fontSize: 20}}>  Transactions</TextN>
-    </View>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+          <View style={{ marginBottom: 5 }}>
+            <TextN style={{ fontSize: 20 }}> Transactions</TextN>
+          </View>
 
           <PureChart data={sampleData2} type="pie" />
-         {/* <Image
+          {/* <Image
             style={{
               flex: 1,
               width: undefined,
@@ -501,9 +501,16 @@ export default class Box extends Component {
   }
 }
 
+
+
+Box.defaultProps = {};
+
+Box.propTypes = {};
+
+
 // );
 
-{
+// {
   /* <PieChart
   style={{ height: 200 }}
   valueAccessor={({ item }) => item.amount}
@@ -513,15 +520,11 @@ export default class Box extends Component {
 >
   <Labels />
 </PieChart> */
-}
-
-Box.defaultProps = {};
-
-Box.propTypes = {};
+// }
 
 // export default Box;
 
-{
+// {
   /* <PieChart
   style={styles.chart}
   logEnabled={true}
@@ -547,9 +550,9 @@ Box.propTypes = {};
   maxAngle={350}
   onChange={(event) => console.log(event.nativeEvent)}
 /> */
-}
+// }
 
-{
+// {
   /* <View>
   <PieChart
     style={{ height: 200 }}
@@ -570,7 +573,7 @@ Box.propTypes = {};
     {value}
   </Text>
 </View> */
-}
+// }
 
 // <View style={styles.viewStyle2}>
 //   <TextN style={styles.text}>

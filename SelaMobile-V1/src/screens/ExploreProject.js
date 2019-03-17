@@ -277,27 +277,31 @@ class ExploreProject extends Component {
                 <View style={styles.buttonPosition}>
                   <Button
                     fn={() =>
-                      userRole !== 'evaluator' ?   NavigationService.navigate('AddProposal', {
-                       projectId: projectInfo._id,
-                        userId,
-                      }) : console.log('')
+                      userRole !== 'evaluator'
+                        ? NavigationService.navigate('AddProposal', {
+                            projectId: projectInfo &&  projectInfo._id,
+                            userId,
+                          })
+                        : console.log('')
                     }
                     style={styles.bottomButton.view}
                     textStyle={styles.bottomButton.text}
-                    text={ userRole !== 'evaluator' ?"Send Proposal" : "Request to Join"}
+                    text={userRole !== 'evaluator' ? 'Send Proposal' : 'Request to Join'}
                     textColor={WHITE}
                   />
                 </View>
               </View>
               <View style={[ExtStyle.flex3]}>
                 <Header
-                  projectLocationText={projectInfo.location.name}
-                  projectStatusText={projectInfo.status}
-                  projectTitleText={projectInfo.name}
-                  budgetAmount={projectInfo.goal}
-                  numberOfStakeholders={projectInfo.stakeholders.length}
-                  raisedAmount={projectInfo.raised}
-                  tags={projectInfo.tags}
+                  projectLocationText={
+                    projectInfo && projectInfo.location && projectInfo.location.name
+                  }
+                  projectStatusText={projectInfo && projectInfo.status}
+                  projectTitleText={projectInfo && projectInfo.name}
+                  budgetAmount={projectInfo && projectInfo.goal}
+                  numberOfStakeholders={projectInfo &&  projectInfo.stakeholders && projectInfo.stakeholders.length || []}
+                  raisedAmount={projectInfo && projectInfo.raised}
+                  tags={projectInfo && projectInfo.tags}
                 />
               </View>
               <View style={ExtStyle.flex6}>

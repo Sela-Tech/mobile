@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -13,6 +14,7 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* SelaMobile2Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SelaMobile2Tests.m */; };
 		0B678CD64098482A951586C1 /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5AD1FCDB90364702843E31A9 /* MaterialCommunityIcons.ttf */; };
+		108B55EA7285429987B1D700 /* ProximaNova.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD7308776E684E55B0920B2A /* ProximaNova.ttf */; };
 		10FED67BB8A24FC38B2BD3C5 /* libRNVectorIcons-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 869058F9896D4D8A88CEB5DA /* libRNVectorIcons-tvOS.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -41,6 +43,7 @@
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		3406451C815D40C29642C5A7 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1840A23C369E4CE9A32F6E14 /* FontAwesome5_Regular.ttf */; };
 		36E4A39525984A8B85825D6A /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4846D93F31E9467394A5627A /* FontAwesome5_Solid.ttf */; };
+		44B77CC618BD473489833787 /* Acumin-RPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 77CA48EBBB5E4F5186FF2D8D /* Acumin-RPro.otf */; };
 		530B9599610145C1B4AAB6C7 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9401DAEF9E9E40B39B79F82B /* Roboto.ttf */; };
 		56ECFA9E8F0F412CB573B8C8 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3CCBB26835D54416BA7F1251 /* Feather.ttf */; };
 		5AA2D1BE648F480AB35D7134 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98CF0335CA7740D7A47D29FE /* rubicon-icon-font.ttf */; };
@@ -48,6 +51,7 @@
 		6048058E0D5F45B2B2C56A65 /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9F8F4D41D7874D75AD6CA0C2 /* AntDesign.ttf */; };
 		627B465DD45648A6BB8B8E2F /* libRNSVG-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FCF309E8EBE45B68F85058A /* libRNSVG-tvOS.a */; };
 		664309B8B5E34B4E93DD2DFA /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7BDF5069AD53415D96D66779 /* SimpleLineIcons.ttf */; };
+		66667CEA10FB1F9C007038FA /* Instabug.framework in Embed Instabug Framework */ = {isa = PBXBuildFile; fileRef = 47B1B0A315792EE157FBC8BD /* Instabug.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		76918E73C327C93764BFB44D /* libPods-SelaMobile2-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 071BA8BA10A0E8FF12DE87B2 /* libPods-SelaMobile2-tvOS.a */; };
 		7E5D3E33D4844D0DBBB9DEA6 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CA85A108FA54491D94214E10 /* libRNImagePicker.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -67,9 +71,7 @@
 		EF63D29F1D6D465B9F7573EF /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3E5774711F24E598F1902F2 /* Entypo.ttf */; };
 		F93F8DC3C9DE4297927AFF43 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 392F5CDF0EE345038130B19B /* Octicons.ttf */; };
 		FF63D1BF24C343308580F0C0 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 729D80A304D9409296DAA1FD /* FontAwesome5_Brands.ttf */; };
-		108B55EA7285429987B1D700 /* ProximaNova.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DD7308776E684E55B0920B2A /* ProximaNova.ttf */; };
 		FFBCBF9B08CD4B37AD84AFC6 /* Acumin-ItPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 81E5C93756F54AC782E71A4C /* Acumin-ItPro.otf */; };
-		44B77CC618BD473489833787 /* Acumin-RPro.otf in Resources */ = {isa = PBXBuildFile; fileRef = 77CA48EBBB5E4F5186FF2D8D /* Acumin-RPro.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -427,6 +429,7 @@
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		392F5CDF0EE345038130B19B /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		3CCBB26835D54416BA7F1251 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/native-base/Fonts/Feather.ttf"; sourceTree = "<group>"; };
+		47B1B0A315792EE157FBC8BD /* Instabug.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Instabug.framework; path = "../node_modules/instabug-reactnative/ios/Instabug.framework"; sourceTree = "<group>"; };
 		4846D93F31E9467394A5627A /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		4BE31A4CDEEC4BA1828AF69D /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		5AD1FCDB90364702843E31A9 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
@@ -434,12 +437,14 @@
 		6430A5E6ED855842F3C05489 /* libPods-SelaMobile2-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SelaMobile2-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		729D80A304D9409296DAA1FD /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		732CD69145354002975DC147 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		77CA48EBBB5E4F5186FF2D8D /* Acumin-RPro.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Acumin-RPro.otf"; path = "../assets/fonts/Acumin-RPro.otf"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		7A36377A29BEE6437F141D85 /* Pods-SelaMobile2-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelaMobile2-tvOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SelaMobile2-tvOS/Pods-SelaMobile2-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		7AA6AA318DDC40D2868B1104 /* RNGestureHandler.xcodeproj */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = "wrapper.pb-project"; name = RNGestureHandler.xcodeproj; path = "../node_modules/react-native-gesture-handler/ios/RNGestureHandler.xcodeproj"; sourceTree = "<group>"; };
 		7BD22E2F648B42FA83A9FC07 /* libRNGooglePlaces.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGooglePlaces.a; sourceTree = "<group>"; };
 		7BDF5069AD53415D96D66779 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		7FCF309E8EBE45B68F85058A /* libRNSVG-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNSVG-tvOS.a"; sourceTree = "<group>"; };
+		81E5C93756F54AC782E71A4C /* Acumin-ItPro.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = "Acumin-ItPro.otf"; path = "../assets/fonts/Acumin-ItPro.otf"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
 		845F72BD93938F3CBE3DD9BC /* Pods-SelaMobile2-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SelaMobile2-tvOSTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SelaMobile2-tvOSTests/Pods-SelaMobile2-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		869058F9896D4D8A88CEB5DA /* libRNVectorIcons-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNVectorIcons-tvOS.a"; sourceTree = "<group>"; };
@@ -463,13 +468,11 @@
 		CC5ABCA3CAA245889DCA0097 /* Roboto_medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto_medium.ttf; path = "../node_modules/native-base/Fonts/Roboto_medium.ttf"; sourceTree = "<group>"; };
 		D3E5774711F24E598F1902F2 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		D53460ECAC9C41609179DCFC /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
+		DD7308776E684E55B0920B2A /* ProximaNova.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = undefined; includeInIndex = 0; lastKnownFileType = unknown; name = ProximaNova.ttf; path = ../assets/fonts/ProximaNova.ttf; sourceTree = "<group>"; };
 		E1D51C6C352343FEA9D7ED5D /* proximaNova.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = proximaNova.ttf; path = ../assets/fonts/proximaNova.ttf; sourceTree = "<group>"; };
 		EE80A77D2A3F4461A02E08A7 /* libRNGestureHandler.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNGestureHandler.a; sourceTree = "<group>"; };
 		F374CFC9F24B424A80721167 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
 		FCAE464CE288410C50AC3D8A /* libPods-SelaMobile2Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SelaMobile2Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DD7308776E684E55B0920B2A /* ProximaNova.ttf */ = {isa = PBXFileReference; name = "ProximaNova.ttf"; path = "../assets/fonts/ProximaNova.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		81E5C93756F54AC782E71A4C /* Acumin-ItPro.otf */ = {isa = PBXFileReference; name = "Acumin-ItPro.otf"; path = "../assets/fonts/Acumin-ItPro.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		77CA48EBBB5E4F5186FF2D8D /* Acumin-RPro.otf */ = {isa = PBXFileReference; name = "Acumin-RPro.otf"; path = "../assets/fonts/Acumin-RPro.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1686,6 +1689,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
@@ -1712,6 +1716,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-gesture-handler/ios/**",
