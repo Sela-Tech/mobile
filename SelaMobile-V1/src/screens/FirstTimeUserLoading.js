@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
 export default class FirstTimeUserLoading extends Component {
   async componentDidMount() {
     try {
+      await AsyncStorage.removeItem('newUser');
       await this.getKey();
     } catch (error) {
       this.setState({ error: error.message });

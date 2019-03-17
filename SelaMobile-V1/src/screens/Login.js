@@ -6,6 +6,7 @@ import {
   ScrollView,
   AsyncStorage,
   Keyboard,
+  Dimensions,
 } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -22,6 +23,8 @@ import { isEmail } from '../utils/helpers';
 import { login } from '../../actions/token';
 import { getAccessCredentials } from '../../actions/credentials';
 import ExtStyle from '../utils/styles';
+
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -44,7 +47,7 @@ const styles = StyleSheet.create({
   headerUp: {
     // backgroundColor: 'red',
     // paddingTop: 15,
-    flex: 2,
+    flex: 3,
     justifyContent: 'center',
     alignSelf: 'flex-end',
   },
@@ -90,6 +93,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    // backgroundColor: 'red',
   },
   bottomAbsolute: {
     flexDirection: 'row',
@@ -300,7 +304,7 @@ class Login extends Component {
               <View
                 style={{
                   position: 'absolute',
-                  bottom: keyboard ? -20 : 150,
+                  bottom: keyboard ? -20 : height / 10 ,
                 }}
               >
                 <View style={styles.bottomAbsolute}>
