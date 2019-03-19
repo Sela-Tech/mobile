@@ -44,7 +44,7 @@ const StakeHolders = ({ project, navigation }) => (
           </View>
         ) : (
           <View style={{ flex: 1 }}>
-            {project.stakeholders.map((c, index) => {
+            {[project.stakeholders[0]].map((c, index) => {
               let photoLink = c.user.information.profilePhoto;
               if (photoLink === null) {
                 photoLink = 'https://placeimg.com/640/480/any';
@@ -90,7 +90,7 @@ const StakeHolders = ({ project, navigation }) => (
           </View>
         ) : (
           <View style={{ flex: 1 }}>
-            {project.stakeholders.map((c, index) => {
+            {[project.stakeholders[0]].map((c, index) => {
               let photoLink = c.user.information.profilePhoto;
               if (photoLink === null) {
                 photoLink = 'https://placeimg.com/640/480/any';
@@ -137,7 +137,7 @@ const StakeHolders = ({ project, navigation }) => (
           </View>
         ) : (
           <View style={{ flex: 1 }}>
-            {project.stakeholders.map((c, index) => {
+            {[project.stakeholders[0]].map((c, index) => {
               let photoLink = c.user.information.profilePhoto;
               if (photoLink === null) {
                 photoLink = 'https://placeimg.com/640/480/any';
@@ -183,7 +183,7 @@ const StakeHolders = ({ project, navigation }) => (
           </View>
         ) : (
           <View style={{ flex: 1 }}>
-            {project.stakeholders.map((c, index) => {
+            {[project.stakeholders[0]].map((c, index) => {
               let photoLink = c.user.information.profilePhoto;
               if (photoLink === null) {
                 photoLink = 'https://placeimg.com/640/480/any';

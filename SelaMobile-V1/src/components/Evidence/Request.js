@@ -33,6 +33,7 @@ export default class Request extends Component {
   };
 
   render() {
+    const { userRole } = this.props;
     const { showModal, loading, empty } = this.state;
     if (empty) {
       return (
@@ -63,7 +64,7 @@ export default class Request extends Component {
       );
     }
     return (
-      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView style={{ flex: 1, marginHorizontal: 10 }} contentContainerStyle={{ flexGrow: 1 }}>
         <EvidenceRequestModal
           formData={this.state}
           visibility={showModal}
@@ -72,7 +73,7 @@ export default class Request extends Component {
           addRequest={this.addRequest}
           updateInput={this.updateInput}
         />
-        <View style={{ marginTop: '8%' }}>
+        {/* <View style={{ marginTop: '8%' }}>
           <Button
             fn={() => this.toggleModal()}
             style={{
@@ -81,7 +82,7 @@ export default class Request extends Component {
             textColor={WHITE}
             text="Add Request"
           />
-        </View>
+        </View> */}
         <View style={{ marginVertical: 10 }}>
           <RequestDetails title="Results of laboratory analysis" />
           <RequestDetails title="Community response to project" />

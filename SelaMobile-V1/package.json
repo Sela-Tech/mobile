@@ -28,6 +28,7 @@
     "prop-types": "^15.6.2",
     "react": "16.3.1",
     "react-native": "0.55.4",
+    "react-native-actionsheet": "^2.4.2",
     "react-native-app-intro-slider": "^1.0.1",
     "react-native-aws3": "0.0.8",
     "react-native-calendars": "^1.21.0",

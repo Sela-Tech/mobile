@@ -112,6 +112,7 @@ const MileStoneHeader = ({ newVal, mileStoneTitle, updateInput, index, totalAmou
 export default class AddProposals extends Component {
   state = {
     propopalName: '',
+    contractorName: '',
     new: true,
     mileStoneTitle: '',
     // projectId: this.props.navigation.state.params.projectId,
@@ -206,9 +207,8 @@ export default class AddProposals extends Component {
       this.setState({ submitProposalLoading: true });
       const resp = await createProposal(data);
       this.setState({ submitProposalLoading: false });
-      this.dropdown.alertWithType('success','Status','Proposal Sent');
-      setTimeout(() => NavigationService.navigate('Project'), 3000)
-    
+      this.dropdown.alertWithType('success', 'Status', 'Proposal Sent');
+      setTimeout(() => NavigationService.navigate('Project'), 3000);
     } catch (err) {
       this.setState({ submitProposalLoading: false, proposalError: err.message });
     }
@@ -319,6 +319,7 @@ export default class AddProposals extends Component {
       markedTask,
       allMileStones,
       propopalName,
+      contractorName,
       submitProposalLoading,
     } = this.state;
 
@@ -363,6 +364,18 @@ export default class AddProposals extends Component {
                 createTask={this.createSingleTask}
                 loading={loading}
               />
+
+              <View style={ExtStyle.mt5}>
+                <Input
+                  value={contractorName}
+                  style={styles.inputStyle}
+                  onChangeTheText={contractorName =>
+                    this.updateInput(contractorName, 'contractorName')
+                  }
+                  text="Enter Contractor name"
+                  placeHolderColor="#201D41"
+                />
+              </View>
 
               <View style={ExtStyle.mt5}>
                 <Input
@@ -445,12 +458,12 @@ export default class AddProposals extends Component {
                   </Fragment>
                 )}
               </View>
-                <DropdownAlert
-                  ref={ref => (this.dropdown = ref)}
-                  // startDelta={height}
-                  // endDelta={height - height / 8}
-                  closeInterval={6000}
-                />
+              <DropdownAlert
+                ref={ref => (this.dropdown = ref)}
+                // startDelta={height}
+                // endDelta={height - height / 8}
+                closeInterval={6000}
+              />
             </ScrollView>
           </Tab>
         </Tabs>

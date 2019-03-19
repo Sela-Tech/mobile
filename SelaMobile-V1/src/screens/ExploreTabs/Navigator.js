@@ -3,11 +3,13 @@ import { Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import { connect } from 'react-redux';
 import Description from './Description';
-import StakeHolders from './StakeHolders';
+import Stakeholders from './StakeHolders';
 import Transactions from './Transactions';
 import Evidence from './Evidence';
 import Overview from './Overview';
 import Location from './Location';
+import Request from '../../components/Evidence/Request';
+import Proposal from './Proposal';
 import Tasks from './Tasks';
 import Updates from './Updates';
 import { isAndroid } from '../../utils/helpers';
@@ -58,7 +60,7 @@ class Navigator extends Component {
   render() {
     const { navigation } = this.props;
     const { isContractor2 } = this.state;
-    const { project } = this.props;
+    const { project, userId } = this.props;
 
     const { isFunder, isEvaluator, isContractor } =
       this.props && this.props.userInfo && this.props.userInfo.user;
@@ -76,83 +78,83 @@ class Navigator extends Component {
     } else {
       userRole = 'evaluator';
     }
+    console.log('ududf', userRole);
 
     let Tabs;
 
-    console.log('the user =role', userRole);
     if (userRole === 'funder') {
       Tabs = createMaterialTopTabNavigator(
         {
-          Description: {
-            screen: () => <Description userRole={userRole} project={project} />,
+          Overview: {
+            screen: () => <Overview userRole={userRole} project={project} />,
           },
-          StakeHolders: {
-            screen: () => <StakeHolders userRole={userRole} project={project} />,
+          Stakeholders: {
+            screen: () => <Stakeholders userRole={userRole} project={project} />,
           },
-          // Evidence: {
-          //   screen: () => <Evidence userRole={userRole} project={project} />,
-          // },
-          Tasks: {
-            screen: () => <Tasks userRole={userRole} project={project} />,
+          Proposals: {
+            screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
+          },
+          Evidence: {
+            screen: () => <Request userRole={userRole} project={project} />,
+          },
+          Updates: {
+            screen: () => <Updates userRole={userRole} project={project} />,
           },
           Transactions: {
             screen: () => <Transactions userRole={userRole} project={project} />,
           },
-          Overview: {
-            screen: () => <Overview userRole={userRole} project={project} />,
+          Location: {
+            screen: () => <Location userRole={userRole} project={project} />,
           },
-          // Location: {
-          //   screen: () => <Location userRole={userRole} project={project} />,
-          // },
         },
         {
           tabBarOptions,
         },
       );
-    }
+    } else if (userRole === 'evaluator') {
+      const nWidth = { tabStyle: { width: width / 2 } };
+      const tabSettings = { ...tabBarOptions, ...nWidth };
 
-    if (userRole === 'evaluator') {
       Tabs = createMaterialTopTabNavigator(
         {
-          Overview: {
-            screen: () => <Overview userRole={userRole} project={project} />,
-          },
-          StakeHolders: {
-            screen: () => (
-              <StakeHolders userRole={userRole} navigation={navigation} project={project} />
-            ),
-          },
-          // Evidence: {
-          //   screen: () => <Evidence userRole={userRole} project={project} />,
-          // },
-          Updates: {
+          Tasks: {
             screen: () => <Updates userRole={userRole} project={project} />,
+          },
+          Evidence: {
+            screen: () => <Request userRole={userRole} project={project} />,
           },
         },
         {
-          tabBarOptions,
+          tabBarOptions: tabSettings,
         },
       );
     } else {
       Tabs = createMaterialTopTabNavigator(
         {
-          Overview: {
-            screen: () => <Overview userRole={userRole} project={project} />,
-          },
-          StakeHolders: {
-            screen: () => (
-              <StakeHolders userRole={userRole} navigation={navigation} project={project} />
-            ),
-          },
-          Evidence: {
-            screen: () => <Evidence userRole={userRole} project={project} />,
-          },
+          // Overview: {
+          //   screen: () => <Overview userRole={userRole} project={project} />,
+          // },
           Updates: {
             screen: () => <Updates userRole={userRole} project={project} />,
           },
+          Proposals: {
+            screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
+          },
+          // Stakeholders: {
+          //   screen: () => (
+          //     <Stakeholders userRole={userRole} navigation={navigation} project={project} />
+          //   ),
+          // },
+          // Evidence: {
+          //   screen: () => <Request userRole={userRole} project={project} />,
+          // },
+
           Transactions: {
             screen: () => <Transactions userRole={userRole} project={project} />,
           },
+          // Location: {
+          //   screen: () => <Location userRole={userRole} project={project} />,
+          // },
         },
         {
           tabBarOptions,

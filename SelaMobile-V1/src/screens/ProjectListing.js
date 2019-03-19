@@ -237,28 +237,6 @@ class ExploreProject extends Component {
                 </Picker>
               </View>
             </View>
-
-            <View style={{ marginBottom: 20 }}>
-              <View style={{ marginBottom: 5 }}>
-                <Text style={{ fontSize: 15 }}> Relevant projects</Text>
-              </View>
-              <View style={[styles.inputStyle, styles.picker, { paddingBottom: 15 }]}>
-                <Picker
-                  style={[styles.picker]}
-                  selectedValue={relevantProjectVal}
-                  onValueChange={t => this.setState({ relevantProjectVal: t })}
-                >
-                  {relevantProject.map((s, i) => (
-                    <Picker.Item
-                      key={i}
-                      style={[styles.inputStyle, styles.picker]}
-                      label={s}
-                      value={s}
-                    />
-                  ))}
-                </Picker>
-              </View>
-            </View>
             <View>
               <Button
                 text="Find Projects"

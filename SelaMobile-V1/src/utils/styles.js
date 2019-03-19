@@ -25,6 +25,9 @@ const styles = StyleSheet.create({
   flex7: {
     flex: 7,
   },
+  flex8: {
+    flex: 8,
+  },
   flexEnd: {
     alignSelf: 'flex-end',
   },

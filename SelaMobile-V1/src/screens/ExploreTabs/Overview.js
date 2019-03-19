@@ -142,11 +142,11 @@ class Overview extends Component {
             textStyle={styles.text}
           />
           <Box upText="Tasks Completed" secondTextLeft="13" />
-          <Box upText="Progress" secondTextLeft="70%" />
+          {/* <Box upText="Progress" secondTextLeft="70%" />
 
-          <Box upText="Total funds spent" secondTextLeft="$1595" />
+          <Box upText="Total funds spent" secondTextLeft="$1595" /> */}
 
-          <Box upText="Budget used" secondTextLeft="70%" lastText="Total budget" />
+          {/* <Box upText="Budget used" secondTextLeft="70%" lastText="Total budget" /> */}
         </ScrollView>
         <Fragment>
           {userRole === 'funder' ? null : (

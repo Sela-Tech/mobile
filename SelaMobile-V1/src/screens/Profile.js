@@ -10,8 +10,8 @@ import Header from '../components/Header';
 import Project from '../components/ExploreProject/Project';
 import UserId from '../components/Profile/UserId';
 import UserInfo from '../components/Profile/UserInfo';
-import Tag from '../components/Tag';
-import { tagsColor } from '../utils/helpers';
+import Tag from '../components/Explore/ClTag';
+import { tagsColor, mapNameToTag } from '../utils/helpers';
 
 const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -46,29 +46,29 @@ const styles = StyleSheet.create({
 
 const images = [
   {
-    source: require('../../assets/oilspill.png'),
+    source: require('../../assets/img/cleanup/cleanup_3.jpg'),
     id: 1,
-    test: 'Idejo Classroom Blocks Construction',
+    test: 'Bodo oil ceanup',
   },
   {
-    source: require('../../assets/road.png'),
+    source: require('../../assets/img/cleanup/factory_2.jpg'),
     id: 2,
-    test: 'Idejo Classroom Blocks Construction',
+    test: 'ABA factory construction',
   },
   {
-    source: require('../../assets/borehole.png'),
+    source: require('../../assets/img/cleanup/cleanup_4.jpg'),
     id: 3,
-    test: 'Idejo Classroom Blocks Construction',
+    test: 'k-DereII oil-cleanup',
   },
   {
-    source: require('../../assets/road.png'),
+    source: require('../../assets/img/cleanup/cleanup_22.jpg'),
     id: 4,
-    test: 'Idejo Classroom Blocks Construction',
+    test: 'B-DereII oil-cleanup',
   },
   {
     source: require('../../assets/borehole.png'),
     id: 5,
-    test: 'Idejo Classroom Blocks Construction',
+    test: 'k-dere oil cleanup',
   },
 ];
 
@@ -383,7 +383,7 @@ class Profile extends Component {
                     <View style={styles.interestTag}>
                       {interests.map((c, index) => (
                         <View key={index} style={styles.interestSubContainer}>
-                          <Tag viewColor={tagsColor(c)} text={c} />
+                          <Tag showTag={console.log()} src={mapNameToTag(c)} />
                         </View>
                       ))}
                     </View>

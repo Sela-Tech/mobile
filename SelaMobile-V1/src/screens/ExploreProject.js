@@ -24,6 +24,12 @@ const styles = StyleSheet.flatten({
     flex: 1,
     marginVertical: 20,
   },
+  imageStyle: {
+    flex: 1,
+    width: null,
+    height: null,
+    resizeMode: 'cover',
+  },
   imageHeight: {
     height,
   },
@@ -85,11 +91,36 @@ class ExploreProject extends Component {
   async componentDidMount() {
     try {
       const { projectId } = this.state;
-      const allProjects =
-        this.props &&
-        this.props.projects &&
-        this.props.projects.projects &&
-        this.props.projects.projects.projects;
+      const { isFunder, isEvaluator, isContractor } =
+        this.props && this.props.userInfo && this.props.userInfo.user;
+      const userRoleObj = {
+        isFunder,
+        isEvaluator,
+        isContractor,
+      };
+      let allProjects;
+
+      let userRole;
+      if (userRoleObj.isFunder) {
+        userRole = 'funder';
+      } else if (userRoleObj.isContractor) {
+        userRole = 'contractor';
+      } else {
+        userRole = 'evaluator';
+      }
+      if (userRole === 'evaluator') {
+        allProjects =
+          this.props &&
+          this.props.projects &&
+          this.props.projects.projects;
+      } else {
+        allProjects =
+          this.props &&
+          this.props.projects &&
+          this.props.projects.projects &&
+          this.props.projects.projects.projects;
+      }
+
       if (allProjects.length === 0) {
         const resp = await getSingleProject(projectId);
         this.setState({
@@ -197,18 +228,6 @@ class ExploreProject extends Component {
       expandUpdatesBox,
     } = this.state;
     const { navigation } = this.props;
-    const allProjects =
-      this.props &&
-      this.props.projects &&
-      this.props.projects.projects &&
-      this.props.projects.projects.projects;
-
-    let theProject = allProjects.filter(c => c._id === projectId);
-    theProject = theProject[0];
-
-    const userId =
-      this.props && this.props.userInfo && this.props.userInfo.user && this.props.userInfo.user.id;
-    const projectStakeholders = projectInfo && projectInfo.stakeholders;
 
     const { isFunder, isEvaluator, isContractor } =
       this.props && this.props.userInfo && this.props.userInfo.user;
@@ -226,10 +245,34 @@ class ExploreProject extends Component {
     } else {
       userRole = 'evaluator';
     }
+    let allProjects;
+    let theProject;
+    const userId =
+      this.props && this.props.userInfo && this.props.userInfo.user && this.props.userInfo.user.id;
 
-    // Check if user is part of the stakeholders
-    const userStakeholderStatus =
-      projectStakeholders && projectStakeholders.filter(c => c.user.information._id === userId);
+    if (userRole === 'evaluator') {
+      allProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
+      console.log('contractor', allProjects);
+      theProject = allProjects && allProjects.filter(c => c._id === projectId);
+      theProject = theProject[0];
+      const projectStakeholders = projectInfo && projectInfo.stakeholders;
+    } else {
+      allProjects =
+        (this.props &&
+          this.props.projects &&
+          this.props.projects.projects &&
+          this.props.projects.projects.projects) ||
+        [];
+
+      theProject = allProjects && allProjects.filter(c => c._id === projectId);
+      theProject = theProject[0];
+
+      const projectStakeholders = projectInfo && projectInfo.stakeholders;
+
+      // Check if user is part of the stakeholders
+      const userStakeholderStatus =
+        projectStakeholders && projectStakeholders.filter(c => c.user.information._id === userId);
+    }
 
     if (loading) {
       return (
@@ -243,19 +286,10 @@ class ExploreProject extends Component {
         <Fragment>
           {notAvailaible ? (
             <Fragment>
-              <View style={styles.flex4mb5}>
-                <View
-                  style={{
-                    flex: 1,
-                  }}
-                >
+              <View style={ExtStyle.flex3}>
+                <View style={ExtStyle.flex1}>
                   <Image
-                    style={{
-                      flex: 1,
-                      width: null,
-                      height: null,
-                      resizeMode: 'cover',
-                    }}
+                    style={styles.imageStyle}
                     source={getDummyDisplayPicture(projectInfo && projectInfo.name)}
                   />
                 </View>
@@ -274,22 +308,26 @@ class ExploreProject extends Component {
                   </TouchableOpacity>
                 </View>
 
-                <View style={styles.buttonPosition}>
-                  <Button
-                    fn={() =>
-                      userRole !== 'evaluator'
-                        ? NavigationService.navigate('AddProposal', {
-                            projectId: projectInfo &&  projectInfo._id,
-                            userId,
-                          })
-                        : console.log('')
-                    }
-                    style={styles.bottomButton.view}
-                    textStyle={styles.bottomButton.text}
-                    text={userRole !== 'evaluator' ? 'Send Proposal' : 'Request to Join'}
-                    textColor={WHITE}
-                  />
-                </View>
+                <Fragment>
+                  {userRole !== 'evaluators' ? null : (
+                    <View style={styles.buttonPosition}>
+                      <Button
+                        fn={() =>
+                          userRole !== 'evaluator'
+                            ? NavigationService.navigate('AddProposal', {
+                                projectId: projectInfo && projectInfo._id,
+                                userId,
+                              })
+                            : console.log('')
+                        }
+                        style={styles.bottomButton.view}
+                        textStyle={styles.bottomButton.text}
+                        text={userRole !== 'evaluator' ? 'Send Proposal' : 'Request to Join'}
+                        textColor={WHITE}
+                      />
+                    </View>
+                  )}
+                </Fragment>
               </View>
               <View style={[ExtStyle.flex3]}>
                 <Header
@@ -299,13 +337,20 @@ class ExploreProject extends Component {
                   projectStatusText={projectInfo && projectInfo.status}
                   projectTitleText={projectInfo && projectInfo.name}
                   budgetAmount={projectInfo && projectInfo.goal}
-                  numberOfStakeholders={projectInfo &&  projectInfo.stakeholders && projectInfo.stakeholders.length || []}
+                  numberOfStakeholders={
+                    (projectInfo && projectInfo.stakeholders && projectInfo.stakeholders.length) ||
+                    []
+                  }
                   raisedAmount={projectInfo && projectInfo.raised}
                   tags={projectInfo && projectInfo.tags}
                 />
               </View>
               <View style={ExtStyle.flex6}>
-                <Navigator navigation={this.props.navigation} project={projectInfo} />
+                <Navigator
+                  navigation={this.props.navigation}
+                  project={projectInfo}
+                  userId={userId}
+                />
               </View>
             </Fragment>
           ) : (

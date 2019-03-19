@@ -355,25 +355,29 @@ export default class Box extends Component {
       {
         seriesName: 'series1',
         data: [
-          { x: '2018-02-01', y: 30 },
-          { x: '2018-02-02', y: 200 },
-          { x: '2018-02-03', y: 170 },
-          { x: '2018-02-04', y: 250 },
-          { x: '2018-02-05', y: 10 },
-        ],
-        color: '#297AB1',
-      },
-      {
-        seriesName: 'series2',
-        data: [
-          { x: '2018-02-01', y: 20 },
-          { x: '2018-02-02', y: 100 },
-          { x: '2018-02-03', y: 140 },
-          { x: '2018-02-04', y: 550 },
-          { x: '2018-02-05', y: 40 },
+          { x: '0', y: 0 },
+          { x: '0.5', y: 0.046 },
+          { x: '1.0', y: 0.054 },
+          { x: '1.5', y: 0.103 },
+          { x: '2.0', y: 0.1555 },
+          { x: '2.5', y: 0.165 },
+          { x: '3.0', y: 0.208 },
+          { x: '3.5', y: 0.246 },
         ],
         color: '#F2994A',
       },
+      // {
+      //   seriesName: 'series2',
+      //   data: [
+      //     { x: '2018-02-01', y: 20 },
+      //     { x: '2018-02-02', y: 100 },
+      //     { x: '2018-02-03', y: 140 },
+      //     { x: '2018-02-04', y: 550 },
+      //     { x: '2018-02-05', y: 40 },
+      //   ],
+      //  color: '#297AB1',
+      //   color: '#F2994A',
+      // },
     ];
 
     const sampleData2 = [
@@ -406,8 +410,39 @@ export default class Box extends Component {
     ];
     if (upText === 'Tasks Completed') {
       return (
-        <View style={{}}>
-          <PureChart data={databar} type="bar" />
+        <View style={{ marginVertical: 10 }}>
+          <View style={{ marginVertical: 10, alignItems: 'center', justifyContent: 'center' }}>
+            <TextN style={{ textAlign: 'center', color: '#0A2C56' }}>
+              Calibration curve of absorbance against concentration of total petroleum hydrocarbons
+              @420nm
+            </TextN>
+          </View>
+          <View style={{ flexDirection: 'row', flex: 1 }}>
+            <View
+              style={{
+                flex: 1,
+                marginTop: 5,
+                justifyContent: 'center',
+              }}
+            >
+              <TextN
+                style={{
+                  flexWrap: 'wrap',
+                  transform: [{ rotate: '-90deg' }],
+                  color: '#0A2C56',
+                }}
+              >
+                Absorbance
+              </TextN>
+            </View>
+            <View style={{ flex: 4, marginLeft: '-9%' }}>
+              <PureChart data={sampleData} type="line" />
+            </View>
+          </View>
+          <View style={{ alignItems: 'center', marginTop: 5, justifyContent: 'center' }}>
+            <TextN style={{ color: '#0A2C56' }}> Concentration (mg/l) </TextN>
+          </View>
+
           {/* <PureChart data={sampleData2} type="pie" /> */}
           {/* <PieChart
             style={{ height: 200 }}
@@ -439,7 +474,7 @@ export default class Box extends Component {
     if (upText === 'Progress') {
       return (
         <View style={styles.container}>
-          <PureChart data={sampleData} type="line" />
+          <PureChart data={databar} type="bar" />
           {/* <Image
             style={{
               flex: 1,
@@ -501,17 +536,14 @@ export default class Box extends Component {
   }
 }
 
-
-
 Box.defaultProps = {};
 
 Box.propTypes = {};
 
-
 // );
 
 // {
-  /* <PieChart
+/* <PieChart
   style={{ height: 200 }}
   valueAccessor={({ item }) => item.amount}
   data={dataPie}
@@ -525,7 +557,7 @@ Box.propTypes = {};
 // export default Box;
 
 // {
-  /* <PieChart
+/* <PieChart
   style={styles.chart}
   logEnabled={true}
   chartBackgroundColor={processColor('#FFFFFF')}
@@ -553,7 +585,7 @@ Box.propTypes = {};
 // }
 
 // {
-  /* <View>
+/* <View>
   <PieChart
     style={{ height: 200 }}
     outerRadius={'80%'}

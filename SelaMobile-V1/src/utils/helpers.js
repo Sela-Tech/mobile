@@ -335,3 +335,44 @@ export const tagText = val => {
       return sdg[1];
   }
 };
+
+export const mapNameToTag = tagsText => {
+  switch (tagsText && tagsText.toUpperCase()) {
+    case 'NO POVERTY':
+      return require('../../assets/sdgs/SDG_1.png');
+    case 'ZERO HUNGER':
+      return require('../../assets/sdgs/SDG_2.png');
+    case 'GOOD HEALTH AND WELL BEING':
+      return require('../../assets/sdgs/SDG_3.png');
+    case 'QUALITY EDUCATION':
+      return require('../../assets/sdgs/SDG_4.png');
+    case 'GENDER EQUALITY':
+      return require('../../assets/sdgs/SDG_5.png');
+    case 'CLEAN WATER AND SANITATION':
+      return require('../../assets/sdgs/SDG_6.png');
+    case 'AFFORDABLE AND CLEAN ENERGY':
+      return require('../../assets/sdgs/SDG_7.png');
+    case 'DECENT WORK AND ECONOMIC GROWTH':
+      return require('../../assets/sdgs/SDG_8.png');
+    case 'INDUSTRY,INNOVATION AND INFRASTRUCTURE':
+      return require('../../assets/sdgs/SDG_9.png');
+    case 'REDUCED INEQULAITIES':
+      return require('../../assets/sdgs/SDG_10.png');
+    case 'SUSTAINABLE CITIES AND COMMUNITIES':
+      return require('../../assets/sdgs/SDG_11.png');
+    case 'RESPONSIBLE CONSUMPTION AND PRODUCTION':
+      return require('../../assets/sdgs/SDG_12.png');
+    case 'CLIMATE ACTION':
+      return require('../../assets/sdgs/SDG_13.png');
+    case 'LIFE BELOW WATER':
+      return require('../../assets/sdgs/SDG_14.jpg');
+    case 'LIFE ON LAND':
+      return require('../../assets/sdgs/SDG_15.png');
+    case 'PEACE,JUSTICE AND STRONG INSTITUTIONS':
+      return require('../../assets/sdgs/SDG_16.png');
+    case 'PARTERNSHIP FOR THE GOALS':
+      return require('../../assets/sdgs/SDG_17.png');
+    default:
+      return require('../../assets/sdgs/SDG_1.png');
+  }
+};

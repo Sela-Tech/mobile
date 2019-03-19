@@ -3,9 +3,10 @@ import { TouchableOpacity, View, Dimensions, StyleSheet, Image } from 'react-nat
 import PropTypes from 'prop-types';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Text from '../Text';
-import Tag from '../Tag';
-import { isAndroid, projectStatusTextColor, tagsColor } from '../../utils/helpers';
-import {  WHITE } from '../../utils/constants';
+// import Tag from '../Tag';
+import Tag from '../Explore/ClTag';
+import { isAndroid, projectStatusTextColor, mapNameToTag } from '../../utils/helpers';
+import { WHITE } from '../../utils/constants';
 // import { projectStatusTextColor, tagsColor } from '../../utils/helpers';
 
 const { height, width } = Dimensions.get('window');
@@ -39,14 +40,15 @@ const styles = StyleSheet.create({
   viewInImage: {
     backgroundColor: '#C13C1E',
     width: width / 3.5,
-    position: 'absolute',
-    top: 20,
-    left: 30,
-    zIndex: 3,
+    // position: 'absolute',
+    marginLeft: 10,
+    // top: 20,
+    // left: 30,
+    // zIndex: 3,
     flexDirection: 'row',
-    height: 30,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // height: 30,
+    // justifyContent: 'center',
+    // alignItems: 'center',
     borderRadius: 10,
   },
 });
@@ -61,19 +63,16 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
         source={img}
         style={{ height: height / 3, width: width / 1.1, borderRadius: 10 }}
       />
-      <View style={styles.viewInImage}>
+      {/* <View style={styles.viewInImage}>
         <View style={{ paddingLeft: 5 }}>
           <Image source={require('../../../assets/money.png')} />
         </View>
         <View>
           <Text style={{ color: WHITE }}>
-            {' '}
-            {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]}
-{' '}
-funded{' '}
+            {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded
           </Text>
         </View>
-      </View>
+      </View> */}
     </View>
     <View style={[styles.smaller, { marginLeft: 3, justifyContent: 'center' }]}>
       <View style={[styles.row, { marginTop: 5 }]}>
@@ -104,12 +103,24 @@ funded{' '}
       <View style={{ flex: 1, justifyContent: 'center' }}>
         <Text style={{ fontSize: 18, fontWeight: '400', color: '#201D41' }}>{title}</Text>
       </View>
-      <View style={{ paddingVertical: 5, flex: 1, justifyContent: 'center' }}>
-        <Text style={{ fontSize: 15, fontWeight: '600' }}>
-          {' '}
-          {cost === '' ? '$200000' : `$${cost}`}
-{' '}
-        </Text>
+      <View style={{ paddingVertical: 10, flex: 1, flexDirection: 'row' }}>
+        <View>
+          <Text style={{ fontSize: 15, fontWeight: '600' }}>
+            {' '}
+            {cost === '' ? '$200000' : `$${cost}`}{' '}
+          </Text>
+        </View>
+
+        <View style={styles.viewInImage}>
+          <View style={{ paddingLeft: 5 }}>
+            <Image source={require('../../../assets/money.png')} />
+          </View>
+          <View>
+            <Text style={{ color: WHITE }}>
+              {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded
+            </Text>
+          </View>
+        </View>
       </View>
       <View
         style={{
@@ -122,13 +133,13 @@ funded{' '}
         <Fragment>
           {tags.length === 0 ? (
             <View style={{ marginLeft: 3 }}>
-              <Tag text="Clean Water" viewColor={tagsColor('Clean Water')} textColor={WHITE} />
+              <Tag showTag={console.log()} src={require('../../../assets/sdgs/SDG_1.png')} />
             </View>
           ) : (
             <View style={{ flexDirection: 'row', flex: 2 }}>
               {tags.slice(0, 2).map((c, index) => (
                 <View key={index} style={{ marginLeft: 3 }}>
-                  <Tag text={c} viewColor={tagsColor(c)} textColor={WHITE} />
+                  <Tag showTag={console.log()} src={mapNameToTag(c)} />
                 </View>
               ))}
             </View>

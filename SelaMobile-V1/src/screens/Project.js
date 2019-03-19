@@ -4,6 +4,7 @@ import {
   StyleSheet,
   RefreshControl,
   // NetInfo,
+  Picker,
   Image,
   TouchableOpacity,
   ScrollView,
@@ -15,7 +16,7 @@ import { Tabs, Tab } from 'native-base';
 import io from 'socket.io-client';
 import { store } from '../../store';
 import { getNewNotifications } from '../../actions/notifications';
-import { getUserProject, getContractorProject } from '../../actions/project';
+import { getUserProject, getContractorProject, getEvaluatorProject } from '../../actions/project';
 import ParentHeader from '../components/Header';
 import Text from '../components/Text';
 import Proposals from '../components/Project/Proposals';
@@ -27,7 +28,8 @@ import Spinner from '../components/Spinner';
 import StandardText from '../components/StandardText';
 import NavigationService from '../services/NavigationService';
 
-const { height } = Dimensions.get('window');
+const { height, width } = Dimensions.get('window');
+const otherFilters = ['Bookmarked project', 'Project that may Interest you'];
 
 const styles = StyleSheet.create({
   container: {
@@ -57,6 +59,16 @@ const styles = StyleSheet.create({
   },
   emptyText: {
     fontSize: 16,
+  },
+  inputStyle: {
+    borderColor: '#B1BAD2',
+    width: width / 1.1,
+  },
+  picker: {
+    borderColor: '#B1BAD2',
+    borderRadius: 5,
+    borderWidth: 1,
+    height: height / 13,
   },
 });
 
@@ -96,13 +108,33 @@ class Project extends Component {
   state = {
     reloading: false,
     loading: true,
+    relevantProject: otherFilters,
+    relevantProjectVal: '',
     isFunder: this.props && this.props.userInfo && this.props.userInfo.user.isFunder,
-    isEvaluator: this.props && this.props.userInfo && this.props.userInfo.user.isFunder,
+    isEvaluator: this.props && this.props.userInfo && this.props.userInfo.user.isEvaluator,
     isContractor: this.props && this.props.userInfo && this.props.userInfo.user.isContractor,
   };
 
   async componentDidMount() {
-    await this.props.getFunderProjects();
+    const userRoleObj = {
+      isFunder: this.props && this.props.userInfo && this.props.userInfo.user.isFunder,
+      isEvaluator: this.props && this.props.userInfo && this.props.userInfo.user.isEvaluator,
+      isContractor: this.props && this.props.userInfo && this.props.userInfo.user.isContractor,
+    };
+    let userRole;
+    if (userRoleObj.isFunder) {
+      userRole = 'funder';
+    } else if (userRoleObj.isContractor) {
+      userRole = 'contractor';
+    } else {
+      userRole = 'evaluator';
+    }
+
+    if (userRole !== 'evaluator') {
+      await this.props.getFunderProjects();
+    } else {
+      await this.props.getEvaluatorProjects();
+    }
     // await this.props.getContractorProjects();
     this.setState({ loading: false });
     // getCurrentState();
@@ -130,7 +162,15 @@ class Project extends Component {
   }
 
   render() {
-    const { isFunder, reloading, isEvaluator, isContractor, loading } = this.state;
+    const {
+      relevantProject,
+      relevantProjectVal,
+      isFunder,
+      reloading,
+      isEvaluator,
+      isContractor,
+      loading,
+    } = this.state;
     const userRoleObj = {
       isFunder,
       isEvaluator,
@@ -144,7 +184,14 @@ class Project extends Component {
     } else {
       userRole = 'evaluator';
     }
-
+    let evalProjects;
+    if (userRole === 'evaluator') {
+      console.log('iiiiiii');
+      console.log(this.props.projects);
+      evalProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
+      console.log('iiiiiii');
+      console.log('evva', evalProjects);
+    }
     const userData = this.props && this.props.userInfo && this.props.userInfo.user;
     const projects =
       (this.props &&
@@ -167,7 +214,6 @@ class Project extends Component {
           notifications.notifications.filter(c => c.read === false);
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
-
     return (
       <View style={styles.container}>
         <ParentHeader
@@ -208,15 +254,37 @@ class Project extends Component {
                       }}
                     />
 
+                    <View style={{ marginTop: 10, marginHorizontal: 10 }}>
+                      <View style={{ marginBottom: 5 }}>
+                        <Text style={{ fontSize: 15 }}> FilterBy</Text>
+                      </View>
+                      <View style={[styles.inputStyle, styles.picker, { paddingBottom: 15 }]}>
+                        <Picker
+                          style={[styles.picker]}
+                          selectedValue={relevantProjectVal}
+                          onValueChange={t => this.setState({ relevantProjectVal: t })}
+                        >
+                          {relevantProject.map((s, i) => (
+                            <Picker.Item
+                              key={i}
+                              style={[styles.inputStyle, styles.picker]}
+                              label={s}
+                              value={s}
+                            />
+                          ))}
+                        </Picker>
+                      </View>
+                    </View>
+
                     <View style={ExtStyle.flex1}>
-                      <SingularProject
+                      <ContractorProject
                         leftText="Projects you fund"
                         // rightText="See all"
                         projects={projects}
                       />
                     </View>
 
-                    <View style={ExtStyle.flex1}>
+                    {/* <View style={ExtStyle.flex1}>
                       <SingularProject
                         leftText="Projects you initiated"
                         // rightText="See all"
@@ -238,7 +306,7 @@ class Project extends Component {
                         // rightText="See all"
                         projects={projects}
                       />
-                    </View>
+                    </View> */}
                   </ScrollView>
                 ) : (
                   <Fragment>
@@ -258,6 +326,28 @@ class Project extends Component {
                           }}
                           tabStyle={{ backgroundColor: '#FFFFFF' }}
                         >
+                          <View style={{ marginTop: 10, marginHorizontal: 10 }}>
+                            <View style={{ marginBottom: 5 }}>
+                              <Text style={{ fontSize: 15 }}> FilterBy</Text>
+                            </View>
+                            <View style={[styles.inputStyle, styles.picker, { paddingBottom: 15 }]}>
+                              <Picker
+                                style={[styles.picker]}
+                                selectedValue={relevantProjectVal}
+                                onValueChange={t => this.setState({ relevantProjectVal: t })}
+                              >
+                                {relevantProject.map((s, i) => (
+                                  <Picker.Item
+                                    key={i}
+                                    style={[styles.inputStyle, styles.picker]}
+                                    label={s}
+                                    value={s}
+                                  />
+                                ))}
+                              </Picker>
+                            </View>
+                          </View>
+
                           <ContractorProject projects={projects} />
                         </Tab>
                         <Tab
@@ -272,23 +362,23 @@ class Project extends Component {
                       </Tabs>
                     ) : (
                       <ScrollView style={{ flex: 1 }} contentContainerstyle={{ flexGrow: 1 }}>
-                        {projects.length === 0 ? (
+                        {evalProjects.length === 0 ? (
                           <View style={styles.subContainer}>
                             <View>
                               <Image source={require('../../assets/Illustration.png')} />
                             </View>
                             <View style={styles.otherContainer}>
                               <Text style={styles.emptyText}> You haven't been </Text>
-                              <Text style={styles.emptyText}> added to  any project yet. </Text>
+                              <Text style={styles.emptyText}> added to any project yet. </Text>
                             </View>
                           </View>
                         ) : (
                           <View>
                             <View style={ExtStyle.flex1}>
-                              <SingularProject
+                              <ContractorProject
                                 leftText="Projects you evaluate"
                                 // rightText="See all"
-                                projects={projects}
+                                projects={evalProjects}
                               />
                             </View>
                             <View style={ExtStyle.flex1}>{this.renderButton()}</View>
@@ -325,6 +415,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getFunderProjects: () => dispatch(getUserProject()),
+  getEvaluatorProjects: () => dispatch(getEvaluatorProject()),
   getContractorProjects: () => dispatch(getContractorProject()),
 });
 

@@ -36,7 +36,7 @@ const ProposalContent = () => (
   <View style={styles.container}>
     <View style={ExtStyle.flex2}>
       <View>
-        <Text style={styles.titleText}> Owerri Oil Spill Clean-up Project </Text>
+        <Text style={styles.titleText}> Construction of palm oil factory at Aba </Text>
       </View>
       <View>
         <Text> 12 Milestones, 72 Tasks </Text>
@@ -49,7 +49,7 @@ const ProposalContent = () => (
 
     <View style={ExtStyle.flex1}>
       <Button
-        fn={() => NavigationService.navigate('ExploreProject', '5c6ac53bb4378e0022880150')}
+        fn={() => NavigationService.navigate('ExploreProject', '5c869877e432c7002263319c')}
         text="View"
         textStyle={{
           color: '#201D41',

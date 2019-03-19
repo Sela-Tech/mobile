@@ -43,14 +43,13 @@ const renderItem = item => (
   <View style={{ marginBottom: 10, marginTop: 10 }}>
     <Box
       fn={() => NavigationService.navigate('ExploreProject', item.item._id)}
-      // img={{ uri: 'https://placeimg.com/640/480/any' }}
       img={getDummyDisplayPicture(item && item.item && item.item.name)}
       firstText={item.item.location.name}
       secondText={item.item.name}
       thirdText={item.item.status}
       title={item.item.description}
       cost={item.item.goal}
-      tags={item.item.tags}
+      tags={(item && item.item && item.item.tags) || []}
     />
   </View>
 );

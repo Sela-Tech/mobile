@@ -13,7 +13,7 @@ export default createBottomTabNavigator(
   {
     Project,
     Explore,
-    Inbox,
+    // Inbox,
     Wallet,
     Account: Profile,
   },
@@ -31,15 +31,15 @@ export default createBottomTabNavigator(
             />
           );
         }
-        if (routeName === 'Inbox') {
-          return (
-            <Image
-              // resizeMode="contain"
-              source={require('../assets/inbox.png')}
-              style={{ tintColor: focused ? YELLOW : null }}
-            />
-          );
-        }
+        // if (routeName === 'Inbox') {
+        //   return (
+        //     <Image
+        //       // resizeMode="contain"
+        //       source={require('../assets/inbox.png')}
+        //       style={{ tintColor: focused ? YELLOW : null }}
+        //     />
+        //   );
+        // }
         if (routeName === 'Explore') {
           return (
             <Image

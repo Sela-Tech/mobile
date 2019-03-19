@@ -14,12 +14,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const SingleTrans = ({ price, date }) => (
+const SingleTrans = ({ price, date, title, expense, paidBy }) => (
   <View style={styles.container}>
     <View style={{ flex: 2 }}>
-      <B color="#201D41">Transaction Memo Listed here </B>
-      <Text style={{ color: '#201D41' }}>Ese Family trust </Text>
-      <Text style={{ color: '#696F74' }}>Evaluation team </Text>
+      <B color="#201D41">{title}</B>
+      <Text style={{ color: '#201D41' }}>{paidBy} </Text>
+      <Text style={{ color: '#696F74' }}>{expense} </Text>
     </View>
 
     <View>

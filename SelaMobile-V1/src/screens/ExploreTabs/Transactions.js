@@ -46,27 +46,29 @@ const Transactions = ({ project }) => {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
-      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
-      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
-      <SingleTrans price="$10,500" date="13 Jun 2018, 14:55" />
-      <View style={{ alignItems: 'center' }}>
-        {/* <View>
-          <Button
-            fn={() => NavigationService.navigate('Invest', { name: project.name })}
-            text="INVEST"
-          />
-        </View> */}
-        <View style={{ marginTop: 10 }}>
-          <Button
-            fn={() => NavigationService.navigate('Invest')}
-            text="Join as Evaluation Agent"
-            color={WHITE}
-            textColor="#201D41"
-            style={{ borderWidth: 2, borderColor: '#B1BAD2' }}
-          />
-        </View>
-      </View>
+      <SingleTrans
+        price="$10,500"
+        date="13 Jun 2018, 14:55"
+        title="Transaction Memo Listed here"
+        expense="Evaluation team"
+        paidBy="Ese Family trust"
+      />
+
+      <SingleTrans
+        price="$3,500"
+        date="13 Jun 2018, 14:55"
+        title="Transaction Memo Listed here"
+        expense="Miscellaneous"
+        paidBy="Forte oil"
+      />
+
+      <SingleTrans
+        price="$6,500"
+        date="13 Jun 2018, 14:55"
+        title="Transaction Memo Listed here"
+        expense="Evalation team"
+        paidBy="Access bank"
+      />
     </ScrollView>
   );
 };
