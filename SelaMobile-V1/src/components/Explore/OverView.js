@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
 import Map from './Map';
-import { projectStatusTextColor, tagsColor } from '../../utils/helpers';
+import { projectStatusTextColor, mapNameToTag, tagsColor } from '../../utils/helpers';
 import extStyle from '../../utils/styles';
 import Text from '../Text';
 import Tag from './ClTag';
@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     marginBottom: 10,
+    marginHorizontal: 10,
   },
   smallText: {
     fontSize: 14,
@@ -82,16 +83,7 @@ export default class OverView extends Component {
   toggleMapView = () => this.setState(prevState => ({ openMap: !prevState.openMap }));
 
   render() {
-    const {
-      projectStatusText,
-      projectLocationText,
-      projectTitleText,
-      budgetAmount,
-      numberOfStakeholders,
-      raisedAmount,
-      tags,
-      locationDetails,
-    } = this.props;
+    const { project } = this.props;
     const { bookmarkStatus, showTag, src, openMap } = this.state;
     if (openMap) {
       return (
@@ -103,7 +95,7 @@ export default class OverView extends Component {
     return (
       <View style={styles.container}>
         <View style={[{ flex: 2 }]}>
-          <View style={{ flexDirection: 'row', flex: 3 }}>
+          <View style={{  justifyContent: 'center',flexDirection: 'row', flex: 1 }}>
             <View style={[{ paddingTop: 5, flex: 1 }]}>
               <View>
                 <Text style={{ fontSize: 12, color: '#696F74' }}>LOCATION</Text>
@@ -111,9 +103,9 @@ export default class OverView extends Component {
               <View style={[extStyle.row, {}]}>
                 <View>
                   <Text style={styles.verySmallText}>
-                    {projectLocationText.length > 35
-                      ? projectLocationText.slice(0, 32).concat('...')
-                      : projectLocationText}{' '}
+                    {project.location.name.length > 35
+                      ? project.location.name.slice(0, 32).concat('...')
+                      : project.location.name}{' '}
                   </Text>
                 </View>
                 <View>
@@ -141,28 +133,23 @@ export default class OverView extends Component {
               <Tag
                 style={styles.tagStyle}
                 text="Ongoing"
-                viewColor={projectStatusTextColor('Ongoing')}
+                viewColor={projectStatusTextColor(project.status)}
                 textColor={WHITE}
               />
             </View>
           </View>
 
           <View style={{ flex: 1 }}>
-            <Text>
-              Energy is at the heart of development, Without energy, communities live in darkness,
-              essential services such as clinics and schools suffer, and businesses operate under
-              crippling constraints. Because the process is taking longer than expected and will not
-              be completed by the original closing date a one year extension is being requested.
-            </Text>
+            <Text>{project.description}</Text>
           </View>
 
           <View style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
-              <View style={{ paddingTop: 5 }}>
+              <View>
                 <Text style={{ color: '#696F74' }}>Duration </Text>
               </View>
               <View style={styles.pt}>
-                <Text style={{ color: '#3D4851', fontSize: 16 }}>12 Jan 19 - 02 Dec 20</Text>
+                <Text style={{ color: '#3D4851', fontSize: 16 }}>12 Jan 19 - 02 Dec 20do</Text>
               </View>
             </View>
 
@@ -172,81 +159,31 @@ export default class OverView extends Component {
                   <Text style={styles.text}>Budget </Text>
                 </View>
                 <View style={styles.pt}>
-                  <Text style={styles.text}>
-                    {projectTitleText.toUpperCase() === 'ABA FACTORY CONSTRUCTION'
-                      ? '$750,000'
-                      : '$2,000,000'}
-                  </Text>
+                  <Text style={styles.text}>{project.implementationBudget}</Text>
                 </View>
               </View>
             </View>
           </View>
-
-          <Fragment>
-            {tags.length === 0 ? (
-              <View style={{ marginTop: 2, flex: 2, flexDirection: 'row' }}>
-                <View style={{ marginLeft: 3, marginTop: 2 }}>
-                  <Tag text="Clean Water" viewColor={tagsColor('Clean Water')} textColor={WHITE} />
+          <View style={{ flex: 1 }}>
+            <Fragment>
+              {project.tags.length === 0 ? null : (
+                <View
+                  style={{
+                    marginTop: 10,
+                    flex: 2,
+                    flexDirection: 'row',
+                  }}
+                >
+                  <View style={{ flexDirection: 'row' }}>
+                    {project.tags.map((c, i) => (
+                      <Tag key={i} showTag={this.showTag} src={mapNameToTag(c)} />
+                    ))}
+                  </View>
+                  <View />
                 </View>
-              </View>
-            ) : (
-              <View
-                style={{
-                  marginTop: 2,
-                  flex: 2,
-                  flexDirection: 'row',
-                }}
-              >
-                {projectTitleText.toUpperCase() === 'ABA FACTORY CONSTRUCTION' ? (
-                  <View style={{ flexDirection: 'row' }}>
-                    <Tag
-                      showTag={this.showTag}
-                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_1.png'))}
-                      src={require('../../../assets/sdgs/SDG_1.png')}
-                      // src={src}
-                    />
-                    <Tag
-                      showTag={this.showTag}
-                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_8.png'))}
-                      src={require('../../../assets/sdgs/SDG_8.png')}
-                      // src={src}
-                    />
-                  </View>
-                ) : (
-                  <View style={{ flexDirection: 'row' }}>
-                    <Tag
-                      showTag={this.showTag}
-                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
-                      src={require('../../../assets/sdgs/SDG_3.png')}
-                      // src={src}
-                    />
-
-                    <Tag
-                      showTag={this.showTag}
-                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
-                      src={require('../../../assets/sdgs/SDG_13.png')}
-                      // src={src}
-                    />
-
-                    <Tag
-                      showTag={this.showTag}
-                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
-                      src={require('../../../assets/sdgs/SDG_14.jpg')}
-                      // src={src}
-                    />
-
-                    <Tag
-                      showTag={this.showTag}
-                      // showTag={this.showTag(require('../../../assets/sdgs/SDG_3.png'))}
-                      src={require('../../../assets/sdgs/SDG_6.png')}
-                      // src={src}
-                    />
-                  </View>
-                )}
-                <View />
-              </View>
-            )}
-          </Fragment>
+              )}
+            </Fragment>
+          </View>
           <TagDisplay showTag={this.showTag} visibility={showTag} imageSource={src} />
 
           <View style={{ paddingTop: 5 }}>

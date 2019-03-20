@@ -186,11 +186,7 @@ class Project extends Component {
     }
     let evalProjects;
     if (userRole === 'evaluator') {
-      console.log('iiiiiii');
-      console.log(this.props.projects);
       evalProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
-      console.log('iiiiiii');
-      console.log('evva', evalProjects);
     }
     const userData = this.props && this.props.userInfo && this.props.userInfo.user;
     const projects =

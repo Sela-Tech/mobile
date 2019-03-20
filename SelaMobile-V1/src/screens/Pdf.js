@@ -34,7 +34,6 @@ export default class PDFExample extends React.Component {
           }}
           style={styles.pdf}
         />
-        />
       </View>
     );
   }

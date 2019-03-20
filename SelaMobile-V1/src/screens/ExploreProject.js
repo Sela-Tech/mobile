@@ -329,7 +329,7 @@ class ExploreProject extends Component {
                   )}
                 </Fragment>
               </View>
-              <View style={[ExtStyle.flex3]}>
+              {/* <View style={[ExtStyle.flex3]}>
                 <Header
                   projectLocationText={
                     projectInfo && projectInfo.location && projectInfo.location.name
@@ -344,7 +344,7 @@ class ExploreProject extends Component {
                   raisedAmount={projectInfo && projectInfo.raised}
                   tags={projectInfo && projectInfo.tags}
                 />
-              </View>
+              </View> */}
               <View style={ExtStyle.flex6}>
                 <Navigator
                   navigation={this.props.navigation}

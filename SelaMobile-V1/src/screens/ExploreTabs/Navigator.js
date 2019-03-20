@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import { connect } from 'react-redux';
+import OverViewDetails from '../../components/Explore/OverView';
 import Description from './Description';
 import Stakeholders from './StakeHolders';
 import Transactions from './Transactions';
 import Evidence from './Evidence';
 import Overview from './Overview';
+
 import Location from './Location';
 import Request from '../../components/Evidence/Request';
 import Proposal from './Proposal';
@@ -85,6 +87,9 @@ class Navigator extends Component {
       Tabs = createMaterialTopTabNavigator(
         {
           Overview: {
+            screen: () => <OverViewDetails userRole={userRole} project={project} />,
+          },
+          Analytics: {
             screen: () => <Overview userRole={userRole} project={project} />,
           },
           Stakeholders: {
@@ -116,6 +121,9 @@ class Navigator extends Component {
 
       Tabs = createMaterialTopTabNavigator(
         {
+          Overview: {
+            screen: () => <OverViewDetails userRole={userRole} project={project} />,
+          },
           Tasks: {
             screen: () => <Updates userRole={userRole} project={project} />,
           },
@@ -124,15 +132,18 @@ class Navigator extends Component {
           },
         },
         {
-          tabBarOptions: tabSettings,
+          tabBarOptions, // : tabSettings,
         },
       );
     } else {
       Tabs = createMaterialTopTabNavigator(
         {
-          // Overview: {
-          //   screen: () => <Overview userRole={userRole} project={project} />,
-          // },
+          Overview: {
+            screen: () => <OverViewDetails userRole={userRole} project={project} />,
+          },
+          Analytics: {
+            screen: () => <Overview userRole={userRole} project={project} />,
+          },
           Updates: {
             screen: () => <Updates userRole={userRole} project={project} />,
           },

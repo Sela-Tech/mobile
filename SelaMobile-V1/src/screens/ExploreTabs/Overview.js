@@ -34,11 +34,12 @@ const styles = StyleSheet.create({
     width: width / 2,
   },
   pt10: {
-    paddingTop: 10,
+    // paddingTop: 10,
   },
   topContainer: {
     paddingTop: 10,
     flex: 1,
+    justifyContent: 'center',
   },
   topTextContainer: {
     color: '#222829',
@@ -122,7 +123,7 @@ class Overview extends Component {
             <Text style={styles.topTextContainer}>{firstLetterCapital(project.description)}</Text>
           </View>
 
-          <View style={styles.pt10}>
+          <View style={{ flex: 1 }}>
             <Picker
               style={{
                 height: height / 15,
@@ -136,11 +137,13 @@ class Overview extends Component {
               <Picker.Item label="Forever" value="03" />
             </Picker>
           </View>
-          <StandardText
-            text="Project Health Overview"
-            viewStyle={styles.healthContainer}
-            textStyle={styles.text}
-          />
+          <View style={{ flex: 3 }}>
+            <StandardText
+              text="Project Health Overview"
+              viewStyle={styles.healthContainer}
+              textStyle={styles.text}
+            />
+          </View>
           <Box upText="Tasks Completed" secondTextLeft="13" />
           {/* <Box upText="Progress" secondTextLeft="70%" />
 
