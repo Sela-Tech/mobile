@@ -133,13 +133,21 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
         <Fragment>
           {tags.length === 0 ? (
             <View style={{ marginLeft: 3 }}>
-              <Tag showTag={console.log()} src={require('../../../assets/sdgs/SDG_1.png')} />
+              <Tag
+                noFn={() => console.log()}
+                showTag={() => console.log()}
+                src={require('../../../assets/sdgs/SDG_1.png')}
+              />
             </View>
           ) : (
             <View style={{ flexDirection: 'row', flex: 2 }}>
               {tags.slice(0, 2).map((c, index) => (
                 <View key={index} style={{ marginLeft: 3 }}>
-                  <Tag showTag={console.log()} src={mapNameToTag(c)} />
+                  <Tag
+                    noFn={() => console.log()}
+                    showTag={() => console.log()}
+                    src={mapNameToTag(c)}
+                  />
                 </View>
               ))}
             </View>

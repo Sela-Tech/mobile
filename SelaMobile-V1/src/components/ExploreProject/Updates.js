@@ -70,13 +70,7 @@ const optionsVideo = {
     skipBackup: true,
   },
 };
-const actionOptions = [
-  'Cancel',
-  'Apple',
-  <Text style={{ color: 'yellow' }}>Banana</Text>,
-  'Watermelon',
-  <Text style={{ color: 'red' }}>Durian</Text>,
-];
+
 export default class Updates extends Component {
   uploadFile = index => {
     // Launch Camera:

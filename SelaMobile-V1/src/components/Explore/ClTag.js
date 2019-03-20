@@ -16,8 +16,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const Tag = ({ src, showTag }) => (
-  <TouchableOpacity style={styles.container} onPress={() => showTag(src)}>
+const Tag = ({ noFn, src, showTag }) => (
+  <TouchableOpacity style={styles.container} onPress={noFn ? noFn() : () => showTag(src)}>
     <Image resizeMode="contain" style={styles.imageStyle} source={src} />
   </TouchableOpacity>
 );

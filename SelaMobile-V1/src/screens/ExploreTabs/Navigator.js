@@ -78,7 +78,6 @@ class Navigator extends Component {
     } else {
       userRole = 'evaluator';
     }
-    console.log('ududf', userRole);
 
     let Tabs;
 

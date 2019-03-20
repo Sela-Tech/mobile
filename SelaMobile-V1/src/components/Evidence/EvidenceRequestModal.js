@@ -15,6 +15,7 @@ import TableRequestModal from './TableRequestModal';
 import Text from '../Text';
 import Button from '../Button';
 import Input from '../Input';
+import { createEvidenceRequest } from '../../utils/api';
 import { WHITE, YELLOW } from '../../utils/constants';
 import ExtStyle from '../../utils/styles';
 
@@ -46,7 +47,7 @@ const styles = StyleSheet.create({
   },
   upContainer: {
     flex: 1,
-    height: height /10,
+    height: height / 10,
     backgroundColor: '#F5F5F8',
     flexDirection: 'row',
     justifyContent: 'center',
@@ -105,12 +106,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const CheckBoxContainer = ({ level }) => (
+const CheckBoxContainer = ({ level, mark, fn }) => (
   <View style={styles.checkBoxContainer}>
-    <View style={{ flex: 1 }}>
-      <CheckBox color="#201D41" onPress={() => console.log('i am here')} checked />
+    <View style={ExtStyle.flex1}>
+      <CheckBox color="#201D41" onPress={() => fn(level.toLowerCase())} checked={mark} />
     </View>
-    <View style={{ flex: 7 }}>
+    <View style={ExtStyle.flex7}>
       <Text> {level}
 {' '}
 Level Request
@@ -122,16 +123,78 @@ Level Request
 
 export default class EvidenceRequestModal extends Component {
   state = {
-    evidenceRequestLevel: true, // Default evidence request level is task level
+    // evidenceRequestLevel: true, // Default evidence request level is task level
     proposals: ['1', '2', '3'],
     proposalID: '1',
-    instructionVal: '',
+    instructions: '',
+    title: '',
+    price: '',
+    dueDate: '',
+    stakeholder: this.props.stakeholders[0].user.information._id,
+    dataType: ['Photo', 'Video', 'Image', 'Table'],
+    dataTypeData: 'Audio',
+    level: true, // default level === task
+  };
+
+  toggleLevelRequest = val => {
+    if (val === 'task') {
+      this.setState({ level: true });
+    } else {
+      this.setState({ level: false });
+    }
+  };
+
+  addRequest = async () => {
+    console.log('val', this.state);
+    const { project } = this.props;
+    console.log('project -details', project);
+    const { title, level, stakeholder, dataTypeData, dueDate, instructions, price } = this.state;
+    console.log('d stake', stakeholder);
+    const data = {
+      project: project._id,
+      title,
+      level: level ? 'task' : 'project',
+      datatype: dataTypeData.toLowerCase(),
+      instruction: instructions,
+      stakeholders: [stakeholder],
+      quote: price,
+      dueDate,
+    };
+    console.log('data to be sent', data);
+    try {
+      const resp = await createEvidenceRequest(data);
+      console.log('the resp', resp.data);
+    } catch (err) {
+      console.log('err', err.message);
+    }
+
+    // this.setState(prevState => ({ showModal: !prevState.showModal }));
   };
 
   render() {
-    const { visibility, toggleModal, addRequest, updateInput, formData, loading } = this.props;
-    const { price, instructions } = formData;
-    const { proposals, proposalID, instructionVal,evidenceRequestLevel } = this.state;
+    const {
+      stakeholders,
+      visibility,
+      toggleModal,
+      // addRequest,
+      updateInput,
+      formData,
+      loading,
+    } = this.props;
+    // const { price, instructions } = formData;
+    const {
+      dataType,
+      dataTypeData,
+      proposals,
+      proposalID,
+      stakeholder,
+      // instructionVal,
+      level,
+      title,
+      price,
+      dueDate,
+      instructions,
+    } = this.state;
     return (
       <Modal isVisible={visibility}>
         <KeyboardAvoidingView enabled style={ExtStyle.flex1}>
@@ -145,74 +208,71 @@ export default class EvidenceRequestModal extends Component {
               </TouchableOpacity>
             </View>
             <View style={styles.middleContainer}>
-              <View style={{ flex: 1, height: height /10 }}>
-                <CheckBoxContainer level="Task" />
-                <CheckBoxContainer level="Project" />
+              <View style={{ flex: 1, height: height / 10 }}>
+                <CheckBoxContainer level="Task" mark={level} fn={this.toggleLevelRequest} />
+                <CheckBoxContainer level="Project" mark={!level} fn={this.toggleLevelRequest} />
               </View>
               <View style={{ flex: 1 }}>
-              <Fragment>
-              {
-                  evidenceRequestLevel ?
-                  (
                 <Fragment>
-                <View>
-                  <View style={styles.mv5}>
-                    <Text style={styles.textStyle}>Proposal </Text>
-                  </View>
-                  <View style={[styles.inputStyle2, styles.picker, { paddingBottom: 15 }]}>
-                    <Picker
-                      style={[styles.picker]}
-                      selectedValue={proposalID}
-                      onValueChange={id => this.setState({ proposalID: id })}
-                    >
-                      {proposals.map((s, i) => (
-                        <Picker.Item
-                          key={i}
-                          style={[styles.inputStyle, styles.picker]}
-                          label={s}
-                          value={s}
-                        />
-                      ))}
-                    </Picker>
-                  </View>
-                </View>
+                  {level ? (
+                    <Fragment>
+                      <View>
+                        <View style={styles.mv5}>
+                          <Text style={styles.textStyle}>Proposal </Text>
+                        </View>
+                        <View style={[styles.inputStyle2, styles.picker, { paddingBottom: 15 }]}>
+                          <Picker
+                            style={[styles.picker]}
+                            selectedValue={proposalID}
+                            onValueChange={id => this.setState({ proposalID: id })}
+                          >
+                            {proposals.map((s, i) => (
+                              <Picker.Item
+                                key={i}
+                                style={[styles.inputStyle, styles.picker]}
+                                label={s}
+                                value={s}
+                              />
+                            ))}
+                          </Picker>
+                        </View>
+                      </View>
 
-                <View>
-                  <View style={styles.mv5}>
-                    <Text style={styles.textStyle}>Task </Text>
-                  </View>
-                  <View style={[styles.inputStyle2, styles.picker, { paddingBottom: 15 }]}>
-                    <Picker
-                      style={[styles.picker]}
-                      selectedValue={proposalID}
-                      onValueChange={id => this.setState({ proposalID: id })}
-                    >
-                      {proposals.map((s, i) => (
-                        <Picker.Item
-                          key={i}
-                          style={[styles.inputStyle, styles.picker]}
-                          label={s}
-                          value={s}
-                        />
-                      ))}
-                    </Picker>
-                  </View>
-                </View>
-                </Fragment>
-                ):
-                (
-                 <View>
-                  <View style={styles.mv5}>
-                    <Text style={styles.textStyle}> Request Title </Text>
-                  </View>
-                  <Input
-                    style={[styles.picker]}
-                    textStyle={ExtStyle.multiLineInputStyle}
-                    onChangeTheText={val => console.log('')}
-                    value={instructionVal}
-                  />
-                </View>
-                )}  
+                      <View>
+                        <View style={styles.mv5}>
+                          <Text style={styles.textStyle}>Task </Text>
+                        </View>
+                        <View style={[styles.inputStyle2, styles.picker, { paddingBottom: 15 }]}>
+                          <Picker
+                            style={[styles.picker]}
+                            selectedValue={proposalID}
+                            onValueChange={id => this.setState({ proposalID: id })}
+                          >
+                            {proposals.map((s, i) => (
+                              <Picker.Item
+                                key={i}
+                                style={[styles.inputStyle, styles.picker]}
+                                label={s}
+                                value={s}
+                              />
+                            ))}
+                          </Picker>
+                        </View>
+                      </View>
+                    </Fragment>
+                  ) : (
+                    <View>
+                      <View style={styles.mv5}>
+                        <Text style={styles.textStyle}> Request Title </Text>
+                      </View>
+                      <Input
+                        style={[styles.picker]}
+                        textStyle={ExtStyle.multiLineInputStyle}
+                        onChangeTheText={title => this.setState({ title })}
+                        value={title}
+                      />
+                    </View>
+                  )}
                 </Fragment>
                 <View>
                   <View style={styles.mv5}>
@@ -221,10 +281,11 @@ export default class EvidenceRequestModal extends Component {
                   <View style={[styles.inputStyle2, styles.picker, { paddingBottom: 15 }]}>
                     <Picker
                       style={[styles.picker]}
-                      selectedValue={proposalID}
-                      onValueChange={id => this.setState({ proposalID: id })}
+                      selectedValue={dataTypeData}
+                      // this.setState({ dataTypeData: data.toLowerCase() })
+                      onValueChange={data => this.setState({ dataTypeData: data })}
                     >
-                      {proposals.map((s, i) => (
+                      {dataType.map((s, i) => (
                         <Picker.Item
                           key={i}
                           style={[styles.inputStyle, styles.picker]}
@@ -243,8 +304,8 @@ export default class EvidenceRequestModal extends Component {
                   <Input
                     style={[styles.picker]}
                     // textStyle={ExtStyle.multiLineInputStyle}
-                    onChangeTheText={val => console.log('')}
-                    value={instructionVal}
+                    onChangeTheText={instructions => this.setState({ instructions })}
+                    value={instructions}
                   />
                 </View>
 
@@ -255,15 +316,16 @@ export default class EvidenceRequestModal extends Component {
                   <View style={[styles.inputStyle2, styles.picker, { paddingBottom: 15 }]}>
                     <Picker
                       style={[styles.picker]}
-                      selectedValue={proposalID}
-                      onValueChange={id => this.setState({ proposalID: id })}
+                      selectedValue={stakeholder}
+                      //
+                      onValueChange={id => this.setState({ stakeholder: id })}
                     >
-                      {proposals.map((s, i) => (
+                      {stakeholders.map((s, i) => (
                         <Picker.Item
                           key={i}
                           style={[styles.inputStyle, styles.picker]}
-                          label={s}
-                          value={s}
+                          label={`${s.user.information.firstName} ${s.user.information.lastName}`}
+                          value={s.user.information._id}
                         />
                       ))}
                     </Picker>
@@ -276,10 +338,10 @@ export default class EvidenceRequestModal extends Component {
                   </View>
                   <Input
                     style={[styles.picker]}
-                    multiline
                     textStyle={ExtStyle.multiLineInputStyle}
-                    onChangeTheText={val => console.log('')}
-                    value={instructionVal}
+                    numb
+                    onChangeTheText={price => this.setState({ price })}
+                    value={price}
                   />
                 </View>
 
@@ -290,26 +352,25 @@ export default class EvidenceRequestModal extends Component {
                   <Input
                     style={[styles.picker]}
                     // textStyle={ExtStyle.multiLineInputStyle}
-                    onChangeTheText={val => console.log('')}
-                    value={instructionVal}
+                    onChangeTheText={dueDate => this.setState({ dueDate })}
+                    value={dueDate}
                   />
                 </View>
               </View>
             </View>
             <View style={styles.bottomButton}>
               <Button
-                fn={() => addRequest()}
+                fn={() => this.addRequest()}
                 text="Add Request "
                 textStyle={{ color: WHITE }}
                 loading={loading}
                 style={styles.buttonStyle}
               />
             </View>
-            <View style={{ flex: 1,marginTop: 10}}/>
+            <View style={{ flex: 1, marginTop: 10 }} />
           </ScrollView>
         </KeyboardAvoidingView>
       </Modal>
     );
   }
 }
-
