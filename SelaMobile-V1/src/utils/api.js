@@ -344,3 +344,13 @@ export const retrieveEvidenceRequest = id => {
     return err;
   }
 };
+
+export const performActionOnProject = data => {
+  try {
+    return axios.put(`/project/${data.projectId}/accept?notification=${data.notificationId}`, {
+      agreed: data.agreed,
+    });
+  } catch (err) {
+    return err;
+  }
+};
