@@ -130,9 +130,15 @@ class Project extends Component {
       userRole = 'evaluator';
     }
 
-    if (userRole !== 'evaluator') {
+    if (userRole === 'funder') {
       await this.props.getFunderProjects();
-    } else {
+    } else if (userRole === 'contractor') {
+      console.log('ddfhhdhfhd');
+      await this.props.getEvaluatorProjects();
+    }
+    // else
+    else {
+      console.log('jdhfhd');
       await this.props.getEvaluatorProjects();
     }
     // await this.props.getContractorProjects();
@@ -188,6 +194,9 @@ class Project extends Component {
     if (userRole === 'evaluator') {
       evalProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
     }
+    if (userRole === 'contractor') {
+      evalProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
+    }
     const userData = this.props && this.props.userInfo && this.props.userInfo.user;
     const projects =
       (this.props &&
@@ -210,6 +219,8 @@ class Project extends Component {
           notifications.notifications.filter(c => c.read === false);
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
+
+
     return (
       <View style={styles.container}>
         <ParentHeader
@@ -344,7 +355,7 @@ class Project extends Component {
                             </View>
                           </View>
 
-                          <ContractorProject projects={projects} />
+                          <ContractorProject projects={evalProjects} />
                         </Tab>
                         <Tab
                           heading="Your Proposals"
@@ -353,7 +364,7 @@ class Project extends Component {
                           activeTabStyle={{ backgroundColor: '#201D41' }}
                           tabStyle={{ backgroundColor: '#FFFFFF' }}
                         >
-                          <Proposals projects={projects} />
+                          <Proposals projects={evalProjects} />
                         </Tab>
                       </Tabs>
                     ) : (

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import NavigationService from '../../services/NavigationService';
+import ProposalContent from '../../components/Project/ProposalContent';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
 import { WHITE } from '../../utils/constants';
@@ -27,25 +28,37 @@ const styles = StyleSheet.flatten({
 export default class Proposals extends Component {
   render() {
     const { project, userId } = this.props;
+    const { proposals } = project;
+    console.log('proposals sider', project);
+
+    if (proposals.length === 0) {
+      return (
+        <View style={{ flex: 1, flexDirection: 'column' }}>
+          <View style={{ marginTop: '10%', alignItems: 'center' }}>
+            <Text style={{ fontSize: 15 }}>No active Proposal </Text>
+          </View>
+          <View style={styles.container}>
+            <Button
+              fn={() =>
+                NavigationService.navigate('AddProposal', {
+                  projectId: project && project._id,
+                  userId,
+                })
+              }
+              style={styles.bottomButton.view}
+              textStyle={styles.bottomButton.text}
+              text="Send Proposal"
+              textColor={WHITE}
+            />
+          </View>
+        </View>
+      );
+    }
     return (
-      <View style={{ flex: 1, flexDirection: 'column' }}>
-        <View style={{ marginTop: '10%', alignItems: 'center' }}>
-          <Text style={{ fontSize: 15 }}>No active Proposal </Text>
-        </View>
-        <View style={styles.container}>
-          <Button
-            fn={() =>
-              NavigationService.navigate('AddProposal', {
-                projectId: project && project._id,
-                userId,
-              })
-            }
-            style={styles.bottomButton.view}
-            textStyle={styles.bottomButton.text}
-            text="Send Proposal"
-            textColor={WHITE}
-          />
-        </View>
+      <View>
+        {proposals.map((c, index) => (
+          <ProposalContent key={index} />
+        ))}
       </View>
     );
   }

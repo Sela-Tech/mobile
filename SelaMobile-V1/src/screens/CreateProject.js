@@ -644,6 +644,7 @@ class CreateProject extends Component {
     );
   }
 }
+
 const mapStateToProps = state => ({
   credentials: state.credentials,
 });

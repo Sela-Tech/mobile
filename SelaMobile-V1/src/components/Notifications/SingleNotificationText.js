@@ -91,7 +91,6 @@ export default class SingleNotificationText extends Component {
         notificationId: this.props.notifs._id,
         agreed:  agreed === 'true'? true: false,
       });
-      console.log('the ere', rr.data);
     } catch (err) {
       this.setState({ error: err.message });
     }

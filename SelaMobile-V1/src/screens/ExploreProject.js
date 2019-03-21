@@ -11,7 +11,7 @@ import FunderView from '../components/Explore/FunderView';
 import ContractorView from '../components/Explore/ContractorView';
 import EvaluatorView from '../components/Explore/EvaluatorView';
 import NavigationService from '../services/NavigationService';
-import { getSingleProject } from '../utils/api';
+import { getSingleProject, retrieveEvidenceRequest } from '../utils/api';
 import ExtStyle from '../utils/styles';
 import { WHITE } from '../utils/constants';
 
@@ -109,10 +109,9 @@ class ExploreProject extends Component {
         userRole = 'evaluator';
       }
       if (userRole === 'evaluator') {
-        allProjects =
-          this.props &&
-          this.props.projects &&
-          this.props.projects.projects;
+        allProjects = this.props && this.props.projects && this.props.projects.projects;
+      } else if (userRole === 'contractor') {
+        allProjects = this.props && this.props.projects && this.props.projects.projects;
       } else {
         allProjects =
           this.props &&
@@ -120,6 +119,7 @@ class ExploreProject extends Component {
           this.props.projects.projects &&
           this.props.projects.projects.projects;
       }
+      await this.getAllEvidenceRequest();
 
       if (allProjects.length === 0) {
         const resp = await getSingleProject(projectId);
@@ -145,6 +145,20 @@ class ExploreProject extends Component {
       this.setState({ error: err.message });
     }
   }
+
+  getAllEvidenceRequest = async () => {
+    const { projectId } = this.state;
+    try {
+      const resp = await retrieveEvidenceRequest(
+        projectId,
+        // this.props && this.props.project && this.props.project._id,
+      );
+      this.setState({ requests: resp.data.evidenceRequests, loading: false });
+      console.log('reere', resp.data.evidenceRequests);
+    } catch (err) {
+      console.log('the ereo', err.message);
+    }
+  };
 
   expandTheBox = val => {
     if (val === 'analytics') {
@@ -220,6 +234,7 @@ class ExploreProject extends Component {
       loading,
       notAvailaible,
       projectInfo,
+      requests,
       expandAnalyticsBox,
       expandOverviewBox,
       expandTransactionsBox,
@@ -252,7 +267,7 @@ class ExploreProject extends Component {
 
     if (userRole === 'evaluator') {
       allProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
-      console.log('contractor', allProjects);
+
       theProject = allProjects && allProjects.filter(c => c._id === projectId);
       theProject = theProject[0];
       const projectStakeholders = projectInfo && projectInfo.stakeholders;
@@ -350,6 +365,7 @@ class ExploreProject extends Component {
                   navigation={this.props.navigation}
                   project={projectInfo}
                   userId={userId}
+                  requests={requests}
                 />
               </View>
             </Fragment>

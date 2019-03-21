@@ -1,13 +1,18 @@
 import React, { Component, Fragment } from 'react';
 import { View, FlatList, Image, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet';
+import Modal from 'react-native-modal';
 import Text from '../Text';
 import Tag from '../Tag';
 import B from '../BoldText';
+import SpinnerOverlay from '../SpinnerOverlay';
 import EvalSubmission from './EvalSubmission';
+import { evidenceRequestSubmission, uploadToAWS } from '../../utils/api';
 import { projectStatusTextColor } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
+import BigImage from './Image';
 
 const keyExtractor = item => item.id.toString();
 
@@ -71,33 +76,98 @@ const optionsVideo = {
   },
 };
 
-export default class Updates extends Component {
-  uploadFile = index => {
-    // Launch Camera:
+class Updates extends Component {
+  state = {
+    fileName: '',
+    fileSource: '',
+    expand: false,
+    theType: null,
+    submissionLoading: false,
+  };
+
+  uploadFile = async (index, id) =>
     ImagePicker.launchCamera(index === 0 ? options : optionsVideo, response => {
       // Same code as in above section!
       if (response.didCancel) {
         console.log('User cancelled image picker');
+        this.setState({ expand: false });
       } else if (response.error) {
         console.log('ImagePicker Error: ', response.error);
+        this.setState({ expand: false });
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
+        this.setState({ expand: false });
       } else {
         const source = { uri: response.uri };
 
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        if (options === 0) {
-          alert('image uploaded successfully');
-        } else {
-          alert('Video uploaded successfully');
-        }
-
-        this.setState({
-          avatarSource: source,
+        return this.setState({
+          fileName: response.fileName,
+          fileSource: source,
+          requestId: id,
+          expand: true,
+          theType: index === 0 ? 'image' : 'video',
         });
       }
     });
+
+  submitEvidence = async (source, id) => {
+    const data = {
+      evidenceRequestId: id,
+      file: source,
+      fields: [],
+    };
+
+    try {
+      const resp = await evidenceRequestSubmission(data);
+      this.setState({ submissionLoading: false });
+      alert(resp.data);
+    } catch (err) {
+      this.setState({ error: err.message, submissionLoading: false });
+    }
+  };
+
+  submit = async (val, id) => {
+    if (val === 'image') {
+      this.uploadFile(0, id);
+    } else if (val === 'video') {
+      await this.uploadFile(1, id);
+    } else {
+      alert('table submission');
+    }
+  };
+
+  submission = async val => {
+    this.setState({ loading: true, expand: false });
+    const cred = this.props && this.props.credentials && this.props.credentials.credentials;
+
+    if (val === 'image') {
+      const { fileName, fileSource, requestId } = this.state;
+      const fileInfo = {
+        uri: fileSource.uri,
+        name: fileName,
+        type: 'image/png',
+      };
+      this.setState({ submissionLoading: true });
+      const resp = await uploadToAWS(fileInfo, null, cred);
+      await this.submitEvidence(resp.postResponse.location, requestId);
+    } else if (val === 'video') {
+      const { fileName, fileSource, requestId } = this.state;
+
+      const fileInfo = {
+        uri: fileSource.uri,
+        name: fileName,
+        type: 'image/png',
+      };
+      this.setState({ submissionLoading: true });
+      const resp = await uploadToAWS(fileInfo, null, cred);
+      await this.submitEvidence(resp.postResponse.location, requestId);
+    } else {
+      alert('table submission');
+    }
+  };
+
+  displayPicture = () => {
+    this.setState({ expand: false });
   };
 
   handlePress = buttonIndex => {
@@ -115,7 +185,51 @@ export default class Updates extends Component {
   };
 
   render() {
-    const { projectName, title, statusText, text, userRole } = this.props;
+    const {
+      allData,
+      projectName,
+      title,
+      statusText,
+      text,
+      userRole,
+      dataType,
+
+      // expand,
+    } = this.props;
+    console.log('all -data', allData);
+
+    const { fileSource, theType, expand, submissionLoading } = this.state;
+    if (expand) {
+      return (
+        <Modal isVisible>
+          <View
+            style={{
+              flex: 1,
+              borderRadius: 10,
+            }}
+          />
+          <BigImage
+            fn={() => this.displayPicture()}
+            imageSource={fileSource}
+            btn
+            btnFn={() => this.submission(theType)}
+          />
+        </Modal>
+      );
+    }
+    if (submissionLoading) {
+      return (
+        <View
+          style={{
+            flex: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <SpinnerOverlay loading={submissionLoading} />
+        </View>
+      );
+    }
     return (
       <View style={{ flex: 1, marginBottom: 10 }}>
         <View>
@@ -136,7 +250,7 @@ export default class Updates extends Component {
             style={{
               flex: userRole === 'funder' ? 3 : 2,
               marginRight: 5,
-              justifyContent: 'flex-end',
+              justifyContent: userRole === 'funder' ? 'flex-start' : 'center',
             }}
           >
             <Tag
@@ -147,11 +261,15 @@ export default class Updates extends Component {
           </View>
           <Fragment>
             {userRole === 'funder' ? null : (
-              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                <TouchableOpacity onPress={() => this.showActionSheet()}>
-                  <Image source={require('../../../assets/yellow_plus.png')} />
-                </TouchableOpacity>
-              </View>
+              <Fragment>
+                {statusText === 'Submitted' ? null : (
+                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
+                    <TouchableOpacity onPress={() => this.submit(dataType, allData._id)}>
+                      <Image source={require('../../../assets/yellow_plus.png')} />
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </Fragment>
             )}
           </Fragment>
         </View>
@@ -168,20 +286,38 @@ export default class Updates extends Component {
             <Text style={{ color: '#222829' }}>{text}</Text>
           </View>
         </View>
-        <View style={{ marginTop: 10 }}>
-          <View>
-            <B color="#201D41"> Evaluation Submissions</B>
-          </View>
-          <FlatList
-            style={{ paddingTop: 10 }}
-            data={projectName === 'Aba Factory construction' ? factoryImages : images}
-            showsHorizontalScrollIndicator={false}
-            keyExtractor={keyExtractor}
-            horizontal
-            renderItem={renderItem}
-          />
+        <View style={userRole === 'funder' ? { flex: 6 } : null}>
+          {userRole === 'funder' ? (
+            <Fragment>
+              {allData.submission.length === 0 ? (
+                <View>
+                  <Text> No Submission yet </Text>
+                </View>
+              ) : (
+                <View>
+                  <View>
+                    <B color="#201D41"> Evaluation Submissions</B>
+                  </View>
+                  <FlatList
+                    style={{ paddingTop: 10 }}
+                    data={projectName === 'Aba Factory construction' ? factoryImages : images}
+                    showsHorizontalScrollIndicator={false}
+                    keyExtractor={keyExtractor}
+                    horizontal
+                    renderItem={renderItem}
+                  />
+                </View>
+              )}
+            </Fragment>
+          ) : null}
         </View>
       </View>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  credentials: state.credentials,
+});
+
+export default connect(mapStateToProps)(Updates);

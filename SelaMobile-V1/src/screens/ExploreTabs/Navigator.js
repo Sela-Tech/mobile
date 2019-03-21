@@ -62,7 +62,7 @@ class Navigator extends Component {
   render() {
     const { navigation } = this.props;
     const { isContractor2 } = this.state;
-    const { project, userId } = this.props;
+    const { project, userId, requests } = this.props;
 
     const { isFunder, isEvaluator, isContractor } =
       this.props && this.props.userInfo && this.props.userInfo.user;
@@ -102,14 +102,14 @@ class Navigator extends Component {
             screen: () => <Request userRole={userRole} project={project} />,
           },
           Updates: {
-            screen: () => <Updates userRole={userRole} project={project} />,
+            screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
           },
           Transactions: {
             screen: () => <Transactions userRole={userRole} project={project} />,
           },
-          Location: {
-            screen: () => <Location userRole={userRole} project={project} />,
-          },
+          // Location: {
+          //   screen: () => <Location userRole={userRole} project={project} />,
+          // },
         },
         {
           tabBarOptions,
@@ -125,10 +125,10 @@ class Navigator extends Component {
             screen: () => <OverViewDetails userRole={userRole} project={project} />,
           },
           Tasks: {
-            screen: () => <Updates userRole={userRole} project={project} />,
+            screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
           },
           Evidence: {
-            screen: () => <Request userRole={userRole} project={project} />,
+            screen: () => <Request requests={requests} userRole={userRole} project={project} />,
           },
         },
         {
@@ -141,15 +141,15 @@ class Navigator extends Component {
           Overview: {
             screen: () => <OverViewDetails userRole={userRole} project={project} />,
           },
-          Analytics: {
-            screen: () => <Overview userRole={userRole} project={project} />,
-          },
+          // Analytics: {
+          //   screen: () => <Overview userRole={userRole} project={project} />,
+          // },
           Updates: {
-            screen: () => <Updates userRole={userRole} project={project} />,
+            screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
           },
-          Proposals: {
-            screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
-          },
+          // Proposals: {
+          //   screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
+          // },
           // Stakeholders: {
           //   screen: () => (
           //     <Stakeholders userRole={userRole} navigation={navigation} project={project} />

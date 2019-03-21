@@ -55,6 +55,7 @@ axios.interceptors.response.use(
         console.log('err', err.message);
       }
     }
+    console.log('kkkk', error.response.data);
     // Do something with response error
     console.log('API ERR:', error.message);
     // return error.response;
@@ -74,8 +75,10 @@ export const uploadToAWS = (file, data, cred) => {
   options.accessKey = cred.key;
   options.secretKey = cred.secret;
 
+  console.log('dfjdjfj');
   return RNS3.put(file, options)
     .then(response => {
+      console.log('thrhht', response);
       if (response.status !== 201) {
         return false;
       }
@@ -350,6 +353,14 @@ export const performActionOnProject = data => {
     return axios.put(`/project/${data.projectId}/accept?notification=${data.notificationId}`, {
       agreed: data.agreed,
     });
+  } catch (err) {
+    return err;
+  }
+};
+
+export const evidenceRequestSubmission = data => {
+  try {
+    return axios.put('/evidence-request-submission', data);
   } catch (err) {
     return err;
   }
