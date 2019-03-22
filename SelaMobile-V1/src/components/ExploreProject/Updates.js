@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { View, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, FlatList, Image, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet';
@@ -7,12 +7,15 @@ import Modal from 'react-native-modal';
 import Text from '../Text';
 import Tag from '../Tag';
 import B from '../BoldText';
+import SubmitEvidenceRequestModal from '../Evidence/SubmitEvidenceRequestModal';
 import SpinnerOverlay from '../SpinnerOverlay';
 import EvalSubmission from './EvalSubmission';
 import { evidenceRequestSubmission, uploadToAWS } from '../../utils/api';
 import { projectStatusTextColor } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
 import BigImage from './Image';
+
+const { height, width } = Dimensions.get('window');
 
 const keyExtractor = item => item.id.toString();
 
@@ -76,6 +79,25 @@ const optionsVideo = {
   },
 };
 
+const styles = StyleSheet.create({
+  notFunderContainer: {
+    // flex: 1,
+    marginBottom: 10,
+    height: height / 7,
+    borderBottomColor: '#B1BAD2',
+    justifyContent: 'center',
+    borderBottomWidth: 2,
+  },
+  container: {
+    flex: 1,
+    marginBottom: 10,
+    // height: height / 7,
+    borderBottomColor: '#B1BAD2',
+    justifyContent: 'center',
+    borderBottomWidth: 2,
+  },
+});
+
 class Updates extends Component {
   state = {
     fileName: '',
@@ -83,6 +105,7 @@ class Updates extends Component {
     expand: false,
     theType: null,
     submissionLoading: false,
+    tableModal: false,
   };
 
   uploadFile = async (index, id) =>
@@ -111,16 +134,33 @@ class Updates extends Component {
     });
 
   submitEvidence = async (source, id) => {
+    const { fieldsData } = this.state;
+
     const data = {
       evidenceRequestId: id,
       file: source,
       fields: [],
     };
+    
+
+    if (source === null) {
+
+      const newData = fieldsData
+        .filter(c => c && c.title !== 'Date')
+        .map(c => {
+          c.value = this.state[c && c.title];
+          return c;
+        });
+
+      data.fields = newData;
+      this.toggleModal();
+    }
 
     try {
       const resp = await evidenceRequestSubmission(data);
       this.setState({ submissionLoading: false });
-      alert(resp.data);
+      console.log('the resp', resp.data);
+      alert('Evidence saved');
     } catch (err) {
       this.setState({ error: err.message, submissionLoading: false });
     }
@@ -132,7 +172,14 @@ class Updates extends Component {
     } else if (val === 'video') {
       await this.uploadFile(1, id);
     } else {
-      alert('table submission');
+
+      this.setState({
+        fieldsData: this.props.allData.fields,
+      });
+      this.props.allData.fields.map(c => {
+        this.setState({ [c.title]: '' });
+      });
+      this.toggleModal();
     }
   };
 
@@ -163,11 +210,16 @@ class Updates extends Component {
       await this.submitEvidence(resp.postResponse.location, requestId);
     } else {
       alert('table submission');
+      // this.toggleModal();
     }
   };
 
   displayPicture = () => {
     this.setState({ expand: false });
+  };
+
+  updateInput = (name, value) => {
+    this.setState({ [name]: value });
   };
 
   handlePress = buttonIndex => {
@@ -184,6 +236,8 @@ class Updates extends Component {
     this.ActionSheet.show();
   };
 
+  toggleModal = () => this.setState(prevState => ({ tableModal: !prevState.tableModal }));
+
   render() {
     const {
       allData,
@@ -193,12 +247,23 @@ class Updates extends Component {
       text,
       userRole,
       dataType,
-
-      // expand,
     } = this.props;
-    console.log('all -data', allData);
 
-    const { fileSource, theType, expand, submissionLoading } = this.state;
+    const { fileSource, theType, expand, submissionLoading, tableModal } = this.state;
+
+    if (tableModal) {
+      return (
+        <SubmitEvidenceRequestModal
+          visibility={tableModal}
+          toggleModal={this.toggleModal}
+          updateInput={this.updateInput}
+          data={allData}
+          submitForm={this.submitEvidence}
+          theState={this.state}
+        />
+      );
+    }
+
     if (expand) {
       return (
         <Modal isVisible>
@@ -231,7 +296,7 @@ class Updates extends Component {
       );
     }
     return (
-      <View style={{ flex: 1, marginBottom: 10 }}>
+      <View style={userRole !== 'funder' ? styles.notFunderContainer : styles.container}>
         <View>
           <ActionSheet
             ref={o => (this.ActionSheet = o)}
@@ -248,9 +313,10 @@ class Updates extends Component {
           </View>
           <View
             style={{
-              flex: userRole === 'funder' ? 3 : 2,
+              flex: 3,
               marginRight: 5,
-              justifyContent: userRole === 'funder' ? 'flex-start' : 'center',
+              alignItems: 'flex-end',
+              // justifyContent: userRole === 'funder' ? 'flex-start' : 'center',
             }}
           >
             <Tag
@@ -262,12 +328,14 @@ class Updates extends Component {
           <Fragment>
             {userRole === 'funder' ? null : (
               <Fragment>
-                {statusText === 'Submitted' ? null : (
-                  <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
-                    <TouchableOpacity onPress={() => this.submit(dataType, allData._id)}>
-                      <Image source={require('../../../assets/yellow_plus.png')} />
-                    </TouchableOpacity>
-                  </View>
+                {dataType === 'table' && statusText === 'Submitted' ? null : (
+                  <Fragment>
+                    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'flex-end' }}>
+                      <TouchableOpacity onPress={() => this.submit(dataType, allData._id)}>
+                        <Image source={require('../../../assets/yellow_plus.png')} />
+                      </TouchableOpacity>
+                    </View>
+                  </Fragment>
                 )}
               </Fragment>
             )}
@@ -278,7 +346,12 @@ class Updates extends Component {
             <View style={{ alignItems: 'center' }}>
               <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Task Name: </Text>
             </View>
-            <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <View
+              style={{
+                width: width / 1.2,
+                paddingHorizontal: 20,
+              }}
+            >
               <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>{title} </Text>
             </View>
           </View>
@@ -289,7 +362,7 @@ class Updates extends Component {
         <View style={userRole === 'funder' ? { flex: 6 } : null}>
           {userRole === 'funder' ? (
             <Fragment>
-              {allData.submission.length === 0 ? (
+              {allData && allData.submission && allData.submission.length === 0 ? (
                 <View>
                   <Text> No Submission yet </Text>
                 </View>

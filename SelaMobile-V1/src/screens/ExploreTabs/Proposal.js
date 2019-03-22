@@ -29,7 +29,7 @@ export default class Proposals extends Component {
   render() {
     const { project, userId } = this.props;
     const { proposals } = project;
-    console.log('proposals sider', project);
+    // console.log('proposals sider', project);
 
     if (proposals.length === 0) {
       return (

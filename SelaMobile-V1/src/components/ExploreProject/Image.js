@@ -1,11 +1,9 @@
 import React, { Fragment } from 'react';
-import { Dimensions, ImageBackground, View, StyleSheet } from 'react-native';
+import { ImageBackground, View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import BackButton from '../BackButton';
 import Button from '../Button';
 import { YELLOW } from '../../utils/constants';
-
-const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -29,9 +27,7 @@ const Image = ({ fn, imageSource, btn, btnFn }) => (
           style={{
             position: 'absolute',
             bottom: 20,
-            width: width / 2,
-            alignItems: 'center',
-            justifyContent: 'center',
+            alignSelf: 'center',
           }}
         >
           <Button

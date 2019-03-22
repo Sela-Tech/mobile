@@ -154,7 +154,6 @@ class ExploreProject extends Component {
         // this.props && this.props.project && this.props.project._id,
       );
       this.setState({ requests: resp.data.evidenceRequests, loading: false });
-      console.log('reere', resp.data.evidenceRequests);
     } catch (err) {
       console.log('the ereo', err.message);
     }
@@ -289,6 +288,8 @@ class ExploreProject extends Component {
         projectStakeholders && projectStakeholders.filter(c => c.user.information._id === userId);
     }
 
+    console.log('the project-info', projectInfo);
+
     if (loading) {
       return (
         <View style={ExtStyle.center}>
@@ -305,7 +306,7 @@ class ExploreProject extends Component {
                 <View style={ExtStyle.flex1}>
                   <Image
                     style={styles.imageStyle}
-                    source={getDummyDisplayPicture(projectInfo && projectInfo.name)}
+                    source={{ uri: projectInfo && projectInfo['project-avatar'] }}
                   />
                 </View>
                 <View style={styles.imagePosition}>
@@ -344,22 +345,6 @@ class ExploreProject extends Component {
                   )}
                 </Fragment>
               </View>
-              {/* <View style={[ExtStyle.flex3]}>
-                <Header
-                  projectLocationText={
-                    projectInfo && projectInfo.location && projectInfo.location.name
-                  }
-                  projectStatusText={projectInfo && projectInfo.status}
-                  projectTitleText={projectInfo && projectInfo.name}
-                  budgetAmount={projectInfo && projectInfo.goal}
-                  numberOfStakeholders={
-                    (projectInfo && projectInfo.stakeholders && projectInfo.stakeholders.length) ||
-                    []
-                  }
-                  raisedAmount={projectInfo && projectInfo.raised}
-                  tags={projectInfo && projectInfo.tags}
-                />
-              </View> */}
               <View style={ExtStyle.flex6}>
                 <Navigator
                   navigation={this.props.navigation}

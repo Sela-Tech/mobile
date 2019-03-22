@@ -31,215 +31,156 @@ const styles = StyleSheet.create({
   },
 });
 
-const StakeHolders = ({ project, navigation }) => (
-  <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-    <View style={{ paddingTop: 10 }}>
-      <View>
-        <B color={YELLOW}>INITIATED BY</B>
-      </View>
-      <Fragment>
-        {project.stakeholders.length === 0 ? (
-          <View style={{ height: height / 7, justifyContent: 'center' }}>
-            <Text style={styles.emptyPersonText}> No StakeHolders at the moment </Text>
-          </View>
-        ) : (
-          <View style={{ flex: 1 }}>
-            {[project.stakeholders[0]].map((c, index) => {
-              let photoLink = c.user.information.profilePhoto;
-              if (photoLink === null) {
-                photoLink = 'https://placeimg.com/640/480/any';
-              } else if (photoLink === undefined) {
-                photoLink = 'https://placeimg.com/640/480/any';
-              }
-              return (
-                <UserProfile
-                  key={index}
-                  userId={project.name === 'Aba Factory construction' ? 'Isaiah' : 'Fidelia'}
-                  // userId={c.user.information._id}
-                  userDetails={c}
-                  // imgSource={{ uri: photoLink }}
-                  imgSource={
-                    project.name === 'Aba Factory construction'
-                      ? require('../../../assets/factory_cleanup/isaiah_udotong.jpg')
-                      : require('../../../assets/project_cleanup/fidelia_nnadi.jpg')
-                  }
-                  userName={
-                    project.name === 'Aba Factory construction' ? 'Isaiah Udotong' : 'Fidelia Nnadi'
-                  }
-                  // userName={`${project.owner.firstName} ${project.owner.lastName}`}
-                  companyName={
-                    project.name === 'Aba Factory construction'
-                      ? 'Releaf Nigeria'
-                      : 'Sustainability International'
-                  }
-                />
-              );
-            })}
-          </View>
-        )}
-      </Fragment>
-    </View>
-    <View>
-      <View>
-        <B color={YELLOW}>CONTRACTORS</B>
-      </View>
-      <Fragment>
-        {project.stakeholders.length === 0 ? (
-          <View style={{ height: height / 7, justifyContent: 'center' }}>
-            <Text style={styles.emptyPersonText}>No Contractors at the moment </Text>
-          </View>
-        ) : (
-          <View style={{ flex: 1 }}>
-            {[project.stakeholders[0]].map((c, index) => {
-              let photoLink = c.user.information.profilePhoto;
-              if (photoLink === null) {
-                photoLink = 'https://placeimg.com/640/480/any';
-              } else if (photoLink === undefined) {
-                photoLink = 'https://placeimg.com/640/480/any';
-              }
-              return (
-                <UserProfile
-                  key={index}
-                  userId={project.name === 'Aba Factory construction' ? 'Isaiah' : 'Collins'}
-                  // userId={c.user.information._id}
-                  userDetails={c}
-                  // imgSource={{ uri: photoLink }}
-                  imgSource={
-                    project.name === 'Aba Factory construction'
-                      ? require('../../../assets/factory_cleanup/isaiah_udotong.jpg')
-                      : require('../../../assets/man1.png')
-                  }
-                  userName={
-                    project.name === 'Aba Factory construction' ? 'Isaiah Udotong' : 'Collins Peter'
-                  }
-                  // userName={`${project.owner.firstName} ${project.owner.lastName}`}
-                  companyName={
-                    project.name === 'Aba Factory construction'
-                      ? 'Releaf Nigeria'
-                      : 'Sustainability International'
-                  }
-                />
-              );
-            })}
-          </View>
-        )}
-      </Fragment>
-    </View>
+const StakeHolders = ({ project, navigation }) => {
+  const funders =
+    project &&
+    project.stakeholders &&
+    project.stakeholders.filter(c => c.user.information.isFunder === true);
 
-    <View>
-      <View>
-        <B color={YELLOW}>EVALUATION AGENTS</B>
-      </View>
-      <Fragment>
-        {project.stakeholders.length === 0 ? (
-          <View style={{ height: height / 7, justifyContent: 'center' }}>
-            <Text style={styles.emptyPersonText}> No Evaluation agent at the moment </Text>
-          </View>
-        ) : (
-          <View style={{ flex: 1 }}>
-            {[project.stakeholders[0]].map((c, index) => {
-              let photoLink = c.user.information.profilePhoto;
-              if (photoLink === null) {
-                photoLink = 'https://placeimg.com/640/480/any';
-              } else if (photoLink === undefined) {
-                photoLink = 'https://placeimg.com/640/480/any';
-              }
-              return (
-                <UserProfile
-                  key={index}
-                  userId={project.name === 'Aba Factory construction' ? 'Simi' : 'Tunde'}
-                  // userId={c.user.information._id}
-                  userDetails={c}
-                  // imgSource={{ uri: photoLink }}
-                  imgSource={
-                    project.name === 'Aba Factory construction'
-                      ? require('../../../assets/factory_cleanup/Simi_Olatopin.jpg')
-                      : require('../../../assets/project_cleanup/Tunde_Olatope.jpg')
-                  }
-                  userName={
-                    project.name === 'Aba Factory construction' ? 'Simi Olatopin' : 'Tunde Olatope'
-                  }
-                  // userName={`${project.owner.firstName} ${project.owner.lastName}`}
-                  companyName={
-                    project.name === 'Aba Factory construction'
-                      ? 'Media for Justice'
-                      : 'Media for Justice'
-                  }
-                />
-              );
-            })}
-          </View>
-        )}
-      </Fragment>
-    </View>
-    <View>
-      <View>
-        <B color={YELLOW}>FUNDERS</B>
-      </View>
-      <Fragment>
-        {project.stakeholders.length === 0 ? (
-          <View style={{ height: height / 7, justifyContent: 'center' }}>
-            <Text style={styles.emptyPersonText}> No Funders at the moment </Text>
-          </View>
-        ) : (
-          <View style={{ flex: 1 }}>
-            {[project.stakeholders[0]].map((c, index) => {
-              let photoLink = c.user.information.profilePhoto;
-              if (photoLink === null) {
-                photoLink = 'https://placeimg.com/640/480/any';
-              } else if (photoLink === undefined) {
-                photoLink = 'https://placeimg.com/640/480/any';
-              }
-              return (
-                <UserProfile
-                  key={index}
-                  userId={project.name === 'Aba Factory construction' ? 'Carla' : 'Victoria'}
-                  // userId={c.user.information._id}
-                  userDetails={c}
-                  // imgSource={{ uri: photoLink }}
-                  imgSource={
-                    project.name === 'Aba Factory construction'
-                      ? require('../../../assets/factory_cleanup/carla_walker.jpeg')
-                      : require('../../../assets/project_cleanup/victoria_botvin.jpg')
-                  }
-                  userName={
-                    project.name === 'Aba Factory construction' ? 'Carla Walker' : 'Victoria Botvin'
-                  }
-                  // userName={`${project.owner.firstName} ${project.owner.lastName}`}
-                  companyName={
-                    project.name === 'Aba Factory construction'
-                      ? 'Bamboo Capital Partners'
-                      : 'Green Climate Fund'
-                  }
-                />
-              );
-            })}
-          </View>
-        )}
-      </Fragment>
-    </View>
-    {/* <TouchableOpacity
-      style={{
-        flexDirection: 'row',
-        marginVertical: 10,
-      }}
-      onPress={() => navigation.navigate('UpdatesOrTask')}
-    >
-      <View>
-        <Text style={{ color: '#201D41' }}> View updates</Text>
-      </View>
-      <View style={{ justifyContent: 'center', paddingLeft: 10 }}>
-        <Image source={require('../../../assets/forward-arrow.png')} />
-      </View>
-    </TouchableOpacity> */}
+  const contractors =
+    project &&
+    project.stakeholders &&
+    project.stakeholders.filter(c => c.user.information.isContractor === true);
 
-    {/* <View style={{ paddingTop: 10, alignItems: 'center' }}>
-      <Button
-        fn={() => NavigationService.navigate('Invest', { name: project.name })}
-        text="INVEST"
-      />
-    </View> */}
-  </ScrollView>
-);
+  const evaluators =
+    project &&
+    project.stakeholders &&
+    project.stakeholders.filter(c => c.user.information.isEvaluator === true);
+
+  console.log('the contractors', project.owner);
+  return (
+    // const funder =pr
+    <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
+      <View style={{ paddingTop: 10 }}>
+        <View>
+          <B color={YELLOW}>INITIATED BY</B>
+        </View>
+        <Fragment>
+          <View style={{ flex: 1 }}>
+            <UserProfile
+              userId={project.owner._id}
+              // userId={c.user.information._id}
+              userDetails={project.owner}
+              // imgSource={{ uri: photoLink }}
+              imgSource={{ uri: project.owner.profilePhoto }}
+              userName={`${project.owner.firstName} ${project.owner.lastName}`}
+              // userName={`${project.owner.firstName} ${project.owner.lastName}`}
+              companyName={project.owner.organization.name}
+            />
+          </View>
+        </Fragment>
+      </View>
+      <View>
+        <View>
+          <B color={YELLOW}>CONTRACTORS</B>
+        </View>
+        <Fragment>
+          {contractors.length === 0 ? (
+            <View style={{ height: height / 7, justifyContent: 'center' }}>
+              <Text style={styles.emptyPersonText}>No Contractors at the moment </Text>
+            </View>
+          ) : (
+            <View style={{ flex: 1 }}>
+              {contractors.map((c, index) => {
+                let photoLink = c.user.information.profilePhoto;
+                if (photoLink === null) {
+                  photoLink = 'https://placeimg.com/640/480/any';
+                } else if (photoLink === undefined) {
+                  photoLink = 'https://placeimg.com/640/480/any';
+                }
+                return (
+                  <UserProfile
+                    key={index}
+                    userId={c.user.information._id}
+                    // userId={c.user.information._id}
+                    userDetails={c}
+                    // imgSource={{ uri: photoLink }}
+                    imgSource={{ uri: c.user.information.profilePhoto }}
+                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                    // userName={`${project.owner.firstName} ${project.owner.lastName}`}
+                    companyName={c.user.information.organization.name}
+                  />
+                );
+              })}
+            </View>
+          )}
+        </Fragment>
+      </View>
+
+      <View>
+        <View>
+          <B color={YELLOW}>EVALUATION AGENTS</B>
+        </View>
+        <Fragment>
+          {evaluators.length === 0 ? (
+            <View style={{ height: height / 7, justifyContent: 'center' }}>
+              <Text style={styles.emptyPersonText}> No Evaluation agent at the moment </Text>
+            </View>
+          ) : (
+            <View style={{ flex: 1 }}>
+              {evaluators.map((c, index) => {
+                let photoLink = c.user.information.profilePhoto;
+                if (photoLink === null) {
+                  photoLink = 'https://placeimg.com/640/480/any';
+                } else if (photoLink === undefined) {
+                  photoLink = 'https://placeimg.com/640/480/any';
+                }
+                return (
+                  <UserProfile
+                    key={index}
+                    userId={c.user.information._id}
+                    // userId={c.user.information._id}
+                    userDetails={c}
+                    // imgSource={{ uri: photoLink }}
+                    imgSource={{ uri: c.user.information.profilePhoto }}
+                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                    // userName={`${project.owner.firstName} ${project.owner.lastName}`}
+                    companyName={c.user.information.organization.name}
+                  />
+                );
+              })}
+            </View>
+          )}
+        </Fragment>
+      </View>
+      <View>
+        <View>
+          <B color={YELLOW}>FUNDERS</B>
+        </View>
+        <Fragment>
+          {funders.length === 0 ? (
+            <View style={{ height: height / 7, justifyContent: 'center' }}>
+              <Text style={styles.emptyPersonText}> No Funders at the moment </Text>
+            </View>
+          ) : (
+            <View style={{ flex: 1 }}>
+              {funders.map((c, index) => {
+                let photoLink = c.user.information.profilePhoto;
+                if (photoLink === null) {
+                  photoLink = 'https://placeimg.com/640/480/any';
+                } else if (photoLink === undefined) {
+                  photoLink = 'https://placeimg.com/640/480/any';
+                }
+                return (
+                  <UserProfile
+                    key={index}
+                    userId={c.user.information._id}
+                    // userId={c.user.information._id}
+                    userDetails={c}
+                    // imgSource={{ uri: photoLink }}
+                    imgSource={{ uri: c.user.information.profilePhoto }}
+                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                    // userName={`${project.owner.firstName} ${project.owner.lastName}`}
+                    companyName={c.user.information.organization.name}
+                  />
+                );
+              })}
+            </View>
+          )}
+        </Fragment>
+      </View>
+    </ScrollView>
+  );
+};
 
 export default StakeHolders;

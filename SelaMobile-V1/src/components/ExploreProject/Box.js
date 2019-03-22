@@ -121,6 +121,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
             </Text>
           </View>
         </View>
+
       </View>
       <View
         style={{
@@ -131,15 +132,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
         }}
       >
         <Fragment>
-          {tags.length === 0 ? (
-            <View style={{ marginLeft: 3 }}>
-              <Tag
-                noFn={() => console.log()}
-                showTag={() => console.log()}
-                src={require('../../../assets/sdgs/SDG_1.png')}
-              />
-            </View>
-          ) : (
+          {tags.length === 0 ? null : (
             <View style={{ flexDirection: 'row', flex: 2 }}>
               {tags.slice(0, 2).map((c, index) => (
                 <View key={index} style={{ marginLeft: 3 }}>
@@ -153,11 +146,11 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
             </View>
           )}
         </Fragment>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             flex: 1,
             alignItems: 'flex-end',
-            justifyContent: 'center',
+            // justifyContent: 'center',
           }}
         >
           <Image
@@ -165,7 +158,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
               require('../../../assets/badge.png') || require('../../../assets/badge-white.png')
             }
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
       </View>
     </View>
   </TouchableOpacity>

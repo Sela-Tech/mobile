@@ -48,16 +48,7 @@ const styles = StyleSheet.create({
     // justifyContent: 'flex-start',
   },
   tagStyle: {
-    // width: 80,
-    // height: 80,
-    // width: '100%',
-    // height: '100%',
-    // paddingHorizontal: 5,
-    // borderRadius: 10,
-
-    // flex: 1,
     height: '60%',
-    // width: '150%',
     paddingHorizontal: 5,
     paddingVertical: 5,
     borderRadius: 10,
@@ -88,7 +79,7 @@ export default class OverView extends Component {
     if (openMap) {
       return (
         <View style={styles.container}>
-          <Map visible={openMap} toggleMapView={this.toggleMapView} location={locationDetails} />
+          <Map visible={openMap} toggleMapView={this.toggleMapView} location={project.location} />
         </View>
       );
     }

@@ -133,12 +133,8 @@ class Project extends Component {
     if (userRole === 'funder') {
       await this.props.getFunderProjects();
     } else if (userRole === 'contractor') {
-      console.log('ddfhhdhfhd');
       await this.props.getEvaluatorProjects();
-    }
-    // else
-    else {
-      console.log('jdhfhd');
+    } else {
       await this.props.getEvaluatorProjects();
     }
     // await this.props.getContractorProjects();
@@ -148,7 +144,7 @@ class Project extends Component {
 
   reload = async () => {
     this.setState({ reloading: true });
-    await Promise.all([this.props.getFunderProjects()]);
+    // await Promise.all([this.props.getFunderProjects()]);
     this.setState({ reloading: false });
   };
 
@@ -219,7 +215,6 @@ class Project extends Component {
           notifications.notifications.filter(c => c.read === false);
 
     const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
-
 
     return (
       <View style={styles.container}>
