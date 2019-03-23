@@ -16,11 +16,11 @@ import { Tabs, Tab } from 'native-base';
 import io from 'socket.io-client';
 import { store } from '../../store';
 import { getNewNotifications } from '../../actions/notifications';
-import { getUserProject, getContractorProject, getEvaluatorProject } from '../../actions/project';
+import { getUserProject, getProjectInvitedTo } from '../../actions/project';
 import ParentHeader from '../components/Header';
 import Text from '../components/Text';
 import Proposals from '../components/Project/Proposals';
-import ContractorProject from '../components/Project/ContractorProject';
+import ProjectView from '../components/Project/ContractorProject';
 import SingularProject from '../components/Project/Project';
 import { YELLOW, BASE_URL } from '../utils/constants';
 import ExtStyle from '../utils/styles';
@@ -129,15 +129,12 @@ class Project extends Component {
     } else {
       userRole = 'evaluator';
     }
-
     if (userRole === 'funder') {
       await this.props.getFunderProjects();
-    } else if (userRole === 'contractor') {
-      await this.props.getEvaluatorProjects();
     } else {
-      await this.props.getEvaluatorProjects();
+      await this.props.getProjectInvitedTo();
     }
-    // await this.props.getContractorProjects();
+
     this.setState({ loading: false });
     // getCurrentState();
   }
@@ -186,23 +183,12 @@ class Project extends Component {
     } else {
       userRole = 'evaluator';
     }
-    let evalProjects;
-    if (userRole === 'evaluator') {
-      evalProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
-    }
-    if (userRole === 'contractor') {
-      evalProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
+    let invitedProjects;
+    if (userRole === 'evaluator' || userRole === 'contractor') {
+      invitedProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
     }
     const userData = this.props && this.props.userInfo && this.props.userInfo.user;
-    const projects =
-      (this.props &&
-        this.props.projects &&
-        this.props.projects.projects &&
-        this.props.projects.projects.projects) ||
-      [];
-
-    const contractorProjects =
-      (this.props && this.props.projects && this.props.projects.contrProjects) || [];
+    const projects = (this.props && this.props.projects && this.props.projects.projects) || [];
 
     const notifications =
       this.props && this.props.notifications && this.props.notifications.notifications;
@@ -214,7 +200,7 @@ class Project extends Component {
           notifications.notifications &&
           notifications.notifications.filter(c => c.read === false);
 
-    const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
+    // const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
 
     return (
       <View style={styles.container}>
@@ -241,7 +227,11 @@ class Project extends Component {
             ) : (
               <Fragment>
                 {userRole === 'funder' ? (
-                  <ScrollView contentContainerstyle={{ flexGrow: 1 }}>
+                  <ScrollView
+                    contentContainerstyle={{
+                      flexGrow: 1,
+                    }}
+                  >
                     <StandardText
                       text="Welcome back"
                       viewStyle={{
@@ -256,7 +246,7 @@ class Project extends Component {
                       }}
                     />
 
-                    <View style={{ marginTop: 10, marginHorizontal: 10 }}>
+                    <View style={{ marginHorizontal: 10, marginTop: 10 }}>
                       <View style={{ marginBottom: 5 }}>
                         <Text style={{ fontSize: 15 }}> FilterBy</Text>
                       </View>
@@ -278,37 +268,13 @@ class Project extends Component {
                       </View>
                     </View>
 
-                    <View style={ExtStyle.flex1}>
-                      <ContractorProject
+                    <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
+                      <ProjectView
                         leftText="Projects you fund"
                         // rightText="See all"
                         projects={projects}
                       />
                     </View>
-
-                    {/* <View style={ExtStyle.flex1}>
-                      <SingularProject
-                        leftText="Projects you initiated"
-                        // rightText="See all"
-                        projects={projectCreatedByMe}
-                      />
-                    </View>
-
-                    <View style={ExtStyle.flex1}>
-                      <SingularProject
-                        leftText="Projects that may interest you"
-                        // rightText="Edit interest"
-                        projects={projects}
-                      />
-                    </View>
-
-                    <View style={ExtStyle.flex1}>
-                      <SingularProject
-                        leftText="Bookmarks"
-                        // rightText="See all"
-                        projects={projects}
-                      />
-                    </View> */}
                   </ScrollView>
                 ) : (
                   <Fragment>
@@ -349,8 +315,9 @@ class Project extends Component {
                               </Picker>
                             </View>
                           </View>
-
-                          <ContractorProject projects={evalProjects} />
+                          <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
+                            <ProjectView projects={invitedProjects} />
+                          </View>
                         </Tab>
                         <Tab
                           heading="Your Proposals"
@@ -359,12 +326,12 @@ class Project extends Component {
                           activeTabStyle={{ backgroundColor: '#201D41' }}
                           tabStyle={{ backgroundColor: '#FFFFFF' }}
                         >
-                          <Proposals projects={evalProjects} />
+                          <Proposals projects={invitedProjects} />
                         </Tab>
                       </Tabs>
                     ) : (
                       <ScrollView style={{ flex: 1 }} contentContainerstyle={{ flexGrow: 1 }}>
-                        {evalProjects.length === 0 ? (
+                        {invitedProjects.length === 0 ? (
                           <View style={styles.subContainer}>
                             <View>
                               <Image source={require('../../assets/Illustration.png')} />
@@ -376,11 +343,11 @@ class Project extends Component {
                           </View>
                         ) : (
                           <View>
-                            <View style={ExtStyle.flex1}>
-                              <ContractorProject
+                            <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
+                              <ProjectView
                                 leftText="Projects you evaluate"
                                 // rightText="See all"
-                                projects={evalProjects}
+                                projects={invitedProjects}
                               />
                             </View>
                             <View style={ExtStyle.flex1}>{this.renderButton()}</View>
@@ -417,41 +384,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getFunderProjects: () => dispatch(getUserProject()),
-  getEvaluatorProjects: () => dispatch(getEvaluatorProject()),
-  getContractorProjects: () => dispatch(getContractorProject()),
+  getProjectInvitedTo: () => dispatch(getProjectInvitedTo()),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Project);
-
-// Contractor View
-{
-  /* <Tabs
-                            tabBarUnderlineStyle={{
-                              backgroundColor: '#201D41',
-                            }}
-                          >
-                            <Tab
-                              heading="Your Projects"
-                              textStyle={{ color: '#B1BAD2', fontSize: 14 }}
-                              activeTextStyle={{ color: '#fff', fontSize: 14 }}
-                              activeTabStyle={{
-                                backgroundColor: '#201D41',
-                              }}
-                              tabStyle={{ backgroundColor: '#FFFFFF' }}
-                            >
-                              <ContractorProject projects={projects} />
-                            </Tab>
-                            <Tab
-                              heading="Your Proposals"
-                              textStyle={{ color: '#B1BAD2', fontSize: 14 }}
-                              activeTextStyle={{ color: '#fff', fontSize: 14 }}
-                              activeTabStyle={{ backgroundColor: '#201D41' }}
-                              tabStyle={{ backgroundColor: '#FFFFFF' }}
-                            >
-                              <Proposals projects={projects} />
-                            </Tab>
-                          </Tabs> */
-}

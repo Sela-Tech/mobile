@@ -32,10 +32,9 @@ export const getUserProject = () => dispatch =>
       dispatch(projectIsLoadingError(err.message || 'ERROR'));
     });
 
-export const getEvaluatorProject = () => dispatch =>
+export const getProjectInvitedTo = () => dispatch =>
   API.dashboardRequest('j', 1, 10)
     .then(resp => {
-      console.log('resp', resp.data.result.joinedProjects.docs);
       dispatch(projectIsLoading(false));
       dispatch(getFunderProjects(resp.data.result.joinedProjects.docs));
     })
@@ -57,9 +56,7 @@ export const getContractorProject = () => dispatch =>
 
 export const getAllUserProjects = (type, pageNo, limit) => dispatch =>
   API.dashboardRequest(type, pageNo, limit)
-    .then(resp => {
-      console.log('...', resp.data);
-    })
+    .then(resp => {})
     .catch(err => {
       dispatch(projectIsLoading(false));
       dispatch(projectIsLoadingError(err.message || 'ERROR'));

@@ -20,6 +20,9 @@ import PDFView from './screens/Pdf';
 import AddInterest from './screens/AddInterest';
 import AddProposal from './screens/AddProposal';
 
+import Wallet from './screens/Wallet';
+import ProjectWallet from './screens/ProjectWallet';
+
 import { isAndroid } from './utils/helpers';
 
 export const RootStackNavigator = createStackNavigator(
@@ -35,6 +38,12 @@ export const RootStackNavigator = createStackNavigator(
     },
     ViewProject: {
       screen: ViewProject,
+      navigationOptions: {
+        header: null,
+      },
+    },
+    ProjectWallet: {
+      screen: ProjectWallet,
       navigationOptions: {
         header: null,
       },
@@ -172,7 +181,7 @@ export const MainSwitchNavigator = createSwitchNavigator(
 
 export const TestStackNavigator = createStackNavigator({
   SubmitFeedbackd: {
-    screen: AddProposal,
+    screen: ProjectWallet,
     navigationOptions: {
       header: null,
     },

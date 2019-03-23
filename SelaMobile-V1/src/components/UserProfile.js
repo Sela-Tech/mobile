@@ -53,18 +53,11 @@ const UserProfile = ({ imgSource, userName, companyName, userId }) => (
   >
     <View style={styles.subContainer}>
       <View style={styles.pl10}>
-        <Image
-          style={styles.imageStyle}
-          // resizeMode="contain"
-          source={imgSource}
-        />
+        <Image style={styles.imageStyle} source={imgSource} />
       </View>
       <View style={styles.userNameStyle}>
         <View>
-          <B>
-{userName}
-{' '}
- </B>
+          <B>{userName}</B>
         </View>
         <View style={styles.starImageStyle}>
           <Image source={require('../../assets/star.png')} />

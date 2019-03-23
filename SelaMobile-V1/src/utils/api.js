@@ -75,10 +75,8 @@ export const uploadToAWS = (file, data, cred) => {
   options.accessKey = cred.key;
   options.secretKey = cred.secret;
 
-  console.log('dfjdjfj');
   return RNS3.put(file, options)
     .then(response => {
-      console.log('thrhht', response);
       if (response.status !== 201) {
         return false;
       }

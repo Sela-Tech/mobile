@@ -154,18 +154,6 @@ export default class AddProposals extends Component {
       amount: taskEstimatedCost,
       id: Math.floor(Math.random() * 1000000 + 1),
     };
-    // console.log('data', data);
-
-    // const data = {
-    //     "name": "wewew",
-    //     "description": "eewew",
-    //     "dueDate": "232323",
-    //     "projectId": "5c6ac53bb4378e0022880150",
-    //     "estimatedCost": "2322",
-    //     deadline: "232323",
-    //     amount: "2322",
-    //     id: Math.floor((Math.random() * 1000000) + 1),
-    // }
 
     try {
       this.setState({ loading: true });

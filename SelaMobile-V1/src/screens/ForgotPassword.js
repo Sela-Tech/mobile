@@ -57,7 +57,6 @@ export default class ForgotPassword extends Component {
         loading: false,
       });
       this.dropdown.alertWithType('success', 'Success', resp.data.message);
-      console.log('fjdjfjd', resp.data);
     } catch (err) {
       this.dropdown.alertWithType('error', 'Error', err.message);
       this.setState({ err: err.message, loading: false });

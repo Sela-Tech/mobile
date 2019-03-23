@@ -159,7 +159,7 @@ class Updates extends Component {
     try {
       const resp = await evidenceRequestSubmission(data);
       this.setState({ submissionLoading: false });
-      console.log('the resp', resp.data);
+     
       alert('Evidence saved');
     } catch (err) {
       this.setState({ error: err.message, submissionLoading: false });

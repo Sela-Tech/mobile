@@ -9,9 +9,9 @@ import { YELLOW } from '../../utils/constants';
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    // flexGrow: 1,
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
   buttonCenter: {
     flex: 1,
@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   center: {
-    justifyContent: 'center',
-    alignItems: 'center',
+    // justifyContent: 'center',
+    // alignItems: 'center',
   },
 });
 

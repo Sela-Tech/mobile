@@ -145,11 +145,8 @@ export default class EvidenceRequestModal extends Component {
   };
 
   addRequest = async () => {
-    console.log('val', this.state);
     const { project } = this.props;
-    console.log('project -details', project);
     const { title, level, stakeholder, dataTypeData, dueDate, instructions, price } = this.state;
-    console.log('d stake', stakeholder);
     const data = {
       project: project._id,
       title,
@@ -160,7 +157,7 @@ export default class EvidenceRequestModal extends Component {
       quote: price,
       dueDate,
     };
-    console.log('data to be sent', data);
+
     try {
       const resp = await createEvidenceRequest(data);
       console.log('the resp', resp.data);

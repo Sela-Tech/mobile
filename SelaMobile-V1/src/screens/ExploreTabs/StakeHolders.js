@@ -47,9 +47,7 @@ const StakeHolders = ({ project, navigation }) => {
     project.stakeholders &&
     project.stakeholders.filter(c => c.user.information.isEvaluator === true);
 
-  console.log('the contractors', project.owner);
   return (
-    // const funder =pr
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
       <View style={{ paddingTop: 10 }}>
         <View>
@@ -59,12 +57,9 @@ const StakeHolders = ({ project, navigation }) => {
           <View style={{ flex: 1 }}>
             <UserProfile
               userId={project.owner._id}
-              // userId={c.user.information._id}
               userDetails={project.owner}
-              // imgSource={{ uri: photoLink }}
               imgSource={{ uri: project.owner.profilePhoto }}
               userName={`${project.owner.firstName} ${project.owner.lastName}`}
-              // userName={`${project.owner.firstName} ${project.owner.lastName}`}
               companyName={project.owner.organization.name}
             />
           </View>
@@ -81,27 +76,16 @@ const StakeHolders = ({ project, navigation }) => {
             </View>
           ) : (
             <View style={{ flex: 1 }}>
-              {contractors.map((c, index) => {
-                let photoLink = c.user.information.profilePhoto;
-                if (photoLink === null) {
-                  photoLink = 'https://placeimg.com/640/480/any';
-                } else if (photoLink === undefined) {
-                  photoLink = 'https://placeimg.com/640/480/any';
-                }
-                return (
-                  <UserProfile
-                    key={index}
-                    userId={c.user.information._id}
-                    // userId={c.user.information._id}
-                    userDetails={c}
-                    // imgSource={{ uri: photoLink }}
-                    imgSource={{ uri: c.user.information.profilePhoto }}
-                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                    // userName={`${project.owner.firstName} ${project.owner.lastName}`}
-                    companyName={c.user.information.organization.name}
-                  />
-                );
-              })}
+              {contractors.map((c, index) => (
+                <UserProfile
+                  key={index}
+                  userId={c.user.information._id}
+                  userDetails={c}
+                  imgSource={{ uri: c.user.information.profilePhoto }}
+                  userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                  companyName={c.user.information.organization.name}
+                />
+              ))}
             </View>
           )}
         </Fragment>
@@ -118,27 +102,16 @@ const StakeHolders = ({ project, navigation }) => {
             </View>
           ) : (
             <View style={{ flex: 1 }}>
-              {evaluators.map((c, index) => {
-                let photoLink = c.user.information.profilePhoto;
-                if (photoLink === null) {
-                  photoLink = 'https://placeimg.com/640/480/any';
-                } else if (photoLink === undefined) {
-                  photoLink = 'https://placeimg.com/640/480/any';
-                }
-                return (
-                  <UserProfile
-                    key={index}
-                    userId={c.user.information._id}
-                    // userId={c.user.information._id}
-                    userDetails={c}
-                    // imgSource={{ uri: photoLink }}
-                    imgSource={{ uri: c.user.information.profilePhoto }}
-                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                    // userName={`${project.owner.firstName} ${project.owner.lastName}`}
-                    companyName={c.user.information.organization.name}
-                  />
-                );
-              })}
+              {evaluators.map((c, index) => (
+                <UserProfile
+                  key={index}
+                  userId={c.user.information._id}
+                  userDetails={c}
+                  imgSource={{ uri: c.user.information.profilePhoto }}
+                  userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                  companyName={c.user.information.organization.name}
+                />
+              ))}
             </View>
           )}
         </Fragment>
@@ -154,27 +127,16 @@ const StakeHolders = ({ project, navigation }) => {
             </View>
           ) : (
             <View style={{ flex: 1 }}>
-              {funders.map((c, index) => {
-                let photoLink = c.user.information.profilePhoto;
-                if (photoLink === null) {
-                  photoLink = 'https://placeimg.com/640/480/any';
-                } else if (photoLink === undefined) {
-                  photoLink = 'https://placeimg.com/640/480/any';
-                }
-                return (
-                  <UserProfile
-                    key={index}
-                    userId={c.user.information._id}
-                    // userId={c.user.information._id}
-                    userDetails={c}
-                    // imgSource={{ uri: photoLink }}
-                    imgSource={{ uri: c.user.information.profilePhoto }}
-                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                    // userName={`${project.owner.firstName} ${project.owner.lastName}`}
-                    companyName={c.user.information.organization.name}
-                  />
-                );
-              })}
+              {funders.map((c, index) => (
+                <UserProfile
+                  key={index}
+                  userId={c.user.information._id}
+                  userDetails={c}
+                  imgSource={{ uri: c.user.information.profilePhoto }}
+                  userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                  companyName={c.user.information.organization.name}
+                />
+              ))}
             </View>
           )}
         </Fragment>

@@ -155,7 +155,7 @@ class ExploreProject extends Component {
       );
       this.setState({ requests: resp.data.evidenceRequests, loading: false });
     } catch (err) {
-      console.log('the ereo', err.message);
+      
     }
   };
 
@@ -287,8 +287,6 @@ class ExploreProject extends Component {
       const userStakeholderStatus =
         projectStakeholders && projectStakeholders.filter(c => c.user.information._id === userId);
     }
-
-    console.log('the project-info', projectInfo);
 
     if (loading) {
       return (

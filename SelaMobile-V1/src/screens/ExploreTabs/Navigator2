@@ -80,7 +80,7 @@ class Navigator extends Component {
     const UpdatesOrTask = isContractor === 'contractor' ? Updates : Tasks;
     const TransactionOrOvervIew = isContractor === 'contractor' ? Transactions : Overview;
 
-    console.log('jfjjgfg- the role', userRole);
+    
 
     let Tabs;
     // if (userRole === 'contractor') {

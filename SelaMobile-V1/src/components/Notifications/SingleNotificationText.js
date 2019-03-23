@@ -8,7 +8,6 @@ import { WHITE } from '../../utils/constants';
 import { performActionOnProject } from '../../utils/api';
 
 const { width, height } = Dimensions.get('window');
-console.log('fkfkkf', height / 8);
 const styles = StyleSheet.create({
   container: {
     height: height / 8, // 90
