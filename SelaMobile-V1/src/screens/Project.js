@@ -22,6 +22,7 @@ import Text from '../components/Text';
 import Proposals from '../components/Project/Proposals';
 import ProjectView from '../components/Project/ContractorProject';
 import { YELLOW, BASE_URL } from '../utils/constants';
+import { getUserRole } from '../utils/helpers';
 import ExtStyle from '../utils/styles';
 import Spinner from '../components/Spinner';
 import StandardText from '../components/StandardText';
@@ -125,14 +126,7 @@ class Project extends Component {
       isEvaluator: this.props && this.props.userInfo && this.props.userInfo.user.isEvaluator,
       isContractor: this.props && this.props.userInfo && this.props.userInfo.user.isContractor,
     };
-    let userRole;
-    if (userRoleObj.isFunder) {
-      userRole = 'funder';
-    } else if (userRoleObj.isContractor) {
-      userRole = 'contractor';
-    } else {
-      userRole = 'evaluator';
-    }
+    const userRole = getUserRole(userRoleObj);
     if (userRole === 'funder') {
       await this.props.getFunderProjects();
     } else {

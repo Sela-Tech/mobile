@@ -130,7 +130,7 @@ export default class EvidenceRequestModal extends Component {
     title: '',
     price: '',
     dueDate: '',
-    stakeholder: this.props.stakeholders[0].user.information._id,
+    stakeholder:  1,
     dataType: ['Photo', 'Video', 'Image', 'Table'],
     dataTypeData: 'Audio',
     level: true, // default level === task

@@ -1,21 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, Dimensions, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import Navigator from './ExploreTabs/Navigator';
 import Spinner from '../components/Spinner';
 import Text from '../components/Text';
 import Button from '../components/Button';
-import Header from '../components/Explore/Header';
-// import ExpandableBox from '../components/Explore/ExpandableBox';
-import FunderView from '../components/Explore/FunderView';
-import ContractorView from '../components/Explore/ContractorView';
-import EvaluatorView from '../components/Explore/EvaluatorView';
 import NavigationService from '../services/NavigationService';
 import { getSingleProject, retrieveEvidenceRequest } from '../utils/api';
 import ExtStyle from '../utils/styles';
 import { WHITE } from '../utils/constants';
-
-import { getDummyDisplayPicture } from '../utils/helpers';
+import { getUserRole } from '../utils/helpers';
 
 const { height, width } = Dimensions.get('window');
 
@@ -42,9 +36,6 @@ const styles = StyleSheet.flatten({
       fontSize: 14,
       fontWeight: '500',
     },
-  },
-  mt3: {
-    // marginTop: height < 600 ? 3 : null,
   },
   imagePosition: {
     position: 'absolute',
@@ -80,48 +71,19 @@ class ExploreProject extends Component {
     projectId: this.props.navigation.state.params,
     loading: true,
     notAvailaible: false,
-    expandAnalyticsBox: true,
-    expandOverviewBox: true,
-    expandTransactionsBox: true,
-    expandUpdatesBox: true,
-    expandStakeHoldersBox: true,
-    expandProposalsBox: true,
   };
 
   async componentDidMount() {
+    await this.getProjectToDisplay();
+    await this.getAllEvidenceRequest();
+  }
+
+  getProjectToDisplay = async () => {
     try {
       const { projectId } = this.state;
-      const { isFunder, isEvaluator, isContractor } =
-        this.props && this.props.userInfo && this.props.userInfo.user;
-      const userRoleObj = {
-        isFunder,
-        isEvaluator,
-        isContractor,
-      };
-      let allProjects;
-
-      let userRole;
-      if (userRoleObj.isFunder) {
-        userRole = 'funder';
-      } else if (userRoleObj.isContractor) {
-        userRole = 'contractor';
-      } else {
-        userRole = 'evaluator';
-      }
-      if (userRole === 'evaluator') {
-        allProjects = this.props && this.props.projects && this.props.projects.projects;
-      } else if (userRole === 'contractor') {
-        allProjects = this.props && this.props.projects && this.props.projects.projects;
-      } else {
-        allProjects =
-          this.props &&
-          this.props.projects &&
-          this.props.projects.projects &&
-          this.props.projects.projects.projects;
-      }
-      await this.getAllEvidenceRequest();
-
-      if (allProjects.length === 0) {
+      const allProjects = this.props && this.props.projects && this.props.projects.projects;
+      const getProject = allProjects.filter(c => c._id === projectId);
+      if (allProjects.length === 0 || getProject.length === 0) {
         const resp = await getSingleProject(projectId);
         this.setState({
           projectInfo: resp.data,
@@ -129,118 +91,29 @@ class ExploreProject extends Component {
           notAvailaible: true,
         });
       } else {
-        const status = allProjects && allProjects.includes(this.state.projectId);
-        if (!status) {
-          const resp = await getSingleProject(projectId);
-          this.setState({
-            projectInfo: resp.data,
-            loading: false,
-            notAvailaible: true,
-          });
-        } else {
-          this.setState({ loading: false });
-        }
+        this.setState({
+          projectInfo: getProject[0],
+          loading: false,
+          notAvailaible: true,
+        });
       }
     } catch (err) {
       this.setState({ error: err.message });
     }
-  }
+  };
 
   getAllEvidenceRequest = async () => {
     const { projectId } = this.state;
     try {
-      const resp = await retrieveEvidenceRequest(
-        projectId,
-        // this.props && this.props.project && this.props.project._id,
-      );
+      const resp = await retrieveEvidenceRequest(projectId);
       this.setState({ requests: resp.data.evidenceRequests, loading: false });
     } catch (err) {
-      
-    }
-  };
-
-  expandTheBox = val => {
-    if (val === 'analytics') {
-      return this.setState(prevState => ({ expandAnalyticsBox: !prevState.expandAnalyticsBox }));
-    }
-    if (val === 'overview') {
-      return this.setState(prevState => ({ expandOverviewBox: !prevState.expandOverviewBox }));
-    }
-    if (val === 'transaction') {
-      return this.setState(prevState => ({
-        expandTransactionsBox: !prevState.expandTransactionsBox,
-      }));
-    }
-    if (val === 'updates') {
-      return this.setState(prevState => ({ expandUpdatesBox: !prevState.expandUpdatesBox }));
-    }
-    if (val === 'stakeholders') {
-      return this.setState(prevState => ({
-        expandStakeHoldersBox: !prevState.expandStakeHoldersBox,
-      }));
-    }
-    if (val === 'proposals') {
-      return this.setState(prevState => ({ expandProposalsBox: !prevState.expandProposalsBox }));
-    }
-
-    this.setState(prevState => ({ expandProposalsBox: !prevState.expandProposalsBox }));
-  };
-
-  userView = (userRole, userId, navigation, projectInfo, userStakeholderStatus) => {
-    switch (userRole) {
-      case 'funder':
-        return (
-          <FunderView
-            navigation={navigation}
-            projectInfo={projectInfo}
-            userId={userId}
-            userStakeholderStatus={userStakeholderStatus}
-          />
-        );
-      case 'contractor':
-        return (
-          <ContractorView
-            navigation={navigation}
-            projectInfo={projectInfo}
-            userId={userId}
-            userStakeholderStatus={userStakeholderStatus}
-          />
-        );
-      case 'evaluator':
-        return (
-          <EvaluatorView
-            navigation={navigation}
-            projectInfo={projectInfo}
-            userId={userId}
-            userStakeholderStatus={userStakeholderStatus}
-          />
-        );
-      default:
-        return (
-          <FunderView
-            navigation={navigation}
-            projectInfo={projectInfo}
-            userId={userId}
-            userStakeholderStatus={userStakeholderStatus}
-          />
-        );
+      this.setState({ error: err.message });
     }
   };
 
   render() {
-    const {
-      projectId,
-      loading,
-      notAvailaible,
-      projectInfo,
-      requests,
-      expandAnalyticsBox,
-      expandOverviewBox,
-      expandTransactionsBox,
-      expandStakeHoldersBox,
-      expandProposalsBox,
-      expandUpdatesBox,
-    } = this.state;
+    const { projectId, loading, notAvailaible, projectInfo, requests } = this.state;
     const { navigation } = this.props;
 
     const { isFunder, isEvaluator, isContractor } =
@@ -251,42 +124,15 @@ class ExploreProject extends Component {
       isContractor,
     };
 
-    let userRole;
-    if (userRoleObj.isFunder) {
-      userRole = 'funder';
-    } else if (userRoleObj.isContractor) {
-      userRole = 'contractor';
-    } else {
-      userRole = 'evaluator';
-    }
-    let allProjects;
-    let theProject;
+    const userRole = getUserRole(userRoleObj);
+
     const userId =
       this.props && this.props.userInfo && this.props.userInfo.user && this.props.userInfo.user.id;
+    const projectStakeholders = projectInfo && projectInfo.stakeholders;
 
-    if (userRole === 'evaluator') {
-      allProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
-
-      theProject = allProjects && allProjects.filter(c => c._id === projectId);
-      theProject = theProject[0];
-      const projectStakeholders = projectInfo && projectInfo.stakeholders;
-    } else {
-      allProjects =
-        (this.props &&
-          this.props.projects &&
-          this.props.projects.projects &&
-          this.props.projects.projects.projects) ||
-        [];
-
-      theProject = allProjects && allProjects.filter(c => c._id === projectId);
-      theProject = theProject[0];
-
-      const projectStakeholders = projectInfo && projectInfo.stakeholders;
-
-      // Check if user is part of the stakeholders
-      const userStakeholderStatus =
-        projectStakeholders && projectStakeholders.filter(c => c.user.information._id === userId);
-    }
+    // Check if user is part of the stakeholders
+    const userStakeholderStatus =
+      projectStakeholders && projectStakeholders.filter(c => c.user.information._id === userId);
 
     if (loading) {
       return (
@@ -304,7 +150,11 @@ class ExploreProject extends Component {
                 <View style={ExtStyle.flex1}>
                   <Image
                     style={styles.imageStyle}
-                    source={{ uri: projectInfo && projectInfo['project-avatar'] }}
+                    source={{
+                      uri:
+                        (projectInfo && projectInfo['project-avatar']) ||
+                        (projectInfo && projectInfo.avatar),
+                    }}
                   />
                 </View>
                 <View style={styles.imagePosition}>
@@ -345,7 +195,7 @@ class ExploreProject extends Component {
               </View>
               <View style={ExtStyle.flex6}>
                 <Navigator
-                  navigation={this.props.navigation}
+                  navigation={navigation}
                   project={projectInfo}
                   userId={userId}
                   requests={requests}

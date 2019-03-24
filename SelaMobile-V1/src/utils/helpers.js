@@ -11,6 +11,22 @@ export const extraSmallScreen = height < 568;
 export const smallScreen = height < 667;
 
 /**
+ * Get user role
+ * @param {*} param
+ */
+export const getUserRole = obj => {
+  let userRole;
+  if (obj.isFunder) {
+    userRole = 'funder';
+  } else if (obj.isContractor) {
+    userRole = 'contractor';
+  } else {
+    userRole = 'evaluator';
+  }
+  return userRole;
+};
+
+/**
  * Validate param
  * @param {*} param
  */

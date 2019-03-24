@@ -14,7 +14,7 @@ import Request from '../../components/Evidence/Request';
 import Proposal from './Proposal';
 import Tasks from './Tasks';
 import Updates from './Updates';
-import { isAndroid } from '../../utils/helpers';
+import { isAndroid, getUserRole } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
 
 const { width } = Dimensions.get('window');
@@ -55,13 +55,9 @@ const tabBarOptions = {
 };
 
 class Navigator extends Component {
-  state = {
-    isContractor2: false,
-  };
-
   render() {
     const { navigation } = this.props;
-    const { isContractor2 } = this.state;
+
     const { project, userId, requests } = this.props;
 
     const { isFunder, isEvaluator, isContractor } =
@@ -72,14 +68,7 @@ class Navigator extends Component {
       isContractor,
     };
 
-    let userRole;
-    if (userRoleObj && userRoleObj.isFunder) {
-      userRole = 'funder';
-    } else if (userRoleObj && userRoleObj.isContractor) {
-      userRole = 'contractor';
-    } else {
-      userRole = 'evaluator';
-    }
+    const userRole = getUserRole(userRoleObj);
 
     let Tabs;
 

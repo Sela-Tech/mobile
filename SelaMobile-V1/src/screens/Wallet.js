@@ -1,10 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
-import Text from '../components/Text';
 import Box from '../components/Wallet/Box';
 import { WHITE } from '../utils/constants';
+
+import ExtStyles from '../utils/styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,9 +27,9 @@ class Wallet extends Component {
     const projects = (this.props && this.props.projects && this.props.projects.projects) || [];
 
     return (
-      <View style={{ flex: 1 }}>
+      <View style={ExtStyles.flex1}>
         <Header headerName="Wallet" />
-        <ScrollView style={{ flex: 1 }} contentContainerStyle={styles.centerContainer}>
+        <ScrollView style={ExtStyles.flex1} contentContainerStyle={styles.centerContainer}>
           {projects.map((v, index) => (
             <View key={v._id}>
               <Box

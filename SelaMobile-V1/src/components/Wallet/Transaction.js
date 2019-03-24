@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
+import moment from 'moment';
 import Text from '../Text';
+import B from '../BoldText';
 import ExtStyles from '../../utils/styles';
 
 const { height, width } = Dimensions.get('window');
@@ -30,7 +32,6 @@ const styles = StyleSheet.create({
 });
 
 const Transaction = ({ data, imageSource, sender, amount, date }) => (
-  console.log('fkkff', data),
   <View style={styles.container}>
     <View style={ExtStyles.flex1}>
       <Image
@@ -41,8 +42,9 @@ const Transaction = ({ data, imageSource, sender, amount, date }) => (
     <View style={ExtStyles.flex4}>
       <View>
         <Text style={styles.senderText}>
-          Payment for {` `}
-          {data.taskName} {` `} task
+          Payment for
+          {` `}
+          <B style={styles.senderText}>{data.taskName}. </B>
         </Text>
       </View>
       <View>
@@ -52,11 +54,11 @@ const Transaction = ({ data, imageSource, sender, amount, date }) => (
         </Text>
       </View>
       <View>
-        <Text style={styles.date}>{date}</Text>
+        <Text style={styles.date}>{moment(date).format('MMMM Do YYYY')}</Text>
       </View>
     </View>
     <View style={ExtStyles.center}>
-      <TouchableOpacity onPress={() => alert('press')}>
+      <TouchableOpacity onPress={() => console.log('press')}>
         <Image source={require('../../../assets/down_arrow.png')} />
       </TouchableOpacity>
     </View>

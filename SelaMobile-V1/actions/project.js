@@ -25,7 +25,7 @@ export const getUserProject = () => dispatch =>
   API.getAllProjects()
     .then(resp => {
       dispatch(projectIsLoading(false));
-      dispatch(getFunderProjects(resp.data));
+      dispatch(getFunderProjects(resp.data.projects));
     })
     .catch(err => {
       dispatch(projectIsLoading(false));

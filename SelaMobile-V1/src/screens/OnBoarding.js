@@ -235,7 +235,7 @@ export default class OnBoarding extends Component {
       isContractor,
       isFunder,
       password,
-      profilePhoto: 'https://placehold.it/200',
+      // profilePhoto: 'https://placehold.it/200',
     };
     this.setState({
       submitErrorMessage: '',
@@ -257,7 +257,7 @@ export default class OnBoarding extends Component {
         submitErrorMessage: resp.data.message,
       });
     } catch (err) {
-      this.dropdown.alertWithType('error', 'Error', err.message);
+      this.dropdown.alertWithType('error', 'Error', 'Registration failed');
       this.setState({ loading: false, error: err.message });
     }
   };
