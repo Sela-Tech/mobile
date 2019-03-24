@@ -85,7 +85,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
         <View style={{ paddingLeft: isAndroid ? '1%' : 2, flexDirection: 'row' }}>
           <View>
             <Text style={[styles.fontS, { fontWeight: '400', color: '#696F74' }]}>
-              {secondText}
+              {secondText.slice(0, 20).concat(' ...')}
             </Text>
           </View>
           <View>
@@ -99,9 +99,6 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
             {thirdText}
           </Text>
         </View>
-      </View>
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        <Text style={{ fontSize: 18, fontWeight: '400', color: '#201D41' }}>{title}</Text>
       </View>
       <View style={{ paddingVertical: 10, flex: 1, flexDirection: 'row' }}>
         <View>

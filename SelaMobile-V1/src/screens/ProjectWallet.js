@@ -1,10 +1,7 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { View, Dimensions, ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import Text from '../components/Text';
-import Spinner from '../components/Spinner';
-import ExtStyles from '../utils/styles';
-import { retrieveEvidenceRequest } from '../utils/api';
 import Transaction from '../components/Wallet/Transaction';
 
 const { height } = Dimensions.get('window');
@@ -61,7 +58,7 @@ const Header = ({ title, balance }) => (
             <Text style={{ fontSize: 8, fontWeight: '300' }}> PST </Text>
           </View>
         </View>
-        <View style={{}}>
+        <View>
           <Text style={styles.balance}> {balance} </Text>
         </View>
       </View>
@@ -70,72 +67,24 @@ const Header = ({ title, balance }) => (
 );
 
 class ProjectWallet extends Component {
-  state = {
-    loading: true,
-    requests: [],
-  };
-
-  async componentDidMount() {
-    await this.getAllEvidenceRequest();
-  }
-
-  getAllEvidenceRequest = async () => {
-    try {
-      const resp = await retrieveEvidenceRequest(
-        this.props.navigation.state.params._id,
-        // this.props && this.props.project && this.props.project._id,
-      );
-      // console.log('res', resp.data);
-      this.setState({ requests: resp.data.evidenceRequests, loading: false });
-    } catch (err) {
-      console.log('the ereo', err.message);
-    }
-  };
-
   render() {
     const data = this.props.navigation.state.params;
-    const { loading, requests } = this.state;
-
-    console.log('fhhfhgf', this.props.userInfo.user.id);
-    const completed =
-      requests &&
-      requests.reduce((b, c) => {
-        const vv = c.stakeholders.filter(b => {
-          b.taskName = c.title;
-          b.requestedBy = c.requestedBy.fullName;
-          b.profilePhoto = c.requestedBy.profilePhoto;
-          b.dueDate = c.dueDate;
-          return b.user._id === this.props.userInfo.user.id && b.hasSubmitted;
-        });
-        b.push(vv);
-        return b;
-      }, []);
-    const flatten = list => list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
-    const trans = flatten(completed);
-    const totalAmount = trans.reduce((c, d) => d.quote + c, 0);
+    const { completed, totalAmount, projectName } = data;
     return (
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <Header title={data.name} balance={totalAmount} />
-        <Fragment>
-          {loading ? (
-            <Spinner color="#0A2C56" />
-          ) : (
+        <Header title={projectName} balance={totalAmount} />
             <View style={styles.innerContainer}>
-              {trans.map(
-                (c, index) => (
-                    <Transaction
-                      key={index}
-                      data={c}
-                      imageSource={{uri: c.profilePhoto}}
-                      sender={c.requestedBy}
-                      amount={c.quote}
-                      date={c.dueDate}
-                    />
-                  )
-              )}
+              {completed.map((c, index) => (
+                <Transaction
+                  key={index}
+                  data={c}
+                  imageSource={{ uri: c.profilePhoto }}
+                  sender={c.requestedBy}
+                  amount={c.quote}
+                  date={c.dueDate}
+                />
+              ))}
             </View>
-          )}
-        </Fragment>
       </ScrollView>
     );
   }

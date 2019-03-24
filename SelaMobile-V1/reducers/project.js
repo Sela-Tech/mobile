@@ -11,7 +11,7 @@ const projectReducer = (
 ) => {
   switch (action.type) {
     case types.GET_PROJECTS:
-      return { ...state, ...action.projects };
+      return { ...state, projects: action.projects };
     case types.GET_CONTRACTOR_PROJECTS:
       return { ...state, contrProjects: action.contrProjects };
     case types.PROJECT_IS_LOADING:

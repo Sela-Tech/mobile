@@ -21,7 +21,6 @@ import ParentHeader from '../components/Header';
 import Text from '../components/Text';
 import Proposals from '../components/Project/Proposals';
 import ProjectView from '../components/Project/ContractorProject';
-import SingularProject from '../components/Project/Project';
 import { YELLOW, BASE_URL } from '../utils/constants';
 import ExtStyle from '../utils/styles';
 import Spinner from '../components/Spinner';
@@ -29,7 +28,7 @@ import StandardText from '../components/StandardText';
 import NavigationService from '../services/NavigationService';
 
 const { height, width } = Dimensions.get('window');
-const otherFilters = ['Bookmarked project', 'Project that may Interest you'];
+const otherFilters = ['Project you created', 'Project you joined'];
 
 const styles = StyleSheet.create({
   container: {
@@ -116,6 +115,11 @@ class Project extends Component {
   };
 
   async componentDidMount() {
+    await this.loadInitialData();
+    // getCurrentState();
+  }
+
+  loadInitialData = async () => {
     const userRoleObj = {
       isFunder: this.props && this.props.userInfo && this.props.userInfo.user.isFunder,
       isEvaluator: this.props && this.props.userInfo && this.props.userInfo.user.isEvaluator,
@@ -136,12 +140,11 @@ class Project extends Component {
     }
 
     this.setState({ loading: false });
-    // getCurrentState();
-  }
+  };
 
   reload = async () => {
     this.setState({ reloading: true });
-    // await Promise.all([this.props.getFunderProjects()]);
+    await this.loadInitialData();
     this.setState({ reloading: false });
   };
 

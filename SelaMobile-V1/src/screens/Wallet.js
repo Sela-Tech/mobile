@@ -22,12 +22,7 @@ const styles = StyleSheet.create({
 });
 
 class Wallet extends Component {
-  state = {
-    projects: [1],
-  };
-
   render() {
-    // const { projects } = this.state;
     const projects = (this.props && this.props.projects && this.props.projects.projects) || [];
 
     return (
@@ -37,8 +32,9 @@ class Wallet extends Component {
           {projects.map((v, index) => (
             <View key={v._id}>
               <Box
-                fn={() => this.props.navigation.navigate('ProjectWallet', v)}
+                navigation={this.props.navigation}
                 key={index}
+                data={v}
                 projectName={v.name}
                 empty={(v && v.uri) !== ''}
                 projectsource={{ uri: v.uri }}

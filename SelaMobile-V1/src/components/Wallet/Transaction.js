@@ -5,8 +5,6 @@ import ExtStyles from '../../utils/styles';
 
 const { height, width } = Dimensions.get('window');
 
-console.log('fjdjgfgf', width / 8);
-
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
