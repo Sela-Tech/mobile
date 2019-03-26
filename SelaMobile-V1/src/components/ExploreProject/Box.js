@@ -118,7 +118,6 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
             </Text>
           </View>
         </View>
-
       </View>
       <View
         style={{

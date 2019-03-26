@@ -89,20 +89,14 @@ const MileStoneHeader = ({ newVal, mileStoneTitle, updateInput, index, totalAmou
       <View style={[ExtStyle.flex1, ExtStyle.row]}>
         <View style={[ExtStyle.flex4, ExtStyle.row]}>
           <View>
-            <Text style={styles.mileStoneHeadingText}>{index + 1}
-)
-</Text>
+            <Text style={styles.mileStoneHeadingText}>{index + 1})</Text>
           </View>
           <View>
             <Text style={styles.mileStoneHeadingText}> {mileStoneTitle}</Text>
           </View>
         </View>
         <View style={styles.textAmountView}>
-          <Text style={styles.textAmount}> $
-{totalAmount}
-{' '}
- 
-          </Text>
+          <Text style={styles.textAmount}> ${totalAmount} </Text>
         </View>
       </View>
     )}

@@ -90,24 +90,20 @@ class Notifications extends Component {
         style={styles.container}
         contentContainerStyle={styles.flex0}
       >
-        {notifications.map(
-          (c, index) => (
-            (
-              <SingleNotificationText
-                notifs={c}
-                key={index}
-                text={c.message}
-                action={c.action}
-                imageSRC={
-                  c.stakeholder.profilePhoto
-                    ? { uri: c.stakeholder.profilePhoto }
-                    : require('../../assets/man1.png')
-                }
-                time={formattedDate(c.createdOn)}
-              />
-            )
-          ),
-        )}
+        {notifications.map((c, index) => (
+          <SingleNotificationText
+            notifs={c}
+            key={index}
+            text={c.message}
+            action={c.action}
+            imageSRC={
+              c.stakeholder.profilePhoto
+                ? { uri: c.stakeholder.profilePhoto }
+                : require('../../assets/man1.png')
+            }
+            time={formattedDate(c.createdOn)}
+          />
+        ))}
       </ScrollView>
     );
   }

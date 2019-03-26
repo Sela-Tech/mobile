@@ -30,7 +30,7 @@ const options = {
 // export default
 class UserId extends Component {
   state = {
-    avatarSource: {uri: this.props.userData.profilePhoto},
+    avatarSource: { uri: this.props.userData.profilePhoto },
   };
 
   selectImage = async () => {

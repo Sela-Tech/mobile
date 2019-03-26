@@ -68,14 +68,14 @@ const styles = StyleSheet.create({
 });
 
 const RequestDetails = ({ title, dataType, dueDate, stakeHolders, status }) => {
-  const stakeHoldersPics = stakeHolders &&  stakeHolders.map(c => c.user.profilePhoto);
+  const stakeHoldersPics = stakeHolders && stakeHolders.map(c => c.user.profilePhoto);
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <Text style={styles.titleText}>{title}</Text>
       </View>
       <View style={styles.middleContainer}>
-        <View style={styles.otherContainer }>
+        <View style={styles.otherContainer}>
           <View style={ExtStyles.jc}>
             <Text style={styles.dataTypeText}> {titleCase(dataType)} </Text>
           </View>

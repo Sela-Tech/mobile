@@ -44,7 +44,10 @@ const Transaction = ({ data, imageSource, sender, amount, date }) => (
         <Text style={styles.senderText}>
           Payment for
           {` `}
-          <B style={styles.senderText}>{data.taskName}. </B>
+          <B style={styles.senderText}>{data.taskName}
+.
+{' '}
+</B>
         </Text>
       </View>
       <View>

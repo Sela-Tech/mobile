@@ -66,11 +66,14 @@ class Box extends Component {
     const totalAmount = trans.reduce((c, d) => d.quote + c, 0);
     const allInfo = {
       projectName,
-      completed:trans,
+      completed: trans,
       totalAmount,
     };
     return (
-      <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('ProjectWallet', allInfo) }>
+      <TouchableOpacity
+        style={styles.container}
+        onPress={() => navigation.navigate('ProjectWallet', allInfo)}
+      >
         <View style={{ flex: 1, marginHorizontal: 9, justifyContent: 'center' }}>
           <View style={{ flex: 1, marginTop: 12, flexDirection: 'column' }}>
             <View style={{ flex: 1, justifyContent: 'flex-end' }}>

@@ -91,11 +91,7 @@ const Header = ({ title, balance, navigation }) => (
       </View>
     </View>
     <View style={styles.imagePosition}>
-      <TouchableOpacity
-        transparent
-        style={styles.backButton}
-        onPress={() => navigation.goBack()}
-      >
+      <TouchableOpacity transparent style={styles.backButton} onPress={() => navigation.goBack()}>
         <View>
           <Image source={require('../../assets/white-back.png')} />
         </View>

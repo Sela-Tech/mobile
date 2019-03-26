@@ -9,7 +9,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ImagePicker from 'react-native-image-picker';
-// import NavigationService from '../../services/NavigationService';
 import Box from './OverviewComp/Box';
 import StandardText from '../../components/StandardText';
 import { WHITE, YELLOW } from '../../utils/constants';

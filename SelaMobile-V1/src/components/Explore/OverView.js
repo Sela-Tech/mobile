@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import moment from 'moment';
 import Map from './Map';
-import { projectStatusTextColor, mapNameToTag, tagsColor } from '../../utils/helpers';
+import { projectStatusTextColor, mapNameToTag } from '../../utils/helpers';
 import extStyle from '../../utils/styles';
 import Text from '../Text';
 import Tag from './ClTag';
@@ -9,7 +10,6 @@ import PdfBox from './PdfBox';
 import TagDisplay from './TagDisplay';
 import { WHITE, YELLOW } from '../../utils/constants';
 
-const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -86,7 +86,7 @@ export default class OverView extends Component {
     return (
       <View style={styles.container}>
         <View style={[{ flex: 2 }]}>
-          <View style={{  justifyContent: 'center',flexDirection: 'row', flex: 1 }}>
+          <View style={{ justifyContent: 'center', flexDirection: 'row', flex: 1 }}>
             <View style={[{ paddingTop: 5, flex: 1 }]}>
               <View>
                 <Text style={{ fontSize: 12, color: '#696F74' }}>LOCATION</Text>
@@ -140,7 +140,9 @@ export default class OverView extends Component {
                 <Text style={{ color: '#696F74' }}>Duration </Text>
               </View>
               <View style={styles.pt}>
-                <Text style={{ color: '#3D4851', fontSize: 16 }}>12 Jan 19 - 02 Dec 20</Text>
+                <Text style={{ color: '#3D4851', fontSize: 16 }}>
+                  {moment(project.startDate).format('MMMM Do YYYY')} -- { moment(project.endDate).format('MMMM Do YYYY')}
+                </Text>
               </View>
             </View>
 
@@ -150,7 +152,7 @@ export default class OverView extends Component {
                   <Text style={styles.text}>Budget </Text>
                 </View>
                 <View style={styles.pt}>
-                  <Text style={styles.text}>{project.implementationBudget}</Text>
+                  <Text style={styles.text}>{project.observationBudget}</Text>
                 </View>
               </View>
             </View>
@@ -178,10 +180,14 @@ export default class OverView extends Component {
           <TagDisplay showTag={this.showTag} visibility={showTag} imageSource={src} />
 
           <View style={{ paddingTop: 5 }}>
-            <View>
-              <Text style={{ color: '#696F74' }}> Additional Documents </Text>
-            </View>
-            <PdfBox />
+            {project && project.documents && project.documents.lenght !== 0 ? (
+              <Fragment>
+                <View>
+                  <Text style={{ color: '#696F74' }}> Additional Documents </Text>
+                </View>
+                <PdfBox />
+              </Fragment>
+            ) : null}
           </View>
         </View>
       </View>

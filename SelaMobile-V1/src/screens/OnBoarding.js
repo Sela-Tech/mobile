@@ -3,14 +3,12 @@ import { StyleSheet, View, KeyboardAvoidingView, ScrollView, Keyboard } from 're
 import PropTypes from 'prop-types';
 import DropdownAlert from 'react-native-dropdownalert';
 import NavigationService from '../services/NavigationService';
-import StepIndicator from '../components/npm/StepIndicator';
 import DismissKeyboard from '../components/DismissKeyboard';
 import IntroHeader from '../components/IntroHeader';
 import OnBoardView from '../components/OnBoarding/OnBoardView';
 import { signUp } from '../utils/api';
 import ExtStyle from '../utils/styles';
-import { DEFAULT_COLOUR, WHITE, YELLOW } from '../utils/constants';
-// import { WHITE } from '../../../SelaMobile2/src/utils/constants';
+import { WHITE } from '../utils/constants';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,19 +23,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  headerContainer: {
+    flex: 3,
+    justifyContent: 'flex-end',
+  },
 });
-
-const firstIndicatorStyles = {
-  currentStepIndicatorSize: 40,
-  separatorStrokeWidth: 10,
-  currentStepStrokeWidth: 5,
-  stepIndicatorLabelFontSize: 15,
-  currentStepIndicatorLabelFontSize: 15,
-  stepIndicatorLabelUnFinishedColor: 'rgba(255,255,255,0.5)',
-  labelColor: '#666666',
-  labelSize: 12,
-  currentStepLabelColor: YELLOW,
-};
 
 export default class OnBoarding extends Component {
   static propTypes = {
@@ -269,19 +259,14 @@ export default class OnBoarding extends Component {
 
     return (
       <ScrollView
-        contentContainerStyle={{ flexGrow: 1 }}
+        contentContainerStyle={ExtStyle.flexGrow}
         scrollEnabled
         keyboardShouldPersistTaps="always"
       >
         <DismissKeyboard>
           <KeyboardAvoidingView style={ExtStyle.flex1} behavior="padding">
             <View style={styles.container}>
-              <View
-                style={{
-                  flex: 3,
-                  justifyContent: 'flex-end',
-                }}
-              >
+              <View style={styles.headerContainer}>
                 <View>
                   <IntroHeader
                     fn={() => (currentPage === 1 ? this.changePage() : goBack())}
@@ -289,15 +274,8 @@ export default class OnBoarding extends Component {
                     keyboard={keyboard}
                   />
                 </View>
-                {/* <View style={styles.stepIndicator}>
-                  <StepIndicator
-                    stepCount={3}
-                    customStyles={firstIndicatorStyles}
-                    currentPosition={currentPage}
-                  />
-                </View> */}
               </View>
-              <View style={{ flex: 5 }}>
+              <View style={ExtStyle.flex5}>
                 {currentPage === 0 ? (
                   <OnBoardView
                     currentPage={currentPage}

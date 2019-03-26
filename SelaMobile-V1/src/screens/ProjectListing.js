@@ -78,7 +78,6 @@ const renderItem = item => (
 
 const keyExtractor = (item, index) => index.toString();
 class ExploreProject extends Component {
-
   state = {
     loading: true,
     googlePlaces: [],

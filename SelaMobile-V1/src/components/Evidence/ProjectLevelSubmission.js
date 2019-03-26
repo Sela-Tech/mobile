@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     borderRadius: width / 6,
   },
   media: {
-    height: height /3.2,
+    height: height / 3.2,
     // flex: 1,
     // position: 'absolute',
     // top: 0,
@@ -71,33 +71,33 @@ export default class ProjectLevelSubmission extends Component {
             <View style={{ marginTop: 15, width: width / 2.2 }}>
               <TouchableOpacity
                 style={{
-                  height: height /3.2,
+                  height: height / 3.2,
                   width: width / 2.2,
                   flexWrap: 'wrap',
                   flexDirection: 'row',
                 }}
               >
-                <View style={{ height: height /6.4, width: width / 4.4 }}>
+                <View style={{ height: height / 6.4, width: width / 4.4 }}>
                   <Image
-                    style={{ height: height /6.4, width: width / 4.4 }}
+                    style={{ height: height / 6.4, width: width / 4.4 }}
                     source={require('../../../assets/img/cleanup/factory.jpg')}
                   />
                 </View>
-                <View style={{ height: height /6.4, width: width / 4.4 }}>
+                <View style={{ height: height / 6.4, width: width / 4.4 }}>
                   <Image
-                    style={{ height: height /6.4, width: width / 4.4 }}
+                    style={{ height: height / 6.4, width: width / 4.4 }}
                     source={require('../../../assets/class.png')}
                   />
                 </View>
-                <View style={{ height: height /6.4, width: width / 4.4 }}>
+                <View style={{ height: height / 6.4, width: width / 4.4 }}>
                   <Image
-                    style={{ height: height /6.4, width: width / 4.4 }}
+                    style={{ height: height / 6.4, width: width / 4.4 }}
                     source={require('../../../assets/img/cleanup/cleanup_22.jpg')}
                   />
                 </View>
-                <View style={{ height: height /6.4, width: width / 4.4 }}>
+                <View style={{ height: height / 6.4, width: width / 4.4 }}>
                   <Image
-                    style={{ height: height /6.4, width: width / 4.4 }}
+                    style={{ height: height / 6.4, width: width / 4.4 }}
                     source={require('../../../assets/img/cleanup/cleanup_4.jpg')}
                   />
                 </View>
@@ -186,9 +186,9 @@ export default class ProjectLevelSubmission extends Component {
               </View>
             </View>
             <View style={{ marginTop: 15, width: width / 2.2 }}>
-              <TouchableOpacity style={{ height: height /3.2, width: width / 2.2 }}>
+              <TouchableOpacity style={{ height: height / 3.2, width: width / 2.2 }}>
                 <Image
-                  style={{ height: height /3.2, width: width / 2.2 }}
+                  style={{ height: height / 3.2, width: width / 2.2 }}
                   source={require('../../../assets/table-data.png')}
                 />
               </TouchableOpacity>

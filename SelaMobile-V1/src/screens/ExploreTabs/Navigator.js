@@ -1,15 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Dimensions } from 'react-native';
 import { createMaterialTopTabNavigator, createAppContainer } from 'react-navigation';
 import { connect } from 'react-redux';
 import OverViewDetails from '../../components/Explore/OverView';
-import Description from './Description';
 import Stakeholders from './StakeHolders';
 import Transactions from './Transactions';
 import Evidence from './Evidence';
 import Overview from './Overview';
 
-import Location from './Location';
 import Request from '../../components/Evidence/Request';
 import Proposal from './Proposal';
 import Tasks from './Tasks';
@@ -54,116 +52,105 @@ const tabBarOptions = {
   },
 };
 
-class Navigator extends Component {
-  render() {
-    const { navigation } = this.props;
+// class Navigator extends Component {
 
-    const { project, userId, requests } = this.props;
+const Navigator = ({ project, userId, requests, userInfo, navigation }) => {
+  const { isFunder, isEvaluator, isContractor } = userInfo && userInfo.user;
+  const userRoleObj = {
+    isFunder,
+    isEvaluator,
+    isContractor,
+  };
 
-    const { isFunder, isEvaluator, isContractor } =
-      this.props && this.props.userInfo && this.props.userInfo.user;
-    const userRoleObj = {
-      isFunder,
-      isEvaluator,
-      isContractor,
-    };
+  const userRole = getUserRole(userRoleObj);
 
-    const userRole = getUserRole(userRoleObj);
+  let Tabs;
 
-    let Tabs;
-
-    if (userRole === 'funder') {
-      Tabs = createMaterialTopTabNavigator(
-        {
-          Overview: {
-            screen: () => <OverViewDetails userRole={userRole} project={project} />,
-          },
-          Analytics: {
-            screen: () => <Overview userRole={userRole} project={project} />,
-          },
-          Stakeholders: {
-            screen: () => <Stakeholders userRole={userRole} project={project} />,
-          },
-          Proposals: {
-            screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
-          },
-          Evidence: {
-            screen: () => <Request userRole={userRole} project={project} />,
-          },
-          Updates: {
-            screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
-          },
-          Transactions: {
-            screen: () => <Transactions userRole={userRole} project={project} />,
-          },
-          // Location: {
-          //   screen: () => <Location userRole={userRole} project={project} />,
-          // },
+  if (userRole === 'funder') {
+    Tabs = createMaterialTopTabNavigator(
+      {
+        Overview: {
+          screen: () => <OverViewDetails userRole={userRole} project={project} />,
         },
-        {
-          tabBarOptions,
+        Analytics: {
+          screen: () => <Overview userRole={userRole} project={project} />,
         },
-      );
-    } else if (userRole === 'evaluator') {
-      const nWidth = { tabStyle: { width: width / 2 } };
-      const tabSettings = { ...tabBarOptions, ...nWidth };
+        Stakeholders: {
+          screen: () => <Stakeholders userRole={userRole} project={project} />,
+        },
+        Proposals: {
+          screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
+        },
+        Evidence: {
+          screen: () => <Request userRole={userRole} project={project} />,
+        },
+        Updates: {
+          screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
+        },
+        Transactions: {
+          screen: () => <Transactions userRole={userRole} project={project} />,
+        },
+      },
+      {
+        tabBarOptions,
+      },
+    );
+  } else if (userRole === 'evaluator') {
+    Tabs = createMaterialTopTabNavigator(
+      {
+        Overview: {
+          screen: () => <OverViewDetails userRole={userRole} project={project} />,
+        },
+        Tasks: {
+          screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
+        },
+        Evidence: {
+          screen: () => <Request requests={requests} userRole={userRole} project={project} />,
+        },
+      },
+      {
+        tabBarOptions,
+      },
+    );
+  } else {
+    Tabs = createMaterialTopTabNavigator(
+      {
+        Overview: {
+          screen: () => <OverViewDetails userRole={userRole} project={project} />,
+        },
+        // Analytics: {
+        //   screen: () => <Overview userRole={userRole} project={project} />,
+        // },
+        Updates: {
+          screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
+        },
+        // Proposals: {
+        //   screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
+        // },
+        // Stakeholders: {
+        //   screen: () => (
+        //     <Stakeholders userRole={userRole} navigation={navigation} project={project} />
+        //   ),
+        // },
+        // Evidence: {
+        //   screen: () => <Request userRole={userRole} project={project} />,
+        // },
 
-      Tabs = createMaterialTopTabNavigator(
-        {
-          Overview: {
-            screen: () => <OverViewDetails userRole={userRole} project={project} />,
-          },
-          Tasks: {
-            screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
-          },
-          Evidence: {
-            screen: () => <Request requests={requests} userRole={userRole} project={project} />,
-          },
+        Transactions: {
+          screen: () => <Transactions userRole={userRole} project={project} />,
         },
-        {
-          tabBarOptions, // : tabSettings,
-        },
-      );
-    } else {
-      Tabs = createMaterialTopTabNavigator(
-        {
-          Overview: {
-            screen: () => <OverViewDetails userRole={userRole} project={project} />,
-          },
-          // Analytics: {
-          //   screen: () => <Overview userRole={userRole} project={project} />,
-          // },
-          Updates: {
-            screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
-          },
-          // Proposals: {
-          //   screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
-          // },
-          // Stakeholders: {
-          //   screen: () => (
-          //     <Stakeholders userRole={userRole} navigation={navigation} project={project} />
-          //   ),
-          // },
-          // Evidence: {
-          //   screen: () => <Request userRole={userRole} project={project} />,
-          // },
-
-          Transactions: {
-            screen: () => <Transactions userRole={userRole} project={project} />,
-          },
-          // Location: {
-          //   screen: () => <Location userRole={userRole} project={project} />,
-          // },
-        },
-        {
-          tabBarOptions,
-        },
-      );
-    }
-    const ExploreTopTabs = createAppContainer(Tabs);
-    return <ExploreTopTabs />;
+        // Location: {
+        //   screen: () => <Location userRole={userRole} project={project} />,
+        // },
+      },
+      {
+        tabBarOptions,
+      },
+    );
   }
-}
+  const ExploreTopTabs = createAppContainer(Tabs);
+  return <ExploreTopTabs />;
+};
 
 const mapStateToProps = state => ({
   userInfo: state.userInfo,

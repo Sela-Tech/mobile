@@ -21,11 +21,8 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 10, height: 10 },
     elevation: 2,
   },
-  center: {
-
-  },
-  other: {
-  },
+  center: {},
+  other: {},
   other2: {
     // flex: 1,
     flexDirection: 'row',

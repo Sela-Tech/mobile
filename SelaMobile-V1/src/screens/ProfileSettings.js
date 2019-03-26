@@ -36,7 +36,7 @@ const ProfileSettings = ({ userInfo }) => {
     isFunder,
     isEvaluator,
   };
-  const userType = getUserRole(userRoleObj);
+  const userType = getUserRole(userRoleObj, true);
 
   return (
     <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={styles.container}>

@@ -88,7 +88,7 @@ export default class SingleNotificationText extends Component {
       const rr = await performActionOnProject({
         projectId: this.props.notifs.project.id,
         notificationId: this.props.notifs._id,
-        agreed:  agreed === 'true'? true: false,
+        agreed: agreed === 'true',
       });
     } catch (err) {
       this.setState({ error: err.message });

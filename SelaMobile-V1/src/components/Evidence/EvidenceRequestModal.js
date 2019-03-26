@@ -112,11 +112,7 @@ const CheckBoxContainer = ({ level, mark, fn }) => (
       <CheckBox color="#201D41" onPress={() => fn(level.toLowerCase())} checked={mark} />
     </View>
     <View style={ExtStyle.flex7}>
-      <Text> {level}
-{' '}
-Level Request
-{' '}
-</Text>
+      <Text> {level} Level Request </Text>
     </View>
   </View>
 );
@@ -130,7 +126,7 @@ export default class EvidenceRequestModal extends Component {
     title: '',
     price: '',
     dueDate: '',
-    stakeholder:  1,
+    stakeholder: 1,
     dataType: ['Photo', 'Video', 'Image', 'Table'],
     dataTypeData: 'Audio',
     level: true, // default level === task
@@ -317,14 +313,15 @@ export default class EvidenceRequestModal extends Component {
                       //
                       onValueChange={id => this.setState({ stakeholder: id })}
                     >
-                      { stakeholders && stakeholders.map((s, i) => (
-                        <Picker.Item
-                          key={i}
-                          style={[styles.inputStyle, styles.picker]}
-                          label={`${s.user.information.firstName} ${s.user.information.lastName}`}
-                          value={s.user.information._id}
-                        />
-                      ))}
+                      {stakeholders &&
+                        stakeholders.map((s, i) => (
+                          <Picker.Item
+                            key={i}
+                            style={[styles.inputStyle, styles.picker]}
+                            label={`${s.user.information.firstName} ${s.user.information.lastName}`}
+                            value={s.user.information._id}
+                          />
+                        ))}
                     </Picker>
                   </View>
                 </View>

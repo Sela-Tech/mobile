@@ -45,8 +45,6 @@ const styles = StyleSheet.create({
     color: WHITE,
   },
   headerUp: {
-    // backgroundColor: 'red',
-    // paddingTop: 15,
     flex: 3,
     justifyContent: 'center',
     alignSelf: 'flex-end',
@@ -57,10 +55,6 @@ const styles = StyleSheet.create({
   },
   loginTextView: {
     alignItems: 'center',
-    // alignContent: 'flex-end',
-    // alignSelf: 'flex-end',
-    // backgroundColor: 'blue',
-    // justifyContent: 'flex-end',
     flex: 1,
   },
   loginText: {
@@ -69,9 +63,7 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     flex: 3,
-    // backgroundColor: 'red',
     alignItems: 'flex-start',
-    // alignItems: 'center',
   },
   mt5: {
     marginTop: '5%',
@@ -93,7 +85,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    // backgroundColor: 'red',
   },
   bottomAbsolute: {
     flexDirection: 'row',
@@ -135,13 +126,13 @@ class Login extends Component {
       secure: !prevState.secure,
     }));
 
-  keyboardDidShow() {
-    return this.setState({ keyboard: true });
-  }
+  keyboardDidShow = () => {
+    this.setState({ keyboard: true });
+  };
 
-  keyboardDidHide() {
-    return this.setState({ keyboard: false });
-  }
+  keyboardDidHide = () => {
+    this.setState({ keyboard: false });
+  };
 
   login = async () => {
     const { emailOrPhone, password } = this.state;
@@ -304,7 +295,7 @@ class Login extends Component {
               <View
                 style={{
                   position: 'absolute',
-                  bottom: keyboard ? -20 : height / 10 ,
+                  bottom: keyboard ? -20 : height / 10,
                 }}
               >
                 <View style={styles.bottomAbsolute}>

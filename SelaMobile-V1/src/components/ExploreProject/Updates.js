@@ -141,10 +141,8 @@ class Updates extends Component {
       file: source,
       fields: [],
     };
-    
 
     if (source === null) {
-
       const newData = fieldsData
         .filter(c => c && c.title !== 'Date')
         .map(c => {
@@ -159,7 +157,7 @@ class Updates extends Component {
     try {
       const resp = await evidenceRequestSubmission(data);
       this.setState({ submissionLoading: false });
-     
+
       alert('Evidence saved');
     } catch (err) {
       this.setState({ error: err.message, submissionLoading: false });
@@ -172,7 +170,6 @@ class Updates extends Component {
     } else if (val === 'video') {
       await this.uploadFile(1, id);
     } else {
-
       this.setState({
         fieldsData: this.props.allData.fields,
       });
@@ -239,15 +236,7 @@ class Updates extends Component {
   toggleModal = () => this.setState(prevState => ({ tableModal: !prevState.tableModal }));
 
   render() {
-    const {
-      allData,
-      projectName,
-      title,
-      statusText,
-      text,
-      userRole,
-      dataType,
-    } = this.props;
+    const { allData, projectName, title, statusText, text, userRole, dataType } = this.props;
 
     const { fileSource, theType, expand, submissionLoading, tableModal } = this.state;
 

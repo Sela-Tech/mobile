@@ -84,7 +84,7 @@ weight="400" style={styles.leftTextContainer}>
 
     <View style={styles.bottomContainer}>
       <Fragment>
-          <Images  column leftText={leftText} projects={projects} />
+        <Images column leftText={leftText} projects={projects} />
       </Fragment>
     </View>
   </View>
