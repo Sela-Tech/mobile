@@ -11,6 +11,26 @@ export const extraSmallScreen = height < 568;
 export const smallScreen = height < 667;
 
 /**
+ * Format number to currency
+ * @param {*} param
+ */
+export const formatMoney = (value, currency) => {
+  if (isAndroid) {
+    require('intl');
+    require('intl/locale-data/jsonp/en-IN'); 
+    require('intl/locale-data/jsonp/en-US'); 
+  }
+
+  const formatter = new Intl.NumberFormat(!currency ? 'en-US' : 'en-IN', {
+    style: 'currency',
+    currency: 'USD',
+    minimumFractionDigits: 2,
+  });
+
+  return formatter.format(value);
+};
+
+/**
  * Get user role
  * @param {*} param
  */
@@ -25,6 +45,13 @@ export const getUserRole = (obj, validate) => {
   }
   return userRole;
 };
+
+/**
+ * Flatten array
+ * @param {*} param
+ */
+export const flatten = list => list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
+
 
 /**
  * Validate param

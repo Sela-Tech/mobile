@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../Spinner';
 import Text from '../Text';
+import { flatten } from '../../utils/helpers';
 import { retrieveEvidenceRequest } from '../../utils/api';
 import { WHITE } from '../../utils/constants';
 
@@ -60,8 +61,7 @@ class Box extends Component {
         b.push(vv);
         return b;
       }, []);
-    // Flatten array
-    const flatten = list => list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
+
     const trans = flatten(completed);
     const totalAmount = trans.reduce((c, d) => d.quote + c, 0);
     const allInfo = {

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import Map from './Map';
-import { projectStatusTextColor, mapNameToTag } from '../../utils/helpers';
+import { projectStatusTextColor, mapNameToTag, formatMoney } from '../../utils/helpers';
 import extStyle from '../../utils/styles';
 import Text from '../Text';
 import Tag from './ClTag';
@@ -152,7 +152,7 @@ export default class OverView extends Component {
                   <Text style={styles.text}>Budget </Text>
                 </View>
                 <View style={styles.pt}>
-                  <Text style={styles.text}>{project.observationBudget}</Text>
+                  <Text style={styles.text}>{formatMoney(project.observationBudget)}</Text>
                 </View>
               </View>
             </View>

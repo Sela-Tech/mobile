@@ -3,11 +3,10 @@ import { TouchableOpacity, View, Dimensions, StyleSheet, Image } from 'react-nat
 import PropTypes from 'prop-types';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Text from '../Text';
-// import Tag from '../Tag';
 import Tag from '../Explore/ClTag';
-import { isAndroid, projectStatusTextColor, mapNameToTag } from '../../utils/helpers';
+import { isAndroid, projectStatusTextColor, mapNameToTag, formatMoney } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
-// import { projectStatusTextColor, tagsColor } from '../../utils/helpers';
+
 
 const { height, width } = Dimensions.get('window');
 
@@ -103,8 +102,7 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
       <View style={{ paddingVertical: 10, flex: 1, flexDirection: 'row' }}>
         <View>
           <Text style={{ fontSize: 15, fontWeight: '600' }}>
-            {' '}
-            {cost === '' ? '$200000' : `$${cost}`}{' '}
+          {formatMoney(cost)}
           </Text>
         </View>
 
