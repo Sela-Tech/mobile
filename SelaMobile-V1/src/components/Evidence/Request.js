@@ -62,9 +62,8 @@ export default class Request extends Component {
       );
 
       this.setState({ requests: resp.data.evidenceRequests, loading: false });
-      // console.log('reere', resp.data.evidenceRequests);
     } catch (err) {
-      console.log('the ereo', err.message);
+      this.setState({ error: err.message });
     }
   };
 

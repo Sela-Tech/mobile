@@ -49,10 +49,8 @@ const styles = StyleSheet.create({
     left: 20,
     right: 0,
   },
-
   flex4mb5: {
     flex: 4,
-    // marginBottom: 1,
   },
   backButton: {
     marginTop: '7%',

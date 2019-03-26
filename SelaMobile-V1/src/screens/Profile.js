@@ -11,7 +11,7 @@ import Project from '../components/ExploreProject/Project';
 import UserId from '../components/Profile/UserId';
 import UserInfo from '../components/Profile/UserInfo';
 import Tag from '../components/Explore/ClTag';
-import { tagsColor, mapNameToTag } from '../utils/helpers';
+import { getUserRole, mapNameToTag } from '../utils/helpers';
 
 const { height } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -106,15 +106,15 @@ class Profile extends Component {
 
   render() {
     const { loading, profileInfo, guestUser, interests } = this.state;
-    let userType;
     let userName;
     let projects;
+    let userType;
     let verificationStatus = 'Not Verified';
     if (guestUser) {
       const {
         isFunder,
         isContractor,
-        // isEvaluator,
+        isEvaluator,
         firstName,
         lastName,
         isVerified,
@@ -124,14 +124,13 @@ class Profile extends Component {
         verificationStatus = 'Verified';
       }
 
+      const userRoleObj = {
+        isFunder,
+        isContractor,
+        isEvaluator,
+      };
       userName = firstName.concat(' ').concat(lastName);
-      if (isFunder === true) {
-        userType = 'Funder';
-      } else if (isContractor === true) {
-        userType = 'Contractor';
-      } else {
-        userType = 'Evaluation agent';
-      }
+      userType = getUserRole(userRoleObj, true);
     }
 
     return (
@@ -145,8 +144,9 @@ class Profile extends Component {
           ) : (
             <View style={styles.subContainer}>
               <UserId
-                userType={guestUser ? userType : 'Funder'}
-                userName={guestUser ? userName : 'Eze'}
+                userData={profileInfo.userInfo}
+                userType={userType}
+                userName={userName}
                 verificationStatus={verificationStatus}
               />
               <UserInfo

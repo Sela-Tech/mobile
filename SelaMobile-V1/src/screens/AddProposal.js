@@ -217,7 +217,7 @@ export default class AddProposals extends Component {
       tasks: markedTask,
       projectId,
     };
-    // console.log('data sending', data);
+
     if (mileStoneTitle === '') {
       return alert('Enter milestone name');
     }

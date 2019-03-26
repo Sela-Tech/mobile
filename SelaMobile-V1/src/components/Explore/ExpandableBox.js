@@ -12,13 +12,9 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   expandableBox: {
-    // flex: 1,
     borderRadius: 5,
     marginHorizontal: 15,
     marginBottom: 20,
-    // backgroundColor: 'blue',
-
-    // flexDirection: 'row',
     borderColor: '#ddd',
     shadowColor: '#ddd',
     shadowOpacity: 1.0,
@@ -26,20 +22,9 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   center: {
-    // width: '100%',
-    // flex: 1,
-    // backgroundColor: 'red',
-    // height: 65,
-    // justifyContent: 'center',
-    // alignItems: 'center',
+
   },
   other: {
-    // marginTop: 10,
-    // height: 900,
-    // width: '100%',
-    // flex: 1,
-    // height: 500,
-    // backgroundColor: 'red',
   },
   other2: {
     // flex: 1,
@@ -55,7 +40,6 @@ const styles = StyleSheet.create({
   },
   viewInExpandable: {
     flex: 7,
-    // marginLeft: 10,
   },
 });
 

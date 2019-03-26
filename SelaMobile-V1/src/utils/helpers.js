@@ -14,14 +14,14 @@ export const smallScreen = height < 667;
  * Get user role
  * @param {*} param
  */
-export const getUserRole = obj => {
+export const getUserRole = (obj, validate) => {
   let userRole;
   if (obj.isFunder) {
-    userRole = 'funder';
+    userRole = validate ? 'Funder' : 'funder';
   } else if (obj.isContractor) {
-    userRole = 'contractor';
+    userRole = validate ? 'Contractor' : 'contractor';
   } else {
-    userRole = 'evaluator';
+    userRole = validate ? 'Evaluation agent' : 'evaluator';
   }
   return userRole;
 };

@@ -317,7 +317,7 @@ export default class EvidenceRequestModal extends Component {
                       //
                       onValueChange={id => this.setState({ stakeholder: id })}
                     >
-                      {stakeholders.map((s, i) => (
+                      { stakeholders && stakeholders.map((s, i) => (
                         <Picker.Item
                           key={i}
                           style={[styles.inputStyle, styles.picker]}

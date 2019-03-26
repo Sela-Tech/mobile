@@ -36,12 +36,10 @@ class Box extends Component {
 
   getAllEvidenceRequest = async () => {
     try {
-      const resp = await retrieveEvidenceRequest(
-        this.props.data._id,
-      );
+      const resp = await retrieveEvidenceRequest(this.props.data._id);
       this.setState({ requests: resp.data.evidenceRequests, loading: false });
     } catch (err) {
-      console.log('the ereo', err.message);
+      this.setState({ error: err.message });
     }
   };
 

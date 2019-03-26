@@ -140,7 +140,7 @@ export default class OverView extends Component {
                 <Text style={{ color: '#696F74' }}>Duration </Text>
               </View>
               <View style={styles.pt}>
-                <Text style={{ color: '#3D4851', fontSize: 16 }}>12 Jan 19 - 02 Dec 20do</Text>
+                <Text style={{ color: '#3D4851', fontSize: 16 }}>12 Jan 19 - 02 Dec 20</Text>
               </View>
             </View>
 

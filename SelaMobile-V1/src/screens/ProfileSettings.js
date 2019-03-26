@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { View, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
@@ -6,6 +6,7 @@ import B from '../components/BoldText';
 import UserId from '../components/Profile/UserId';
 import UserInfo from '../components/Profile/UserInfo';
 import SettingsList from '../components/Profile/SettingsList';
+import { getUserRole } from '../utils/helpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,51 +28,49 @@ const styles = StyleSheet.create({
   },
 });
 
-class ProfileSettings extends Component {
-  render() {
-    const userInfo = this.props.userInfo;
-    let userType;
-    const { isContractor, isFunder, isEvaluator } = this.props.userInfo.user;
-    if (isFunder === true) {
-      userType = 'Funder';
-    } else if (isContractor === true) {
-      userType = 'Contractor';
-    } else {
-      userType = 'Evaluation agent';
-    }
-    return (
-      <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={styles.container}>
-        <Header headerName="PROFILE" />
-        <View style={styles.headerMargin}>
-          <UserId
-            settings
-            userType={userType}
-            userName={userInfo.user.firstName.concat(' ').concat(userInfo.user.lastName)}
-            verificationStatus="verified"
-          />
-        </View>
-        <UserInfo reputationScore="0" projects="0" dataUploads="0" location="Lagos,Nigeria." q />
-        <View style={styles.mv15}>
-          <View style={styles.accountSettingsView}>
-            <B color="#201D41"> Account Settings </B>
-          </View>
-          <View style={styles.ml10}>
-            <SettingsList upText="Verification" downText="View or update verification document" />
-            <SettingsList
-              upText="Edit Profile"
-              downText="Change your password and other personal details"
-            />
-            <SettingsList upText="Notifications" downText="Manage Your Notifications" />
-            <SettingsList upText="About" downText="Learn more about Sela and the App" />
-            <SettingsList upText="Support" downText="Contact support for help with any issue" />
+const ProfileSettings = ({ userInfo }) => {
+  const { isContractor, isFunder, isEvaluator } = userInfo.user;
 
-            <SettingsList upText="Logout" />
-          </View>
+  const userRoleObj = {
+    isContractor,
+    isFunder,
+    isEvaluator,
+  };
+  const userType = getUserRole(userRoleObj);
+
+  return (
+    <ScrollView stickyHeaderIndices={[0]} contentContainerStyle={styles.container}>
+      <Header headerName="PROFILE" />
+      <View style={styles.headerMargin}>
+        <UserId
+          userData={userInfo.user}
+          settings
+          userType={userType}
+          userName={userInfo.user.firstName.concat(' ').concat(userInfo.user.lastName)}
+          verificationStatus="verified"
+        />
+      </View>
+      <UserInfo reputationScore="0" projects="0" dataUploads="0" location="Lagos,Nigeria." q />
+      <View style={styles.mv15}>
+        <View style={styles.accountSettingsView}>
+          <B color="#201D41"> Account Settings </B>
         </View>
-      </ScrollView>
-    );
-  }
-}
+        <View style={styles.ml10}>
+          <SettingsList upText="Verification" downText="View or update verification document" />
+          <SettingsList
+            upText="Edit Profile"
+            downText="Change your password and other personal details"
+          />
+          <SettingsList upText="Notifications" downText="Manage Your Notifications" />
+          <SettingsList upText="About" downText="Learn more about Sela and the App" />
+          <SettingsList upText="Support" downText="Contact support for help with any issue" />
+
+          <SettingsList upText="Logout" />
+        </View>
+      </View>
+    </ScrollView>
+  );
+};
 
 const mapStateToProps = state => ({
   userInfo: state.userInfo,

@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
 });
 
 const RequestDetails = ({ title, dataType, dueDate, stakeHolders, status }) => {
-  const stakeHoldersPics = stakeHolders.map(c => c.user.profilePhoto);
+  const stakeHoldersPics = stakeHolders &&  stakeHolders.map(c => c.user.profilePhoto);
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>

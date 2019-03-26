@@ -30,7 +30,7 @@ const options = {
 // export default
 class UserId extends Component {
   state = {
-    avatarSource: pictureRelatedToUser(this.props.userName),
+    avatarSource: {uri: this.props.userData.profilePhoto},
   };
 
   selectImage = async () => {
@@ -51,7 +51,7 @@ class UserId extends Component {
   };
 
   render() {
-    const { settings, userType, userName, verificationStatus } = this.props;
+    const { settings, userType, userName, verificationStatus, userData } = this.props;
     const { avatarSource } = this.state;
     return (
       <View style={styles.container}>

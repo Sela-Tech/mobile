@@ -28,8 +28,6 @@ const axios2 = Axios.create({
 axios.interceptors.request.use(
   config => {
     // Do something before request is sent
-    // const tt =
-    // 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJvcmdhbml6YXRpb24iOnsibmFtZSI6ImFkbWluMSBvcmdhbmlzYWN0aW9uIiwiaWQiOiI1YzZhYzExYWI0Mzc4ZTAwMjI4ODAxNGIifSwicHJvZmlsZVBob3RvIjoiaHR0cHM6Ly9wbGFjZWltZy5jb20vMjAwLzIwMC9wZW9wbGUiLCJpZCI6IjVjNmFjMTFhYjQzNzhlMDAyMjg4MDE0YyIsImlzRnVuZGVyIjpmYWxzZSwiaXNFdmFsdWF0b3IiOmZhbHNlLCJpc0NvbnRyYWN0b3IiOnRydWUsImZpcnN0TmFtZSI6IkFiaW1ib2xhIiwicGhvbmUiOiI4OTQ5MDM1ODU2NCIsImVtYWlsIjoiYWJpbWJvbGEuZEBzZWxhLWxhYnMuY28iLCJsYXN0TmFtZSI6IkRhdmlkIiwiYXJlYXNPZkludGVyZXN0IjpbXSwiaWF0IjoxNTUxNDU3NTY3LCJleHAiOjE1NTIwNjIzNjd9.ewu_50gk89wU4unAoOQ_RZsmfqVvE5ajS_Q53i7TMiQ';
     config.headers['x-access-token'] = this.userToken;
     return config;
   },
@@ -55,7 +53,6 @@ axios.interceptors.response.use(
         console.log('err', err.message);
       }
     }
-    console.log('kkkk', error.response.data);
     // Do something with response error
     console.log('API ERR:', error.message);
     // return error.response;

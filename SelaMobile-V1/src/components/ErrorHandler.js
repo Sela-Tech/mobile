@@ -22,7 +22,7 @@ export default class ErrorHandler extends Component {
     if (hasError) {
       return (
         <ImageBackground
-          source={require('../../assets/splash.png')}
+          source={require('../../assets/goldlogo.png')}
           style={{
             flex: 1,
             justifyContent: 'center',
