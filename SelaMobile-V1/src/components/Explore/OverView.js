@@ -180,7 +180,7 @@ export default class OverView extends Component {
           <TagDisplay showTag={this.showTag} visibility={showTag} imageSource={src} />
 
           <View style={{ paddingTop: 5 }}>
-            {project && project.documents && project.documents.lenght !== 0 ? (
+            {project && project.documents && project.documents.length !== 0 ? (
               <Fragment>
                 <View>
                   <Text style={{ color: '#696F74' }}> Additional Documents </Text>

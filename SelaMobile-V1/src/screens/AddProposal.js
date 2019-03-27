@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { View, ScrollView, StyleSheet, Keyboard, Dimensions } from 'react-native';
 import { Tabs, Tab } from 'native-base';
+import MultiSelect from 'react-native-multiple-select';
 import DropdownAlert from 'react-native-dropdownalert';
 import ProposalContent from '../components/AddProposal/ProposalContent';
 import AddTaskModal from '../components/AddProposal/AddTaskModal';
@@ -9,9 +10,10 @@ import Header from '../components/Header';
 import Input from '../components/Input';
 import Text from '../components/Text';
 import Button from '../components/Button';
+
 import ExtStyle from '../utils/styles';
 
-import { createTask, createMileStone, createProposal } from '../utils/api';
+import { createProposal, getAllUsers } from '../utils/api';
 
 import { WHITE, YELLOW } from '../utils/constants';
 import NavigationService from '../services/NavigationService';
@@ -22,6 +24,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     // backgroundColor: 'red',
+  },
+  multiSelect: {
+    // borderColor: '#B1BAD2',
+    // width: width / 1.1,
+    // borderRadius: 5,
+    justifyContent: 'center',
+    // alignItems: 'center',
+    borderWidth: null,
+    borderBottomWidth: 2,
+    borderRadius: 0,
+    borderBottomColor: '#DDDDDD',
+    // borderWidth: 1,
   },
   container2: {
     flex: 1,
@@ -89,14 +103,20 @@ const MileStoneHeader = ({ newVal, mileStoneTitle, updateInput, index, totalAmou
       <View style={[ExtStyle.flex1, ExtStyle.row]}>
         <View style={[ExtStyle.flex4, ExtStyle.row]}>
           <View>
-            <Text style={styles.mileStoneHeadingText}>{index + 1})</Text>
+            <Text style={styles.mileStoneHeadingText}>{index + 1}
+)
+</Text>
           </View>
           <View>
             <Text style={styles.mileStoneHeadingText}> {mileStoneTitle}</Text>
           </View>
         </View>
         <View style={styles.textAmountView}>
-          <Text style={styles.textAmount}> ${totalAmount} </Text>
+          <Text style={styles.textAmount}> $
+{totalAmount}
+{' '}
+ 
+          </Text>
         </View>
       </View>
     )}
@@ -109,12 +129,13 @@ export default class AddProposals extends Component {
     contractorName: '',
     new: true,
     mileStoneTitle: '',
-    // projectId: this.props.navigation.state.params.projectId,
+    projectId: this.props.navigation.state.params.projectId,
     // contractorId: this.props.navigation.state.params.userId,
-    projectId: '5c6ac53bb4378e0022880150',
-    contractorId: '5c6ac11ab4378e002288014c',
+    // projectId: '5c6ac53bb4378e0022880150',
+    // contractorId: '5c6ac11ab4378e002288014c',
     modalVisibility: false,
     milestones: [],
+    users: [],
     allMileStones: [],
     taskName: '',
     taskDesription: '',
@@ -124,7 +145,27 @@ export default class AddProposals extends Component {
     submitProposalLoading: false,
     markedTask: [],
     comments: [],
+    selectedUsers: [],
   };
+
+  async componentDidMount() {
+    try {
+      const resp = await getAllUsers();
+
+      // Get only contractors and evaluators
+      const users = resp.data
+        .filter(c => !c.isFunder)
+        .map(c => {
+          c.label = c.firstName.concat(' ').concat(c.lastName);
+          c.value = c._id;
+          return c;
+        });
+
+      this.setState({ users });
+    } catch (err) {
+      this.setState({ error: err.message });
+    }
+  }
 
   showModal = () => this.setState(prevState => ({ modalVisibility: !prevState.modalVisibility }));
 
@@ -168,8 +209,10 @@ export default class AddProposals extends Component {
   };
 
   sendProposal = async () => {
-    const { contractorId, allMileStones, comments, propopalName, projectId } = this.state;
-
+    const { selectedUsers, allMileStones, comments, propopalName, projectId } = this.state;
+    if (selectedUsers.length === 0) {
+      return alert('Add a Contractor');
+    }
     if (propopalName === '') {
       return alert('Enter Proposal Name');
     }
@@ -180,7 +223,7 @@ export default class AddProposals extends Component {
     const data = {
       comments,
       projectId,
-      contractor: contractorId,
+      contractor: selectedUsers[0],
       proposal_name: propopalName,
       milestones: allMileStones,
     };
@@ -286,6 +329,8 @@ export default class AddProposals extends Component {
     }
   };
 
+  onSelectedUsersChange = selectedUsers => this.setState({ selectedUsers });
+
   render() {
     const {
       modalVisibility,
@@ -303,7 +348,16 @@ export default class AddProposals extends Component {
       propopalName,
       contractorName,
       submitProposalLoading,
+      // users,
+      selectedUsers,
     } = this.state;
+
+    let { users } = this.state;
+    users = users.map((c, index) => {
+      c.id = c._id;
+      c.name = c.firstName.concat(' ').concat(c.lastName);
+      return c;
+    });
 
     const taskData = {
       taskName,
@@ -347,15 +401,35 @@ export default class AddProposals extends Component {
                 loading={loading}
               />
 
-              <View style={ExtStyle.mt5}>
-                <Input
-                  value={contractorName}
-                  style={styles.inputStyle}
-                  onChangeTheText={contractorName =>
-                    this.updateInput(contractorName, 'contractorName')
-                  }
-                  text="Enter Contractor name"
-                  placeHolderColor="#201D41"
+              <View style={{ marginTop: 10 }}>
+                <MultiSelect
+                  // hideTags
+                  items={users}
+                  uniqueKey="id"
+                  ref={component => {
+                    this.multiSelect = component;
+                  }}
+                  single
+                  hideSubmitButton
+                  onSelectedItemsChange={this.onSelectedUsersChange}
+                  selectedItems={selectedUsers}
+                  selectText="Pick Contractors"
+                  searchInputPlaceholderText="Search Contractor..."
+                  onChangeInput={text => console.log(text)}
+                  altFontFamily="Acumin-RPro'"
+                  tagRemoveIconColor="#CCC"
+                  tagBorderColor="#B1BAD2"
+                  tagTextColor="#CCC"
+                  selectedItemTextColor={YELLOW}
+                  selectedItemIconColor={YELLOW}
+                  itemTextColor="#000"
+                  displayKey="name"
+                  searchInputStyle={{ color: '#CCC' }}
+                  submitButtonColor={YELLOW}
+                  submitButtonText="Submit"
+                  styleSelectorContainer={styles.multiSelect}
+                  styleMainWrapper={styles.multiSelect}
+                  styleInputGroup={styles.multiSelect}
                 />
               </View>
 

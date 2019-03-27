@@ -180,6 +180,12 @@ export const MainSwitchNavigator = createSwitchNavigator(
 );
 
 export const TestStackNavigator = createStackNavigator({
+  AddProposal: {
+    screen: AddProposal,
+    navigationOptions: {
+      header: null,
+    },
+  },
   SubmitFeedbackd: {
     screen: ProjectWallet,
     navigationOptions: {

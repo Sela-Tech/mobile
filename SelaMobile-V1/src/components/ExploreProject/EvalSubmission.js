@@ -60,5 +60,3 @@ export default class EvalSubmission extends Component {
     );
   }
 }
-
-// export default EvalSubmission;

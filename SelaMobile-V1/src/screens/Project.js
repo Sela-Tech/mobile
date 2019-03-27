@@ -243,7 +243,7 @@ class Project extends Component {
                       }}
                     />
 
-                    <View style={{ marginHorizontal: 10, marginTop: 10 }}>
+                    {/* <View style={{ marginHorizontal: 10, marginTop: 10 }}>
                       <View style={{ marginBottom: 5 }}>
                         <Text style={{ fontSize: 15 }}> FilterBy</Text>
                       </View>
@@ -263,7 +263,7 @@ class Project extends Component {
                           ))}
                         </Picker>
                       </View>
-                    </View>
+                    </View> */}
 
                     <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
                       <ProjectView
@@ -291,7 +291,7 @@ class Project extends Component {
                           }}
                           tabStyle={{ backgroundColor: '#FFFFFF' }}
                         >
-                          <View style={{ marginTop: 10, marginHorizontal: 10 }}>
+                          {/* <View style={{ marginTop: 10, marginHorizontal: 10 }}>
                             <View style={{ marginBottom: 5 }}>
                               <Text style={{ fontSize: 15 }}> FilterBy</Text>
                             </View>
@@ -311,7 +311,7 @@ class Project extends Component {
                                 ))}
                               </Picker>
                             </View>
-                          </View>
+                          </View> */}
                           <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
                             <ProjectView projects={invitedProjects} />
                           </View>

@@ -251,13 +251,11 @@ class CreateProject extends Component {
     }
   };
 
-  onSelectedItemsChange = selectedItems => {
-    this.setState({ selectedItems });
-  };
 
-  onSelectedUsersChange = selectedUsers => {
-    this.setState({ selectedUsers });
-  };
+
+  onSelectedItemsChange = selectedItems =>  this.setState({ selectedItems });
+
+  onSelectedUsersChange = selectedUsers => this.setState({ selectedUsers });
 
   selectDate = (val, day) => {
     if (day === 'Start Date') {
@@ -427,7 +425,7 @@ class CreateProject extends Component {
               selectText="Pick project tags"
               searchInputPlaceholderText="Search Items..."
               onChangeInput={text => console.log(text)}
-              altFontFamily="ProximaNova-Light"
+              altFontFamily="Acumin-RPro"
               tagRemoveIconColor="#CCC"
               tagBorderColor="#B1BAD2"
               tagTextColor="#CCC"
@@ -507,7 +505,7 @@ class CreateProject extends Component {
                 selectText="Pick contractors"
                 searchInputPlaceholderText="Search Contractor..."
                 onChangeInput={text => console.log(text)}
-                altFontFamily="ProximaNova-Light"
+                altFontFamily="Acumin-RPro"
                 tagRemoveIconColor="#CCC"
                 tagBorderColor="#B1BAD2"
                 tagTextColor="#CCC"

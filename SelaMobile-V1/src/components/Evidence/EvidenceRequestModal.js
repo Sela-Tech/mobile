@@ -219,7 +219,7 @@ export default class EvidenceRequestModal extends Component {
                             selectedValue={proposalID}
                             onValueChange={id => this.setState({ proposalID: id })}
                           >
-                            {proposals.map((s, i) => (
+                            { proposals && proposals.map((s, i) => (
                               <Picker.Item
                                 key={i}
                                 style={[styles.inputStyle, styles.picker]}
@@ -241,7 +241,7 @@ export default class EvidenceRequestModal extends Component {
                             selectedValue={proposalID}
                             onValueChange={id => this.setState({ proposalID: id })}
                           >
-                            {proposals.map((s, i) => (
+                            { proposals && proposals.map((s, i) => (
                               <Picker.Item
                                 key={i}
                                 style={[styles.inputStyle, styles.picker]}

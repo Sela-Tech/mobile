@@ -33,6 +33,7 @@ local.properties
 # node.js
 #
 node_modules/
+todo.md
 npm-debug.log
 yarn-error.log
 

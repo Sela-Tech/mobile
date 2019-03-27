@@ -1,8 +1,9 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import Text from '../Text';
 import Button from '../Button';
 import { YELLOW, WHITE } from '../../utils/constants';
+import { formatMoney } from '../../utils/helpers';
 import ExtStyle from '../../utils/styles';
 import NavigationService from '../../services/NavigationService';
 
@@ -32,22 +33,31 @@ const styles = StyleSheet.create({
   },
 });
 
-const ProposalContent = () => (
+const ProposalContent = ({
+  projectName,
+  amount,
+  totalMileStone,
+  totalTask,
+  cost,
+  hide
+}) => (
   <View style={styles.container}>
     <View style={ExtStyle.flex2}>
       <View>
-        <Text style={styles.titleText}> Construction of palm oil factory at Aba </Text>
+        <Text style={styles.titleText}> {projectName ||'Construction of palm oil factory at Aba'}</Text>
       </View>
       <View>
-        <Text> 12 Milestones, 72 Tasks </Text>
+        <Text> {totalMileStone} Milestones, {totalTask} Tasks </Text>
       </View>
 
       <View>
-        <Text style={styles.yellowText}> $150,000 </Text>
+        <Text style={styles.yellowText}> {formatMoney(cost)} </Text>
       </View>
     </View>
-
-    <View style={ExtStyle.flex1}>
+<Fragment>
+{
+  !hide ? (
+  <View style={ExtStyle.flex1}>
       <Button
         fn={() => NavigationService.navigate('ExploreProject', '5c869877e432c7002263319c')}
         text="View"
@@ -67,6 +77,9 @@ const ProposalContent = () => (
         }}
       />
     </View>
+  ): null
+}
+  </Fragment>
   </View>
 );
 

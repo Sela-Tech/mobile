@@ -4,7 +4,9 @@ import NavigationService from '../../services/NavigationService';
 import ProposalContent from '../../components/Project/ProposalContent';
 import Button from '../../components/Button';
 import Text from '../../components/Text';
+import Spinner from '../../components/Spinner';
 import { WHITE } from '../../utils/constants';
+import { getProposalsBelongingToAProject } from '../../utils/api';
 
 const { height, width } = Dimensions.get('window');
 
@@ -24,16 +26,47 @@ const styles = StyleSheet.flatten({
       fontWeight: '500',
     },
   },
+  mainContainer: {
+    flex: 1,
+    flexDirection: 'column',
+  },
+  textContainer: {
+    marginTop: '10%',
+    alignItems: 'center',
+  },
+  text: {
+    fontSize: 15,
+  },
 });
+
+// const Proposals = ({ project, userId }) => {
 export default class Proposals extends Component {
+  state = {
+    loading: true,
+    proposals: [],
+  };
+
+  async componentDidMount() {
+    try {
+      const resp = await getProposalsBelongingToAProject(this.props.project._id);
+      this.setState({ loading: false, proposals: resp.data.proposals });
+    } catch (err) {
+      this.setState({ loading: false, error: err.message });
+    }
+  }
+
   render() {
-    const { project, userId } = this.props;
-    const { proposals } = project;
+    const { proposals, loading } = this.state;
+
+    if (loading) {
+      return <Spinner />;
+    }
+
     if (proposals.length === 0) {
       return (
-        <View style={{ flex: 1, flexDirection: 'column' }}>
-          <View style={{ marginTop: '10%', alignItems: 'center' }}>
-            <Text style={{ fontSize: 15 }}>No active Proposal </Text>
+        <View style={styles.mainContainer}>
+          <View style={styles.textContainer}>
+            <Text style={styles.text}>No active Proposal </Text>
           </View>
           <View style={styles.container}>
             <Button
@@ -54,9 +87,17 @@ export default class Proposals extends Component {
     }
     return (
       <View>
-        {proposals.map((c, index) => (
-          <ProposalContent key={index} />
-        ))}
+        {proposals &&
+          proposals.map((c, index) => (
+            <ProposalContent
+              key={index}
+              // projectName=""
+              totalMileStone={c.totalMilestones}
+              totalTask={c.totalTasks}
+              cost={c.totalBudget}
+              hide
+            />
+          ))}
       </View>
     );
   }
