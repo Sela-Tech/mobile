@@ -11,7 +11,6 @@ const styles = StyleSheet.create({
   },
   subContainer: {
     flexGrow: 1,
-    // flex: 1,
     marginVertical: 10,
     marginHorizontal: 10,
     flexDirection: 'row',

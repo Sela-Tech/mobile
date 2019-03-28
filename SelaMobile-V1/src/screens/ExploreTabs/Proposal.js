@@ -39,7 +39,6 @@ const styles = StyleSheet.flatten({
   },
 });
 
-// const Proposals = ({ project, userId }) => {
 export default class Proposals extends Component {
   state = {
     loading: true,

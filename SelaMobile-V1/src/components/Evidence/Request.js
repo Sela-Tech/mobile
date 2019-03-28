@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   },
   mt: {
     marginTop: '10%',
+    marginLeft: '10%',
   },
   center: {
     flex: 1,

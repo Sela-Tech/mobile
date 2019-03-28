@@ -6,7 +6,7 @@ import Spinner from '../Spinner';
 import Text from '../Text';
 import { flatten } from '../../utils/helpers';
 import { retrieveEvidenceRequest } from '../../utils/api';
-import { WHITE } from '../../utils/constants';
+import { WHITE, YELLOW } from '../../utils/constants';
 
 const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -27,57 +27,66 @@ const styles = StyleSheet.create({
 
 class Box extends Component {
   state = {
-    loading: true,
+    loading: false,
     requests: [],
   };
 
   async componentDidMount() {
-    await this.getAllEvidenceRequest();
+    // if (this.props.personal) {
+    //   this.setState({ loading: false });
+    // }
+    // await this.getAllEvidenceRequest();
   }
 
   getAllEvidenceRequest = async () => {
-    try {
-      const resp = await retrieveEvidenceRequest(this.props.data._id);
-      this.setState({ requests: resp.data.evidenceRequests, loading: false });
-    } catch (err) {
-      this.setState({ error: err.message });
-    }
+    // try {
+    //   const resp = await retrieveEvidenceRequest(this.props.data._id);
+    //   this.setState({ requests: resp.data.evidenceRequests, loading: false });
+    // } catch (err) {
+    //   this.setState({ error: err.message });
+    // }
   };
 
   render() {
-    const { projectName, fn, navigation } = this.props;
+    const { projectName,data, fn, navigation, personal, balance } = this.props;
     const { loading, requests } = this.state;
 
-    const completed =
-      requests &&
-      requests.reduce((b, c) => {
-        const vv = c.stakeholders.filter(b => {
-          b.taskName = c.title;
-          b.requestedBy = c.requestedBy.fullName;
-          b.profilePhoto = c.requestedBy.profilePhoto;
-          b.dueDate = c.dueDate;
-          return b.user._id === this.props.userInfo.user.id && b.hasSubmitted;
-        });
-        b.push(vv);
-        return b;
-      }, []);
+    // const completed =
+    //   requests &&
+    //   requests.reduce((b, c) => {
+    //     const vv = c.stakeholders.filter(b => {
+    //       b.taskName = c.title;
+    //       b.requestedBy = c.requestedBy.fullName;
+    //       b.profilePhoto = c.requestedBy.profilePhoto;
+    //       b.dueDate = c.dueDate;
+    //       return b.user._id === this.props.userInfo.user.id && b.hasSubmitted;
+    //     });
+    //     b.push(vv);
+    //     return b;
+    //   }, []);
 
-    const trans = flatten(completed);
-    const totalAmount = trans.reduce((c, d) => d.quote + c, 0);
-    const allInfo = {
-      projectName,
-      completed: trans,
-      totalAmount,
-    };
+    // const trans = flatten(completed);
+    // const totalAmount = trans.reduce((c, d) => d.quote + c, 0);
+    // const data = {
+    //   projectName,
+    //   completed: trans,
+    //   totalAmount,
+    // };
     return (
       <TouchableOpacity
-        style={styles.container}
-        onPress={() => navigation.navigate('ProjectWallet', allInfo)}
+        style={[styles.container, personal ? { backgroundColor: '#156EDC' } : null]}
+        onPress={() => navigation.navigate('ProjectWallet', data)}
       >
         <View style={{ flex: 1, marginHorizontal: 9, justifyContent: 'center' }}>
           <View style={{ flex: 1, marginTop: 12, flexDirection: 'column' }}>
             <View style={{ flex: 1, justifyContent: 'flex-end' }}>
-              <Image source={require('../../../assets/suitcase.png')} />
+              <Image
+                source={
+                  personal
+                    ? require('../../../assets/profile_wallet.png')
+                    : require('../../../assets/suitcase.png')
+                }
+              />
             </View>
             <View style={styles.text}>
               <Text style={{ fontSize: 15, color: '#FFFFFF' }}>{projectName}</Text>
@@ -105,16 +114,19 @@ class Box extends Component {
                       style={{
                         height: 20,
                         width: 30,
-                        backgroundColor: '#156EDC',
+                        backgroundColor: personal ? '#369C05' : '#156EDC',
                         justifyContent: 'center',
+                        alignItems: 'center',
                       }}
                     >
-                      <Text style={{ fontSize: 10, fontWeight: 'bold' }}> PST </Text>
+                      <Text style={{ fontSize: 10, fontWeight: 'bold' }}>
+                        {personal ? 'XML' : 'PST'}{' '}
+                      </Text>
                     </View>
                   </View>
-                  <View style={{ marginLeft: 5 }}>
-                    <Text style={{ color: '#FFFFFF', fontSize: 30, fontWeight: '400' }}>
-                      {totalAmount}
+                  <View style={{ marginLeft: 5, marginTop: 5 }}>
+                    <Text style={{ color: '#FFFFFF', fontSize: 20, fontWeight: '400' }}>
+                      {parseFloat(balance).toFixed(3)}
                     </Text>
                   </View>
                 </View>

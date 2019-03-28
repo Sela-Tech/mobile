@@ -26,11 +26,14 @@ const styles = StyleSheet.create({
   },
 });
 
+const textForFunder = 'You haven\'t created any task';
+const otherText = 'You haven\'t been assigned any task';
+
 const Updates = ({ project, userRole, requests }) => {
   if (requests && requests.length === 0) {
     return (
       <View style={ExtStyles.center}>
-        <Text> You haven't been assigned any task </Text>
+        <Text> {userRole === 'funder' ? textForFunder : otherText }  </Text>
       </View>
     );
   }

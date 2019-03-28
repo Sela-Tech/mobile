@@ -1,12 +1,9 @@
 import React, { Fragment } from 'react';
-import { View, TouchableOpacity, StyleSheet, Image, Dimensions, ScrollView } from 'react-native';
-import NavigationService from '../../services/NavigationService';
+import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
 import Text from '../../components/Text';
 import B from '../../components/BoldText';
 import UserProfile from '../../components/UserProfile';
-import Button from '../../components/Button';
 import { YELLOW } from '../../utils/constants';
-import { firstLetterCapital } from '../../utils/helpers';
 
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({

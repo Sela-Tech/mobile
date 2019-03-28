@@ -5,12 +5,12 @@ import { connect } from 'react-redux';
 import OverViewDetails from '../../components/Explore/OverView';
 import Stakeholders from './StakeHolders';
 import Transactions from './Transactions';
-import Evidence from './Evidence';
+// import Evidence from './Evidence';
 import Overview from './Overview';
 
 import Request from '../../components/Evidence/Request';
 import Proposal from './Proposal';
-import Tasks from './Tasks';
+// import Tasks from './Tasks';
 import Updates from './Updates';
 import { isAndroid, getUserRole } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
@@ -52,8 +52,6 @@ const tabBarOptions = {
   },
 };
 
-// class Navigator extends Component {
-
 const Navigator = ({ project, userId, requests, userInfo, navigation }) => {
   const { isFunder, isEvaluator, isContractor } = userInfo && userInfo.user;
   const userRoleObj = {
@@ -87,9 +85,6 @@ const Navigator = ({ project, userId, requests, userInfo, navigation }) => {
         Updates: {
           screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
         },
-        Transactions: {
-          screen: () => <Transactions userRole={userRole} project={project} />,
-        },
       },
       {
         tabBarOptions,
@@ -118,30 +113,12 @@ const Navigator = ({ project, userId, requests, userInfo, navigation }) => {
         Overview: {
           screen: () => <OverViewDetails userRole={userRole} project={project} />,
         },
-        // Analytics: {
-        //   screen: () => <Overview userRole={userRole} project={project} />,
-        // },
         Updates: {
           screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
         },
-        // Proposals: {
-        //   screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
-        // },
-        // Stakeholders: {
-        //   screen: () => (
-        //     <Stakeholders userRole={userRole} navigation={navigation} project={project} />
-        //   ),
-        // },
-        // Evidence: {
-        //   screen: () => <Request userRole={userRole} project={project} />,
-        // },
-
         Transactions: {
           screen: () => <Transactions userRole={userRole} project={project} />,
         },
-        // Location: {
-        //   screen: () => <Location userRole={userRole} project={project} />,
-        // },
       },
       {
         tabBarOptions,

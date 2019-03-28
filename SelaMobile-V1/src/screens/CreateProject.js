@@ -6,7 +6,6 @@ import {
   Keyboard,
   Image,
   TouchableOpacity,
-  // Picker,
 } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
@@ -43,7 +42,6 @@ const styles = StyleSheet.create({
     borderColor: '#B1BAD2',
     width: width / 1.1,
     borderRadius: 5,
-    // borderWidth: 1,
   },
   smallContainer: {
     marginBottom: 15,
@@ -58,7 +56,6 @@ const styles = StyleSheet.create({
 
 const options = {
   title: 'Select Avatar',
-  // customButtons: [{ name: 'sela', title: 'Choose Photo ' }],
   storageOptions: {
     skipBackup: true,
     path: 'images',
@@ -79,7 +76,7 @@ class CreateProject extends Component {
     users: [],
     selectedUsers: [],
     selectedItems: [],
-    stakeholderName: '',
+    // stakeholderName: '',
     stakeholders: [],
     googlePlaces: [],
     locationObj: {
@@ -97,7 +94,9 @@ class CreateProject extends Component {
         c.value = c._id;
         return c;
       });
-      this.setState({ users, stakeholderName: [users[0]._id] });
+      this.setState({ users//,
+        //  stakeholderName: [users[0]._id]
+         });
     } catch (err) {
       this.setState({ error: err.message });
     }

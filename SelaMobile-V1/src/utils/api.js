@@ -29,6 +29,7 @@ axios.interceptors.request.use(
   config => {
     // Do something before request is sent
     config.headers['x-access-token'] = this.userToken;
+    // console.log('mfmfmf', this.userToken);
     return config;
   },
   error => {
@@ -360,3 +361,20 @@ export const evidenceRequestSubmission = data => {
     return err;
   }
 };
+
+export const getUserBalance = () => {
+  try {
+    return axios.get('/balances');
+  } catch (err) {
+    return err;
+  }
+};
+
+export const getProjectBalance = id => {
+  try {
+    return axios.get(`/project/${id}/transaction-history`);
+  } catch (err) {
+    return err;
+  }
+};;
+

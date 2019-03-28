@@ -70,6 +70,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: height / 13,
   },
+  centerEmpty: {
+    flex: 1,
+    alignItems: 'center',
+    marginTop: '50%',
+  },
 });
 
 const getCurrentState = () => {
@@ -266,66 +271,41 @@ class Project extends Component {
                     </View> */}
 
                     <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
-                      <ProjectView
-                        leftText="Projects you fund"
-                        // rightText="See all"
-                        projects={projects}
-                      />
+                      {projects.length === 0 ? (
+                        <View style={styles.centerEmpty}>
+                          <Text> No Project at the moment</Text>
+                        </View>
+                      ) : (
+                        <ProjectView
+                          leftText="Projects you fund"
+                          // rightText="See all"
+                          projects={projects}
+                        />
+                      )}
                     </View>
                   </ScrollView>
                 ) : (
                   <Fragment>
                     {userRole === 'contractor' ? (
-                      <Tabs
-                        locked
-                        tabBarUnderlineStyle={{
-                          backgroundColor: '#201D41',
+                      <ScrollView
+                        contentContainerstyle={{
+                          flexGrow: 1,
                         }}
                       >
-                        <Tab
-                          heading="Your Projects"
-                          textStyle={{ color: '#B1BAD2', fontSize: 14 }}
-                          activeTextStyle={{ color: '#fff', fontSize: 14 }}
-                          activeTabStyle={{
-                            backgroundColor: '#201D41',
-                          }}
-                          tabStyle={{ backgroundColor: '#FFFFFF' }}
-                        >
-                          {/* <View style={{ marginTop: 10, marginHorizontal: 10 }}>
-                            <View style={{ marginBottom: 5 }}>
-                              <Text style={{ fontSize: 15 }}> FilterBy</Text>
+                        <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
+                          {invitedProjects.length === 0 ? (
+                            <View style={styles.centerEmpty}>
+                              <Text> No Project at the moment</Text>
                             </View>
-                            <View style={[styles.inputStyle, styles.picker, { paddingBottom: 15 }]}>
-                              <Picker
-                                style={[styles.picker]}
-                                selectedValue={relevantProjectVal}
-                                onValueChange={t => this.setState({ relevantProjectVal: t })}
-                              >
-                                {relevantProject.map((s, i) => (
-                                  <Picker.Item
-                                    key={i}
-                                    style={[styles.inputStyle, styles.picker]}
-                                    label={s}
-                                    value={s}
-                                  />
-                                ))}
-                              </Picker>
-                            </View>
-                          </View> */}
-                          <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
-                            <ProjectView projects={invitedProjects} />
-                          </View>
-                        </Tab>
-                        <Tab
-                          heading="Your Proposals"
-                          textStyle={{ color: '#B1BAD2', fontSize: 14 }}
-                          activeTextStyle={{ color: '#fff', fontSize: 14 }}
-                          activeTabStyle={{ backgroundColor: '#201D41' }}
-                          tabStyle={{ backgroundColor: '#FFFFFF' }}
-                        >
-                          <Proposals projects={invitedProjects} />
-                        </Tab>
-                      </Tabs>
+                          ) : (
+                            <ProjectView
+                              leftText="Projects you fund"
+                              // rightText="See all"
+                              projects={invitedProjects}
+                            />
+                          )}
+                        </View>
+                      </ScrollView>
                     ) : (
                       <ScrollView style={{ flex: 1 }} contentContainerstyle={{ flexGrow: 1 }}>
                         {invitedProjects.length === 0 ? (
@@ -388,3 +368,61 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Project);
+
+{
+  /* <Tabs
+                        locked
+                        tabBarUnderlineStyle={{
+                          backgroundColor: '#201D41',
+                        }}
+                      >
+                        <Tab
+                          heading="Your Projects"
+                          textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                          activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                          activeTabStyle={{
+                            backgroundColor: '#201D41',
+                          }}
+                          tabStyle={{ backgroundColor: '#FFFFFF' }}
+                        > */
+}
+{
+  /* <View style={{ marginTop: 10, marginHorizontal: 10 }}>
+                            <View style={{ marginBottom: 5 }}>
+                              <Text style={{ fontSize: 15 }}> FilterBy</Text>
+                            </View>
+                            <View style={[styles.inputStyle, styles.picker, { paddingBottom: 15 }]}>
+                              <Picker
+                                style={[styles.picker]}
+                                selectedValue={relevantProjectVal}
+                                onValueChange={t => this.setState({ relevantProjectVal: t })}
+                              >
+                                {relevantProject.map((s, i) => (
+                                  <Picker.Item
+                                    key={i}
+                                    style={[styles.inputStyle, styles.picker]}
+                                    label={s}
+                                    value={s}
+                                  />
+                                ))}
+                              </Picker>
+                            </View>
+                          </View> */
+}
+{
+  /* <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
+                            <ProjectView projects={invitedProjects} />
+                          </View>
+                        </Tab>
+                        <Tab
+                          heading="Your Proposals"
+                          textStyle={{ color: '#B1BAD2', fontSize: 14 }}
+                          activeTextStyle={{ color: '#fff', fontSize: 14 }}
+                          activeTabStyle={{ backgroundColor: '#201D41' }}
+                          tabStyle={{ backgroundColor: '#FFFFFF' }}
+                        > */
+}
+{
+  /* </Tab>
+                      </Tabs> */
+}
