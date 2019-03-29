@@ -3,12 +3,12 @@ package com.selamobile2;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.horcrux.svg.SvgPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import org.wonday.pdf.RCTPdfView;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.horcrux.svg.SvgPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.arttitude360.reactnative.rngoogleplaces.RNGooglePlacesPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
@@ -35,13 +35,15 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new SvgPackage(),
           // new RNInstabugReactnativePackage.Builder("a1713df89289cd1a3490a23f2a1c8208",
           // MainApplication.this)
           // .setInvocationEvent("shake").setPrimaryColor("#1D82DC").setFloatingEdge("left")
           // .setFloatingButtonOffsetFromTop(250).build(),
           new ReactVideoPackage(), new RCTPdfView(), new RNFetchBlobPackage(), new ReactVideoPackage(),
-          new MapsPackage(), new VectorIconsPackage(), new SvgPackage(), new ImagePickerPackage(),
-          new RNGooglePlacesPackage(), // new MPAndroidChartPackage(),
+          new MapsPackage(), new VectorIconsPackage(),
+          // new SvgPackage(),
+          new ImagePickerPackage(), new RNGooglePlacesPackage(), // new MPAndroidChartPackage(),
           new RNGestureHandlerPackage());
     }
 

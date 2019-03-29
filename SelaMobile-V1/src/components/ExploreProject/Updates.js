@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { View, FlatList, Image, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
-import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet';
+// import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet';
 import Modal from 'react-native-modal';
 import Text from '../Text';
 import Tag from '../Tag';
@@ -217,7 +217,7 @@ class Updates extends Component {
   };
 
   showActionSheet = () => {
-    this.ActionSheet.show();
+    // this.ActionSheet.show();
   };
 
   toggleModal = () => this.setState(prevState => ({ tableModal: !prevState.tableModal }));
@@ -273,16 +273,6 @@ class Updates extends Component {
     }
     return (
       <View style={userRole !== 'funder' ? styles.notFunderContainer : styles.container}>
-        <View>
-          <ActionSheet
-            ref={o => (this.ActionSheet = o)}
-            title="Which operation would you like to perform ?"
-            options={['Upload Image', 'Upload video', 'Fill form', 'Cancel']}
-            cancelButtonIndex={3}
-            destructiveButtonIndex={3}
-            onPress={this.handlePress}
-          />
-        </View>
         <View style={{ flexDirection: 'row', paddingTop: 10, marginTop: 15, flex: 1 }}>
           <View style={{ flex: 2 }}>
             <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Status </Text>

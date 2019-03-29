@@ -38,12 +38,6 @@ export default ({ navigation }) => (
       </View>
     </View>
     <View style={Extstyle.flex3}>
-      <View>
-        <Box imgSource={require('../../assets/gofundme-logo.png')} />
-      </View>
-      <View>
-        <Box imgSource={require('../../assets/coinbase.png')} />
-      </View>
     </View>
   </View>
 );

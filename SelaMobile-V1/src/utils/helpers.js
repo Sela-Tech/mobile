@@ -116,26 +116,6 @@ const imageLocs = [
   require('../../assets/oilspill.png'),
 ];
 
-export const pictureRelatedToUser = name => {
-  switch (name) {
-    case 'Collins Peter':
-      return require('../../assets/man1.png');
-
-    case 'Sela ':
-      return require('../../assets/goldlogo.png');
-    case 'Sustainability International':
-      return require('../../assets/sustainability_international_logo.png');
-    case 'Dr Fidelia Nnandi':
-      return require('../../assets/man2.png');
-    case 'Releaf Nigeria':
-      return require('../../assets/releaf_logo.png');
-    case 'Admiral International':
-      return require('../../assets/man1.png');
-    default:
-      return require('../../assets/man1.png');
-  }
-};
-
 export const emptyProjectText = text => {
   switch (text) {
     case 'Projects you funded':

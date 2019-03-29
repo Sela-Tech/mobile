@@ -4,7 +4,6 @@ import IntroScreen from './screens/Intro';
 import ForgotPassword from './screens/ForgotPassword';
 import ResetPassword from './screens/ResetPassword';
 import OnBoarding from './screens/OnBoarding';
-import SubmitFeedback from './screens/SubmitFeedback';
 import CreateProject from './screens/CreateProject';
 import ViewProject from './screens/ViewProject';
 import ProjectBottomNavigator from './ProjectBottomNavigator';
@@ -77,12 +76,6 @@ export const RootStackNavigator = createStackNavigator(
       navigationOptions: {
         header: null,
       },
-    },
-    SubmitFeedback: {
-      screen: SubmitFeedback,
-      // navigationOptions: {
-      //   header: null,
-      // },
     },
     Invest: {
       screen: InvestComp,
@@ -185,18 +178,6 @@ export const TestStackNavigator = createStackNavigator({
     navigationOptions: {
       header: null,
     },
-  },
-  SubmitFeedbackd: {
-    screen: ProjectWallet,
-    navigationOptions: {
-      header: null,
-    },
-  },
-  SubmitFeedback: {
-    screen: SubmitFeedback,
-    // navigationOptions: {
-    //   header: null,
-    // },
   },
   CreateProject: {
     screen: CreateProject,
