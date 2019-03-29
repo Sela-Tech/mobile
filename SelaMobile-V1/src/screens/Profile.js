@@ -46,11 +46,6 @@ const styles = StyleSheet.create({
 
 const images = [
   {
-    source: require('../../assets/img/cleanup/cleanup_3.jpg'),
-    id: 1,
-    test: 'Bodo oil ceanup',
-  },
-  {
     source: require('../../assets/img/cleanup/factory_2.jpg'),
     id: 2,
     test: 'ABA factory construction',

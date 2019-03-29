@@ -3,7 +3,6 @@ import { View, Dimensions, StyleSheet, TouchableOpacity, Image } from 'react-nat
 import Button from '../Button';
 import Text from '../Text';
 import Header from '../Header';
-import { getDummyDisplayPicture } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
 import ExtStyle from '../../utils/styles';
 import NavigationService from '../../services/NavigationService';
@@ -110,13 +109,12 @@ const ContractorView = ({ navigation, projectInfo, userId }) => (
               resizeMode: 'cover',
             }}
             // resizeMode="contain"
-            source={getDummyDisplayPicture(projectInfo && projectInfo.name)}
-            // source={{
-            //   uri:
-            //     projectInfo['project-avatar'] === undefined
-            //       ? 'https://placeimg.com/640/480/any'
-            //       : projectInfo['project-avatar'],
-            // }}
+            source={{
+              uri:
+                projectInfo['project-avatar'] === undefined
+                  ? 'https://placeimg.com/640/480/any'
+                  : projectInfo['project-avatar'],
+            }}
           />
         </View>
         <View style={styles.imagePosition}>
@@ -149,74 +147,3 @@ const ContractorView = ({ navigation, projectInfo, userId }) => (
   </View>
 );
 export default ContractorView;
-
-// const ContractorView = ({ navigation, projectInfo, userId }) => (
-//   <View>
-//     <View style={styles.imageViewContainer}>
-//       <Image
-//         style={styles.imageCoverStyle}
-//         source={getDummyDisplayPicture(projectInfo && projectInfo.name)}
-//       />
-//     </View>
-//     <View style={styles.imagePosition}>
-//       <TouchableOpacity
-//         transparent
-//         style={styles.backButton}
-//         onPress={() => navigation.goBack()}
-//         // onPress ={()  => alert('fkdk')}
-//       >
-//         <View>
-//           <Image source={require('../../../assets/white-back.png')} />
-//         </View>
-//       </TouchableOpacity>
-//     </View>
-//     <View style={styles.settingsPosition}>
-//       <TouchableOpacity transparent style={styles.backButton} onPress={() => navigation.goBack()}>
-//         <View>
-//           <Image source={require('../../../assets/settings.png')} />
-//         </View>
-//       </TouchableOpacity>
-//     </View>
-
-//     <View style={styles.projectNameContainer.view}>
-//       <Text style={styles.projectNameContainer.text}> {projectInfo.name} </Text>
-//     </View>
-
-//     <View style={styles.viewInImage}>
-//       <View style={styles.innerView}>
-//         <View style={styles.pl5}>
-//           <Image style={{ tintColor: '#201d41' }} source={require('../../../assets/money.png')} />
-//         </View>
-//         <View>
-//           <Text style={styles.fundedTextColor}>
-//             {' '}
-//             {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded
-// {' '}
-//           </Text>
-//         </View>
-//       </View>
-//     </View>
-
-//     <View style={styles.buttonPosition}>
-//       <Button
-//         fn={() => NavigationService.navigate('AddProposal', { projectId: projectInfo._id, userId })}
-//         style={styles.bottomButton.view}
-//         textStyle={styles.bottomButton.text}
-//         text="Send Proposal"
-//         textColor={WHITE}
-//       />
-//     </View>
-
-//     <View style={[ExtStyle.flex3]}>
-//       <Header
-//         projectLocationText={projectInfo.location.name}
-//         projectStatusText={projectInfo.status}
-//         projectTitleText={projectInfo.name}
-//         budgetAmount={projectInfo.goal}
-//         numberOfStakeholders={projectInfo.stakeholders.length}
-//         raisedAmount={projectInfo.raised}
-//         tags={projectInfo.tags}
-//       />
-//     </View>
-//   </View>
-// );

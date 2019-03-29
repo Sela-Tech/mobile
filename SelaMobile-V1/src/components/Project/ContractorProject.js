@@ -1,9 +1,6 @@
 import React from 'react';
-import { ScrollView, FlatList, View, TouchableOpacity, Image, StyleSheet } from 'react-native';
-import { getDummyDisplayPicture } from '../../utils/helpers';
+import { ScrollView, FlatList, View, StyleSheet } from 'react-native';
 import Box from '../ExploreProject/Box';
-import SingularProject from './Project';
-import ExtStyle from '../../utils/styles';
 import NavigationService from '../../services/NavigationService';
 import { YELLOW } from '../../utils/constants';
 

@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Dimensions, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import Button from '../Button';
 import Text from '../Text';
-import { getDummyDisplayPicture } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
 
 const { height, width } = Dimensions.get('window');
@@ -96,7 +95,12 @@ const EvaluatorView = ({ navigation, projectInfo }) => (
       <Image
         style={styles.imageCoverStyle}
         // resizeMode="contain"
-        source={getDummyDisplayPicture(projectInfo && projectInfo.name)}
+        source={{
+          uri:
+            projectInfo['project-avatar'] === undefined
+              ? 'https://placeimg.com/640/480/any'
+              : projectInfo['project-avatar'],
+        }}
       />
     </View>
     <View style={styles.imagePosition}>
@@ -119,11 +123,7 @@ const EvaluatorView = ({ navigation, projectInfo }) => (
     </View>
 
     <View style={styles.projectNameContainer.view}>
-      <Text style={styles.projectNameContainer.text}> 
-{' '}
-{projectInfo.name}
-{' '}
- </Text>
+      <Text style={styles.projectNameContainer.text}> {projectInfo.name} </Text>
     </View>
 
     <View style={styles.viewInImage}>
@@ -134,7 +134,8 @@ const EvaluatorView = ({ navigation, projectInfo }) => (
         <View>
           <Text style={styles.fundedTextColor}>
             {' '}
-            {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded{' '}
+            {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded
+{' '}
           </Text>
         </View>
       </View>

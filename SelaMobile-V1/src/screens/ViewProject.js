@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import Spinner from '../components/Spinner';
 import { getAllProjects } from '../utils/api';
 import ExtStyle from '../utils/styles';
-import { getDummyDisplayPicture } from '../utils/helpers';
 import Text from '../components/Text';
 
 const styles = StyleSheet.create({
@@ -77,7 +76,12 @@ export default class ViewProject extends Component {
                     <View key={c._id}>
                       <Box
                         fn={() => this.props.navigation.navigate('ExploreProject', c._id)}
-                        img={getDummyDisplayPicture(c && c.name)}
+                        source={{
+                          uri:
+                            c['project-avatar'] === undefined
+                              ? 'https://placeimg.com/640/480/any'
+                              : c['project-avatar'],
+                        }}
                         // img={{ uri: 'https://placeimg.com/640/480/any' }}
                         firstText={c.location.name}
                         secondText={c.name}

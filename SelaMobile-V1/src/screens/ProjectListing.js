@@ -12,7 +12,7 @@ import Button from '../components/Button';
 import Text from '../components/Text';
 import { WHITE, YELLOW } from '../utils/constants';
 import ExtStyle from '../utils/styles';
-import { isAndroid, getDummyDisplayPicture } from '../utils/helpers';
+import { isAndroid } from '../utils/helpers';
 import Box from '../components/ExploreProject/Box';
 
 const { width, height } = Dimensions.get('window');
@@ -65,7 +65,7 @@ const renderItem = item => (
     <Box
       fn={() => NavigationService.navigate('ExploreProject', item.item._id)}
       // img={{ uri: 'https://placeimg.com/640/480/any' }}
-      img={getDummyDisplayPicture(item && item.item && item.item.name)}
+      img={{ uri: item.item['project-avatar'] }}
       firstText={item.item.location.name}
       secondText={item.item.name}
       thirdText={item.item.status}

@@ -154,7 +154,7 @@ export default class TaskRequestModal extends Component {
                       <View style={{ height: height / 6.4, width: width / 4.4 }}>
                         <Image
                           style={{ height: height / 6.4, width: width / 4.4 }}
-                          source={require('../../../assets/img/cleanup/factory.jpg')}
+                          source={require('../../../assets/img/cleanup/factory_1.jpg')}
                         />
                       </View>
                       <View style={{ height: height / 6.4, width: width / 4.4 }}>

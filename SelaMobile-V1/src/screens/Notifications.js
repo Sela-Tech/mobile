@@ -34,6 +34,10 @@ class Notifications extends Component {
   };
 
   async componentDidMount() {
+    await this.getNotifications();
+  }
+
+  getNotifications = async () => {
     const notifications =
       (this.props.notifications &&
         this.props.notifications.notifications &&
@@ -54,7 +58,7 @@ class Notifications extends Component {
     } catch (err) {
       this.setState({ error: err.message });
     }
-  }
+  };
 
   render() {
     const { loading } = this.state;
@@ -71,6 +75,7 @@ class Notifications extends Component {
         </View>
       );
     }
+
     if (notifications.length === 0) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>

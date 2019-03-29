@@ -22,10 +22,7 @@ const keyExtractor = item => item.id.toString();
 const renderItem = item => <EvalSubmission imgSource={item.item.source} markedStatus />;
 
 const factoryImages = [
-  {
-    source: require('../../../assets/img/cleanup/factory.jpg'),
-    id: 1,
-  },
+
   {
     source: require('../../../assets/img/cleanup/factory_1.jpeg'),
     id: 2,
@@ -33,10 +30,6 @@ const factoryImages = [
   {
     source: require('../../../assets/img/cleanup/factory_2.jpg'),
     id: 3,
-  },
-  {
-    source: require('../../../assets/img/cleanup/factory_4.jpg'),
-    id: 4,
   },
 ];
 
@@ -147,7 +140,6 @@ class Updates extends Component {
         }
 
         const resp = await evidenceRequestSubmission(data);
-        console.log('...res.data', resp.data)
         this.setState({ submissionLoading: false });
         this.props.updateTask(id)
         alert('Evidence saved');

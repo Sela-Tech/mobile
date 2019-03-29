@@ -17,8 +17,8 @@ export const smallScreen = height < 667;
 export const formatMoney = (value, currency) => {
   if (isAndroid) {
     require('intl');
-    require('intl/locale-data/jsonp/en-IN'); 
-    require('intl/locale-data/jsonp/en-US'); 
+    require('intl/locale-data/jsonp/en-IN');
+    require('intl/locale-data/jsonp/en-US');
   }
 
   const formatter = new Intl.NumberFormat(!currency ? 'en-US' : 'en-IN', {
@@ -50,8 +50,8 @@ export const getUserRole = (obj, validate) => {
  * Flatten array
  * @param {*} param
  */
-export const flatten = list => list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
-
+export const flatten = list =>
+  list.reduce((a, b) => a.concat(Array.isArray(b) ? flatten(b) : b), []);
 
 /**
  * Validate param
@@ -110,51 +110,16 @@ export const projectStatusTextColor = status => {
 };
 
 const imageLocs = [
-  require('../../assets/img/cleanup/cleanup_2.jpg'),
+  require('../../assets/img/cleanup/cleanup_22.jpg'),
   require('../../assets/borehole.png'),
   require('../../assets/borehole-2.png'),
   require('../../assets/oilspill.png'),
 ];
 
-export const getDummyDisplayPicture = name => {
-  switch (name) {
-    case 'Bodo clean up':
-      return require('../../assets/img/cleanup/grass.jpg');
-    case 'Ogoni Oil Clean up':
-      return require('../../assets/img/cleanup/cleanup_3.jpg');
-    case 'Cleanup K-Dere 2':
-      return require('../../assets/img/cleanup/cleanup_3.jpg');
-    case 'Aba Factory construction':
-      return require('../../assets/img/cleanup/factory.jpg');
-    case 'ABA FACTORY CONSTRUCTION':
-      return require('../../assets/img/cleanup/factory.jpg');
-    default:
-      return require('../../assets/img/cleanup/cleanup_2.jpg');
-  }
-};
-
 export const pictureRelatedToUser = name => {
   switch (name) {
-    case 'Isaiah Udotong':
-      return require('../../assets/factory_cleanup/isaiah_udotong.jpg');
-
-    case 'Fidelia Nnandi':
-      return require('../../assets/project_cleanup/fidelia_nnadi.jpg');
-
     case 'Collins Peter':
       return require('../../assets/man1.png');
-
-    case 'Simi Olatopin':
-      return require('../../assets/factory_cleanup/Simi_Olatopin.jpg');
-
-    case 'Tunde Olatope':
-      return require('../../assets/project_cleanup/Tunde_Olatope.jpg');
-
-    case 'Carla Walker':
-      return require('../../assets/factory_cleanup/carla_walker.jpeg');
-
-    case 'Victoria Botvin':
-      return require('../../assets/project_cleanup/victoria_botvin.jpg');
 
     case 'Sela ':
       return require('../../assets/goldlogo.png');

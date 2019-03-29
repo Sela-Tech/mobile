@@ -21,9 +21,9 @@ export const notificationsIsLoadingError = error => ({
   error,
 });
 
-export const updateNotifications = notifications => ({
+export const updateNotifications = notificationID => ({
   type: types.UPDATE_NOTIFICATION,
-  notifications,
+  notificationID,
 });
 
 export const getUserNotifications = () => dispatch =>

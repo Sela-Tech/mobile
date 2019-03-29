@@ -1,5 +1,7 @@
 import React, { Fragment, Component } from 'react';
 import { View, StyleSheet, Image, Dimensions } from 'react-native';
+import { connect } from 'react-redux';
+import { updateNotifications } from '../../../actions/notifications';
 import NavigationService from '../../services/NavigationService';
 import Button from '../Button';
 import B from '../BoldText';
@@ -10,7 +12,7 @@ import { performActionOnProject } from '../../utils/api';
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
-    height: height / 8, // 90
+    height: height / 8,
     alignItems: 'center',
     flexDirection: 'row',
     marginVertical: 10,
@@ -76,16 +78,16 @@ const renderSwitch = (params, text) => {
   }
 };
 
-// const SingleNotificationText = ({ text, imageSRC, time, notifs }) => (
-export default class SingleNotificationText extends Component {
+class SingleNotificationText extends Component {
   state = {
     expand: this.props.action,
   };
 
   performAction = async agreed => {
+    // this.props.updateNotification(this.props.notifs._id);
     this.setState({ expand: 'done' });
     try {
-      const rr = await performActionOnProject({
+      const data = await performActionOnProject({
         projectId: this.props.notifs.project.id,
         notificationId: this.props.notifs._id,
         agreed: agreed === 'true',
@@ -136,3 +138,16 @@ export default class SingleNotificationText extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  notifications: state.notifications,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateNotification: id => dispatch(updateNotifications(id)),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(SingleNotificationText);
