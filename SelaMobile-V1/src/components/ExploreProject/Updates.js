@@ -21,21 +21,6 @@ const keyExtractor = item => item.id.toString();
 
 const renderItem = item => <EvalSubmission imgSource={item.item.source} markedStatus />;
 
-const images = [
-  {
-    source: require('../../../assets/img/cleanup/cleanup_3.jpg'),
-    id: 1,
-  },
-  {
-    source: require('../../../assets/img/cleanup/cleanup_2.jpg'),
-    id: 2,
-  },
-  {
-    source: require('../../../assets/img/cleanup/cleanup_4.jpg'),
-    id: 3,
-  },
-];
-
 const factoryImages = [
   {
     source: require('../../../assets/img/cleanup/factory.jpg'),
@@ -151,14 +136,24 @@ class Updates extends Component {
         });
 
       data.fields = newData;
-      this.toggleModal();
     }
 
     try {
-      const resp = await evidenceRequestSubmission(data);
-      this.setState({ submissionLoading: false });
+      const validateFields = data.fields.filter(c => c.value === '');
 
-      alert('Evidence saved');
+      if (validateFields.length === 0) {
+        if (source === null) {
+          this.toggleModal();
+        }
+
+        const resp = await evidenceRequestSubmission(data);
+        console.log('...res.data', resp.data)
+        this.setState({ submissionLoading: false });
+        this.props.updateTask(id)
+        alert('Evidence saved');
+      } else {
+        alert('Please fill all fields');
+      }
     } catch (err) {
       this.setState({ error: err.message, submissionLoading: false });
     }
@@ -362,7 +357,7 @@ class Updates extends Component {
                   </View>
                   <FlatList
                     style={{ paddingTop: 10 }}
-                    data={projectName === 'Aba Factory construction' ? factoryImages : images}
+                    data={factoryImages}
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={keyExtractor}
                     horizontal

@@ -26,17 +26,15 @@ const styles = StyleSheet.create({
 class Wallet extends Component {
   state = {
     loading: false,
-    myBalance: [],
+    myBalance: [{ balance: '---' }],
     otherBalance: [],
   };
 
   async componentDidMount() {
     try {
       const resp = await getUserBalance();
-      console.log('mmmfff', resp.data);
       const myBalance = resp.data.myTokens.filter(c => c.type === 'native');
       const otherBalance = resp.data.myTokens.filter(c => c.type !== 'native');
-      // const personalBalance = resp.data.myTokens
       this.setState({ myBalance, otherBalance });
     } catch (err) {
       this.setState({ loading: false, error: err.message });
@@ -59,7 +57,7 @@ class Wallet extends Component {
             balance={myBalance && myBalance[0] && myBalance[0].balance}
           />
           {otherBalance.map((v, index) => (
-            <View key={v._id}>
+            <View key={index}>
               <Box
                 projectName={v.projectName}
                 navigation={this.props.navigation}

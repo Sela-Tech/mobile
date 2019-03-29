@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Transaction = ({ data, imageSource, sender, amount, date }) => (
+const Transaction = ({ data, imageSource, sender, amount, date, taskName }) => (
   <View style={styles.container}>
     <View style={ExtStyles.flex1}>
       <Image
@@ -44,7 +44,7 @@ const Transaction = ({ data, imageSource, sender, amount, date }) => (
         <Text style={styles.senderText}>
           Payment for
           {` `}
-          <B style={styles.senderText}>{data.taskName}
+          <B style={styles.senderText}>{taskName}
 .
 {' '}
 </B>

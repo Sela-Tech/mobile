@@ -47,7 +47,7 @@ export default class Header extends Component {
   toggle = () => this.setState(prevState => ({ toggle: !prevState.toggle }));
 
   render() {
-    const { title, balance, navigation } = this.props;
+    const { title, balance, navigation, nativeBalance } = this.props;
     const { toggle } = this.state;
     return (
       <View style={styles.header}>
@@ -118,7 +118,12 @@ export default class Header extends Component {
                 </View>
               </View>
               <View>
-                <Text style={styles.balance}> {balance} </Text>
+                <Text style={styles.balance}>
+                  {' '}
+                  {toggle
+                    ? parseFloat(balance).toFixed(3)
+                    : nativeBalance}
+                </Text>
               </View>
             </View>
           </View>

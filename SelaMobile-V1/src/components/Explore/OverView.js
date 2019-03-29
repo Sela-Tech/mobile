@@ -130,9 +130,9 @@ export default class OverView extends Component {
             </View>
           </View>
 
-          <View style={{ flex: 1 }}>
+          {/* <View style={{ flex: 1 }}>
             <Text>{project.description}</Text>
-          </View>
+          </View> */}
 
           <View style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>

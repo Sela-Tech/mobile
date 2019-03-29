@@ -52,7 +52,7 @@ const tabBarOptions = {
   },
 };
 
-const Navigator = ({ project, userId, requests, userInfo, navigation }) => {
+const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask }) => {
   const { isFunder, isEvaluator, isContractor } = userInfo && userInfo.user;
   const userRoleObj = {
     isFunder,
@@ -83,7 +83,14 @@ const Navigator = ({ project, userId, requests, userInfo, navigation }) => {
           screen: () => <Request userRole={userRole} project={project} />,
         },
         Updates: {
-          screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
+          screen: () => (
+            <Updates
+              updateTask={updateTask}
+              requests={requests}
+              userRole={userRole}
+              project={project}
+            />
+          ),
         },
       },
       {
@@ -97,10 +104,24 @@ const Navigator = ({ project, userId, requests, userInfo, navigation }) => {
           screen: () => <OverViewDetails userRole={userRole} project={project} />,
         },
         Tasks: {
-          screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
+          screen: () => (
+            <Updates
+              updateTask={updateTask}
+              requests={requests}
+              userRole={userRole}
+              project={project}
+            />
+          ),
         },
         Evidence: {
-          screen: () => <Request requests={requests} userRole={userRole} project={project} />,
+          screen: () => (
+            <Request
+              updateTask={updateTask}
+              requests={requests}
+              userRole={userRole}
+              project={project}
+            />
+          ),
         },
       },
       {
@@ -114,7 +135,14 @@ const Navigator = ({ project, userId, requests, userInfo, navigation }) => {
           screen: () => <OverViewDetails userRole={userRole} project={project} />,
         },
         Updates: {
-          screen: () => <Updates requests={requests} userRole={userRole} project={project} />,
+          screen: () => (
+            <Updates
+              updateTask={updateTask}
+              requests={requests}
+              userRole={userRole}
+              project={project}
+            />
+          ),
         },
         Transactions: {
           screen: () => <Transactions userRole={userRole} project={project} />,

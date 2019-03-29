@@ -75,7 +75,7 @@ class Box extends Component {
     return (
       <TouchableOpacity
         style={[styles.container, personal ? { backgroundColor: '#156EDC' } : null]}
-        onPress={() => navigation.navigate('ProjectWallet', data)}
+        onPress={() =>  personal ? console.log() : navigation.navigate('ProjectWallet', data)}
       >
         <View style={{ flex: 1, marginHorizontal: 9, justifyContent: 'center' }}>
           <View style={{ flex: 1, marginTop: 12, flexDirection: 'column' }}>
@@ -126,7 +126,7 @@ class Box extends Component {
                   </View>
                   <View style={{ marginLeft: 5, marginTop: 5 }}>
                     <Text style={{ color: '#FFFFFF', fontSize: 20, fontWeight: '400' }}>
-                      {parseFloat(balance).toFixed(3)}
+                      { balance === '---' ? balance : parseFloat(balance).toFixed(3)}
                     </Text>
                   </View>
                 </View>

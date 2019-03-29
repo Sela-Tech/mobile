@@ -26,14 +26,14 @@ const styles = StyleSheet.create({
   },
 });
 
-const textForFunder = 'You haven\'t created any task';
-const otherText = 'You haven\'t been assigned any task';
+const textForFunder = "You haven't created any task";
+const otherText = "You haven't been assigned any task";
 
-const Updates = ({ project, userRole, requests }) => {
+const Updates = ({ project, userRole, requests, updateTask }) => {
   if (requests && requests.length === 0) {
     return (
       <View style={ExtStyles.center}>
-        <Text> {userRole === 'funder' ? textForFunder : otherText }  </Text>
+        <Text> {userRole === 'funder' ? textForFunder : otherText} </Text>
       </View>
     );
   }
@@ -51,6 +51,7 @@ const Updates = ({ project, userRole, requests }) => {
               title={c.level === 'project' ? c.title : c.task.name}
               statusText={c.status}
               dataType={c.datatype}
+              updateTask={updateTask}
             />
           ))}
       </Fragment>

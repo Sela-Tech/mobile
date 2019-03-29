@@ -74,8 +74,13 @@ class ExploreProject extends Component {
   };
 
   async componentDidMount() {
+    this._isMounted = true;
     await this.getProjectToDisplay();
     await this.getAllEvidenceRequest();
+  }
+
+  componentWillUnmount() {
+    this._isMounted = false;
   }
 
   getProjectToDisplay = async () => {
@@ -110,6 +115,19 @@ class ExploreProject extends Component {
     } catch (err) {
       this.setState({ error: err.message });
     }
+  };
+
+  // Update task after submitting evidence request
+  updateTask = id => {
+    const { requests } = this.state;
+    const cc = requests.map(c => {
+      if (c._id === id) {
+        c.status = 'Completed';
+        return c;
+      }
+      return c;
+    });
+    this.setState({ requests: cc });
   };
 
   render() {
@@ -199,6 +217,7 @@ class ExploreProject extends Component {
                   project={projectInfo}
                   userId={userId}
                   requests={requests}
+                  updateTask={this.updateTask}
                 />
               </View>
             </Fragment>
