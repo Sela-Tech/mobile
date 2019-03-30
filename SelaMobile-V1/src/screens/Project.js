@@ -4,14 +4,14 @@ import {
   StyleSheet,
   RefreshControl,
   // NetInfo,
-  Picker,
+  // Picker,
   Image,
   TouchableOpacity,
   ScrollView,
   Dimensions,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { Tabs, Tab } from 'native-base';
+// import { Tabs, Tab } from 'native-base';
 
 import io from 'socket.io-client';
 import { store } from '../../store';
@@ -19,7 +19,7 @@ import { getNewNotifications } from '../../actions/notifications';
 import { getUserProject, getProjectInvitedTo } from '../../actions/project';
 import ParentHeader from '../components/Header';
 import Text from '../components/Text';
-import Proposals from '../components/Project/Proposals';
+// import Proposals from '../components/Project/Proposals';
 import ProjectView from '../components/Project/ContractorProject';
 import { YELLOW, BASE_URL } from '../utils/constants';
 import { getUserRole } from '../utils/helpers';

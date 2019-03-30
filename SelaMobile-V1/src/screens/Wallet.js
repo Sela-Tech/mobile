@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
+import { View, StyleSheet, ScrollView, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
 import Box from '../components/Wallet/Box';
@@ -25,12 +25,17 @@ const styles = StyleSheet.create({
 
 class Wallet extends Component {
   state = {
+    reloading: false,
     loading: false,
     myBalance: [{ balance: '---' }],
     otherBalance: [],
   };
 
   async componentDidMount() {
+    this.loadInitialData();
+  }
+
+  loadInitialData = async () => {
     try {
       const resp = await getUserBalance();
       const myBalance = resp.data.myTokens.filter(c => c.type === 'native');
@@ -39,7 +44,13 @@ class Wallet extends Component {
     } catch (err) {
       this.setState({ loading: false, error: err.message });
     }
-  }
+  };
+
+  reload = async () => {
+    this.setState({ reloading: true });
+    await this.loadInitialData();
+    this.setState({ reloading: false });
+  };
 
   render() {
     const projects = (this.props && this.props.projects && this.props.projects.projects) || [];
@@ -48,7 +59,11 @@ class Wallet extends Component {
     return (
       <View style={ExtStyles.flex1}>
         <Header headerName="Wallet" />
-        <ScrollView style={ExtStyles.flex1} contentContainerStyle={styles.centerContainer}>
+        <ScrollView
+          style={ExtStyles.flex1}
+          contentContainerStyle={styles.centerContainer}
+          refreshControl={<RefreshControl refreshing={reloading} onRefresh={this.reload} />}
+        >
           <Box
             navigation={this.props.navigation}
             data={myBalance[0]}

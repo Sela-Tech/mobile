@@ -139,15 +139,6 @@ class Login extends Component {
     AsyncStorage.setItem('emailOrPhone', emailOrPhone);
     Keyboard.dismiss();
 
-    if (emailOrPhone === '' || password === '') {
-      return this.setState({
-        emailOrPhoneError: true,
-        emailOrPhoneErrorMessage: "Email field can't be blank",
-        passwordError: true,
-        passwordErrorMessage: "Password Field can't be blank",
-      });
-    }
-
     if (emailOrPhone === '') {
       return this.setState({
         emailOrPhoneError: true,
@@ -160,12 +151,22 @@ class Login extends Component {
         passwordErrorMessage: "Password Field can't be blank",
       });
     }
+    if (emailOrPhone === '' || password === '') {
+      return this.setState({
+        emailOrPhoneError: true,
+        emailOrPhoneErrorMessage: "Email field can't be blank",
+        passwordError: true,
+        passwordErrorMessage: "Password Field can't be blank",
+      });
+    }
 
     const data = {
-      email: isEmail(emailOrPhone) ? emailOrPhone : '',
-      phone: !isEmail(emailOrPhone) ? emailOrPhone : '',
+      email: isEmail(emailOrPhone) ? emailOrPhone.trim() : '',
+      phone: !isEmail(emailOrPhone) ? emailOrPhone.trim() : '',
       password,
     };
+
+    console.log('data-sent', data);
 
     this.setState({ submitErrorMessage: '', loading: true });
     try {
