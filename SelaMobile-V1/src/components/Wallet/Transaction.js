@@ -61,9 +61,9 @@ const Transaction = ({ data, imageSource, sender, amount, date, taskName }) => (
       </View>
     </View>
     <View style={ExtStyles.center}>
-      <TouchableOpacity onPress={() => console.log('press')}>
+      {/* <TouchableOpacity onPress={() => console.log('press')}>
         <Image source={require('../../../assets/down_arrow.png')} />
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </View>
   </View>
 );

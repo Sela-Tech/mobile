@@ -10,10 +10,9 @@ const notificationsReducer = (
 ) => {
   switch (action.type) {
     case types.GET_ALL_USER_NOTIFICATION:
+      const d = { ...state, notifications: action.notifications };
       return { ...state, notifications: action.notifications };
     case types.UPDATE_NOTIFICATION:
-      // console.log('op', state.notifications);
-      // console.log('llflgf', action.notificationID);
       const newObj = state.notifications.notifications.map(b => {
         if (b._id === action.notificationID) {
           b.action = 'NOT_REQUIRED';
@@ -21,11 +20,7 @@ const notificationsReducer = (
         }
         return b;
       });
-      const nn = Object.assign({}, state, {
-        notifications: state.notifications.newObj,
-      });
-      // return state;
-      return { ...state, ...nn };
+      return { ...state, notifications: { notifications: newObj } };
     case types.GET_NEW_NOTIFICATION:
       const newState = Object.assign({}, state, {
         notifications: action.notifications.notifications,

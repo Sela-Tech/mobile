@@ -32,7 +32,7 @@ class Wallet extends Component {
   };
 
   async componentDidMount() {
-    this.loadInitialData();
+    await this.loadInitialData();
   }
 
   loadInitialData = async () => {
@@ -54,7 +54,7 @@ class Wallet extends Component {
 
   render() {
     const projects = (this.props && this.props.projects && this.props.projects.projects) || [];
-    const { myBalance, otherBalance } = this.state;
+    const { reloading, myBalance, otherBalance } = this.state;
 
     return (
       <View style={ExtStyles.flex1}>

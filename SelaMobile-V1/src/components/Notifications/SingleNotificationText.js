@@ -69,6 +69,22 @@ const renderSwitch = (params, text) => {
         </View>
       );
 
+    case 'PROPOSAL_ASSIGNED':
+      return (
+        <View style={{ marginLeft: 4 }}>
+          <Text>
+            <B fn={() => NavigationService.navigate('UserProfile', params.stakeholder._id)}>
+              {params.stakeholder.firstName.concat(' ').concat(params.stakeholder.lastName)}
+            </B>{' '}
+            assigned you to a proposal in{' '}
+            <B fn={() => NavigationService.navigate('ExploreProject', params.project.id)}>
+              {params.project.name}
+            </B>{' '}
+            project.
+          </Text>
+        </View>
+      );
+
     default:
       return (
         <View>
@@ -84,17 +100,17 @@ class SingleNotificationText extends Component {
   };
 
   performAction = async agreed => {
-    // this.props.updateNotification(this.props.notifs._id);
+    this.props.updateNotification(this.props.notifs._id);
     this.setState({ expand: 'done' });
-    try {
-      const data = await performActionOnProject({
-        projectId: this.props.notifs.project.id,
-        notificationId: this.props.notifs._id,
-        agreed: agreed === 'true',
-      });
-    } catch (err) {
-      this.setState({ error: err.message });
-    }
+    // try {
+    //   const data = await performActionOnProject({
+    //     projectId: this.props.notifs.project.id,
+    //     notificationId: this.props.notifs._id,
+    //     agreed: agreed === 'true',
+    //   });
+    // } catch (err) {
+    //   this.setState({ error: err.message });
+    // }
   };
 
   render() {
@@ -131,7 +147,11 @@ class SingleNotificationText extends Component {
             ) : null}
           </Fragment>
           <View style={styles.mt5}>
-            <Text> {time} </Text>
+            <Text> {time}
+{' '}
+ago.
+{' '}
+</Text>
           </View>
         </View>
       </View>
@@ -151,3 +171,53 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(SingleNotificationText);
+
+// { notifications:
+//  { notifications:
+//     [ { _id: '5c9df2a976c76e0022a8e1df',
+// read: true,
+// stakeholder:
+//  { _id: '5c9a7ab519810b002239ae5a',
+//    firstName: 'BlockchainUser',
+//    lastName: 'Active',
+//    organization: null,
+//    profilePhoto: 'http://placehold.it/50' },
+// message: 'BlockchainUser Active assigned you to a proposal for project, "Oil Spill Cleanup"',
+// user:
+//  { _id: '5c9cd89a94918e0022b109c7',
+//    firstName: 'David',
+//    lastName: 'Abimbola',
+//    organization:
+//     { _id: '5c9cd89a94918e0022b109c6',
+//       name: 'admin1 organisaction' } },
+// project: { name: 'Oil Spill Cleanup', id: '5c9cac3534b85b0022975e0e' },
+// model: '5c9df2a976c76e0022a8e1de',
+// onModel: 'Proposal',
+// type: 'PROPOSAL_ASSIGNED',
+// action: 'NOT_REQUIRED',
+// createdOn: '2019-03-29T10:25:45.457Z',
+// updatedOn: '2019-03-29T10:25:45.457Z' },
+//       { _id: '5c9cda9494918e0022b109ce',
+// read: true,
+// stakeholder:
+//  { _id: '5c9a7ab519810b002239ae5a',
+//    firstName: 'BlockchainUser',
+//    lastName: 'Active',
+//    organization: null,
+//    profilePhoto: 'http://placehold.it/50' },
+// message: 'BlockchainUser Active added you to the project "Oil Spill Cleanup"',
+// user:
+//  { _id: '5c9cd89a94918e0022b109c7',
+//    firstName: 'David',
+//    lastName: 'Abimbola',
+//    organization:
+//     { _id: '5c9cd89a94918e0022b109c6',
+//       name: 'admin1 organisaction' } },
+// project: { name: 'Oil Spill Cleanup', id: '5c9cac3534b85b0022975e0e' },
+// type: 'INVITATION_TO_JOIN_PROJECT',
+// action: 'REQUIRED',
+// createdOn: '2019-03-28T14:30:44.015Z',
+// updatedOn: '2019-03-28T14:30:44.015Z' } ],
+//    unreadNIds: [] },
+// loading: false,
+// error: null }

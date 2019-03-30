@@ -136,7 +136,7 @@ class Login extends Component {
 
   login = async () => {
     const { emailOrPhone, password } = this.state;
-    AsyncStorage.setItem('emailOrPhone', emailOrPhone);
+    AsyncStorage.setItem('emailOrPhone', emailOrPhone.trim());
     Keyboard.dismiss();
 
     if (emailOrPhone === '') {
