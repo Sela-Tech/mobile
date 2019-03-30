@@ -6,7 +6,7 @@ import Text from '../components/Text';
 import Spinner from '../components/Spinner';
 import SingleNotificationText from '../components/Notifications/SingleNotificationText';
 import { WHITE } from '../utils/constants';
-import { formattedDate, sortNotificationsByDate } from '../utils/helpers';
+import { formattedDate, sortNotificationsByDate, isAndroid } from '../utils/helpers';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,9 +25,15 @@ const styles = StyleSheet.create({
 });
 
 class Notifications extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({}) => ({
     title: 'Notifications',
-  };
+    headerTitleStyle: {
+      fontWeight: '500',
+      color: '#201D41',
+      fontFamily: isAndroid ? 'Acumin-RPro' : null,
+      fontSize: 16,
+    },
+  });
 
   state = {
     loading: true,

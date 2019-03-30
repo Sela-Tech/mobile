@@ -2,7 +2,9 @@ import React, { Fragment, Component } from 'react';
 import { View, StyleSheet, Image, Dimensions } from 'react-native';
 import { connect } from 'react-redux';
 import { updateNotifications } from '../../../actions/notifications';
+import { getUserProject, getProjectInvitedTo } from '../../../actions/project';
 import NavigationService from '../../services/NavigationService';
+import { getUserRole } from '../../utils/helpers';
 import Button from '../Button';
 import B from '../BoldText';
 import Text from '../Text';
@@ -102,15 +104,33 @@ class SingleNotificationText extends Component {
   performAction = async agreed => {
     this.props.updateNotification(this.props.notifs._id);
     this.setState({ expand: 'done' });
-    // try {
-    //   const data = await performActionOnProject({
-    //     projectId: this.props.notifs.project.id,
-    //     notificationId: this.props.notifs._id,
-    //     agreed: agreed === 'true',
-    //   });
-    // } catch (err) {
-    //   this.setState({ error: err.message });
-    // }
+    this.reloadProject();
+    try {
+      await performActionOnProject({
+        projectId: this.props.notifs.project.id,
+        notificationId: this.props.notifs._id,
+        agreed: agreed === 'true',
+      });
+       await  this.reloadProject();
+    } catch (err) {
+      this.setState({ error: err.message });
+    }
+  };
+
+  reloadProject = async () => {
+    const userRoleObj = {
+      isFunder: this.props && this.props.userInfo && this.props.userInfo.user.isFunder,
+      isEvaluator: this.props && this.props.userInfo && this.props.userInfo.user.isEvaluator,
+      isContractor: this.props && this.props.userInfo && this.props.userInfo.user.isContractor,
+    };
+    const userRole = getUserRole(userRoleObj);
+    if (userRole === 'funder') {
+      await this.props.getFunderProjects();
+    } else {
+      await this.props.getProjectInvitedTo();
+    }
+
+    this.setState({ loading: false });
   };
 
   render() {
@@ -161,63 +181,16 @@ ago.
 
 const mapStateToProps = state => ({
   notifications: state.notifications,
+  userInfo: state.userInfo,
 });
 
 const mapDispatchToProps = dispatch => ({
   updateNotification: id => dispatch(updateNotifications(id)),
+  getFunderProjects: () => dispatch(getUserProject()),
+  getProjectInvitedTo: () => dispatch(getProjectInvitedTo()),
 });
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(SingleNotificationText);
-
-// { notifications:
-//  { notifications:
-//     [ { _id: '5c9df2a976c76e0022a8e1df',
-// read: true,
-// stakeholder:
-//  { _id: '5c9a7ab519810b002239ae5a',
-//    firstName: 'BlockchainUser',
-//    lastName: 'Active',
-//    organization: null,
-//    profilePhoto: 'http://placehold.it/50' },
-// message: 'BlockchainUser Active assigned you to a proposal for project, "Oil Spill Cleanup"',
-// user:
-//  { _id: '5c9cd89a94918e0022b109c7',
-//    firstName: 'David',
-//    lastName: 'Abimbola',
-//    organization:
-//     { _id: '5c9cd89a94918e0022b109c6',
-//       name: 'admin1 organisaction' } },
-// project: { name: 'Oil Spill Cleanup', id: '5c9cac3534b85b0022975e0e' },
-// model: '5c9df2a976c76e0022a8e1de',
-// onModel: 'Proposal',
-// type: 'PROPOSAL_ASSIGNED',
-// action: 'NOT_REQUIRED',
-// createdOn: '2019-03-29T10:25:45.457Z',
-// updatedOn: '2019-03-29T10:25:45.457Z' },
-//       { _id: '5c9cda9494918e0022b109ce',
-// read: true,
-// stakeholder:
-//  { _id: '5c9a7ab519810b002239ae5a',
-//    firstName: 'BlockchainUser',
-//    lastName: 'Active',
-//    organization: null,
-//    profilePhoto: 'http://placehold.it/50' },
-// message: 'BlockchainUser Active added you to the project "Oil Spill Cleanup"',
-// user:
-//  { _id: '5c9cd89a94918e0022b109c7',
-//    firstName: 'David',
-//    lastName: 'Abimbola',
-//    organization:
-//     { _id: '5c9cd89a94918e0022b109c6',
-//       name: 'admin1 organisaction' } },
-// project: { name: 'Oil Spill Cleanup', id: '5c9cac3534b85b0022975e0e' },
-// type: 'INVITATION_TO_JOIN_PROJECT',
-// action: 'REQUIRED',
-// createdOn: '2019-03-28T14:30:44.015Z',
-// updatedOn: '2019-03-28T14:30:44.015Z' } ],
-//    unreadNIds: [] },
-// loading: false,
-// error: null }

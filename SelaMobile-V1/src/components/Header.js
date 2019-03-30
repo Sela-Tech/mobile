@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
   headerName: {
     color: '#201D41',
-    fontFamily: isAndroid ? 'ProximaNova' : null,
+    fontFamily: isAndroid ? 'Acumin-RPro' : null,
   },
   header: {
     backgroundColor: '#F6F6F6',
