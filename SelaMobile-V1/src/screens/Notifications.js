@@ -28,10 +28,10 @@ class Notifications extends Component {
   static navigationOptions = ({}) => ({
     title: 'Notifications',
     headerTitleStyle: {
-      fontWeight: '500',
       color: '#201D41',
+      fontWeight: '400',
       fontFamily: isAndroid ? 'Acumin-RPro' : null,
-      fontSize: 16,
+      fontSize: 18,
     },
   });
 

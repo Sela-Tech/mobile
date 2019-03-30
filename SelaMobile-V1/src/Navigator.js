@@ -18,8 +18,6 @@ import ProfileScreen from './screens/Profile';
 import PDFView from './screens/Pdf';
 import AddInterest from './screens/AddInterest';
 import AddProposal from './screens/AddProposal';
-
-import Wallet from './screens/Wallet';
 import ProjectWallet from './screens/ProjectWallet';
 
 import { isAndroid } from './utils/helpers';
