@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView, RefreshControl } from 'react-native';
 import { connect } from 'react-redux';
+import { getUserTransactions } from '../../actions/wallet';
 import Header from '../components/Header';
 import Box from '../components/Wallet/Box';
 import { WHITE } from '../utils/constants';
@@ -37,10 +38,10 @@ class Wallet extends Component {
 
   loadInitialData = async () => {
     try {
-      const resp = await getUserBalance();
-      const myBalance = resp.data.myTokens.filter(c => c.type === 'native');
-      const otherBalance = resp.data.myTokens.filter(c => c.type !== 'native');
-      this.setState({ myBalance, otherBalance });
+      await this.props.getUserWalletTransaction();
+      // const myBalance = this.props.wallet.transactions.myTokens.filter(c => c.type === 'native');
+      // const otherBalance = this.props.wallet.transactions.myTokens.filter(c => c.type !== 'native');
+      // this.setState({ myBalance, otherBalance });
     } catch (err) {
       this.setState({ loading: false, error: err.message });
     }
@@ -53,8 +54,10 @@ class Wallet extends Component {
   };
 
   render() {
-    const projects = (this.props && this.props.projects && this.props.projects.projects) || [];
-    const { reloading, myBalance, otherBalance } = this.state;
+    // const projects = (this.props && this.props.projects && this.props.projects.projects) || [];
+    const { reloading } = this.state;
+    const myBalance = this.props.wallet.transactions.myTokens.filter(c => c.type === 'native');
+    const otherBalance = this.props.wallet.transactions.myTokens.filter(c => c.type !== 'native');
 
     return (
       <View style={ExtStyles.flex1}>
@@ -91,6 +94,14 @@ class Wallet extends Component {
 const mapStateToProps = state => ({
   userInfo: state.userInfo,
   projects: state.projects,
+  wallet: state.wallet,
 });
 
-export default connect(mapStateToProps)(Wallet);
+const mapDispatchToProps = dispatch => ({
+  getUserWalletTransaction: () => dispatch(getUserTransactions()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Wallet);
