@@ -41,11 +41,12 @@ const renderItem = item => (
     <Box
       fn={() => NavigationService.navigate('ExploreProject', item.item._id)}
       img={{ uri: item.item.avatar || item.item['project-avatar'] }}
-      firstText={item.item.location.name}
+      // firstText={item.item.location.name}
       secondText={item.item.name}
-      thirdText={item.item.status}
-      title={item.item.description}
-      cost={item.item.goal}
+      home
+      // thirdText={item.item.status}
+      // title={item.item.description}
+      // cost={item.item.goal}
       tags={[]}
     />
   </View>

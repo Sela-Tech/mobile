@@ -134,6 +134,9 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
         Overview: {
           screen: () => <OverViewDetails userRole={userRole} project={project} />,
         },
+        Stakeholders: {
+          screen: () => <Stakeholders userRole={userRole} project={project} />,
+        },
         Updates: {
           screen: () => (
             <Updates
@@ -144,9 +147,9 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
             />
           ),
         },
-        Transactions: {
-          screen: () => <Transactions userRole={userRole} project={project} />,
-        },
+        // Transactions: {
+        //   screen: () => <Transactions userRole={userRole} project={project} />,
+        // },
       },
       {
         tabBarOptions,

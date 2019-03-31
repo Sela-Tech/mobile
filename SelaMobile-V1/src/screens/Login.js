@@ -166,8 +166,6 @@ class Login extends Component {
       password,
     };
 
-    console.log('data-sent', data);
-
     this.setState({ submitErrorMessage: '', loading: true });
     try {
       const resp = await this.props.login(data);

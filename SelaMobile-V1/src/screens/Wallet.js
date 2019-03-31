@@ -5,7 +5,6 @@ import { getUserTransactions } from '../../actions/wallet';
 import Header from '../components/Header';
 import Box from '../components/Wallet/Box';
 import { WHITE } from '../utils/constants';
-import { getUserBalance } from '../utils/api';
 
 import ExtStyles from '../utils/styles';
 
@@ -56,7 +55,8 @@ class Wallet extends Component {
   render() {
     // const projects = (this.props && this.props.projects && this.props.projects.projects) || [];
     const { reloading } = this.state;
-    const myBalance = this.props.wallet.transactions.myTokens.filter(c => c.type === 'native');
+    const myBalance =
+      this.props.wallet.transactions.myTokens.filter(c => c.type === 'native') || '---';
     const otherBalance = this.props.wallet.transactions.myTokens.filter(c => c.type !== 'native');
 
     return (

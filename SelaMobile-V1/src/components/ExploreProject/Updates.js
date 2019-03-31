@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react';
 import { View, FlatList, Image, TouchableOpacity, Dimensions, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
-// import { ActionSheetCustom as ActionSheet } from 'react-native-actionsheet';
 import Modal from 'react-native-modal';
+import { getUserTransactions } from '../../../actions/wallet';
 import Text from '../Text';
 import Tag from '../Tag';
 import B from '../BoldText';
@@ -22,7 +22,6 @@ const keyExtractor = item => item.id.toString();
 const renderItem = item => <EvalSubmission imgSource={item.item.source} markedStatus />;
 
 const factoryImages = [
-
   {
     source: require('../../../assets/img/cleanup/factory_1.jpeg'),
     id: 2,
@@ -139,9 +138,11 @@ class Updates extends Component {
           this.toggleModal();
         }
 
-        const resp = await evidenceRequestSubmission(data);
+        await evidenceRequestSubmission(data);
         this.setState({ submissionLoading: false });
-        this.props.updateTask(id)
+        this.props.updateTask(id);
+
+        this.props.getUserWalletTransaction();
         alert('Evidence saved');
       } else {
         alert('Please fill all fields');
@@ -359,4 +360,11 @@ const mapStateToProps = state => ({
   credentials: state.credentials,
 });
 
-export default connect(mapStateToProps)(Updates);
+const mapDispatchToProps = dispatch => ({
+  getUserWalletTransaction: () => dispatch(getUserTransactions()),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Updates);

@@ -44,6 +44,12 @@ const StakeHolders = ({ project, navigation }) => {
     project.stakeholders &&
     project.stakeholders.filter(c => c.user.information.isEvaluator === true);
 
+  const projectOwnerName =
+    project.owner.fullName ||
+    `${project && project.owner && project.owner.firstName} ${project &&
+      project.owner &&
+      project.owner.lastName}`;
+
   return (
     <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
       <View style={{ paddingTop: 10 }}>
@@ -55,9 +61,14 @@ const StakeHolders = ({ project, navigation }) => {
             <UserProfile
               userId={project.owner._id}
               userDetails={project.owner}
-              imgSource={{ uri: project.owner.profilePhoto }}
-              userName={`${project.owner.firstName} ${project.owner.lastName}`}
-              companyName={project.owner.organization.name}
+              imgSource={{ uri: project.owner.profilePhoto || 'https://placehold.it/200' }}
+              userName={projectOwnerName}
+              companyName={
+                project &&
+                project.owner &&
+                project.owner.organization &&
+                project.owner.organization.name
+              }
             />
           </View>
         </Fragment>
@@ -67,22 +78,29 @@ const StakeHolders = ({ project, navigation }) => {
           <B color={YELLOW}>CONTRACTORS</B>
         </View>
         <Fragment>
-          {contractors.length === 0 ? (
+          {(contractors && contractors.length === 0) || contractors === undefined ? (
             <View style={{ height: height / 7, justifyContent: 'center' }}>
               <Text style={styles.emptyPersonText}>No Contractors at the moment </Text>
             </View>
           ) : (
             <View style={{ flex: 1 }}>
-              {contractors.map((c, index) => (
-                <UserProfile
-                  key={index}
-                  userId={c.user.information._id}
-                  userDetails={c}
-                  imgSource={{ uri: c.user.information.profilePhoto }}
-                  userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                  companyName={c.user.information.organization.name}
-                />
-              ))}
+              {contractors &&
+                contractors.map((c, index) => (
+                  <UserProfile
+                    key={index}
+                    userId={c.user.information._id}
+                    userDetails={c}
+                    imgSource={{ uri: c.user.information.profilePhoto }}
+                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                    companyName={
+                      c &&
+                      c.user &&
+                      c.user.information &&
+                      c.user.information.organization &&
+                      c.user.information.organization.name
+                    }
+                  />
+                ))}
             </View>
           )}
         </Fragment>
@@ -93,22 +111,29 @@ const StakeHolders = ({ project, navigation }) => {
           <B color={YELLOW}>EVALUATION AGENTS</B>
         </View>
         <Fragment>
-          {evaluators.length === 0 ? (
+          {(evaluators && evaluators.length === 0) || evaluators === undefined ? (
             <View style={{ height: height / 7, justifyContent: 'center' }}>
               <Text style={styles.emptyPersonText}> No Evaluation agent at the moment </Text>
             </View>
           ) : (
             <View style={{ flex: 1 }}>
-              {evaluators.map((c, index) => (
-                <UserProfile
-                  key={index}
-                  userId={c.user.information._id}
-                  userDetails={c}
-                  imgSource={{ uri: c.user.information.profilePhoto }}
-                  userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                  companyName={c.user.information.organization.name}
-                />
-              ))}
+              {evaluators &&
+                evaluators.map((c, index) => (
+                  <UserProfile
+                    key={index}
+                    userId={c.user.information._id}
+                    userDetails={c}
+                    imgSource={{ uri: c.user.information.profilePhoto }}
+                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                    companyName={
+                      c &&
+                      c.user &&
+                      c.user.information &&
+                      c.user.information.organization &&
+                      c.user.information.organization.name
+                    }
+                  />
+                ))}
             </View>
           )}
         </Fragment>
@@ -118,22 +143,29 @@ const StakeHolders = ({ project, navigation }) => {
           <B color={YELLOW}>FUNDERS</B>
         </View>
         <Fragment>
-          {funders.length === 0 ? (
+          {(funders && funders.length === 0) || funders === undefined ? (
             <View style={{ height: height / 7, justifyContent: 'center' }}>
               <Text style={styles.emptyPersonText}> No Funders at the moment </Text>
             </View>
           ) : (
             <View style={{ flex: 1 }}>
-              {funders.map((c, index) => (
-                <UserProfile
-                  key={index}
-                  userId={c.user.information._id}
-                  userDetails={c}
-                  imgSource={{ uri: c.user.information.profilePhoto }}
-                  userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
-                  companyName={c.user.information.organization.name}
-                />
-              ))}
+              {funders &&
+                funders.map((c, index) => (
+                  <UserProfile
+                    key={index}
+                    userId={c.user.information._id}
+                    userDetails={c}
+                    imgSource={{ uri: c.user.information.profilePhoto }}
+                    userName={`${c.user.information.firstName} ${c.user.information.lastName}`}
+                    companyName={
+                      c &&
+                      c.user &&
+                      c.user.information &&
+                      c.user.information.organization &&
+                      c.user.information.organization.name
+                    }
+                  />
+                ))}
             </View>
           )}
         </Fragment>

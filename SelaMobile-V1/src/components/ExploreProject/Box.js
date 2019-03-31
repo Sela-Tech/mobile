@@ -7,7 +7,6 @@ import Tag from '../Explore/ClTag';
 import { isAndroid, projectStatusTextColor, mapNameToTag, formatMoney } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
 
-
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
@@ -54,7 +53,7 @@ const styles = StyleSheet.create({
 
 const fundedStatus = ['60%', '40%', '20%', '85%'];
 
-const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) => (
+const Box = ({ img, home, cost, firstText, secondText, thirdText, title, tags, fn }) => (
   <TouchableOpacity onPress={() => fn()} style={styles.container}>
     <View style={styles.boxHeight}>
       <Image
@@ -73,74 +72,86 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
         </View>
       </View> */}
     </View>
-    <View style={[styles.smaller, { marginLeft: 3, justifyContent: 'center' }]}>
-      <View style={[styles.row, { marginTop: 5 }]}>
-        <View style={{ flexDirection: 'row' }}>
-          <Text style={{ fontSize: 10, fontWeight: '400', color: '#696F74' }}>
-            {firstText.slice(0, 18).concat(' ...')}
-          </Text>
-          <Entypo name="dot-single" size={18} color="#696F74" />
-        </View>
-        <View style={{ paddingLeft: isAndroid ? '1%' : 2, flexDirection: 'row' }}>
-          <View>
-            <Text style={[styles.fontS, { fontWeight: '400', color: '#696F74' }]}>
-              {secondText.slice(0, 20).concat(' ...')}
+    {
+      <Fragment>
+        {home ? (
+          <View style={{ marginLeft: 3, marginTop: 3, justifyContent: 'center' }}>
+            <Text style={{ fontWeight: '400', color: '#222829', fontSize: 16 }}>
+              {secondText.length < 50
+                ? secondText
+                : secondText && secondText.slice(0, 50).concat(' ...')}
             </Text>
           </View>
-          <View>
-            <Entypo name="dot-single" size={18} color="#696F74" />
-          </View>
-        </View>
-        <View style={{ paddingLeft: isAndroid ? '1%' : 2 }}>
-          <Text
-            style={[styles.fonts, { fontWeight: '300', color: projectStatusTextColor(thirdText) }]}
-          >
-            {thirdText}
-          </Text>
-        </View>
-      </View>
-      <View style={{ paddingVertical: 10, flex: 1, flexDirection: 'row' }}>
-        <View>
-          <Text style={{ fontSize: 15, fontWeight: '600' }}>
-          {formatMoney(cost)}
-          </Text>
-        </View>
-
-        <View style={styles.viewInImage}>
-          <View style={{ paddingLeft: 5 }}>
-            <Image source={require('../../../assets/money.png')} />
-          </View>
-          <View>
-            <Text style={{ color: WHITE }}>
-              {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded
-            </Text>
-          </View>
-        </View>
-      </View>
-      <View
-        style={{
-          justifyContent: 'center',
-          // marginTop: isAndroid ? '2%' : 3,
-          flexDirection: 'row',
-          flex: 1,
-        }}
-      >
-        <Fragment>
-          {tags.length === 0 ? null : (
-            <View style={{ flexDirection: 'row', flex: 2 }}>
-              {tags.slice(0, 2).map((c, index) => (
-                <View key={index} style={{ marginLeft: 3 }}>
-                  <Tag
-                    noFn={() => console.log()}
-                    showTag={() => console.log()}
-                    src={mapNameToTag(c)}
-                  />
+        ) : (
+          <View style={[styles.smaller, { marginLeft: 3, justifyContent: 'center' }]}>
+            <View style={[styles.row, { marginTop: 5 }]}>
+              <View style={{ flexDirection: 'row' }}>
+                <Text style={{ fontSize: 10, fontWeight: '400', color: '#696F74' }}>
+                  {firstText && firstText.slice(0, 18).concat(' ...')}
+                </Text>
+                <Entypo name="dot-single" size={18} color="#696F74" />
+              </View>
+              <View style={{ paddingLeft: isAndroid ? '1%' : 2, flexDirection: 'row' }}>
+                <View>
+                  <Text style={[styles.fontS, { fontWeight: '400', color: '#696F74' }]}>
+                    {secondText && secondText.slice(0, 20).concat(' ...')}
+                  </Text>
                 </View>
-              ))}
+                <View>
+                  <Entypo name="dot-single" size={18} color="#696F74" />
+                </View>
+              </View>
+              <View style={{ paddingLeft: isAndroid ? '1%' : 2 }}>
+                <Text
+                  style={[
+                    styles.fonts,
+                    { fontWeight: '300', color: projectStatusTextColor(thirdText) },
+                  ]}
+                >
+                  {thirdText}
+                </Text>
+              </View>
             </View>
-          )}
-        </Fragment>
-        {/* <TouchableOpacity
+            <View style={{ paddingVertical: 10, flex: 1, flexDirection: 'row' }}>
+              <View>
+                <Text style={{ fontSize: 15, fontWeight: '600' }}>{formatMoney(cost)}</Text>
+              </View>
+
+              <View style={styles.viewInImage}>
+                <View style={{ paddingLeft: 5 }}>
+                  <Image source={require('../../../assets/money.png')} />
+                </View>
+                <View>
+                  <Text style={{ color: WHITE }}>
+                    {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded
+                  </Text>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{
+                justifyContent: 'center',
+                // marginTop: isAndroid ? '2%' : 3,
+                flexDirection: 'row',
+                flex: 1,
+              }}
+            >
+              <Fragment>
+                {tags.length === 0 ? null : (
+                  <View style={{ flexDirection: 'row', flex: 2 }}>
+                    {tags.slice(0, 2).map((c, index) => (
+                      <View key={index} style={{ marginLeft: 3 }}>
+                        <Tag
+                          noFn={() => console.log()}
+                          showTag={() => console.log()}
+                          src={mapNameToTag(c)}
+                        />
+                      </View>
+                    ))}
+                  </View>
+                )}
+              </Fragment>
+              {/* <TouchableOpacity
           style={{
             flex: 1,
             alignItems: 'flex-end',
@@ -153,8 +164,11 @@ const Box = ({ img, cost, firstText, secondText, thirdText, title, tags, fn }) =
             }
           />
         </TouchableOpacity> */}
-      </View>
-    </View>
+            </View>
+          </View>
+        )}
+      </Fragment>
+    }
   </TouchableOpacity>
 );
 

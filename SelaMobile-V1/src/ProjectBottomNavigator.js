@@ -24,7 +24,7 @@ export default createBottomTabNavigator(
         if (routeName === 'Project') {
           return (
             <Image
-              style={{ tintColor: focused ? YELLOW : null, resizeMode: 'contain', flex: 1 }}
+              style={{ tintColor: focused ? YELLOW : null }}
               // resizeMode="contain"
               source={require('../assets/folder.png')}
               style={{ tintColor: focused ? YELLOW : `gray` }}
@@ -45,7 +45,7 @@ export default createBottomTabNavigator(
             <Image
               // resizeMode="contain"
               source={require('../assets/explore.png')}
-              style={{ tintColor: focused ? YELLOW : null, resizeMode: 'contain', flex: 1 }}
+              style={{ tintColor: focused ? YELLOW : null }}
             />
           );
         }
@@ -54,7 +54,7 @@ export default createBottomTabNavigator(
             <Image
               // resizeMode="contain"
               source={require('../assets/wallet.png')}
-              style={{ tintColor: focused ? YELLOW : null, resizeMode: 'contain', flex: 1 }}
+              style={{ tintColor: focused ? YELLOW : null }}
             />
           );
         }
@@ -63,7 +63,7 @@ export default createBottomTabNavigator(
           <Image
             // resizeMode="contain"
             source={require('../assets/profile.png')}
-            style={{ tintColor: focused ? YELLOW : null, resizeMode: 'contain', flex: 1 }}
+            style={{ tintColor: focused ? YELLOW : null }}
           />
         );
       },
