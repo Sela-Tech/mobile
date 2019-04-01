@@ -1,8 +1,9 @@
 import React, { Fragment, Component } from 'react';
-import { View, StyleSheet, Dimensions } from 'react-native';
+import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Modal from 'react-native-modal';
 import Button from '../Button';
+import Text from '../Text';
 import BackButton from '../BackButton';
 import { YELLOW } from '../../utils/constants';
 
@@ -26,6 +27,34 @@ const styles = StyleSheet.create({
   upButton: {
     marginTop: 20,
     marginLeft: 15,
+  },
+  imagePosition: {
+    position: 'absolute',
+    top: 25,
+    bottom: 0,
+    left: 5,
+    right: 0,
+  },
+  buttonPosition: {
+    position: 'absolute',
+    top: height / 8,
+    bottom: 0,
+    left: 20,
+    right: 0,
+  },
+
+  flex4mb5: {
+    flex: 4,
+    // marginBottom: 1,
+  },
+  backButton: {
+    marginTop: '7%',
+    marginHorizontal: '5%',
+    flexDirection: 'row',
+  },
+  backButtonText: {
+    color: YELLOW,
+    fontSize: 15,
   },
 });
 
@@ -53,7 +82,6 @@ export default class Map extends Component {
 
   render() {
     const { isMapReady, view, toggleMapView, location, visible } = this.props;
-
     return (
       <View>
         <Modal
@@ -69,9 +97,10 @@ export default class Map extends Component {
           isVisible={visible}
         >
           <View style={styles.container}>
-            <View style={styles.upButton}>
-              <BackButton fn={() => toggleMapView()} />
-            </View>
+            {/* <View style={styles.upButton}>
+              <BackButton fn={toggleMapView} />
+            </View> */}
+
             <MapView
               provider={PROVIDER_GOOGLE}
               style={styles.map}
@@ -121,6 +150,25 @@ export default class Map extends Component {
                 color={YELLOW}
                 fn={() => this.toggleView()}
               />
+            </View>
+
+            <View style={styles.imagePosition}>
+              <TouchableOpacity
+                transparent
+                style={styles.backButton}
+                onPress={() => toggleMapView()}
+              >
+                <View>
+                  {/* '../../../assets/white-back.png */}
+                  <Image
+                    source={require('../../../assets/white-back.png')}
+                    style={{ tintColor: YELLOW }}
+                  />
+                </View>
+                <View>
+                  <Text style={styles.backButtonText}> Back </Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </View>
         </Modal>

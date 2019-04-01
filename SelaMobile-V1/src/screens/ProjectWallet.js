@@ -107,28 +107,3 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps)(ProjectWallet);
-
-// mmmfff', { myTokens:
-// 03-29 09:58:58.628  4252  5023 I ReactNativeJS:    [ { type: 'native', balance: '49.9999900' },
-// 03-29 09:58:58.628  4252  5023 I ReactNativeJS:      { projectId: '5c9cac3534b85b0022975e0e',
-// 03-29 09:58:58.628  4252  5023 I ReactNativeJS:        projectName: 'Oil Spill Cleanup',
-// 03-29 09:58:58.628  4252  5023 I ReactNativeJS:        type: 'credit_alphanum12',
-// 03-29 09:58:58.628  4252  5023 I ReactNativeJS:        token: 'PST33AD',
-// 03-29 09:58:58.628  4252  5023 I ReactNativeJS:        balance: '0.0000000' } ],
-// 03-29 09:58:58.628  4252  5023 I ReactNativeJS:   createdTokens: [] }
-// 03-29 09:59:04.994  4252  5023 I ReactNativeJS: 'kkgfgf', { projectName: 'Oil Spill Cleanup',
-// 03-29 09:59:04.994  4252  5023 I ReactNativeJS:   myTokens:
-// 03-29 09:59:04.994  4252  5023 I ReactNativeJS:    [ { type: 'credit_alphanum12',
-// 03-29 09:59:04.994  4252  5023 I ReactNativeJS:        balance: '0.0000000',
-// 03-29 09:59:04.994  4252  5023 I ReactNativeJS:        token: 'PST33AD' },
-// 03-29 09:59:04.994  4252  5023 I ReactNativeJS:      { type: 'native', balance: '49.9999900' } ],
-// 03-29 09:59:04.994  4252  5023 I ReactNativeJS:   transactions: [] }
-
-//  { myTokens:
-//     [ { type: 'native', balance: '49.9999900' },
-//       { projectId: '5c9cac3534b85b0022975e0e',
-//         projectName: 'Oil Spill Cleanup',
-//         type: 'credit_alphanum12',
-//         token: 'PST33AD',
-//         balance: '0.0000000' } ],
-//    createdTokens: [] }

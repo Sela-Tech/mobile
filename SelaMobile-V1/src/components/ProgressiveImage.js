@@ -32,21 +32,14 @@ class ProgressiveImage extends React.Component {
   };
 
   render() {
-    const { thumbnailSource, source, style, ...props } = this.props;
+    const { source, imageStyle, style, ...props } = this.props;
 
     return (
-      <View style={styles.container}>
-        <Animated.Image
-          {...props}
-          source={thumbnailSource}
-          style={[style, { opacity: this.thumbnailAnimated }]}
-          onLoad={this.handleThumbnailLoad}
-          blurRadius={1}
-        />
+      <View style={[styles.container, style]}>
         <Animated.Image
           {...props}
           source={source}
-          style={[styles.imageOverlay, { opacity: this.imageAnimated }, style]}
+          style={[styles.imageOverlay, { opacity: this.imageAnimated }, style, imageStyle]}
           onLoad={this.onImageLoad}
         />
       </View>

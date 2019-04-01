@@ -94,7 +94,7 @@ export default class Header extends Component {
             }}
             onPress={() => this.toggle()}
           >
-            <Text style={{ fontSize: 10, color: !toggle ? '#0A2C56' : WHITE }}> Lumens (XML)</Text>
+            <Text style={{ fontSize: 10, color: !toggle ? '#0A2C56' : WHITE }}> Lumens (XLM)</Text>
           </TouchableOpacity>
         </View>
         <View style={{ flexDirection: 'row', paddingTop: 5, flex: 3 }}>
@@ -114,7 +114,7 @@ export default class Header extends Component {
                     justifyContent: 'center',
                   }}
                 >
-                  <Text style={{ fontSize: 8, fontWeight: '300' }}> {toggle ? 'PST ' : 'XML'}</Text>
+                  <Text style={{ fontSize: 8, fontWeight: '300' }}> {toggle ? 'PST ' : 'XLM'}</Text>
                 </View>
               </View>
               <View>

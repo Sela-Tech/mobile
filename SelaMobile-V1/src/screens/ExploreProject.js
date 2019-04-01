@@ -5,6 +5,7 @@ import Navigator from './ExploreTabs/Navigator';
 import Spinner from '../components/Spinner';
 import Text from '../components/Text';
 import Button from '../components/Button';
+import Imagen from '../components/ProgressiveImage';
 import NavigationService from '../services/NavigationService';
 import { getSingleProject, retrieveEvidenceRequest } from '../utils/api';
 import ExtStyle from '../utils/styles';
@@ -41,7 +42,7 @@ const styles = StyleSheet.flatten({
     position: 'absolute',
     top: 12,
     bottom: 0,
-    left: 0,
+    left: 5,
     right: 0,
   },
   buttonPosition: {
@@ -70,6 +71,7 @@ class ExploreProject extends Component {
   state = {
     projectId: this.props.navigation.state.params,
     loading: true,
+    requests: [],
     notAvailaible: false,
   };
 
@@ -87,8 +89,8 @@ class ExploreProject extends Component {
     try {
       const { projectId } = this.state;
       const allProjects = this.props && this.props.projects && this.props.projects.projects;
-      const getProject = allProjects.filter(c => c._id === projectId);
-      if (allProjects.length === 0 || getProject.length === 0) {
+      const getProject = allProjects && allProjects.filter(c => c._id === projectId);
+      if ((allProjects && allProjects.length === 0) || (getProject && getProject.length === 0)) {
         const resp = await getSingleProject(projectId);
         this.setState({
           projectInfo: resp.data,
@@ -150,7 +152,10 @@ class ExploreProject extends Component {
 
     // Check if user is part of the stakeholders
     const userStakeholderStatus =
-      projectStakeholders && projectStakeholders.filter(c =>  c &  c.user&&  c.user.information &&  c.user.information._id === userId);
+      projectStakeholders &&
+      projectStakeholders.filter(
+        c => c & c.user && c.user.information && c.user.information._id === userId,
+      );
 
     if (loading) {
       return (
@@ -166,8 +171,13 @@ class ExploreProject extends Component {
             <Fragment>
               <View style={ExtStyle.flex3}>
                 <View style={ExtStyle.flex1}>
-                  <Image
-                    style={styles.imageStyle}
+                  <Imagen
+                    imageStyle={styles.imageStyle}
+                    style={{
+                      flex: 1,
+                      width: null,
+                      height: null,
+                    }}
                     source={{
                       uri:
                         (projectInfo && projectInfo['project-avatar']) ||

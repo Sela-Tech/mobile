@@ -68,6 +68,7 @@ export default class OverView extends Component {
   changeBookmark = () =>
     this.setState(prevState => ({ bookmarkStatus: !prevState.bookmarkStatus }));
 
+  // toggleMapView = () =>  alert('ok')//this.setState(prevState => ({ openMap: !prevState.openMap }));
   toggleMapView = () => this.setState(prevState => ({ openMap: !prevState.openMap }));
 
   render() {
@@ -83,16 +84,45 @@ export default class OverView extends Component {
     return (
       <View style={styles.container}>
         <View style={[{ flex: 2 }]}>
+          <View style={{ flex: 2, marginBottom: 5 }}>
+            <View>
+              <Text style={styles.darkBlue}>Description</Text>
+            </View>
+            <View style={{flex: 1, marginTop: 7 }}>
+              <Text>{project.description}</Text>
+            </View>
+          </View>
+          <View style={{ flex: 1 }}>
+            <Fragment>
+              {project.tags.length === 0 ? null : (
+                <View
+                  style={{
+                    marginTop: 10,
+                    flex: 2,
+                    flexDirection: 'row',
+                  }}
+                >
+                  <View style={{ flexDirection: 'row' }}>
+                    {project.tags.map((c, i) => (
+                      <Tag key={i} showTag={this.showTag} src={mapNameToTag(c)} />
+                    ))}
+                  </View>
+                  <View />
+                </View>
+              )}
+            </Fragment>
+          </View>
+
           <View style={{ justifyContent: 'center', flexDirection: 'row', flex: 1 }}>
             <View style={[{ paddingTop: 5, flex: 1 }]}>
               <View>
-                <Text style={styles.darkBlue}>LOCATION</Text>
+                <Text style={styles.darkBlue}>Location</Text>
               </View>
-              <View style={[extStyle.row, {}]}>
-                <View>
+              <View>
+                <View style={{ paddingTop: 5 }}>
                   <Text style={styles.verySmallText}>
-                    {project.location.name.length > 35
-                      ? project.location.name.slice(0, 32).concat('...')
+                    {project.location.name.length > 40
+                      ? project.location.name.slice(0, 40).concat('...')
                       : project.location.name}{' '}
                   </Text>
                 </View>
@@ -100,18 +130,18 @@ export default class OverView extends Component {
                   <TouchableOpacity
                     onPress={() => this.toggleMapView()}
                     style={{
-                      paddingLeft: 8,
+                      paddingTop: 5,
                       flexDirection: 'row',
-                      justifyContent: 'center',
-                      alignItems: 'center',
+                      // justifyContent: 'center',
+                      // alignItems: 'center',
                     }}
                   >
                     <View>
-                      <Text style={{ color: YELLOW }}> View on map</Text>
+                      <Text style={{ color: YELLOW }}>View on map</Text>
                     </View>
 
                     <View style={{ paddingLeft: 5 }}>
-                      <Image source={require('../../../assets/forward_yellow.png')} />
+                      <Image source={require('../../../assets/location.png')} />
                     </View>
                   </TouchableOpacity>
                 </View>
@@ -124,15 +154,6 @@ export default class OverView extends Component {
                 viewColor={projectStatusTextColor(project.status)}
                 textColor={WHITE}
               />
-            </View>
-          </View>
-
-          <View style={{ flex: 1, marginBottom: 5 }}>
-            <View style={{ marginBottom: 5 }}>
-              <Text style={styles.darkBlue}>Description</Text>
-            </View>
-            <View>
-              <Text>{project.description}</Text>
             </View>
           </View>
 
@@ -161,26 +182,7 @@ export default class OverView extends Component {
               </View>
             </View>
           </View>
-          <View style={{ flex: 1 }}>
-            <Fragment>
-              {project.tags.length === 0 ? null : (
-                <View
-                  style={{
-                    marginTop: 10,
-                    flex: 2,
-                    flexDirection: 'row',
-                  }}
-                >
-                  <View style={{ flexDirection: 'row' }}>
-                    {project.tags.map((c, i) => (
-                      <Tag key={i} showTag={this.showTag} src={mapNameToTag(c)} />
-                    ))}
-                  </View>
-                  <View />
-                </View>
-              )}
-            </Fragment>
-          </View>
+
           <TagDisplay showTag={this.showTag} visibility={showTag} imageSource={src} />
 
           <View style={{ paddingTop: 5 }}>

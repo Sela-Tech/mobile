@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
-import { TouchableOpacity, View, Dimensions, StyleSheet, Image } from 'react-native';
+import { TouchableOpacity, View, Dimensions, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Text from '../Text';
 import Tag from '../Explore/ClTag';
+import Image from '../ProgressiveImage';
 import { isAndroid, projectStatusTextColor, mapNameToTag, formatMoney } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
 

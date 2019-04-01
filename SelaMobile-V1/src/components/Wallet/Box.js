@@ -120,7 +120,7 @@ class Box extends Component {
                       }}
                     >
                       <Text style={{ fontSize: 10, fontWeight: 'bold' }}>
-                        {personal ? 'XML' : 'PST'}{' '}
+                        {personal ? 'XLM' : 'PST'}{' '}
                       </Text>
                     </View>
                   </View>

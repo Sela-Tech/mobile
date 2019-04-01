@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
   notFunderContainer: {
     // flex: 1,
     marginBottom: 10,
-    height: height / 7,
+    height: height / 8.5,
     borderBottomColor: '#B1BAD2',
     justifyContent: 'center',
     borderBottomWidth: 2,
@@ -274,7 +274,7 @@ class Updates extends Component {
     }
     return (
       <View style={userRole !== 'funder' ? styles.notFunderContainer : styles.container}>
-        <View style={{ flexDirection: 'row', paddingTop: 10, marginTop: 15, flex: 1 }}>
+        <View style={{ flexDirection: 'row', paddingTop: 10, flex: 1 }}>
           <View style={{ flex: 2 }}>
             <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Status </Text>
           </View>
@@ -308,7 +308,7 @@ class Updates extends Component {
             )}
           </Fragment>
         </View>
-        <View style={{ flex: 4, paddingTop: 3 }}>
+        <View style={{ flex: 4, paddingTop: 10,justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ alignItems: 'center' }}>
               <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Task Name: </Text>
@@ -322,9 +322,9 @@ class Updates extends Component {
               <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>{title} </Text>
             </View>
           </View>
-          <View style={{ marginTop: '2%' }}>
+          {/* <View style={{ marginTop: '2%' }}>
             <Text style={{ color: '#222829' }}>{text}</Text>
-          </View>
+          </View> */}
         </View>
         <View style={userRole === 'funder' ? { flex: 6 } : null}>
           {userRole === 'funder' ? (

@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
 });
 
 class Notifications extends Component {
-  static navigationOptions = ({}) => ({
+  static navigationOptions = () => ({
     title: 'Notifications',
     headerTitleStyle: {
       color: '#201D41',
@@ -45,31 +45,35 @@ class Notifications extends Component {
 
   getNotifications = async () => {
     const notifications =
-      (this.props.notifications &&
+      (this.props &&
+        this.props.notifications &&
         this.props.notifications.notifications &&
         this.props.notifications.notifications.notifications) ||
       [];
 
     try {
-      if (notifications.length !== 0) {
+      if (notifications && notifications.length !== 0) {
         this.setState({ loading: false });
       }
       await this.props.getNotifications();
 
-      const unreadNIds = notifications.filter(c => c.read === false).map(d => d._id);
-      if (unreadNIds.length > 0) {
+      const unreadNIds =
+        notifications && notifications.filter(c => c.read === false).map(d => d._id);
+      if (unreadNIds && unreadNIds.length > 0) {
         this.props.updateNotifs(unreadNIds);
       }
       this.setState({ loading: false });
     } catch (err) {
-      this.setState({ error: err.message });
+      // alert('err')
+      this.setState({ error: err.message, loading:false });
     }
   };
 
   render() {
     const { loading } = this.state;
     let notifications =
-      (this.props.notifications &&
+      (this.props &&
+        this.props.notifications &&
         this.props.notifications.notifications &&
         this.props.notifications.notifications.notifications) ||
       [];
@@ -82,7 +86,7 @@ class Notifications extends Component {
       );
     }
 
-    if (notifications.length === 0) {
+    if ((notifications && notifications.length === 0) || notifications === undefined) {
       return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
           <View>
@@ -101,20 +105,21 @@ class Notifications extends Component {
         style={styles.container}
         contentContainerStyle={styles.flex0}
       >
-        {notifications.map((c, index) => (
-          <SingleNotificationText
-            notifs={c}
-            key={index}
-            text={c.message}
-            action={c.action}
-            imageSRC={
-              c.stakeholder.profilePhoto
-                ? { uri: c.stakeholder.profilePhoto }
-                : require('../../assets/man1.png')
-            }
-            time={formattedDate(c.createdOn)}
-          />
-        ))}
+        {notifications &&
+          notifications.map((c, index) => (
+            <SingleNotificationText
+              notifs={c}
+              key={index}
+              text={c.message}
+              action={c.action}
+              imageSRC={
+                c.stakeholder.profilePhoto
+                  ? { uri: c.stakeholder.profilePhoto }
+                  : require('../../assets/man1.png')
+              }
+              time={formattedDate(c.createdOn)}
+            />
+          ))}
       </ScrollView>
     );
   }

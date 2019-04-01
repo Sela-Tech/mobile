@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet, Image, Dimensions, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
+import Image from './ProgressiveImage';
 import NavigationService from '../services/NavigationService';
 import Text from './Text';
 import B from './BoldText';

@@ -145,7 +145,7 @@ const StakeHolders = ({ project, navigation }) => {
         <Fragment>
           {(funders && funders.length === 0) || funders === undefined ? (
             <View style={{ height: height / 7, justifyContent: 'center' }}>
-              <Text style={styles.emptyPersonText}> No Funders at the moment </Text>
+              <Text style={styles.emptyPersonText}> No new funder at the moment </Text>
             </View>
           ) : (
             <View style={{ flex: 1 }}>
