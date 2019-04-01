@@ -22,7 +22,6 @@ const styles = StyleSheet.create({
   },
   verySmallText: {
     fontSize: 14,
-    color: '#201D41',
   },
   pt: {
     paddingTop: 3,
@@ -38,20 +37,18 @@ const styles = StyleSheet.create({
   },
   parentTagStyle: {
     paddingTop: 5,
-    // backgroundColor: 'red',
-    // flex: 1,
-    // height: 80,
     borderRadius: 10,
     paddingHorizontal: 5,
-    // flexDirection: 'row',
-    // paddingLeft: 5,
-    // justifyContent: 'flex-start',
   },
   tagStyle: {
     height: '60%',
     paddingHorizontal: 5,
     paddingVertical: 5,
     borderRadius: 10,
+  },
+  darkBlue: {
+    fontSize: 16,
+    color: '#201D41',
   },
 });
 
@@ -89,7 +86,7 @@ export default class OverView extends Component {
           <View style={{ justifyContent: 'center', flexDirection: 'row', flex: 1 }}>
             <View style={[{ paddingTop: 5, flex: 1 }]}>
               <View>
-                <Text style={{ fontSize: 12, color: '#696F74' }}>LOCATION</Text>
+                <Text style={styles.darkBlue}>LOCATION</Text>
               </View>
               <View style={[extStyle.row, {}]}>
                 <View>
@@ -130,18 +127,25 @@ export default class OverView extends Component {
             </View>
           </View>
 
-          {/* <View style={{ flex: 1 }}>
-            <Text>{project.description}</Text>
-          </View> */}
+          <View style={{ flex: 1, marginBottom: 5 }}>
+            <View style={{ marginBottom: 5 }}>
+              <Text style={styles.darkBlue}>Description</Text>
+            </View>
+            <View>
+              <Text>{project.description}</Text>
+            </View>
+          </View>
 
           <View style={{ flex: 1 }}>
             <View style={{ flex: 1 }}>
               <View>
-                <Text style={{ color: '#696F74' }}>Duration </Text>
+                <Text style={styles.darkBlue}>Duration </Text>
               </View>
               <View style={styles.pt}>
-                <Text style={{ color: '#3D4851', fontSize: 16 }}>
-                  {moment(project.startDate).format('MMMM Do YYYY')} -- { moment(project.endDate).format('MMMM Do YYYY')}
+                <Text style={{ fontSize: 16 }}>
+                  {moment(project.startDate).format('MMMM Do YYYY')} --
+{' '}
+                  {moment(project.endDate).format('MMMM Do YYYY')}
                 </Text>
               </View>
             </View>
@@ -149,7 +153,7 @@ export default class OverView extends Component {
             <View style={{ flex: 1, flexDirection: 'row' }}>
               <View>
                 <View>
-                  <Text style={styles.text}>Budget </Text>
+                  <Text style={styles.darkBlue}>Budget </Text>
                 </View>
                 <View style={styles.pt}>
                   <Text style={styles.text}>{formatMoney(project.observationBudget)}</Text>

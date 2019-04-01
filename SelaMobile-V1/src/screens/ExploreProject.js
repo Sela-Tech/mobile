@@ -150,7 +150,7 @@ class ExploreProject extends Component {
 
     // Check if user is part of the stakeholders
     const userStakeholderStatus =
-      projectStakeholders && projectStakeholders.filter(c => c.user.information._id === userId);
+      projectStakeholders && projectStakeholders.filter(c =>  c &  c.user&&  c.user.information &&  c.user.information._id === userId);
 
     if (loading) {
       return (

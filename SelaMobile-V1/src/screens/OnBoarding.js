@@ -212,11 +212,11 @@ export default class OnBoarding extends Component {
       });
     }
     const data = {
-      email: emailOrPhone,
+      email: emailOrPhone.trim(),
       phone: '89490358564',
       organization: {
         id: '',
-        name: 'admin1 organisaction',
+        name: 'Sela Citizens',
       },
       firstName: fullName.split(' ')[0],
       lastName: fullName.split(' ')[1] === undefined ? '' : fullName.split(' ')[1],

@@ -53,11 +53,20 @@ class Wallet extends Component {
   };
 
   render() {
-    // const projects = (this.props && this.props.projects && this.props.projects.projects) || [];
     const { reloading } = this.state;
     const myBalance =
-      this.props.wallet.transactions.myTokens.filter(c => c.type === 'native') || '---';
-    const otherBalance = this.props.wallet.transactions.myTokens.filter(c => c.type !== 'native');
+      (this.props &&
+        this.props.wallet &&
+        this.props.wallet.transactions &&
+        this.props.wallet.transactions.myTokens &&
+        this.props.wallet.transactions.myTokens.filter(c => c.type === 'native')) ||
+      '---';
+    const otherBalance =
+      this.props &&
+      this.props.wallet &&
+      this.props.wallet.transactions &&
+      this.props.wallet.transactions.myTokens &&
+      this.props.wallet.transactions.myTokens.filter(c => c.type !== 'native');
 
     return (
       <View style={ExtStyles.flex1}>
@@ -74,17 +83,18 @@ class Wallet extends Component {
             projectName="Personal Wallet"
             balance={myBalance && myBalance[0] && myBalance[0].balance}
           />
-          {otherBalance.map((v, index) => (
-            <View key={index}>
-              <Box
-                projectName={v.projectName}
-                navigation={this.props.navigation}
-                key={index}
-                data={v}
-                balance={v.balance}
-              />
-            </View>
-          ))}
+          {otherBalance &&
+            otherBalance.map((v, index) => (
+              <View key={index}>
+                <Box
+                  projectName={v.projectName}
+                  navigation={this.props.navigation}
+                  key={index}
+                  data={v}
+                  balance={v.balance}
+                />
+              </View>
+            ))}
         </ScrollView>
       </View>
     );

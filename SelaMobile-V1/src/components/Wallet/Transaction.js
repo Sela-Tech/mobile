@@ -42,12 +42,7 @@ const Transaction = ({ data, imageSource, sender, amount, date, taskName }) => (
     <View style={ExtStyles.flex4}>
       <View>
         <Text style={styles.senderText}>
-          Payment for
-          {` `}
-          <B style={styles.senderText}>{taskName}
-.
-{' '}
-</B>
+    {taskName}
         </Text>
       </View>
       <View>

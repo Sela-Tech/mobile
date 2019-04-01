@@ -376,5 +376,4 @@ export const getProjectBalance = id => {
   } catch (err) {
     return err;
   }
-};;
-
+};

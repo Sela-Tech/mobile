@@ -1,16 +1,19 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions, ScrollView, Image } from 'react-native';
-import NavigationService from '../../services/NavigationService';
-import Button from '../../components/Button';
+import moment from 'moment';
 import Text from '../../components/Text';
+import Spinner from '../../components/Spinner';
 import SingleTrans from '../../components/Transactions/SingleTrans';
 import { WHITE } from '../../utils/constants';
+import ExtStyles from '../../utils/styles';
+import { getProjectBalance } from '../../utils/api';
 
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: WHITE,
+    // backgroundColor: 'red',
     marginHorizontal: 10,
     marginVertical: 10,
   },
@@ -24,53 +27,69 @@ const styles = StyleSheet.create({
   },
 });
 
-const Transactions = ({ project }) => {
-  const { transactions } = project;
-  if ((transactions && transactions.length === 0) || transactions === undefined) {
-    return (
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-          <View>
-            <Image source={require('../../../assets/docs.png')} />
-          </View>
-          <View style={{ alignItems: 'center', margin: 10 }}>
-            <Text> There are no transactions yet for </Text>
-            <Text> this project. Check back later. </Text>
-          </View>
+// const Transactions = ({ project }) => {
 
-          {/* <Button fn={() => NavigationService.navigate('Invest')} text="INVEST" textColor={WHITE} /> */}
+export default class Transactions extends Component {
+  state = {
+    loading: true,
+    transactions: [],
+  };
+
+  async componentDidMount() {
+    try {
+      const resp = await getProjectBalance(this.props.project._id);
+
+      // const transaction = resp.data.myTokens.filter(c => c.type !== 'native');
+      console.log('the native balance', resp.data.transactions);
+      this.setState({ transactions: resp.data.transactions, loading: false });
+    } catch (err) {
+      this.setState({ error: err.message, loading: false });
+    }
+  }
+
+  render() {
+    const { project } = this.props;
+    // const { transactions } = project;
+    const { loading, transactions } = this.state;
+    console.log('.../', transactions);
+
+    if (loading) {
+      return (
+        <View style={ExtStyles.center}>
+          <Spinner />
         </View>
+      );
+    }
+
+    if ((transactions && transactions.length === 0) || transactions === undefined) {
+      return (
+        <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View>
+              <Image source={require('../../../assets/docs.png')} />
+            </View>
+            <View style={{ alignItems: 'center', margin: 10 }}>
+              <Text> There are no transactions yet for </Text>
+              <Text> this project. Check back later. </Text>
+            </View>
+
+            {/* <Button fn={() => NavigationService.navigate('Invest')} text="INVEST" textColor={WHITE} /> */}
+          </View>
+        </ScrollView>
+      );
+    }
+
+    return (
+      <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
+        {transactions.map((c, index) => (
+          <SingleTrans
+            price={`${c.value}PST`}
+            date={moment(c.updatedAt).format('MMMM Do YYYY')}
+            title={c.memo}
+            paidBy={`${c.sender.firstName} ${c.sender.lastName}`}
+          />
+        ))}
       </ScrollView>
     );
   }
-
-  return (
-    <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
-      <SingleTrans
-        price="$10,500"
-        date="13 Jun 2018, 14:55"
-        title="Transaction Memo Listed here"
-        expense="Evaluation team"
-        paidBy="Ese Family trust"
-      />
-
-      <SingleTrans
-        price="$3,500"
-        date="13 Jun 2018, 14:55"
-        title="Transaction Memo Listed here"
-        expense="Miscellaneous"
-        paidBy="Forte oil"
-      />
-
-      <SingleTrans
-        price="$6,500"
-        date="13 Jun 2018, 14:55"
-        title="Transaction Memo Listed here"
-        expense="Evalation team"
-        paidBy="Access bank"
-      />
-    </ScrollView>
-  );
-};
-
-export default Transactions;
+}

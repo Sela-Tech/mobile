@@ -87,9 +87,9 @@ class ProjectWallet extends Component {
                 <Transaction
                   key={index}
                   data={c}
-                  taskName="payment for task"
+                  taskName={c.memo}
                   imageSource={{ uri: c.sender.profilePhoto }}
-                  sender={c.sender.firstName +  ' ' + c.sender.lastName}
+                  sender={`${c.sender.firstName} ${c.sender.lastName}`}
                   amount={c.value}
                   date={c.updatedAt}
                 />

@@ -19,10 +19,9 @@ const SingleTrans = ({ price, date, title, expense, paidBy }) => (
     <View style={{ flex: 2 }}>
       <B color="#201D41">{title}</B>
       <Text style={{ color: '#201D41' }}>{paidBy} </Text>
-      <Text style={{ color: '#696F74' }}>{expense} </Text>
     </View>
 
-    <View>
+    <View style ={{ marginLeft: 2}}>
       <B color="#369C05">{price}</B>
       <Text>{date}</Text>
     </View>
