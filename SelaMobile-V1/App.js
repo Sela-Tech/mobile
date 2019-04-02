@@ -31,12 +31,13 @@ export default class App extends Component {
           <ErrorHandler>
             <View style={styles.container}>
               <StatusBar barStyle="light-content" />
-              <OfflineNotice />
+
               <RootNavigator
                 ref={navigatorRef => {
                   NavigationService.setTopLevelNavigator(navigatorRef);
                 }}
               />
+              <OfflineNotice />
             </View>
           </ErrorHandler>
         </PersistGate>

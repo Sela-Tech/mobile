@@ -6,13 +6,13 @@ const { width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   offlineContainer: {
     backgroundColor: '#b52424',
-    height: 30,
+    height: 50,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     width,
     position: 'absolute',
-    top: 30,
+    // top: 30,
   },
   offlineText: { color: '#fff' },
 });
@@ -46,7 +46,7 @@ class OfflineNotice extends PureComponent {
 
   render() {
     const { isConnected } = this.state;
-    if (isConnected) {
+    if (!isConnected) {
       return <MiniOfflineSign />;
     }
     return null;

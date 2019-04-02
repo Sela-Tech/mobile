@@ -55,7 +55,7 @@ class ProjectWallet extends Component {
     amountToBeSent: 0,
     remarks: '',
     receiverID: '',
-    loading: false,
+    loading: true,
     balance: this.props.navigation.state.params.balance,
   };
 
@@ -80,14 +80,13 @@ class ProjectWallet extends Component {
         loading: false,
       });
     } catch (err) {
-      console.log('...', err.message);
       this.setState({ error: err.message, loading: false });
     }
   }
 
   sendMoney = async () => {
     const { receiverID, remarks, amountToBeSent, balance } = this.state;
-    this.setState({ loading: true });
+
     const data = {
       projectId: this.props.navigation.state.params.projectId,
       receiver: receiverID,
@@ -105,6 +104,7 @@ class ProjectWallet extends Component {
       return alert('Insufficient PST');
     }
     try {
+      this.setState({ loading: true });
       const resp = await transferFund(data);
       alert('PST sent');
       const newBalance = balance - amountToBeSent;
@@ -170,7 +170,7 @@ class ProjectWallet extends Component {
           title={projectName}
           balance={balance}
           nativeBalance={
-            nativeBalance === '---' ? nativeBalance : parseFloat(nativeBalance)//.toFixed(3)
+            nativeBalance === '---' ? nativeBalance : parseFloat(nativeBalance) // .toFixed(3)
           }
         />
         <SendModal
@@ -183,41 +183,43 @@ class ProjectWallet extends Component {
           projectStakeholders={projectStakeholders}
         />
         <Fragment>
-          {transaction.length === 0 ? null : (
+          {loading ? (
+            <View style={ExtStyles.center}>
+              <Spinner color="#0A2C56" />
+            </View>
+          ) : (
             <Fragment>
-              <View style={{ marginVertical: 10, marginLeft: 25 }}>
-                <Button
-                  fn={() => this.toggleModal()}
-                  style={{
-                    width: width / 2.5,
-                  }}
-                  textStyle={{
-                    color: WHITE,
-                  }}
-                  text="Send"
-                />
-              </View>
-              <View style={styles.innerContainer}>
-                {loading ? (
-                  <View style={ExtStyles.center}>
-                    <Spinner color="#0A2C56" />
+              {transaction.length === 0 ? null : (
+                <View>
+                  <View style={{ marginVertical: 10, marginLeft: 25 }}>
+                    <Button
+                      fn={() => this.toggleModal()}
+                      style={{
+                        width: width / 2.5,
+                      }}
+                      textStyle={{
+                        color: WHITE,
+                      }}
+                      text="Send"
+                    />
                   </View>
-                ) : (
-                  <Fragment>
-                    {transaction.map((c, index) => (
-                      <Transaction
-                        key={index}
-                        data={c}
-                        taskName={c.memo}
-                        imageSource={{ uri: c.sender.profilePhoto }}
-                        sender={`${c.sender.firstName} ${c.sender.lastName}`}
-                        amount={c.value}
-                        date={c.updatedAt}
-                      />
-                    ))}
-                  </Fragment>
-                )}
-              </View>
+                  <View style={styles.innerContainer}>
+                    <Fragment>
+                      {transaction.map((c, index) => (
+                        <Transaction
+                          key={index}
+                          data={c}
+                          taskName={c.memo}
+                          imageSource={{ uri: c.sender.profilePhoto }}
+                          sender={`${c.sender.firstName} ${c.sender.lastName}`}
+                          amount={c.value}
+                          date={c.updatedAt}
+                        />
+                      ))}
+                    </Fragment>
+                  </View>
+                </View>
+              )}
             </Fragment>
           )}
         </Fragment>

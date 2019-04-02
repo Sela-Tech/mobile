@@ -72,7 +72,7 @@ class Box extends Component {
     //   completed: trans,
     //   totalAmount,
     // };
-    console.log('d--data', data);
+
     return (
       <TouchableOpacity
         style={[styles.container, personal ? { backgroundColor: '#156EDC' } : null]}

@@ -56,7 +56,6 @@ class Notifications extends Component {
         this.setState({ loading: false });
       }
       await this.props.getNotifications();
-
       const unreadNIds =
         notifications && notifications.filter(c => c.read === false).map(d => d._id);
       if (unreadNIds && unreadNIds.length > 0) {
@@ -64,8 +63,7 @@ class Notifications extends Component {
       }
       this.setState({ loading: false });
     } catch (err) {
-      // alert('err')
-      this.setState({ error: err.message, loading:false });
+      this.setState({ error: err.message, loading: false });
     }
   };
 

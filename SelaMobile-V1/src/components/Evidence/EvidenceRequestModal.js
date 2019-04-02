@@ -156,7 +156,6 @@ export default class EvidenceRequestModal extends Component {
 
     try {
       const resp = await createEvidenceRequest(data);
-      console.log('the resp', resp.data);
     } catch (err) {
       console.log('err', err.message);
     }

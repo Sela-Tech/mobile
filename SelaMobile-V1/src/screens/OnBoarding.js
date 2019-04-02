@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, KeyboardAvoidingView, ScrollView, Keyboard } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  KeyboardAvoidingView,
+  ScrollView,
+  Keyboard,
+  Dimensions,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import DropdownAlert from 'react-native-dropdownalert';
 import NavigationService from '../services/NavigationService';
@@ -9,6 +16,8 @@ import OnBoardView from '../components/OnBoarding/OnBoardView';
 import { signUp } from '../utils/api';
 import ExtStyle from '../utils/styles';
 import { WHITE } from '../utils/constants';
+
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -146,7 +155,9 @@ export default class OnBoarding extends Component {
 
   signUp = async () => {
     Keyboard.dismiss();
-    const { fullName, emailOrPhone, password, isFunder, isEvaluator, isContractor } = this.state;
+    const { emailOrPhone, password, isFunder, isEvaluator, isContractor } = this.state;
+    let { fullName } = this.state;
+    fullName = fullName.trim();
     if (emailOrPhone === '' && password === '' && fullName === '') {
       return this.setState({
         emailOrPhoneError: true,
@@ -235,6 +246,9 @@ export default class OnBoarding extends Component {
     try {
       const resp = await signUp(data);
       this.setState({ loading: false });
+      if (resp && resp.response === undefined) {
+        this.dropdown.alertWithType('error', 'Error', 'No internet Connection');
+      }
       if (resp && resp.response && resp.response.data.message) {
         this.dropdown.alertWithType('error', 'Error', resp.response.data.message);
       }
@@ -306,7 +320,12 @@ export default class OnBoarding extends Component {
                   />
                 )}
               </View>
-              <DropdownAlert ref={ref => (this.dropdown = ref)} closeInterval={6000} />
+              <DropdownAlert
+                ref={ref => (this.dropdown = ref)}
+                startDelta={height}
+                endDelta={height - height / 8}
+                closeInterval={6000}
+              />
             </View>
           </KeyboardAvoidingView>
         </DismissKeyboard>

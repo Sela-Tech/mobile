@@ -40,7 +40,7 @@ export default class Transactions extends Component {
       const resp = await getProjectBalance(this.props.project._id);
 
       // const transaction = resp.data.myTokens.filter(c => c.type !== 'native');
-      console.log('the native balance', resp.data.transactions);
+
       this.setState({ transactions: resp.data.transactions, loading: false });
     } catch (err) {
       this.setState({ error: err.message, loading: false });

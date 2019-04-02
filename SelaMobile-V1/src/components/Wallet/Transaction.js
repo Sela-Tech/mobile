@@ -10,7 +10,7 @@ const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
-    height: height / 8,
+    height: height / 6.5,
     borderBottomColor: '#F5F5F8',
     borderBottomWidth: 2,
     marginHorizontal: 10,
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   amountText: {
-    color: '#369C05',
+    // color: ,
     fontSize: 14,
   },
   date: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Transaction = ({ data, imageSource, sender, amount, date, taskName }) => (
+const Transaction = ({ data, imageSource, sender, amount, date, taskName }) =>( 
   <View style={styles.container}>
     <View style={ExtStyles.flex1}>
       <Image
@@ -46,7 +46,7 @@ const Transaction = ({ data, imageSource, sender, amount, date, taskName }) => (
         </Text>
       </View>
       <View>
-        <Text style={styles.amountText}>
+        <Text style={[styles.amountText, { color: data.operation === 'received' ? '#369C05' : '#BC1717'}]}>
           PST {` `}
           {amount}
         </Text>

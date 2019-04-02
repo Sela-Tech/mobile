@@ -133,10 +133,6 @@ class CreateProject extends Component {
       });
 
       if (!pickerResult.cancelled) {
-        // uploadResponse = await uploadImageAsync(pickerResult.uri);
-        // uploadResult = await uploadResponse.json();
-
-        // console.log('picker result', pickerResult)
         this.setState({
           image: pickerResult.uri, // uploadResult.location
         });

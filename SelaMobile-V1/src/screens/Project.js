@@ -115,21 +115,45 @@ class Project extends Component {
     loading: true,
     relevantProject: otherFilters,
     relevantProjectVal: '',
-    isFunder: this.props && this.props.userInfo && this.props.userInfo.user.isFunder,
-    isEvaluator: this.props && this.props.userInfo && this.props.userInfo.user.isEvaluator,
-    isContractor: this.props && this.props.userInfo && this.props.userInfo.user.isContractor,
+    isFunder:
+      this.props &&
+      this.props.userInfo &&
+      this.props.userInfo.user &&
+      this.props.userInfo.user.isFunder,
+    isEvaluator:
+      this.props &&
+      this.props.userInfo &&
+      this.props.userInfo.user &&
+      this.props.userInfo.user.isEvaluator,
+    isContractor:
+      this.props &&
+      this.props.userInfo &&
+      this.props.userInfo.user &&
+      this.props.userInfo.user.isContractor,
   };
 
   async componentDidMount() {
     await this.loadInitialData();
     // getCurrentState();
-  };
+  }
 
   loadInitialData = async () => {
     const userRoleObj = {
-      isFunder: this.props && this.props.userInfo && this.props.userInfo.user.isFunder,
-      isEvaluator: this.props && this.props.userInfo && this.props.userInfo.user.isEvaluator,
-      isContractor: this.props && this.props.userInfo && this.props.userInfo.user.isContractor,
+      isFunder:
+        this.props &&
+        this.props.userInfo &&
+        this.props.userInfo.user &&
+        this.props.userInfo.user.isFunder,
+      isEvaluator:
+        this.props &&
+        this.props.userInfo &&
+        this.props.userInfo.user &&
+        this.props.userInfo.user.isEvaluator,
+      isContractor:
+        this.props &&
+        this.props.userInfo &&
+        this.props.userInfo.user &&
+        this.props.userInfo.user.isContractor,
     };
     const userRole = getUserRole(userRoleObj);
     if (userRole === 'funder') {
@@ -177,14 +201,15 @@ class Project extends Component {
       isEvaluator,
       isContractor,
     };
-    let userRole;
-    if (userRoleObj.isFunder) {
-      userRole = 'funder';
-    } else if (userRoleObj.isContractor) {
-      userRole = 'contractor';
-    } else {
-      userRole = 'evaluator';
-    }
+    // let userRole ;
+    const userRole = getUserRole(userRoleObj);
+    // if (userRoleObj.isFunder) {
+    //   userRole = 'funder';
+    // } else if (userRoleObj.isContractor) {
+    //   userRole = 'contractor';
+    // } else {
+    //   userRole = 'evaluator';
+    // }
     let invitedProjects;
     if (userRole === 'evaluator' || userRole === 'contractor') {
       invitedProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
@@ -234,7 +259,7 @@ class Project extends Component {
                       flexGrow: 1,
                     }}
                   >
-                    <StandardText
+                    {/* <StandardText
                       text="Welcome back"
                       viewStyle={{
                         justifyContent: 'flex-start',
@@ -246,7 +271,7 @@ class Project extends Component {
                         fontSize: 18,
                         color: '#201D41',
                       }}
-                    />
+                    /> */}
 
                     {/* <View style={{ marginHorizontal: 10, marginTop: 10 }}>
                       <View style={{ marginBottom: 5 }}>

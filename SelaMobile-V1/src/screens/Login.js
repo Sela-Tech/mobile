@@ -170,7 +170,14 @@ class Login extends Component {
     try {
       const resp = await this.props.login(data);
       this.props.getCred();
+
       this.setState({ loading: false });
+console.log('jsjjjj', resp);
+
+      if (resp && resp.response === undefined) {
+        this.dropdown.alertWithType('error', 'Error', 'No internet Connection');
+      }
+
       if (resp.status === true) {
         return NavigationService.navigate('Project');
       }
@@ -309,8 +316,8 @@ class Login extends Component {
             </View>
             <DropdownAlert
               ref={ref => (this.dropdown = ref)}
-              // startDelta={height}
-              // endDelta={height - height / 8}
+              startDelta={height}
+              endDelta={height - height / 8}
               closeInterval={6000}
             />
           </ScrollView>

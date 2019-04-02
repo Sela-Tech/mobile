@@ -88,9 +88,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     height: height / 13,
   },
+  multilineStyle: {
+    textAlignVertical: 'top',
+    marginTop: '2%',
+  },
 });
 
-const SendModal = ({ visibility, toggleModal, sendMoney, updateInput, data, loading, projectStakeholders }) => {
+const SendModal = ({
+  visibility,
+  toggleModal,
+  sendMoney,
+  updateInput,
+  data,
+  loading,
+  projectStakeholders,
+}) => {
   const { amountToBeSent, remarks, receiverID } = data;
   return (
     <Modal isVisible={visibility}>
@@ -117,14 +129,15 @@ const SendModal = ({ visibility, toggleModal, sendMoney, updateInput, data, load
                   selectedValue={receiverID}
                   onValueChange={receiverID => updateInput(receiverID, 'receiverID')}
                 >
-                  { projectStakeholders && projectStakeholders.map((s, i) => (
-                    <Picker.Item
-                      key={i}
-                      style={[styles.inputStyle, styles.picker]}
-                      label={s.user.information.firstName + " " + s.user.information.lastName}
-                      value={s.user.information._id}
-                    />
-                  ))}
+                  {projectStakeholders &&
+                    projectStakeholders.map((s, i) => (
+                      <Picker.Item
+                        key={i}
+                        style={[styles.inputStyle, styles.picker]}
+                        label={`${s.user.information.firstName} ${s.user.information.lastName}`}
+                        value={s.user.information._id}
+                      />
+                    ))}
                 </Picker>
               </View>
             </View>
@@ -146,9 +159,10 @@ const SendModal = ({ visibility, toggleModal, sendMoney, updateInput, data, load
                 <Text style={styles.textStyle}> Remarks </Text>
               </View>
               <Input
+                text="Reason for payment"
                 style={[styles.inputStyle, { height: height / 6 }]}
                 multiline
-                textStyle={ExtStyle.multiLineInputStyle}
+                textStyle={styles.multilineStyle}
                 onChangeTheText={remarks => updateInput(remarks, 'remarks')}
                 value={remarks}
               />
