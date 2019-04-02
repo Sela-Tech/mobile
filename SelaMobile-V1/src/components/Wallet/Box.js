@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginTop: 15,
     borderStyle: 'dotted',
-    borderWidth: 1,
+    // borderWidth: 1,
     backgroundColor: '#0A2C56',
   },
   text: {
@@ -72,6 +72,7 @@ class Box extends Component {
     //   completed: trans,
     //   totalAmount,
     // };
+    console.log('d--data', data);
     return (
       <TouchableOpacity
         style={[styles.container, personal ? { backgroundColor: '#156EDC' } : null]}
@@ -112,21 +113,21 @@ class Box extends Component {
                   <View style={{ justifyContent: 'center' }}>
                     <View
                       style={{
-                        height: 20,
-                        width: 30,
+                        height: width /18,
+                        width: width /11.5,
                         backgroundColor: personal ? '#369C05' : '#156EDC',
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
                     >
                       <Text style={{ fontSize: 10, fontWeight: 'bold' }}>
-                        {personal ? 'XLM' : 'PST'}{' '}
+                        {personal ? 'XLM' :  'PST'}{' '}
                       </Text>
                     </View>
                   </View>
                   <View style={{ marginLeft: 5, marginTop: 5 }}>
                     <Text style={{ color: '#FFFFFF', fontSize: 20, fontWeight: '400' }}>
-                      { balance === '---' ? balance : parseFloat(balance).toFixed(3)}
+                      { balance === '---' ? balance : parseFloat(balance).toFixed(6)}
                     </Text>
                   </View>
                 </View>

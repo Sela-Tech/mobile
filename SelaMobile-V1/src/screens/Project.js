@@ -122,8 +122,8 @@ class Project extends Component {
 
   async componentDidMount() {
     await this.loadInitialData();
-    getCurrentState();
-  }
+    // getCurrentState();
+  };
 
   loadInitialData = async () => {
     const userRoleObj = {

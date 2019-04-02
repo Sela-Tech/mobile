@@ -83,6 +83,7 @@ export default class Transactions extends Component {
       <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
         {transactions.map((c, index) => (
           <SingleTrans
+            key={index}
             price={`${c.value}PST`}
             date={moment(c.updatedAt).format('MMMM Do YYYY')}
             title={c.memo}

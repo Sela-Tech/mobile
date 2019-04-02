@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import { RootNavigator } from './src/Navigator';
 import ErrorHandler from './src/components/ErrorHandler';
+import OfflineNotice from './src/components/OfflineNotice';
 import Loading from './src/components/Loading';
 import NavigationService from './src/services/NavigationService';
 import { store, persistor } from './store';
@@ -30,6 +31,7 @@ export default class App extends Component {
           <ErrorHandler>
             <View style={styles.container}>
               <StatusBar barStyle="light-content" />
+              <OfflineNotice />
               <RootNavigator
                 ref={navigatorRef => {
                   NavigationService.setTopLevelNavigator(navigatorRef);
