@@ -172,7 +172,7 @@ class Login extends Component {
       this.props.getCred();
 
       this.setState({ loading: false });
-console.log('jsjjjj', resp);
+
 
       if (resp && resp.response === undefined) {
         this.dropdown.alertWithType('error', 'Error', 'No internet Connection');

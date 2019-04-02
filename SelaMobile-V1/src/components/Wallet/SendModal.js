@@ -160,6 +160,7 @@ const SendModal = ({
               </View>
               <Input
                 text="Reason for payment"
+                placeHolderColor="#201D41"
                 style={[styles.inputStyle, { height: height / 6 }]}
                 multiline
                 textStyle={styles.multilineStyle}

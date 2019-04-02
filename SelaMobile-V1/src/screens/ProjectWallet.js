@@ -139,12 +139,16 @@ class ProjectWallet extends Component {
   };
 
   render() {
+    // console.log('thhre');
+
+    const myUserId = this.props.userInfo.user.id
+    //Get all project stakeholders
     const projectStakeholders =
       this.props &&
       this.props.projects &&
       this.props.projects.projects &&
       this.props.projects.projects.find(c => c._id === this.props.navigation.state.params.projectId)
-        .stakeholders;
+        .stakeholders.filter(c => c.user.information._id !== myUserId);
     const data = this.props.navigation.state.params;
 
     const { projectName } = data;
