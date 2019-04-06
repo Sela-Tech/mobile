@@ -90,7 +90,7 @@ export default class Proposals extends Component {
           proposals.map((c, index) => (
             <ProposalContent
               key={index}
-              // projectName=""
+              projectName={c.projectName}
               totalMileStone={c.totalMilestones}
               totalTask={c.totalTasks}
               cost={c.totalBudget}

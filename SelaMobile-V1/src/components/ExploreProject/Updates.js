@@ -17,20 +17,9 @@ import BigImage from './Image';
 
 const { height, width } = Dimensions.get('window');
 
-const keyExtractor = item => item.id.toString();
+const keyExtractor = () => Math.floor(Math.random() * 100000).toString();
 
-const renderItem = item => <EvalSubmission imgSource={item.item.source} markedStatus />;
-
-const factoryImages = [
-  {
-    source: require('../../../assets/img/cleanup/factory_1.jpeg'),
-    id: 2,
-  },
-  {
-    source: require('../../../assets/img/cleanup/factory_2.jpg'),
-    id: 3,
-  },
-];
+const renderItem = item => <EvalSubmission imgSource={{ uri: item.item.evidence }} markedStatus />;
 
 const options = {
   title: 'Select Avatar',
@@ -228,6 +217,8 @@ class Updates extends Component {
 
     const { fileSource, theType, expand, submissionLoading, tableModal } = this.state;
 
+    console.log('ajjdj', allData.submissions);
+
     if (tableModal) {
       return (
         <SubmitEvidenceRequestModal
@@ -308,7 +299,7 @@ class Updates extends Component {
             )}
           </Fragment>
         </View>
-        <View style={{ flex: 4, paddingTop: 10,justifyContent: 'center' }}>
+        <View style={{ flex: 4, paddingTop: 10, justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ alignItems: 'center' }}>
               <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Task Name: </Text>
@@ -329,18 +320,26 @@ class Updates extends Component {
         <View style={userRole === 'funder' ? { flex: 6 } : null}>
           {userRole === 'funder' ? (
             <Fragment>
-              {allData && allData.submission && allData.submission.length === 0 ? (
-                <View>
-                  <Text> No Submission yet </Text>
-                </View>
-              ) : (
-                <View>
+              {(allData && allData.submissions && allData.submissions.length === 0) ? (
+                <View style={{ marginVertical: 5, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
+                  </View>
+              ) :
+              (
+          <Fragment>
+          {
+                allData && allData.submissions && allData.submissions.length === 0 ? (
+                <View style={{ marginVertical: 5, justifyContent: 'center', alignItems: 'center' }}>
+                    <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
+                  </View>
+              ):
+              ( <View style={{ marginBottom: 7 }}>
                   <View>
                     <B color="#201D41"> Evaluation Submissions</B>
                   </View>
                   <FlatList
                     style={{ paddingTop: 10 }}
-                    data={factoryImages}
+                    data={allData.submissions.filter(c => c && c.evidence)} // Get only image submissions
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={keyExtractor}
                     horizontal
@@ -348,6 +347,7 @@ class Updates extends Component {
                   />
                 </View>
               )}
+              </Fragment>)}
             </Fragment>
           ) : null}
         </View>

@@ -97,7 +97,7 @@ const OnBoardView = ({
                     borderColor: '#696F74',
                   }}
                   placeHolderColor="#696F74"
-                  text="Email Address or Phone Number"
+                  text="Email Address"
                   medium
                   textStyle={styles.whiteText}
                   onChangeTheText={emailOrPhone => emailOrPhoneFn(emailOrPhone)}

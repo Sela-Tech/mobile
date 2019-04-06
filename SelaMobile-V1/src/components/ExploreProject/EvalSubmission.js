@@ -2,15 +2,25 @@ import React, { Component } from 'react';
 import { ImageBackground, StyleSheet, Dimensions, View, TouchableOpacity } from 'react-native';
 import { CheckBox } from 'native-base';
 import Modal from 'react-native-modal';
+import Image from '../ProgressiveImage';
 import BigImage from './Image';
 
 const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
+    // marginHorizontal: 10,
+    height: height / 7,
+    width: width / 4,
+    // width: '100%',
+    borderRadius: 10,
+  },
+  imageContainer: {
     marginHorizontal: 10,
     height: height / 7,
     width: width / 4,
+    // width: '100%',
+    borderRadius: 10,
   },
   checkedStatus: {
     position: 'absolute',
@@ -46,16 +56,13 @@ export default class EvalSubmission extends Component {
       );
     }
     return (
-      <TouchableOpacity onPress={() => this.displayPicture()}>
-        <ImageBackground
+      <TouchableOpacity style={{ marginLeft: 8 }} onPress={() => this.displayPicture()}>
+        <Image
           style={styles.container}
+          imageStyle={styles.imageContainer}
           source={imgSource}
           imageStyle={{ borderRadius: 10 }}
-        >
-          <View style={styles.checkedStatus}>
-            <CheckBox size={10} color="#6FCF97" checked={markedStatus} />
-          </View>
-        </ImageBackground>
+        />
       </TouchableOpacity>
     );
   }

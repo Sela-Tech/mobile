@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet,ScrollView, Image, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import Map from './Map';
 import { projectStatusTextColor, mapNameToTag, formatMoney } from '../../utils/helpers';
@@ -82,7 +82,7 @@ export default class OverView extends Component {
       );
     }
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1}}>
         <View style={[{ flex: 2 }]}>
           <View style={{ flex: 2, marginBottom: 5 }}>
             <View>
@@ -196,7 +196,7 @@ export default class OverView extends Component {
             ) : null}
           </View>
         </View>
-      </View>
+      </ScrollView>
     );
   }
 }

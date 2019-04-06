@@ -232,7 +232,7 @@ class Login extends Component {
             </View>
             <View style={styles.inputContainer}>
               <Input
-                text="Email Address or Phone Number"
+                text="Email Address"
                 value={emailOrPhone}
                 textStyle={styles.whiteText}
                 onChangeTheText={emailOrPhone => this.setState({ emailOrPhone })}

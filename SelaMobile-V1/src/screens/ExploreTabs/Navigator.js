@@ -70,9 +70,9 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
         Overview: {
           screen: () => <OverViewDetails userRole={userRole} project={project} />,
         },
-        Analytics: {
-          screen: () => <Overview userRole={userRole} project={project} />,
-        },
+        // Analytics: {
+        //   screen: () => <Overview userRole={userRole} project={project} />,
+        // },
         Stakeholders: {
           screen: () => <Stakeholders userRole={userRole} project={project} />,
         },
