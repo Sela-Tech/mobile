@@ -9,8 +9,8 @@ import {
   TouchableOpacity,
   ScrollView,
   Dimensions,
-  YellowBox,
 } from 'react-native';
+import LottieView from 'lottie-react-native';
 import { connect } from 'react-redux';
 // import { Tabs, Tab } from 'native-base';
 
@@ -26,7 +26,7 @@ import { YELLOW, BASE_URL } from '../utils/constants';
 import { getUserRole } from '../utils/helpers';
 import ExtStyle from '../utils/styles';
 import Spinner from '../components/Spinner';
-import StandardText from '../components/StandardText';
+// import StandardText from '../components/StandardText';
 import NavigationService from '../services/NavigationService';
 
 const { height, width } = Dimensions.get('window');
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     alignSelf: 'flex-end',
-    // flex: 1,
     position: 'absolute',
     bottom: 35,
     right: 10,
@@ -134,6 +133,7 @@ class Project extends Component {
   };
 
   async componentDidMount() {
+    this.animation.play();
     await this.loadInitialData();
     getCurrentState();
   }
@@ -163,7 +163,7 @@ class Project extends Component {
       await this.props.getProjectInvitedTo();
     }
 
-    this.setState({ loading: false });
+    // this.setState({ loading: false });
   };
 
   reload = async () => {
@@ -202,15 +202,7 @@ class Project extends Component {
       isEvaluator,
       isContractor,
     };
-    // let userRole ;
     const userRole = getUserRole(userRoleObj);
-    // if (userRoleObj.isFunder) {
-    //   userRole = 'funder';
-    // } else if (userRoleObj.isContractor) {
-    //   userRole = 'contractor';
-    // } else {
-    //   userRole = 'evaluator';
-    // }
     let invitedProjects;
     if (userRole === 'evaluator' || userRole === 'contractor') {
       invitedProjects = (this.props && this.props.projects && this.props.projects.projects) || [];
@@ -250,7 +242,12 @@ class Project extends Component {
           <Fragment>
             {loading ? (
               <View style={{ height }}>
-                <Spinner />
+                <LottieView
+                  ref={animation => {
+                    this.animation = animation;
+                  }}
+                  source={require('../../assets/animations/loading.json')}
+                />
               </View>
             ) : (
               <Fragment>
