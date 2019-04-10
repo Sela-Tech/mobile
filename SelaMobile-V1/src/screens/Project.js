@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   ScrollView,
   Dimensions,
+  YellowBox,
 } from 'react-native';
 import { connect } from 'react-redux';
 // import { Tabs, Tab } from 'native-base';
@@ -134,7 +135,7 @@ class Project extends Component {
 
   async componentDidMount() {
     await this.loadInitialData();
-    // getCurrentState();
+    getCurrentState();
   }
 
   loadInitialData = async () => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, StatusBar } from 'react-native';
+import { StyleSheet, View, YellowBox, StatusBar } from 'react-native';
 import { Provider } from 'react-redux';
 // import Instabug from 'instabug-reactnative';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -21,6 +21,10 @@ const styles = StyleSheet.create({
 export default class App extends Component {
   constructor(props) {
     super(props);
+    YellowBox.ignoreWarnings([
+      'Setting a timer',
+      'Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?',
+    ]);
     // Instabug.startWithToken('a1713df89289cd1a3490a23f2a1c8208', [Instabug.invocationEvent.shake]);
   }
 
