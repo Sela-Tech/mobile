@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { View, Dimensions, ScrollView, StyleSheet } from 'react-native';
+import { View, Dimensions, Animated, ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import Transaction from '../components/Wallet/Transaction';
 import SendModal from '../components/Wallet/SendModal';
@@ -48,17 +48,23 @@ const styles = StyleSheet.create({
 });
 
 class ProjectWallet extends Component {
-  state = {
-    transaction: [],
-    nativeBalance: '---',
-    loading: true,
-    modalVisibility: false,
-    amountToBeSent: 0,
-    remarks: '',
-    receiverID: '',
-    loading: true,
-    balance: this.props.navigation.state.params.balance,
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      scrollY: new Animated.Value(0),
+      loading: false,
+      transaction: [],
+      nativeBalance: '---',
+      loading: true,
+      modalVisibility: false,
+      amountToBeSent: 0,
+      remarks: '',
+      receiverID: '',
+      // loading: true,
+      balance: this.props.navigation.state.params.balance,
+    };
+  }
 
   async componentDidMount() {
     try {
@@ -161,6 +167,7 @@ class ProjectWallet extends Component {
       remarks,
       receiverID,
       balance,
+      scrollY,
     } = this.state;
     const transferData = {
       amountToBeSent,
@@ -169,11 +176,12 @@ class ProjectWallet extends Component {
     };
     return (
       <ScrollView
+        style={{ flex: 1 }}
+        scrollEventThrottle={1}
         stickyHeaderIndices={[0]}
-        contentContainerStyle={{
-          // flexGrow: 1,
-          minHeight: height,
-        }}
+        onScroll={Animated.event([{ nativeEvent: { contentOffset: { y: scrollY } } }], {
+          // useNativeDriver: true, //--> native driver not working for some reasons
+        })}
       >
         <Header
           navigation={this.props.navigation}
@@ -183,7 +191,7 @@ class ProjectWallet extends Component {
             nativeBalance === '---' ? nativeBalance : parseFloat(nativeBalance) // .toFixed(3)
           }
         />
-        <View style={{ flex: 1 }}>
+        <Animated.View pointerEvents="none" style={{ flex: 1 }}>
           <Fragment>
             {loading ? (
               <View style={ExtStyles.center}>
@@ -234,7 +242,7 @@ class ProjectWallet extends Component {
             loading={loading}
             projectStakeholders={projectStakeholders}
           />
-        </View>
+        </Animated.View>
       </ScrollView>
     );
   }
