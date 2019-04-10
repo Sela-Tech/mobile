@@ -33,6 +33,15 @@ allprojects {
 
 
 // subprojects {
+//  afterEvaluate{
+//         if((subproject.plugins.hasPlugin('android') || ('android-library'))) {
+//             android {
+//                 compileSdkVersion rootProject.ext.compileSdkVersion
+//                 // buildToolsVersion rootProject.ext.buildToolsVersion
+//             }
+//         }
+//     }
+
 //   project.configurations.all {
 //      resolutionStrategy.eachDependency { details ->
 //         if (details.requested.group == 'com.android.support'
@@ -48,8 +57,8 @@ subprojects { subproject ->
     afterEvaluate{
         if((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
             android {
-                compileSdkVersion rootProject.ext.compileSdkVersion
-                buildToolsVersion rootProject.ext.buildToolsVersion
+                // compileSdkVersion rootProject.ext.compileSdkVersion
+                // buildToolsVersion rootProject.ext.buildToolsVersion
             }
         }
     }
@@ -60,9 +69,13 @@ subprojects { subproject ->
 ext {
     compileSdkVersion   = 26
     targetSdkVersion    = 26
-    buildToolsVersion   = "26.0.2"
+
+    //  buildToolsVersion   = "27.1.1"
+    // supportLibVersion   = "26.1.0"
+ buildToolsVersion   = "26.0.2"
     supportLibVersion   = "26.1.0"
     googlePlayServicesVersion = "11.8.0"
     androidMapsUtilsVersion = "0.5+"
  }
 
+    // buildToolsVersion   = "26.0.2"

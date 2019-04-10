@@ -133,7 +133,7 @@ class Project extends Component {
   };
 
   async componentDidMount() {
-    this.animation.play();
+    // this.animation.play();
     await this.loadInitialData();
     getCurrentState();
   }
@@ -163,7 +163,7 @@ class Project extends Component {
       await this.props.getProjectInvitedTo();
     }
 
-    // this.setState({ loading: false });
+    this.setState({ loading: false });
   };
 
   reload = async () => {
@@ -242,12 +242,13 @@ class Project extends Component {
           <Fragment>
             {loading ? (
               <View style={{ height }}>
-                <LottieView
+              <Spinner />
+                {/* <LottieView
                   ref={animation => {
                     this.animation = animation;
                   }}
                   source={require('../../assets/animations/loading.json')}
-                />
+                /> */}
               </View>
             ) : (
               <Fragment>
