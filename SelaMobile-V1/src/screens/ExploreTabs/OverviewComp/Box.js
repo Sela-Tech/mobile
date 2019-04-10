@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
   },
 });
 
-
 const fill = '#F2994A';
 const data = [50, 10, 40, 95, 85, 0, 35, 53, 24, 50];
 
@@ -159,7 +158,6 @@ export default class Box extends Component {
         },
         key: `pie-${index}`,
       }));
-
 
     const Labels = ({ slices, height, width }) =>
       slices.map((slice, index) => {
@@ -278,7 +276,6 @@ export default class Box extends Component {
           </View>
 
           <PureChart data={sampleData2} type="pie" />
-
         </View>
       );
     }
@@ -301,4 +298,3 @@ export default class Box extends Component {
 Box.defaultProps = {};
 
 Box.propTypes = {};
-

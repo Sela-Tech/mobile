@@ -120,9 +120,7 @@ export default class Header extends Component {
               <View>
                 <Text style={styles.balance}>
                   {' '}
-                  {toggle
-                    ? parseFloat(balance).toFixed(3)
-                    : nativeBalance}
+                  {toggle ? parseFloat(balance).toFixed(3) : nativeBalance}
                 </Text>
               </View>
             </View>

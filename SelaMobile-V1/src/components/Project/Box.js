@@ -13,7 +13,7 @@ import Text from '../Text';
 import Tag from '../Tag';
 import ExtStyles from '../../utils/styles';
 import { WHITE, YELLOW } from '../../utils/constants';
-import {  projectStatusTextColor } from '../../utils/helpers';
+import { projectStatusTextColor } from '../../utils/helpers';
 
 const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -201,7 +201,7 @@ const Box = ({ projectInfo, empty, siteName, wide, imageSource, text }) => (
       <View style={ExtStyles.flex1}>
         <ImageBackground
           source={{
-            uri: projectInfo['project-avatar'] || projectInfo.avatar
+            uri: projectInfo['project-avatar'] || projectInfo.avatar,
           }}
           // source={{ uri: imageSource === '' ? 'https://placeimg.com/640/480/any' : imageSource }}
           style={styles.imageBack}

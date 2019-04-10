@@ -48,7 +48,7 @@ class Box extends Component {
   };
 
   render() {
-    const { projectName,data, fn, navigation, personal, balance } = this.props;
+    const { projectName, data, fn, navigation, personal, balance } = this.props;
     const { loading, requests } = this.state;
 
     // const completed =
@@ -76,7 +76,7 @@ class Box extends Component {
     return (
       <TouchableOpacity
         style={[styles.container, personal ? { backgroundColor: '#156EDC' } : null]}
-        onPress={() =>  personal ? console.log() : navigation.navigate('ProjectWallet', data)}
+        onPress={() => (personal ? console.log() : navigation.navigate('ProjectWallet', data))}
       >
         <View style={{ flex: 1, marginHorizontal: 9, justifyContent: 'center' }}>
           <View style={{ flex: 1, marginTop: 12, flexDirection: 'column' }}>
@@ -113,21 +113,21 @@ class Box extends Component {
                   <View style={{ justifyContent: 'center' }}>
                     <View
                       style={{
-                        height: width /18,
-                        width: width /11.5,
+                        height: width / 18,
+                        width: width / 11.5,
                         backgroundColor: personal ? '#369C05' : '#156EDC',
                         justifyContent: 'center',
                         alignItems: 'center',
                       }}
                     >
                       <Text style={{ fontSize: 10, fontWeight: 'bold' }}>
-                        {personal ? 'XLM' :  'PST'}{' '}
+                        {personal ? 'XLM' : 'PST'}{' '}
                       </Text>
                     </View>
                   </View>
                   <View style={{ marginLeft: 5, marginTop: 5 }}>
                     <Text style={{ color: '#FFFFFF', fontSize: 20, fontWeight: '400' }}>
-                      { balance === '---' ? balance : parseFloat(balance).toFixed(6)}
+                      {balance === '---' ? balance : parseFloat(balance).toFixed(6)}
                     </Text>
                   </View>
                 </View>

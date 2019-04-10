@@ -6,7 +6,6 @@ import Text from '../Text';
 import Tag from '../Tag';
 import { YELLOW, WHITE } from '../../utils/constants';
 
-
 const styles = StyleSheet.create({
   container: {
     alignItems: 'center',

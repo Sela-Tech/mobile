@@ -17,7 +17,7 @@ import BigImage from './Image';
 
 const { height, width } = Dimensions.get('window');
 
-const keyExtractor = () => Math.floor(Math.random() * 100000).toString();
+const keyExtractor = () => Math.floor(Math.random() * 1000000).toString();
 
 const renderItem = item => <EvalSubmission imgSource={{ uri: item.item.evidence }} markedStatus />;
 
@@ -217,8 +217,6 @@ class Updates extends Component {
 
     const { fileSource, theType, expand, submissionLoading, tableModal } = this.state;
 
-    console.log('ajjdj', allData.submissions);
-
     if (tableModal) {
       return (
         <SubmitEvidenceRequestModal
@@ -320,34 +318,38 @@ class Updates extends Component {
         <View style={userRole === 'funder' ? { flex: 6 } : null}>
           {userRole === 'funder' ? (
             <Fragment>
-              {(allData && allData.submissions && allData.submissions.length === 0) ? (
+              {allData && allData.submissions && allData.submissions.length === 0 ? (
                 <View style={{ marginVertical: 5, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
-                  </View>
-              ) :
-              (
-          <Fragment>
-          {
-                allData && allData.submissions && allData.submissions.length === 0 ? (
-                <View style={{ marginVertical: 5, justifyContent: 'center', alignItems: 'center' }}>
-                    <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
-                  </View>
-              ):
-              ( <View style={{ marginBottom: 7 }}>
-                  <View>
-                    <B color="#201D41"> Evaluation Submissions</B>
-                  </View>
-                  <FlatList
-                    style={{ paddingTop: 10 }}
-                    data={allData.submissions.filter(c => c && c.evidence)} // Get only image submissions
-                    showsHorizontalScrollIndicator={false}
-                    keyExtractor={keyExtractor}
-                    horizontal
-                    renderItem={renderItem}
-                  />
+                  <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
                 </View>
+              ) : (
+                <Fragment>
+                  {allData && allData.submissions && allData.submissions.length === 0 ? (
+                    <View
+                      style={{ marginVertical: 5, justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
+                    </View>
+                  ) : (
+                    <View style={{ marginBottom: 7 }}>
+                      <View>
+                        <B color="#201D41"> Evaluation Submissions</B>
+                      </View>
+                      <FlatList
+                        style={{ paddingTop: 10 }}
+                        data={allData.submissions.filter(c => c && c.evidence)} // Get only image submissions
+                        showsHorizontalScrollIndicator={false}
+                        keyExtractor={keyExtractor}
+                        horizontal
+                        initialNumToRender={4}
+                        renderItem={renderItem}
+                        removeClippedSubviews
+                        windowSize={10}
+                      />
+                    </View>
+                  )}
+                </Fragment>
               )}
-              </Fragment>)}
             </Fragment>
           ) : null}
         </View>

@@ -84,7 +84,7 @@ export default class Transactions extends Component {
         {transactions.map((c, index) => (
           <SingleTrans
             key={index}
-            price={`${c.value}PST`}
+            price={`${c.value} PST`}
             date={moment(c.updatedAt).format('MMMM Do YYYY')}
             title={c.memo}
             paidBy={`${c.sender.firstName} ${c.sender.lastName}`}

@@ -111,7 +111,7 @@ class SingleNotificationText extends Component {
         notificationId: this.props.notifs._id,
         agreed: agreed === 'true',
       });
-       await  this.reloadProject();
+      await this.reloadProject();
     } catch (err) {
       this.setState({ error: err.message });
     }
@@ -167,11 +167,7 @@ class SingleNotificationText extends Component {
             ) : null}
           </Fragment>
           <View style={styles.mt5}>
-            <Text> {time}
-{' '}
-ago.
-{' '}
-</Text>
+            <Text> {time} ago. </Text>
           </View>
         </View>
       </View>

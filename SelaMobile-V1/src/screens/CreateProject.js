@@ -1,12 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import {
-  View,
-  StyleSheet,
-  Dimensions,
-  Keyboard,
-  Image,
-  TouchableOpacity,
-} from 'react-native';
+import { View, StyleSheet, Dimensions, Keyboard, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import DropdownAlert from 'react-native-dropdownalert';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -94,9 +87,10 @@ class CreateProject extends Component {
         c.value = c._id;
         return c;
       });
-      this.setState({ users//,
+      this.setState({
+        users, // ,
         //  stakeholderName: [users[0]._id]
-         });
+      });
     } catch (err) {
       this.setState({ error: err.message });
     }
@@ -204,7 +198,7 @@ class CreateProject extends Component {
       name,
       description,
       selectedItems,
-      budget,
+      // budget,
       contractors,
       avatar,
       startDate,
@@ -215,6 +209,8 @@ class CreateProject extends Component {
       selectedUsers,
       locationObj,
       avatarSource,
+      obsBudget,
+      impBudget,
     } = this.state;
 
     const data = {
@@ -223,8 +219,10 @@ class CreateProject extends Component {
       startDate,
       endDate,
       tags: selectedItems,
-      budget,
-      goal: budget,
+      // budget,
+      implementationBudget: impBudget,
+      observationBudget: obsBudget,
+      // goal: budget,
       stakeholders: selectedUsers.length === 0 ? [] : selectedUsers, // [selectedUsers[0]],
       location: locationObj,
     };
@@ -246,9 +244,7 @@ class CreateProject extends Component {
     }
   };
 
-
-
-  onSelectedItemsChange = selectedItems =>  this.setState({ selectedItems });
+  onSelectedItemsChange = selectedItems => this.setState({ selectedItems });
 
   onSelectedUsersChange = selectedUsers => this.setState({ selectedUsers });
 
@@ -436,14 +432,33 @@ class CreateProject extends Component {
         </View>
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
-            <Text style={{ fontSize: 15 }}> Budget or financial Goal(if fundraising) </Text>
+            <Text style={{ fontSize: 15 }}> Implementation Budget </Text>
           </View>
           <Input
-            text="Enter amount in USD"
+            text="amount in USD"
             style={styles.inputStyle}
             placeHolderColor="#B1BAD2"
             numb
-            onChangeTheText={budget => this.setState({ budget })}
+            onChangeTheText={impBudget => this.setState({ impBudget })}
+            onTheChange={() =>
+              this.setState({
+                budgetError: false,
+                budgetErrorMessage: '',
+              })
+            }
+          />
+        </View>
+
+        <View style={styles.smallContainer}>
+          <View style={{ marginBottom: 10 }}>
+            <Text style={{ fontSize: 15 }}>Observation Budget </Text>
+          </View>
+          <Input
+            text="amount in USD"
+            style={styles.inputStyle}
+            placeHolderColor="#B1BAD2"
+            numb
+            onChangeTheText={obsBudget => this.setState({ obsBudget })}
             onTheChange={() =>
               this.setState({
                 budgetError: false,

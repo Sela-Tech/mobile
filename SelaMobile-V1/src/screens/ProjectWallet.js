@@ -23,7 +23,8 @@ const styles = StyleSheet.create({
   },
 
   innerContainer: {
-    height: height / 2,
+    // flex: 1,
+    // height: height / 2,
     borderColor: '#ddd',
     shadowColor: '#ddd',
     shadowOpacity: 1.0,
@@ -139,15 +140,14 @@ class ProjectWallet extends Component {
   };
 
   render() {
-    // console.log('thhre');
-
-    const myUserId = this.props.userInfo.user.id
-    //Get all project stakeholders
+    const myUserId = this.props.userInfo.user.id;
+    // Get all project stakeholders
     const projectStakeholders =
       this.props &&
       this.props.projects &&
       this.props.projects.projects &&
-      this.props.projects.projects.find(c => c._id === this.props.navigation.state.params.projectId)
+      this.props.projects.projects
+        .find(c => c._id === this.props.navigation.state.params.projectId)
         .stakeholders.filter(c => c.user.information._id !== myUserId);
     const data = this.props.navigation.state.params;
 
@@ -168,7 +168,13 @@ class ProjectWallet extends Component {
       receiverID,
     };
     return (
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+      <ScrollView
+        stickyHeaderIndices={[0]}
+        contentContainerStyle={{
+          // flexGrow: 1,
+          minHeight: height,
+        }}
+      >
         <Header
           navigation={this.props.navigation}
           title={projectName}
@@ -177,56 +183,58 @@ class ProjectWallet extends Component {
             nativeBalance === '---' ? nativeBalance : parseFloat(nativeBalance) // .toFixed(3)
           }
         />
-        <SendModal
-          visibility={modalVisibility}
-          toggleModal={this.toggleModal}
-          sendMoney={this.sendMoney}
-          data={transferData}
-          updateInput={this.updateInput}
-          loading={loading}
-          projectStakeholders={projectStakeholders}
-        />
-        <Fragment>
-          {loading ? (
-            <View style={ExtStyles.center}>
-              <Spinner color="#0A2C56" />
-            </View>
-          ) : (
-            <Fragment>
-              {transaction.length === 0 ? null : (
-                <View>
-                  <View style={{ marginVertical: 10, marginLeft: 25 }}>
-                    <Button
-                      fn={() => this.toggleModal()}
-                      style={{
-                        width: width / 2.5,
-                      }}
-                      textStyle={{
-                        color: WHITE,
-                      }}
-                      text="Send"
-                    />
+        <View style={{ flex: 1 }}>
+          <Fragment>
+            {loading ? (
+              <View style={ExtStyles.center}>
+                <Spinner color="#0A2C56" />
+              </View>
+            ) : (
+              <Fragment>
+                {transaction.length === 0 ? null : (
+                  <View>
+                    <View style={{ marginVertical: 10, marginLeft: 25 }}>
+                      <Button
+                        fn={() => this.toggleModal()}
+                        style={{
+                          width: width / 2.5,
+                        }}
+                        textStyle={{
+                          color: WHITE,
+                        }}
+                        text="Send"
+                      />
+                    </View>
+                    <View style={styles.innerContainer}>
+                      <Fragment>
+                        {transaction.map((c, index) => (
+                          <Transaction
+                            key={index}
+                            data={c}
+                            taskName={c.memo}
+                            imageSource={{ uri: c.sender.profilePhoto }}
+                            sender={`${c.sender.firstName} ${c.sender.lastName}`}
+                            amount={c.value}
+                            date={c.updatedAt}
+                          />
+                        ))}
+                      </Fragment>
+                    </View>
                   </View>
-                  <View style={styles.innerContainer}>
-                    <Fragment>
-                      {transaction.map((c, index) => (
-                        <Transaction
-                          key={index}
-                          data={c}
-                          taskName={c.memo}
-                          imageSource={{ uri: c.sender.profilePhoto }}
-                          sender={`${c.sender.firstName} ${c.sender.lastName}`}
-                          amount={c.value}
-                          date={c.updatedAt}
-                        />
-                      ))}
-                    </Fragment>
-                  </View>
-                </View>
-              )}
-            </Fragment>
-          )}
-        </Fragment>
+                )}
+              </Fragment>
+            )}
+          </Fragment>
+          <SendModal
+            visibility={modalVisibility}
+            toggleModal={this.toggleModal}
+            sendMoney={this.sendMoney}
+            data={transferData}
+            updateInput={this.updateInput}
+            loading={loading}
+            projectStakeholders={projectStakeholders}
+          />
+        </View>
       </ScrollView>
     );
   }

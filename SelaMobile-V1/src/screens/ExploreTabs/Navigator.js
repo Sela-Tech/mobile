@@ -65,38 +65,57 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
   let Tabs;
 
   if (userRole === 'funder') {
-    Tabs = createMaterialTopTabNavigator(
-      {
-        Overview: {
-          screen: () => <OverViewDetails userRole={userRole} project={project} />,
+    if (project.owner._id !== userId) {
+      Tabs = createMaterialTopTabNavigator(
+        {
+          Overview: {
+            screen: () => <OverViewDetails userRole={userRole} project={project} />,
+          },
+          Analytics: {
+            screen: () => <Overview userRole={userRole} project={project} />,
+          },
+          Stakeholders: {
+            screen: () => <Stakeholders userRole={userRole} project={project} />,
+          },
         },
-        // Analytics: {
-        //   screen: () => <Overview userRole={userRole} project={project} />,
-        // },
-        Stakeholders: {
-          screen: () => <Stakeholders userRole={userRole} project={project} />,
+        {
+          tabBarOptions,
         },
-        Proposals: {
-          screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
+      );
+    } else {
+      Tabs = createMaterialTopTabNavigator(
+        {
+          Overview: {
+            screen: () => <OverViewDetails userRole={userRole} project={project} />,
+          },
+          // Analytics: {
+          //   screen: () => <Overview userRole={userRole} project={project} />,
+          // },
+          Stakeholders: {
+            screen: () => <Stakeholders userRole={userRole} project={project} />,
+          },
+          Proposals: {
+            screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
+          },
+          Evidence: {
+            screen: () => <Request userRole={userRole} project={project} />,
+          },
+          Updates: {
+            screen: () => (
+              <Updates
+                updateTask={updateTask}
+                requests={requests}
+                userRole={userRole}
+                project={project}
+              />
+            ),
+          },
         },
-        Evidence: {
-          screen: () => <Request userRole={userRole} project={project} />,
+        {
+          tabBarOptions,
         },
-        Updates: {
-          screen: () => (
-            <Updates
-              updateTask={updateTask}
-              requests={requests}
-              userRole={userRole}
-              project={project}
-            />
-          ),
-        },
-      },
-      {
-        tabBarOptions,
-      },
-    );
+      );
+    }
   } else if (userRole === 'evaluator') {
     Tabs = createMaterialTopTabNavigator(
       {

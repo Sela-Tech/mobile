@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 
 const BackButton = ({ fn }) => (
   <View style={styles.container}>
-    <TouchableOpacity style={styles.container} onPress={() => fn()}>
+    <TouchableOpacity onPress={() => fn()}>
       <Image style={styles.icon} source={require('../../assets/img/blackback.png')} />
     </TouchableOpacity>
   </View>

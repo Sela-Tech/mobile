@@ -173,7 +173,6 @@ class Login extends Component {
 
       this.setState({ loading: false });
 
-
       if (resp && resp.response === undefined) {
         this.dropdown.alertWithType('error', 'Error', 'No internet Connection');
       }

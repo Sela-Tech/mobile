@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const fundedStatus = ['60%', '40%', '20%', '85%'];
+// const fundedStatus = ['60%', '40%', '20%', '85%'];
 
 const Box = ({ img, home, cost, firstText, secondText, thirdText, title, tags, fn }) => (
   <TouchableOpacity onPress={() => fn()} style={styles.container}>
@@ -116,17 +116,6 @@ const Box = ({ img, home, cost, firstText, secondText, thirdText, title, tags, f
             <View style={{ paddingVertical: 10, flex: 1, flexDirection: 'row' }}>
               <View>
                 <Text style={{ fontSize: 15, fontWeight: '600' }}>{formatMoney(cost)}</Text>
-              </View>
-
-              <View style={styles.viewInImage}>
-                <View style={{ paddingLeft: 5 }}>
-                  <Image source={require('../../../assets/money.png')} />
-                </View>
-                <View>
-                  <Text style={{ color: WHITE }}>
-                    {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded
-                  </Text>
-                </View>
               </View>
             </View>
             <View

@@ -37,7 +37,6 @@ export default ({ navigation }) => (
         <Text style={styles.fSize}> methods below </Text>
       </View>
     </View>
-    <View style={Extstyle.flex3}>
-    </View>
+    <View style={Extstyle.flex3} />
   </View>
 );

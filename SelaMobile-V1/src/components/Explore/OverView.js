@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { View, StyleSheet,ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import moment from 'moment';
 import Map from './Map';
 import { projectStatusTextColor, mapNameToTag, formatMoney } from '../../utils/helpers';
@@ -82,13 +82,13 @@ export default class OverView extends Component {
       );
     }
     return (
-      <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1}}>
+      <ScrollView style={styles.container} contentContainerStyle={{ flexGrow: 1 }}>
         <View style={[{ flex: 2 }]}>
           <View style={{ flex: 2, marginBottom: 5 }}>
             <View>
               <Text style={styles.darkBlue}>Description</Text>
             </View>
-            <View style={{flex: 1, marginTop: 7 }}>
+            <View style={{ flex: 1, marginTop: 7 }}>
               <Text>{project.description}</Text>
             </View>
           </View>
@@ -164,8 +164,7 @@ export default class OverView extends Component {
               </View>
               <View style={styles.pt}>
                 <Text style={{ fontSize: 16 }}>
-                  {moment(project.startDate).format('MMMM Do YYYY')} --
-{' '}
+                  {moment(project.startDate).format('MMMM Do YYYY')} --{' '}
                   {moment(project.endDate).format('MMMM Do YYYY')}
                 </Text>
               </View>
@@ -174,10 +173,21 @@ export default class OverView extends Component {
             <View style={{ flex: 1, flexDirection: 'row' }}>
               <View>
                 <View>
-                  <Text style={styles.darkBlue}>Budget </Text>
+                  <Text style={styles.darkBlue}>Observation Budget </Text>
                 </View>
                 <View style={styles.pt}>
                   <Text style={styles.text}>{formatMoney(project.observationBudget)}</Text>
+                </View>
+              </View>
+            </View>
+
+            <View style={{ flex: 1, flexDirection: 'row' }}>
+              <View>
+                <View>
+                  <Text style={styles.darkBlue}>Implementation Budget </Text>
+                </View>
+                <View style={styles.pt}>
+                  <Text style={styles.text}>{formatMoney(project.implementationBudget)}</Text>
                 </View>
               </View>
             </View>

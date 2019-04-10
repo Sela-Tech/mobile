@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 import Modal from 'react-native-modal';
 import { CheckBox } from 'native-base';
-import TableRequestModal from './TableRequestModal';
 import Text from '../Text';
 import Button from '../Button';
 import Input from '../Input';
@@ -104,6 +103,10 @@ const styles = StyleSheet.create({
     height: height / 13,
     width: '100%',
   },
+  checkBox: {
+   flex: 1,
+    height: height / 10,
+  },
 });
 
 const CheckBoxContainer = ({ level, mark, fn }) => (
@@ -112,7 +115,11 @@ const CheckBoxContainer = ({ level, mark, fn }) => (
       <CheckBox color="#201D41" onPress={() => fn(level.toLowerCase())} checked={mark} />
     </View>
     <View style={ExtStyle.flex7}>
-      <Text> {level} Level Request </Text>
+      <Text> {level}
+{' '}
+Level Request
+{' '}
+</Text>
     </View>
   </View>
 );
@@ -200,11 +207,11 @@ export default class EvidenceRequestModal extends Component {
               </TouchableOpacity>
             </View>
             <View style={styles.middleContainer}>
-              <View style={{ flex: 1, height: height / 10 }}>
+              <View style={styles.checkBox}>
                 <CheckBoxContainer level="Task" mark={level} fn={this.toggleLevelRequest} />
                 <CheckBoxContainer level="Project" mark={!level} fn={this.toggleLevelRequest} />
               </View>
-              <View style={{ flex: 1 }}>
+              <View style={ExtStyle.flex1}>
                 <Fragment>
                   {level ? (
                     <Fragment>
@@ -218,14 +225,15 @@ export default class EvidenceRequestModal extends Component {
                             selectedValue={proposalID}
                             onValueChange={id => this.setState({ proposalID: id })}
                           >
-                            { proposals && proposals.map((s, i) => (
-                              <Picker.Item
-                                key={i}
-                                style={[styles.inputStyle, styles.picker]}
-                                label={s}
-                                value={s}
-                              />
-                            ))}
+                            {proposals &&
+                              proposals.map((s, i) => (
+                                <Picker.Item
+                                  key={i}
+                                  style={[styles.inputStyle, styles.picker]}
+                                  label={s}
+                                  value={s}
+                                />
+                              ))}
                           </Picker>
                         </View>
                       </View>
@@ -240,14 +248,15 @@ export default class EvidenceRequestModal extends Component {
                             selectedValue={proposalID}
                             onValueChange={id => this.setState({ proposalID: id })}
                           >
-                            { proposals && proposals.map((s, i) => (
-                              <Picker.Item
-                                key={i}
-                                style={[styles.inputStyle, styles.picker]}
-                                label={s}
-                                value={s}
-                              />
-                            ))}
+                            {proposals &&
+                              proposals.map((s, i) => (
+                                <Picker.Item
+                                  key={i}
+                                  style={[styles.inputStyle, styles.picker]}
+                                  label={s}
+                                  value={s}
+                                />
+                              ))}
                           </Picker>
                         </View>
                       </View>
@@ -360,7 +369,7 @@ export default class EvidenceRequestModal extends Component {
                 style={styles.buttonStyle}
               />
             </View>
-            <View style={{ flex: 1, marginTop: 10 }} />
+            <View style={[ExtStyle.flex1, ExtStyle.mt10]} />
           </ScrollView>
         </KeyboardAvoidingView>
       </Modal>

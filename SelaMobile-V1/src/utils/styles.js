@@ -69,6 +69,9 @@ const styles = StyleSheet.create({
   ptL: {
     paddingLeft: 5,
   },
+  mt10: {
+    marginTop: 10,
+  },
 });
 
 export default styles;

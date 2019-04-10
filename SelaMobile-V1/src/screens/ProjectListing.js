@@ -70,7 +70,7 @@ const renderItem = item => (
       secondText={item.item.name}
       thirdText={item.item.status}
       title={item.item.description}
-      cost={item.item.goal}
+      cost={item.item.implementationBudget}
       tags={item.item.tags}
     />
   </View>
@@ -267,6 +267,8 @@ class ExploreProject extends Component {
                       renderItem={renderItem}
                       style={{ flex: 1 }}
                       keyExtractor={keyExtractor}
+                      removeClippedSubviews
+                      initialNumToRender={10}
                     />
                   )}
                 </Fragment>
