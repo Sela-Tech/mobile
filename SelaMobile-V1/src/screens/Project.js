@@ -10,7 +10,7 @@ import {
   ScrollView,
   Dimensions,
 } from 'react-native';
-import LottieView from 'lottie-react-native';
+// import LottieView from 'lottie-react-native';
 import { connect } from 'react-redux';
 // import { Tabs, Tab } from 'native-base';
 

@@ -245,6 +245,7 @@ export default class OnBoarding extends Component {
 
     try {
       const resp = await signUp(data);
+      console.log('jfjjf', resp.data);
       this.setState({ loading: false });
       if (resp && resp.response === undefined) {
         this.dropdown.alertWithType('error', 'Error', 'No internet Connection');

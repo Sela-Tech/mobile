@@ -10,6 +10,7 @@ import { getProjectBalance, transferFund } from '../utils/api';
 import ExtStyles from '../utils/styles';
 import Button from '../components/Button';
 import { WHITE } from '../utils/constants';
+import { getUserRole } from '../utils/helpers';
 
 const { height, width } = Dimensions.get('window');
 
@@ -53,7 +54,7 @@ class ProjectWallet extends Component {
 
     this.state = {
       scrollY: new Animated.Value(0),
-      loading: false,
+      // loading: false,
       transaction: [],
       nativeBalance: '---',
       loading: true,
@@ -61,15 +62,42 @@ class ProjectWallet extends Component {
       amountToBeSent: 0,
       remarks: '',
       receiverID: '',
+      isFunder:
+        this.props &&
+        this.props.userInfo &&
+        this.props.userInfo.user &&
+        this.props.userInfo.user.isFunder,
+      isEvaluator:
+        this.props &&
+        this.props.userInfo &&
+        this.props.userInfo.user &&
+        this.props.userInfo.user.isEvaluator,
+      isContractor:
+        this.props &&
+        this.props.userInfo &&
+        this.props.userInfo.user &&
+        this.props.userInfo.user.isContractor,
       // loading: true,
       balance: this.props.navigation.state.params.balance,
     };
   }
 
   async componentDidMount() {
+    await this.loadInitialData();
+  }
+
+  loadInitialData = async () => {
+    const { isFunder, isContractor, isEvaluator } = this.state;
+    const userRoleObj = {
+      isFunder,
+      isEvaluator,
+      isContractor,
+    };
+    const userRole = getUserRole(userRoleObj);
     try {
       const resp = await getProjectBalance(this.props.navigation.state.params.projectId);
-      const nativeBalance = resp.data.myTokens.find(c => c.type === 'native').balance;
+
+      let nativeBalance;
 
       // get first stakeholder user id
       const firstId =
@@ -79,6 +107,13 @@ class ProjectWallet extends Component {
         this.props.projects.projects.find(
           c => c._id === this.props.navigation.state.params.projectId,
         ).stakeholders[0].user.information._id;
+      if (userRole === 'funder') {
+        nativeBalance = resp.data.createdToken.distributor.distributionAccountBalance.find(
+          c => c.type === 'native',
+        ).balance;
+      } else {
+        nativeBalance = resp.data.myTokens.find(c => c.type === 'native').balance;
+      }
 
       this.setState({
         receiverID: firstId,
@@ -89,7 +124,7 @@ class ProjectWallet extends Component {
     } catch (err) {
       this.setState({ error: err.message, loading: false });
     }
-  }
+  };
 
   sendMoney = async () => {
     const { receiverID, remarks, amountToBeSent, balance } = this.state;

@@ -4,9 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Spinner from '../Spinner';
 import Text from '../Text';
-import { flatten } from '../../utils/helpers';
-import { retrieveEvidenceRequest } from '../../utils/api';
-import { WHITE, YELLOW } from '../../utils/constants';
+import { WHITE } from '../../utils/constants';
 
 const { height, width } = Dimensions.get('window');
 const styles = StyleSheet.create({
@@ -31,48 +29,25 @@ class Box extends Component {
     requests: [],
   };
 
-  async componentDidMount() {
-    // if (this.props.personal) {
-    //   this.setState({ loading: false });
-    // }
-    // await this.getAllEvidenceRequest();
-  }
+  // async componentDidMount() {
+  //   if (this.props.personal) {
+  //     this.setState({ loading: false });
+  //   }
+  //   await this.getAllEvidenceRequest();
+  // }
 
-  getAllEvidenceRequest = async () => {
-    // try {
-    //   const resp = await retrieveEvidenceRequest(this.props.data._id);
-    //   this.setState({ requests: resp.data.evidenceRequests, loading: false });
-    // } catch (err) {
-    //   this.setState({ error: err.message });
-    // }
-  };
+  // getAllEvidenceRequest = async () => {
+  //   try {
+  //     const resp = await retrieveEvidenceRequest(this.props.data._id);
+  //     this.setState({ requests: resp.data.evidenceRequests, loading: false });
+  //   } catch (err) {
+  //     this.setState({ error: err.message });
+  //   }
+  // };
 
   render() {
     const { projectName, data, fn, navigation, personal, balance } = this.props;
-    const { loading, requests } = this.state;
-
-    // const completed =
-    //   requests &&
-    //   requests.reduce((b, c) => {
-    //     const vv = c.stakeholders.filter(b => {
-    //       b.taskName = c.title;
-    //       b.requestedBy = c.requestedBy.fullName;
-    //       b.profilePhoto = c.requestedBy.profilePhoto;
-    //       b.dueDate = c.dueDate;
-    //       return b.user._id === this.props.userInfo.user.id && b.hasSubmitted;
-    //     });
-    //     b.push(vv);
-    //     return b;
-    //   }, []);
-
-    // const trans = flatten(completed);
-    // const totalAmount = trans.reduce((c, d) => d.quote + c, 0);
-    // const data = {
-    //   projectName,
-    //   completed: trans,
-    //   totalAmount,
-    // };
-
+    const { loading } = this.state;
     return (
       <TouchableOpacity
         style={[styles.container, personal ? { backgroundColor: '#156EDC' } : null]}

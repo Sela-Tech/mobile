@@ -5,6 +5,7 @@ import { getUserTransactions } from '../../actions/wallet';
 import Header from '../components/Header';
 import Box from '../components/Wallet/Box';
 import { WHITE } from '../utils/constants';
+import { getUserRole } from '../utils/helpers';
 
 import ExtStyles from '../utils/styles';
 
@@ -29,6 +30,21 @@ class Wallet extends Component {
     loading: false,
     myBalance: [{ balance: '---' }],
     otherBalance: [],
+    isFunder:
+      this.props &&
+      this.props.userInfo &&
+      this.props.userInfo.user &&
+      this.props.userInfo.user.isFunder,
+    isEvaluator:
+      this.props &&
+      this.props.userInfo &&
+      this.props.userInfo.user &&
+      this.props.userInfo.user.isEvaluator,
+    isContractor:
+      this.props &&
+      this.props.userInfo &&
+      this.props.userInfo.user &&
+      this.props.userInfo.user.isContractor,
   };
 
   async componentDidMount() {
@@ -53,7 +69,13 @@ class Wallet extends Component {
   };
 
   render() {
-    const { reloading } = this.state;
+    const { reloading, isFunder, isEvaluator, isContractor } = this.state;
+
+    const userRoleObj = {
+      isFunder,
+      isEvaluator,
+      isContractor,
+    };
     const myBalance =
       (this.props &&
         this.props.wallet &&
@@ -61,12 +83,23 @@ class Wallet extends Component {
         this.props.wallet.transactions.myTokens &&
         this.props.wallet.transactions.myTokens.filter(c => c.type === 'native')) ||
       '---';
-    const otherBalance =
-      this.props &&
-      this.props.wallet &&
-      this.props.wallet.transactions &&
-      this.props.wallet.transactions.myTokens &&
-      this.props.wallet.transactions.myTokens.filter(c => c.type !== 'native');
+    let otherBalance;
+    const userRole = getUserRole(userRoleObj);
+
+    if (userRole === 'funder') {
+      otherBalance =
+        this.props &&
+        this.props.wallet &&
+        this.props.wallet.transactions &&
+        this.props.wallet.transactions.createdTokens;
+    } else {
+      otherBalance =
+        this.props &&
+        this.props.wallet &&
+        this.props.wallet.transactions &&
+        this.props.wallet.transactions.myTokens &&
+        this.props.wallet.transactions.myTokens.filter(c => c.type !== 'native');
+    }
 
     return (
       <View style={ExtStyles.flex1}>
@@ -91,7 +124,12 @@ class Wallet extends Component {
                   navigation={this.props.navigation}
                   key={index}
                   data={v}
-                  balance={v.balance}
+                  userRole={userRole}
+                  balance={
+                    userRole === 'funder'
+                      ? v.balances.distributor.distributionAccountBalances[0].balance
+                      : v.balance
+                  }
                 />
               </View>
             ))}
