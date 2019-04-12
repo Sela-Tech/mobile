@@ -17,12 +17,7 @@ const styles = StyleSheet.create({
 
 const ImageBox = ({ imageSrc }) => (
   <TouchableOpacity style={styles.container} source={imageSrc}>
-    <Image
-      style={styles.image}
-      source={imageSrc}
-      // resizeMode="cover"
-      resizeMode="contain"
-    />
+    <Image style={styles.image} source={imageSrc} resizeMode="contain" />
   </TouchableOpacity>
 );
 

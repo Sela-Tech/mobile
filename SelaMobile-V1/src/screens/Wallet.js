@@ -54,9 +54,6 @@ class Wallet extends Component {
   loadInitialData = async () => {
     try {
       await this.props.getUserWalletTransaction();
-      // const myBalance = this.props.wallet.transactions.myTokens.filter(c => c.type === 'native');
-      // const otherBalance = this.props.wallet.transactions.myTokens.filter(c => c.type !== 'native');
-      // this.setState({ myBalance, otherBalance });
     } catch (err) {
       this.setState({ loading: false, error: err.message });
     }
