@@ -1,5 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Modal, ActivityIndicator } from 'react-native';
+import { YELLOW } from '../utils/constants';
+
 
 const styles = StyleSheet.create({
   modalBackground: {
@@ -31,7 +33,7 @@ const Loader = ({ loading, ...attributes }) => (
   >
     <View style={styles.modalBackground}>
       <View style={styles.activityIndicatorWrapper}>
-        <ActivityIndicator animating={loading} />
+        <ActivityIndicator color={YELLOW} animating={loading} />
       </View>
     </View>
   </Modal>
