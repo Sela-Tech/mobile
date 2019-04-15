@@ -19,6 +19,7 @@ import PDFView from './screens/Pdf';
 import AddInterest from './screens/AddInterest';
 import AddProposal from './screens/AddProposal';
 import ProjectWallet from './screens/ProjectWallet';
+import Test from './screens/Test';
 
 import { isAndroid } from './utils/helpers';
 
@@ -171,11 +172,11 @@ export const MainSwitchNavigator = createSwitchNavigator(
 );
 
 export const TestStackNavigator = createStackNavigator({
-  AddProposal: {
-    screen: AddProposal,
-    navigationOptions: {
-      header: null,
-    },
+  AddProdsdsposal: {
+    screen: Test,
+    // navigationOptions: {
+    //   header: null,
+    // },
   },
   CreateProject: {
     screen: CreateProject,

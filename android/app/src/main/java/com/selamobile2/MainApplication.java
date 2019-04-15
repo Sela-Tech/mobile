@@ -3,6 +3,7 @@ package com.selamobile2;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.airbnb.android.react.lottie.LottiePackage;
 import com.horcrux.svg.SvgPackage;
 import com.brentvatne.react.ReactVideoPackage;
 import org.wonday.pdf.RCTPdfView;
@@ -35,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(new MainReactPackage(),
+            new LottiePackage(),
             new SvgPackage(),
           // new RNInstabugReactnativePackage.Builder("a1713df89289cd1a3490a23f2a1c8208",
           // MainApplication.this)

@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import Navigator from './ExploreTabs/Navigator';
+import LottieView from 'lottie-react-native';
 import Spinner from '../components/Spinner';
 import Text from '../components/Text';
 import Button from '../components/Button';
@@ -160,7 +161,7 @@ class ExploreProject extends Component {
     if (loading) {
       return (
         <View style={ExtStyle.center}>
-          <Spinner />
+          <LottieView source={require('../../assets/animations/loading.json')} autoPlay loop />
         </View>
       );
     }

@@ -22,6 +22,11 @@ allprojects {
             url "$rootDir/../node_modules/react-native/android"
         }
         google()
+            configurations.all {
+            resolutionStrategy {
+                force "com.android.support:appcompat-v7:$supportLibVersion"
+            }
+        }
     }
 
     

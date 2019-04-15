@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Image, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import LottieView from 'lottie-react-native';
 import { getUserNotifications, updateUserNotifications } from '../../actions/notifications';
 import Text from '../components/Text';
 import Spinner from '../components/Spinner';
@@ -79,7 +80,11 @@ class Notifications extends Component {
     if (loading) {
       return (
         <View style={styles.spinnerCenter}>
-          <Spinner />
+          <LottieView
+            source={require('../../assets/animations/notifications.json')}
+            autoPlay
+            loop
+          />
         </View>
       );
     }
