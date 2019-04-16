@@ -3,6 +3,8 @@ import { View, FlatList, Image, TouchableOpacity, Dimensions, StyleSheet } from 
 import { connect } from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import Modal from 'react-native-modal';
+import { RNS3 } from 'react-native-aws3';
+import * as Progress from 'react-native-progress';
 import { getUserTransactions } from '../../../actions/wallet';
 import Text from '../Text';
 import Tag from '../Tag';
@@ -10,10 +12,11 @@ import B from '../BoldText';
 import SubmitEvidenceRequestModal from '../Evidence/SubmitEvidenceRequestModal';
 import SpinnerOverlay from '../SpinnerOverlay';
 import EvalSubmission from './EvalSubmission';
-import { evidenceRequestSubmission, uploadToAWS } from '../../utils/api';
+import { evidenceRequestSubmission } from '../../utils/api';
 import { projectStatusTextColor } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
 import BigImage from './Image';
+
 
 const { height, width } = Dimensions.get('window');
 
@@ -22,23 +25,23 @@ const keyExtractor = () => Math.floor(Math.random() * 1000000).toString();
 const renderItem = item => <EvalSubmission imgSource={{ uri: item.item.evidence }} markedStatus />;
 
 const options = {
+  keyPrefix: 'uploads/',
+  bucket: 'iracks-dump',
+  region: 'us-east-1',
+  successActionStatus: 201,
+};
+
+const options = {
   title: 'Select Avatar',
   storageOptions: {
     skipBackup: true,
-    // path: 'images',
   },
 };
 
 const optionsVideo = {
   mediaType: 'video',
-  videoQuality: 'high',
-  durationLimit: 10,
-  takePhotoButtonTitle: null, // 'Take video...', //bug at taking video with camera so far 27/10/2018
+  videoQuality: 'medium',
   title: 'Select Video',
-  // noData,maxWidth and maxHeight shorten time for ImportPhoto to return image
-  noData: true,
-  maxWidth: 1000, // speeds up compressImage to almost no time
-  maxHeight: 1000, // speeds up compressImage to almost no time
   storageOptions: {
     path: 'videos',
     skipBackup: true,
@@ -72,6 +75,7 @@ class Updates extends Component {
     theType: null,
     submissionLoading: false,
     tableModal: false,
+    progress: 0,
   };
 
   uploadFile = async (index, id) =>
@@ -188,6 +192,24 @@ class Updates extends Component {
     }
   };
 
+  uploadToAWS = (file, null, cred) => {
+    options.accessKey = cred.key;
+    options.secretKey = cred.secret;
+
+    return RNS3.put(file, options)
+      .then(response => {
+        if (response.status !== 201) {
+          return false;
+        }
+        return response.body;
+      })
+      .catch(() => false)
+      .progress((e) => {
+        this.setState({ progress: (e.loaded / e.total) });
+        console.log('upload progress', e.loaded / e.total)
+      });
+  };
+
   displayPicture = () => {
     this.setState({ expand: false });
   };
@@ -213,7 +235,7 @@ class Updates extends Component {
   toggleModal = () => this.setState(prevState => ({ tableModal: !prevState.tableModal }));
 
   render() {
-    const { allData, projectName, title, statusText, text, userRole, dataType } = this.props;
+    const { allData, projectName, title,progress, statusText, text, userRole, dataType } = this.props;
 
     const { fileSource, theType, expand, submissionLoading, tableModal } = this.state;
 
@@ -257,7 +279,8 @@ class Updates extends Component {
             alignItems: 'center',
           }}
         >
-          <SpinnerOverlay loading={submissionLoading} />
+        <Progress.Pie progress={progress} size={50} />
+          {/* <SpinnerOverlay loading={submissionLoading} /> */}
         </View>
       );
     }
@@ -323,33 +346,33 @@ class Updates extends Component {
                   <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
                 </View>
               ) : (
-                <Fragment>
-                  {allData && allData.submissions && allData.submissions.length === 0 ? (
-                    <View
-                      style={{ marginVertical: 5, justifyContent: 'center', alignItems: 'center' }}
-                    >
-                      <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
-                    </View>
-                  ) : (
-                    <View style={{ marginBottom: 7 }}>
-                      <View>
-                        <B color="#201D41"> Evaluation Submissions</B>
+                  <Fragment>
+                    {allData && allData.submissions && allData.submissions.length === 0 ? (
+                      <View
+                        style={{ marginVertical: 5, justifyContent: 'center', alignItems: 'center' }}
+                      >
+                        <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
                       </View>
-                      <FlatList
-                        style={{ paddingTop: 10 }}
-                        data={allData.submissions.filter(c => c && c.evidence)} // Get only image submissions
-                        showsHorizontalScrollIndicator={false}
-                        keyExtractor={keyExtractor}
-                        horizontal
-                        initialNumToRender={4}
-                        renderItem={renderItem}
-                        removeClippedSubviews
-                        windowSize={10}
-                      />
-                    </View>
-                  )}
-                </Fragment>
-              )}
+                    ) : (
+                        <View style={{ marginBottom: 7 }}>
+                          <View>
+                            <B color="#201D41"> Evaluation Submissions</B>
+                          </View>
+                          <FlatList
+                            style={{ paddingTop: 10 }}
+                            data={allData.submissions.filter(c => c && c.evidence)} // Get only image submissions
+                            showsHorizontalScrollIndicator={false}
+                            keyExtractor={keyExtractor}
+                            horizontal
+                            initialNumToRender={4}
+                            renderItem={renderItem}
+                            removeClippedSubviews
+                            windowSize={10}
+                          />
+                        </View>
+                      )}
+                  </Fragment>
+                )}
             </Fragment>
           ) : null}
         </View>

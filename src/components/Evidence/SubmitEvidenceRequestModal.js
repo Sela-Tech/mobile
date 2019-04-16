@@ -7,7 +7,6 @@ import {
   KeyboardAvoidingView,
   Dimensions,
   TouchableOpacity,
-  Picker,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import { CheckBox } from 'native-base';
@@ -149,7 +148,10 @@ export default class EvidenceRequestModal extends Component {
             </View>
 
             <View style={{ marginVertical: 10 }}>
-              <Text>{data.instruction} </Text>
+              <Text>
+{data.instruction}
+{' '}
+ </Text>
             </View>
             <View style={styles.middleContainer}>
               <View style={{ flex: 1 }}>
@@ -160,7 +162,11 @@ export default class EvidenceRequestModal extends Component {
                       {c.title === 'Date' ? null : (
                         <View stle={{ marginVertical: 5 }}>
                           <View style={styles.mv5}>
-                            <Text style={styles.textStyle}> {c.title} </Text>
+                            <Text style={styles.textStyle}> 
+{' '}
+{c.title}
+{' '}
+ </Text>
                           </View>
                           <Input
                             value={theState[c.title]}

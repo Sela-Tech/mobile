@@ -23,12 +23,6 @@ const styles = StyleSheet.create({
   },
   media: {
     height: height / 3.2,
-    // flex: 1,
-    // position: 'absolute',
-    // top: 0,
-    // left: 0,
-    // bottom: 0,
-    // right: 0,
   },
 });
 
@@ -61,8 +55,6 @@ export default class ProjectLevelSubmission extends Component {
               flexGrow: 1,
               flexWrap: 'wrap',
               flexDirection: 'row',
-              // marginLeft: 5,
-              // justifyContent: 'space-between',
               marginTop: 15,
               paddingBottom: '10%',
               justifyContent: 'space-between',

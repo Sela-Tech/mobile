@@ -79,7 +79,8 @@ export const uploadToAWS = (file, data, cred) => {
       }
       return response.body;
     })
-    .catch(() => false);
+    .catch(() => false)
+    .progress((e) => console.log('upload progress', e.loaded / e.total));
 };
 
 export const getPassCredentials = async () => {
