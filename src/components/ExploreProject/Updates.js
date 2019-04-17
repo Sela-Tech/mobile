@@ -235,9 +235,9 @@ class Updates extends Component {
   toggleModal = () => this.setState(prevState => ({ tableModal: !prevState.tableModal }));
 
   render() {
-    const { allData, projectName, title,progress, statusText, text, userRole, dataType } = this.props;
+    const { allData, projectName, title, progress, statusText, text, userRole, dataType } = this.props;
 
-    const { fileSource, theType, expand, submissionLoading, tableModal } = this.state;
+    const { fileSource, theType, expand, submissionLoading, progress, tableModal } = this.state;
 
     if (tableModal) {
       return (
@@ -279,7 +279,7 @@ class Updates extends Component {
             alignItems: 'center',
           }}
         >
-        <Progress.Pie progress={progress} size={50} />
+          <Progress.Pie progress={progress} size={50} />
           {/* <SpinnerOverlay loading={submissionLoading} /> */}
         </View>
       );
