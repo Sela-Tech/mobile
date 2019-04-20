@@ -51,7 +51,6 @@ export default class Transactions extends Component {
     const { project } = this.props;
     // const { transactions } = project;
     const { loading, transactions } = this.state;
-    console.log('.../', transactions);
 
     if (loading) {
       return (

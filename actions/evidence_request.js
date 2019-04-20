@@ -13,6 +13,11 @@ export const requestIsLoading = bool => ({
   isLoading: bool,
 });
 
+export const updateRequest = id => ({
+  type: types.UPDATE_REQUEST,
+  id,
+});
+
 export const requestIsLoadingError = error => ({
   type: types.GET_EVIDENCE_REQUEST_ERROR,
   error,

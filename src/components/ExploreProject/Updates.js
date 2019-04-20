@@ -14,7 +14,9 @@ import SubmitEvidenceRequestModal from '../Evidence/SubmitEvidenceRequestModal';
 import EvalSubmission from './EvalSubmission';
 import { evidenceRequestSubmission } from '../../utils/api';
 import { projectStatusTextColor } from '../../utils/helpers';
+import { updateRequest } from '../../../actions/evidence_request';
 import { WHITE } from '../../utils/constants';
+import ExtStyles from '../../utils/styles';
 import BigImage from './Image';
 
 const { height, width } = Dimensions.get('window');
@@ -51,7 +53,7 @@ const styles = StyleSheet.create({
   notFunderContainer: {
     // flex: 1,
     marginBottom: 10,
-    height: height / 8.5,
+    height: height / 4.5,
     borderBottomColor: '#B1BAD2',
     justifyContent: 'center',
     borderBottomWidth: 2,
@@ -79,7 +81,6 @@ class Updates extends Component {
 
   uploadFile = async (index, id) =>
     ImagePicker.launchCamera(index === 0 ? optionsPhoto : optionsVideo, response => {
-      // Same code as in above section!
       if (response.didCancel) {
         console.log('User cancelled image picker');
         this.setState({ expand: false });
@@ -130,10 +131,9 @@ class Updates extends Component {
           this.toggleModal();
         }
 
+        this.props.updateEvidenceRequest(id);
         await evidenceRequestSubmission(data);
         this.setState({ submissionLoading: false });
-        this.props.updateTask(id);
-
         this.props.getUserWalletTransaction();
         alert('Evidence saved');
       } else {
@@ -172,7 +172,7 @@ class Updates extends Component {
         type: 'image/png',
       };
       this.setState({ submissionLoading: true });
-      const resp = await uploadToAWS(fileInfo, null, cred);
+      const resp = await this.uploadToAWS(fileInfo, null, cred);
       await this.submitEvidence(resp.postResponse.location, requestId);
     } else if (val === 'video') {
       const { fileName, fileSource, requestId } = this.state;
@@ -205,7 +205,6 @@ class Updates extends Component {
       .catch(() => false)
       .progress(e => {
         this.setState({ uploadProgress: e.loaded / e.total });
-        console.log('upload progress', e.loaded / e.total);
       });
   };
 
@@ -287,13 +286,7 @@ class Updates extends Component {
     }
     if (submissionLoading) {
       return (
-        <View
-          style={{
-            flex: 1,
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
+        <View style={ExtStyles.center}>
           <Progress.Pie progress={uploadProgress} size={50} />
           {/* <SpinnerOverlay loading={submissionLoading} /> */}
         </View>
@@ -335,7 +328,7 @@ class Updates extends Component {
             )}
           </Fragment>
         </View>
-        <View style={{ flex: 4, paddingTop: 10, justifyContent: 'center' }}>
+        <View style={{ flex: 4, paddingTop: 2, paddingBottom: 5, justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row' }}>
             <View style={{ alignItems: 'center' }}>
               <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Task Name: </Text>
@@ -343,7 +336,7 @@ class Updates extends Component {
             <View
               style={{
                 width: width / 1.4,
-                paddingHorizontal: 10,
+                paddingHorizontal: 5,
               }}
             >
               <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>
@@ -354,7 +347,7 @@ class Updates extends Component {
           </View>
           <View style={{ marginTop: '2%', flexDirection: 'row' }}>
             <View>
-              <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>Description :</Text>
+              <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Description:</Text>
             </View>
             <View>
               <Text style={{ color: '#222829' }}>{allData.instruction}</Text>
@@ -410,6 +403,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getUserWalletTransaction: () => dispatch(getUserTransactions()),
+  updateEvidenceRequest: id => dispatch(updateRequest(id)),
 });
 
 export default connect(

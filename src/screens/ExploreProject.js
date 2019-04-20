@@ -3,12 +3,11 @@ import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-nat
 import { connect } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import Navigator from './ExploreTabs/Navigator';
-import Spinner from '../components/Spinner';
 import Text from '../components/Text';
 import Button from '../components/Button';
 import Imagen from '../components/ProgressiveImage';
 import NavigationService from '../services/NavigationService';
-import { getSingleProject, retrieveEvidenceRequest } from '../utils/api';
+import { getSingleProject } from '../utils/api';
 import ExtStyle from '../utils/styles';
 import { WHITE } from '../utils/constants';
 import { getUserRole } from '../utils/helpers';
@@ -79,7 +78,6 @@ class ExploreProject extends Component {
   async componentDidMount() {
     this._isMounted = true;
     await this.getProjectToDisplay();
-    await this.getAllEvidenceRequest();
   }
 
   componentWillUnmount() {
@@ -110,15 +108,7 @@ class ExploreProject extends Component {
     }
   };
 
-  getAllEvidenceRequest = async () => {
-    const { projectId } = this.state;
-    try {
-      const resp = await retrieveEvidenceRequest(projectId);
-      this.setState({ requests: resp.data.evidenceRequests, requestLoading: false });
-    } catch (err) {
-      this.setState({ requestLoading: false, error: err.message });
-    }
-  };
+
 
   // Update task after submitting evidence request
   updateTask = id => {
@@ -134,7 +124,7 @@ class ExploreProject extends Component {
   };
 
   render() {
-    const { projectId, loading, notAvailaible, projectInfo, requests } = this.state;
+    const { projectId, loading, notAvailaible, projectInfo } = this.state;
     const { navigation } = this.props;
 
     const { isFunder, isEvaluator, isContractor } =
@@ -227,7 +217,6 @@ class ExploreProject extends Component {
                   navigation={navigation}
                   project={projectInfo}
                   userId={userId}
-                  // requests={requests}
                   updateTask={this.updateTask}
                 />
               </View>

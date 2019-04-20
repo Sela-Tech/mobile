@@ -52,7 +52,7 @@ const tabBarOptions = {
   },
 };
 
-const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask }) => {
+const Navigator = ({ project, userId, userInfo, navigation }) => {
   const { isFunder, isEvaluator, isContractor } = userInfo && userInfo.user;
   const userRoleObj = {
     isFunder,
@@ -103,7 +103,7 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
           Updates: {
             screen: () => (
               <Updates
-                updateTask={updateTask}
+
                 userRole={userRole}
                 project={project}
               />
@@ -124,7 +124,6 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
         Tasks: {
           screen: () => (
             <Updates
-              updateTask={updateTask}
               userRole={userRole}
               project={project}
             />
@@ -133,7 +132,6 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
         Evidence: {
           screen: () => (
             <Request
-              updateTask={updateTask}
               userRole={userRole}
               project={project}
             />
@@ -153,7 +151,6 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
         Updates: {
           screen: () => (
             <Updates
-              updateTask={updateTask}
               userRole={userRole}
               project={project}
             />

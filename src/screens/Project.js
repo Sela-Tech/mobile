@@ -3,8 +3,6 @@ import {
   View,
   StyleSheet,
   RefreshControl,
-  // NetInfo,
-  // Picker,
   Image,
   TouchableOpacity,
   ScrollView,
@@ -176,11 +174,7 @@ class Project extends Component {
     <View style={styles.floatingButton}>
       <TouchableOpacity
         onPress={() => this.props.navigation.navigate('ExploreProject')}
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
+        style={ExtStyle.center}
       >
         <Image source={require('../../assets/plus.png')} />
       </TouchableOpacity>

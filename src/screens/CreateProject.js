@@ -106,11 +106,6 @@ class CreateProject extends Component {
       } else if (response.customButton) {
         console.log('User tapped custom button: ', response.customButton);
       } else {
-        // const source = { uri: response.uri };
-
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-
         this.setState({
           avatarSource: response.uri,
         });
@@ -233,7 +228,7 @@ class CreateProject extends Component {
     const date1 = new Date(startDate);
     const date2 = new Date(endDate);
     const diff = parseInt((date2 - date1) / (1000 * 60 * 60 * 24));
-    
+
     if (name === '') {
       return alert('Please enter project title');
     }
@@ -253,7 +248,7 @@ class CreateProject extends Component {
       return alert('Please set project location')
     }
 
-    if(diff < 0){
+    if (diff < 0) {
       return alert('Start date can\'t be greater than end date')
     }
     this.setState({ loading: true });
