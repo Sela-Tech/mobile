@@ -7,7 +7,6 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native';
-import { CheckBox } from 'native-base';
 import Modal from 'react-native-modal';
 import ImageN from '../ProgressiveImage';
 import BigImage from './Image';
@@ -21,7 +20,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   imageContainer: {
-    marginHorizontal: 10,
     height: height / 7,
     width: width / 4,
     borderRadius: 10,
@@ -65,12 +63,3 @@ export default class EvalSubmission extends Component {
     );
   }
 }
-
-// <ImageN
-//       style={styles.container}
-//       imageStyle={styles.imageContainer}
-//       source={imgSource}
-//       imageStyle={{ borderRadius: 10 }}
-//     />
-
-// <Image source={imgSource} style={styles.imageContainer} />

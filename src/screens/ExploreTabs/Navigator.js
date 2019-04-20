@@ -104,7 +104,6 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
             screen: () => (
               <Updates
                 updateTask={updateTask}
-                requests={requests}
                 userRole={userRole}
                 project={project}
               />
@@ -126,7 +125,6 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
           screen: () => (
             <Updates
               updateTask={updateTask}
-              requests={requests}
               userRole={userRole}
               project={project}
             />
@@ -136,7 +134,6 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
           screen: () => (
             <Request
               updateTask={updateTask}
-              requests={requests}
               userRole={userRole}
               project={project}
             />
@@ -157,7 +154,6 @@ const Navigator = ({ project, userId, requests, userInfo, navigation, updateTask
           screen: () => (
             <Updates
               updateTask={updateTask}
-              requests={requests}
               userRole={userRole}
               project={project}
             />

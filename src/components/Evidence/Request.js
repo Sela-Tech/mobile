@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Dimensions, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import { getUserRequest } from '../../../actions/evidence_request';
 import Spinner from '../Spinner';
-
 import Button from '../Button';
 import Text from '../Text';
 import RequestDetails from './RequestDetails';
 import EvidenceRequestModal from './EvidenceRequestModal';
-import { retrieveEvidenceRequest } from '../../utils/api';
 import { WHITE } from '../../utils/constants';
 import ExtStyles from '../../utils/styles';
 
@@ -36,18 +36,18 @@ const styles = StyleSheet.create({
   },
 });
 
-export default class Request extends Component {
+class Request extends Component {
   state = {
     showModal: false,
     loading: false,
     price: '',
     instructions: '',
     loading: true,
-    requests: [],
+    request: [],
   };
 
   async componentDidMount() {
-    await this.getAllEvidenceRequest();
+    await this.loadEvidenceRequest();
   }
 
   toggleModal = () => this.setState(prevState => ({ showModal: !prevState.showModal }));
@@ -56,23 +56,22 @@ export default class Request extends Component {
     console.log('ref', val);
   };
 
-  getAllEvidenceRequest = async () => {
+  loadEvidenceRequest = async () => {
     try {
-      const resp = await retrieveEvidenceRequest(
-        this.props && this.props.project && this.props.project._id,
-      );
-
-      this.setState({ requests: resp.data.evidenceRequests, loading: false });
-    } catch (err) {
-      this.setState({ error: err.message });
+      await this.props.loadRequest(this.props.project._id);
+      this.setState({ loading: false });
     }
-  };
+    catch (err) {
+      this.setState({ error: error.message, loading: false });
+    }
+  }
 
   render() {
     const { userRole, project } = this.props;
     const stakeholders = project && project.stakeholders;
     const proposals = project && project.proposals;
-    const { requests, showModal, loading } = this.state;
+    const request = this.props && this.props.request && this.props.request.request || [];
+    const { showModal, loading } = this.state;
     if (loading) {
       return (
         <View style={ExtStyles.center}>
@@ -80,7 +79,7 @@ export default class Request extends Component {
         </View>
       );
     }
-    if (requests.length === 0) {
+    if (request && request.length === 0) {
       return (
         <View style={styles.container}>
           <EvidenceRequestModal
@@ -148,7 +147,7 @@ export default class Request extends Component {
           ) : null}
         </Fragment>
         <View style={styles.mv10}>
-          {requests.map((c, i) => (
+          {request && request.map((c, i) => (
             <RequestDetails
               key={i}
               title={c.title}
@@ -163,3 +162,13 @@ export default class Request extends Component {
     );
   }
 }
+
+const mapDispatchToProps = dispatch => ({
+  loadRequest: projectId => dispatch(getUserRequest(projectId)),
+});
+
+const mapStateToProps = state => ({
+  request: state.request,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Request);

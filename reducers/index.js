@@ -4,6 +4,7 @@ import userInfo from './userInfo';
 import projects from './project';
 import notifications from './notifications';
 import credentials from './credentials';
+import request from './evidence_request';
 import wallet from './wallet';
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
   notifications,
   credentials,
   wallet,
+  request,
 });
 
 export default rootReducer;

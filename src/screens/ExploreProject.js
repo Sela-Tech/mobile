@@ -1,8 +1,8 @@
 import React, { Component, Fragment } from 'react';
 import { View, StyleSheet, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
-import Navigator from './ExploreTabs/Navigator';
 import LottieView from 'lottie-react-native';
+import Navigator from './ExploreTabs/Navigator';
 import Spinner from '../components/Spinner';
 import Text from '../components/Text';
 import Button from '../components/Button';
@@ -106,7 +106,7 @@ class ExploreProject extends Component {
         });
       }
     } catch (err) {
-      this.setState({ error: err.message });
+      this.setState({ loading: false, error: err.message });
     }
   };
 
@@ -114,9 +114,9 @@ class ExploreProject extends Component {
     const { projectId } = this.state;
     try {
       const resp = await retrieveEvidenceRequest(projectId);
-      this.setState({ requests: resp.data.evidenceRequests, loading: false });
+      this.setState({ requests: resp.data.evidenceRequests, requestLoading: false });
     } catch (err) {
-      this.setState({ error: err.message });
+      this.setState({ requestLoading: false, error: err.message });
     }
   };
 
@@ -208,9 +208,9 @@ class ExploreProject extends Component {
                         fn={() =>
                           userRole !== 'evaluator'
                             ? NavigationService.navigate('AddProposal', {
-                                projectId: projectInfo && projectInfo._id,
-                                userId,
-                              })
+                              projectId: projectInfo && projectInfo._id,
+                              userId,
+                            })
                             : console.log('')
                         }
                         style={styles.bottomButton.view}
@@ -227,14 +227,14 @@ class ExploreProject extends Component {
                   navigation={navigation}
                   project={projectInfo}
                   userId={userId}
-                  requests={requests}
+                  // requests={requests}
                   updateTask={this.updateTask}
                 />
               </View>
             </Fragment>
           ) : (
-            <View />
-          )}
+              <View />
+            )}
         </Fragment>
       </View>
     );

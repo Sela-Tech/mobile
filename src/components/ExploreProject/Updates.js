@@ -10,13 +10,12 @@ import Text from '../Text';
 import Tag from '../Tag';
 import B from '../BoldText';
 import SubmitEvidenceRequestModal from '../Evidence/SubmitEvidenceRequestModal';
-import SpinnerOverlay from '../SpinnerOverlay';
+// import SpinnerOverlay from '../SpinnerOverlay';
 import EvalSubmission from './EvalSubmission';
 import { evidenceRequestSubmission } from '../../utils/api';
 import { projectStatusTextColor } from '../../utils/helpers';
 import { WHITE } from '../../utils/constants';
 import BigImage from './Image';
-
 
 const { height, width } = Dimensions.get('window');
 
@@ -31,7 +30,7 @@ const options = {
   successActionStatus: 201,
 };
 
-const options = {
+const optionsPhoto = {
   title: 'Select Avatar',
   storageOptions: {
     skipBackup: true,
@@ -75,11 +74,11 @@ class Updates extends Component {
     theType: null,
     submissionLoading: false,
     tableModal: false,
-    progress: 0,
+    uploadProgress: 0,
   };
 
   uploadFile = async (index, id) =>
-    ImagePicker.launchCamera(index === 0 ? options : optionsVideo, response => {
+    ImagePicker.launchCamera(index === 0 ? optionsPhoto : optionsVideo, response => {
       // Same code as in above section!
       if (response.didCancel) {
         console.log('User cancelled image picker');
@@ -162,7 +161,7 @@ class Updates extends Component {
   };
 
   submission = async val => {
-    this.setState({ loading: true, expand: false });
+    this.setState({ loading: true, expand: false }); x
     const cred = this.props && this.props.credentials && this.props.credentials.credentials;
 
     if (val === 'image') {
@@ -192,7 +191,7 @@ class Updates extends Component {
     }
   };
 
-  uploadToAWS = (file, null, cred) => {
+  uploadToAWS = (file, undefined, cred) => {
     options.accessKey = cred.key;
     options.secretKey = cred.secret;
 
@@ -204,9 +203,9 @@ class Updates extends Component {
         return response.body;
       })
       .catch(() => false)
-      .progress((e) => {
-        this.setState({ progress: (e.loaded / e.total) });
-        console.log('upload progress', e.loaded / e.total)
+      .progress(e => {
+        this.setState({ uploadProgress: e.loaded / e.total });
+        console.log('upload progress', e.loaded / e.total);
       });
   };
 
@@ -235,9 +234,25 @@ class Updates extends Component {
   toggleModal = () => this.setState(prevState => ({ tableModal: !prevState.tableModal }));
 
   render() {
-    const { allData, projectName, title, progress, statusText, text, userRole, dataType } = this.props;
+    const {
+      allData,
+      projectName,
+      title,
+      progress,
+      statusText,
+      text,
+      userRole,
+      dataType,
+    } = this.props;
 
-    const { fileSource, theType, expand, submissionLoading, progress, tableModal } = this.state;
+    const {
+      fileSource,
+      theType,
+      expand,
+      submissionLoading,
+      uploadProgress,
+      tableModal,
+    } = this.state;
 
     if (tableModal) {
       return (
@@ -279,7 +294,7 @@ class Updates extends Component {
             alignItems: 'center',
           }}
         >
-          <Progress.Pie progress={progress} size={50} />
+          <Progress.Pie progress={uploadProgress} size={50} />
           {/* <SpinnerOverlay loading={submissionLoading} /> */}
         </View>
       );
@@ -327,16 +342,24 @@ class Updates extends Component {
             </View>
             <View
               style={{
-                width: width / 1.2,
-                paddingHorizontal: 20,
+                width: width / 1.4,
+                paddingHorizontal: 10,
               }}
             >
-              <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>{title} </Text>
+              <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>
+                {title}
+                {' '}
+              </Text>
             </View>
           </View>
-          {/* <View style={{ marginTop: '2%' }}>
-            <Text style={{ color: '#222829' }}>{text}</Text>
-          </View> */}
+          <View style={{ marginTop: '2%', flexDirection: 'row' }}>
+            <View>
+              <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>Description :</Text>
+            </View>
+            <View>
+              <Text style={{ color: '#222829' }}>{allData.instruction}</Text>
+            </View>
+          </View>
         </View>
         <View style={userRole === 'funder' ? { flex: 6 } : null}>
           {userRole === 'funder' ? (
