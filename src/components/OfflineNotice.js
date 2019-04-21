@@ -1,18 +1,19 @@
 import React, { PureComponent } from 'react';
 import { View, Text, NetInfo, Dimensions, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { updateNetwork } from '../../actions/network';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   offlineContainer: {
     backgroundColor: '#b52424',
-    height: 50,
+    height: height / 16,
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     width,
     position: 'absolute',
-    // top: 30,
   },
   offlineText: { color: '#fff' },
 });
@@ -37,6 +38,7 @@ class OfflineNotice extends PureComponent {
   }
 
   handleConnectivityChange = isConnected => {
+    this.props.updateNetworkConnection(isConnected);
     if (isConnected) {
       this.setState({ isConnected });
     } else {
@@ -53,4 +55,8 @@ class OfflineNotice extends PureComponent {
   }
 }
 
-export default OfflineNotice;
+const mapDispatchToProps = dispatch => ({
+  updateNetworkConnection: status => dispatch(updateNetwork(status)),
+});
+
+export default connect(mapDispatchToProps)(OfflineNotice);

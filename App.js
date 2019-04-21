@@ -35,7 +35,6 @@ export default class App extends Component {
           <ErrorHandler>
             <View style={styles.container}>
               <StatusBar barStyle="light-content" />
-
               <RootNavigator
                 ref={navigatorRef => {
                   NavigationService.setTopLevelNavigator(navigatorRef);
