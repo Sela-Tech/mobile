@@ -101,13 +101,7 @@ const Navigator = ({ project, userId, userInfo, navigation }) => {
             screen: () => <Request userRole={userRole} project={project} />,
           },
           Updates: {
-            screen: () => (
-              <Updates
-
-                userRole={userRole}
-                project={project}
-              />
-            ),
+            screen: () => <Updates userRole={userRole} project={project} />,
           },
         },
         {
@@ -122,20 +116,10 @@ const Navigator = ({ project, userId, userInfo, navigation }) => {
           screen: () => <OverViewDetails userRole={userRole} project={project} />,
         },
         Tasks: {
-          screen: () => (
-            <Updates
-              userRole={userRole}
-              project={project}
-            />
-          ),
+          screen: () => <Updates userRole={userRole} project={project} />,
         },
         Evidence: {
-          screen: () => (
-            <Request
-              userRole={userRole}
-              project={project}
-            />
-          ),
+          screen: () => <Request userRole={userRole} project={project} />,
         },
       },
       {
@@ -149,12 +133,7 @@ const Navigator = ({ project, userId, userInfo, navigation }) => {
           screen: () => <OverViewDetails userRole={userRole} project={project} />,
         },
         Updates: {
-          screen: () => (
-            <Updates
-              userRole={userRole}
-              project={project}
-            />
-          ),
+          screen: () => <Updates userRole={userRole} project={project} />,
         },
         Stakeholders: {
           screen: () => <Stakeholders userRole={userRole} project={project} />,

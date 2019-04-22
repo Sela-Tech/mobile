@@ -9,13 +9,9 @@ const networkReducer = (
 ) => {
   switch (action.type) {
     case types.GET_NETWORK:
-      return state;
-    // console.log('akksd', action);
-    // return { ...state, status: action.network };
+      return { ...state, status: action.network };
     case types.UPDATE_NETWORK:
-      return state;
-      console.log('22akksd', action);
-    // return { ...state, status: action.network };
+      return { ...state, status: action.network };
     default:
       return state;
   }

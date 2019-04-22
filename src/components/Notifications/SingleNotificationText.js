@@ -167,7 +167,11 @@ class SingleNotificationText extends Component {
             ) : null}
           </Fragment>
           <View style={styles.mt5}>
-            <Text> {time} ago. </Text>
+            <Text> {time}
+{' '}
+ago.
+{' '}
+</Text>
           </View>
         </View>
       </View>

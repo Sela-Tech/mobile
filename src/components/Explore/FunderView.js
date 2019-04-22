@@ -134,7 +134,8 @@ const FunderView = ({ navigation, projectInfo }) => (
         <View>
           <Text style={styles.fundedTextColor}>
             {' '}
-            {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded{' '}
+            {fundedStatus[Math.floor(Math.random() * fundedStatus.length)]} funded
+{' '}
           </Text>
         </View>
       </View>

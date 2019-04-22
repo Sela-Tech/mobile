@@ -49,7 +49,8 @@ const ProposalContent = ({ projectName, amount, totalMileStone, totalTask, cost,
 {' '}
 Milestones,{totalTask}
 {' '}
-Tasks{' '}
+Tasks
+{' '}
         </Text>
       </View>
 

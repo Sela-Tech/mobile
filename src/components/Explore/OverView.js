@@ -164,7 +164,8 @@ export default class OverView extends Component {
               </View>
               <View style={styles.pt}>
                 <Text style={{ fontSize: 16 }}>
-                  {moment(project.startDate).format('MMMM Do YYYY')} --{' '}
+                  {moment(project.startDate).format('MMMM Do YYYY')} --
+{' '}
                   {moment(project.endDate).format('MMMM Do YYYY')}
                 </Text>
               </View>

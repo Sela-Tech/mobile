@@ -108,8 +108,6 @@ class ExploreProject extends Component {
     }
   };
 
-
-
   // Update task after submitting evidence request
   updateTask = id => {
     const { requests } = this.state;
@@ -198,9 +196,9 @@ class ExploreProject extends Component {
                         fn={() =>
                           userRole !== 'evaluator'
                             ? NavigationService.navigate('AddProposal', {
-                              projectId: projectInfo && projectInfo._id,
-                              userId,
-                            })
+                                projectId: projectInfo && projectInfo._id,
+                                userId,
+                              })
                             : console.log('')
                         }
                         style={styles.bottomButton.view}
@@ -222,8 +220,8 @@ class ExploreProject extends Component {
               </View>
             </Fragment>
           ) : (
-              <View />
-            )}
+            <View />
+          )}
         </Fragment>
       </View>
     );

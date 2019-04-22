@@ -60,17 +60,16 @@ class Request extends Component {
     try {
       await this.props.loadRequest(this.props.project._id);
       this.setState({ loading: false });
-    }
-    catch (err) {
+    } catch (err) {
       this.setState({ error: error.message, loading: false });
     }
-  }
+  };
 
   render() {
     const { userRole, project } = this.props;
     const stakeholders = project && project.stakeholders;
     const proposals = project && project.proposals;
-    const request = this.props && this.props.request && this.props.request.request || [];
+    const request = (this.props && this.props.request && this.props.request.request) || [];
     const { showModal, loading } = this.state;
     if (loading) {
       return (
@@ -147,16 +146,17 @@ class Request extends Component {
           ) : null}
         </Fragment>
         <View style={styles.mv10}>
-          {request && request.map((c, i) => (
-            <RequestDetails
-              key={i}
-              title={c.title}
-              dataType={c.datatype}
-              dueDate={c.dueDate}
-              stakeHolders={c.stakeholders}
-              status={c.status}
-            />
-          ))}
+          {request &&
+            request.map((c, i) => (
+              <RequestDetails
+                key={i}
+                title={c.title}
+                dataType={c.datatype}
+                dueDate={c.dueDate}
+                stakeHolders={c.stakeholders}
+                status={c.status}
+              />
+            ))}
         </View>
       </ScrollView>
     );
@@ -171,4 +171,7 @@ const mapStateToProps = state => ({
   request: state.request,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Request);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Request);

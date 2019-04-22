@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, View, Modal, ActivityIndicator } from 'react-native';
 import { YELLOW } from '../utils/constants';
 
-
 const styles = StyleSheet.create({
   modalBackground: {
     flex: 1,

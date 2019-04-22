@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   checkBox: {
-   flex: 1,
+    flex: 1,
     height: height / 10,
   },
 });
@@ -115,11 +115,7 @@ const CheckBoxContainer = ({ level, mark, fn }) => (
       <CheckBox color="#201D41" onPress={() => fn(level.toLowerCase())} checked={mark} />
     </View>
     <View style={ExtStyle.flex7}>
-      <Text> {level}
-{' '}
-Level Request
-{' '}
-</Text>
+      <Text> {level} Level Request </Text>
     </View>
   </View>
 );

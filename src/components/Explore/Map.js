@@ -4,7 +4,6 @@ import MapView, { Marker, PROVIDER_GOOGLE } from 'react-native-maps';
 import Modal from 'react-native-modal';
 import Button from '../Button';
 import Text from '../Text';
-import BackButton from '../BackButton';
 import { YELLOW } from '../../utils/constants';
 
 const { width, height } = Dimensions.get('window');
@@ -15,11 +14,8 @@ const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // height,
-    // borderRadius: 20,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-    // ...StyleSheet.absoluteFillObject,
   },
   map: {
     ...StyleSheet.absoluteFillObject,
@@ -45,7 +41,6 @@ const styles = StyleSheet.create({
 
   flex4mb5: {
     flex: 4,
-    // marginBottom: 1,
   },
   backButton: {
     marginTop: '7%',
@@ -88,19 +83,11 @@ export default class Map extends Component {
           style={{
             margin: 0,
             marginTop: '10%',
-            // height,
             flex: 1,
-            //      borderRadius: 20,
-            // borderTopLeftRadius: 20,
-            //  borderTopRightRadius: 20,
           }}
           isVisible={visible}
         >
           <View style={styles.container}>
-            {/* <View style={styles.upButton}>
-              <BackButton fn={toggleMapView} />
-            </View> */}
-
             <MapView
               provider={PROVIDER_GOOGLE}
               style={styles.map}
@@ -109,7 +96,6 @@ export default class Map extends Component {
               mapType={view}
               onPress={event => console.log(event.nativeEvent.coordinate)}
               onMapReady={() => this.onMapLayout()}
-              // onLayout={this.onMapLayout}
               initialRegion={{
                 latitude: location.lat,
                 longitude: location.lng,
@@ -121,7 +107,6 @@ export default class Map extends Component {
                 <Fragment>
                   {
                     <Marker.Animated
-                      // pinColor={c.color}
                       title={location.name}
                       description={location.name}
                       coordinate={{
@@ -135,8 +120,6 @@ export default class Map extends Component {
             </MapView>
             <View
               style={{
-                // flex: 1,
-                // marginTop: 10,
                 position: 'absolute',
                 alignSelf: 'center',
                 bottom: 40,
@@ -159,7 +142,6 @@ export default class Map extends Component {
                 onPress={() => toggleMapView()}
               >
                 <View>
-                  {/* '../../../assets/white-back.png */}
                   <Image
                     source={require('../../../assets/white-back.png')}
                     style={{ tintColor: YELLOW }}

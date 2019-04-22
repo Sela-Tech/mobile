@@ -3,7 +3,7 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import Text from '../Text';
 import B from '../BoldText';
 
-const { height } = Dimensions.get('window')
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {

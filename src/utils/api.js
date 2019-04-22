@@ -80,7 +80,7 @@ export const uploadToAWS = (file, data, cred) => {
       return response.body;
     })
     .catch(() => false)
-    .progress((prog) => console.log('upload progress', prog.loaded / ptog.total));
+    .progress(prog => console.log('upload progress', prog.loaded / ptog.total));
 };
 
 export const getPassCredentials = async () => {

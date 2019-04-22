@@ -105,7 +105,7 @@ const getCurrentState = () => {
 class Project extends Component {
   state = {
     reloading: false,
-    // loading: true,
+    loading: true,
     relevantProject: otherFilters,
     relevantProjectVal: '',
     isFunder:
@@ -126,9 +126,17 @@ class Project extends Component {
   };
 
   async componentDidMount() {
-    // await this.loadInitialData();
+    this.checkSavedProject();
+    await this.loadInitialData();
     getCurrentState();
   }
+
+  checkSavedProject = () => {
+    const projects = this.props && this.props.projects && this.props.projects.projects;
+    if (projects) {
+      this.setState({ loading: false });
+    }
+  };
 
   loadInitialData = async () => {
     const userRoleObj = {
@@ -206,8 +214,8 @@ class Project extends Component {
       notifications === undefined
         ? []
         : notifications &&
-        notifications.notifications &&
-        notifications.notifications.filter(c => c.read === false);
+          notifications.notifications &&
+          notifications.notifications.filter(c => c.read === false);
 
     // const projectCreatedByMe = projects && projects.filter(c => c.owner._id === userData.id);
 
@@ -220,8 +228,8 @@ class Project extends Component {
             newNotifs === undefined
               ? require('../../assets/emptyBell.png')
               : newNotifs && newNotifs.length === 0
-                ? require('../../assets/new_bell.png')
-                : require('../../assets/notifications-received.png')
+              ? require('../../assets/new_bell.png')
+              : require('../../assets/notifications-received.png')
           }
         />
         <ScrollView
@@ -238,14 +246,14 @@ class Project extends Component {
                 />
               </View>
             ) : (
-                <Fragment>
-                  {userRole === 'funder' ? (
-                    <ScrollView
-                      contentContainerstyle={{
-                        flexGrow: 1,
-                      }}
-                    >
-                      {/* <StandardText
+              <Fragment>
+                {userRole === 'funder' ? (
+                  <ScrollView
+                    contentContainerstyle={{
+                      flexGrow: 1,
+                    }}
+                  >
+                    {/* <StandardText
                       text="Welcome back"
                       viewStyle={{
                         justifyContent: 'flex-start',
@@ -259,7 +267,7 @@ class Project extends Component {
                       }}
                     /> */}
 
-                      {/* <View style={{ marginHorizontal: 10, marginTop: 10 }}>
+                    {/* <View style={{ marginHorizontal: 10, marginTop: 10 }}>
                       <View style={{ marginBottom: 5 }}>
                         <Text style={{ fontSize: 15 }}> FilterBy</Text>
                       </View>
@@ -281,72 +289,72 @@ class Project extends Component {
                       </View>
                     </View> */}
 
-                      <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
-                        {projects.length === 0 ? (
-                          <View style={styles.centerEmpty}>
-                            <Text> No Project at the moment</Text>
-                          </View>
-                        ) : (
+                    <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
+                      {projects.length === 0 ? (
+                        <View style={styles.centerEmpty}>
+                          <Text> No Project at the moment</Text>
+                        </View>
+                      ) : (
+                          <ProjectView
+                          leftText="Projects you fund"
+                          // rightText="See all"
+                          projects={projects}
+                        />
+                      )}
+                    </View>
+                  </ScrollView>
+                ) : (
+                  <Fragment>
+                    {userRole === 'contractor' ? (
+                      <ScrollView
+                        contentContainerstyle={{
+                          flexGrow: 1,
+                        }}
+                      >
+                        <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
+                          {invitedProjects.length === 0 ? (
+                            <View style={styles.centerEmpty}>
+                              <Text> No Project at the moment</Text>
+                            </View>
+                          ) : (
                             <ProjectView
                               leftText="Projects you fund"
                               // rightText="See all"
-                              projects={projects}
+                              projects={invitedProjects}
                             />
                           )}
-                      </View>
-                    </ScrollView>
-                  ) : (
-                      <Fragment>
-                        {userRole === 'contractor' ? (
-                          <ScrollView
-                            contentContainerstyle={{
-                              flexGrow: 1,
-                            }}
-                          >
-                            <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
-                              {invitedProjects.length === 0 ? (
-                                <View style={styles.centerEmpty}>
-                                  <Text> No Project at the moment</Text>
-                                </View>
-                              ) : (
-                                  <ProjectView
-                                    leftText="Projects you fund"
-                                    // rightText="See all"
-                                    projects={invitedProjects}
-                                  />
-                                )}
+                        </View>
+                      </ScrollView>
+                    ) : (
+                      <ScrollView style={{ flex: 1 }} contentContainerstyle={{ flexGrow: 1 }}>
+                        {invitedProjects.length === 0 ? (
+                          <View style={styles.subContainer}>
+                            <View>
+                              <Image source={require('../../assets/Illustration.png')} />
                             </View>
-                          </ScrollView>
+                            <View style={styles.otherContainer}>
+                              <Text style={styles.emptyText}> You haven't been </Text>
+                              <Text style={styles.emptyText}> added to any project yet. </Text>
+                            </View>
+                          </View>
                         ) : (
-                            <ScrollView style={{ flex: 1 }} contentContainerstyle={{ flexGrow: 1 }}>
-                              {invitedProjects.length === 0 ? (
-                                <View style={styles.subContainer}>
-                                  <View>
-                                    <Image source={require('../../assets/Illustration.png')} />
-                                  </View>
-                                  <View style={styles.otherContainer}>
-                                    <Text style={styles.emptyText}> You haven't been </Text>
-                                    <Text style={styles.emptyText}> added to any project yet. </Text>
-                                  </View>
-                                </View>
-                              ) : (
-                                  <View>
-                                    <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
-                                      <ProjectView
-                                        leftText="Projects you evaluate"
-                                        // rightText="See all"
-                                        projects={invitedProjects}
-                                      />
-                                    </View>
-                                    <View style={ExtStyle.flex1}>{this.renderButton()}</View>
-                                  </View>
-                                )}
-                            </ScrollView>
-                          )}
-                      </Fragment>
+                          <View>
+                            <View style={[ExtStyle.flex1, { marginHorizontal: 10 }]}>
+                              <ProjectView
+                                leftText="Projects you evaluate"
+                                // rightText="See all"
+                                projects={invitedProjects}
+                              />
+                            </View>
+                            <View style={ExtStyle.flex1}>{this.renderButton()}</View>
+                          </View>
+                        )}
+                      </ScrollView>
                     )}
-                </Fragment>
-              )}
+                  </Fragment>
+                )}
+              </Fragment>
+            )}
           </Fragment>
         </ScrollView>
         <Fragment>

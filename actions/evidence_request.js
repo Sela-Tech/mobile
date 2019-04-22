@@ -1,8 +1,6 @@
 import * as API from '../src/utils/api';
 import * as types from './actionTypes';
 
-
-
 export const getRequest = request => ({
   type: types.GET_EVIDENCE_REQUEST,
   request,

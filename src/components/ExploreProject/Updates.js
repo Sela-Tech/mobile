@@ -11,9 +11,7 @@ import Tag from '../Tag';
 import B from '../BoldText';
 import Button from '../Button';
 import SubmitEvidenceRequestModal from '../Evidence/SubmitEvidenceRequestModal';
-// import SpinnerOverlay from '../SpinnerOverlay';
 import EvalSubmission from './EvalSubmission';
-
 import { projectStatusTextColor } from '../../utils/helpers';
 import { updateRequest } from '../../../actions/evidence_request';
 import { WHITE, YELLOW } from '../../utils/constants';
@@ -351,10 +349,7 @@ class Updates extends Component {
                 paddingHorizontal: 5,
               }}
             >
-              <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>
-{title}
-{' '}
- </Text>
+              <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>{title} </Text>
             </View>
           </View>
           <View style={{ marginTop: '2%', flexDirection: 'row' }}>

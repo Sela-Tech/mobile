@@ -223,8 +223,6 @@ class CreateProject extends Component {
       location: locationObj,
     };
 
-
-
     const date1 = new Date(startDate);
     const date2 = new Date(endDate);
     const diff = parseInt((date2 - date1) / (1000 * 60 * 60 * 24));
@@ -233,23 +231,23 @@ class CreateProject extends Component {
       return alert('Please enter project title');
     }
     if (description === '') {
-      return alert('Please enter project description')
+      return alert('Please enter project description');
     }
 
     if (impBudget === '') {
-      return alert('Please enter project implementation budget')
+      return alert('Please enter project implementation budget');
     }
 
     if (obsBudget === '') {
-      return alert('Please enter project observation budget')
+      return alert('Please enter project observation budget');
     }
 
     if (Object.keys(locationObj).length === 0) {
-      return alert('Please set project location')
+      return alert('Please set project location');
     }
 
     if (diff < 0) {
-      return alert('Start date can\'t be greater than end date')
+      return alert("Start date can't be greater than end date");
     }
     this.setState({ loading: true });
     try {
@@ -376,13 +374,8 @@ class CreateProject extends Component {
     ];
 
     return (
-      <KeyboardAwareScrollView
-        contentContainerStyle={styles.container}
-        scrollEnabled
-      >
-        <Spinner
-          loading={loading}
-        />
+      <KeyboardAwareScrollView contentContainerStyle={styles.container} scrollEnabled>
+        <Spinner loading={loading} />
         <View style={styles.smallContainer}>
           <View style={{ marginBottom: 10 }}>
             <Text style={{ fontSize: 15 }}> Name your project </Text>
@@ -604,9 +597,9 @@ class CreateProject extends Component {
                 style={
                   avatarURI !== ''
                     ? {
-                      width: width / 1.1,
-                      height: height / 9,
-                    }
+                        width: width / 1.1,
+                        height: height / 9,
+                      }
                     : null
                 }
                 source={icon}
@@ -638,10 +631,10 @@ class CreateProject extends Component {
             {showFirstCalendar === true || showSecondCalendar === true ? (
               <Fragment />
             ) : (
-                <View style={{ justifyContent: 'center' }}>
-                  <Image source={require('../../assets/minus.png')} />
-                </View>
-              )}
+              <View style={{ justifyContent: 'center' }}>
+                <Image source={require('../../assets/minus.png')} />
+              </View>
+            )}
           </Fragment>
           <CalendarBox
             upText="End Date"

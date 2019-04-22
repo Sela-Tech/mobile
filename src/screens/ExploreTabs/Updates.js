@@ -10,7 +10,6 @@ import Spinner from '../../components/Spinner';
 import { WHITE } from '../../utils/constants';
 import ExtStyles from '../../utils/styles';
 
-
 const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +33,6 @@ const textForFunder = "You haven't created any task";
 const otherText = "You haven't been assigned any task";
 
 class Updates extends Component {
-
   state = {
     loading: true,
   };
@@ -47,21 +45,21 @@ class Updates extends Component {
     try {
       await this.props.loadRequest(this.props.project._id);
       this.setState({ loading: false });
-    }
-    catch (err) {
+    } catch (err) {
       this.setState({ error: error.message, loading: false });
     }
-  }
+  };
+
   render() {
     const { project, userRole, updateTask } = this.props;
-    const request = this.props && this.props.request && this.props.request.request || [];
+    const request = (this.props && this.props.request && this.props.request.request) || [];
     const { loading } = this.state;
     if (loading) {
       return (
         <View style={ExtStyles.center}>
           <Spinner />
         </View>
-      )
+      );
     }
     if (request && request.length === 0) {
       return (
@@ -91,7 +89,7 @@ class Updates extends Component {
       </ScrollView>
     );
   }
-};
+}
 
 const mapDispatchToProps = dispatch => ({
   loadRequest: projectId => dispatch(getUserRequest(projectId)),
@@ -101,4 +99,7 @@ const mapStateToProps = state => ({
   request: state.request,
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Updates);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Updates);

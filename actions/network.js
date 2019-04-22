@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 
-export const getNetwork = network  => ({
+export const getNetwork = network => ({
   type: types.GET_NETWORK,
   network,
 });
