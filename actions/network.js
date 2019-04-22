@@ -1,7 +1,8 @@
 import * as types from './actionTypes';
 
-export const getNetwork = () => ({
-  type: types.GET_PROJECTS,
+export const getNetwork = network  => ({
+  type: types.GET_NETWORK,
+  network,
 });
 
 export const updateNetwork = network => ({

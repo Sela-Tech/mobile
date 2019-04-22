@@ -9,15 +9,17 @@ import { getUserTransactions } from '../../../actions/wallet';
 import Text from '../Text';
 import Tag from '../Tag';
 import B from '../BoldText';
+import Button from '../Button';
 import SubmitEvidenceRequestModal from '../Evidence/SubmitEvidenceRequestModal';
 // import SpinnerOverlay from '../SpinnerOverlay';
 import EvalSubmission from './EvalSubmission';
-import { evidenceRequestSubmission } from '../../utils/api';
+
 import { projectStatusTextColor } from '../../utils/helpers';
 import { updateRequest } from '../../../actions/evidence_request';
-import { WHITE } from '../../utils/constants';
+import { WHITE, YELLOW } from '../../utils/constants';
 import ExtStyles from '../../utils/styles';
 import BigImage from './Image';
+import { evidenceRequestSubmission } from '../../utils/api';
 
 const { height, width } = Dimensions.get('window');
 
@@ -161,7 +163,7 @@ class Updates extends Component {
   };
 
   submission = async val => {
-    this.setState({ loading: true, expand: false }); x
+    this.setState({ loading: true, expand: false });
     const cred = this.props && this.props.credentials && this.props.credentials.credentials;
 
     if (val === 'image') {
@@ -183,7 +185,7 @@ class Updates extends Component {
         type: 'image/png',
       };
       this.setState({ submissionLoading: true });
-      const resp = await uploadToAWS(fileInfo, null, cred);
+      const resp = await this.uploadToAWS(fileInfo, null, cred);
       await this.submitEvidence(resp.postResponse.location, requestId);
     } else {
       alert('table submission');
@@ -232,7 +234,10 @@ class Updates extends Component {
 
   toggleModal = () => this.setState(prevState => ({ tableModal: !prevState.tableModal }));
 
+  hideUploadProgress = () => this.setState({ submissionLoading: false });
+
   render() {
+    const networkStatus = this.props && this.props.network && this.props.network.status;
     const {
       allData,
       projectName,
@@ -287,8 +292,15 @@ class Updates extends Component {
     if (submissionLoading) {
       return (
         <View style={ExtStyles.center}>
-          <Progress.Pie progress={uploadProgress} size={50} />
-          {/* <SpinnerOverlay loading={submissionLoading} /> */}
+          <Progress.Pie progress={uploadProgress} color={YELLOW} size={height / 4.5} />
+          <View style={{ marginTop: 5 }}>
+            <Button
+              style={{ width: width / 2 }}
+              textColor={WHITE}
+              text="Minimize"
+              fn={() => this.hideUploadProgress()}
+            />
+          </View>
         </View>
       );
     }
@@ -340,14 +352,16 @@ class Updates extends Component {
               }}
             >
               <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '300' }}>
-                {title}
-                {' '}
-              </Text>
+{title}
+{' '}
+ </Text>
             </View>
           </View>
           <View style={{ marginTop: '2%', flexDirection: 'row' }}>
             <View>
-              <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>Description:</Text>
+              <Text style={{ color: '#201D41', fontSize: 15, fontWeight: '500' }}>
+                Description:
+              </Text>
             </View>
             <View>
               <Text style={{ color: '#222829' }}>{allData.instruction}</Text>
@@ -362,33 +376,33 @@ class Updates extends Component {
                   <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
                 </View>
               ) : (
-                  <Fragment>
-                    {allData && allData.submissions && allData.submissions.length === 0 ? (
-                      <View
-                        style={{ marginVertical: 5, justifyContent: 'center', alignItems: 'center' }}
-                      >
-                        <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
+                <Fragment>
+                  {allData && allData.submissions && allData.submissions.length === 0 ? (
+                    <View
+                      style={{ marginVertical: 5, justifyContent: 'center', alignItems: 'center' }}
+                    >
+                      <Text style={{ fontWeight: '400' }}> No Submission yet </Text>
+                    </View>
+                  ) : (
+                      <View style={{ marginBottom: 7 }}>
+                      <View>
+                        <B color="#201D41"> Evaluation Submissions</B>
                       </View>
-                    ) : (
-                        <View style={{ marginBottom: 7 }}>
-                          <View>
-                            <B color="#201D41"> Evaluation Submissions</B>
-                          </View>
-                          <FlatList
-                            style={{ paddingTop: 10 }}
-                            data={allData.submissions.filter(c => c && c.evidence)} // Get only image submissions
-                            showsHorizontalScrollIndicator={false}
-                            keyExtractor={keyExtractor}
-                            horizontal
-                            initialNumToRender={4}
-                            renderItem={renderItem}
-                            removeClippedSubviews
-                            windowSize={10}
-                          />
-                        </View>
-                      )}
-                  </Fragment>
-                )}
+                      <FlatList
+                        style={{ paddingTop: 10 }}
+                        data={allData.submissions.filter(c => c && c.evidence)} // Get only image submissions
+                        showsHorizontalScrollIndicator={false}
+                        keyExtractor={keyExtractor}
+                        horizontal
+                        initialNumToRender={4}
+                        renderItem={renderItem}
+                        removeClippedSubviews
+                        windowSize={10}
+                      />
+                    </View>
+                  )}
+                </Fragment>
+              )}
             </Fragment>
           ) : null}
         </View>
@@ -399,6 +413,7 @@ class Updates extends Component {
 
 const mapStateToProps = state => ({
   credentials: state.credentials,
+  network: state.network,
 });
 
 const mapDispatchToProps = dispatch => ({

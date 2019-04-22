@@ -10,21 +10,16 @@ import {
 } from 'react-native';
 import LottieView from 'lottie-react-native';
 import { connect } from 'react-redux';
-// import { Tabs, Tab } from 'native-base';
-
 import io from 'socket.io-client';
 import { store } from '../../store';
 import { getNewNotifications } from '../../actions/notifications';
 import { getUserProject, getProjectInvitedTo } from '../../actions/project';
 import ParentHeader from '../components/Header';
 import Text from '../components/Text';
-// import Proposals from '../components/Project/Proposals';
 import ProjectView from '../components/Project/ContractorProject';
 import { YELLOW, BASE_URL } from '../utils/constants';
 import { getUserRole } from '../utils/helpers';
 import ExtStyle from '../utils/styles';
-import Spinner from '../components/Spinner';
-// import StandardText from '../components/StandardText';
 import NavigationService from '../services/NavigationService';
 
 const { height, width } = Dimensions.get('window');
@@ -110,7 +105,7 @@ const getCurrentState = () => {
 class Project extends Component {
   state = {
     reloading: false,
-    loading: true,
+    // loading: true,
     relevantProject: otherFilters,
     relevantProjectVal: '',
     isFunder:
@@ -131,8 +126,7 @@ class Project extends Component {
   };
 
   async componentDidMount() {
-    // this.animation.play();
-    await this.loadInitialData();
+    // await this.loadInitialData();
     getCurrentState();
   }
 
@@ -182,6 +176,7 @@ class Project extends Component {
   }
 
   render() {
+    const networkStatus = this.props && this.props.network && this.props.network.status;
     const {
       relevantProject,
       relevantProjectVal,
@@ -236,7 +231,11 @@ class Project extends Component {
           <Fragment>
             {loading ? (
               <View style={{ height }}>
-                <LottieView source={require('../../assets/animations/loading.json')} autoPlay loop />
+                <LottieView
+                  source={require('../../assets/animations/loading.json')}
+                  autoPlay
+                  loop
+                />
               </View>
             ) : (
                 <Fragment>
@@ -368,6 +367,7 @@ class Project extends Component {
 const mapStateToProps = state => ({
   userInfo: state.userInfo,
   projects: state.projects,
+  network: state.network,
   notifications: state.notifications,
 });
 
@@ -380,4 +380,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Project);
-

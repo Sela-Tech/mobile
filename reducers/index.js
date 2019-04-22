@@ -6,6 +6,7 @@ import notifications from './notifications';
 import credentials from './credentials';
 import request from './evidence_request';
 import wallet from './wallet';
+import network from './network';
 
 const rootReducer = combineReducers({
   token,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   credentials,
   wallet,
   request,
+  network,
 });
 
 export default rootReducer;
