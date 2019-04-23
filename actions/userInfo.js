@@ -17,3 +17,7 @@ export const addUserInfo = userInfo => ({
 export const saveUserInfo = data => dispatch => {
   dispatch(addUserInfo(data));
 };
+
+export const LogOut = () => ({
+  type: types.LOGOUT,
+});

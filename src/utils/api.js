@@ -4,6 +4,8 @@ import Axios from 'axios';
 import { RNS3 } from 'react-native-aws3';
 import { AsyncStorage } from 'react-native';
 import { BASE_URL } from './constants';
+import { store } from '../../store';
+import { LogOut } from '../../actions/userInfo';
 import NavigationService from '../services/NavigationService';
 
 const axios = Axios.create({
@@ -44,10 +46,14 @@ axios.interceptors.response.use(
   error => {
     if (error.response.data.message === 'jwt expired') {
       AsyncStorage.removeItem('user');
+      // clean state
+      store.dispatch(LogOut());
       NavigationService.navigate('Login');
     } else if (error.response.data.message === 'jwt malformed') {
       try {
         AsyncStorage.removeItem('user');
+        // clean state
+        store.dispatch(LogOut());
         NavigationService.navigate('Login');
       } catch (err) {
         console.log('err', err.message);

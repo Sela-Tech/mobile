@@ -3,6 +3,8 @@ import { TouchableOpacity, View, StyleSheet, AsyncStorage } from 'react-native';
 import NavigationService from '../../services/NavigationService';
 import Text from '../Text';
 import B from '../BoldText';
+import { store } from '../../../store';
+import { LogOut } from '../../../actions/userInfo';
 
 const styles = StyleSheet.create({
   container: {
@@ -12,7 +14,9 @@ const styles = StyleSheet.create({
 
 const logOut = async () => {
   try {
+    store.dispatch(LogOut());
     AsyncStorage.removeItem('user');
+    AsyncStorage.removeItem('persist:root');
     NavigationService.navigate('Login');
   } catch (err) {
     console.log(err.message);
@@ -28,11 +32,15 @@ const SettingsList = ({ upText, downText }) => (
         fn={upText === 'Logout' ? () => logOut() : () => console.log('test')}
       >
         {' '}
-        {upText}{' '}
+        {upText}
+{' '}
       </B>
     </View>
     <View style={{ paddingTop: 5 }}>
-      <Text> {downText}</Text>
+      <Text> 
+{' '}
+{downText}
+</Text>
     </View>
   </TouchableOpacity>
 );

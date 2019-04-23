@@ -39,3 +39,5 @@ export const UPDATE_REQUEST = 'UPDATE_REQUEST';
 
 export const GET_NETWORK = 'GET_NETWORK';
 export const UPDATE_NETWORK = 'UPDATE_NETWORK';
+
+export const LOGOUT = 'LOGOUT';
