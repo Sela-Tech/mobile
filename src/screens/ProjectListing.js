@@ -1,5 +1,14 @@
 import React, { Component, Fragment } from 'react';
-import { View, ScrollView, FlatList, StyleSheet, Dimensions, Picker, Keyboard } from 'react-native';
+import {
+  View,
+  ScrollView,
+  RefreshControl,
+  FlatList,
+  StyleSheet,
+  Dimensions,
+  Picker,
+  Keyboard,
+} from 'react-native';
 import { connect } from 'react-redux';
 import RNGooglePlaces from 'react-native-google-places';
 import NavigationService from '../services/NavigationService';
@@ -64,7 +73,6 @@ const renderItem = item => (
   <View style={{ marginBottom: 10, marginTop: 10 }}>
     <Box
       fn={() => NavigationService.navigate('ExploreProject', item.item._id)}
-      // img={{ uri: 'https://placeimg.com/640/480/any' }}
       img={{ uri: item.item['project-avatar'] }}
       firstText={item.item.location.name}
       secondText={item.item.name}
@@ -80,11 +88,16 @@ const keyExtractor = (item, index) => index.toString();
 class ExploreProject extends Component {
   state = {
     loading: true,
+    refreshing: false,
     googlePlaces: [],
     relevantProject: otherFilters,
   };
 
   async componentDidMount() {
+    await this.loadInitialData();
+  }
+
+  loadInitialData = async () => {
     try {
       const resp = await getAllfeaturedProjects('');
       if (resp.data.success === true) {
@@ -98,7 +111,23 @@ class ExploreProject extends Component {
     } catch (err) {
       this.setState({ loading: false });
     }
-  }
+  };
+
+  loadMore = async () => {
+    // try {
+    //   const resp = await getAllfeaturedProjects({ limit: 20 });
+    //   if (resp.data.success === true) {
+    //     this.setState({ loading: false, projects: resp.data.projects });
+    //   } else {
+    //     this.setState({
+    //       loading: false,
+    //       error: 'failed',
+    //     });
+    //   }
+    // } catch (err) {
+    //   this.setState({ loading: false });
+    // }
+  };
 
   searchResult = async () => {
     const { places } = this.state;
@@ -108,6 +137,12 @@ class ExploreProject extends Component {
         this.setState({ googlePlaces: place });
       })
       .catch(error => this.setState({ error: error.message }));
+  };
+
+  onRefresh = async () => {
+    this.setState({ refreshing: true });
+    await this.loadInitialData();
+    this.setState({ refreshing: false });
   };
 
   handleSelectedAddress = (payload, id) => {
@@ -145,6 +180,7 @@ class ExploreProject extends Component {
       googlePlaces,
       relevantProjectVal,
       searchResult,
+      refreshing,
       location,
     } = this.state;
 
@@ -152,9 +188,11 @@ class ExploreProject extends Component {
       <ScrollView
         style={{
           backgroundColor: WHITE,
+          flex: 1,
         }}
         stickyHeaderIndices={[0]}
         contentContainerStyle={styles.container}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={this.onRefresh} />}
       >
         <Header headerName="EXPLORE" />
         <View style={styles.subContainer}>
@@ -168,7 +206,7 @@ class ExploreProject extends Component {
           >
             <Text style={{ fontSize: 20, fontWeight: '300' }}>Search for Projects</Text>
           </View>
-          <View style={{ flex: 1 }}>
+          <View style={ExtStyle.flex1}>
             <View style={{ paddingBottom: 15 }}>
               <Input
                 value={location}
@@ -252,7 +290,7 @@ class ExploreProject extends Component {
             <View style={{ marginVertical: isAndroid ? '6%' : 20 }}>
               <Text style={{ fontSize: 15, fontWeight: '500' }}>Featured Projects</Text>
             </View>
-            <View style={{ flex: 1 }}>
+            <View style={ExtStyle.flex1}>
               {loading === true ? (
                 <Spinner />
               ) : (
@@ -265,10 +303,12 @@ class ExploreProject extends Component {
                     <FlatList
                       data={projects}
                       renderItem={renderItem}
-                      style={{ flex: 1 }}
+                      style={ExtStyle.flex1}
                       keyExtractor={keyExtractor}
-                      removeClippedSubviews
                       initialNumToRender={10}
+                      onEndReachedThreshold={0.01}
+                      onEndReached={this.loadMore}
+                      // onEndReachedThreshold={0.1}
                     />
                   )}
                 </Fragment>

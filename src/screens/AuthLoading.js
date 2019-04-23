@@ -21,29 +21,38 @@ class AuthLoading extends Component {
   }
 
   getKey = async () => {
-    try {
-      const key = await AsyncStorage.getItem('user');
-      const parsedKey = JSON.parse(key);
-      global.userToken = parsedKey.token;
-      this.props.saveUserInfos(parsedKey);
-      this.props.navigation.navigate(key ? 'AppHome' : 'AuthHome');
-    } catch (err) {
-      this.props.navigation.navigate('AuthHome');
+    let parsedKey;
+    if (!(this.props.userInfo && this.props.userInfo.user && this.props.userInfo.user.token)) {
+      try {
+        const key = await AsyncStorage.getItem('user');
+        parsedKey = JSON.parse(key);
+        global.userToken = parsedKey.token;
+        this.props.saveUserInfos(parsedKey);
+        this.props.navigation.navigate(parsedKey ? 'AppHome' : 'AuthHome');
+      } catch (err) {
+        this.props.navigation.navigate('AuthHome');
+      }
     }
+    parsedKey = this.props.userInfo.user.token;
+    global.userToken = parsedKey;
+    this.props.navigation.navigate(parsedKey ? 'AppHome' : 'AuthHome');
   };
 
   getCredentials = async () => {
-    try {
-      await this.props.getPassCredentials();
-      if (this.props && this.props.credentials && this.props.credentials.credentials !== null) {
-        return true;
-      }
-      if (this.props && this.props.credentials && this.props.credentials.credentials === '') {
+    const cred = this.props && this.props.credentials && this.props.credentials.credentials;
+    if (Object.keys(cred).length < 0) {
+      try {
+        await this.props.getPassCredentials();
+        if (this.props && this.props.credentials && this.props.credentials.credentials !== null) {
+          return true;
+        }
+        if (this.props && this.props.credentials && this.props.credentials.credentials === '') {
+          await this.props.getAccessCredentials();
+        }
+        await this.props.getAccessCredentials();
+      } catch (err) {
         await this.props.getAccessCredentials();
       }
-      await this.props.getAccessCredentials();
-    } catch (err) {
-      await this.props.getAccessCredentials();
     }
   };
 

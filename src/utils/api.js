@@ -234,13 +234,19 @@ export const saveProject = async projectId => {
 };
 
 export const getAllfeaturedProjects = async query => {
+  // `${BASE_URL}/projects?${query !== '' ? `limit=${query.limit}&${query}` : 'limit=12'}`,
   try {
-    return Axios.get(`${BASE_URL}/projects?${query !== '' ? `limit=12&${query}` : 'limit=12'}`, {
-      headers: {
-        public: true,
-        'Content-Type': 'application/json',
+    return Axios.get(
+      `${BASE_URL}/projects?${
+        query && query.value !== '' ? `limit=12&${query.value}` : `limit=${query && query.limit}`
+      }`,
+      {
+        headers: {
+          public: true,
+          'Content-Type': 'application/json',
+        },
       },
-    });
+    );
   } catch (err) {
     return err;
   }
