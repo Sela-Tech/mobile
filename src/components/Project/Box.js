@@ -51,22 +51,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   pt3: {
-    // paddingTop: '1%',
     justifyContent: 'center',
   },
   pl5: {
-    // flex: 1,
     borderRadius: 10,
     paddingLeft: 5,
     flexDirection: 'row',
-    // paddingLeft: 5,
-    // justifyContent: 'flex-start',
   },
   otherCont: {
     alignItems: 'center',
     borderColor: '#F2994A',
-    // flexDirection: 'row',
-    // width: width / 1.5,
   },
   mt10: {
     // marginTop: 10
@@ -76,11 +70,8 @@ const styles = StyleSheet.create({
   },
   tagStyle: {
     width: '40%',
-    // flex: 1,
-    // height: '65%',
     paddingHorizontal: 5,
     paddingVertical: 3,
-    // borderRadius: 10,
   },
   viewInImage: {
     paddingLeft: 5,
@@ -173,7 +164,11 @@ const viewToReturn = text => {
             <Image source={require('../../../assets/yellow_plus.png')} />
           </View>
           <View style={styles.pl3}>
-            <Text style={styles.text}> {text ? text : 'Propose Project'} </Text>
+            <Text style={styles.text}> 
+{' '}
+{text ? text : 'Propose Project'}
+{' '}
+ </Text>
           </View>
         </View>
       );

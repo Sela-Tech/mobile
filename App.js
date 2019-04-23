@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, YellowBox, StatusBar } from 'react-native';
+import { StyleSheet, View, YellowBox, StatusBar, ImageBackground } from 'react-native';
 import { Provider } from 'react-redux';
 // import Instabug from 'instabug-reactnative';
 import { PersistGate } from 'redux-persist/integration/react';
@@ -33,7 +33,10 @@ export default class App extends Component {
       <Provider store={store}>
         <PersistGate persistor={persistor} loading={<Loading />}>
           <ErrorHandler>
-            <View style={styles.container}>
+            <ImageBackground
+              source={require('./assets/splash_screen.png')}
+              style={styles.container}
+            >
               <StatusBar barStyle="light-content" />
               <RootNavigator
                 ref={navigatorRef => {
@@ -41,7 +44,7 @@ export default class App extends Component {
                 }}
               />
               <OfflineNotice />
-            </View>
+            </ImageBackground>
           </ErrorHandler>
         </PersistGate>
       </Provider>

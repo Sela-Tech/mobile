@@ -133,7 +133,7 @@ class Project extends Component {
 
   checkSavedProject = () => {
     const projects = this.props && this.props.projects && this.props.projects.projects;
-    if (projects) {
+    if (Object.keys(projects).length > 0) {
       this.setState({ loading: false });
     }
   };
