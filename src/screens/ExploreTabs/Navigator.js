@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import OverViewDetails from '../../components/Explore/OverView';
 import Stakeholders from './StakeHolders';
 import Transactions from './Transactions';
+import ContUpdates from './ContUpdates';
 // import Evidence from './Evidence';
 import Overview from './Overview';
 
@@ -97,9 +98,9 @@ const Navigator = ({ project, userId, userInfo, navigation }) => {
           Proposals: {
             screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
           },
-          Evidence: {
-            screen: () => <Request userRole={userRole} project={project} />,
-          },
+          // Evidence: {
+          //   screen: () => <Request userRole={userRole} project={project} />,
+          // },
           Updates: {
             screen: () => <Updates userRole={userRole} project={project} />,
           },
@@ -121,6 +122,9 @@ const Navigator = ({ project, userId, userInfo, navigation }) => {
         Evidence: {
           screen: () => <Request userRole={userRole} project={project} />,
         },
+        Proposals: {
+          screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
+        },
       },
       {
         tabBarOptions,
@@ -133,13 +137,13 @@ const Navigator = ({ project, userId, userInfo, navigation }) => {
           screen: () => <OverViewDetails userRole={userRole} project={project} />,
         },
         Updates: {
-          screen: () => <Updates userRole={userRole} project={project} />,
-        },
-        Stakeholders: {
-          screen: () => <Stakeholders userRole={userRole} project={project} />,
+          screen: () => <ContUpdates userRole={userRole} project={project} />,
         },
         Transactions: {
           screen: () => <Transactions userRole={userRole} project={project} />,
+        },
+        Proposals: {
+          screen: () => <Proposal userRole={userRole} project={project} userId={userId} />,
         },
       },
       {

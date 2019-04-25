@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import LottieView from 'lottie-react-native';
 import { getUserNotifications, updateUserNotifications } from '../../actions/notifications';
 import Text from '../components/Text';
-import Spinner from '../components/Spinner';
 import SingleNotificationText from '../components/Notifications/SingleNotificationText';
 import { WHITE } from '../utils/constants';
 import { formattedDate, sortNotificationsByDate, isAndroid } from '../utils/helpers';

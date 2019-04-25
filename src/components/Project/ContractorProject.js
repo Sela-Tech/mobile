@@ -5,11 +5,7 @@ import NavigationService from '../../services/NavigationService';
 import { YELLOW } from '../../utils/constants';
 
 const styles = StyleSheet.create({
-  container: {
-    // flexGrow: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
+  container: {},
   buttonCenter: {
     flex: 1,
     justifyContent: 'center',
@@ -21,17 +17,13 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     alignSelf: 'flex-end',
-    // flex: 1,
     position: 'absolute',
     bottom: 35,
     right: 10,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  center: {
-    // justifyContent: 'center',
-    // alignItems: 'center',
-  },
+  center: {},
 });
 
 const keyExtractor = (item, index) => index.toString();
@@ -41,12 +33,8 @@ const renderItem = item => (
     <Box
       fn={() => NavigationService.navigate('ExploreProject', item.item._id)}
       img={{ uri: item.item.avatar || item.item['project-avatar'] }}
-      // firstText={item.item.location.name}
       secondText={item.item.name}
       home
-      // thirdText={item.item.status}
-      // title={item.item.description}
-      // cost={item.item.goal}
       tags={[]}
     />
   </View>

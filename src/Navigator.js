@@ -20,6 +20,7 @@ import AddInterest from './screens/AddInterest';
 import AddProposal from './screens/AddProposal';
 import ProjectWallet from './screens/ProjectWallet';
 import Test from './screens/Test';
+import Updates from './screens/ContUpdates';
 
 import { isAndroid } from './utils/helpers';
 
@@ -173,7 +174,7 @@ export const MainSwitchNavigator = createSwitchNavigator(
 
 export const TestStackNavigator = createStackNavigator({
   AddProdsdsposal: {
-    screen: Test,
+    screen: Updates,
     // navigationOptions: {
     //   header: null,
     // },
@@ -207,8 +208,8 @@ export const TestStackNavigator = createStackNavigator({
   },
 });
 
-// export const RootNavigator = createAppContainer(TestStackNavigator);
+export const RootNavigator = createAppContainer(TestStackNavigator);
 
-export const RootNavigator = createAppContainer(MainSwitchNavigator);
+// export const RootNavigator = createAppContainer(MainSwitchNavigator);
 
 // export const RootNavigator = createAppContainer(RootStackNavigator);

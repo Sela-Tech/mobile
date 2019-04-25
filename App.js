@@ -23,6 +23,8 @@ export default class App extends Component {
     super(props);
     YellowBox.ignoreWarnings([
       'Setting a timer',
+      'Warning',
+      'Remote',
       'Unrecognized WebSocket connection option(s) `agent`, `perMessageDeflate`, `pfx`, `key`, `passphrase`, `cert`, `ca`, `ciphers`, `rejectUnauthorized`. Did you mean to put these under `headers`?',
     ]);
     // Instabug.startWithToken('a1713df89289cd1c8208', [Instabug.invocationEvent.shake]);

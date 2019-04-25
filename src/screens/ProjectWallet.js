@@ -94,9 +94,9 @@ class ProjectWallet extends Component {
       isContractor,
     };
     const userRole = getUserRole(userRoleObj);
+
     try {
       const resp = await getProjectBalance(this.props.navigation.state.params.projectId);
-
       let nativeBalance;
 
       // get first stakeholder user id
@@ -181,6 +181,8 @@ class ProjectWallet extends Component {
   };
 
   render() {
+    // console.log('pop', this.props.navigation.state.params);
+    const walletData = this.props.navigation.state.params;
     const myUserId = this.props.userInfo.user.id;
     // Get all project stakeholders
     const projectStakeholders =
@@ -196,14 +198,41 @@ class ProjectWallet extends Component {
     const {
       modalVisibility,
       transaction,
-      nativeBalance,
+      // nativeBalance,
       loading,
       amountToBeSent,
       remarks,
       receiverID,
-      balance,
+      isFunder,
+      isEvaluator,
+      isContractor,
       scrollY,
     } = this.state;
+    const userRoleObj = {
+      isFunder,
+      isEvaluator,
+      isContractor,
+    };
+    const userRole = getUserRole(userRoleObj);
+    const funderBalance =
+      walletData &&
+      walletData.balances &&
+      walletData.balances.distributor &&
+      walletData.balances.distributor.distributionAccountBalances &&
+      walletData.balances.distributor.distributionAccountBalances[0] &&
+      walletData.balances.distributor.distributionAccountBalances[0].balance;
+
+    const funderLumenBalance =
+      walletData &&
+      walletData.balances &&
+      walletData.balances.distributor &&
+      walletData.balances.distributor.distributionAccountBalances &&
+      walletData.balances.distributor.distributionAccountBalances[1] &&
+      walletData.balances.distributor.distributionAccountBalances[1].balance;
+
+    const balance = userRole === 'funder' ? funderBalance : this.state.balance;
+    const nativeBalance = userRole === 'funder' ? funderLumenBalance : this.state.nativeBalance;
+
     const transferData = {
       amountToBeSent,
       remarks,
