@@ -23,19 +23,13 @@ const { width, height } = Dimensions.get('window');
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // backgroundColor: 'red',
   },
   multiSelect: {
-    // borderColor: '#B1BAD2',
-    // width: width / 1.1,
-    // borderRadius: 5,
     justifyContent: 'center',
-    // alignItems: 'center',
     borderWidth: null,
     borderBottomWidth: 2,
     borderRadius: 0,
     borderBottomColor: '#DDDDDD',
-    // borderWidth: 1,
   },
   container2: {
     flex: 1,
@@ -103,20 +97,17 @@ const MileStoneHeader = ({ newVal, mileStoneTitle, updateInput, index, totalAmou
       <View style={[ExtStyle.flex1, ExtStyle.row]}>
         <View style={[ExtStyle.flex4, ExtStyle.row]}>
           <View>
-            <Text style={styles.mileStoneHeadingText}>{index + 1}
-)
-</Text>
+            <Text style={styles.mileStoneHeadingText}>{index + 1}</Text>
           </View>
           <View>
-            <Text style={styles.mileStoneHeadingText}> {mileStoneTitle}</Text>
+            <Text style={styles.mileStoneHeadingText}>{mileStoneTitle}</Text>
           </View>
         </View>
         <View style={styles.textAmountView}>
-          <Text style={styles.textAmount}> $
+          <Text style={styles.textAmount}>
+$
 {totalAmount}
-{' '}
- 
-          </Text>
+</Text>
         </View>
       </View>
     )}
@@ -130,9 +121,6 @@ export default class AddProposals extends Component {
     new: true,
     mileStoneTitle: '',
     projectId: this.props.navigation.state.params.projectId,
-    // contractorId: this.props.navigation.state.params.userId,
-    // projectId: '5c6ac53bb4378e0022880150',
-    // contractorId: '5c6ac11ab4378e002288014c',
     modalVisibility: false,
     milestones: [],
     users: [],
@@ -192,7 +180,6 @@ export default class AddProposals extends Component {
 
     try {
       this.setState({ loading: true });
-      // const resp = await createTask(data);
       milestones.push(data);
       this.setState(prevState => ({
         modalVisibility: !prevState.modalVisibility,
@@ -263,8 +250,6 @@ export default class AddProposals extends Component {
     }
     try {
       this.setState({ loading: true });
-      // const resp = await createMileStone(data);
-
       const pushMilestones = milestones.reduce((a, b, i) => {
         const aa = [];
         if (b.id === markedTask[i]) {

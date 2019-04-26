@@ -30,13 +30,6 @@ const Box = ({ color, style, textColor, fn, upText, downText, textSize, below, c
     ]}
   >
     <TouchableOpacity onPress={fn} style={{ flex: 1, flexDirection: 'row', alignItems: 'center' }}>
-      {/* <View>
-          <CheckBox
-            color="#FFFFFF"
-            checkboxTickColor="#F4F689"
-            checked={checked}
-          />
-        </View> */}
       <View style={{ paddingLeft: '10%' }}>
         <View>
           <B size={16} color={textColor}>

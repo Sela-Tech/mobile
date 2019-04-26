@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
+import AddUpdateModal from '../components/ContUpdates/AddUpdateModal';
 import Text from '../components/Text';
 import { isAndroid } from '../utils/helpers';
 import { YELLOW } from '../utils/constants';
@@ -39,12 +40,28 @@ export default class Updates extends Component {
 
   state = {
     update: [1, 2],
+    showModal: false,
+    comment: '',
   };
 
-  componentDidMount() {}
+  componentDidMount() { }
+
+  toggleModal = () => this.setState(prevState => ({ showModal: !prevState.showModal }));
+
+  updateInput = (val, name) => {
+    if (name === 'comment') {
+      this.setState({
+        comment: val,
+      });
+    }
+  };
+
+  submit = () => {
+    this.toggleModal();
+  };
 
   render() {
-    const { update } = this.state;
+    const { update, showModal, comment } = this.state;
     return (
       <ScrollView
         style={styles.container}
@@ -52,6 +69,13 @@ export default class Updates extends Component {
           flexGrow: 1,
         }}
       >
+        <AddUpdateModal
+          submit={this.submit}
+          toggleModal={this.toggleModal}
+          comment={comment}
+          updateInput={this.updateInput}
+          visibility={showModal}
+        />
         <View style={{ flexDirection: 'row', marginTop: '5%' }}>
           <View style>
             <Image
@@ -79,7 +103,8 @@ export default class Updates extends Component {
           <View>
             <Text style={{ fontSize: 14, letterSpacing: 2 }}>
               Task description goes here. You really think you can fly that thing? Hey, you know how
-              I'm, like, always trying to save the planet? Here's my chance. Just my luck, no ice.{' '}
+              I'm, like, always trying to save the planet? Here's my chance. Just my luck, no ice.
+{' '}
             </Text>
           </View>
         </View>
@@ -97,6 +122,7 @@ export default class Updates extends Component {
                   flexDirection: 'row',
                   marginHorizontal: 2,
                 }}
+                onPress={() => this.toggleModal()}
               >
                 <View style={{ justifyContent: 'center' }}>
                   <Image
@@ -121,13 +147,13 @@ export default class Updates extends Component {
                 <Text>You have not submitted updates yet for this task </Text>
               </View>
             ) : (
-              <View>
                 <View>
-                  <Text>Report 1</Text>
-                  <Text>Report 1</Text>
+                  <View>
+                    <Text>Report 1</Text>
+                    <Text>Report 1</Text>
+                  </View>
                 </View>
-              </View>
-            )}
+              )}
           </View>
         </View>
       </ScrollView>
