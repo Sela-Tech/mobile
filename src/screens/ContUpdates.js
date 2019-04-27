@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, StyleSheet, ScrollView, Image, TouchableOpacity } from 'react-native';
 import AddUpdateModal from '../components/ContUpdates/AddUpdateModal';
 import Text from '../components/Text';
+import Report from '../components/ContUpdates/Report';
 import { isAndroid } from '../utils/helpers';
 import { YELLOW } from '../utils/constants';
 
@@ -44,7 +45,7 @@ export default class Updates extends Component {
     comment: '',
   };
 
-  componentDidMount() { }
+  componentDidMount() {}
 
   toggleModal = () => this.setState(prevState => ({ showModal: !prevState.showModal }));
 
@@ -101,7 +102,7 @@ export default class Updates extends Component {
             <Text style={{ color: '#222829', fontSize: 14 }}>Task title goes here </Text>
           </View>
           <View>
-            <Text style={{ fontSize: 14, letterSpacing: 2 }}>
+            <Text style={{ fontSize: 14 }}>
               Task description goes here. You really think you can fly that thing? Hey, you know how
               I'm, like, always trying to save the planet? Here's my chance. Just my luck, no ice.
 {' '}
@@ -147,13 +148,11 @@ export default class Updates extends Component {
                 <Text>You have not submitted updates yet for this task </Text>
               </View>
             ) : (
-                <View>
-                  <View>
-                    <Text>Report 1</Text>
-                    <Text>Report 1</Text>
-                  </View>
-                </View>
-              )}
+              <View>
+                <Report status="Completed" />
+                <Report status="Completed" />
+              </View>
+            )}
           </View>
         </View>
       </ScrollView>
