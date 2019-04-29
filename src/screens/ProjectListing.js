@@ -301,7 +301,7 @@ class ExploreProject extends Component {
                     </View>
                   ) : (
                     <FlatList
-                      data={projects}
+                      data={projects || []}
                       renderItem={renderItem}
                       style={ExtStyle.flex1}
                       keyExtractor={keyExtractor}

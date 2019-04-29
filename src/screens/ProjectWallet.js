@@ -181,7 +181,6 @@ class ProjectWallet extends Component {
   };
 
   render() {
-    // console.log('pop', this.props.navigation.state.params);
     const walletData = this.props.navigation.state.params;
     const myUserId = this.props.userInfo.user.id;
     // Get all project stakeholders

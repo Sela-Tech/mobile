@@ -115,7 +115,13 @@ const CheckBoxContainer = ({ level, mark, fn }) => (
       <CheckBox color="#201D41" onPress={() => fn(level.toLowerCase())} checked={mark} />
     </View>
     <View style={ExtStyle.flex7}>
-      <Text> {level} Level Request </Text>
+      <Text> 
+{' '}
+{level}
+{' '}
+Level Request
+{' '}
+</Text>
     </View>
   </View>
 );
@@ -158,7 +164,7 @@ export default class EvidenceRequestModal extends Component {
     };
 
     try {
-      const resp = await createEvidenceRequest(data);
+      await createEvidenceRequest(data);
     } catch (err) {
       console.log('err', err.message);
     }
@@ -167,15 +173,7 @@ export default class EvidenceRequestModal extends Component {
   };
 
   render() {
-    const {
-      stakeholders,
-      visibility,
-      toggleModal,
-      // addRequest,
-      updateInput,
-      formData,
-      loading,
-    } = this.props;
+    const { stakeholders, visibility, toggleModal, formData, loading } = this.props;
     // const { price, instructions } = formData;
     const {
       dataType,

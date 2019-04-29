@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import Text from '../Text';
 import { YELLOW } from '../../utils/constants';
+import NavigationService from '../../services/NavigationService';
 
 const styles = StyleSheet.create({
   container: {
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const Content = ({ deadline, title }) => (
+const Content = ({ deadline, title, toggleModal }) => (
   <View style={styles.container}>
     <View>
       <Text style={styles.deadlineText}>{deadline}</Text>
@@ -51,6 +52,7 @@ const Content = ({ deadline, title }) => (
             flexDirection: 'row',
             marginHorizontal: 2,
           }}
+          onPress={() => toggleModal()}
         >
           <View style={{ justifyContent: 'center' }}>
             <Image
@@ -69,7 +71,10 @@ const Content = ({ deadline, title }) => (
       </View>
     </View>
     <View>
-      <TouchableOpacity style={{ flexDirection: 'row' }} onPress={() => console.log('pressed')}>
+      <TouchableOpacity
+        style={{ flexDirection: 'row' }}
+        onPress={() => NavigationService.navigate('ContractorUpdates')}
+      >
         <View>
           <Text style={styles.titleText}>View Updates </Text>
         </View>

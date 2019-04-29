@@ -32,6 +32,9 @@ export const RootStackNavigator = createStackNavigator(
         header: null,
       },
     },
+    ContractorUpdates: {
+      screen: Updates,
+    },
     Notification: {
       screen: Notifications,
     },
@@ -91,8 +94,6 @@ export const RootStackNavigator = createStackNavigator(
   {
     defaultNavigationOptions: {
       labelStyle: {
-        // fontSize: width < 400 ? 7 : 9,
-        // fontWeight: '400',
         fontFamily: isAndroid ? 'Acumin-ItPro' : null,
       },
     },

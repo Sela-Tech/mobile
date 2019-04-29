@@ -52,9 +52,6 @@ class Request extends Component {
 
   toggleModal = () => this.setState(prevState => ({ showModal: !prevState.showModal }));
 
-  updateInput = val => {
-    console.log('ref', val);
-  };
 
   loadEvidenceRequest = async () => {
     try {
@@ -89,8 +86,7 @@ class Request extends Component {
             visibility={showModal}
             toggleModal={this.toggleModal}
             loading={loading}
-            // addRequest={this.addRequest}
-            updateInput={this.updateInput}
+          // addRequest={this.addRequest}
           />
 
           <Fragment>

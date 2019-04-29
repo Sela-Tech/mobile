@@ -50,18 +50,15 @@ const Transaction = ({ data, imageSource, sender, amount, date, taskName }) => (
             { color: data.operation === 'received' ? '#369C05' : '#BC1717' },
           ]}
         >
-          PST {` `}
+          PST 
+{' '}
+{` `}
           {amount}
         </Text>
       </View>
       <View>
         <Text style={styles.date}>{moment(date).format('MMMM Do YYYY')}</Text>
       </View>
-    </View>
-    <View style={ExtStyles.center}>
-      {/* <TouchableOpacity onPress={() => console.log('press')}>
-        <Image source={require('../../../assets/down_arrow.png')} />
-      </TouchableOpacity> */}
     </View>
   </View>
 );
