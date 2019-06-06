@@ -1,4 +1,5 @@
 {
     "eslint.autoFixOnSave": true,
-    "java.configuration.updateBuildConfiguration": "automatic"
+    "java.configuration.updateBuildConfiguration": "automatic",
+    "jira-plugin.workingProject": ""
 }

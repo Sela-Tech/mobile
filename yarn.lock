@@ -2322,9 +2322,9 @@ eslint-plugin-jsx-a11y@^6.1.2:
     has "^1.0.3"
     jsx-ast-utils "^2.0.1"
 
-eslint-plugin-prettier@^3.0.0:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.0.1.tgz#19d521e3981f69dd6d14f64aec8c6a6ac6eb0b0d"
+eslint-plugin-prettier@^3.0.1:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-prettier/-/eslint-plugin-prettier-3.1.0.tgz#8695188f95daa93b0dc54b249347ca3b79c4686d"
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
@@ -5028,6 +5028,14 @@ prop-types@^15.5.10, prop-types@^15.5.8, prop-types@^15.6.0, prop-types@^15.6.1,
     loose-envify "^1.3.1"
     object-assign "^4.1.1"
 
+prop-types@^15.7.2:
+  version "15.7.2"
+  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  dependencies:
+    loose-envify "^1.4.0"
+    object-assign "^4.1.1"
+    react-is "^16.8.1"
+
 pseudomap@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/pseudomap/-/pseudomap-1.0.2.tgz#f052a28da70e618917ef0a8ac34c1ae5a68286b3"
@@ -5101,6 +5109,10 @@ react-is@^16.5.2, react-is@^16.6.3, react-is@^16.7.0:
   version "16.7.0"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.7.0.tgz#c1bd21c64f1f1364c6f70695ec02d69392f41bfa"
 
+react-is@^16.8.1:
+  version "16.8.6"
+  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
+
 react-lifecycles-compat@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/react-lifecycles-compat/-/react-lifecycles-compat-3.0.4.tgz#4f1a273afdfc8f3488a8c516bfda78f872352362"
@@ -5145,6 +5157,10 @@ react-native-easy-grid@0.2.0:
   resolved "https://registry.yarnpkg.com/react-native-easy-grid/-/react-native-easy-grid-0.2.0.tgz#4718031aa1baaa2613b829fc807da288eb0d2797"
   dependencies:
     lodash "^4.11.1"
+
+react-native-fast-image@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-6.0.3.tgz#e644076c5e21dd8695db07905779352b2b9c1cb8"
 
 react-native-gesture-handler@^1.0.0, react-native-gesture-handler@^1.0.12:
   version "1.0.15"
@@ -5201,6 +5217,12 @@ react-native-pdf@^5.0.11:
   dependencies:
     crypto-js "^3.1.9-1"
     prop-types "^15.5.10"
+
+react-native-progress@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-progress/-/react-native-progress-3.6.0.tgz#feaf37491f91bb421207fd761e20cb7258a2a3a6"
+  dependencies:
+    prop-types "^15.7.2"
 
 react-native-pure-chart@^0.0.24:
   version "0.0.24"

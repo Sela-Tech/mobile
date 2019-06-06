@@ -36,6 +36,8 @@ target 'SelaMobile2' do
 
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
 
+  pod 'react-native-fast-image', :path => '../node_modules/react-native-fast-image'
+
   target 'SelaMobile2Tests' do
     inherit! :search_paths
     # Pods for testing
